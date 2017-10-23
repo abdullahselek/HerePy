@@ -1,0 +1,8 @@
+future
+requests
+
+pytest
+pytest-cov
+pytest-runner
+mock
+six
