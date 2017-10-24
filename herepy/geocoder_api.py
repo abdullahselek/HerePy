@@ -17,6 +17,7 @@ class GeocoderApi(object):
                  app_id=None,
                  app_code=None):
         self.SetCredentials(app_id, app_code)
+        self._baseUrl = 'https://geocoder.cit.api.here.com/6.2/geocode.json'
 
     def SetCredentials(self, 
                        app_id, 
