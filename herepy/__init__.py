@@ -16,6 +16,8 @@ __description__  = 'A Python wrapper around the HERE APIs'
 
 import json
 
+from .error import HEREError
+
 from .models import (
     GeocoderResponse
 )
