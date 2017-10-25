@@ -8,6 +8,21 @@ import io
 import warnings
 import sys
 
+try:
+    # python 3
+    from urllib.parse import urlparse, urlunparse, urlencode
+except ImportError:
+    from urlparse import urlparse, urlunparse
+    from urllib import urlencode
+
+from herepy.error import (
+    HEREError
+)
+
+from herepy.models import (
+    GeocoderResponse
+)
+
 class GeocoderApi(object):
     """A python interface into the HERE Geocoder API"""
 
@@ -15,12 +30,55 @@ class GeocoderApi(object):
 
     def __init__(self,
                  app_id=None,
-                 app_code=None):
+                 app_code=None,
+                 timeout=None):
         self.SetCredentials(app_id, app_code)
         self._baseUrl = 'https://geocoder.cit.api.here.com/6.2/geocode.json'
+        if timeout:
+            self._timeout = timeout
+        else:
+            self._timeout = 20
 
     def SetCredentials(self, 
                        app_id, 
                        app_code):
         self._app_id = app_id
         self._app_code = app_code
+
+    @staticmethod
+    def EncodeParameters(parameters):
+        """Return a string in key=value&key=value form.
+        Values of None are not included in the output string.
+        Args:
+          parameters (dict): dictionary of query parameters to be converted.
+        Returns:
+          A URL-encoded string in "key=value&key=value" form
+        """
+        if parameters is None:
+            return None
+        if not isinstance(parameters, dict):
+            raise HEREError("`parameters` must be a dict.")
+        else:
+            return urlencode(dict((k, v) for k, v in parameters.items() if v is not None))
+
+    def BuildUrl(self, url, extra_params=None):
+        # Break url into constituent parts
+        (scheme, netloc, path, params, query, fragment) = urlparse(url)
+
+        # Add any additional query parameters to the query string
+        if extra_params and len(extra_params) > 0:
+            extra_query = self.EncodeParameters(extra_params)
+            # Add it to the existing query
+            if query:
+                query += '&' + extra_query
+            else:
+                query = extra_query
+
+        # Return the rebuilt URL
+        return urlunparse((scheme, netloc, path, params, query, fragment))
+
+    def FreeForm(self, searchtext):
+        data = {'searchtext': searchtext, 'app_id': self._app_id, 'app_code': self._app_code}
+        url = self.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        return GeocoderResponse.NewFromJsonDict(json.loads(response.content.decode('utf8')))
