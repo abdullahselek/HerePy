@@ -78,7 +78,30 @@ class GeocoderApi(object):
         return urlunparse((scheme, netloc, path, params, query, fragment))
 
     def FreeForm(self, searchtext):
+        """Geocodes given search text
+        Args:
+          searchtext (string): possible address text.
+        Returns:
+          GeocoderResponse instance"""
+
         data = {'searchtext': searchtext, 'app_id': self._app_id, 'app_code': self._app_code}
+        url = self.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        return GeocoderResponse.NewFromJsonDict(json.loads(response.content.decode('utf8')))
+
+    def AddressWithBoundingBox(self, searchtext, top_left, bottom_right):
+        """Geocodes given search text with in given boundingbox
+        Args:
+          searchtext (string): possible address text.
+          top_left (array): array including latitude and longitude in order.
+          bottom_right (array): array including latitude and longitude in order.
+        Returns:
+          GeocoderResponse instance"""
+
+        data = {'searchtext': searchtext,
+                'mapview': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1]),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
         url = self.BuildUrl(self._baseUrl, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         return GeocoderResponse.NewFromJsonDict(json.loads(response.content.decode('utf8')))
