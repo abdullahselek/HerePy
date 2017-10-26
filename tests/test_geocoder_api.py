@@ -64,3 +64,13 @@ class GeocoderApiTest(unittest.TestCase):
         response = self._api.AddressWithDetails(34, 'Barbaros', 'Istanbul', 'Turkey')
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.GeocoderResponse)
+
+    @responses.activate
+    def testStreetIntersection(self):
+        with open('testdata/models/geocoder.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
+                  expectedResponse, status=200)
+        response = self._api.StreetIntersection('Barbaros', 'Istanbul')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.GeocoderResponse)

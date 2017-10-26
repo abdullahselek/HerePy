@@ -32,6 +32,12 @@ class GeocoderApi(object):
                  app_id=None,
                  app_code=None,
                  timeout=None):
+        """Return a GeocoderApi instance.
+        Args:
+          app_id (string): App Id taken from HERE Developer Portal.
+          app_code (string): App Code taken from HERE Developer Portal.
+          timeout (int): Timeout limit for requests.
+        """
         self.SetCredentials(app_id, app_code)
         self._baseUrl = 'https://geocoder.cit.api.here.com/6.2/geocode.json'
         if timeout:
@@ -42,6 +48,11 @@ class GeocoderApi(object):
     def SetCredentials(self, 
                        app_id, 
                        app_code):
+        """Setter for credentials.
+        Args:
+          app_id (string): App Id taken from HERE Developer Portal.
+          app_code (string): App Code taken from HERE Developer Portal.
+        """
         self._app_id = app_id
         self._app_code = app_code
 
@@ -63,7 +74,12 @@ class GeocoderApi(object):
 
     def BuildUrl(self, url, extra_params=None):
         """Builds a url with given parameters which will
-        be used in requests."""
+        be used in requests.
+        Args:
+          url (string): base url.
+          extra_params (dict): dictionary of query parameters.
+        Returns:
+          A encoded url ready for the request"""
 
         # Break url into constituent parts
         (scheme, netloc, path, params, query, fragment) = urlparse(url)
@@ -114,10 +130,37 @@ class GeocoderApi(object):
                            street,
                            city,
                            country):
+        """Geocodes with given address details
+        Args:
+          house_number (int): house number.
+          street (string): street name.
+          city (string): city name.
+          country (string): country name.
+        Returns:
+          GeocoderResponse instance"""
+
         data = {'housenumber': house_number,
                 'street': street,
                 'city': city,
                 'country': country,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        url = self.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        return GeocoderResponse.NewFromJsonDict(json.loads(response.content.decode('utf8')))
+
+    def StreetIntersection(self,
+                           street,
+                           city):
+        """Geocodes with given street and city
+        Args:
+          street (string): street name.
+          city (string): city name.
+        Returns:
+          GeocoderResponse instance"""
+
+        data = {'street': street,
+                'city': city,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         url = self.BuildUrl(self._baseUrl, extra_params=data)
