@@ -3,8 +3,8 @@
 import os
 import time
 import unittest
-import requests_mock
 import json
+import responses
 import herepy
 
 class GeocoderApiTest(unittest.TestCase):
@@ -35,13 +35,13 @@ class GeocoderApiTest(unittest.TestCase):
         url = self._api.BuildUrl(self._api._baseUrl, data)
         self.assertTrue(url)
 
-    @requests_mock.mock()
-    def testFreeForm(self, m):
-        with open('testdata/models/geocoder.json', 'rb') as f:
-            sampleResponse = f.read()
+    @responses.activate
+    def testFreeForm(self):
+        with open('testdata/models/geocoder.json', 'r') as f:
+            expectedResponse = f.read()
         url = 'https://geocoder.cit.api.here.com/6.2/geocode.json?searchtext=200+S+Mathilda+Sunnyvale+CA&app_code=app_code&app_id=app_id'
-        with requests_mock.Mocker() as m:
-            m.get(url, text=sampleResponse)
-            response = self._api.FreeForm('200 S Mathilda Sunnyvale CA')
-            self.assertTrue(response)
-            self.assertIsInstance(response, herepy.GeocoderResponse)
+        responses.add(responses.GET, url,
+                  expectedResponse, status=200)
+        response = self._api.FreeForm('200 S Mathilda Sunnyvale CA')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.GeocoderResponse)

@@ -7,3 +7,4 @@ pytest-runner
 mock
 six
 requests_mock
+responses
