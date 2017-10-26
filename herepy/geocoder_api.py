@@ -108,3 +108,18 @@ class GeocoderApi(object):
         url = self.BuildUrl(self._baseUrl, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         return GeocoderResponse.NewFromJsonDict(json.loads(response.content.decode('utf8')))
+
+    def AddressWithDetails(self,
+                           house_number,
+                           street,
+                           city,
+                           country):
+        data = {'housenumber': house_number,
+                'street': street,
+                'city': city,
+                'country': country,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        url = self.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        return GeocoderResponse.NewFromJsonDict(json.loads(response.content.decode('utf8')))

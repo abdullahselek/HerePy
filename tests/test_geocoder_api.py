@@ -39,8 +39,7 @@ class GeocoderApiTest(unittest.TestCase):
     def testFreeForm(self):
         with open('testdata/models/geocoder.json', 'r') as f:
             expectedResponse = f.read()
-        url = 'https://geocoder.cit.api.here.com/6.2/geocode.json?searchtext=200+S+Mathilda+Sunnyvale+CA&app_code=app_code&app_id=app_id'
-        responses.add(responses.GET, url,
+        responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
         response = self._api.FreeForm('200 S Mathilda Sunnyvale CA')
         self.assertTrue(response)
@@ -50,9 +49,18 @@ class GeocoderApiTest(unittest.TestCase):
     def testAddressWithBoundingBox(self):
         with open('testdata/models/geocoder.json', 'r') as f:
             expectedResponse = f.read()
-        url = 'https://geocoder.cit.api.here.com/6.2/geocode.json?searchtext=200+S+Mathilda+Sunnyvale+CA&app_code=app_code&app_id=app_id'
-        responses.add(responses.GET, url,
+        responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
         response = self._api.AddressWithBoundingBox('200 S Mathilda Sunnyvale CA', [42.3952,-71.1056], [42.3312,-71.0228])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.GeocoderResponse)
+
+    @responses.activate
+    def testAddressWithDetails(self):
+        with open('testdata/models/geocoder.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
+                  expectedResponse, status=200)
+        response = self._api.AddressWithDetails(34, 'Barbaros', 'Istanbul', 'Turkey')
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.GeocoderResponse)
