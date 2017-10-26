@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 import json
 
 class HEREModel(object):
-
     """ Base class from which all here models will inherit. """
 
     def __init__(self, **kwargs):
@@ -88,12 +87,22 @@ class HEREModel(object):
         return c
 
 class GeocoderResponse(HEREModel):
-
-    """A class representing the Geocoder response data . """
+    """A class representing the Geocoder Api response data."""
 
     def __init__(self, **kwargs):
         self.param_defaults = {
             'Response': None
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))
+
+class RoutingResponse(HEREModel):
+    """A class representing the Routing Api response data."""
+
+    def __init__(self, **kwargs):
+        self.param_defaults = {
+            'response': None
         }
 
         for (param, default) in self.param_defaults.items():

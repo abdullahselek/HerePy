@@ -19,7 +19,8 @@ import json
 from .error import HEREError
 
 from .models import (
-    GeocoderResponse
+    GeocoderResponse,
+    RoutingResponse
 )
 
 from .geocoder_api import GeocoderApi
