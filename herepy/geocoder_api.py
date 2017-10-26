@@ -62,6 +62,9 @@ class GeocoderApi(object):
             return urlencode(dict((k, v) for k, v in parameters.items() if v is not None))
 
     def BuildUrl(self, url, extra_params=None):
+        """Builds a url with given parameters which will
+        be used in requests."""
+
         # Break url into constituent parts
         (scheme, netloc, path, params, query, fragment) = urlparse(url)
 
