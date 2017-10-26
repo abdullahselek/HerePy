@@ -4,7 +4,4 @@ requests
 pytest
 pytest-cov
 pytest-runner
-mock
-six
-requests_mock
 responses
