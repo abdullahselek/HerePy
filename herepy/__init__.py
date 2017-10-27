@@ -28,3 +28,4 @@ from .models import (
 )
 
 from .geocoder_api import GeocoderApi
+from .routing_api import RoutingApi
