@@ -18,6 +18,10 @@ import json
 
 from .error import HEREError
 
+from .here_enum import (
+    RouteMode
+)
+
 from .models import (
     GeocoderResponse,
     RoutingResponse
