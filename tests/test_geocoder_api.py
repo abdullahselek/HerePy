@@ -19,22 +19,6 @@ class GeocoderApiTest(unittest.TestCase):
         self.assertEqual(self._api._app_code, 'app_code')
         self.assertEqual(self._api._baseUrl, 'https://geocoder.cit.api.here.com/6.2/geocode.json')
 
-    def testEncodeParameters(self):
-        data = None
-        encodedParameters = self._api.EncodeParameters(data)
-        self.assertEqual(encodedParameters, None)
-        data = {'searchtext': '200 S Mathilda Sunnyvale CA'}
-        encodedParameters = self._api.EncodeParameters(data)
-        self.assertTrue(encodedParameters)
-        data = {'searchtext': '200 S Mathilda Sunnyvale CA', 'gen': '8'}
-        encodedParameters = self._api.EncodeParameters(data)
-        self.assertTrue(encodedParameters)
-
-    def testBuildUrl(self):
-        data = {'searchtext': '200 S Mathilda Sunnyvale CA', 'app_id': 'app_id', 'app_code': 'app_code'}
-        url = self._api.BuildUrl(self._api._baseUrl, data)
-        self.assertTrue(url)
-
     @responses.activate
     def testFreeForm(self):
         with open('testdata/models/geocoder.json', 'r') as f:

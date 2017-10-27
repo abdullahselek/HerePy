@@ -27,5 +27,6 @@ from .models import (
     RoutingResponse
 )
 
+from .utils import Utils
 from .geocoder_api import GeocoderApi
 from .routing_api import RoutingApi
