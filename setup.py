@@ -24,7 +24,7 @@ def extract_metaitem(meta):
     raise RuntimeError('Unable to find __{meta}__ string.'.format(meta=meta))
 
 setup(
-    name='python-here',
+    name='herepy',
     version=extract_metaitem('version'),
     license=extract_metaitem('license'),
     description=extract_metaitem('description'),
@@ -37,7 +37,7 @@ setup(
     download_url=extract_metaitem('download_url'),
     packages=find_packages(exclude=('tests', 'docs')),
     platforms=['Any'],
-    install_requires=['future', 'requests'],
+    install_requires=['future', 'requests', 'enum34'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     keywords='here api',
