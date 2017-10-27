@@ -4,6 +4,7 @@ requests
 pytest
 pytest-cov
 pytest-runner
+codecov
 responses
 six
 mock
