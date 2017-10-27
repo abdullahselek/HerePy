@@ -9,6 +9,7 @@ class RouteMode(Enum):
     car = 'car'
     traffic = 'traffic'
     enabled = 'enabled'
+    pedestrian = 'pedestrian'
 
     def __str__(self):
         return '%s' % self._value_

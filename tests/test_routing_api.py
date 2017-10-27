@@ -28,3 +28,13 @@ class RoutingApiTest(unittest.TestCase):
         response = self._api.CarRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
+
+    @responses.activate
+    def testPedastrianRoute(self):
+        with open('testdata/models/routing.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.PedastrianRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
