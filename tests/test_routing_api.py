@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 import os
-import time
+import sys
 import unittest
-import json
 import responses
+import codecs
 import herepy
 
 class RoutingApiTest(unittest.TestCase):
@@ -21,7 +21,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def testCarRoute_whenSucceed(self):
-        with open('testdata/models/routing.json', 'r') as f:
+        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
@@ -40,7 +40,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def testPedastrianRoute_whenSucceed(self):
-        with open('testdata/models/routing.json', 'r') as f:
+        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
@@ -59,7 +59,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def testIntermediateRoute_whenSucceed(self):
-        with open('testdata/models/routing.json', 'r') as f:
+        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
@@ -78,7 +78,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def testPublicTransport_whenSucceed(self):
-        with open('testdata/models/routing.json', 'r') as f:
+        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
