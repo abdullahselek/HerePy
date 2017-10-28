@@ -55,4 +55,53 @@ to also run code coverage::
 
 To run the unit tests against a set of Python versions::
 
-    $ make tox
+    $ tox
+
+------
+Models
+------
+
+The library utilizes models to represent various data structures returned by HERE:
+    * herepy.GeocoderResponse
+    * herepy.RoutingResponse
+
+-----------
+GeocoderApi
+-----------
+
+Is the wrapper for HERE Geoder API, to use this wrapper and all other wrapper you need a AppId and AppCode which you
+can get from `HERE Developer Portal <https://developer.here.com/>`_.
+
+Initiation of GeocoderApi
+
+.. code::
+
+    import herepy
+
+    geocoderApi = herepy.GeocoderApi('app_id', 'app_code')
+
+Geocoding given search text
+
+.. code::
+
+    response = geocoderApi.FreeForm('200 S Mathilda Sunnyvale CA')
+
+Geocoding given search text with in given boundingbox
+
+.. code::
+
+    response = geocoderApi.AddressWithBoundingBox('200 S Mathilda Sunnyvale CA',
+                                                  [42.3952,-71.1056],
+                                                  [42.3312,-71.0228])
+
+Geocoding with given address details
+
+.. code::
+
+    response = geocoderApi.AddressWithDetails(34, 'Barbaros', 'Istanbul', 'Turkey')
+
+Geocoding with given street and city
+
+.. code::
+
+    response = geocoderApi.StreetIntersection('Barbaros', 'Istanbul')
