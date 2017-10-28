@@ -120,8 +120,40 @@ class RoutingApi(object):
         mode_values = mode_values[:-1]
         data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
                 'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
-                'waypoint1': str.format('{0},{1}', waypoint_c[0], waypoint_c[1]),
+                'waypoint2': str.format('{0},{1}', waypoint_c[0], waypoint_c[1]),
                 'mode': mode_values,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        response = requests.get(self._baseUrl, timeout=self._timeout)
+        jsonData = json.loads(response.content.decode('utf8'))
+        if jsonData.get('response') != None:
+            return RoutingResponse.NewFromJsonDict(jsonData)
+        else:
+            return HEREError(jsonData.get('details', 'Error occured on IntermediateRoute'))
+
+    def PublicTransport(self,
+                        waypoint_a,
+                        waypoint_b,
+                        modes,
+                        combine_change):
+        """Request a pedastrian route between two points
+        Args:
+          waypoint_a (array): Starting array including latitude and longitude in order.
+          waypoint_b (array): Intermediate array including latitude and longitude in order.
+          mode (array): array including RouteMode enums.
+          combine_change (bool): Enables the change manuever in the route response, which
+            indicates a public transit line change.
+        Returns:
+          RoutingResponse instance or HEREError"""
+
+        mode_values = ""
+        for m in modes:
+            mode_values += m.__str__() + ';'
+        mode_values = mode_values[:-1]
+        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
+                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
+                'mode': mode_values,
+                'combine_change': 'true' if combine_change == True else 'false',
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         response = requests.get(self._baseUrl, timeout=self._timeout)

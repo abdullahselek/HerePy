@@ -19,3 +19,5 @@ class RouteModeTest(unittest.TestCase):
         self.assertEqual(enabled.__str__(), 'enabled')
         pedestrian = herepy.RouteMode.pedestrian
         self.assertEqual(pedestrian.__str__(), 'pedestrian')
+        publicTransport = herepy.RouteMode.publicTransport
+        self.assertEqual(publicTransport.__str__(), 'publicTransport')

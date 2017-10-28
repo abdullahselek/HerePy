@@ -75,3 +75,28 @@ class RoutingApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.IntermediateRoute([11.0, 12.0], [15.0, 16.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def testPublicTransport_whenSucceed(self):
+        with open('testdata/models/routing.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.PublicTransport([11.0, 12.0],
+                                             [15.0, 16.0],
+                                             [herepy.RouteMode.publicTransport, herepy.RouteMode.fastest],
+                                             True)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
+
+    @responses.activate
+    def testPublicTransport_whenErrorOccured(self):
+        with open('testdata/models/routing_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.PublicTransport([11.0, 12.0],
+                                             [15.0, 16.0],
+                                             [herepy.RouteMode.car, herepy.RouteMode.fastest],
+                                             True)
+        self.assertIsInstance(response, herepy.HEREError)
