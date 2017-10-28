@@ -1,0 +1,21 @@
+{
+    "_type": "ns2:RoutingServiceErrorType",
+    "type": "ApplicationError",
+    "subtype": "InvalidInputData",
+    "details": "Invalid input parameter value",
+    "additionalData": [
+        {
+            "key": "mode",
+            "value": "fastest;pedastrian"
+        }
+    ],
+    "metaInfo": {
+        "timestamp": "2017-10-28T13:40:48Z",
+        "mapVersion": "8.30.73.154",
+        "moduleVersion": "7.2.201742-166520",
+        "interfaceVersion": "2.6.34",
+        "availableMapVersion": [
+            "8.30.73.154"
+        ]
+    }
+}

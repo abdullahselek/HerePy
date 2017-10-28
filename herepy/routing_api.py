@@ -104,3 +104,34 @@ class RoutingApi(object):
                 'app_code': self._app_code}
         response = requests.get(self._baseUrl, timeout=self._timeout)
         return RoutingResponse.NewFromJsonDict(json.loads(response.content.decode('utf8')))
+
+    def IntermediateRoute(self,
+                          waypoint_a,
+                          waypoint_b,
+                          waypoint_c,
+                          modes):
+        """Request a pedastrian route between two points
+        Args:
+          waypoint_a (array): Starting array including latitude and longitude in order.
+          waypoint_b (array): Intermediate array including latitude and longitude in order.
+          waypoint_c (array): Last array including latitude and longitude in order.
+          mode (array): array including RouteMode enums.
+        Returns:
+          RoutingResponse instance"""
+
+        mode_values = ""
+        for m in modes:
+            mode_values += m.__str__() + ';'
+        mode_values = mode_values[:-1]
+        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
+                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
+                'waypoint1': str.format('{0},{1}', waypoint_c[0], waypoint_c[1]),
+                'mode': mode_values,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        response = requests.get(self._baseUrl, timeout=self._timeout)
+        jsonData = json.loads(response.content.decode('utf8'))
+        if jsonData.get('response') != None:
+            return RoutingResponse.NewFromJsonDict(jsonData)
+        else:
+            return HEREError(jsonData.get('details', 'Error occured on IntermediateRoute'))
