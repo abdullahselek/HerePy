@@ -1,0 +1,6 @@
+{
+    "Details": "Request is not valid! (Input parameter validation failed. Geocoder: missing mandatory parameters (at least one of 'country, state, county, city, district, street, housenumber, postalCode' or 'searchtext'))",
+    "AdditionalData": [],
+    "type": "ApplicationError",
+    "subtype": "InvalidInputData"
+}
