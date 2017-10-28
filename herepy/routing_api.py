@@ -51,7 +51,7 @@ class RoutingApi(object):
         Args:
           waypoint_a (array): array including latitude and longitude in order.
           waypoint_b (array): array including latitude and longitude in order.
-          mode (array): array including RouteMode enums.
+          modes (array): array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -80,7 +80,7 @@ class RoutingApi(object):
         Args:
           waypoint_a (array): array including latitude and longitude in order.
           waypoint_b (array): array including latitude and longitude in order.
-          mode (array): array including RouteMode enums.
+          modes (array): array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -105,12 +105,12 @@ class RoutingApi(object):
                           waypoint_b,
                           waypoint_c,
                           modes):
-        """Request a pedastrian route between two points
+        """Request a intermediate route from three points
         Args:
           waypoint_a (array): Starting array including latitude and longitude in order.
           waypoint_b (array): Intermediate array including latitude and longitude in order.
           waypoint_c (array): Last array including latitude and longitude in order.
-          mode (array): array including RouteMode enums.
+          modes (array): array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -136,11 +136,11 @@ class RoutingApi(object):
                         waypoint_b,
                         modes,
                         combine_change):
-        """Request a pedastrian route between two points
+        """Request a public transport route between two points
         Args:
           waypoint_a (array): Starting array including latitude and longitude in order.
           waypoint_b (array): Intermediate array including latitude and longitude in order.
-          mode (array): array including RouteMode enums.
+          modes (array): array including RouteMode enums.
           combine_change (bool): Enables the change manuever in the route response, which
             indicates a public transit line change.
         Returns:
