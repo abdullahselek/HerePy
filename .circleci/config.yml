@@ -31,7 +31,3 @@ jobs:
           command: |
             python -m py.test --cov-report xml --cov=herepy
             python -m codecov
-
-      - store_artifacts:
-          path: test-reports
-          destination: test-reports
