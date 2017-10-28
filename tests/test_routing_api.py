@@ -20,7 +20,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertEqual(self._api._baseUrl, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json')
 
     @responses.activate
-    def testCarRoute(self):
+    def testCarRoute_whenSucceed(self):
         with open('testdata/models/routing.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -30,14 +30,32 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testPedastrianRoute(self):
+    def testCarRoute_whenErrorOccured(self):
+        with open('testdata/models/routing_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.CarRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
+        self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def testPedastrianRoute_whenSucceed(self):
         with open('testdata/models/routing.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.PedastrianRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        response = self._api.PedastrianRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
+
+    @responses.activate
+    def testPedastrianRoute_whenErrorOccured(self):
+        with open('testdata/models/routing_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.PedastrianRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
     def testIntermediateRoute_whenSucceed(self):
