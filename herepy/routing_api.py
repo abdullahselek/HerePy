@@ -8,22 +8,9 @@ import io
 import warnings
 import sys
 
-try:
-    # python 3
-    from urllib.parse import urlparse, urlunparse, urlencode
-except ImportError:
-    from urlparse import urlparse, urlunparse
-    from urllib import urlencode
-
 from herepy.utils import Utils
-
-from herepy.error import (
-    HEREError
-)
-
-from herepy.models import (
-    RoutingResponse
-)
+from herepy.error import HEREError
+from herepy.models import RoutingResponse
 
 class RoutingApi(object):
     """A python interface into the HERE Routing API"""

@@ -9,14 +9,8 @@ import warnings
 import sys
 
 from herepy.utils import Utils
-
-from herepy.error import (
-    HEREError
-)
-
-from herepy.models import (
-    GeocoderResponse
-)
+from herepy.error import HEREError
+from herepy.models import GeocoderResponse
 
 class GeocoderApi(object):
     """A python interface into the HERE Geocoder API"""
