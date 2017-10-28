@@ -8,3 +8,5 @@ codecov
 responses
 six
 mock
+tox
+tox-pyenv

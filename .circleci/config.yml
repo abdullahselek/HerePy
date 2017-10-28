@@ -26,8 +26,8 @@ jobs:
       - run:
           name: run tests
           command: |
-            python -m pytest -s -v
-          when: on_success
-          command: |
-            python -m py.test --cov-report xml --cov=herepy
-            python -m codecov
+            python -m tox
+          # when: on_success
+          # command: |
+          #   python -m py.test --cov-report xml --cov=herepy
+          #   python -m codecov
