@@ -17,5 +17,4 @@ install:
 # command to run tests
 script:
   - py.test -s -v --cov-report xml --cov=herepy
-
-after_sucess: codecov
+  - codecov
