@@ -26,6 +26,16 @@ This library provides a pure Python interface for the `HERE API <https://develop
 
 `HERE <https://www.here.com/>`_ provides location based services. HERE exposes a `rest APIs <https://developer.here.com/documentation>`_ and this library is intended to make it even easier for Python programmers to use.
 
+==========
+Installing
+==========
+
+You can install herepy using:
+
+.. code::
+
+    $ pip install herepy
+
 ================
 Getting the code
 ================
@@ -43,7 +53,7 @@ To install dependencies, run either::
     $ pip install -Ur requirements.txt
 
 To install the minimal dependencies for production use (i.e., what is installed
-with ``pip install python-twitter``) run::
+with ``pip install herepy``) run::
 
     $ pip install -Ur requirements.txt
 
