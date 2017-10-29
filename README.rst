@@ -2,9 +2,9 @@
 HerePy
 ======
 
-.. image:: https://circleci.com/gh/abdullahselek/HerePy.svg?style=svg
-    :target: https://circleci.com/gh/abdullahselek/HerePy
-    :alt: Circle CI
+.. image:: https://travis-ci.org/abdullahselek/HerePy.svg?branch=master
+    :target: https://travis-ci.org/abdullahselek/HerePy
+    :alt: Travis-Ci
 
 .. image:: https://codecov.io/gh/abdullahselek/HerePy/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/abdullahselek/HerePy
@@ -69,7 +69,7 @@ The library utilizes models to represent various data structures returned by HER
 GeocoderApi
 -----------
 
-Is the wrapper for HERE Geoder API, to use this wrapper and all other wrapper you need a AppId and AppCode which you
+Is the wrapper for HERE Geoder API, to use this wrapper and all other wrappers you need a AppId and AppCode which you
 can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
 Initiation of GeocoderApi
@@ -105,3 +105,73 @@ Geocoding with given street and city
 .. code::
 
     response = geocoderApi.StreetIntersection('Barbaros', 'Istanbul')
+
+----------
+RoutingApi
+----------
+
+Initiation of GeocoderApi
+
+.. code::
+
+    import herepy
+
+    routingApi = herepy.RoutingApi('app_id', 'app_code')
+
+Calculate route for car
+
+.. code::
+
+    response = routingApi.CarRoute([11.0, 12.0],
+                                   [22.0, 23.0],
+                                   [herepy.RouteMode.car, herepy.RouteMode.fastest])
+
+Calculate route for pedestrians
+
+.. code::
+
+    response = routingApi.PedastrianRoute([11.0, 12.0],
+                                          [22.0, 23.0],
+                                          [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
+
+Calculate route between three points
+
+.. code::
+
+    response = routingApi.IntermediateRoute([11.0, 12.0],
+                                            [15.0, 16.0],
+                                            [22.0, 23.0],
+                                            [herepy.RouteMode.car, herepy.RouteMode.fastest])
+Route for public transport
+
+.. code::
+
+    response = routingApi.PublicTransport([11.0, 12.0],
+                                          [15.0, 16.0],
+                                          [herepy.RouteMode.publicTransport, herepy.RouteMode.fastest],
+                                          True)
+-------
+License
+-------
+
+MIT License
+
+Copyright (c) 2017 Abdullah Selek
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
