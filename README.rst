@@ -168,6 +168,14 @@ Route for public transport
                                           [15.0, 16.0],
                                           [herepy.RouteMode.publicTransport, herepy.RouteMode.fastest],
                                           True)
+
+Calculates the fastest car route between two location
+
+.. code::
+
+    response = routingApi.LocationNearMotorway([11.0, 12.0],
+                                               [22.0, 23.0],
+                                               [herepy.RouteMode.car, herepy.RouteMode.fastest])
 -------
 License
 -------
