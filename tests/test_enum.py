@@ -13,8 +13,8 @@ class RouteModeTest(unittest.TestCase):
         self.assertEqual(fastest.__str__(), 'fastest')
         car = herepy.RouteMode.car
         self.assertEqual(car.__str__(), 'car')
-        traffic = herepy.RouteMode.traffic
-        self.assertEqual(traffic.__str__(), 'traffic')
+        traffic_disabled = herepy.RouteMode.traffic_disabled
+        self.assertEqual(traffic_disabled.__str__(), 'traffic:disabled')
         enabled = herepy.RouteMode.enabled
         self.assertEqual(enabled.__str__(), 'enabled')
         pedestrian = herepy.RouteMode.pedestrian

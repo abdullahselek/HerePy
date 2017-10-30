@@ -7,7 +7,7 @@ from enum import Enum
 class RouteMode(Enum):
     fastest = 'fastest'
     car = 'car'
-    traffic = 'traffic'
+    traffic_disabled = 'traffic:disabled'
     enabled = 'enabled'
     pedestrian = 'pedestrian'
     publicTransport = 'publicTransport'
