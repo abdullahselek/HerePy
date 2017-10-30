@@ -2,6 +2,10 @@
 HerePy
 ======
 
+.. image:: https://img.shields.io/pypi/v/herepy.svg
+    :target: https://pypi.python.org/pypi/herepy/
+    :alt: Downloads
+
 .. image:: https://travis-ci.org/abdullahselek/HerePy.svg?branch=master
     :target: https://travis-ci.org/abdullahselek/HerePy
     :alt: Travis-Ci
