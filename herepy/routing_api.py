@@ -196,3 +196,32 @@ class RoutingApi(object):
             return RoutingResponse.NewFromJsonDict(jsonData)
         else:
             return HEREError(jsonData.get('details', 'Error occured on LocationNearMotorway'))
+
+    def TruckRoute(self,
+                   waypoint_a,
+                   waypoint_b,
+                   modes=[RouteMode.truck, RouteMode.fastest]):
+        """Calculates the fastest truck route between two location
+        Args:
+          waypoint_a (array): array including latitude and longitude in order.
+          waypoint_b (array): array including latitude and longitude in order.
+          modes (array): array including RouteMode enums.
+        Returns:
+          RoutingResponse instance or HEREError"""
+
+        mode_values = ""
+        for m in modes:
+            mode_values += m.__str__() + ';'
+        mode_values = mode_values[:-1]
+        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
+                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
+                'mode': mode_values,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        jsonData = json.loads(response.content.decode('utf8'))
+        if jsonData.get('response') != None:
+            return RoutingResponse.NewFromJsonDict(jsonData)
+        else:
+            return HEREError(jsonData.get('details', 'Error occured on LocationNearMotorway'))

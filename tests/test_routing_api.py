@@ -176,3 +176,37 @@ class RoutingApiTest(unittest.TestCase):
                                                   [22.0, 23.0],
                                                   [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def testTruckRoute_whenSucceed(self):
+        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.TruckRoute([11.0, 12.0],
+                                        [22.0, 23.0],
+                                        [herepy.RouteMode.truck, herepy.RouteMode.fastest])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
+
+    @responses.activate
+    def testTruckRoute_withDefaultModes_whenSucceed(self):
+        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.TruckRoute([11.0, 12.0],
+                                        [22.0, 23.0])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
+
+    @responses.activate
+    def testTruckRoute_whenErrorOccured(self):
+        with open('testdata/models/routing_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.TruckRoute([11.0, 12.0],
+                                        [22.0, 23.0],
+                                        [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
+        self.assertIsInstance(response, herepy.HEREError)
