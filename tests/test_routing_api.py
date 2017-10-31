@@ -156,7 +156,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testLocationNearMotorway_whenSucceed(self):
+    def testLocationNearMotorway_withDefaultModes_whenSucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
