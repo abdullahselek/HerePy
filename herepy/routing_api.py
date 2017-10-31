@@ -11,6 +11,7 @@ import sys
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RoutingResponse
+from herepy.here_enum import RouteMode
 
 class RoutingApi(object):
     """A python interface into the HERE Routing API"""
@@ -46,7 +47,7 @@ class RoutingApi(object):
     def CarRoute(self, 
                  waypoint_a, 
                  waypoint_b, 
-                 modes):
+                 modes=[RouteMode.car, RouteMode.fastest]):
         """Request a driving route between two points
         Args:
           waypoint_a (array): array including latitude and longitude in order.
@@ -76,7 +77,7 @@ class RoutingApi(object):
     def PedastrianRoute(self, 
                         waypoint_a, 
                         waypoint_b, 
-                        modes):
+                        modes=[RouteMode.pedestrian, RouteMode.fastest]):
         """Request a pedastrian route between two points
         Args:
           waypoint_a (array): array including latitude and longitude in order.
@@ -106,7 +107,7 @@ class RoutingApi(object):
                           waypoint_a,
                           waypoint_b,
                           waypoint_c,
-                          modes):
+                          modes=[RouteMode.car, RouteMode.fastest]):
         """Request a intermediate route from three points
         Args:
           waypoint_a (array): Starting array including latitude and longitude in order.
@@ -137,15 +138,15 @@ class RoutingApi(object):
     def PublicTransport(self,
                         waypoint_a,
                         waypoint_b,
-                        modes,
-                        combine_change):
+                        combine_change,
+                        modes=[RouteMode.publicTransport, RouteMode.fastest]):
         """Request a public transport route between two points
         Args:
           waypoint_a (array): Starting array including latitude and longitude in order.
           waypoint_b (array): Intermediate array including latitude and longitude in order.
-          modes (array): array including RouteMode enums.
           combine_change (bool): Enables the change manuever in the route response, which
             indicates a public transit line change.
+          modes (array): array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -170,7 +171,7 @@ class RoutingApi(object):
     def LocationNearMotorway(self,
                              waypoint_a,
                              waypoint_b,
-                             modes):
+                             modes=[RouteMode.car, RouteMode.fastest]):
         """Calculates the fastest car route between two location
         Args:
           waypoint_a (array): array including latitude and longitude in order.
