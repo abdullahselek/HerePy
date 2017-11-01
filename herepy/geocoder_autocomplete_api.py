@@ -43,6 +43,15 @@ class GeocoderAutoCompleteApi(object):
         self._app_id = app_id
         self._app_code = app_code
 
+    def __get(self, data):
+        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        jsonData = json.loads(response.content.decode('utf8'))
+        if jsonData.get('suggestions') != None:
+            return GeocoderAutoCompleteResponse.NewFromJsonDict(jsonData)
+        else:
+            return HEREError(jsonData.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+
     def AddressSuggestion(self, query, prox, radius):
         """Request a list of suggested addresses found within a specified area
         Args:
@@ -55,13 +64,7 @@ class GeocoderAutoCompleteApi(object):
                 'prox': str.format('{0},{1},{2}', prox[0], prox[1], radius),
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('suggestions') != None:
-            return GeocoderAutoCompleteResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('error_description', 'Error occured on AddressSuggestion'))
+        return self.__get(data)
 
     def LimitResultsByAddress(self, query, countryCode):
         """Request a list of suggested addresses within a single country
@@ -75,13 +78,7 @@ class GeocoderAutoCompleteApi(object):
                 'country': countryCode,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('suggestions') != None:
-            return GeocoderAutoCompleteResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('error_description', 'Error occured on LimitResultsByAddress'))
+        return self.__get(data)
 
     def HighlightingMatches(self, query, begin_highlight, end_highlight):
         """Request an annotated list of suggested addresses with matching tokens highlighted
@@ -97,10 +94,4 @@ class GeocoderAutoCompleteApi(object):
                 'endHighlight': end_highlight,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('suggestions') != None:
-            return GeocoderAutoCompleteResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('error_description', 'Error occured on HighlightingMatches'))
+        return self.__get(data)
