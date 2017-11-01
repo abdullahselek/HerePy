@@ -45,6 +45,15 @@ class GeocoderApi(object):
         self._app_id = app_id
         self._app_code = app_code
 
+    def __get(self, data):
+        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        jsonData = json.loads(response.content.decode('utf8'))
+        if jsonData.get('Response') != None:
+            return GeocoderResponse.NewFromJsonDict(jsonData)
+        else:
+            return HEREError(jsonData.get('Details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+
     def FreeForm(self, searchtext):
         """Geocodes given search text
         Args:
@@ -53,13 +62,7 @@ class GeocoderApi(object):
           GeocoderResponse instance"""
 
         data = {'searchtext': searchtext, 'app_id': self._app_id, 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('Response') != None:
-            return GeocoderResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('Details', 'Error occured on FreeForm'))
+        return self.__get(data)
 
     def AddressWithBoundingBox(self, searchtext, top_left, bottom_right):
         """Geocodes given search text with in given boundingbox
@@ -74,13 +77,7 @@ class GeocoderApi(object):
                 'mapview': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1]),
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('Response') != None:
-            return GeocoderResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('Details', 'Error occured on AddressWithBoundingBox'))
+        return self.__get(data)
 
     def AddressWithDetails(self,
                            house_number,
@@ -102,13 +99,7 @@ class GeocoderApi(object):
                 'country': country,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('Response') != None:
-            return GeocoderResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('Details', 'Error occured on AddressWithDetails'))
+        return self.__get(data)
 
     def StreetIntersection(self,
                            street,
@@ -124,10 +115,4 @@ class GeocoderApi(object):
                 'city': city,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('Response') != None:
-            return GeocoderResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('Details', 'Error occured on StreetIntersection'))
+        return self.__get(data)
