@@ -43,7 +43,7 @@ class GeocoderAutoCompleteApi(object):
         self._app_id = app_id
         self._app_code = app_code
 
-    def AddressSuggestion(self, prox, radius):
+    def AddressSuggestion(self, query, prox, radius):
         """Request a list of suggested addresses found within a specified area
         Args:
           prox (array): array including latitude and longitude in order.
@@ -51,7 +51,7 @@ class GeocoderAutoCompleteApi(object):
         Returns:
           GeocoderAutoCompleteApi or HEREError instance"""
 
-        data = {'query': 'High',
+        data = {'query': query,
                 'prox': str.format('{0},{1},{2}', prox[0], prox[1], radius),
                 'app_id': self._app_id,
                 'app_code': self._app_code}
