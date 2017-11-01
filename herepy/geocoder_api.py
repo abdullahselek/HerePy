@@ -59,7 +59,7 @@ class GeocoderApi(object):
         Args:
           searchtext (string): possible address text.
         Returns:
-          GeocoderResponse instance"""
+          GeocoderResponse or HEREError instance"""
 
         data = {'searchtext': searchtext, 'app_id': self._app_id, 'app_code': self._app_code}
         return self.__get(data)
@@ -71,7 +71,7 @@ class GeocoderApi(object):
           top_left (array): array including latitude and longitude in order.
           bottom_right (array): array including latitude and longitude in order.
         Returns:
-          GeocoderResponse instance"""
+          GeocoderResponse or HEREError instance"""
 
         data = {'searchtext': searchtext,
                 'mapview': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1]),
@@ -91,7 +91,7 @@ class GeocoderApi(object):
           city (string): city name.
           country (string): country name.
         Returns:
-          GeocoderResponse instance"""
+          GeocoderResponse or HEREError instance"""
 
         data = {'housenumber': house_number,
                 'street': street,
@@ -109,7 +109,7 @@ class GeocoderApi(object):
           street (string): street name.
           city (string): city name.
         Returns:
-          GeocoderResponse instance"""
+          GeocoderResponse or HEREError instance"""
 
         data = {'street': street,
                 'city': city,
