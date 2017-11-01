@@ -12,6 +12,9 @@ class ModelsTest(unittest.TestCase):
 
     with open('testdata/models/routing.json', 'rb') as f:
         ROUTING_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
+    
+    with open('testdata/models/geocoder_autocomplete.json', 'rb') as f:
+        GEOCODER_AUTO_COMPLETE_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
     def testGeocoderResponse(self):
         geocoderResponse = herepy.GeocoderResponse.NewFromJsonDict(self.GEOCODER_SAMPLE_JSON)    
@@ -30,3 +33,12 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(routingResponse.AsJsonString())
         self.assertTrue(routingResponse.AsDict())
+
+    def testGeocoderAutoCompleteResponse(self):
+        geocoderAutoCompleteResponse = herepy.GeocoderAutoCompleteResponse.NewFromJsonDict(self.GEOCODER_AUTO_COMPLETE_SAMPLE_JSON)
+        try:
+            geocoderAutoCompleteResponse.__repr__()
+        except Exception as e:
+            self.fail(e)
+        self.assertTrue(geocoderAutoCompleteResponse.AsJsonString())
+        self.assertTrue(geocoderAutoCompleteResponse.AsDict())        

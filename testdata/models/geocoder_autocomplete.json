@@ -1,0 +1,87 @@
+{
+    "suggestions": [
+        {
+            "label": "United Kingdom, London, Highgate",
+            "language": "en",
+            "countryCode": "GBR",
+            "locationId": "NT_gC-4PB1cHHR1B-VyE7AN5B",
+            "address": {
+                "country": "United Kingdom",
+                "state": "England",
+                "county": "London",
+                "city": "London",
+                "district": "Highgate",
+                "postalCode": "N6 6"
+            },
+            "distance": 7600,
+            "matchLevel": "district"
+        },
+        {
+            "label": "United Kingdom, London, Highbury",
+            "language": "en",
+            "countryCode": "GBR",
+            "locationId": "NT_TUAiU.8xnDeTQXfYSrFWgB",
+            "address": {
+                "country": "United Kingdom",
+                "state": "England",
+                "county": "London",
+                "city": "London",
+                "district": "Highbury",
+                "postalCode": "N5 1"
+            },
+            "distance": 7044,
+            "matchLevel": "district"
+        },
+        {
+            "label": "United Kingdom, NW10 4, London, High Street",
+            "language": "en",
+            "countryCode": "GBR",
+            "locationId": "NT_hGTc1QCKAC1c7HXR8igBAD",
+            "address": {
+                "country": "United Kingdom",
+                "state": "England",
+                "county": "London",
+                "city": "London",
+                "district": "Old Oak Common",
+                "street": "High Street",
+                "postalCode": "NW10 4"
+            },
+            "distance": 6790,
+            "matchLevel": "street"
+        },
+        {
+            "label": "United Kingdom, NW10 2, London, High Road",
+            "language": "en",
+            "countryCode": "GBR",
+            "locationId": "NT_bDlRHNjixnA-EKtwcu32QD",
+            "address": {
+                "country": "United Kingdom",
+                "state": "England",
+                "county": "London",
+                "city": "London",
+                "district": "Willesden",
+                "street": "High Road",
+                "postalCode": "NW10 2"
+            },
+            "distance": 7215,
+            "matchLevel": "street"
+        },
+        {
+            "label": "United Kingdom, N14 6, London, High Street",
+            "language": "en",
+            "countryCode": "GBR",
+            "locationId": "NT_iKXR-s4EWX.poxEICioQzA",
+            "address": {
+                "country": "United Kingdom",
+                "state": "England",
+                "county": "London",
+                "city": "London",
+                "district": "Southgate",
+                "street": "High Street",
+                "postalCode": "N14 6"
+            },
+            "distance": 14071,
+            "matchLevel": "street"
+        }
+    ]
+}

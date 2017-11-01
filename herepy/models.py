@@ -107,3 +107,14 @@ class RoutingResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+class GeocoderAutoCompleteResponse(HEREModel):
+    """A class representing the Geocoder Autocomplete Api response data."""
+
+    def __init__(self, **kwargs):
+        self.param_defaults = {
+            'suggestions': None
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))
