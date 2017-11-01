@@ -31,3 +31,4 @@ from .models import (
 from .utils import Utils
 from .geocoder_api import GeocoderApi
 from .routing_api import RoutingApi
+from .geocoder_autocomplete_api import GeocoderAutoCompleteApi
