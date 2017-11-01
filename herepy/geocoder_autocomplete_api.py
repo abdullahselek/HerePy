@@ -82,3 +82,25 @@ class GeocoderAutoCompleteApi(object):
             return GeocoderAutoCompleteResponse.NewFromJsonDict(jsonData)
         else:
             return HEREError(jsonData.get('error_description', 'Error occured on LimitResultsByAddress'))
+
+    def HighlightingMatches(self, query, begin_highlight, end_highlight):
+        """Request an annotated list of suggested addresses with matching tokens highlighted
+        Args:
+          query (string): Query search string
+          begin_highlight (string): Mark the beginning of match in a token
+          end_highlight (string): Mark the end of match in a token
+        Returns:
+          GeocoderAutoCompleteApi or HEREError instance"""
+
+        data = {'query': query,
+                'beginHighlight': begin_highlight,
+                'endHighlight': end_highlight,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        jsonData = json.loads(response.content.decode('utf8'))
+        if jsonData.get('suggestions') != None:
+            return GeocoderAutoCompleteResponse.NewFromJsonDict(jsonData)
+        else:
+            return HEREError(jsonData.get('error_description', 'Error occured on HighlightingMatches'))

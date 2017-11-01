@@ -56,3 +56,22 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.LimitResultsByAddress('', '')
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def testHighlightingMatches_whenSucceed(self):
+        with open('testdata/models/geocoder_autocomplete.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
+                  expectedResponse, status=200)
+        response = self._api.HighlightingMatches('Wacker Chic', '**', '**')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.GeocoderAutoCompleteResponse)
+
+    @responses.activate
+    def testHighlightingMatches_whenErrorOccured(self):
+        with open('testdata/models/geocoder_autocomplete_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
+                  expectedResponse, status=200)
+        response = self._api.HighlightingMatches('', '**', '**')
+        self.assertIsInstance(response, herepy.HEREError)
