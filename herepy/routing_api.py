@@ -44,6 +44,15 @@ class RoutingApi(object):
         self._app_id = app_id
         self._app_code = app_code
 
+    def __get(self, data):
+        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        jsonData = json.loads(response.content.decode('utf8'))
+        if jsonData.get('response') != None:
+            return RoutingResponse.NewFromJsonDict(jsonData)
+        else:
+            return HEREError(jsonData.get('details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+
     def CarRoute(self, 
                  waypoint_a, 
                  waypoint_b, 
@@ -66,13 +75,7 @@ class RoutingApi(object):
                 'app_id': self._app_id,
                 'app_code': self._app_code,
                 'departure': 'now'}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('response') != None:
-            return RoutingResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('details', 'Error occured on CarRoute'))
+        return self.__get(data)
 
     def PedastrianRoute(self, 
                         waypoint_a, 
@@ -95,13 +98,7 @@ class RoutingApi(object):
                 'mode': mode_values,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('response') != None:
-            return RoutingResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('details', 'Error occured on PedastrianRoute'))
+        return self.__get(data)
 
     def IntermediateRoute(self,
                           waypoint_a,
@@ -127,13 +124,7 @@ class RoutingApi(object):
                 'mode': mode_values,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('response') != None:
-            return RoutingResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('details', 'Error occured on IntermediateRoute'))
+        return self.__get(data)
 
     def PublicTransport(self,
                         waypoint_a,
@@ -160,13 +151,7 @@ class RoutingApi(object):
                 'combine_change': 'true' if combine_change == True else 'false',
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('response') != None:
-            return RoutingResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('details', 'Error occured on IntermediateRoute'))
+        return self.__get(data)
 
     def LocationNearMotorway(self,
                              waypoint_a,
@@ -189,13 +174,7 @@ class RoutingApi(object):
                 'mode': mode_values,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('response') != None:
-            return RoutingResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('details', 'Error occured on LocationNearMotorway'))
+        return self.__get(data)
 
     def TruckRoute(self,
                    waypoint_a,
@@ -218,10 +197,4 @@ class RoutingApi(object):
                 'mode': mode_values,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('response') != None:
-            return RoutingResponse.NewFromJsonDict(jsonData)
-        else:
-            return HEREError(jsonData.get('details', 'Error occured on LocationNearMotorway'))
+        return self.__get(data)
