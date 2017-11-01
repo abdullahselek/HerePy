@@ -42,3 +42,23 @@ class GeocoderAutoCompleteApi(object):
         """
         self._app_id = app_id
         self._app_code = app_code
+
+    def AddressSuggestion(self, prox, radius):
+        """Request a list of suggested addresses found within a specified area
+        Args:
+          prox (array): array including latitude and longitude in order.
+          radius (int): Radius in meters
+        Returns:
+          GeocoderAutoCompleteApi or HEREError instance"""
+
+        data = {'query': 'High',
+                'prox': str.format('{0},{1},{2}', prox[0], prox[1], radius),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        jsonData = json.loads(response.content.decode('utf8'))
+        if jsonData.get('suggestions') != None:
+            return GeocoderAutoCompleteResponse.NewFromJsonDict(jsonData)
+        else:
+            return HEREError(jsonData.get('error_description', 'Error occured on AddressSuggestion'))
