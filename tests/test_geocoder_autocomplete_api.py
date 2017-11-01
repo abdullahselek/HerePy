@@ -37,3 +37,22 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.AddressSuggestion([51.5035,-0.1616], 100)
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def testLimitResultsByAddress_whenSucceed(self):
+        with open('testdata/models/geocoder_autocomplete.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
+                  expectedResponse, status=200)
+        response = self._api.LimitResultsByAddress('Nis', 'USA')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.GeocoderAutoCompleteResponse)
+
+    @responses.activate
+    def testLimitResultsByAddress_whenErrorOccured(self):
+        with open('testdata/models/geocoder_autocomplete_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
+                  expectedResponse, status=200)
+        response = self._api.LimitResultsByAddress('', '')
+        self.assertIsInstance(response, herepy.HEREError)
