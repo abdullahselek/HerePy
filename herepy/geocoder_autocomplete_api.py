@@ -42,7 +42,7 @@ class GeocoderAutoCompleteApi(object):
         self._app_code = app_code
 
     def __get(self, data):
-        url = Utils.BuildUrl(self._base_url, extra_params=data)
+        url = Utils.build_url(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode('utf8'))
         if json_data.get('suggestions') != None:
