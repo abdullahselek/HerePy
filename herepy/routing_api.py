@@ -2,11 +2,9 @@
 
 from __future__ import division
 
+import sys
 import json
 import requests
-import io
-import warnings
-import sys
 
 from herepy.utils import Utils
 from herepy.error import HEREError
@@ -26,16 +24,16 @@ class RoutingApi(object):
           app_code (string): App Code taken from HERE Developer Portal.
           timeout (int): Timeout limit for requests.
         """
-        self.SetCredentials(app_id, app_code)
-        self._baseUrl = 'https://route.cit.api.here.com/routing/7.2/calculateroute.json'
+        self.__set_credentials(app_id, app_code)
+        self._base_url = 'https://route.cit.api.here.com/routing/7.2/calculateroute.json'
         if timeout:
             self._timeout = timeout
         else:
             self._timeout = 20
 
-    def SetCredentials(self, 
-                       app_id, 
-                       app_code):
+    def __set_credentials(self,
+                          app_id,
+                          app_code):
         """Setter for credentials.
         Args:
           app_id (string): App Id taken from HERE Developer Portal.
@@ -45,25 +43,26 @@ class RoutingApi(object):
         self._app_code = app_code
 
     def __get(self, data):
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        url = Utils.BuildUrl(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('response') != None:
-            return RoutingResponse.new_from_jsondict(jsonData)
+        json_data = json.loads(response.content.decode('utf8'))
+        if json_data.get('response') != None:
+            return RoutingResponse.new_from_jsondict(json_data)
         else:
-            return HEREError(jsonData.get('details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            return HEREError(json_data.get('details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
-    def __prepare_mode_values(self, modes):
+    @classmethod
+    def __prepare_mode_values(cls, modes):
         mode_values = ""
-        for m in modes:
-            mode_values += m.__str__() + ';'
+        for mode in modes:
+            mode_values += mode.__str__() + ';'
         mode_values = mode_values[:-1]
         return mode_values
 
-    def CarRoute(self, 
-                 waypoint_a, 
-                 waypoint_b, 
-                 modes=[RouteMode.car, RouteMode.fastest]):
+    def car_route(self,
+                  waypoint_a,
+                  waypoint_b,
+                  modes=None):
         """Request a driving route between two points
         Args:
           waypoint_a (array): array including latitude and longitude in order.
@@ -71,6 +70,9 @@ class RoutingApi(object):
           modes (array): array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
+
+        if modes is None:
+            modes = [RouteMode.car, RouteMode.fastest]
 
         data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
                 'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
@@ -80,10 +82,10 @@ class RoutingApi(object):
                 'departure': 'now'}
         return self.__get(data)
 
-    def PedastrianRoute(self, 
-                        waypoint_a, 
-                        waypoint_b, 
-                        modes=[RouteMode.pedestrian, RouteMode.fastest]):
+    def pedastrian_route(self,
+                         waypoint_a,
+                         waypoint_b,
+                         modes=None):
         """Request a pedastrian route between two points
         Args:
           waypoint_a (array): array including latitude and longitude in order.
@@ -92,6 +94,9 @@ class RoutingApi(object):
         Returns:
           RoutingResponse instance or HEREError"""
 
+        if modes is None:
+            modes = [RouteMode.pedestrian, RouteMode.fastest]
+
         data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
                 'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
                 'mode':  self.__prepare_mode_values(modes),
@@ -99,11 +104,11 @@ class RoutingApi(object):
                 'app_code': self._app_code}
         return self.__get(data)
 
-    def IntermediateRoute(self,
-                          waypoint_a,
-                          waypoint_b,
-                          waypoint_c,
-                          modes=[RouteMode.car, RouteMode.fastest]):
+    def intermediate_route(self,
+                           waypoint_a,
+                           waypoint_b,
+                           waypoint_c,
+                           modes=None):
         """Request a intermediate route from three points
         Args:
           waypoint_a (array): Starting array including latitude and longitude in order.
@@ -113,6 +118,9 @@ class RoutingApi(object):
         Returns:
           RoutingResponse instance or HEREError"""
 
+        if modes is None:
+            modes = [RouteMode.car, RouteMode.fastest]
+
         data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
                 'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
                 'waypoint2': str.format('{0},{1}', waypoint_c[0], waypoint_c[1]),
@@ -121,11 +129,11 @@ class RoutingApi(object):
                 'app_code': self._app_code}
         return self.__get(data)
 
-    def PublicTransport(self,
-                        waypoint_a,
-                        waypoint_b,
-                        combine_change,
-                        modes=[RouteMode.publicTransport, RouteMode.fastest]):
+    def public_transport(self,
+                         waypoint_a,
+                         waypoint_b,
+                         combine_change,
+                         modes=None):
         """Request a public transport route between two points
         Args:
           waypoint_a (array): Starting array including latitude and longitude in order.
@@ -136,6 +144,9 @@ class RoutingApi(object):
         Returns:
           RoutingResponse instance or HEREError"""
 
+        if modes is None:
+            modes = [RouteMode.publicTransport, RouteMode.fastest]
+
         data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
                 'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
                 'mode':  self.__prepare_mode_values(modes),
@@ -144,10 +155,10 @@ class RoutingApi(object):
                 'app_code': self._app_code}
         return self.__get(data)
 
-    def LocationNearMotorway(self,
-                             waypoint_a,
-                             waypoint_b,
-                             modes=[RouteMode.car, RouteMode.fastest]):
+    def location_near_motorway(self,
+                               waypoint_a,
+                               waypoint_b,
+                               modes=None):
         """Calculates the fastest car route between two location
         Args:
           waypoint_a (array): array including latitude and longitude in order.
@@ -156,6 +167,9 @@ class RoutingApi(object):
         Returns:
           RoutingResponse instance or HEREError"""
 
+        if modes is None:
+            modes = [RouteMode.car, RouteMode.fastest]
+
         data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
                 'waypoint1': str.format('street!!{0},{1}', waypoint_b[0], waypoint_b[1]),
                 'mode':  self.__prepare_mode_values(modes),
@@ -163,10 +177,10 @@ class RoutingApi(object):
                 'app_code': self._app_code}
         return self.__get(data)
 
-    def TruckRoute(self,
-                   waypoint_a,
-                   waypoint_b,
-                   modes=[RouteMode.truck, RouteMode.fastest]):
+    def truck_route(self,
+                    waypoint_a,
+                    waypoint_b,
+                    modes=None):
         """Calculates the fastest truck route between two location
         Args:
           waypoint_a (array): array including latitude and longitude in order.
@@ -174,6 +188,9 @@ class RoutingApi(object):
           modes (array): array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
+
+        if modes is None:
+            modes = [RouteMode.truck, RouteMode.fastest]
 
         data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
                 'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),

@@ -17,7 +17,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(self._api, herepy.RoutingApi)
         self.assertEqual(self._api._app_id, 'app_id')
         self.assertEqual(self._api._app_code, 'app_code')
-        self.assertEqual(self._api._baseUrl, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json')
+        self.assertEqual(self._api._base_url, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json')
 
     @responses.activate
     def testCarRoute_whenSucceed(self):
@@ -25,7 +25,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.CarRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        response = self._api.car_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -35,7 +35,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.CarRoute([11.0, 12.0], [22.0, 23.0])
+        response = self._api.car_route([11.0, 12.0], [22.0, 23.0])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -45,7 +45,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.CarRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
+        response = self._api.car_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
@@ -54,7 +54,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.PedastrianRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
+        response = self._api.pedastrian_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -64,7 +64,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.PedastrianRoute([11.0, 12.0], [22.0, 23.0])
+        response = self._api.pedastrian_route([11.0, 12.0], [22.0, 23.0])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -74,7 +74,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.PedastrianRoute([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        response = self._api.pedastrian_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
@@ -83,7 +83,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.IntermediateRoute([11.0, 12.0], [15.0, 16.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        response = self._api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -93,7 +93,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.IntermediateRoute([11.0, 12.0], [15.0, 16.0], [22.0, 23.0])
+        response = self._api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -103,7 +103,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.IntermediateRoute([11.0, 12.0], [15.0, 16.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        response = self._api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
@@ -112,10 +112,10 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.PublicTransport([11.0, 12.0],
-                                             [15.0, 16.0],
-                                             True,
-                                             [herepy.RouteMode.publicTransport, herepy.RouteMode.fastest])
+        response = self._api.public_transport([11.0, 12.0],
+                                              [15.0, 16.0],
+                                              True,
+                                              [herepy.RouteMode.publicTransport, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -125,9 +125,9 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.PublicTransport([11.0, 12.0],
-                                             [15.0, 16.0],
-                                             True)
+        response = self._api.public_transport([11.0, 12.0],
+                                              [15.0, 16.0],
+                                              True)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -137,10 +137,10 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.PublicTransport([11.0, 12.0],
-                                             [15.0, 16.0],
-                                             True,
-                                             [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        response = self._api.public_transport([11.0, 12.0],
+                                              [15.0, 16.0],
+                                              True,
+                                              [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
@@ -149,9 +149,9 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.LocationNearMotorway([11.0, 12.0],
-                                                  [22.0, 23.0],
-                                                  [herepy.RouteMode.car, herepy.RouteMode.fastest])
+        response = self._api.location_near_motorway([11.0, 12.0],
+                                                    [22.0, 23.0],
+                                                    [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -161,8 +161,8 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.LocationNearMotorway([11.0, 12.0],
-                                                  [22.0, 23.0])
+        response = self._api.location_near_motorway([11.0, 12.0],
+                                                    [22.0, 23.0])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -172,9 +172,9 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.LocationNearMotorway([11.0, 12.0],
-                                                  [22.0, 23.0],
-                                                  [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
+        response = self._api.location_near_motorway([11.0, 12.0],
+                                                    [22.0, 23.0],
+                                                    [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
@@ -183,9 +183,9 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.TruckRoute([11.0, 12.0],
-                                        [22.0, 23.0],
-                                        [herepy.RouteMode.truck, herepy.RouteMode.fastest])
+        response = self._api.truck_route([11.0, 12.0],
+                                         [22.0, 23.0],
+                                         [herepy.RouteMode.truck, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -195,8 +195,8 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.TruckRoute([11.0, 12.0],
-                                        [22.0, 23.0])
+        response = self._api.truck_route([11.0, 12.0],
+                                         [22.0, 23.0])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -206,7 +206,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        response = self._api.TruckRoute([11.0, 12.0],
-                                        [22.0, 23.0],
-                                        [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
+        response = self._api.truck_route([11.0, 12.0],
+                                         [22.0, 23.0],
+                                         [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
         self.assertIsInstance(response, herepy.HEREError)
