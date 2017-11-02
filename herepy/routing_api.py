@@ -49,7 +49,7 @@ class RoutingApi(object):
         response = requests.get(url, timeout=self._timeout)
         jsonData = json.loads(response.content.decode('utf8'))
         if jsonData.get('response') != None:
-            return RoutingResponse.NewFromJsonDict(jsonData)
+            return RoutingResponse.new_from_jsondict(jsonData)
         else:
             return HEREError(jsonData.get('details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 

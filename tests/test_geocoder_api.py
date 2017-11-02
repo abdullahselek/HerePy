@@ -17,7 +17,7 @@ class GeocoderApiTest(unittest.TestCase):
         self.assertIsInstance(self._api, herepy.GeocoderApi)
         self.assertEqual(self._api._app_id, 'app_id')
         self.assertEqual(self._api._app_code, 'app_code')
-        self.assertEqual(self._api._baseUrl, 'https://geocoder.cit.api.here.com/6.2/geocode.json')
+        self.assertEqual(self._api._base_url, 'https://geocoder.cit.api.here.com/6.2/geocode.json')
 
     @responses.activate
     def testFreeForm_whenSucceed(self):
@@ -25,7 +25,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.FreeForm('200 S Mathilda Sunnyvale CA')
+        response = self._api.free_form('200 S Mathilda Sunnyvale CA')
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.GeocoderResponse)
 
@@ -35,7 +35,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.FreeForm('')
+        response = self._api.free_form('')
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
@@ -44,7 +44,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.AddressWithBoundingBox('200 S Mathilda Sunnyvale CA', [42.3952,-71.1056], [42.3312,-71.0228])
+        response = self._api.address_with_boundingbox('200 S Mathilda Sunnyvale CA', [42.3952,-71.1056], [42.3312,-71.0228])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.GeocoderResponse)
 
@@ -54,7 +54,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.AddressWithBoundingBox('', [-42.3952,-71.1056], [-42.3312,-71.0228])
+        response = self._api.address_with_boundingbox('', [-42.3952,-71.1056], [-42.3312,-71.0228])
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
@@ -63,7 +63,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.AddressWithDetails(34, 'Barbaros', 'Istanbul', 'Turkey')
+        response = self._api.address_with_details(34, 'Barbaros', 'Istanbul', 'Turkey')
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.GeocoderResponse)
 
@@ -73,7 +73,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.AddressWithDetails(-34, '', '', '')
+        response = self._api.address_with_details(-34, '', '', '')
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
@@ -82,7 +82,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.StreetIntersection('Barbaros', 'Istanbul')
+        response = self._api.street_intersection('Barbaros', 'Istanbul')
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.GeocoderResponse)
 
@@ -92,5 +92,5 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.StreetIntersection('', '')
+        response = self._api.street_intersection('', '')
         self.assertIsInstance(response, herepy.HEREError)

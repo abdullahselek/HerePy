@@ -11,28 +11,21 @@ class HEREModel(object):
 
     def __str__(self):
         """ Returns a string representation of HEREModel. By default
-        this is the same as AsJsonString(). """
-        return self.AsJsonString()
+        this is the same as as_json_string(). """
+        return self.as_json_string()
 
     def __eq__(self, other):
-        return other and self.AsDict() == other.AsDict()
+        return other and self.as_dict() == other.as_dict()
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def __hash__(self):
-        if hasattr(self, 'id'):
-            return hash(self.id)
-        else:
-            raise TypeError('unhashable type: {} (no id attribute)'
-                            .format(type(self)))
-
-    def AsJsonString(self):
+    def as_json_string(self):
         """ Returns the HEREModel as a JSON string based on key/value
-        pairs returned from the AsDict() method. """
-        return json.dumps(self.AsDict(), sort_keys=True)
+        pairs returned from the as_dict() method. """
+        return json.dumps(self.as_dict(), sort_keys=True)
 
-    def AsDict(self):
+    def as_dict(self):
         """ Create a dictionary representation of the object. Please see inline
         comments on construction when dictionaries contain HEREModels. """
         data = {}
@@ -40,27 +33,27 @@ class HEREModel(object):
         for (key, value) in self.param_defaults.items():
 
             # If the value is a list, we need to create a list to hold the
-            # dicts created by an object supporting the AsDict() method,
+            # dicts created by an object supporting the as_dict() method,
             # i.e., if it inherits from HEREModel. If the item in the list
-            # doesn't support the AsDict() method, then we assign the value
+            # doesn't support the as_dict() method, then we assign the value
             # directly. An example being a list of Media objects contained
             # within a Status object.
             if isinstance(getattr(self, key, None), (list, tuple, set)):
                 data[key] = list()
                 for subobj in getattr(self, key, None):
-                    if getattr(subobj, 'AsDict', None):
-                        data[key].append(subobj.AsDict())
+                    if getattr(subobj, 'as_dict', None):
+                        data[key].append(subobj.as_dict())
                     else:
                         data[key].append(subobj)
 
             # Not a list, *but still a subclass of HEREModel* and
-            # and we can assign the data[key] directly with the AsDict()
+            # and we can assign the data[key] directly with the as_dict()
             # method of the object. An example being a Status object contained
             # within a User object.
-            elif getattr(getattr(self, key, None), 'AsDict', None):
-                data[key] = getattr(self, key).AsDict()
+            elif getattr(getattr(self, key, None), 'as_dict', None):
+                data[key] = getattr(self, key).as_dict()
 
-            # If the value doesn't have an AsDict() method, i.e., it's not
+            # If the value doesn't have an as_dict() method, i.e., it's not
             # something that subclasses HEREModel, then we can use direct
             # assigment.
             elif getattr(self, key, None):
@@ -68,7 +61,7 @@ class HEREModel(object):
         return data
 
     @classmethod
-    def NewFromJsonDict(cls, data, **kwargs):
+    def new_from_jsondict(cls, data, **kwargs):
         """ Create a new instance based on a JSON dict. Any kwargs should be
         supplied by the inherited, calling class.
 
@@ -90,6 +83,7 @@ class GeocoderResponse(HEREModel):
     """A class representing the Geocoder Api response data."""
 
     def __init__(self, **kwargs):
+        super(GeocoderResponse, self).__init__()
         self.param_defaults = {
             'Response': None
         }
@@ -101,6 +95,7 @@ class RoutingResponse(HEREModel):
     """A class representing the Routing Api response data."""
 
     def __init__(self, **kwargs):
+        super(RoutingResponse, self).__init__()
         self.param_defaults = {
             'response': None
         }
@@ -112,6 +107,7 @@ class GeocoderAutoCompleteResponse(HEREModel):
     """A class representing the Geocoder Autocomplete Api response data."""
 
     def __init__(self, **kwargs):
+        super(GeocoderAutoCompleteResponse, self).__init__()
         self.param_defaults = {
             'suggestions': None
         }

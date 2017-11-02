@@ -48,7 +48,7 @@ class GeocoderAutoCompleteApi(object):
         response = requests.get(url, timeout=self._timeout)
         jsonData = json.loads(response.content.decode('utf8'))
         if jsonData.get('suggestions') != None:
-            return GeocoderAutoCompleteResponse.NewFromJsonDict(jsonData)
+            return GeocoderAutoCompleteResponse.new_from_jsondict(jsonData)
         else:
             return HEREError(jsonData.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 

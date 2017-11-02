@@ -2,11 +2,9 @@
 
 from __future__ import division
 
+import sys
 import json
 import requests
-import io
-import warnings
-import sys
 
 from herepy.utils import Utils
 from herepy.error import HEREError
@@ -27,16 +25,16 @@ class GeocoderApi(object):
           app_code (string): App Code taken from HERE Developer Portal.
           timeout (int): Timeout limit for requests.
         """
-        self.SetCredentials(app_id, app_code)
-        self._baseUrl = 'https://geocoder.cit.api.here.com/6.2/geocode.json'
+        self.__set_credentials(app_id, app_code)
+        self._base_url = 'https://geocoder.cit.api.here.com/6.2/geocode.json'
         if timeout:
             self._timeout = timeout
         else:
             self._timeout = 20
 
-    def SetCredentials(self, 
-                       app_id, 
-                       app_code):
+    def __set_credentials(self,
+                          app_id,
+                          app_code):
         """Setter for credentials.
         Args:
           app_id (string): App Id taken from HERE Developer Portal.
@@ -46,15 +44,15 @@ class GeocoderApi(object):
         self._app_code = app_code
 
     def __get(self, data):
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        url = Utils.BuildUrl(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('Response') != None:
-            return GeocoderResponse.NewFromJsonDict(jsonData)
+        json_data = json.loads(response.content.decode('utf8'))
+        if json_data.get('Response') != None:
+            return GeocoderResponse.new_from_jsondict(json_data)
         else:
-            return HEREError(jsonData.get('Details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            return HEREError(json_data.get('Details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
-    def FreeForm(self, searchtext):
+    def free_form(self, searchtext):
         """Geocodes given search text
         Args:
           searchtext (string): possible address text.
@@ -64,7 +62,7 @@ class GeocoderApi(object):
         data = {'searchtext': searchtext, 'app_id': self._app_id, 'app_code': self._app_code}
         return self.__get(data)
 
-    def AddressWithBoundingBox(self, searchtext, top_left, bottom_right):
+    def address_with_boundingbox(self, searchtext, top_left, bottom_right):
         """Geocodes given search text with in given boundingbox
         Args:
           searchtext (string): possible address text.
@@ -79,11 +77,11 @@ class GeocoderApi(object):
                 'app_code': self._app_code}
         return self.__get(data)
 
-    def AddressWithDetails(self,
-                           house_number,
-                           street,
-                           city,
-                           country):
+    def address_with_details(self,
+                             house_number,
+                             street,
+                             city,
+                             country):
         """Geocodes with given address details
         Args:
           house_number (int): house number.
@@ -101,9 +99,9 @@ class GeocoderApi(object):
                 'app_code': self._app_code}
         return self.__get(data)
 
-    def StreetIntersection(self,
-                           street,
-                           city):
+    def street_intersection(self,
+                            street,
+                            city):
         """Geocodes with given street and city
         Args:
           street (string): street name.

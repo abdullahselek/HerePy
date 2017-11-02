@@ -17,28 +17,28 @@ class ModelsTest(unittest.TestCase):
         GEOCODER_AUTO_COMPLETE_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
     def testGeocoderResponse(self):
-        geocoderResponse = herepy.GeocoderResponse.NewFromJsonDict(self.GEOCODER_SAMPLE_JSON)    
+        geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(self.GEOCODER_SAMPLE_JSON)    
         try:
             geocoderResponse.__repr__()
         except Exception as e:
             self.fail(e)
-        self.assertTrue(geocoderResponse.AsJsonString())
-        self.assertTrue(geocoderResponse.AsDict())
+        self.assertTrue(geocoderResponse.as_json_string())
+        self.assertTrue(geocoderResponse.as_dict())
 
     def testRoutingResponse(self):
-        routingResponse = herepy.RoutingResponse.NewFromJsonDict(self.ROUTING_SAMPLE_JSON)
+        routingResponse = herepy.RoutingResponse.new_from_jsondict(self.ROUTING_SAMPLE_JSON)
         try:
             routingResponse.__repr__()
         except Exception as e:
             self.fail(e)
-        self.assertTrue(routingResponse.AsJsonString())
-        self.assertTrue(routingResponse.AsDict())
+        self.assertTrue(routingResponse.as_json_string())
+        self.assertTrue(routingResponse.as_dict())
 
     def testGeocoderAutoCompleteResponse(self):
-        geocoderAutoCompleteResponse = herepy.GeocoderAutoCompleteResponse.NewFromJsonDict(self.GEOCODER_AUTO_COMPLETE_SAMPLE_JSON)
+        geocoderAutoCompleteResponse = herepy.GeocoderAutoCompleteResponse.new_from_jsondict(self.GEOCODER_AUTO_COMPLETE_SAMPLE_JSON)
         try:
             geocoderAutoCompleteResponse.__repr__()
         except Exception as e:
             self.fail(e)
-        self.assertTrue(geocoderAutoCompleteResponse.AsJsonString())
-        self.assertTrue(geocoderAutoCompleteResponse.AsDict())        
+        self.assertTrue(geocoderAutoCompleteResponse.as_json_string())
+        self.assertTrue(geocoderAutoCompleteResponse.as_dict())        
