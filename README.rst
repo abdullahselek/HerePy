@@ -106,27 +106,27 @@ Geocoding given search text
 
 .. code::
 
-    response = geocoderApi.FreeForm('200 S Mathilda Sunnyvale CA')
+    response = geocoderApi.free_form('200 S Mathilda Sunnyvale CA')
 
 Geocoding given search text with in given boundingbox
 
 .. code::
 
-    response = geocoderApi.AddressWithBoundingBox('200 S Mathilda Sunnyvale CA',
-                                                  [42.3952,-71.1056],
-                                                  [42.3312,-71.0228])
+    response = geocoderApi.address_with_boundingbox('200 S Mathilda Sunnyvale CA',
+                                                    [42.3952,-71.1056],
+                                                    [42.3312,-71.0228])
 
 Geocoding with given address details
 
 .. code::
 
-    response = geocoderApi.AddressWithDetails(34, 'Barbaros', 'Istanbul', 'Turkey')
+    response = geocoderApi.address_with_details(34, 'Barbaros', 'Istanbul', 'Turkey')
 
 Geocoding with given street and city
 
 .. code::
 
-    response = geocoderApi.StreetIntersection('Barbaros', 'Istanbul')
+    response = geocoderApi.street_intersection('Barbaros', 'Istanbul')
 
 ----------
 RoutingApi
@@ -144,42 +144,81 @@ Calculate route for car
 
 .. code::
 
-    response = routingApi.CarRoute([11.0, 12.0],
-                                   [22.0, 23.0],
-                                   [herepy.RouteMode.car, herepy.RouteMode.fastest])
+    response = routingApi.car_route([11.0, 12.0],
+                                    [22.0, 23.0],
+                                    [herepy.RouteMode.car, herepy.RouteMode.fastest])
 
 Calculate route for pedestrians
 
 .. code::
 
-    response = routingApi.PedastrianRoute([11.0, 12.0],
-                                          [22.0, 23.0],
-                                          [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
+    response = routingApi.pedastrian_route([11.0, 12.0],
+                                           [22.0, 23.0],
+                                           [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
 
 Calculate route between three points
 
 .. code::
 
-    response = routingApi.IntermediateRoute([11.0, 12.0],
-                                            [15.0, 16.0],
-                                            [22.0, 23.0],
-                                            [herepy.RouteMode.car, herepy.RouteMode.fastest])
+    response = routingApi.intermediate_route([11.0, 12.0],
+                                             [15.0, 16.0],
+                                             [22.0, 23.0],
+                                             [herepy.RouteMode.car, herepy.RouteMode.fastest])
 Route for public transport
 
 .. code::
 
-    response = routingApi.PublicTransport([11.0, 12.0],
-                                          [15.0, 16.0],
-                                          [herepy.RouteMode.publicTransport, herepy.RouteMode.fastest],
-                                          True)
+    response = routingApi.public_transport([11.0, 12.0],
+                                           [15.0, 16.0],
+                                           True,
+                                           [herepy.RouteMode.publicTransport, herepy.RouteMode.fastest])
 
 Calculates the fastest car route between two location
 
 .. code::
 
-    response = routingApi.LocationNearMotorway([11.0, 12.0],
-                                               [22.0, 23.0],
-                                               [herepy.RouteMode.car, herepy.RouteMode.fastest])
+    response = routingApi.location_near_motorway([11.0, 12.0],
+                                                 [22.0, 23.0],
+                                                 [herepy.RouteMode.car, herepy.RouteMode.fastest])
+
+Calculates the fastest truck route between two location
+
+.. code::
+
+    response = routingApi.truck_route([11.0, 12.0],
+                                      [22.0, 23.0],
+                                      [herepy.RouteMode.truck, herepy.RouteMode.fastest])
+
+-----------------------
+GeocoderAutoCompleteApi
+-----------------------
+
+Initiation of GeocoderAutoCompleteApi
+
+.. code::
+
+    import herepy
+
+    geocoderAutoCompleteApi = herepy.GeocoderAutoCompleteApi('app_id', 'app_code')
+
+Request a list of suggested addresses found within a specified area
+
+.. code::
+
+    response = geocoderAutoCompleteApi.address_suggestion('High', [51.5035,-0.1616], 100)
+
+Request a list of suggested addresses within a single country
+
+.. code::
+
+    response = geocoderAutoCompleteApi.limit_results_byaddress('Nis', 'USA')
+
+Request an annotated list of suggested addresses with matching tokens highlighted
+
+.. code::
+
+    response = geocoderAutoCompleteApi.highlighting_matches('Wacker Chic', '**', '**')
+
 -------
 License
 -------
