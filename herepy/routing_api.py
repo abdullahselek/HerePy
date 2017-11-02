@@ -6,12 +6,13 @@ import sys
 import json
 import requests
 
+from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RoutingResponse
 from herepy.here_enum import RouteMode
 
-class RoutingApi(object):
+class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
 
     def __init__(self,
@@ -24,23 +25,9 @@ class RoutingApi(object):
           app_code (string): App Code taken from HERE Developer Portal.
           timeout (int): Timeout limit for requests.
         """
-        self.__set_credentials(app_id, app_code)
-        self._base_url = 'https://route.cit.api.here.com/routing/7.2/calculateroute.json'
-        if timeout:
-            self._timeout = timeout
-        else:
-            self._timeout = 20
 
-    def __set_credentials(self,
-                          app_id,
-                          app_code):
-        """Setter for credentials.
-        Args:
-          app_id (string): App Id taken from HERE Developer Portal.
-          app_code (string): App Code taken from HERE Developer Portal.
-        """
-        self._app_id = app_id
-        self._app_code = app_code
+        super(RoutingApi, self).__init__(app_id, app_code, timeout)
+        self._base_url = 'https://route.cit.api.here.com/routing/7.2/calculateroute.json'
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
