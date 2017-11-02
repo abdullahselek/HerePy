@@ -2,11 +2,9 @@
 
 from __future__ import division
 
+import sys
 import json
 import requests
-import io
-import warnings
-import sys
 
 from herepy.utils import Utils
 from herepy.error import HEREError
@@ -25,16 +23,16 @@ class GeocoderAutoCompleteApi(object):
           app_code (string): App Code taken from HERE Developer Portal.
           timeout (int): Timeout limit for requests.
         """
-        self.SetCredentials(app_id, app_code)
-        self._baseUrl = 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json'
+        self.__set_credentials(app_id, app_code)
+        self._base_url = 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json'
         if timeout:
             self._timeout = timeout
         else:
             self._timeout = 20
 
-    def SetCredentials(self, 
-                       app_id, 
-                       app_code):
+    def __set_credentials(self,
+                          app_id,
+                          app_code):
         """Setter for credentials.
         Args:
           app_id (string): App Id taken from HERE Developer Portal.
@@ -44,15 +42,15 @@ class GeocoderAutoCompleteApi(object):
         self._app_code = app_code
 
     def __get(self, data):
-        url = Utils.BuildUrl(self._baseUrl, extra_params=data)
+        url = Utils.BuildUrl(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
-        jsonData = json.loads(response.content.decode('utf8'))
-        if jsonData.get('suggestions') != None:
-            return GeocoderAutoCompleteResponse.new_from_jsondict(jsonData)
+        json_data = json.loads(response.content.decode('utf8'))
+        if json_data.get('suggestions') != None:
+            return GeocoderAutoCompleteResponse.new_from_jsondict(json_data)
         else:
-            return HEREError(jsonData.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            return HEREError(json_data.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
-    def AddressSuggestion(self, query, prox, radius):
+    def address_suggestion(self, query, prox, radius):
         """Request a list of suggested addresses found within a specified area
         Args:
           prox (array): array including latitude and longitude in order.
@@ -66,7 +64,7 @@ class GeocoderAutoCompleteApi(object):
                 'app_code': self._app_code}
         return self.__get(data)
 
-    def LimitResultsByAddress(self, query, countryCode):
+    def limit_results_byaddress(self, query, country_code):
         """Request a list of suggested addresses within a single country
         Args:
           query (string): Query search string
@@ -75,12 +73,12 @@ class GeocoderAutoCompleteApi(object):
           GeocoderAutoCompleteApi or HEREError instance"""
 
         data = {'query': query,
-                'country': countryCode,
+                'country': country_code,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get(data)
 
-    def HighlightingMatches(self, query, begin_highlight, end_highlight):
+    def highlighting_matches(self, query, begin_highlight, end_highlight):
         """Request an annotated list of suggested addresses with matching tokens highlighted
         Args:
           query (string): Query search string
