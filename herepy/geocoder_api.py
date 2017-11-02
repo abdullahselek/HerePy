@@ -31,11 +31,14 @@ class GeocoderApi(HEREApi):
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
-        json_data = json.loads(response.content.decode('utf8'))
-        if json_data.get('Response') != None:
-            return GeocoderResponse.new_from_jsondict(json_data)
-        else:
-            return HEREError(json_data.get('Details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+        try:
+            json_data = json.loads(response.content.decode('utf8'))
+            if json_data.get('Response') != None:
+                return GeocoderResponse.new_from_jsondict(json_data)
+            else:
+                return HEREError(json_data.get('Details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+        except ValueError as err:
+            return HEREError('Error occured on ' + sys._getframe(1).f_code.co_name + str(err))
 
     def free_form(self, searchtext):
         """Geocodes given search text
