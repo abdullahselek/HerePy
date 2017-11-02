@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-import sys
-
 from enum import Enum
 
 class RouteMode(Enum):
+    """Modes which is used in routing api functions."""
+
     fastest = 'fastest'
     car = 'car'
     traffic_disabled = 'traffic:disabled'
