@@ -36,9 +36,9 @@ class GeocoderApi(HEREApi):
             if json_data.get('Response') != None:
                 return GeocoderResponse.new_from_jsondict(json_data)
             else:
-                return HEREError(json_data.get('Details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+                return HEREError(json_data.get('Details', 'Error occured on function ' + sys._getframe(1).f_code.co_name))
         except ValueError as err:
-            return HEREError('Error occured on ' + sys._getframe(1).f_code.co_name + str(err))
+            return HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
     def free_form(self, searchtext):
         """Geocodes given search text
