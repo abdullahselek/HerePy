@@ -8,9 +8,9 @@ __author__       = 'Abdullah Selek'
 __email__        = 'abdullahselek@gmail.com'
 __copyright__    = 'Copyright (c) 2017 Abdullah Selek'
 __license__      = 'MIT License'
-__version__      = '0.1.1'
+__version__      = '0.2'
 __url__          = 'https://github.com/abdullahselek/HerePy'
-__download_url__ = 'https://github.com/abdullahselek/HerePy'
+__download_url__ = 'https://pypi.python.org/pypi/herepy'
 __description__  = 'A Python wrapper around the HERE APIs'
 
 
