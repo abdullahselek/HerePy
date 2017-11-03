@@ -86,6 +86,7 @@ Models
 The library utilizes models to represent various data structures returned by HERE:
     * herepy.GeocoderResponse
     * herepy.RoutingResponse
+    * herepy.GeocoderAutoCompleteResponse
 
 -----------
 GeocoderApi
