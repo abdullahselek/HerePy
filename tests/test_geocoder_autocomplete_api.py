@@ -13,14 +13,14 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         api = herepy.GeocoderAutoCompleteApi('app_id', 'app_code')
         self._api = api
 
-    def testInitiation(self):
+    def test_initiation(self):
         self.assertIsInstance(self._api, herepy.GeocoderAutoCompleteApi)
         self.assertEqual(self._api._app_id, 'app_id')
         self.assertEqual(self._api._app_code, 'app_code')
         self.assertEqual(self._api._base_url, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json')
 
     @responses.activate
-    def testAddressSuggestion_whenSucceed(self):
+    def test_addresssuggestion_whensucceed(self):
         with open('testdata/models/geocoder_autocomplete.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
@@ -30,7 +30,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.GeocoderAutoCompleteResponse)
 
     @responses.activate
-    def testAddressSuggestion_whenErrorOccured(self):
+    def test_addresssuggestion_whenerroroccured(self):
         with open('testdata/models/geocoder_autocomplete_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
@@ -39,7 +39,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
-    def testLimitResultsByAddress_whenSucceed(self):
+    def test_limitresultsbyaddress_whensucceed(self):
         with open('testdata/models/geocoder_autocomplete.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
@@ -49,7 +49,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.GeocoderAutoCompleteResponse)
 
     @responses.activate
-    def testLimitResultsByAddress_whenErrorOccured(self):
+    def test_limitresultsbyaddress_whenerroroccured(self):
         with open('testdata/models/geocoder_autocomplete_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
@@ -58,7 +58,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
-    def testHighlightingMatches_whenSucceed(self):
+    def test_highlightingmatches_whensucceed(self):
         with open('testdata/models/geocoder_autocomplete.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',
@@ -68,7 +68,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.GeocoderAutoCompleteResponse)
 
     @responses.activate
-    def testHighlightingMatches_whenErrorOccured(self):
+    def test_highlightingmatches_whenerroroccured(self):
         with open('testdata/models/geocoder_autocomplete_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json',

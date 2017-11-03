@@ -19,7 +19,7 @@ class ModelsTest(unittest.TestCase):
     with open('testdata/models/places_api.json', 'rb') as f:
         PLACES_API_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
-    def testGeocoderResponse(self):
+    def test_geocoder_response(self):
         geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(self.GEOCODER_SAMPLE_JSON)    
         try:
             geocoderResponse.__repr__()
@@ -28,7 +28,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(geocoderResponse.as_json_string())
         self.assertTrue(geocoderResponse.as_dict())
 
-    def testRoutingResponse(self):
+    def test_routing_response(self):
         routingResponse = herepy.RoutingResponse.new_from_jsondict(self.ROUTING_SAMPLE_JSON)
         try:
             routingResponse.__repr__()
@@ -37,7 +37,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(routingResponse.as_json_string())
         self.assertTrue(routingResponse.as_dict())
 
-    def testGeocoderAutoCompleteResponse(self):
+    def test_geocoder_autocompleteresponse(self):
         geocoderAutoCompleteResponse = herepy.GeocoderAutoCompleteResponse.new_from_jsondict(self.GEOCODER_AUTO_COMPLETE_SAMPLE_JSON)
         try:
             geocoderAutoCompleteResponse.__repr__()

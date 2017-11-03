@@ -13,14 +13,14 @@ class RoutingApiTest(unittest.TestCase):
         api = herepy.RoutingApi('app_id', 'app_code')
         self._api = api
 
-    def testInitiation(self):
+    def test_initiation(self):
         self.assertIsInstance(self._api, herepy.RoutingApi)
         self.assertEqual(self._api._app_id, 'app_id')
         self.assertEqual(self._api._app_code, 'app_code')
         self.assertEqual(self._api._base_url, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json')
 
     @responses.activate
-    def testCarRoute_whenSucceed(self):
+    def test_carroute_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -30,7 +30,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testCarRoute_withDefaultModes_whenSucceed(self):
+    def test_carroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -40,7 +40,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testCarRoute_whenErrorOccured(self):
+    def test_carroute_whenerroroccured(self):
         with open('testdata/models/routing_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -49,7 +49,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
-    def testPedastrianRoute_whenSucceed(self):
+    def test_pedastrianroute_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -59,7 +59,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testPedastrianRoute_withDefaultModes_whenSucceed(self):
+    def test_pedastrianroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -69,7 +69,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testPedastrianRoute_whenErrorOccured(self):
+    def test_pedastrianroute_whenerroroccured(self):
         with open('testdata/models/routing_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -78,7 +78,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
-    def testIntermediateRoute_whenSucceed(self):
+    def test_intermediateroute_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -88,7 +88,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testIntermediateRoute_withDefaultModes_whenSucceed(self):
+    def test_intermediateroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -98,7 +98,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testIntermediateRoute_whenErrorOccured(self):
+    def test_intermediateroute_whenerroroccured(self):
         with open('testdata/models/routing_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -107,7 +107,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
-    def testPublicTransport_whenSucceed(self):
+    def test_publictransport_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -120,7 +120,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testPublicTransport_withDefaultModes_whenSucceed(self):
+    def test_publictransport_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -132,7 +132,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testPublicTransport_whenErrorOccured(self):
+    def test_publictransport_whenerroroccured(self):
         with open('testdata/models/routing_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -144,7 +144,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
-    def testLocationNearMotorway_whenSucceed(self):
+    def test_locationnearmotorway_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -156,7 +156,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testLocationNearMotorway_withDefaultModes_whenSucceed(self):
+    def test_locationnearmotorway_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -167,7 +167,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testLocationNearMotorway_whenErrorOccured(self):
+    def test_locationnearmotorway_whenerroroccured(self):
         with open('testdata/models/routing_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -178,7 +178,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
-    def testTruckRoute_whenSucceed(self):
+    def test_truckroute_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -190,7 +190,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testTruckRoute_withDefaultModes_whenSucceed(self):
+    def test_truckroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
@@ -201,7 +201,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def testTruckRoute_whenErrorOccured(self):
+    def test_truckroute_whenerroroccured(self):
         with open('testdata/models/routing_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',

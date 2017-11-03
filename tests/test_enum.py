@@ -8,7 +8,7 @@ from enum import Enum
 
 class RouteModeTest(unittest.TestCase):
 
-    def testValueOfEnum(self):
+    def test_valueofenum(self):
         fastest = herepy.RouteMode.fastest        
         self.assertEqual(fastest.__str__(), 'fastest')
         car = herepy.RouteMode.car
