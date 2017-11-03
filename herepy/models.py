@@ -114,3 +114,15 @@ class GeocoderAutoCompleteResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+class PlacesResponse(HEREModel):
+    """A class representing the Places (Search) Api response data."""
+
+    def __init__(self, **kwargs):
+        super(PlacesResponse, self).__init__()
+        self.param_defaults = {
+            'results': None
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))

@@ -25,7 +25,8 @@ from .here_enum import (
 from .models import (
     GeocoderResponse,
     RoutingResponse,
-    GeocoderAutoCompleteResponse
+    GeocoderAutoCompleteResponse,
+    PlacesResponse
 )
 
 from .utils import Utils

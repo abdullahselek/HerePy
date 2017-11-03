@@ -16,6 +16,9 @@ class ModelsTest(unittest.TestCase):
     with open('testdata/models/geocoder_autocomplete.json', 'rb') as f:
         GEOCODER_AUTO_COMPLETE_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
+    with open('testdata/models/places_api.json', 'rb') as f:
+        PLACES_API_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
+
     def testGeocoderResponse(self):
         geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(self.GEOCODER_SAMPLE_JSON)    
         try:
@@ -41,4 +44,13 @@ class ModelsTest(unittest.TestCase):
         except Exception as e:
             self.fail(e)
         self.assertTrue(geocoderAutoCompleteResponse.as_json_string())
-        self.assertTrue(geocoderAutoCompleteResponse.as_dict())        
+        self.assertTrue(geocoderAutoCompleteResponse.as_dict())
+
+    def test_placesapi_response(self):
+        placesApiResponse = herepy.PlacesResponse.new_from_jsondict(self.PLACES_API_SAMPLE_JSON)
+        try:
+            placesApiResponse.__repr__()
+        except Exception as e:
+            self.fail(e)
+        self.assertTrue(placesApiResponse.as_json_string())
+        self.assertTrue(placesApiResponse.as_dict())

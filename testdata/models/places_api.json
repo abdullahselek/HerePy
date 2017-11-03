@@ -1,0 +1,1042 @@
+{
+    "results": {
+        "next": "https://places.demo.api.here.com/places/v1/discover/search;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmb2Zmc2V0PTIwJnNpemU9MjA?at=37.7942%2C-122.407&q=restaurant&app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+        "items": [
+            {
+                "position": [
+                    37.79647,
+                    -122.40521
+                ],
+                "distance": 297,
+                "title": "House of Nanking",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "919 Kearny St<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-ef4e19f83b2e478d8e5ba871dbe7850b;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0w?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "chinese",
+                        "title": "Chinese",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-ef4e19f83b2e478d8e5ba871dbe7850b",
+                "openingHours": {
+                    "text": "Mon-Fri: 11:00 - 21:00<br/>Sat, Sun: 12:00 - 21:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T110000",
+                            "duration": "PT10H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR"
+                        },
+                        {
+                            "start": "T120000",
+                            "duration": "PT09H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:SA,SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79783,
+                    -122.40861
+                ],
+                "distance": 428,
+                "title": "Yuet Lee",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "1300 Stockton St<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-2cefae6f437647f0875e4cf1f2f93e9f;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0x?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "chinese",
+                        "title": "Chinese",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "sea-food",
+                        "title": "Seafood",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-2cefae6f437647f0875e4cf1f2f93e9f",
+                "openingHours": {
+                    "text": "Mon, Wed, Thu, Sun: 11:00 - 00:00<br/>Fri, Sat: 11:00 - 03:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T110000",
+                            "duration": "PT13H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,WE,TH,SU"
+                        },
+                        {
+                            "start": "T110000",
+                            "duration": "PT16H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:FR,SA"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79021,
+                    -122.40731
+                ],
+                "distance": 445,
+                "title": "Tunnel Top",
+                "averageRating": 0,
+                "category": {
+                    "id": "theatre-music-culture",
+                    "title": "Theatre, Music & Culture",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/theatre-music-culture?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/05.icon",
+                "vicinity": "601 Bush St<br/>San Francisco, CA 94108",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8yy-223a001316ea4684bec9dac1684830ea;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0y?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "id": "8409q8yy-223a001316ea4684bec9dac1684830ea",
+                "openingHours": {
+                    "text": "Mon-Thu, Sat: 17:00 - 02:00<br/>Fri: 16:00 - 02:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T170000",
+                            "duration": "PT09H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,SA"
+                        },
+                        {
+                            "start": "T160000",
+                            "duration": "PT10H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:FR"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.796,
+                    -122.406
+                ],
+                "distance": 219,
+                "title": "Z&Y Restaurant",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "655 Jackson St<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-9d9117b1642b4ff28135ee00620646ec;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0z?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "chinese",
+                        "title": "Chinese",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "sea-food",
+                        "title": "Seafood",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "soup",
+                        "title": "Soup",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-9d9117b1642b4ff28135ee00620646ec",
+                "openingHours": {
+                    "text": "Mon-Thu, Sun: 11:00 - 21:30<br/>Fri, Sat: 11:00 - 22:30",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T110000",
+                            "duration": "PT10H30M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,SU"
+                        },
+                        {
+                            "start": "T110000",
+                            "duration": "PT11H30M",
+                            "recurrence": "FREQ:DAILY;BYDAY:FR,SA"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79776,
+                    -122.40625
+                ],
+                "distance": 401,
+                "title": "E Tutto Qua",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "270 Columbus Ave<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-748192a3f4ee40f9b3f31cfdad1a4e7e;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz00?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "italian",
+                        "title": "Italian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "pizza",
+                        "title": "Pizza",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-748192a3f4ee40f9b3f31cfdad1a4e7e",
+                "openingHours": {
+                    "text": "Mon-Thu, Sun: 17:00 - 23:00<br/>Fri, Sat: 17:00 - 00:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T170000",
+                            "duration": "PT06H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,SU"
+                        },
+                        {
+                            "start": "T170000",
+                            "duration": "PT07H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:FR,SA"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79868,
+                    -122.407
+                ],
+                "distance": 498,
+                "title": "Tamarind Hall",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "1268 Grant Ave<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/840aabd1-cb1da2b142eb09ead3a4f9c731e51fc7;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz01?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "southeastasian",
+                        "title": "Southeast Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "thai",
+                        "title": "Thai",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "840aabd1-cb1da2b142eb09ead3a4f9c731e51fc7"
+            },
+            {
+                "position": [
+                    37.79831,
+                    -122.40732
+                ],
+                "distance": 458,
+                "title": "Stinking Rose",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "325 Columbus Ave<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-2fbb68048db34b53b43ce3f2c288a696;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz02?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "american",
+                        "title": "American",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "ice-cream",
+                        "title": "Ice cream",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "italian",
+                        "title": "Italian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "pizza",
+                        "title": "Pizza",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "sea-food",
+                        "title": "Seafood",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-2fbb68048db34b53b43ce3f2c288a696",
+                "openingHours": {
+                    "text": "Mon-Sun: 11:30 - 22:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T113000",
+                            "duration": "PT10H30M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR,SA,SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79653,
+                    -122.40522
+                ],
+                "distance": 303,
+                "title": "Tandoori Mahal",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "941 Kearny St<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-670a8be23a6a4fe4b36828099c90c418;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz03?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "indian",
+                        "title": "Indian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "pakistani",
+                        "title": "Pakistani",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-670a8be23a6a4fe4b36828099c90c418",
+                "openingHours": {
+                    "text": "Mon-Sun: 11:00 - 23:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T110000",
+                            "duration": "PT12H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR,SA,SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.798143,
+                    -122.4035
+                ],
+                "distance": 536,
+                "title": "Coi",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "373 Broadway<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-0482064f42784cfcad5a4bdaf5e9eadb;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz04?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "american",
+                        "title": "American",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "french",
+                        "title": "French",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "japanese",
+                        "title": "Japanese",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "natural-healthy",
+                        "title": "Natural/Healthy",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "sea-food",
+                        "title": "Seafood",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "vegetarian",
+                        "title": "Vegetarian",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-0482064f42784cfcad5a4bdaf5e9eadb",
+                "openingHours": {
+                    "text": "Mon, Thu-Sun: 17:30 - 21:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T173000",
+                            "duration": "PT03H30M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TH,FR,SA,SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.78988,
+                    -122.40422
+                ],
+                "distance": 539,
+                "title": "Gitane",
+                "averageRating": 0,
+                "category": {
+                    "id": "snacks-fast-food",
+                    "title": "Snacks/Fast food",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/snacks-fast-food?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "6 Claude Ln<br/>San Francisco, CA 94108",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8yy-a188e0bc50764abb949f6e2126a75482;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz05?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "african",
+                        "title": "African",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "french",
+                        "title": "French",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "spanish",
+                        "title": "Spanish",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8yy-a188e0bc50764abb949f6e2126a75482",
+                "openingHours": {
+                    "text": "Mon-Wed: 17:00 - 00:00<br/>Thu-Sat: 17:00 - 01:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T170000",
+                            "duration": "PT07H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE"
+                        },
+                        {
+                            "start": "T170000",
+                            "duration": "PT08H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:TH,FR,SA"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.7975,
+                    -122.40336
+                ],
+                "distance": 487,
+                "title": "Quince",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "470 Pacific Ave<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8yy-1484903edbaa4ebeb983f26cdd67e4d9;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xMA?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "american",
+                        "title": "American",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "french",
+                        "title": "French",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "italian",
+                        "title": "Italian",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8yy-1484903edbaa4ebeb983f26cdd67e4d9",
+                "openingHours": {
+                    "text": "Mon-Thu: 17:30 - 21:00<br/>Fri, Sat: 17:00 - 21:30",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T173000",
+                            "duration": "PT03H30M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH"
+                        },
+                        {
+                            "start": "T170000",
+                            "duration": "PT04H30M",
+                            "recurrence": "FREQ:DAILY;BYDAY:FR,SA"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79653,
+                    -122.40385
+                ],
+                "distance": 379,
+                "title": "Roka Akor",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "801 Montgomery St<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/840aabd1-2d355c3cd3740e567160617ed4ddf954;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xMQ?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "japanese",
+                        "title": "Japanese",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "sea-food",
+                        "title": "Seafood",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "steak",
+                        "title": "Steak",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "840aabd1-2d355c3cd3740e567160617ed4ddf954",
+                "openingHours": {
+                    "text": "Mon-Fri: 11:30 - 14:30<br/>Sat: 17:00 - 02:00<br/>Sun: 17:00 - 00:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T113000",
+                            "duration": "PT03H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR"
+                        },
+                        {
+                            "start": "T170000",
+                            "duration": "PT09H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:SA"
+                        },
+                        {
+                            "start": "T170000",
+                            "duration": "PT07H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79411,
+                    -122.40411
+                ],
+                "distance": 254,
+                "title": "City View Restaurant",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "662 Commercial St<br/>San Francisco, CA 94111",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-05673ec311704a9ab6d279df32f60266;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xMg?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "chinese",
+                        "title": "Chinese",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-05673ec311704a9ab6d279df32f60266",
+                "openingHours": {
+                    "text": "Mon-Fri: 11:30 - 14:30",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T113000",
+                            "duration": "PT03H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.7961,
+                    -122.40592
+                ],
+                "distance": 232,
+                "title": "Great Eastern Restaurant",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "649 Jackson St<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-22aaf504dab24fa88334633518a3fa86;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xMw?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "chinese",
+                        "title": "Chinese",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "sea-food",
+                        "title": "Seafood",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-22aaf504dab24fa88334633518a3fa86",
+                "openingHours": {
+                    "text": "Mon-Sun: 10:00 - 00:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T100000",
+                            "duration": "PT14H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR,SA,SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79456,
+                    -122.40571
+                ],
+                "distance": 120,
+                "title": "Golden Star Vietnamese Restaurant",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "11 Walter U Lum Pl<br/>San Francisco, CA 94108",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-f737e2e41b654da3852f4e5e70311c49;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xNA?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "southeastasian",
+                        "title": "Southeast Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "vietnamese",
+                        "title": "Vietnamese",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8zn-f737e2e41b654da3852f4e5e70311c49",
+                "openingHours": {
+                    "text": "Mon-Sun: 10:30 - 20:30",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T103000",
+                            "duration": "PT10H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR,SA,SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.790429,
+                    -122.403731
+                ],
+                "distance": 508,
+                "title": "Homage",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "88 Hardie Pl<br/>San Francisco, CA 94108",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/840aabd1-d435fda5cf860642ef845bd3e3c98459;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xNQ?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "american",
+                        "title": "American",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "brunch",
+                        "title": "Brunch",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "840aabd1-d435fda5cf860642ef845bd3e3c98459",
+                "openingHours": {
+                    "text": "Mon: 08:00 - 14:00<br/>Tue-Fri: 08:00 - 21:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T080000",
+                            "duration": "PT06H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO"
+                        },
+                        {
+                            "start": "T080000",
+                            "duration": "PT13H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:TU,WE,TH,FR"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.79197,
+                    -122.40963
+                ],
+                "distance": 339,
+                "title": "Aurea",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "905 California St<br/>San Francisco, CA 94108",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8yy-4b5a1fae0b82406587ce8999ed67ac5d;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xNg?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "american",
+                        "title": "American",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8yy-4b5a1fae0b82406587ce8999ed67ac5d",
+                "openingHours": {
+                    "text": "Mon-Sun: 00:00 - 23:59",
+                    "label": "Opening hours",
+                    "isOpen": true,
+                    "structured": [
+                        {
+                            "start": "T000000",
+                            "duration": "PT23H59M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR,SA,SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.797261,
+                    -122.405444
+                ],
+                "distance": 367,
+                "title": "Reveille Coffee",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "200 Columbus Ave<br/>San Francisco, CA 94133",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/840aabd1-11b2a74cc71100c49c530ccef9e447cb;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xNw?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "id": "840aabd1-11b2a74cc71100c49c530ccef9e447cb",
+                "openingHours": {
+                    "text": "Mon-Fri: 07:00 - 18:00<br/>Sat: 08:00 - 18:00<br/>Sun: 08:00 - 17:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T070000",
+                            "duration": "PT11H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR"
+                        },
+                        {
+                            "start": "T080000",
+                            "duration": "PT10H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:SA"
+                        },
+                        {
+                            "start": "T080000",
+                            "duration": "PT09H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.78977,
+                    -122.41179
+                ],
+                "distance": 648,
+                "title": "City Chopsticks",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "883 Bush St<br/>San Francisco, CA 94108",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8yy-bc9e18ff1c394a13811c867b835e387f;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xOA?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "tags": [
+                    {
+                        "id": "asian",
+                        "title": "Asian",
+                        "group": "cuisine"
+                    },
+                    {
+                        "id": "chinese",
+                        "title": "Chinese",
+                        "group": "cuisine"
+                    }
+                ],
+                "id": "8409q8yy-bc9e18ff1c394a13811c867b835e387f",
+                "openingHours": {
+                    "text": "Mon-Sun: 11:00 - 22:00",
+                    "label": "Opening hours",
+                    "isOpen": false,
+                    "structured": [
+                        {
+                            "start": "T110000",
+                            "duration": "PT11H00M",
+                            "recurrence": "FREQ:DAILY;BYDAY:MO,TU,WE,TH,FR,SA,SU"
+                        }
+                    ]
+                }
+            },
+            {
+                "position": [
+                    37.793208,
+                    -122.406427
+                ],
+                "distance": 121,
+                "title": "Steap Tea Bar",
+                "averageRating": 0,
+                "category": {
+                    "id": "restaurant",
+                    "title": "Restaurant",
+                    "href": "https://places.demo.api.here.com/places/v1/categories/places/restaurant?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                    "type": "urn:nlp-types:category",
+                    "system": "places"
+                },
+                "icon": "https://download.vcdn.cit.data.here.com/p/d/places2_stg/icons/categories/03.icon",
+                "vicinity": "827 Sacramento St<br/>San Francisco, CA 94108",
+                "having": [],
+                "type": "urn:nlp-types:place",
+                "href": "https://places.demo.api.here.com/places/v1/places/8409q8zn-c8d6bcab0f4a40e49f748c6dc7ce681f;context=Zmxvdy1pZD1jMGJiZjFjMS1mOGJhLTVhMWItYjY1NS1kMTA5OGI3NTUzZWFfMTUwOTcwMjM2NDg1M184NjY3Xzc1MDgmcmFuaz0xOQ?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg",
+                "id": "8409q8zn-c8d6bcab0f4a40e49f748c6dc7ce681f"
+            }
+        ]
+    },
+    "search": {
+        "context": {
+            "location": {
+                "position": [
+                    37.7942,
+                    -122.407
+                ],
+                "address": {
+                    "text": "818 Clay St<br/>San Francisco, CA 94108<br/>USA",
+                    "house": "818",
+                    "street": "Clay St",
+                    "postalCode": "94108",
+                    "district": "Chinatown",
+                    "city": "San Francisco",
+                    "county": "San Francisco",
+                    "stateCode": "CA",
+                    "country": "United States",
+                    "countryCode": "USA"
+                }
+            },
+            "type": "urn:nlp-types:place",
+            "href": "https://places.demo.api.here.com/places/v1/places/loc-dmVyc2lvbj0xO3RpdGxlPTgxOCtDbGF5K1N0O2xhdD0zNy43OTQyO2xvbj0tMTIyLjQwNztzdHJlZXQ9Q2xheStTdDtob3VzZT04MTg7Y2l0eT1TYW4rRnJhbmNpc2NvO3Bvc3RhbENvZGU9OTQxMDg7Y291bnRyeT1VU0E7ZGlzdHJpY3Q9Q2hpbmF0b3duO3N0YXRlQ29kZT1DQTtjb3VudHk9U2FuK0ZyYW5jaXNjbztjYXRlZ29yeUlkPWJ1aWxkaW5nO3NvdXJjZVN5c3RlbT1pbnRlcm5hbA;context=c2VhcmNoQ29udGV4dD0x?app_id=DemoAppId01082013GAL&app_code=AJKnXv84fjrb0KIHawS0Tg"
+        },
+        "supportsPanning": true
+    }
+}
