@@ -27,3 +27,26 @@ class PlacesApi(HEREApi):
 
         super(PlacesApi, self).__init__(app_id, app_code, timeout)
         self._base_url = 'https://places.cit.api.here.com/places/v1/discover/search'
+
+    def __get(self, data):
+        url = Utils.build_url(self._base_url, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode('utf8'))
+        if json_data.get('results') != None:
+            return PlacesResponse.new_from_jsondict(json_data)
+        else:
+            return HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+
+    def onebox_search(self, coordinates, query):
+        """Request a list of nearby places based on a query string
+        Args:
+          coordinates (array): array including latitude and longitude in order.
+          query (string): search term.
+        Returns:
+          PlacesResponse instance or HEREError"""
+
+        data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
+                'q':  query,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data)
