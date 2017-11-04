@@ -50,3 +50,15 @@ class PlacesApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get(data)
+
+    def places_at(self, coordinates):
+        """Request a list of popular places around a location
+        Args:
+          coordinates (array): array including latitude and longitude in order.
+        Returns:
+          PlacesResponse instance or HEREError"""
+
+        data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data)

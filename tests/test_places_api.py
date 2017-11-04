@@ -37,3 +37,22 @@ class PlacesApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.onebox_search([37.7905,-122.4107], '')
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_places_at_whensucceed(self):
+        with open('testdata/models/places_api.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/search',
+                  expectedResponse, status=200)
+        response = self._api.places_at([37.7905,-122.4107])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PlacesResponse)
+
+    @responses.activate
+    def test_places_at_whenerroroccured(self):
+        with open('testdata/models/places_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/search',
+                  expectedResponse, status=200)
+        response = self._api.places_at([-9999.0, -9999.0])
+        self.assertIsInstance(response, herepy.HEREError)
