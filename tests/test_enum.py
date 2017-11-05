@@ -25,3 +25,9 @@ class RouteModeTest(unittest.TestCase):
         self.assertEqual(truck.__str__(), 'truck')
         traffic_default = herepy.RouteMode.traffic_default
         self.assertEqual(traffic_default.__str__(), 'traffic:default')
+
+class PlacesCategoryTest(unittest.TestCase):
+
+    def test_valueofenum(self):
+        accomodation = herepy.PlacesCategory.accomodation
+        self.assertEqual(accomodation.__str__(), 'accomodation')

@@ -19,7 +19,8 @@ import json
 from .error import HEREError
 
 from .here_enum import (
-    RouteMode
+    RouteMode,
+    PlacesCategory
 )
 
 from .models import (
