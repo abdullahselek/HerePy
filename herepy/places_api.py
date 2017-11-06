@@ -26,10 +26,10 @@ class PlacesApi(HEREApi):
         """
 
         super(PlacesApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://places.cit.api.here.com/places/v1/discover/search'
+        self._base_url = 'https://places.cit.api.here.com/places/v1/'
 
-    def __get(self, data):
-        url = Utils.build_url(self._base_url, extra_params=data)
+    def __get(self, data, path):
+        url = Utils.build_url(self._base_url + path, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode('utf8'))
         if json_data.get('results') != None:
@@ -49,7 +49,7 @@ class PlacesApi(HEREApi):
                 'q':  query,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        return self.__get(data)
+        return self.__get(data, 'discover/search')
 
     def places_at(self, coordinates):
         """Request a list of popular places around a location
@@ -61,7 +61,7 @@ class PlacesApi(HEREApi):
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        return self.__get(data)
+        return self.__get(data, 'discover/explore')
 
     @classmethod
     def __prepare_category_values(cls, categories):
@@ -86,4 +86,4 @@ class PlacesApi(HEREApi):
                 'cat': self.__prepare_category_values(categories),
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        return self.__get(data)
+        return self.__get(data, 'discover/explore')
