@@ -87,3 +87,15 @@ class PlacesApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get(data, 'discover/explore')
+
+    def nearby_places(self, coordinates):
+        """Request a list of places close to a location
+        Args:
+          coordinates (array): array including latitude and longitude in order.
+        Returns:
+          PlacesResponse instance or HEREError"""
+
+        data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data, 'discover/here')
