@@ -99,3 +99,22 @@ class PlacesApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.nearby_places([-9999.0, -9999.0])
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_search_suggestions_whensucceed(self):
+        with open('testdata/models/places_api_suggestions.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/suggest',
+                  expectedResponse, status=200)
+        response = self._api.search_suggestions([52.5159,13.3777], 'berlin')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PlacesSuggestionsResponse)
+
+    @responses.activate
+    def test_search_suggestions_whenerroroccured(self):
+        with open('testdata/models/places_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/suggest',
+                  expectedResponse, status=200)
+        response = self._api.search_suggestions([-9999.0, -9999.0], '')
+        self.assertIsInstance(response, herepy.HEREError)

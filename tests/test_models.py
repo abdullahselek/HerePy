@@ -19,6 +19,9 @@ class ModelsTest(unittest.TestCase):
     with open('testdata/models/places_api.json', 'rb') as f:
         PLACES_API_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
+    with open('testdata/models/places_api_suggestions.json', 'rb') as f:
+        PLACES_API_SUGGESTIONS_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
+
     def test_geocoder_response(self):
         geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(self.GEOCODER_SAMPLE_JSON)    
         try:
@@ -54,3 +57,12 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(placesApiResponse.as_json_string())
         self.assertTrue(placesApiResponse.as_dict())
+
+    def test_placesapi_suggestions_response(self):
+        placesSuggestionsResponse = herepy.PlacesSuggestionsResponse.new_from_jsondict(self.PLACES_API_SUGGESTIONS_SAMPLE_JSON)
+        try:
+            placesSuggestionsResponse.__repr__()
+        except Exception as e:
+            self.fail(e)
+        self.assertTrue(placesSuggestionsResponse.as_json_string())
+        self.assertTrue(placesSuggestionsResponse.as_dict())

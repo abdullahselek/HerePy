@@ -126,3 +126,15 @@ class PlacesResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+class PlacesSuggestionsResponse(HEREModel):
+    """A class representing the Places (Search) Api suggestions response data."""
+
+    def __init__(self, **kwargs):
+        super(PlacesSuggestionsResponse, self).__init__()
+        self.param_defaults = {
+            'suggestions': None
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))
