@@ -62,3 +62,28 @@ class PlacesApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get(data)
+
+    @classmethod
+    def __prepare_category_values(cls, categories):
+        category_values = ""
+        for category in categories:
+            category_values += category.__str__() + ';'
+        category_values = category_values[:-1]
+        return category_values
+
+    def category_places_at(self, coordinates, categories=None):
+        """Request a list of places within a category around a location
+        Args:
+          coordinates (array): array including latitude and longitude in order.
+          categories (array): array including PlacesCategory enums.
+        Returns:
+          PlacesResponse instance or HEREError"""
+
+        if categories is None:
+          raise Exception(sys._getframe(0).f_code.co_name + ' function requires category types!')
+
+        data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
+                'cat': self.__prepare_category_values(categories),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data)
