@@ -28,7 +28,8 @@ from .models import (
     RoutingResponse,
     GeocoderAutoCompleteResponse,
     PlacesResponse,
-    PlacesSuggestionsResponse
+    PlacesSuggestionsResponse,
+    PlaceCategoriesResponse
 )
 
 from .utils import Utils
