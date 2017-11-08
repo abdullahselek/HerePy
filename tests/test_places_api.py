@@ -118,3 +118,22 @@ class PlacesApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.search_suggestions([-9999.0, -9999.0], '')
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_place_categories_whensucceed(self):
+        with open('testdata/models/places_api_categories.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/categories/places',
+                  expectedResponse, status=200)
+        response = self._api.place_categories([52.5159,13.3777])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PlaceCategoriesResponse)
+
+    @responses.activate
+    def test_place_categories_whenerroroccured(self):
+        with open('testdata/models/places_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/categories/places',
+                  expectedResponse, status=200)
+        response = self._api.place_categories([-9999.0, -9999.0])
+        self.assertIsInstance(response, herepy.HEREError)

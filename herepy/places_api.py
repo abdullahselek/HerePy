@@ -11,7 +11,8 @@ from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import (
     PlacesResponse,
-    PlacesSuggestionsResponse
+    PlacesSuggestionsResponse,
+    PlaceCategoriesResponse
 )
 
 class PlacesApi(HEREApi):
@@ -46,6 +47,15 @@ class PlacesApi(HEREApi):
         json_data = json.loads(response.content.decode('utf8'))
         if json_data.get('suggestions') != None:
             return PlacesSuggestionsResponse.new_from_jsondict(json_data)
+        else:
+            return HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+
+    def __get_categories(self, data):
+        url = Utils.build_url(self._base_url + 'categories/places', extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode('utf8'))
+        if json_data.get('items') != None:
+            return PlaceCategoriesResponse.new_from_jsondict(json_data)
         else:
             return HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
@@ -125,3 +135,15 @@ class PlacesApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get_suggestions(data)
+
+    def place_categories(self, coordinates):
+        """Request a list of place categories available for a given location
+        Args:
+          coordinates (array): array including latitude and longitude in order.
+        Returns:
+          PlaceCategoriesResponse instance or HEREError"""
+
+        data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get_categories(data)
