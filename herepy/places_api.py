@@ -32,9 +32,12 @@ class PlacesApi(HEREApi):
         super(PlacesApi, self).__init__(app_id, app_code, timeout)
         self._base_url = 'https://places.cit.api.here.com/places/v1/'
 
-    def __get(self, data, path):
+    def __get(self, data, path, headers=None):
         url = Utils.build_url(self._base_url + path, extra_params=data)
-        response = requests.get(url, timeout=self._timeout)
+        if headers != None:
+            response = requests.get(url, timeout=self._timeout, headers=headers)
+        else:
+            response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode('utf8'))
         if json_data.get('results') != None:
             return PlacesResponse.new_from_jsondict(json_data)
@@ -159,4 +162,18 @@ class PlacesApi(HEREApi):
         data = {'in': str.format('{0},{1},{2},{3}', coordinates_a[0], coordinates_a[1], coordinates_b[0], coordinates_b[1]),
                 'app_id': self._app_id,
                 'app_code': self._app_code}
+        return self.__get(data, 'discover/explore')
+
+    def places_with_language(self, coordinates, language):
+        """Request a list of popular places around a location using a foreign language
+        Args:
+          coordinates (array): array including latitude and longitude in order.
+          language (string): string value for language like `en-US`
+        Returns:
+          PlacesResponse instance or HEREError"""
+
+        data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        headers = {'accept-language': language}
         return self.__get(data, 'discover/explore')
