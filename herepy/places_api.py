@@ -147,3 +147,16 @@ class PlacesApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get_categories(data)
+
+    def places_at_boundingbox(self, coordinates_a, coordinates_b):
+        """Request a list of popular places within a specified area
+        Args:
+          coordinates_a (array): array including latitude and longitude in order.
+          coordinates_b (array): array including latitude and longitude in order.
+        Returns:
+          PlacesResponse instance or HEREError"""
+
+        data = {'in': str.format('{0},{1},{2},{3}', coordinates_a[0], coordinates_a[1], coordinates_b[0], coordinates_b[1]),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data, 'discover/explore')

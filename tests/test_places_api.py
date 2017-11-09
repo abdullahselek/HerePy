@@ -137,3 +137,22 @@ class PlacesApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.place_categories([-9999.0, -9999.0])
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_place_at_boundingbox_whensucceed(self):
+        with open('testdata/models/places_api.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/explore',
+                  expectedResponse, status=200)
+        response = self._api.places_at_boundingbox([-122.408,37.793], [-122.4070,37.7942])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PlacesResponse)
+
+    @responses.activate
+    def test_place_at_boundingbox_whenerroroccured(self):
+        with open('testdata/models/places_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/explore',
+                  expectedResponse, status=200)
+        response = self._api.places_at_boundingbox([-9999.0, -9999.0], [-9999.0, -9999.0])
+        self.assertIsInstance(response, herepy.HEREError)
