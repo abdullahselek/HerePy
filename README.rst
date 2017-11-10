@@ -87,6 +87,9 @@ The library utilizes models to represent various data structures returned by HER
     * herepy.GeocoderResponse
     * herepy.RoutingResponse
     * herepy.GeocoderAutoCompleteResponse
+    * herepy.PlacesResponse
+    * herepy.PlacesSuggestionsResponse
+    * herepy.PlaceCategoriesResponse
 
 -----------
 GeocoderApi
@@ -219,6 +222,66 @@ Request an annotated list of suggested addresses with matching tokens highlighte
 .. code::
 
     response = geocoderAutoCompleteApi.highlighting_matches('Wacker Chic', '**', '**')
+
+---------
+PlacesApi
+---------
+
+Initiation of PlacesApi
+
+.. code::
+
+    import herepy
+
+    placesApi = herepy.PlacesApi('app_id', 'app_code')
+
+Request a list of nearby places based on a query string
+
+.. code::
+
+    response = placesApi.onebox_search([37.7905, -122.4107], 'restaurant')
+
+Request a list of popular places around a location
+
+.. code::
+
+    response = placesApi.places_at([37.7905, -122.4107])
+
+Request a list of places within a category around a location
+
+.. code::
+
+    response = placesApi.category_places_at([37.7905, -122.4107], [herepy.PlacesCategory.eat_drink])
+
+Request a list of places close to a location
+
+.. code::
+
+    response = placesApi.nearby_places([37.7905, -122.4107])
+
+Request a list of suggestions based on a partial query string
+
+.. code::
+
+    response = placesApi.search_suggestions([52.5159, 13.3777], 'berlin')
+
+Request a list of place categories available for a given location
+
+.. code::
+
+    response = placesApi.place_categories([52.5159, 13.3777])
+
+Request a list of popular places within a specified area
+
+.. code::
+
+    response = placesApi.places_at_boundingbox([-122.408, 37.793], [-122.4070, 37.7942])
+
+Request a list of popular places around a location using a foreign language
+
+.. code::
+
+    response = placesApi.places_with_language([48.8580, 2.2945], 'en-US')
 
 -------
 License
