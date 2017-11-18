@@ -1,0 +1,106 @@
+{
+  "Res": {
+    "serviceUrl": "http://internal-ptes-cit-ami48098932-809277728.us-east-1.elb.amazonaws.com/stations_v2/stations_v2",
+    "Stations": {
+      "Stn": [
+        {
+          "id": "717081332",
+          "name": "14 St - Union Sq",
+          "distance": 1698,
+          "duration": "PT0H28M18S",
+          "x": -73.990568,
+          "y": 40.735736,
+          "has_board": 1,
+          "country": "United States",
+          "ccode": "USA",
+          "state": "NY",
+          "postal": "10003",
+          "district": "Flatiron District",
+          "city": "New York"
+        },
+        {
+          "id": "717061414",
+          "name": "Union SQ E/E 15 St",
+          "distance": 1725,
+          "duration": "PT0H28M45S",
+          "x": -73.989612,
+          "y": 40.73555,
+          "has_board": 1,
+          "country": "United States",
+          "ccode": "USA",
+          "state": "NY",
+          "postal": "10003",
+          "district": "Gramercy Park",
+          "street": "Union Sq E",
+          "number": "24",
+          "city": "New York"
+        },
+        {
+          "id": "717061326",
+          "name": "E 14 St/Union SQ W",
+          "distance": 1726,
+          "duration": "PT0H28M46S",
+          "x": -73.992137,
+          "y": 40.735465,
+          "has_board": 1,
+          "country": "United States",
+          "ccode": "USA",
+          "state": "NY",
+          "postal": "10003",
+          "district": "Greenwich Village",
+          "street": "E 14th St",
+          "number": "41",
+          "city": "New York"
+        },
+        {
+          "id": "717081137",
+          "name": "Union Sq - 14 St",
+          "distance": 1802,
+          "duration": "PT0H30M2S",
+          "x": -73.99073,
+          "y": 40.734789,
+          "has_board": 1,
+          "country": "United States",
+          "ccode": "USA",
+          "state": "NY",
+          "postal": "10003",
+          "district": "Greenwich Village",
+          "street": "E 14th St",
+          "number": "1",
+          "city": "New York"
+        },
+        {
+          "id": "416608958",
+          "name": "Union Turnpike at Grand Ave",
+          "distance": 4779,
+          "duration": "PT1H19M39S",
+          "x": -74.034891,
+          "y": 40.778838,
+          "has_board": 1,
+          "country": "United States",
+          "ccode": "USA",
+          "state": "NJ",
+          "postal": "07047",
+          "street": "Union Tpke",
+          "number": "1503",
+          "city": "North Bergen"
+        },
+        {
+          "id": "416202491",
+          "name": "Driggs AV/Union AV",
+          "distance": 4710,
+          "duration": "PT1H18M30S",
+          "x": -73.952709,
+          "y": 40.720525,
+          "has_board": 1,
+          "country": "United States",
+          "ccode": "USA",
+          "state": "NY",
+          "postal": "11211",
+          "district": "Greenpoint",
+          "city": "Brooklyn"
+        }
+      ]
+    }
+  }
+}

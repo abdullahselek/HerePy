@@ -29,7 +29,8 @@ from .models import (
     GeocoderAutoCompleteResponse,
     PlacesResponse,
     PlacesSuggestionsResponse,
-    PlaceCategoriesResponse
+    PlaceCategoriesResponse,
+    PublicTransitResponse
 )
 
 from .utils import Utils
