@@ -2,6 +2,7 @@
 
 import os
 import sys
+import io
 import unittest
 import responses
 import codecs
@@ -102,7 +103,7 @@ class PlacesApiTest(unittest.TestCase):
 
     @responses.activate
     def test_search_suggestions_whensucceed(self):
-        with open('testdata/models/places_api_suggestions.json', 'r') as f:
+        with io.open('testdata/models/places_api_suggestions.json', 'r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/suggest',
                   expectedResponse, status=200)
