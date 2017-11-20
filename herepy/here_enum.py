@@ -40,3 +40,12 @@ class PlacesCategory(Enum):
 
     def __str__(self):
         return '%s' % self._value_
+
+class PublicTransitSearchMethod(Enum):
+    """Search methods used in public transit search function"""
+
+    fuzzy = 'fuzzy'
+    strict = 'strict'
+
+    def __str__(self):
+        return '%s' % self._value_

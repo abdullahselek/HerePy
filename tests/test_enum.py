@@ -31,3 +31,11 @@ class PlacesCategoryTest(unittest.TestCase):
     def test_valueofenum(self):
         accomodation = herepy.PlacesCategory.accomodation
         self.assertEqual(accomodation.__str__(), 'accomodation')
+
+class PublicTransitSearchMethodTest(unittest.TestCase):
+
+    def test_valueofenum(self):
+        fuzzy = herepy.PublicTransitSearchMethod.fuzzy
+        self.assertEqual(fuzzy.__str__(), 'fuzzy')
+        strict = herepy.PublicTransitSearchMethod.strict
+        self.assertEqual(strict.__str__(), 'strict')

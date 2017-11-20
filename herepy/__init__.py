@@ -20,7 +20,8 @@ from .error import HEREError
 
 from .here_enum import (
     RouteMode,
-    PlacesCategory
+    PlacesCategory,
+    PublicTransitSearchMethod
 )
 
 from .models import (
