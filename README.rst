@@ -6,10 +6,6 @@ HerePy
     :target: https://pypi.python.org/pypi/herepy/
     :alt: Downloads
 
-.. image:: https://travis-ci.org/abdullahselek/HerePy.svg?branch=master
-    :target: https://travis-ci.org/abdullahselek/HerePy
-    :alt: Travis-Ci
-
 .. image:: https://codecov.io/gh/abdullahselek/HerePy/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/abdullahselek/HerePy
     :alt: Codecov
@@ -21,6 +17,14 @@ HerePy
 .. image:: https://dependencyci.com/github/abdullahselek/HerePy/badge
     :target: https://dependencyci.com/github/abdullahselek/HerePy
     :alt: Dependency Status
+
++-------------------------------------------------------------------------+----------------------------------------------------------------------------------+
+|                                Linux                                    |                                       Windows                                    |
++=========================================================================+==================================================================================+
+| .. image:: https://travis-ci.org/abdullahselek/HerePy.svg?branch=master | .. image:: https://ci.appveyor.com/api/projects/status/wlxrx5h8e8xyhvq2?svg=true |
+|    :target: https://travis-ci.org/abdullahselek/HerePy                  |    :target: https://ci.appveyor.com/project/abdullahselek/herepy                 |
+|    :alt: Travis-Ci                                                      |    :alt: AppVeyor                                                                |
++-------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 
 ============
 Introduction
