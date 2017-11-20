@@ -78,3 +78,24 @@ class PublicTransitApi(HEREApi):
                 'app_code': self._app_code,
                 'max': max_count}
         return self.__get(data, 'by_geocoord.json', 'Stations')
+
+    @classmethod
+    def __prepare_station_ids(cls, ids):
+        station_ids = ""
+        for stn_id in ids:
+            station_ids += str.format('{0},', stn_id)
+        station_ids = station_ids[:-1]
+        return station_ids
+
+    def find_stations_by_id(self, ids, lang):
+        """Request details of a specific transit station based on a previous request.
+        Args:
+          ids (array): array contains station ids.
+          lang (string): language code for response like `en`.
+        """
+
+        data = {'stnIds': self.__prepare_station_ids(ids),
+                'lang': lang,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data, 'by_ids.json', 'Stations')

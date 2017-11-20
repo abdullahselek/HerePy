@@ -1,0 +1,39 @@
+{
+    "Res": {
+        "serviceUrl": "http://internal-ptes-cit-amif4a5278e-218182496.us-east-1.elb.amazonaws.com/stations_v2/stations_v2",
+        "Stations": {
+            "Stn": [
+                {
+                    "id": "720390000",
+                    "name": "Mountain Line Transfer Center",
+                    "x": -113.9956,
+                    "y": 46.873797,
+                    "has_board": 1,
+                    "country": "United States",
+                    "ccode": "USA",
+                    "state": "MT",
+                    "postal": "59802",
+                    "district": "Heart of Missoula",
+                    "street": "W Pine St",
+                    "number": "242",
+                    "city": "Missoula"
+                },
+                {
+                    "id": "720390022",
+                    "name": "Arthur Ave & Beverly Ave",
+                    "x": -113.98929,
+                    "y": 46.854005,
+                    "has_board": 1,
+                    "country": "United States",
+                    "ccode": "USA",
+                    "state": "MT",
+                    "postal": "59801",
+                    "district": "University District",
+                    "street": "Beverly Ave",
+                    "number": "545",
+                    "city": "Missoula"
+                }
+            ]
+        }
+    }
+}
