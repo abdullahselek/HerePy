@@ -19,3 +19,27 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertEqual(self._api._app_id, 'app_id')
         self.assertEqual(self._api._app_code, 'app_code')
         self.assertEqual(self._api._base_url, 'https://cit.transit.api.here.com/v3/stations/')
+
+    @responses.activate
+    def test_find_stations_by_name_whensucceed(self):
+        with open('testdata/models/public_transit_api.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/stations/by_name.json',
+                  expectedResponse, status=200)
+        response = self._api.find_stations_by_name([40.7505, -73.9910],
+                                                   'union',
+                                                   10,
+                                                   herepy.PublicTransitSearchMethod.fuzzy,
+                                                   5000)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+
+    @responses.activate
+    def test_find_stations_by_name_whenerroroccured(self):
+        with open('testdata/models/public_transit_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/stations/by_name.json',
+                  expectedResponse, status=200)
+        response = self._api.find_stations_by_name([40.7505, -73.9910],
+                                                   '')
+        self.assertIsInstance(response, herepy.HEREError)

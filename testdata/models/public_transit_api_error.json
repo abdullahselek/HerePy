@@ -1,0 +1,10 @@
+{
+    "Res": {
+        "serviceUrl": "https://cit.transit.api.here.com/transit/v3/stations/by_name.json",
+        "Message": {
+            "code": "I4",
+            "level": "E",
+            "text": "The request is missing the app_id. It must be passed as a query parameter. The app_id was given to you together with the app_code If you have misplaced it, please contact or revisit your original provisioning point - either your customer representative or http://developer.here.com/myapps."
+        }
+    }
+}
