@@ -43,14 +43,14 @@ class PublicTransitApi(HEREApi):
     def find_stations_by_name(self,
                               center,
                               name,
-                              max=5,
+                              max_count=5,
                               method=PublicTransitSearchMethod.fuzzy,
                               radius=20000):
         """Request a list of public transit stations based on name.
         Args:
           center (array): array including latitude and longitude in order.
           name (string): station name.
-          max (int): maximum number of stations  (Default is 5).
+          max_count (int): maximum number of stations  (Default is 5).
           method (enum): Matching method from PublicTransitSearchMethod (Default is fuzzy).
           radius (int): array including latitude and longitude in order (Default is 20000km).
         """
@@ -59,22 +59,22 @@ class PublicTransitApi(HEREApi):
                 'name':  name,
                 'app_id': self._app_id,
                 'app_code': self._app_code,
-                'max': max,
+                'max': max_count,
                 'method': method.__str__(),
                 'radius': radius}
         return self.__get(data, 'by_name.json', 'Stations')
 
-    def find_stations_nearby(self, center, radius=500, max=5):
+    def find_stations_nearby(self, center, radius=500, max_count=5):
         """Request a list of public transit stations within a given geo-location.
         Args:
           center (array): array including latitude and longitude in order.
           radius (int): array including latitude and longitude in order (Default is 500m).
-          max (int): maximum number of stations  (Default is 5).
+          max_count (int): maximum number of stations  (Default is 5).
         """
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
                 'radius': radius,
                 'app_id': self._app_id,
                 'app_code': self._app_code,
-                'max': max}
+                'max': max_count}
         return self.__get(data, 'by_geocoord.json', 'Stations')
