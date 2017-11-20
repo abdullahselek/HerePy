@@ -43,3 +43,22 @@ class PublicTransitApiTest(unittest.TestCase):
         response = self._api.find_stations_by_name([40.7505, -73.9910],
                                                    '')
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_find_stations_nearby_whensucceed(self):
+        with io.open('testdata/models/public_transit_api_nearby.json', 'r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/stations/by_geocoord.json',
+                  expectedResponse, status=200)
+        response = self._api.find_stations_nearby([55.7541, 37.6200], 350, 3)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+
+    @responses.activate
+    def test_find_stations_nearby_whenerroroccured(self):
+        with open('testdata/models/public_transit_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/stations/by_geocoord.json',
+                  expectedResponse, status=200)
+        response = self._api.find_stations_nearby([-9999, -9999])
+        self.assertIsInstance(response, herepy.HEREError)

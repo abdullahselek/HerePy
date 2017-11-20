@@ -1,0 +1,89 @@
+{
+    "Res": {
+        "serviceUrl": "http://internal-ptes-cit-amif4a5278e-218182496.us-east-1.elb.amazonaws.com/stations_v2/stations_v2",
+        "Stations": {
+            "Stn": [
+                {
+                    "id": "408023152",
+                    "name": "Площадь Революции",
+                    "distance": 302,
+                    "duration": "PT0H5M2S",
+                    "x": 37.621875,
+                    "y": 55.756606,
+                    "has_board": 0,
+                    "country": "Россия",
+                    "ccode": "RUS",
+                    "state": "Центральный федеральный округ",
+                    "postal": "125009",
+                    "district": "Тверской",
+                    "street": "Никольская улица",
+                    "number": "6",
+                    "city": "Москва",
+                    "Transports": {
+                        "Transport": [
+                            {
+                                "name": "Арбатско-Покровская линия",
+                                "mode": 7,
+                                "dir": "Щёлковская",
+                                "At": {
+                                    "textColor": "#FFFFFF",
+                                    "color": "#0003FB"
+                                }
+                            },
+                            {
+                                "name": "Арбатско-Покровская линия",
+                                "mode": 7,
+                                "dir": "Пятницкое шоссе",
+                                "At": {
+                                    "textColor": "#FFFFFF",
+                                    "color": "#0003FB"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "DC1000997378",
+                    "name": "Театральная",
+                    "distance": 318,
+                    "duration": "PT0H5M18S",
+                    "x": 37.61893,
+                    "y": 55.7569,
+                    "has_board": 0,
+                    "country": "Россия",
+                    "ccode": "RUS",
+                    "state": "Центральный федеральный округ",
+                    "postal": "109012",
+                    "district": "Тверской",
+                    "street": "площадь Революции",
+                    "number": "2/3",
+                    "city": "Москва",
+                    "Transports": {
+                        "Transport": [
+                            {
+                                "name": "Замоскворецкая",
+                                "mode": 7,
+                                "dir": "Речной вокзал"
+                            },
+                            {
+                                "name": "Сокольническая",
+                                "mode": 7,
+                                "dir": "Юго-Западная"
+                            },
+                            {
+                                "name": "Замоскворецкая",
+                                "mode": 7,
+                                "dir": "Красногвардейская"
+                            },
+                            {
+                                "name": "Сокольническая",
+                                "mode": 7,
+                                "dir": "улица Подбельского"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}
