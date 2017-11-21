@@ -27,7 +27,7 @@ class PublicTransitApi(HEREApi):
         """
 
         super(PublicTransitApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://cit.transit.api.here.com/v3/stations/'
+        self._base_url = 'https://cit.transit.api.here.com/v3/'
 
     def __get(self, data, path, json_node):
         url = Utils.build_url(self._base_url + path, extra_params=data)
@@ -62,7 +62,7 @@ class PublicTransitApi(HEREApi):
                 'max': max_count,
                 'method': method.__str__(),
                 'radius': radius}
-        return self.__get(data, 'by_name.json', 'Stations')
+        return self.__get(data, 'stations/by_name.json', 'Stations')
 
     def find_stations_nearby(self, center, radius=500, max_count=5):
         """Request a list of public transit stations within a given geo-location.
@@ -77,7 +77,7 @@ class PublicTransitApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code,
                 'max': max_count}
-        return self.__get(data, 'by_geocoord.json', 'Stations')
+        return self.__get(data, 'stations/by_geocoord.json', 'Stations')
 
     @classmethod
     def __prepare_station_ids(cls, ids):
@@ -98,4 +98,4 @@ class PublicTransitApi(HEREApi):
                 'lang': lang,
                 'app_id': self._app_id,
                 'app_code': self._app_code}
-        return self.__get(data, 'by_ids.json', 'Stations')
+        return self.__get(data, 'stations/by_ids.json', 'Stations')

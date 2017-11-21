@@ -18,7 +18,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(self._api, herepy.PublicTransitApi)
         self.assertEqual(self._api._app_id, 'app_id')
         self.assertEqual(self._api._app_code, 'app_code')
-        self.assertEqual(self._api._base_url, 'https://cit.transit.api.here.com/v3/stations/')
+        self.assertEqual(self._api._base_url, 'https://cit.transit.api.here.com/v3/')
 
     @responses.activate
     def test_find_stations_by_name_whensucceed(self):
