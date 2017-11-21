@@ -81,3 +81,22 @@ class PublicTransitApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.find_stations_by_id([-99999], 'tr')
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_find_transit_coverage_in_cities_whensucceed(self):
+        with io.open('testdata/models/public_transit_api_coverage_cities.json', 'r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/city.json',
+                  expectedResponse, status=200)
+        response = self._api.find_transit_coverage_in_cities([42.3580, -71.0636], 'USA', 50000)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+
+    @responses.activate
+    def test_find_transit_coverage_in_cities_whenerroroccured(self):
+        with open('testdata/models/public_transit_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/city.json',
+                  expectedResponse, status=200)
+        response = self._api.find_transit_coverage_in_cities([-9999, -9999], '', 100)
+        self.assertIsInstance(response, herepy.HEREError)

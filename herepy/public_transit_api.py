@@ -99,3 +99,18 @@ class PublicTransitApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get(data, 'stations/by_ids.json', 'Stations')
+
+    def find_transit_coverage_in_cities(self, center, political_view, radius):
+        """Request a list of transit operators available in cities nearby.
+        Args:
+          center (array): array including latitude and longitude in order.
+          political_view (string): switch for grouping results like `CHN`.
+          radius (int): specifies radius in meters.
+        """
+
+        data = {'center': str.format('{0},{1}', center[0], center[1]),
+                'politicalview': political_view,
+                'radius': radius,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data, 'coverage/city.json', 'Coverage')

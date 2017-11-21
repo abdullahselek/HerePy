@@ -1,0 +1,446 @@
+{
+    "Res": {
+        "serviceUrl": "https://cit.transit.api.here.com/transit/v3/coverage/city.json",
+        "Coverage": {
+            "ref_time": "2017-11-15T10:03:27",
+            "CityCount": {
+                "TT": 891,
+                "RT": 52,
+                "SR": 540
+            },
+            "Cities": {
+                "City": [
+                    {
+                        "updated": "2017-03-27T11:02:35",
+                        "name": "Boston",
+                        "created": "2017-03-27T11:02:35",
+                        "country": "United States",
+                        "state": "Massachusetts",
+                        "y": 42.35866,
+                        "x": -71.05674,
+                        "id": "drt2z",
+                        "display_name": "Boston, Massachusetts, USA",
+                        "distance": 568,
+                        "relevancy": 0.95,
+                        "Cvg": {
+                            "quality": 0.67,
+                            "lines": 287,
+                            "stops": 2149
+                        },
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "name": "Plymouth & Brockton Street Railway Co.",
+                                    "type": "TT",
+                                    "code": "55y0PB00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.p-b.com/",
+                                            "type": "website",
+                                            "text": "Plymouth & Brockton Street Railway Co."
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "508-746-0378"
+                                    }
+                                },
+                                {
+                                    "name": "Brockton Area Transit Authority",
+                                    "type": "TT",
+                                    "code": "4AD44400",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.ridebat.com/",
+                                            "type": "website",
+                                            "text": "Brockton Area Transit Authority"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "508-588-1000"
+                                    }
+                                },
+                                {
+                                    "name": "MetroWest Regional Transit Authority",
+                                    "type": "TT",
+                                    "code": "4ALMWR00",
+                                    "Link": [
+                                        {
+                                            "href": "http://mwrta.com/",
+                                            "type": "website",
+                                            "text": "MetroWest Regional Transit Authority"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "508-935-2222"
+                                    }
+                                },
+                                {
+                                    "name": "Boston Harbor Islands Ferries (operated by Boston's Best Cruises)",
+                                    "type": "TT",
+                                    "code": "4APHAR01",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.bostonislands.com/trip_getthere.html",
+                                            "type": "website",
+                                            "text": "Boston Harbor Islands Ferries (operated by Boston's Best Cruises)"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "617-223-8666"
+                                    }
+                                },
+                                {
+                                    "name": "Concord Coach Lines",
+                                    "type": "TT",
+                                    "code": "gaV62100",
+                                    "Link": [
+                                        {
+                                            "href": "https://webstore.concordcoachlines.com",
+                                            "type": "website",
+                                            "text": "Concord Coach Lines"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Amtrak",
+                                    "type": "TT",
+                                    "code": "5xj05100",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.amtrak.com",
+                                            "type": "website",
+                                            "text": "Amtrak"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "C&J",
+                                    "type": "TT",
+                                    "code": "g0e61500",
+                                    "Link": [
+                                        {
+                                            "href": "https://webstore.ridecj.com",
+                                            "type": "website",
+                                            "text": "C&J"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "MBTA",
+                                    "type": "RT",
+                                    "code": "3QT00100",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.mbta.com",
+                                            "type": "website",
+                                            "text": "MBTA"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "617-222-3200"
+                                    }
+                                },
+                                {
+                                    "name": "Bloom's Bus Lines",
+                                    "type": "TT",
+                                    "code": "5ZgBLO00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.bloombus.com/",
+                                            "type": "website",
+                                            "text": "Bloom's Bus Lines"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "800-323-3009"
+                                    }
+                                },
+                                {
+                                    "name": "Boston Harbor Cruises",
+                                    "type": "TT",
+                                    "code": "4APHAR00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.bostonharborcruises.com/",
+                                            "type": "website",
+                                            "text": "Boston Harbor Cruises"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "617-227-4321"
+                                    }
+                                },
+                                {
+                                    "name": "Boston Express",
+                                    "type": "TT",
+                                    "code": "eMVBos00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.bostonexpressbus.com/",
+                                            "type": "website",
+                                            "text": "Boston Express"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "1-800-639-8080"
+                                    }
+                                },
+                                {
+                                    "name": "Merrimack Valley Regional Transit Authority",
+                                    "type": "TT",
+                                    "code": "4AK44100",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.mvrta.com",
+                                            "type": "website",
+                                            "text": "Merrimack Valley Regional Transit Authority"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "(978) 469-6878"
+                                    }
+                                },
+                                {
+                                    "name": "Massport",
+                                    "type": "RT",
+                                    "code": "3QT00200",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.massport.com",
+                                            "type": "website",
+                                            "text": "Massport"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "1-800-23-LOGAN"
+                                    }
+                                },
+                                {
+                                    "name": "DATTCO",
+                                    "type": "TT",
+                                    "code": "bi8DAT00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.dattco.com/motorcoach/bus-schedules/commuter-runs/boston-commuter-schedules/",
+                                            "type": "website",
+                                            "text": "DATTCO"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "800-453-5040"
+                                    }
+                                },
+                                {
+                                    "name": "Megabus",
+                                    "type": "TT",
+                                    "code": "gaW23100",
+                                    "Link": [
+                                        {
+                                            "href": "http://us.megabus.com/Default.aspx",
+                                            "type": "website",
+                                            "text": "Megabus"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "1 (877) 462-6342"
+                                    }
+                                },
+                                {
+                                    "name": "Peter Pan Bus Lines",
+                                    "type": "TT",
+                                    "code": "55tPet00",
+                                    "Link": [
+                                        {
+                                            "href": "http://peterpanbus.com/",
+                                            "type": "website",
+                                            "text": "Peter Pan Bus Lines"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "800-343-9999"
+                                    }
+                                },
+                                {
+                                    "name": "Bay State Cruise Company",
+                                    "type": "TT",
+                                    "code": "gXQ27500",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.baystatecruisecompany.com/",
+                                            "type": "website",
+                                            "text": "Bay State Cruise Company"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "(877) 783-3779"
+                                    }
+                                },
+                                {
+                                    "name": "Salem Ferry",
+                                    "type": "TT",
+                                    "code": "4APSAL00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.salemferry.com/",
+                                            "type": "website",
+                                            "text": "Salem Ferry"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Yankee",
+                                    "type": "TT",
+                                    "code": "bi9YAN00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.yankeeline.us/actonconcordcommuters.html",
+                                            "type": "website",
+                                            "text": "Yankee"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "800-942-8890"
+                                    }
+                                }
+                            ]
+                        },
+                        "pop": 599351
+                    },
+                    {
+                        "updated": "2017-03-27T11:02:35",
+                        "name": "Cambridge",
+                        "created": "2017-03-27T11:02:35",
+                        "country": "United States",
+                        "state": "Massachusetts",
+                        "y": 42.36679,
+                        "x": -71.10601,
+                        "id": "drt3j",
+                        "display_name": "Cambridge, Massachusetts, USA",
+                        "distance": 3616,
+                        "relevancy": 0,
+                        "Cvg": {
+                            "quality": 0.8,
+                            "lines": 45,
+                            "stops": 269
+                        },
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "name": "MBTA",
+                                    "type": "RT",
+                                    "code": "3QT00100",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.mbta.com",
+                                            "type": "website",
+                                            "text": "MBTA"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "617-222-3200"
+                                    }
+                                },
+                                {
+                                    "name": "128 Business Council",
+                                    "type": "TT",
+                                    "code": "bH546600",
+                                    "Link": [
+                                        {
+                                            "href": "http://128bc.org/rev-hartwell-area-shuttle/",
+                                            "type": "website",
+                                            "text": "128 Business Council"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "pop": 101388
+                    },
+                    {
+                        "updated": "2017-03-27T11:02:35",
+                        "name": "Lowell",
+                        "created": "2017-03-27T11:02:35",
+                        "country": "United States",
+                        "state": "Massachusetts",
+                        "y": 42.64588,
+                        "x": -71.31284,
+                        "id": "drt69",
+                        "display_name": "Lowell, Massachusetts, USA",
+                        "distance": 37952,
+                        "relevancy": 0,
+                        "Cvg": {
+                            "quality": 0.8,
+                            "lines": 22,
+                            "stops": 461
+                        },
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "name": "Merrimack Valley Regional Transit Authority",
+                                    "type": "TT",
+                                    "code": "4AK44100",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.mvrta.com",
+                                            "type": "website",
+                                            "text": "Merrimack Valley Regional Transit Authority"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "(978) 469-6878"
+                                    }
+                                },
+                                {
+                                    "name": "MBTA",
+                                    "type": "RT",
+                                    "code": "3QT00100",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.mbta.com",
+                                            "type": "website",
+                                            "text": "MBTA"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "617-222-3200"
+                                    }
+                                },
+                                {
+                                    "name": "Peter Pan Bus Lines",
+                                    "type": "TT",
+                                    "code": "55tPet00",
+                                    "Link": [
+                                        {
+                                            "href": "http://peterpanbus.com/",
+                                            "type": "website",
+                                            "text": "Peter Pan Bus Lines"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "800-343-9999"
+                                    }
+                                },
+                                {
+                                    "name": "Lowell Regional Transit Authority",
+                                    "type": "TT",
+                                    "code": "4AJ44700",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.lrta.com",
+                                            "type": "website",
+                                            "text": "Lowell Regional Transit Authority"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "978-452-6161"
+                                    }
+                                }
+                            ]
+                        },
+                        "pop": 103512
+                    }
+                ]
+            }
+        }
+    }
+}
