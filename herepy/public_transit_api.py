@@ -52,7 +52,7 @@ class PublicTransitApi(HEREApi):
           name (string): station name.
           max_count (int): maximum number of stations  (Default is 5).
           method (enum): Matching method from PublicTransitSearchMethod (Default is fuzzy).
-          radius (int): array including latitude and longitude in order (Default is 20000km).
+          radius (int): specifies radius in kilometers (Default is 20000km).
         """
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
@@ -68,7 +68,7 @@ class PublicTransitApi(HEREApi):
         """Request a list of public transit stations within a given geo-location.
         Args:
           center (array): array including latitude and longitude in order.
-          radius (int): array including latitude and longitude in order (Default is 500m).
+          radius (int): specifies radius in meters (Default is 500m).
           max_count (int): maximum number of stations  (Default is 5).
         """
 
