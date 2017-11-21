@@ -119,3 +119,22 @@ class PublicTransitApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.next_nearby_departures_of_station(-1, '')
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_next_departures_from_location_whensucceed(self):
+        with io.open('testdata/models/public_transit_api_next_departures_location.json', 'r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/multiboard/by_geocoord.json',
+                  expectedResponse, status=200)
+        response = self._api.next_departures_from_location([51.4477, -0.1669], '2017-11-21T07:30:00')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+
+    @responses.activate
+    def test_next_departures_from_location_whenerroroccured(self):
+        with open('testdata/models/public_transit_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/multiboard/by_geocoord.json',
+                  expectedResponse, status=200)
+        response = self._api.next_departures_from_location([-9999, -9999], '')
+        self.assertIsInstance(response, herepy.HEREError)

@@ -129,3 +129,27 @@ class PublicTransitApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get(data, 'board.json', 'NextDepartures')
+
+    def next_departures_from_location(self,
+                                      center,
+                                      time,
+                                      lang='en',
+                                      max=40,
+                                      max_station=40):
+        """Request a list of all next departure times and destinations from a given location.
+        Args:
+          center (array): array including latitude and longitude in order.
+          time (string): time formattes in yyyy-mm-ddThh:mm:ss.
+          lang (string): language code for response like `en`. Default is `en`.
+          max (int): maximum number of next departures per station. Default is 40.
+          max_station (int): maximum number of stations for which departures are required. Default is 40.
+        """
+
+        data = {'lang': lang,
+                'center': str.format('{0},{1}', center[0], center[1]),
+                'time': time,
+                'app_id': self._app_id,
+                'app_code': self._app_code,
+                'max': max,
+                'maxStn': max_station}
+        return self.__get(data, 'multiboard/by_geocoord.json', 'MultiNextDepartures')

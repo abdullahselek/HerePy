@@ -1,0 +1,379 @@
+{
+    "Res": {
+        "MultiNextDepartures": {
+            "MultiNextDeparture": [
+                {
+                    "Stn": {
+                        "@distance": "28",
+                        "@name": "Piccadilly Circus (Stop G), London",
+                        "@duration": "PT0H0M28S",
+                        "@x": "-0.135565",
+                        "@y": "51.51006",
+                        "@id": "402000656#100"
+                    },
+                    "NextDepartures": {
+                        "Dep": [
+                            {
+                                "@journey_ctx": "1|211105|0|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus (Stop G), London",
+                                    "@x": "-0.135565",
+                                    "@y": "51.51006",
+                                    "@id": "402000656#100"
+                                },
+                                "@time": "2017-12-11T07:32:00",
+                                "Line": {
+                                    "@dir": "Waterloo Station Waterloo Rd (Stop E), London",
+                                    "@code": "5",
+                                    "@name": "139",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjML 00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Bus"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "@journey_ctx": "1|247090|0|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus (Stop G), London",
+                                    "@x": "-0.135565",
+                                    "@y": "51.51006",
+                                    "@id": "402000656#100"
+                                },
+                                "@time": "2017-12-11T07:37:00",
+                                "Line": {
+                                    "@dir": "Liverpool Street Station (Stop), City of London",
+                                    "@code": "5",
+                                    "@name": "23",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjTN 00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Bus"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "@journey_ctx": "1|211106|0|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus (Stop G), London",
+                                    "@x": "-0.135565",
+                                    "@y": "51.51006",
+                                    "@id": "402000656#100"
+                                },
+                                "@time": "2017-12-11T07:40:00",
+                                "Line": {
+                                    "@dir": "Waterloo Station Waterloo Rd (Stop E), London",
+                                    "@code": "5",
+                                    "@name": "139",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjML 00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Bus"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "@code": "avjSV 00",
+                                    "@name": "LONDON SOVEREIGN LIMITED",
+                                    "@type": "TT"
+                                },
+                                {
+                                    "a": {
+                                        "@href": "https://cit.transit.api.here.com/r?app_name=SENTRY&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                        "$": "With the support of Traveline"
+                                    },
+                                    "Link": [
+                                        {
+                                            "@req": "0",
+                                            "@href": "https://cit.transit.api.here.com/r?app_name=SENTRY&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                            "@id": "agency",
+                                            "$": "With the support of Traveline"
+                                        }
+                                    ],
+                                    "@code": "avjML 00",
+                                    "@name": "METROLINE TRAVEL LIMITED",
+                                    "@type": "TT"
+                                },
+                                {
+                                    "@code": "avjTN 00",
+                                    "@name": "TOWER TRANSIT LIMITED",
+                                    "@type": "TT"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Stn": {
+                        "@distance": "63",
+                        "@name": "Piccadilly Circus (Stop C), London",
+                        "@duration": "PT0H1M3S",
+                        "@x": "-0.135997",
+                        "@y": "51.509862",
+                        "@id": "402000653#100"
+                    },
+                    "NextDepartures": {
+                        "Dep": [
+                            {
+                                "@journey_ctx": "1|211099|0|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus (Stop C), London",
+                                    "@x": "-0.135997",
+                                    "@y": "51.509862",
+                                    "@id": "402000653#100"
+                                },
+                                "@time": "2017-12-11T07:34:00",
+                                "Line": {
+                                    "@dir": "West HampsteadWest End Green (Stop R), London",
+                                    "@code": "5",
+                                    "@name": "139",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjML 00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Bus"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "@journey_ctx": "1|244545|1|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus (Stop C), London",
+                                    "@x": "-0.135997",
+                                    "@y": "51.509862",
+                                    "@id": "402000653#100"
+                                },
+                                "@time": "2017-12-11T07:36:00",
+                                "Line": {
+                                    "@dir": "Golders Green (Stand GF), London",
+                                    "@code": "5",
+                                    "@name": "13",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjSV 00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Bus"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "@journey_ctx": "1|211101|1|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus (Stop C), London",
+                                    "@x": "-0.135997",
+                                    "@y": "51.509862",
+                                    "@id": "402000653#100"
+                                },
+                                "@time": "2017-12-11T07:54:00",
+                                "Line": {
+                                    "@dir": "West HampsteadWest End Green (Stop R), London",
+                                    "@code": "5",
+                                    "@name": "139",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjML 00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Bus"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "@code": "avjSV 00",
+                                    "@name": "LONDON SOVEREIGN LIMITED",
+                                    "@type": "TT"
+                                },
+                                {
+                                    "a": {
+                                        "@href": "https://cit.transit.api.here.com/r?app_name=SENTRY&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                        "$": "With the support of Traveline"
+                                    },
+                                    "Link": [
+                                        {
+                                            "@req": "0",
+                                            "@href": "https://cit.transit.api.here.com/r?app_name=SENTRY&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                            "@id": "agency",
+                                            "$": "With the support of Traveline"
+                                        }
+                                    ],
+                                    "@code": "avjML 00",
+                                    "@name": "METROLINE TRAVEL LIMITED",
+                                    "@type": "TT"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Stn": {
+                        "@distance": "78",
+                        "@name": "Piccadilly Circus",
+                        "@duration": "PT0H1M18S",
+                        "@x": "-0.135484",
+                        "@y": "51.50944",
+                        "@id": "402061786#100"
+                    },
+                    "NextDepartures": {
+                        "Dep": [
+                            {
+                                "@journey_ctx": "1|154086|0|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus",
+                                    "@x": "-0.135484",
+                                    "@y": "51.50944",
+                                    "@id": "402061786#100"
+                                },
+                                "@time": "2017-12-11T07:31:00",
+                                "Line": {
+                                    "@dir": "Heathrow Terminal 4",
+                                    "@code": "7",
+                                    "@name": "Piccadilly",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjLUL00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Underground"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "@journey_ctx": "1|153892|0|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus",
+                                    "@x": "-0.135484",
+                                    "@y": "51.50944",
+                                    "@id": "402061786#100"
+                                },
+                                "@time": "2017-12-11T07:32:00",
+                                "Line": {
+                                    "@dir": "Cockfosters",
+                                    "@code": "7",
+                                    "@name": "Piccadilly",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjLUL00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Underground"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "@journey_ctx": "1|154220|0|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus",
+                                    "@x": "-0.135484",
+                                    "@y": "51.50944",
+                                    "@id": "402061786#100"
+                                },
+                                "@time": "2017-12-11T07:33:00",
+                                "Line": {
+                                    "@dir": "Rayners Lane",
+                                    "@code": "7",
+                                    "@name": "Piccadilly",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjLUL00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Underground"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "@journey_ctx": "1|154146|1|100|11042017",
+                                "Stn": {
+                                    "@name": "Piccadilly Circus",
+                                    "@x": "-0.135484",
+                                    "@y": "51.50944",
+                                    "@id": "402061786#100"
+                                },
+                                "@time": "2017-12-11T07:36:00",
+                                "Line": {
+                                    "@dir": "Heathrow Terminal 5",
+                                    "@code": "7",
+                                    "@name": "Piccadilly",
+                                    "At": [
+                                        {
+                                            "@id": "operator",
+                                            "$": "avjLUL00"
+                                        },
+                                        {
+                                            "@id": "category",
+                                            "$": "Underground"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "a": {
+                                        "@href": "https://cit.transit.api.here.com/r?app_name=SENTRY&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                        "$": "With the support of Traveline"
+                                    },
+                                    "Link": [
+                                        {
+                                            "@req": "0",
+                                            "@href": "https://cit.transit.api.here.com/r?app_name=SENTRY&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                            "@id": "agency",
+                                            "$": "With the support of Traveline"
+                                        }
+                                    ],
+                                    "@code": "avjLUL00",
+                                    "@name": "London Underground",
+                                    "@type": "TT"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "@serviceUrl": "http://ip-10-121-26-201.eu-west-1.compute.internal:8080/hafasproxy/G4A"
+    }
+}
