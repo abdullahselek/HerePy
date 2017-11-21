@@ -1,0 +1,82 @@
+{
+    "Res": {
+        "serviceUrl": "http://ip-10-123-14-158.eu-west-1.compute.internal:8080/hafasproxy/UK_V427_20170420",
+        "NextDepartures": {
+            "Dep": [
+                {
+                    "time": "2017-12-11T07:36:00",
+                    "journey_ctx": "1|161048|0|100|11122017",
+                    "Stn": {
+                        "id": "402000653#100",
+                        "name": "Piccadilly Circus (Stop C), London",
+                        "x": -0.135997,
+                        "y": 51.509862
+                    },
+                    "Transport": {
+                        "mode": 5,
+                        "dir": "Golders Green (Stand GF), London",
+                        "name": "139",
+                        "At": {
+                            "operator": "avjSV 00",
+                            "category": "Bus"
+                        }
+                    }
+                },
+                {
+                    "time": "2017-12-11T07:44:00",
+                    "journey_ctx": "1|161050|0|100|11122017",
+                    "Stn": {
+                        "id": "402000653#100",
+                        "name": "Piccadilly Circus (Stop C), London",
+                        "x": -0.135997,
+                        "y": 51.509862
+                    },
+                    "Transport": {
+                        "mode": 5,
+                        "dir": "Golders Green (Stand GF), London",
+                        "name": "139",
+                        "At": {
+                            "operator": "avjSV 00",
+                            "category": "Bus"
+                        }
+                    }
+                },
+                {
+                    "time": "2017-12-11T07:52:00",
+                    "journey_ctx": "1|161050|1|100|11122017",
+                    "Stn": {
+                        "id": "402000653#100",
+                        "name": "Piccadilly Circus (Stop C), London",
+                        "x": -0.135997,
+                        "y": 51.509862
+                    },
+                    "Transport": {
+                        "mode": 5,
+                        "dir": "Golders Green (Stand GF), London",
+                        "name": "139",
+                        "At": {
+                            "operator": "avjSV 00",
+                            "category": "Bus"
+                        }
+                    }
+                }
+            ],
+            "Operators": {
+                "Op": [
+                    {
+                        "code": "avjSV 00",
+                        "name": "LONDON SOVEREIGN LIMITED",
+                        "type": "TT",
+                        "Link": [
+                            {
+                                "type": "agency",
+                                "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                "text": "With the support of Traveline"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

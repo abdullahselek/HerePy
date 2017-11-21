@@ -114,3 +114,18 @@ class PublicTransitApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get(data, 'coverage/city.json', 'Coverage')
+
+    def next_nearby_departures_of_station(self, station_id, time, lang='en'):
+        """Request a list of next departure times and destinations of a particular station.
+        Args:
+          lang (string): language code for response like `en` Default is `en`.
+          station_id (int): station id for departures.
+          time (string): time formattes in yyyy-mm-ddThh:mm:ss.
+        """
+
+        data = {'lang': lang,
+                'stnId': station_id,
+                'time': time,
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data, 'board.json', 'NextDepartures')
