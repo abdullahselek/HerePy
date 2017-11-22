@@ -1,0 +1,394 @@
+{
+    "Res": {
+        "serviceUrl": "http://ip-10-123-14-158.eu-west-1.compute.internal:8080/hafasproxy/UK_V427_20170420",
+        "MultiNextDepartures": {
+            "MultiNextDeparture": [
+                {
+                    "Stn": {
+                        "id": "402000656#100",
+                        "name": "Piccadilly Circus (Stop G), London",
+                        "x": -0.135565,
+                        "y": 51.51006,
+                        "distance": 28,
+                        "duration": "PT0H0M28S"
+                    },
+                    "NextDepartures": {
+                        "Dep": [
+                            {
+                                "time": "2017-12-11T07:30:00",
+                                "journey_ctx": "1|163840|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000656#100",
+                                    "name": "Piccadilly Circus (Stop G), London",
+                                    "x": -0.135565,
+                                    "y": 51.51006
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Liverpool Street Station (Stop), City of London",
+                                    "name": "23",
+                                    "At": {
+                                        "operator": "avjTN 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:35:00",
+                                "journey_ctx": "1|139593|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000656#100",
+                                    "name": "Piccadilly Circus (Stop G), London",
+                                    "x": -0.135565,
+                                    "y": 51.51006
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Aldwych Drury Lane (Stop E), London",
+                                    "name": "6",
+                                    "At": {
+                                        "operator": "avjML 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:37:00",
+                                "journey_ctx": "1|161056|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000656#100",
+                                    "name": "Piccadilly Circus (Stop G), London",
+                                    "x": -0.135565,
+                                    "y": 51.51006
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Waterloo Station Waterloo Rd (Stop E), London",
+                                    "name": "139",
+                                    "At": {
+                                        "operator": "avjSV 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:38:00",
+                                "journey_ctx": "1|163842|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000656#100",
+                                    "name": "Piccadilly Circus (Stop G), London",
+                                    "x": -0.135565,
+                                    "y": 51.51006
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Liverpool Street Station (Stop), City of London",
+                                    "name": "23",
+                                    "At": {
+                                        "operator": "avjTN 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:43:00",
+                                "journey_ctx": "1|139594|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000656#100",
+                                    "name": "Piccadilly Circus (Stop G), London",
+                                    "x": -0.135565,
+                                    "y": 51.51006
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Aldwych Drury Lane (Stop E), London",
+                                    "name": "6",
+                                    "At": {
+                                        "operator": "avjML 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            }
+                        ],
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "code": "avjTN 00",
+                                    "name": "TOWER TRANSIT LIMITED",
+                                    "type": "TT",
+                                    "Link": [
+                                        {
+                                            "type": "agency",
+                                            "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                            "text": "With the support of Traveline"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "code": "avjSV 00",
+                                    "name": "LONDON SOVEREIGN LIMITED",
+                                    "type": "TT"
+                                },
+                                {
+                                    "code": "avjML 00",
+                                    "name": "METROLINE TRAVEL LIMITED",
+                                    "type": "TT"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Stn": {
+                        "id": "402000653#100",
+                        "name": "Piccadilly Circus (Stop C), London",
+                        "x": -0.135997,
+                        "y": 51.509862,
+                        "distance": 63,
+                        "duration": "PT0H1M3S"
+                    },
+                    "NextDepartures": {
+                        "Dep": [
+                            {
+                                "time": "2017-12-11T07:36:00",
+                                "journey_ctx": "1|161048|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000653#100",
+                                    "name": "Piccadilly Circus (Stop C), London",
+                                    "x": -0.135997,
+                                    "y": 51.509862
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Golders Green (Stand GF), London",
+                                    "name": "139",
+                                    "At": {
+                                        "operator": "avjSV 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:44:00",
+                                "journey_ctx": "1|161050|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000653#100",
+                                    "name": "Piccadilly Circus (Stop C), London",
+                                    "x": -0.135997,
+                                    "y": 51.509862
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Golders Green (Stand GF), London",
+                                    "name": "139",
+                                    "At": {
+                                        "operator": "avjSV 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:52:00",
+                                "journey_ctx": "1|161050|1|100|11122017",
+                                "Stn": {
+                                    "id": "402000653#100",
+                                    "name": "Piccadilly Circus (Stop C), London",
+                                    "x": -0.135997,
+                                    "y": 51.509862
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Golders Green (Stand GF), London",
+                                    "name": "139",
+                                    "At": {
+                                        "operator": "avjSV 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:59:00",
+                                "journey_ctx": "1|161052|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000653#100",
+                                    "name": "Piccadilly Circus (Stop C), London",
+                                    "x": -0.135997,
+                                    "y": 51.509862
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Golders Green (Stand GF), London",
+                                    "name": "139",
+                                    "At": {
+                                        "operator": "avjSV 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T08:06:00",
+                                "journey_ctx": "1|161054|0|100|11122017",
+                                "Stn": {
+                                    "id": "402000653#100",
+                                    "name": "Piccadilly Circus (Stop C), London",
+                                    "x": -0.135997,
+                                    "y": 51.509862
+                                },
+                                "Transport": {
+                                    "mode": 5,
+                                    "dir": "Golders Green (Stand GF), London",
+                                    "name": "139",
+                                    "At": {
+                                        "operator": "avjSV 00",
+                                        "category": "Bus"
+                                    }
+                                }
+                            }
+                        ],
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "code": "avjSV 00",
+                                    "name": "LONDON SOVEREIGN LIMITED",
+                                    "type": "TT",
+                                    "Link": [
+                                        {
+                                            "type": "agency",
+                                            "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                            "text": "With the support of Traveline"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "Stn": {
+                        "id": "402061786#100",
+                        "name": "Piccadilly Circus",
+                        "x": -0.135484,
+                        "y": 51.50944,
+                        "distance": 78,
+                        "duration": "PT0H1M18S"
+                    },
+                    "NextDepartures": {
+                        "Dep": [
+                            {
+                                "time": "2017-12-11T07:30:00",
+                                "journey_ctx": "1|63837|0|100|11122017",
+                                "Stn": {
+                                    "id": "402061786#100",
+                                    "name": "Piccadilly Circus",
+                                    "x": -0.135484,
+                                    "y": 51.50944
+                                },
+                                "Transport": {
+                                    "mode": 7,
+                                    "dir": "Elephant + Castle",
+                                    "name": "Bakerloo",
+                                    "At": {
+                                        "operator": "avjLUL00",
+                                        "category": "Underground"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:31:00",
+                                "journey_ctx": "1|63648|1|100|11122017",
+                                "Stn": {
+                                    "id": "402061786#100",
+                                    "name": "Piccadilly Circus",
+                                    "x": -0.135484,
+                                    "y": 51.50944
+                                },
+                                "Transport": {
+                                    "mode": 7,
+                                    "dir": "Queen's Park",
+                                    "name": "Bakerloo",
+                                    "At": {
+                                        "operator": "avjLUL00",
+                                        "category": "Underground"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:31:00",
+                                "journey_ctx": "1|74508|0|100|11122017",
+                                "Stn": {
+                                    "id": "402061786#100",
+                                    "name": "Piccadilly Circus",
+                                    "x": -0.135484,
+                                    "y": 51.50944
+                                },
+                                "Transport": {
+                                    "mode": 7,
+                                    "dir": "Heathrow Terminal 4",
+                                    "name": "Piccadilly",
+                                    "At": {
+                                        "operator": "avjLUL00",
+                                        "category": "Underground"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:32:00",
+                                "journey_ctx": "1|74276|0|100|11122017",
+                                "Stn": {
+                                    "id": "402061786#100",
+                                    "name": "Piccadilly Circus",
+                                    "x": -0.135484,
+                                    "y": 51.50944
+                                },
+                                "Transport": {
+                                    "mode": 7,
+                                    "dir": "Cockfosters",
+                                    "name": "Piccadilly",
+                                    "At": {
+                                        "operator": "avjLUL00",
+                                        "category": "Underground"
+                                    }
+                                }
+                            },
+                            {
+                                "time": "2017-12-11T07:33:00",
+                                "journey_ctx": "1|63942|0|100|11122017",
+                                "Stn": {
+                                    "id": "402061786#100",
+                                    "name": "Piccadilly Circus",
+                                    "x": -0.135484,
+                                    "y": 51.50944
+                                },
+                                "Transport": {
+                                    "mode": 7,
+                                    "dir": "Elephant + Castle",
+                                    "name": "Bakerloo",
+                                    "At": {
+                                        "operator": "avjLUL00",
+                                        "category": "Underground"
+                                    }
+                                }
+                            }
+                        ],
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "code": "avjLUL00",
+                                    "name": "London Underground",
+                                    "type": "TT",
+                                    "Link": [
+                                        {
+                                            "type": "agency",
+                                            "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                                            "text": "With the support of Traveline"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
