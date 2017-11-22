@@ -49,3 +49,13 @@ class PublicTransitSearchMethod(Enum):
 
     def __str__(self):
         return '%s' % self._value_
+
+class PublicTransitRoutingType(Enum):
+    """Routing types used in public transit api"""
+
+    time_tabled = 'tt'
+    simple = 'sr'
+    all = 'all'
+
+    def __str__(self):
+        return '%s' % self._value_

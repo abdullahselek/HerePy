@@ -21,7 +21,8 @@ from .error import HEREError
 from .here_enum import (
     RouteMode,
     PlacesCategory,
-    PublicTransitSearchMethod
+    PublicTransitSearchMethod,
+    PublicTransitRoutingType
 )
 
 from .models import (
