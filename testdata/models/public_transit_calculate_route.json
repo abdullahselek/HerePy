@@ -1,0 +1,867 @@
+{
+    "Res": {
+        "serviceUrl": "http://internal-ptkernel-cit-ami6a22a910-1718834299.us-east-1.elb.amazonaws.com/hafasproxy/MINNESOTA_WISCONSIN_ILLINOIS_V503_20171120",
+        "Connections": {
+            "allow_direction": "F",
+            "context": "oNUdv6dvR2XTwp_2mclHZf__AADINi5aAv_QB2Q",
+            "Connection": [
+                {
+                    "id": "R000005-C0",
+                    "duration": "PT43M",
+                    "transfers": 0,
+                    "Dep": {
+                        "time": "2017-12-11T07:34:00",
+                        "Addr": {
+                            "x": -87.90189,
+                            "y": 41.977296
+                        }
+                    },
+                    "Arr": {
+                        "time": "2017-12-11T08:17:00",
+                        "Stn": {
+                            "id": "418811467#100",
+                            "name": "Chicago-Blue",
+                            "x": -87.655217,
+                            "y": 41.896079
+                        }
+                    },
+                    "Sections": {
+                        "Sec": [
+                            {
+                                "mode": 20,
+                                "id": "R000005-C0-S0",
+                                "Dep": {
+                                    "time": "2017-12-11T07:34:00",
+                                    "Addr": {
+                                        "x": -87.90189,
+                                        "y": 41.977296
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT7M",
+                                    "distance": 300
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T07:41:00",
+                                    "Stn": {
+                                        "id": "418811763#100",
+                                        "name": "O'Hare",
+                                        "x": -87.904218,
+                                        "y": 41.977665
+                                    },
+                                    "AP": {
+                                        "x": -87.90384,
+                                        "y": 41.977827,
+                                        "id": "418812178#100",
+                                        "name": "OHare"
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 7,
+                                "id": "R000005-C0-S1",
+                                "Dep": {
+                                    "time": "2017-12-11T07:41:00",
+                                    "Stn": {
+                                        "id": "418811763#100",
+                                        "name": "O'Hare",
+                                        "x": -87.904218,
+                                        "y": 41.977665
+                                    },
+                                    "Transport": {
+                                        "mode": 7,
+                                        "dir": "Forest Park",
+                                        "name": "Blue Line",
+                                        "At": {
+                                            "operator": "1gA48700",
+                                            "color": "#00A1DE",
+                                            "textColor": "#FFFFFF",
+                                            "category": "Train"
+                                        }
+                                    },
+                                    "Freq": {
+                                        "min": 3,
+                                        "max": 10,
+                                        "AltDep": [
+                                            {
+                                                "time": "2017-12-11T07:44:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Forest Park",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T07:49:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Forest Park",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T07:52:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Forest Park",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT36M",
+                                    "Stop": [
+                                        {
+                                            "dep": "2017-12-11T07:41:00",
+                                            "Stn": {
+                                                "id": "418811763#100",
+                                                "name": "O'Hare",
+                                                "x": -87.904218,
+                                                "y": 41.977665
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:46:00",
+                                            "Stn": {
+                                                "id": "418811355#100",
+                                                "name": "Rosemont",
+                                                "x": -87.859389,
+                                                "y": 41.983508
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:48:00",
+                                            "Stn": {
+                                                "id": "418811242#100",
+                                                "name": "Cumberland",
+                                                "x": -87.83803,
+                                                "y": 41.984245
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:52:00",
+                                            "Stn": {
+                                                "id": "418811341#100",
+                                                "name": "Harlem-O'Hare",
+                                                "x": -87.808896,
+                                                "y": 41.982267
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:56:00",
+                                            "Stn": {
+                                                "id": "418811443#100",
+                                                "name": "Jefferson Park",
+                                                "x": -87.760894,
+                                                "y": 41.970635
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:58:00",
+                                            "Stn": {
+                                                "id": "418811455#100",
+                                                "name": "Montrose-Blue",
+                                                "x": -87.743572,
+                                                "y": 41.961538
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:01:00",
+                                            "Stn": {
+                                                "id": "418811303#100",
+                                                "name": "Irving Park-Blue",
+                                                "x": -87.729225,
+                                                "y": 41.952926
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:02:00",
+                                            "Stn": {
+                                                "id": "418811435#100",
+                                                "name": "Addison-Blue",
+                                                "x": -87.719058,
+                                                "y": 41.94738
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:04:00",
+                                            "Stn": {
+                                                "id": "418811210#100",
+                                                "name": "Belmont-Blue",
+                                                "x": -87.712361,
+                                                "y": 41.93813
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:07:00",
+                                            "Stn": {
+                                                "id": "418811393#100",
+                                                "name": "Logan Square",
+                                                "x": -87.708541,
+                                                "y": 41.929725
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:09:00",
+                                            "Stn": {
+                                                "id": "418811307#100",
+                                                "name": "California-O'Hare",
+                                                "x": -87.696891,
+                                                "y": 41.921941
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:11:00",
+                                            "Stn": {
+                                                "id": "418811325#100",
+                                                "name": "Western-O'Hare",
+                                                "x": -87.687362,
+                                                "y": 41.916161
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:13:00",
+                                            "Stn": {
+                                                "id": "418811761#100",
+                                                "name": "Damen-O'Hare",
+                                                "x": -87.677438,
+                                                "y": 41.909742
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:15:00",
+                                            "Stn": {
+                                                "id": "418811260#100",
+                                                "name": "Division",
+                                                "x": -87.666498,
+                                                "y": 41.903351
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:17:00",
+                                            "Stn": {
+                                                "id": "418811467#100",
+                                                "name": "Chicago-Blue",
+                                                "x": -87.655217,
+                                                "y": 41.896079
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T08:17:00",
+                                    "Stn": {
+                                        "id": "418811467#100",
+                                        "name": "Chicago-Blue",
+                                        "x": -87.655217,
+                                        "y": 41.896079
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "R000005-C1",
+                    "duration": "PT43M",
+                    "transfers": 0,
+                    "Dep": {
+                        "time": "2017-12-11T07:37:00",
+                        "Addr": {
+                            "x": -87.90189,
+                            "y": 41.977296
+                        }
+                    },
+                    "Arr": {
+                        "time": "2017-12-11T08:20:00",
+                        "Stn": {
+                            "id": "418811467#100",
+                            "name": "Chicago-Blue",
+                            "x": -87.655217,
+                            "y": 41.896079
+                        }
+                    },
+                    "Sections": {
+                        "Sec": [
+                            {
+                                "mode": 20,
+                                "id": "R000005-C1-S0",
+                                "Dep": {
+                                    "time": "2017-12-11T07:37:00",
+                                    "Addr": {
+                                        "x": -87.90189,
+                                        "y": 41.977296
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT7M",
+                                    "distance": 300
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T07:44:00",
+                                    "Stn": {
+                                        "id": "418811763#100",
+                                        "name": "O'Hare",
+                                        "x": -87.904218,
+                                        "y": 41.977665
+                                    },
+                                    "AP": {
+                                        "x": -87.90384,
+                                        "y": 41.977827,
+                                        "id": "418812178#100",
+                                        "name": "OHare"
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 7,
+                                "id": "R000005-C1-S1",
+                                "Dep": {
+                                    "time": "2017-12-11T07:44:00",
+                                    "Stn": {
+                                        "id": "418811763#100",
+                                        "name": "O'Hare",
+                                        "x": -87.904218,
+                                        "y": 41.977665
+                                    },
+                                    "Transport": {
+                                        "mode": 7,
+                                        "dir": "Forest Park",
+                                        "name": "Blue Line",
+                                        "At": {
+                                            "operator": "1gA48700",
+                                            "color": "#00A1DE",
+                                            "textColor": "#FFFFFF",
+                                            "category": "Train"
+                                        }
+                                    },
+                                    "Freq": {
+                                        "min": 3,
+                                        "max": 10,
+                                        "AltDep": [
+                                            {
+                                                "time": "2017-12-11T07:49:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Forest Park",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T07:52:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Forest Park",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T07:57:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Forest Park",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT36M",
+                                    "Stop": [
+                                        {
+                                            "dep": "2017-12-11T07:44:00",
+                                            "Stn": {
+                                                "id": "418811763#100",
+                                                "name": "O'Hare",
+                                                "x": -87.904218,
+                                                "y": 41.977665
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:49:00",
+                                            "Stn": {
+                                                "id": "418811355#100",
+                                                "name": "Rosemont",
+                                                "x": -87.859389,
+                                                "y": 41.983508
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:51:00",
+                                            "Stn": {
+                                                "id": "418811242#100",
+                                                "name": "Cumberland",
+                                                "x": -87.83803,
+                                                "y": 41.984245
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:55:00",
+                                            "Stn": {
+                                                "id": "418811341#100",
+                                                "name": "Harlem-O'Hare",
+                                                "x": -87.808896,
+                                                "y": 41.982267
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:59:00",
+                                            "Stn": {
+                                                "id": "418811443#100",
+                                                "name": "Jefferson Park",
+                                                "x": -87.760894,
+                                                "y": 41.970635
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:01:00",
+                                            "Stn": {
+                                                "id": "418811455#100",
+                                                "name": "Montrose-Blue",
+                                                "x": -87.743572,
+                                                "y": 41.961538
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:04:00",
+                                            "Stn": {
+                                                "id": "418811303#100",
+                                                "name": "Irving Park-Blue",
+                                                "x": -87.729225,
+                                                "y": 41.952926
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:05:00",
+                                            "Stn": {
+                                                "id": "418811435#100",
+                                                "name": "Addison-Blue",
+                                                "x": -87.719058,
+                                                "y": 41.94738
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:07:00",
+                                            "Stn": {
+                                                "id": "418811210#100",
+                                                "name": "Belmont-Blue",
+                                                "x": -87.712361,
+                                                "y": 41.93813
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:10:00",
+                                            "Stn": {
+                                                "id": "418811393#100",
+                                                "name": "Logan Square",
+                                                "x": -87.708541,
+                                                "y": 41.929725
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:12:00",
+                                            "Stn": {
+                                                "id": "418811307#100",
+                                                "name": "California-O'Hare",
+                                                "x": -87.696891,
+                                                "y": 41.921941
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:14:00",
+                                            "Stn": {
+                                                "id": "418811325#100",
+                                                "name": "Western-O'Hare",
+                                                "x": -87.687362,
+                                                "y": 41.916161
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:16:00",
+                                            "Stn": {
+                                                "id": "418811761#100",
+                                                "name": "Damen-O'Hare",
+                                                "x": -87.677438,
+                                                "y": 41.909742
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:18:00",
+                                            "Stn": {
+                                                "id": "418811260#100",
+                                                "name": "Division",
+                                                "x": -87.666498,
+                                                "y": 41.903351
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:20:00",
+                                            "Stn": {
+                                                "id": "418811467#100",
+                                                "name": "Chicago-Blue",
+                                                "x": -87.655217,
+                                                "y": 41.896079
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T08:20:00",
+                                    "Stn": {
+                                        "id": "418811467#100",
+                                        "name": "Chicago-Blue",
+                                        "x": -87.655217,
+                                        "y": 41.896079
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "R000005-C2",
+                    "duration": "PT43M",
+                    "transfers": 0,
+                    "Dep": {
+                        "time": "2017-12-11T07:42:00",
+                        "Addr": {
+                            "x": -87.90189,
+                            "y": 41.977296
+                        }
+                    },
+                    "Arr": {
+                        "time": "2017-12-11T08:25:00",
+                        "Stn": {
+                            "id": "418811467#100",
+                            "name": "Chicago-Blue",
+                            "x": -87.655217,
+                            "y": 41.896079
+                        }
+                    },
+                    "Sections": {
+                        "Sec": [
+                            {
+                                "mode": 20,
+                                "id": "R000005-C2-S0",
+                                "Dep": {
+                                    "time": "2017-12-11T07:42:00",
+                                    "Addr": {
+                                        "x": -87.90189,
+                                        "y": 41.977296
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT7M",
+                                    "distance": 300
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T07:49:00",
+                                    "Stn": {
+                                        "id": "418811763#100",
+                                        "name": "O'Hare",
+                                        "x": -87.904218,
+                                        "y": 41.977665
+                                    },
+                                    "AP": {
+                                        "x": -87.90384,
+                                        "y": 41.977827,
+                                        "id": "418812178#100",
+                                        "name": "OHare"
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 7,
+                                "id": "R000005-C2-S1",
+                                "Dep": {
+                                    "time": "2017-12-11T07:49:00",
+                                    "Stn": {
+                                        "id": "418811763#100",
+                                        "name": "O'Hare",
+                                        "x": -87.904218,
+                                        "y": 41.977665
+                                    },
+                                    "Transport": {
+                                        "mode": 7,
+                                        "dir": "Forest Park",
+                                        "name": "Blue Line",
+                                        "At": {
+                                            "operator": "1gA48700",
+                                            "color": "#00A1DE",
+                                            "textColor": "#FFFFFF",
+                                            "category": "Train"
+                                        }
+                                    },
+                                    "Freq": {
+                                        "min": 3,
+                                        "max": 10,
+                                        "AltDep": [
+                                            {
+                                                "time": "2017-12-11T07:52:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Forest Park",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T07:57:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Forest Park",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T08:00:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Uic",
+                                                    "name": "Blue Line",
+                                                    "At": {
+                                                        "operator": "1gA48700",
+                                                        "color": "#00A1DE",
+                                                        "textColor": "#FFFFFF",
+                                                        "category": "Train"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT36M",
+                                    "Stop": [
+                                        {
+                                            "dep": "2017-12-11T07:49:00",
+                                            "Stn": {
+                                                "id": "418811763#100",
+                                                "name": "O'Hare",
+                                                "x": -87.904218,
+                                                "y": 41.977665
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:54:00",
+                                            "Stn": {
+                                                "id": "418811355#100",
+                                                "name": "Rosemont",
+                                                "x": -87.859389,
+                                                "y": 41.983508
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T07:56:00",
+                                            "Stn": {
+                                                "id": "418811242#100",
+                                                "name": "Cumberland",
+                                                "x": -87.83803,
+                                                "y": 41.984245
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:00:00",
+                                            "Stn": {
+                                                "id": "418811341#100",
+                                                "name": "Harlem-O'Hare",
+                                                "x": -87.808896,
+                                                "y": 41.982267
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:04:00",
+                                            "Stn": {
+                                                "id": "418811443#100",
+                                                "name": "Jefferson Park",
+                                                "x": -87.760894,
+                                                "y": 41.970635
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:06:00",
+                                            "Stn": {
+                                                "id": "418811455#100",
+                                                "name": "Montrose-Blue",
+                                                "x": -87.743572,
+                                                "y": 41.961538
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:09:00",
+                                            "Stn": {
+                                                "id": "418811303#100",
+                                                "name": "Irving Park-Blue",
+                                                "x": -87.729225,
+                                                "y": 41.952926
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:10:00",
+                                            "Stn": {
+                                                "id": "418811435#100",
+                                                "name": "Addison-Blue",
+                                                "x": -87.719058,
+                                                "y": 41.94738
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:12:00",
+                                            "Stn": {
+                                                "id": "418811210#100",
+                                                "name": "Belmont-Blue",
+                                                "x": -87.712361,
+                                                "y": 41.93813
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:15:00",
+                                            "Stn": {
+                                                "id": "418811393#100",
+                                                "name": "Logan Square",
+                                                "x": -87.708541,
+                                                "y": 41.929725
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:17:00",
+                                            "Stn": {
+                                                "id": "418811307#100",
+                                                "name": "California-O'Hare",
+                                                "x": -87.696891,
+                                                "y": 41.921941
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:19:00",
+                                            "Stn": {
+                                                "id": "418811325#100",
+                                                "name": "Western-O'Hare",
+                                                "x": -87.687362,
+                                                "y": 41.916161
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:21:00",
+                                            "Stn": {
+                                                "id": "418811761#100",
+                                                "name": "Damen-O'Hare",
+                                                "x": -87.677438,
+                                                "y": 41.909742
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:23:00",
+                                            "Stn": {
+                                                "id": "418811260#100",
+                                                "name": "Division",
+                                                "x": -87.666498,
+                                                "y": 41.903351
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T08:25:00",
+                                            "Stn": {
+                                                "id": "418811467#100",
+                                                "name": "Chicago-Blue",
+                                                "x": -87.655217,
+                                                "y": 41.896079
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T08:25:00",
+                                    "Stn": {
+                                        "id": "418811467#100",
+                                        "name": "Chicago-Blue",
+                                        "x": -87.655217,
+                                        "y": 41.896079
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Operators": {
+                "Op": [
+                    {
+                        "code": "1gA48700",
+                        "name": "Chicago Transit Authority",
+                        "type": "TT",
+                        "Link": [
+                            {
+                                "type": "website",
+                                "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://transitchicago.com",
+                                "text": "Chicago Transit Authority"
+                            }
+                        ],
+                        "At": {
+                            "phone": "1-888-YOURCTA"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

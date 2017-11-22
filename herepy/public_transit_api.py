@@ -177,3 +177,20 @@ class PublicTransitApi(HEREApi):
                 'maxStn': max_station,
                 'stnIds': self.__prepare_station_ids(station_ids)}
         return self.__get(data, 'multiboard/by_stn_ids.json', 'MultiNextDepartures')
+
+    def calculate_route(self, departure, arrival, time, routing_type):
+        """Request a public transit route between any two place.
+        Args:
+          departure (array): array including latitude and longitude in order.
+          arrival (array): array including latitude and longitude in order.
+          time (string): time formatted in yyyy-mm-ddThh:mm:ss.
+          routing_type (PublicTransitRoutingType): type of routing.
+        """
+
+        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
+                'arr': str.format('{0}.{1}', arrival[0], arrival[1]),
+                'time': time,
+                'app_id': self._app_id,
+                'app_code': self._app_code,
+                'routing': routing_type.__str__()}
+        return self.__get(data, 'route.json', 'Connections')
