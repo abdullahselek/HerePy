@@ -194,3 +194,27 @@ class PublicTransitApi(HEREApi):
                 'app_code': self._app_code,
                 'routing': routing_type.__str__()}
         return self.__get(data, 'route.json', 'Connections')
+
+    def calculate_route_time(self,
+                             departure,
+                             arrival,
+                             time,
+                             show_arrival_times,
+                             routing_type):
+        """Request a public transit route between any two place.
+        Args:
+          departure (array): array including latitude and longitude in order.
+          arrival (array): array including latitude and longitude in order.
+          time (string): time formatted in yyyy-mm-ddThh:mm:ss.
+          show_arrival_times (boolean): flag to indicate if response should show arrival times.
+          routing_type (PublicTransitRoutingType): type of routing.
+        """
+
+        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
+                'arr': str.format('{0}.{1}', arrival[0], arrival[1]),
+                'time': time,
+                'app_id': self._app_id,
+                'app_code': self._app_code,
+                'arrival': 1 if show_arrival_times == True else 0,
+                'routing': routing_type.__str__()}
+        return self.__get(data, 'route.json', 'Connections')

@@ -1,0 +1,1182 @@
+{
+    "Res": {
+        "serviceUrl": "http://internal-ptkernel-cit-ami6a22a910-1718834299.us-east-1.elb.amazonaws.com/hafasproxy/UK_V497_20171115",
+        "Connections": {
+            "allow_direction": "F",
+            "context": "cltHDIy463o23aErso3rev__AABwYS5aAv_QB2Q",
+            "Connection": [
+                {
+                    "id": "R00008b-C0",
+                    "duration": "PT1H8M",
+                    "transfers": 0,
+                    "Dep": {
+                        "time": "2017-12-11T10:15:00",
+                        "Addr": {
+                            "x": -0.120131,
+                            "y": 51.509871
+                        }
+                    },
+                    "Arr": {
+                        "time": "2017-12-11T11:23:00",
+                        "Addr": {
+                            "x": -0.453244,
+                            "y": 51.471137
+                        }
+                    },
+                    "Sections": {
+                        "Sec": [
+                            {
+                                "mode": 20,
+                                "id": "R00008b-C0-S0",
+                                "Dep": {
+                                    "time": "2017-12-11T10:15:00",
+                                    "Addr": {
+                                        "x": -0.120131,
+                                        "y": 51.509871
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT10M",
+                                    "distance": 507
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T10:25:00",
+                                    "Stn": {
+                                        "id": "402062216#100",
+                                        "name": "Covent Garden",
+                                        "x": -0.124383,
+                                        "y": 51.513035
+                                    },
+                                    "AP": {
+                                        "x": -0.124104,
+                                        "y": 51.512981,
+                                        "id": "402060567#100",
+                                        "name": "Covent Garden"
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 7,
+                                "id": "R00008b-C0-S1",
+                                "Dep": {
+                                    "time": "2017-12-11T10:25:00",
+                                    "Stn": {
+                                        "id": "402062216#100",
+                                        "name": "Covent Garden",
+                                        "x": -0.124383,
+                                        "y": 51.513035
+                                    },
+                                    "Transport": {
+                                        "mode": 7,
+                                        "dir": "Heathrow Terminal 5",
+                                        "name": "Piccadilly",
+                                        "At": {
+                                            "operator": "avjLUL00",
+                                            "category": "Underground",
+                                            "iconShape": "Rectangle",
+                                            "color": "#1B3F94",
+                                            "textColor": "#FFFFFF",
+                                            "iconId": "UK/tube"
+                                        }
+                                    },
+                                    "Freq": {
+                                        "min": 8,
+                                        "max": 12,
+                                        "AltDep": [
+                                            {
+                                                "time": "2017-12-11T10:33:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Heathrow Terminal 5",
+                                                    "name": "Piccadilly",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T10:43:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Heathrow Terminal 5",
+                                                    "name": "Piccadilly",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T10:55:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Heathrow Terminal 5",
+                                                    "name": "Piccadilly",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT53M",
+                                    "Stop": [
+                                        {
+                                            "dep": "2017-12-11T10:25:00",
+                                            "arr": "2017-12-11T10:24:00",
+                                            "Stn": {
+                                                "id": "402062216#100",
+                                                "name": "Covent Garden",
+                                                "x": -0.124383,
+                                                "y": 51.513035
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:26:00",
+                                            "arr": "2017-12-11T10:25:00",
+                                            "Stn": {
+                                                "id": "402062151#100",
+                                                "name": "Leicester Square",
+                                                "x": -0.128554,
+                                                "y": 51.51122
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:27:00",
+                                            "Stn": {
+                                                "id": "402061786#100",
+                                                "name": "Piccadilly Circus",
+                                                "x": -0.135484,
+                                                "y": 51.50944
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:29:00",
+                                            "arr": "2017-12-11T10:28:00",
+                                            "Stn": {
+                                                "id": "402062049#100",
+                                                "name": "Green Park",
+                                                "x": -0.142703,
+                                                "y": 51.50677
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:31:00",
+                                            "arr": "2017-12-11T10:30:00",
+                                            "Stn": {
+                                                "id": "402062220#100",
+                                                "name": "Hyde Park Corner",
+                                                "x": -0.15313,
+                                                "y": 51.502788
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:32:00",
+                                            "Stn": {
+                                                "id": "402062221#100",
+                                                "name": "Knightsbridge",
+                                                "x": -0.161176,
+                                                "y": 51.501466
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:35:00",
+                                            "arr": "2017-12-11T10:34:00",
+                                            "Stn": {
+                                                "id": "402061907#100",
+                                                "name": "South Kensington",
+                                                "x": -0.173059,
+                                                "y": 51.494104
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:37:00",
+                                            "arr": "2017-12-11T10:36:00",
+                                            "Stn": {
+                                                "id": "402061906#100",
+                                                "name": "Gloucester Road",
+                                                "x": -0.1831,
+                                                "y": 51.494302
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:38:00",
+                                            "Stn": {
+                                                "id": "402061905#100",
+                                                "name": "Earl's Court",
+                                                "x": -0.193779,
+                                                "y": 51.491839
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:41:00",
+                                            "Stn": {
+                                                "id": "402061942#100",
+                                                "name": "Barons Court",
+                                                "x": -0.214113,
+                                                "y": 51.49041
+                                            }
+                                        },
+                                        {
+                                            "arr": "2017-12-11T10:43:00",
+                                            "Stn": {
+                                                "id": "402061943#100",
+                                                "name": "Hammersmith (Dist+Picc Line)",
+                                                "x": -0.224073,
+                                                "y": 51.492495
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:51:00",
+                                            "Stn": {
+                                                "id": "402061948#100",
+                                                "name": "Acton Town",
+                                                "x": -0.280076,
+                                                "y": 51.502887
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:54:00",
+                                            "arr": "2017-12-11T10:53:00",
+                                            "Stn": {
+                                                "id": "402062235#100",
+                                                "name": "South Ealing",
+                                                "x": -0.307367,
+                                                "y": 51.50108
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:56:00",
+                                            "arr": "2017-12-11T10:55:00",
+                                            "Stn": {
+                                                "id": "402062236#100",
+                                                "name": "Northfields",
+                                                "x": -0.313381,
+                                                "y": 51.499668
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:58:00",
+                                            "arr": "2017-12-11T10:57:00",
+                                            "Stn": {
+                                                "id": "402062237#100",
+                                                "name": "Boston Manor",
+                                                "x": -0.324725,
+                                                "y": 51.495605
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:02:00",
+                                            "Stn": {
+                                                "id": "402062238#100",
+                                                "name": "Osterley",
+                                                "x": -0.351846,
+                                                "y": 51.481447
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:04:00",
+                                            "Stn": {
+                                                "id": "402062239#100",
+                                                "name": "Hounslow East",
+                                                "x": -0.356053,
+                                                "y": 51.4736
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:06:00",
+                                            "Stn": {
+                                                "id": "402062240#100",
+                                                "name": "Hounslow Central",
+                                                "x": -0.366202,
+                                                "y": 51.471334
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:09:00",
+                                            "Stn": {
+                                                "id": "402062241#100",
+                                                "name": "Hounslow West",
+                                                "x": -0.385753,
+                                                "y": 51.47342
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:14:00",
+                                            "arr": "2017-12-11T11:13:00",
+                                            "Stn": {
+                                                "id": "402062242#100",
+                                                "name": "Hatton Cross",
+                                                "x": -0.423607,
+                                                "y": 51.46639
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:18:00",
+                                            "Stn": {
+                                                "id": "402062244#100",
+                                                "name": "Heathrow Terminals 1-2-3",
+                                                "x": -0.452336,
+                                                "y": 51.471325
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T11:18:00",
+                                    "Stn": {
+                                        "id": "402062244#100",
+                                        "name": "Heathrow Terminals 1-2-3",
+                                        "x": -0.452336,
+                                        "y": 51.471325
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 20,
+                                "id": "R00008b-C0-S2",
+                                "Dep": {
+                                    "time": "2017-12-11T11:18:00",
+                                    "Stn": {
+                                        "id": "402062244#100",
+                                        "name": "Heathrow Terminals 1-2-3",
+                                        "x": -0.452336,
+                                        "y": 51.471325
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    },
+                                    "AP": {
+                                        "x": -0.452183,
+                                        "y": 51.471415,
+                                        "id": "402060712#100",
+                                        "name": "Heathrow Terminals 1-2-3"
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT5M",
+                                    "distance": 166
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T11:23:00",
+                                    "Addr": {
+                                        "x": -0.453244,
+                                        "y": 51.471137
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "R00008b-C1",
+                    "duration": "PT45M",
+                    "transfers": 1,
+                    "Dep": {
+                        "time": "2017-12-11T10:29:00",
+                        "Addr": {
+                            "x": -0.120131,
+                            "y": 51.509871
+                        }
+                    },
+                    "Arr": {
+                        "time": "2017-12-11T11:14:00",
+                        "Addr": {
+                            "x": -0.453244,
+                            "y": 51.471137
+                        }
+                    },
+                    "Sections": {
+                        "Sec": [
+                            {
+                                "mode": 20,
+                                "id": "R00008b-C1-S0",
+                                "Dep": {
+                                    "time": "2017-12-11T10:29:00",
+                                    "Addr": {
+                                        "x": -0.120131,
+                                        "y": 51.509871
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT9M",
+                                    "distance": 679
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T10:38:00",
+                                    "Stn": {
+                                        "id": "402061787#100",
+                                        "name": "Charing Cross",
+                                        "x": -0.128095,
+                                        "y": 51.507453
+                                    },
+                                    "AP": {
+                                        "x": -0.124832,
+                                        "y": 51.508945,
+                                        "id": "402060576#100",
+                                        "name": "Charing Cross"
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 7,
+                                "id": "R00008b-C1-S1",
+                                "Dep": {
+                                    "time": "2017-12-11T10:38:00",
+                                    "Stn": {
+                                        "id": "402061787#100",
+                                        "name": "Charing Cross",
+                                        "x": -0.128095,
+                                        "y": 51.507453
+                                    },
+                                    "Transport": {
+                                        "mode": 7,
+                                        "dir": "Harrow + Wealdstone",
+                                        "name": "Bakerloo",
+                                        "At": {
+                                            "operator": "avjLUL00",
+                                            "category": "Underground",
+                                            "iconShape": "Rectangle",
+                                            "color": "#B0600E",
+                                            "textColor": "#FFFFFF",
+                                            "iconId": "UK/tube"
+                                        }
+                                    },
+                                    "Freq": {
+                                        "min": 3,
+                                        "max": 3,
+                                        "AltDep": [
+                                            {
+                                                "time": "2017-12-11T10:41:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Queen's Park",
+                                                    "name": "Bakerloo",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T10:44:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Queen's Park",
+                                                    "name": "Bakerloo",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T10:47:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Harrow + Wealdstone",
+                                                    "name": "Bakerloo",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT11M",
+                                    "Stop": [
+                                        {
+                                            "dep": "2017-12-11T10:38:00",
+                                            "arr": "2017-12-11T10:37:00",
+                                            "Stn": {
+                                                "id": "402061787#100",
+                                                "name": "Charing Cross",
+                                                "x": -0.128095,
+                                                "y": 51.507453
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:40:00",
+                                            "arr": "2017-12-11T10:39:00",
+                                            "Stn": {
+                                                "id": "402061786#100",
+                                                "name": "Piccadilly Circus",
+                                                "x": -0.135484,
+                                                "y": 51.50944
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:42:00",
+                                            "arr": "2017-12-11T10:41:00",
+                                            "Stn": {
+                                                "id": "402061785#100",
+                                                "name": "Oxford Circus",
+                                                "x": -0.141858,
+                                                "y": 51.515247
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:44:00",
+                                            "arr": "2017-12-11T10:43:00",
+                                            "Stn": {
+                                                "id": "402061784#100",
+                                                "name": "Regent's Park",
+                                                "x": -0.146262,
+                                                "y": 51.523085
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:46:00",
+                                            "arr": "2017-12-11T10:45:00",
+                                            "Stn": {
+                                                "id": "402061783#100",
+                                                "name": "Baker Street",
+                                                "x": -0.157391,
+                                                "y": 51.523211
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:47:00",
+                                            "arr": "2017-12-11T10:46:00",
+                                            "Stn": {
+                                                "id": "402061782#100",
+                                                "name": "Marylebone",
+                                                "x": -0.16336,
+                                                "y": 51.522141
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:48:00",
+                                            "arr": "2017-12-11T10:47:00",
+                                            "Stn": {
+                                                "id": "402061781#100",
+                                                "name": "Edgware Road (Bakerloo)",
+                                                "x": -0.170183,
+                                                "y": 51.520487
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:50:00",
+                                            "arr": "2017-12-11T10:49:00",
+                                            "Stn": {
+                                                "id": "402061780#100",
+                                                "name": "Paddington",
+                                                "x": -0.17519,
+                                                "y": 51.515822
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T10:49:00",
+                                    "Stn": {
+                                        "id": "402061780#100",
+                                        "name": "Paddington",
+                                        "x": -0.17519,
+                                        "y": 51.515822
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 20,
+                                "id": "R00008b-C1-S2",
+                                "Dep": {
+                                    "time": "2017-12-11T10:49:00",
+                                    "Stn": {
+                                        "id": "402061780#100",
+                                        "name": "Paddington",
+                                        "x": -0.17519,
+                                        "y": 51.515822
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    },
+                                    "AP": {
+                                        "x": -0.176215,
+                                        "y": 51.515984,
+                                        "id": "402060839#100",
+                                        "name": "Paddington"
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT6M",
+                                    "distance": 139,
+                                    "_guide": 0
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T10:55:00",
+                                    "Stn": {
+                                        "id": "718683375#100",
+                                        "name": "London Paddington",
+                                        "x": -0.176826,
+                                        "y": 51.516442
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 3,
+                                "id": "R00008b-C1-S3",
+                                "Dep": {
+                                    "time": "2017-12-11T10:55:00",
+                                    "Stn": {
+                                        "id": "718683375#100",
+                                        "name": "London Paddington",
+                                        "x": -0.176826,
+                                        "y": 51.516442
+                                    },
+                                    "Transport": {
+                                        "mode": 3,
+                                        "dir": "Heathrow Airport Terminal 5",
+                                        "name": "LONDON PADDINGTON TO HEATHROW AIRPORT T5",
+                                        "At": {
+                                            "operator": "axK0HX00",
+                                            "category": "Regional Train"
+                                        }
+                                    },
+                                    "Freq": {
+                                        "min": 15,
+                                        "max": 15,
+                                        "AltDep": [
+                                            {
+                                                "time": "2017-12-11T11:10:00",
+                                                "Transport": {
+                                                    "mode": 3,
+                                                    "dir": "Heathrow Airport Terminal 5",
+                                                    "name": "LONDON PADDINGTON TO HEATHROW AIRPORT T5",
+                                                    "At": {
+                                                        "operator": "axK0HX00",
+                                                        "category": "Regional Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T11:25:00",
+                                                "Transport": {
+                                                    "mode": 3,
+                                                    "dir": "Heathrow Airport Terminal 5",
+                                                    "name": "LONDON PADDINGTON TO HEATHROW AIRPORT T5",
+                                                    "At": {
+                                                        "operator": "axK0HX00",
+                                                        "category": "Regional Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T11:40:00",
+                                                "Transport": {
+                                                    "mode": 3,
+                                                    "dir": "Heathrow Airport Terminal 5",
+                                                    "name": "LONDON PADDINGTON TO HEATHROW AIRPORT T5",
+                                                    "At": {
+                                                        "operator": "axK0HX00",
+                                                        "category": "Regional Train"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT15M",
+                                    "Stop": [
+                                        {
+                                            "dep": "2017-12-11T10:55:00",
+                                            "Stn": {
+                                                "id": "718683375#100",
+                                                "name": "London Paddington",
+                                                "x": -0.176826,
+                                                "y": 51.516442
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:11:00",
+                                            "arr": "2017-12-11T11:10:00",
+                                            "Stn": {
+                                                "id": "718683140#100",
+                                                "name": "Heathrow Airport Terminals 1, 2, 3",
+                                                "x": -0.453172,
+                                                "y": 51.471352
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T11:10:00",
+                                    "Stn": {
+                                        "id": "718683140#100",
+                                        "name": "Heathrow Airport Terminals 1, 2, 3",
+                                        "x": -0.453172,
+                                        "y": 51.471352
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 20,
+                                "id": "R00008b-C1-S4",
+                                "Dep": {
+                                    "time": "2017-12-11T11:10:00",
+                                    "Stn": {
+                                        "id": "718683140#100",
+                                        "name": "Heathrow Airport Terminals 1, 2, 3",
+                                        "x": -0.453172,
+                                        "y": 51.471352
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT4M",
+                                    "distance": 32,
+                                    "_guide": 0
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T11:14:00",
+                                    "Addr": {
+                                        "x": -0.453244,
+                                        "y": 51.471137
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "R00008b-C2",
+                    "duration": "PT45M",
+                    "transfers": 1,
+                    "Dep": {
+                        "time": "2017-12-11T10:44:00",
+                        "Addr": {
+                            "x": -0.120131,
+                            "y": 51.509871
+                        }
+                    },
+                    "Arr": {
+                        "time": "2017-12-11T11:29:00",
+                        "Addr": {
+                            "x": -0.453244,
+                            "y": 51.471137
+                        }
+                    },
+                    "Sections": {
+                        "Sec": [
+                            {
+                                "mode": 20,
+                                "id": "R00008b-C2-S0",
+                                "Dep": {
+                                    "time": "2017-12-11T10:44:00",
+                                    "Addr": {
+                                        "x": -0.120131,
+                                        "y": 51.509871
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT9M",
+                                    "distance": 679
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T10:53:00",
+                                    "Stn": {
+                                        "id": "402061787#100",
+                                        "name": "Charing Cross",
+                                        "x": -0.128095,
+                                        "y": 51.507453
+                                    },
+                                    "AP": {
+                                        "x": -0.124832,
+                                        "y": 51.508945,
+                                        "id": "402060576#100",
+                                        "name": "Charing Cross"
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 7,
+                                "id": "R00008b-C2-S1",
+                                "Dep": {
+                                    "time": "2017-12-11T10:53:00",
+                                    "Stn": {
+                                        "id": "402061787#100",
+                                        "name": "Charing Cross",
+                                        "x": -0.128095,
+                                        "y": 51.507453
+                                    },
+                                    "Transport": {
+                                        "mode": 7,
+                                        "dir": "Stonebridge Park",
+                                        "name": "Bakerloo",
+                                        "At": {
+                                            "operator": "avjLUL00",
+                                            "category": "Underground",
+                                            "iconShape": "Rectangle",
+                                            "color": "#B0600E",
+                                            "textColor": "#FFFFFF",
+                                            "iconId": "UK/tube"
+                                        }
+                                    },
+                                    "Freq": {
+                                        "min": 3,
+                                        "max": 3,
+                                        "AltDep": [
+                                            {
+                                                "time": "2017-12-11T10:56:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Queen's Park",
+                                                    "name": "Bakerloo",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T10:59:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Harrow + Wealdstone",
+                                                    "name": "Bakerloo",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T11:02:00",
+                                                "Transport": {
+                                                    "mode": 7,
+                                                    "dir": "Queen's Park",
+                                                    "name": "Bakerloo",
+                                                    "At": {
+                                                        "operator": "avjLUL00",
+                                                        "category": "Underground"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT11M",
+                                    "Stop": [
+                                        {
+                                            "dep": "2017-12-11T10:53:00",
+                                            "arr": "2017-12-11T10:52:00",
+                                            "Stn": {
+                                                "id": "402061787#100",
+                                                "name": "Charing Cross",
+                                                "x": -0.128095,
+                                                "y": 51.507453
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:55:00",
+                                            "arr": "2017-12-11T10:54:00",
+                                            "Stn": {
+                                                "id": "402061786#100",
+                                                "name": "Piccadilly Circus",
+                                                "x": -0.135484,
+                                                "y": 51.50944
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:57:00",
+                                            "arr": "2017-12-11T10:56:00",
+                                            "Stn": {
+                                                "id": "402061785#100",
+                                                "name": "Oxford Circus",
+                                                "x": -0.141858,
+                                                "y": 51.515247
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T10:59:00",
+                                            "arr": "2017-12-11T10:58:00",
+                                            "Stn": {
+                                                "id": "402061784#100",
+                                                "name": "Regent's Park",
+                                                "x": -0.146262,
+                                                "y": 51.523085
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:01:00",
+                                            "arr": "2017-12-11T11:00:00",
+                                            "Stn": {
+                                                "id": "402061783#100",
+                                                "name": "Baker Street",
+                                                "x": -0.157391,
+                                                "y": 51.523211
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:02:00",
+                                            "arr": "2017-12-11T11:01:00",
+                                            "Stn": {
+                                                "id": "402061782#100",
+                                                "name": "Marylebone",
+                                                "x": -0.16336,
+                                                "y": 51.522141
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:03:00",
+                                            "arr": "2017-12-11T11:02:00",
+                                            "Stn": {
+                                                "id": "402061781#100",
+                                                "name": "Edgware Road (Bakerloo)",
+                                                "x": -0.170183,
+                                                "y": 51.520487
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:05:00",
+                                            "arr": "2017-12-11T11:04:00",
+                                            "Stn": {
+                                                "id": "402061780#100",
+                                                "name": "Paddington",
+                                                "x": -0.17519,
+                                                "y": 51.515822
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T11:04:00",
+                                    "Stn": {
+                                        "id": "402061780#100",
+                                        "name": "Paddington",
+                                        "x": -0.17519,
+                                        "y": 51.515822
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 20,
+                                "id": "R00008b-C2-S2",
+                                "Dep": {
+                                    "time": "2017-12-11T11:04:00",
+                                    "Stn": {
+                                        "id": "402061780#100",
+                                        "name": "Paddington",
+                                        "x": -0.17519,
+                                        "y": 51.515822
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    },
+                                    "AP": {
+                                        "x": -0.176215,
+                                        "y": 51.515984,
+                                        "id": "402060839#100",
+                                        "name": "Paddington"
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT6M",
+                                    "distance": 139,
+                                    "_guide": 0
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T11:10:00",
+                                    "Stn": {
+                                        "id": "718683375#100",
+                                        "name": "London Paddington",
+                                        "x": -0.176826,
+                                        "y": 51.516442
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 3,
+                                "id": "R00008b-C2-S3",
+                                "Dep": {
+                                    "time": "2017-12-11T11:10:00",
+                                    "Stn": {
+                                        "id": "718683375#100",
+                                        "name": "London Paddington",
+                                        "x": -0.176826,
+                                        "y": 51.516442
+                                    },
+                                    "Transport": {
+                                        "mode": 3,
+                                        "dir": "Heathrow Airport Terminal 5",
+                                        "name": "LONDON PADDINGTON TO HEATHROW AIRPORT T5",
+                                        "At": {
+                                            "operator": "axK0HX00",
+                                            "category": "Regional Train"
+                                        }
+                                    },
+                                    "Freq": {
+                                        "min": 15,
+                                        "max": 15,
+                                        "AltDep": [
+                                            {
+                                                "time": "2017-12-11T11:25:00",
+                                                "Transport": {
+                                                    "mode": 3,
+                                                    "dir": "Heathrow Airport Terminal 5",
+                                                    "name": "LONDON PADDINGTON TO HEATHROW AIRPORT T5",
+                                                    "At": {
+                                                        "operator": "axK0HX00",
+                                                        "category": "Regional Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T11:40:00",
+                                                "Transport": {
+                                                    "mode": 3,
+                                                    "dir": "Heathrow Airport Terminal 5",
+                                                    "name": "LONDON PADDINGTON TO HEATHROW AIRPORT T5",
+                                                    "At": {
+                                                        "operator": "axK0HX00",
+                                                        "category": "Regional Train"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "time": "2017-12-11T11:55:00",
+                                                "Transport": {
+                                                    "mode": 3,
+                                                    "dir": "Heathrow Airport Terminal 5",
+                                                    "name": "LONDON PADDINGTON TO HEATHROW AIRPORT T5",
+                                                    "At": {
+                                                        "operator": "axK0HX00",
+                                                        "category": "Regional Train"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT15M",
+                                    "Stop": [
+                                        {
+                                            "dep": "2017-12-11T11:10:00",
+                                            "Stn": {
+                                                "id": "718683375#100",
+                                                "name": "London Paddington",
+                                                "x": -0.176826,
+                                                "y": 51.516442
+                                            }
+                                        },
+                                        {
+                                            "dep": "2017-12-11T11:26:00",
+                                            "arr": "2017-12-11T11:25:00",
+                                            "Stn": {
+                                                "id": "718683140#100",
+                                                "name": "Heathrow Airport Terminals 1, 2, 3",
+                                                "x": -0.453172,
+                                                "y": 51.471352
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T11:25:00",
+                                    "Stn": {
+                                        "id": "718683140#100",
+                                        "name": "Heathrow Airport Terminals 1, 2, 3",
+                                        "x": -0.453172,
+                                        "y": 51.471352
+                                    }
+                                }
+                            },
+                            {
+                                "mode": 20,
+                                "id": "R00008b-C2-S4",
+                                "Dep": {
+                                    "time": "2017-12-11T11:25:00",
+                                    "Stn": {
+                                        "id": "718683140#100",
+                                        "name": "Heathrow Airport Terminals 1, 2, 3",
+                                        "x": -0.453172,
+                                        "y": 51.471352
+                                    },
+                                    "Transport": {
+                                        "mode": 20
+                                    }
+                                },
+                                "Journey": {
+                                    "duration": "PT4M",
+                                    "distance": 32,
+                                    "_guide": 0
+                                },
+                                "Arr": {
+                                    "time": "2017-12-11T11:29:00",
+                                    "Addr": {
+                                        "x": -0.453244,
+                                        "y": 51.471137
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            "Operators": {
+                "Op": [
+                    {
+                        "code": "avjLUL00",
+                        "name": "London Underground",
+                        "type": "TT"
+                    },
+                    {
+                        "code": "axK0HX00",
+                        "name": "Heathrow Express",
+                        "type": "TT",
+                        "Link": [
+                            {
+                                "type": "website",
+                                "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.nationalrail.co.uk/tocs_maps/tocs/HX/details.html",
+                                "text": "Heathrow Express"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "Attributions": {
+                "Link": [
+                    {
+                        "type": "agency",
+                        "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.traveline.info/about-traveline/terms-of-service-and-privacy-policy",
+                        "sec_ids": "R00008b-C2-S1 R00008b-C1-S1 R00008b-C0-S1",
+                        "text": "With the support of Traveline"
+                    },
+                    {
+                        "type": "agency",
+                        "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.nationalrail.co.uk",
+                        "sec_ids": "R00008b-C2-S3 R00008b-C1-S3",
+                        "text": "National Rail"
+                    },
+                    {
+                        "type": "tariff",
+                        "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.thetrainline.com/buytickets/?utm_source=Here%2Bamp%3Butm_medium=Maps%2Bamp%3BWT.mc_id=HEAF",
+                        "sec_ids": "R00008b-C2-S3 R00008b-C1-S3",
+                        "text": "thetrainline.com"
+                    }
+                ]
+            }
+        }
+    }
+}
