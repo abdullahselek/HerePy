@@ -10,7 +10,10 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import PublicTransitResponse
-from herepy.here_enum import PublicTransitSearchMethod
+from herepy.here_enum import (
+    PublicTransitSearchMethod,
+    PublicTransitRoutingType
+)
 
 class PublicTransitApi(HEREApi):
     """A python interface into the HERE Public Transit API"""
@@ -217,4 +220,28 @@ class PublicTransitApi(HEREApi):
                 'app_code': self._app_code,
                 'arrival': 1 if show_arrival_times == True else 0,
                 'routing': routing_type.__str__()}
+        return self.__get(data, 'route.json', 'Connections')
+
+    def transit_route_shows_line_graph(self,
+                                       departure,
+                                       arrival,
+                                       time,
+                                       routing_type=PublicTransitRoutingType.time_tabled,
+                                       graph=0):
+        """Request a public transit route between any two place.
+        Args:
+          departure (array): array including latitude and longitude in order.
+          arrival (array): array including latitude and longitude in order.
+          time (string): time formatted in yyyy-mm-ddThh:mm:ss.
+          routing_type (PublicTransitRoutingType): type of routing. Default is time_tabled.
+          graph (int): Enable showing line graph. Default is 0 disabled, to enable set 1.
+        """
+
+        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
+                'arr': str.format('{0}.{1}', arrival[0], arrival[1]),
+                'time': time,
+                'app_id': self._app_id,
+                'app_code': self._app_code,
+                'routing': routing_type.__str__(),
+                'graph': graph}
         return self.__get(data, 'route.json', 'Connections')
