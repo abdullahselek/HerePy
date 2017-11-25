@@ -181,13 +181,17 @@ class PublicTransitApi(HEREApi):
                 'stnIds': self.__prepare_station_ids(station_ids)}
         return self.__get(data, 'multiboard/by_stn_ids.json', 'MultiNextDepartures')
 
-    def calculate_route(self, departure, arrival, time, routing_type):
+    def calculate_route(self,
+                        departure,
+                        arrival,
+                        time,
+                        routing_type=PublicTransitRoutingType.time_tabled):
         """Request a public transit route between any two place.
         Args:
           departure (array): array including latitude and longitude in order.
           arrival (array): array including latitude and longitude in order.
           time (string): time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType): type of routing.
+          routing_type (PublicTransitRoutingType): type of routing. Default is time_tabled.
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
@@ -203,14 +207,14 @@ class PublicTransitApi(HEREApi):
                              arrival,
                              time,
                              show_arrival_times,
-                             routing_type):
+                             routing_type=PublicTransitRoutingType.time_tabled):
         """Request a public transit route between any two place.
         Args:
           departure (array): array including latitude and longitude in order.
           arrival (array): array including latitude and longitude in order.
           time (string): time formatted in yyyy-mm-ddThh:mm:ss.
           show_arrival_times (boolean): flag to indicate if response should show arrival times.
-          routing_type (PublicTransitRoutingType): type of routing.
+          routing_type (PublicTransitRoutingType): type of routing. Default is time_tabled
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
