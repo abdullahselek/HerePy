@@ -226,3 +226,22 @@ class PublicTransitApiTest(unittest.TestCase):
                                                             [-9999, -9999],
                                                             '2017-11-22T07:30:00')
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_coverage_witin_a_city_whensucceed(self):
+        with io.open('testdata/models/public_transit_city_coverage.json', 'r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/search.json',
+                  expectedResponse, status=200)
+        response = self._api.coverage_witin_a_city('chicago', 10, 1, 0, 'en')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+
+    @responses.activate
+    def test_coverage_witin_a_city_whenerroroccured(self):
+        with open('testdata/models/public_transit_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/search.json',
+                  expectedResponse, status=200)
+        response = self._api.coverage_witin_a_city('', 10, 1, 0)
+        self.assertIsInstance(response, herepy.HEREError)

@@ -1,0 +1,122 @@
+{
+    "Res": {
+        "serviceUrl": "https://cit.transit.api.here.com/transit/v3/coverage/search.json",
+        "Coverage": {
+            "ref_time": "2017-11-23T10:03:36",
+            "CityCount": {
+                "TT": 889,
+                "RT": 58,
+                "SR": 540
+            },
+            "Cities": {
+                "City": [
+                    {
+                        "updated": "2016-04-18T10:49:27",
+                        "name": "Chicago",
+                        "created": "2016-04-18T10:49:27",
+                        "country": "United States",
+                        "state": "Illinois",
+                        "y": 41.88425,
+                        "x": -87.63245,
+                        "id": "dp3wm",
+                        "display_name": "Chicago, Illinois, USA",
+                        "Cvg": {
+                            "quality": 0.8,
+                            "lines": 202,
+                            "stops": 11143
+                        },
+                        "Operators": {
+                            "Op": [
+                                {
+                                    "name": "Metra",
+                                    "type": "RT",
+                                    "code": "43AMET00",
+                                    "fare": 1,
+                                    "Link": [
+                                        {
+                                            "href": "http://www.metrarail.com/",
+                                            "type": "website",
+                                            "text": "Metra"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Shoreline Sightseeing",
+                                    "type": "SR",
+                                    "code": "jKaSho00",
+                                    "Link": [
+                                        {
+                                            "href": "http://shorelinesightseeing.com/",
+                                            "type": "website",
+                                            "text": "Shoreline Sightseeing"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Chicago Transit Authority",
+                                    "type": "TT",
+                                    "code": "1gA48700",
+                                    "Link": [
+                                        {
+                                            "href": "http://transitchicago.com",
+                                            "type": "website",
+                                            "text": "Chicago Transit Authority"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "1-888-YOURCTA"
+                                    }
+                                },
+                                {
+                                    "name": "Chicago Water Taxi",
+                                    "type": "TT",
+                                    "code": "hYm00100",
+                                    "Link": [
+                                        {
+                                            "href": "https://www.chicagowatertaxi.com/",
+                                            "type": "website",
+                                            "text": "Chicago Water Taxi"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Northern Indiana Commuter Transportation District",
+                                    "type": "TT",
+                                    "code": "4wSNIC00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.nictd.com",
+                                            "type": "website",
+                                            "text": "Northern Indiana Commuter Transportation District"
+                                        }
+                                    ],
+                                    "At": {
+                                        "phone": "219-926-5744"
+                                    }
+                                },
+                                {
+                                    "name": "Chicago Airport System",
+                                    "type": "TT",
+                                    "code": "bD400100"
+                                },
+                                {
+                                    "name": "PACE",
+                                    "type": "TT",
+                                    "code": "43ePAC00",
+                                    "Link": [
+                                        {
+                                            "href": "http://www.pacebus.com",
+                                            "type": "website",
+                                            "text": "PACE"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "pop": 2836658
+                    }
+                ]
+            }
+        }
+    }
+}

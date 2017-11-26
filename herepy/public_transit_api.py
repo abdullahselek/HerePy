@@ -249,3 +249,30 @@ class PublicTransitApi(HEREApi):
                 'routing': routing_type.__str__(),
                 'graph': graph}
         return self.__get(data, 'route.json', 'Connections')
+
+    def coverage_witin_a_city(self,
+                              city_name,
+                              political_view,
+                              max=None,
+                              details=1,
+                              lang='en'):
+        """Request a list of transit operator coverage within a specified city.
+        Args:
+          city_name (string): the name or part of the name of the search city.
+          max (int): maximum number of results.
+          political_view (int): 1 enables, 0 disables grouping results.
+          details (int): with 1 supported list of operators and population added to response.
+            Set to 0 just return the matching city names.
+          lang (string): the language of the response, default `en`.
+        """
+
+        data = {'name': city_name,
+                'app_id': self._app_id,
+                'app_code': self._app_code,
+                'max': max,
+                'details': details,
+                'politicalview': political_view,
+                'lang': lang}
+        if max is None:
+            del data['max']
+        return self.__get(data, 'coverage/search.json', 'Coverage')
