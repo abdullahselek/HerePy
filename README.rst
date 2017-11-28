@@ -6,6 +6,10 @@ HerePy
     :target: https://pypi.python.org/pypi/herepy/
     :alt: Downloads
 
+.. image:: https://img.shields.io/pypi/pyversions/herepy.svg
+    :target: https://pypi.org/project/herepy
+    :alt: Python Versions
+
 .. image:: https://codecov.io/gh/abdullahselek/HerePy/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/abdullahselek/HerePy
     :alt: Codecov
