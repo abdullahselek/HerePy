@@ -276,3 +276,15 @@ class PublicTransitApi(HEREApi):
         if max is None:
             del data['max']
         return self.__get(data, 'coverage/search.json', 'Coverage')
+
+    def coverage_nearby(self, details, center):
+        """Request a list of transit operators and station coverage nearby.
+        Args:
+          details (int): 0 disables showing line info, 1 enables showing line info.abs
+          center (array): array including latitude and longitude in order.
+        """
+        data = {'details': details,
+                'center': str.format('{0},{1}', center[0], center[1]),
+                'app_id': self._app_id,
+                'app_code': self._app_code}
+        return self.__get(data, 'coverage/nearby.json', 'LocalCoverage')

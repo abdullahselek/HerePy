@@ -245,3 +245,22 @@ class PublicTransitApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         response = self._api.coverage_witin_a_city('', 10, 1, 0)
         self.assertIsInstance(response, herepy.HEREError)
+
+    @responses.activate
+    def test_coverage_nearby_whensucceed(self):
+        with io.open('testdata/models/public_transit_api_nearby_coverage.json', 'r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/nearby.json',
+                  expectedResponse, status=200)
+        response = self._api.coverage_nearby(0, [52.5160, 13.3778])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+
+    @responses.activate
+    def test_coverage_nearby_whenerroroccured(self):
+        with open('testdata/models/public_transit_api_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/nearby.json',
+                  expectedResponse, status=200)
+        response = self._api.coverage_nearby(0, [-9999, -9999])
+        self.assertIsInstance(response, herepy.HEREError)

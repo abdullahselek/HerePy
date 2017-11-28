@@ -1,0 +1,68 @@
+{
+    "Res": {
+        "serviceUrl": "https://cit.transit.api.here.com/transit/v3/coverage/nearby.json",
+        "LocalCoverage": {
+            "georef": "u33d",
+            "NearbyCoverage": {
+                "lines": 815,
+                "stops": 50,
+                "radius": 2000,
+                "covered": 1,
+                "type": "TT"
+            },
+            "City": {
+                "updated": "2013-05-14T15:40:58",
+                "name": "Berlin",
+                "created": "2013-05-14T15:40:58",
+                "country": "Germany",
+                "state": "Berlin",
+                "y": 52.51607,
+                "x": 13.37698,
+                "id": "u33db",
+                "display_name": "Berlin, Germany",
+                "distance": 55,
+                "relevancy": 1,
+                "Cvg": {
+                    "quality": 1,
+                    "lines": 652,
+                    "stops": 2961
+                },
+                "Operators": {
+                    "Op": [
+                        {
+                            "name": "S-Bahn Berlin GmbH",
+                            "type": "RT"
+                        },
+                        {
+                            "name": "Ostdeutsche Eisenbahn GmbH",
+                            "type": "RT"
+                        },
+                        {
+                            "name": "NEB Betriebsgesellschaft mbH",
+                            "type": "RT"
+                        },
+                        {
+                            "name": "Berliner Verkehrsbetriebe",
+                            "type": "RT"
+                        },
+                        {
+                            "name": "DB Regio AG",
+                            "type": "RT"
+                        }
+                    ]
+                },
+                "Providers": {
+                    "Pr": [
+                        {
+                            "name": "Verkehrsverbund Berlin-Brandenburg"
+                        },
+                        {
+                            "name": "Deutsche Bahn"
+                        }
+                    ]
+                },
+                "pop": 3442675
+            }
+        }
+    }
+}
