@@ -288,3 +288,27 @@ class PublicTransitApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code}
         return self.__get(data, 'coverage/nearby.json', 'LocalCoverage')
+
+    def route_excluding_changes_transfers(self,
+                                          departure,
+                                          arrival,
+                                          time,
+                                          routing_type=PublicTransitRoutingType.time_tabled,
+                                          changes=-1):
+        """Request a direct public transit route excluding changes and transfers.
+        Args:
+          departure (array): array including latitude and longitude in order.
+          arrival (array): array including latitude and longitude in order.
+          time (string): time formatted in yyyy-mm-ddThh:mm:ss.
+          routing_type (PublicTransitRoutingType): type of routing. Default is time_tabled.
+          changes (int): Maximum number of changes or transfers. Default is -1 and max is 6.
+        """
+
+        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
+                'arr': str.format('{0}.{1}', arrival[0], arrival[1]),
+                'time': time,
+                'app_id': self._app_id,
+                'app_code': self._app_code,
+                'routing': routing_type.__str__(),
+                'changes': changes}
+        return self.__get(data, 'route.json', 'Connections')

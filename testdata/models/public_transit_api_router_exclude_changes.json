@@ -1,0 +1,576 @@
+{
+    "Res": {
+      "serviceUrl": "http://internal-ptkernel-cit-ami0ff69275-266133148.us-east-1.elb.amazonaws.com/hafasproxy/NEW_YORK_NEW_ENGLAND_V472_20171130",
+      "Connections": {
+        "allow_direction": "F",
+        "context": "BmI7yjF9y2VQ1XH4En3LZf__AABgNS5aAgDQB2Q",
+        "Connection": [
+          {
+            "id": "R000059-C0",
+            "duration": "PT26M",
+            "transfers": 0,
+            "Dep": {
+              "time": "2017-12-11T07:31:00",
+              "Addr": {
+                "x": -73.977994,
+                "y": 40.752471
+              }
+            },
+            "Arr": {
+              "time": "2017-12-11T07:57:00",
+              "Addr": {
+                "x": -73.993501,
+                "y": 40.750502
+              }
+            },
+            "Sections": {
+              "Sec": [
+                {
+                  "mode": 20,
+                  "id": "R000059-C0-S0",
+                  "Dep": {
+                    "time": "2017-12-11T07:31:00",
+                    "Addr": {
+                      "x": -73.977994,
+                      "y": 40.752471
+                    },
+                    "Transport": {
+                      "mode": 20
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT15M",
+                    "distance": 787,
+                    "_guide": 0
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T07:46:00",
+                    "Stn": {
+                      "id": "717080778#100",
+                      "name": "42 St - Bryant Pk",
+                      "x": -73.984566,
+                      "y": 40.754224
+                    }
+                  }
+                },
+                {
+                  "mode": 7,
+                  "id": "R000059-C0-S1",
+                  "Dep": {
+                    "time": "2017-12-11T07:46:00",
+                    "Stn": {
+                      "id": "717080778#100",
+                      "name": "42 St - Bryant Pk",
+                      "x": -73.984566,
+                      "y": 40.754224
+                    },
+                    "Transport": {
+                      "mode": 7,
+                      "dir": "Kings Hwy",
+                      "name": "F",
+                      "At": {
+                        "operator": "2GzMTA00",
+                        "color": "#FF6319",
+                        "textColor": "#000000",
+                        "category": "Train"
+                      }
+                    },
+                    "Freq": {
+                      "min": 1,
+                      "max": 5,
+                      "AltDep": [
+                        {
+                          "time": "2017-12-11T07:49:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Broadway Jct",
+                            "name": "M",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        },
+                        {
+                          "time": "2017-12-11T07:51:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Coney Island - Stillwell AV",
+                            "name": "F",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        },
+                        {
+                          "time": "2017-12-11T07:54:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Coney Island - Stillwell AV",
+                            "name": "F",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT1M",
+                    "Stop": [
+                      {
+                        "dep": "2017-12-11T07:46:00",
+                        "Stn": {
+                          "id": "717080778#100",
+                          "name": "42 St - Bryant Pk",
+                          "x": -73.984566,
+                          "y": 40.754224
+                        }
+                      },
+                      {
+                        "dep": "2017-12-11T07:47:00",
+                        "Stn": {
+                          "id": "717080781#100",
+                          "name": "34 St - Herald Sq",
+                          "x": -73.98782,
+                          "y": 40.74972
+                        }
+                      }
+                    ]
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T07:47:00",
+                    "Stn": {
+                      "id": "717080781#100",
+                      "name": "34 St - Herald Sq",
+                      "x": -73.98782,
+                      "y": 40.74972
+                    }
+                  }
+                },
+                {
+                  "mode": 20,
+                  "id": "R000059-C0-S2",
+                  "Dep": {
+                    "time": "2017-12-11T07:47:00",
+                    "Stn": {
+                      "id": "717080781#100",
+                      "name": "34 St - Herald Sq",
+                      "x": -73.98782,
+                      "y": 40.74972
+                    },
+                    "Transport": {
+                      "mode": 20
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT10M",
+                    "distance": 546
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T07:57:00",
+                    "Addr": {
+                      "x": -73.993501,
+                      "y": 40.750502
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "R000059-C1",
+            "duration": "PT26M",
+            "transfers": 0,
+            "Dep": {
+              "time": "2017-12-11T07:34:00",
+              "Addr": {
+                "x": -73.977994,
+                "y": 40.752471
+              }
+            },
+            "Arr": {
+              "time": "2017-12-11T08:00:00",
+              "Addr": {
+                "x": -73.993501,
+                "y": 40.750502
+              }
+            },
+            "Sections": {
+              "Sec": [
+                {
+                  "mode": 20,
+                  "id": "R000059-C1-S0",
+                  "Dep": {
+                    "time": "2017-12-11T07:34:00",
+                    "Addr": {
+                      "x": -73.977994,
+                      "y": 40.752471
+                    },
+                    "Transport": {
+                      "mode": 20
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT15M",
+                    "distance": 787,
+                    "_guide": 0
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T07:49:00",
+                    "Stn": {
+                      "id": "717080778#100",
+                      "name": "42 St - Bryant Pk",
+                      "x": -73.984566,
+                      "y": 40.754224
+                    }
+                  }
+                },
+                {
+                  "mode": 7,
+                  "id": "R000059-C1-S1",
+                  "Dep": {
+                    "time": "2017-12-11T07:49:00",
+                    "Stn": {
+                      "id": "717080778#100",
+                      "name": "42 St - Bryant Pk",
+                      "x": -73.984566,
+                      "y": 40.754224
+                    },
+                    "Transport": {
+                      "mode": 7,
+                      "dir": "Broadway Jct",
+                      "name": "M",
+                      "At": {
+                        "operator": "2GzMTA00",
+                        "color": "#FF6319",
+                        "textColor": "#000000",
+                        "category": "Train"
+                      }
+                    },
+                    "Freq": {
+                      "min": 1,
+                      "max": 5,
+                      "AltDep": [
+                        {
+                          "time": "2017-12-11T07:51:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Coney Island - Stillwell AV",
+                            "name": "F",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        },
+                        {
+                          "time": "2017-12-11T07:54:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Coney Island - Stillwell AV",
+                            "name": "F",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        },
+                        {
+                          "time": "2017-12-11T07:57:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Broadway Jct",
+                            "name": "M",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT1M",
+                    "Stop": [
+                      {
+                        "dep": "2017-12-11T07:49:00",
+                        "Stn": {
+                          "id": "717080778#100",
+                          "name": "42 St - Bryant Pk",
+                          "x": -73.984566,
+                          "y": 40.754224
+                        }
+                      },
+                      {
+                        "dep": "2017-12-11T07:50:00",
+                        "Stn": {
+                          "id": "717080781#100",
+                          "name": "34 St - Herald Sq",
+                          "x": -73.98782,
+                          "y": 40.74972
+                        }
+                      }
+                    ]
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T07:50:00",
+                    "Stn": {
+                      "id": "717080781#100",
+                      "name": "34 St - Herald Sq",
+                      "x": -73.98782,
+                      "y": 40.74972
+                    }
+                  }
+                },
+                {
+                  "mode": 20,
+                  "id": "R000059-C1-S2",
+                  "Dep": {
+                    "time": "2017-12-11T07:50:00",
+                    "Stn": {
+                      "id": "717080781#100",
+                      "name": "34 St - Herald Sq",
+                      "x": -73.98782,
+                      "y": 40.74972
+                    },
+                    "Transport": {
+                      "mode": 20
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT10M",
+                    "distance": 546
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T08:00:00",
+                    "Addr": {
+                      "x": -73.993501,
+                      "y": 40.750502
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "R000059-C2",
+            "duration": "PT26M",
+            "transfers": 0,
+            "Dep": {
+              "time": "2017-12-11T07:36:00",
+              "Addr": {
+                "x": -73.977994,
+                "y": 40.752471
+              }
+            },
+            "Arr": {
+              "time": "2017-12-11T08:02:00",
+              "Addr": {
+                "x": -73.993501,
+                "y": 40.750502
+              }
+            },
+            "Sections": {
+              "Sec": [
+                {
+                  "mode": 20,
+                  "id": "R000059-C2-S0",
+                  "Dep": {
+                    "time": "2017-12-11T07:36:00",
+                    "Addr": {
+                      "x": -73.977994,
+                      "y": 40.752471
+                    },
+                    "Transport": {
+                      "mode": 20
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT15M",
+                    "distance": 787,
+                    "_guide": 0
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T07:51:00",
+                    "Stn": {
+                      "id": "717080778#100",
+                      "name": "42 St - Bryant Pk",
+                      "x": -73.984566,
+                      "y": 40.754224
+                    }
+                  }
+                },
+                {
+                  "mode": 7,
+                  "id": "R000059-C2-S1",
+                  "Dep": {
+                    "time": "2017-12-11T07:51:00",
+                    "Stn": {
+                      "id": "717080778#100",
+                      "name": "42 St - Bryant Pk",
+                      "x": -73.984566,
+                      "y": 40.754224
+                    },
+                    "Transport": {
+                      "mode": 7,
+                      "dir": "Coney Island - Stillwell AV",
+                      "name": "F",
+                      "At": {
+                        "operator": "2GzMTA00",
+                        "color": "#FF6319",
+                        "textColor": "#000000",
+                        "category": "Train"
+                      }
+                    },
+                    "Freq": {
+                      "min": 1,
+                      "max": 5,
+                      "AltDep": [
+                        {
+                          "time": "2017-12-11T07:54:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Coney Island - Stillwell AV",
+                            "name": "F",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        },
+                        {
+                          "time": "2017-12-11T07:57:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Broadway Jct",
+                            "name": "M",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        },
+                        {
+                          "time": "2017-12-11T07:59:00",
+                          "Transport": {
+                            "mode": 7,
+                            "dir": "Kings Hwy",
+                            "name": "F",
+                            "At": {
+                              "operator": "2GzMTA00",
+                              "color": "#FF6319",
+                              "textColor": "#000000",
+                              "category": "Train"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT1M",
+                    "Stop": [
+                      {
+                        "dep": "2017-12-11T07:51:00",
+                        "Stn": {
+                          "id": "717080778#100",
+                          "name": "42 St - Bryant Pk",
+                          "x": -73.984566,
+                          "y": 40.754224
+                        }
+                      },
+                      {
+                        "dep": "2017-12-11T07:52:00",
+                        "Stn": {
+                          "id": "717080781#100",
+                          "name": "34 St - Herald Sq",
+                          "x": -73.98782,
+                          "y": 40.74972
+                        }
+                      }
+                    ]
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T07:52:00",
+                    "Stn": {
+                      "id": "717080781#100",
+                      "name": "34 St - Herald Sq",
+                      "x": -73.98782,
+                      "y": 40.74972
+                    }
+                  }
+                },
+                {
+                  "mode": 20,
+                  "id": "R000059-C2-S2",
+                  "Dep": {
+                    "time": "2017-12-11T07:52:00",
+                    "Stn": {
+                      "id": "717080781#100",
+                      "name": "34 St - Herald Sq",
+                      "x": -73.98782,
+                      "y": 40.74972
+                    },
+                    "Transport": {
+                      "mode": 20
+                    }
+                  },
+                  "Journey": {
+                    "duration": "PT10M",
+                    "distance": 546
+                  },
+                  "Arr": {
+                    "time": "2017-12-11T08:02:00",
+                    "Addr": {
+                      "x": -73.993501,
+                      "y": 40.750502
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "Operators": {
+          "Op": [
+            {
+              "code": "2GzMTA00",
+              "name": "MTA New York City Transit",
+              "type": "RT",
+              "Link": [
+                {
+                  "type": "website",
+                  "href": "https://cit.transit.api.here.com/r?appId=DemoAppId01082013GAL&u=http://www.mta.info",
+                  "text": "MTA New York City Transit"
+                }
+              ],
+              "At": {
+                "phone": "718-330-1234"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
