@@ -85,6 +85,7 @@ The library utilizes models to represent various data structures returned by HER
     * herepy.PlacesResponse
     * herepy.PlacesSuggestionsResponse
     * herepy.PlaceCategoriesResponse
+    * herepy.PublicTransitResponse
 
 GeocoderApi
 -----------
@@ -224,6 +225,15 @@ Request a list of popular places within a specified area::
 Request a list of popular places around a location using a foreign language::
 
     response = placesApi.places_with_language([48.8580, 2.2945], 'en-US')
+
+PublicTransitApi
+----------------
+
+Initiation of PublicTransitApi::
+
+    import herepy
+
+    publicTransitApi = herepy.PublicTransitApi('app_id', 'app_code')
 
 License
 -------
