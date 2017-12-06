@@ -1,0 +1,1467 @@
+{
+    "TIMESTAMP": "12/06/2017 09:46:44 GMT",
+    "VERSION": 5,
+    "TRAFFICITEMS": {
+      "TRAFFICITEM": [
+        {
+          "TRAFFICITEMID": 3195263269005403600,
+          "ORIGINALTRAFFICITEMID": 3195263269005403600,
+          "TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+          "TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+          "STARTTIME": "02/28/2017 05:38:54",
+          "ENDTIME": "02/28/2019 22:59:00",
+          "ENTRYTIME": "11/20/2017 19:08:43",
+          "CRITICALITY": {
+            "ID": "2",
+            "DESCRIPTION": "minor"
+          },
+          "VERIFIED": true,
+          "ABBREVIATION": {
+            "SHORTDESC": "CONST",
+            "DESCRIPTION": "construction"
+          },
+          "COMMENTS": "L1065, Stadtgebiet Berlin, Spandauer Straße in beiden Richtungen, in Höhe Kreuzung Karl-Liebknecht-Straße, Fahrbahn auf einen Fahrstreifen verengt, Baustelle, bis 28.02.2019",
+          "RDSTMCLOCATIONS": {
+            "RDSTMC": [
+              {
+                "ORIGIN": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "26923",
+                  "LOCATIONDESC": "Karl-Liebknecht-Straße",
+                  "RDSDIRECTION": "-"
+                },
+                "DIRECTION": "+",
+                "ALERTC": {
+                  "TRAFFICCODE": 743,
+                  "QUANTIFIERS": 0,
+                  "DESCRIPTION": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+                  "ALERTCDURATION": "L",
+                  "ALERTCDIRECTION": 1,
+                  "UPDATECLASS": 5,
+                  "PHRASECODE": "E1.D15",
+                  "EXTENT": "1",
+                  "DURATION": 0
+                }
+              }
+            ]
+          },
+          "LOCATION": {
+            "DEFINED": {
+              "ORIGIN": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 9315
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 26923
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "TREPTOW",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "TREPTOW",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "TREPTOW",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              },
+              "TO": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 9315
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 26923
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "TREPTOW",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "TREPTOW",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "TREPTOW",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              }
+            },
+            "GEOLOC": {
+              "ORIGIN": {
+                "LATITUDE": 52.52003,
+                "LONGITUDE": 13.40464
+              },
+              "TO": [
+                {
+                  "LATITUDE": 52.51994,
+                  "LONGITUDE": 13.40477
+                }
+              ]
+            },
+            "NAVTECH": {
+              "EDGE": {
+                "EDGEID": [
+                  "77301949"
+                ]
+              },
+              "VERSIONID": "201704"
+            }
+          },
+          "TRAFFICITEMDETAIL": {
+            "ROADCLOSED": false,
+            "EVENT": {
+              "EVENTITEMCANCELLED": false,
+              "SCHEDULEDCONSTRUCTIONEVENT": {
+                "SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+                "SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+              }
+            }
+          },
+          "TRAFFICITEMDESCRIPTION": [
+            {
+              "content": "Bei Karl-Liebknecht-Straße - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+              "TYPE": "short_desc"
+            },
+            {
+              "content": "Bei Karl-Liebknecht-Straße - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. L1065, Stadtgebiet Berlin, Spandauer Straße in beiden Richtungen, in Höhe Kreuzung Karl-Liebknecht-Straße, Fahrbahn auf einen Fahrstreifen verengt, Baustelle, bis 28.02.2019",
+              "TYPE": "desc"
+            },
+            {
+              "content": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. L1065, Stadtgebiet Berlin, Spandauer Straße in beiden Richtungen, in Höhe Kreuzung Karl-Liebknecht-Straße, Fahrbahn auf einen Fahrstreifen verengt, Baustelle, bis 28.02.2019",
+              "TYPE": "no_exit_description"
+            }
+          ]
+        },
+        {
+          "TRAFFICITEMID": 3990353757600530000,
+          "ORIGINALTRAFFICITEMID": 3990353757600530000,
+          "TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+          "TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+          "STARTTIME": "05/06/2016 05:53:56",
+          "ENDTIME": "12/31/2017 22:59:00",
+          "ENTRYTIME": "11/20/2017 19:08:44",
+          "CRITICALITY": {
+            "ID": "2",
+            "DESCRIPTION": "minor"
+          },
+          "VERIFIED": true,
+          "ABBREVIATION": {
+            "SHORTDESC": "CONST",
+            "DESCRIPTION": "construction"
+          },
+          "COMMENTS": "L33, Stadtgebiet Berlin, Torstraße, zwischen Kreuzung Friedrichstraße und Kreuzung Rosenthaler Platz, Baustelle, Fahrbahn auf einen Fahrstreifen verengt, bis 31.12.2017",
+          "RDSTMCLOCATIONS": {
+            "RDSTMC": [
+              {
+                "ORIGIN": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "26901",
+                  "LOCATIONDESC": "Friedrichstraße",
+                  "RDSDIRECTION": "-"
+                },
+                "TO": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "26902",
+                  "LOCATIONDESC": "Rosenthaler Platz",
+                  "RDSDIRECTION": "-"
+                },
+                "DIRECTION": "+",
+                "ALERTC": {
+                  "TRAFFICCODE": 743,
+                  "QUANTIFIERS": 0,
+                  "DESCRIPTION": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+                  "ALERTCDURATION": "L",
+                  "ALERTCDIRECTION": 1,
+                  "UPDATECLASS": 5,
+                  "PHRASECODE": "E1.D15",
+                  "EXTENT": "1",
+                  "DURATION": 0
+                }
+              }
+            ]
+          },
+          "LOCATION": {
+            "DEFINED": {
+              "ORIGIN": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Torstraße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Torstraße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Torstraße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 50617
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Friedrichstraße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Friedrichstraße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Friedrichstraße",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Torstraße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 26901
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "MARZAHN",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "MARZAHN",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "MARZAHN",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              },
+              "TO": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Torstraße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Torstraße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Torstraße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 50617
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Rosenthaler Platz",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Rosenthaler Platz",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Rosenthaler Platz",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Torstraße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 26902
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "MARZAHN",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "MARZAHN",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "MARZAHN",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              }
+            },
+            "GEOLOC": {
+              "ORIGIN": {
+                "LATITUDE": 52.52714,
+                "LONGITUDE": 13.38697
+              },
+              "TO": [
+                {
+                  "LATITUDE": 52.52961,
+                  "LONGITUDE": 13.40141
+                }
+              ]
+            },
+            "NAVTECH": {
+              "EDGE": {
+                "EDGEID": [
+                  "544596855",
+                  "1199428572",
+                  "1199428573",
+                  "1198859495",
+                  "1198859415",
+                  "833333455",
+                  "833333456",
+                  "833290989",
+                  "833290990",
+                  "833290988",
+                  "1198992199",
+                  "1198992200",
+                  "1199146842",
+                  "1199146843",
+                  "1197278456",
+                  "53499959",
+                  "53499931",
+                  "1197158583",
+                  "1197158584",
+                  "53499896"
+                ]
+              },
+              "VERSIONID": "201704"
+            }
+          },
+          "TRAFFICITEMDETAIL": {
+            "ROADCLOSED": false,
+            "EVENT": {
+              "EVENTITEMCANCELLED": false,
+              "SCHEDULEDCONSTRUCTIONEVENT": {
+                "SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+                "SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+              }
+            }
+          },
+          "TRAFFICITEMDESCRIPTION": [
+            {
+              "content": "Zwischen Friedrichstraße und Rosenthaler Platz - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+              "TYPE": "short_desc"
+            },
+            {
+              "content": "Zwischen Friedrichstraße und Rosenthaler Platz - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. L33, Stadtgebiet Berlin, Torstraße, zwischen Kreuzung Friedrichstraße und Kreuzung Rosenthaler Platz, Baustelle, Fahrbahn auf einen Fahrstreifen verengt, bis 31.12.2017",
+              "TYPE": "desc"
+            },
+            {
+              "content": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. L33, Stadtgebiet Berlin, Torstraße, zwischen Kreuzung Friedrichstraße und Kreuzung Rosenthaler Platz, Baustelle, Fahrbahn auf einen Fahrstreifen verengt, bis 31.12.2017",
+              "TYPE": "no_exit_description"
+            }
+          ]
+        },
+        {
+          "TRAFFICITEMID": 4572767395712543000,
+          "ORIGINALTRAFFICITEMID": 4572767395712543000,
+          "TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+          "TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+          "STARTTIME": "04/03/2017 13:16:15",
+          "ENDTIME": "01/09/2018 22:59:00",
+          "ENTRYTIME": "11/20/2017 19:08:43",
+          "CRITICALITY": {
+            "ID": "2",
+            "DESCRIPTION": "minor"
+          },
+          "VERIFIED": true,
+          "ABBREVIATION": {
+            "SHORTDESC": "CONST",
+            "DESCRIPTION": "construction"
+          },
+          "COMMENTS": "B5, Stadtgebiet Berlin, Unter den Linden bis Karl-Liebknecht-Straße in beiden Richtungen, zwischen Kreuzung Friedrichstraße und Kreuzung Spandauer Straße, Fahrbahn auf einen Fahrstreifen verengt, geänderte Verkehrsführung im Baustellenbereich, bis 09.01.2018",
+          "RDSTMCLOCATIONS": {
+            "RDSTMC": [
+              {
+                "ORIGIN": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "32736",
+                  "LOCATIONDESC": "Wilhelmstraße",
+                  "RDSDIRECTION": "-"
+                },
+                "TO": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "24092",
+                  "LOCATIONDESC": "Spandauer Straße",
+                  "RDSDIRECTION": "-"
+                },
+                "DIRECTION": "+",
+                "ALERTC": {
+                  "TRAFFICCODE": 514,
+                  "QUANTIFIERS": 0,
+                  "DESCRIPTION": "Fahrbahn von auf einen Fahrstreifen verengt.",
+                  "ALERTCDURATION": "L",
+                  "ALERTCDIRECTION": 1,
+                  "UPDATECLASS": 5,
+                  "PHRASECODE": "D15",
+                  "EXTENT": "1",
+                  "DURATION": 0
+                }
+              },
+              {
+                "ORIGIN": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "32736",
+                  "LOCATIONDESC": "Wilhelmstraße",
+                  "RDSDIRECTION": "-"
+                },
+                "TO": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "24092",
+                  "LOCATIONDESC": "Spandauer Straße",
+                  "RDSDIRECTION": "-"
+                },
+                "DIRECTION": "+",
+                "ALERTC": {
+                  "TRAFFICCODE": 810,
+                  "DESCRIPTION": "Veränderte Verkehrsführung im Baustellenbereich.",
+                  "ALERTCDURATION": "(L)",
+                  "ALERTCDIRECTION": 2,
+                  "UPDATECLASS": 11,
+                  "PHRASECODE": "E19",
+                  "EXTENT": "1",
+                  "DURATION": 0
+                }
+              }
+            ]
+          },
+          "LOCATION": {
+            "DEFINED": {
+              "ORIGIN": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Unter den Linden",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Unter den Linden",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Unter den Linden",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 50398
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Wilhelmstraße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Wilhelmstraße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Wilhelmstraße",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Unter den Linden",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 32736
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "BIESDORF",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "BIESDORF",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "BIESDORF",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              },
+              "TO": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 50398
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 24092
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "BIESDORF",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "BIESDORF",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "BIESDORF",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              }
+            },
+            "GEOLOC": {
+              "ORIGIN": {
+                "LATITUDE": 52.51686,
+                "LONGITUDE": 13.38818
+              },
+              "TO": [
+                {
+                  "LATITUDE": 52.52003,
+                  "LONGITUDE": 13.40495
+                }
+              ]
+            },
+            "NAVTECH": {
+              "EDGE": {
+                "EDGEID": [
+                  "53516284",
+                  "77269773",
+                  "77269774",
+                  "53500472",
+                  "709936266",
+                  "709936267",
+                  "733165858",
+                  "733165859",
+                  "53628410",
+                  "53500440",
+                  "53517201",
+                  "572706269",
+                  "572706270",
+                  "53507119",
+                  "53594251",
+                  "53507118",
+                  "53523160",
+                  "53507112",
+                  "1197940641",
+                  "1197940642",
+                  "779395080",
+                  "779461615",
+                  "779461616",
+                  "779384496",
+                  "779392732",
+                  "779392733",
+                  "724106114",
+                  "572713749",
+                  "572713750",
+                  "77301953"
+                ]
+              },
+              "VERSIONID": "201704"
+            }
+          },
+          "TRAFFICITEMDETAIL": {
+            "ROADCLOSED": false,
+            "EVENT": {
+              "EVENTITEMCANCELLED": false,
+              "SCHEDULEDCONSTRUCTIONEVENT": {
+                "SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+                "SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+              }
+            }
+          },
+          "TRAFFICITEMDESCRIPTION": [
+            {
+              "content": "Zwischen Wilhelmstraße und Spandauer Straße - Veränderte Verkehrsführung im Baustellenbereich. Fahrbahn von auf einen Fahrstreifen verengt.",
+              "TYPE": "short_desc"
+            },
+            {
+              "content": "Zwischen Wilhelmstraße und Spandauer Straße - Veränderte Verkehrsführung im Baustellenbereich. Fahrbahn von auf einen Fahrstreifen verengt. B5, Stadtgebiet Berlin, Unter den Linden bis Karl-Liebknecht-Straße in beiden Richtungen, zwischen Kreuzung Friedrichstraße und Kreuzung Spandauer Straße, Fahrbahn auf einen Fahrstreifen verengt, geänderte Verkehrsführung im Baustellenbereich, bis 09.01.2018",
+              "TYPE": "desc"
+            },
+            {
+              "content": "Veränderte Verkehrsführung im Baustellenbereich. Fahrbahn von auf einen Fahrstreifen verengt. B5, Stadtgebiet Berlin, Unter den Linden bis Karl-Liebknecht-Straße in beiden Richtungen, zwischen Kreuzung Friedrichstraße und Kreuzung Spandauer Straße, Fahrbahn auf einen Fahrstreifen verengt, geänderte Verkehrsführung im Baustellenbereich, bis 09.01.2018",
+              "TYPE": "no_exit_description"
+            }
+          ]
+        },
+        {
+          "TRAFFICITEMID": 4523131287961688600,
+          "ORIGINALTRAFFICITEMID": 4523131287961688600,
+          "TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+          "TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+          "STARTTIME": "03/01/2017 15:30:00",
+          "ENDTIME": "02/28/2018 22:59:00",
+          "ENTRYTIME": "11/20/2017 19:08:42",
+          "CRITICALITY": {
+            "ID": "2",
+            "DESCRIPTION": "minor"
+          },
+          "VERIFIED": true,
+          "ABBREVIATION": {
+            "SHORTDESC": "CONST",
+            "DESCRIPTION": "construction"
+          },
+          "COMMENTS": "L1008, Stadtgebiet Berlin, Invalidenstraße, zwischen Kreuzung Chausseestraße und Kreuzung Gartenstraße, Baustelle, Fahrbahn auf einen Fahrstreifen verengt, bis 28.02.2018",
+          "RDSTMCLOCATIONS": {
+            "RDSTMC": [
+              {
+                "ORIGIN": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "27331",
+                  "LOCATIONDESC": "Friedrich-List-Ufer",
+                  "RDSDIRECTION": "-"
+                },
+                "TO": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "31009",
+                  "LOCATIONDESC": "Gartenstraße",
+                  "RDSDIRECTION": "-"
+                },
+                "DIRECTION": "+",
+                "ALERTC": {
+                  "TRAFFICCODE": 743,
+                  "QUANTIFIERS": 0,
+                  "DESCRIPTION": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+                  "ALERTCDURATION": "L",
+                  "ALERTCDIRECTION": 1,
+                  "UPDATECLASS": 5,
+                  "PHRASECODE": "E1.D15",
+                  "EXTENT": "1",
+                  "DURATION": 0
+                }
+              }
+            ]
+          },
+          "LOCATION": {
+            "DEFINED": {
+              "ORIGIN": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Invalidenstraße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Invalidenstraße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Invalidenstraße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 50738
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Friedrich-List-Ufer",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Friedrich-List-Ufer",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Friedrich-List-Ufer",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Invalidenstraße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 27331
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "PRENZLAUER BERG",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "PRENZLAUER BERG",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "PRENZLAUER BERG",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              },
+              "TO": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Invalidenstraße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Invalidenstraße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Invalidenstraße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 50738
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Gartenstraße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Gartenstraße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Gartenstraße",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Invalidenstraße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 31009
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "PRENZLAUER BERG",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "PRENZLAUER BERG",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "PRENZLAUER BERG",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              }
+            },
+            "GEOLOC": {
+              "ORIGIN": {
+                "LATITUDE": 52.530372,
+                "LONGITUDE": 13.382358
+              },
+              "TO": [
+                {
+                  "LATITUDE": 52.53175,
+                  "LONGITUDE": 13.38972
+                }
+              ]
+            },
+            "NAVTECH": {
+              "EDGE": {
+                "EDGEID": [
+                  "1197898284",
+                  "836011970",
+                  "1197897398",
+                  "1197897399",
+                  "1197823682",
+                  "931447247",
+                  "1084662917",
+                  "1084662918",
+                  "1197892017",
+                  "1197892018",
+                  "1159397997",
+                  "746350237",
+                  "1197058262",
+                  "1197058263",
+                  "1197782231",
+                  "1197782232",
+                  "936673241",
+                  "1044853605",
+                  "1044853606"
+                ]
+              },
+              "VERSIONID": "201704"
+            }
+          },
+          "TRAFFICITEMDETAIL": {
+            "ROADCLOSED": false,
+            "EVENT": {
+              "EVENTITEMCANCELLED": false,
+              "SCHEDULEDCONSTRUCTIONEVENT": {
+                "SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+                "SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+              }
+            }
+          },
+          "TRAFFICITEMDESCRIPTION": [
+            {
+              "content": "Zwischen Friedrich-List-Ufer und Gartenstraße - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+              "TYPE": "short_desc"
+            },
+            {
+              "content": "Zwischen Friedrich-List-Ufer und Gartenstraße - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. L1008, Stadtgebiet Berlin, Invalidenstraße, zwischen Kreuzung Chausseestraße und Kreuzung Gartenstraße, Baustelle, Fahrbahn auf einen Fahrstreifen verengt, bis 28.02.2018",
+              "TYPE": "desc"
+            },
+            {
+              "content": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. L1008, Stadtgebiet Berlin, Invalidenstraße, zwischen Kreuzung Chausseestraße und Kreuzung Gartenstraße, Baustelle, Fahrbahn auf einen Fahrstreifen verengt, bis 28.02.2018",
+              "TYPE": "no_exit_description"
+            }
+          ]
+        },
+        {
+          "TRAFFICITEMID": 2621464759813014000,
+          "ORIGINALTRAFFICITEMID": 2621464759813014000,
+          "TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+          "TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+          "STARTTIME": "02/28/2017 05:38:54",
+          "ENDTIME": "02/28/2019 22:59:00",
+          "ENTRYTIME": "11/20/2017 19:08:42",
+          "CRITICALITY": {
+            "ID": "2",
+            "DESCRIPTION": "minor"
+          },
+          "VERIFIED": true,
+          "ABBREVIATION": {
+            "SHORTDESC": "CONST",
+            "DESCRIPTION": "construction"
+          },
+          "COMMENTS": "L1065, Stadtgebiet Berlin, Spandauer Straße in beiden Richtungen, in Höhe Kreuzung Karl-Liebknecht-Straße, Fahrbahn auf einen Fahrstreifen verengt, Baustelle, bis 28.02.2019",
+          "RDSTMCLOCATIONS": {
+            "RDSTMC": [
+              {
+                "ORIGIN": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "26923",
+                  "LOCATIONDESC": "Karl-Liebknecht-Straße",
+                  "RDSDIRECTION": "+"
+                },
+                "DIRECTION": "-",
+                "ALERTC": {
+                  "TRAFFICCODE": 743,
+                  "QUANTIFIERS": 0,
+                  "DESCRIPTION": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+                  "ALERTCDURATION": "L",
+                  "ALERTCDIRECTION": 1,
+                  "UPDATECLASS": 5,
+                  "PHRASECODE": "E1.D15",
+                  "EXTENT": "1",
+                  "DURATION": 0
+                }
+              }
+            ]
+          },
+          "LOCATION": {
+            "DEFINED": {
+              "ORIGIN": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 9315
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Mühlendamm",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Mühlendamm",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Mühlendamm",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 26923
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "MITTE",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "MITTE",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "MITTE",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              },
+              "TO": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 9315
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Spandauer Straße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 26923
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "MITTE",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "MITTE",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "MITTE",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              }
+            },
+            "GEOLOC": {
+              "ORIGIN": {
+                "LATITUDE": 52.52003,
+                "LONGITUDE": 13.40495
+              },
+              "TO": [
+                {
+                  "LATITUDE": 52.52014,
+                  "LONGITUDE": 13.4048
+                }
+              ]
+            },
+            "NAVTECH": {
+              "EDGE": {
+                "EDGEID": [
+                  "77301951"
+                ]
+              },
+              "VERSIONID": "201704"
+            }
+          },
+          "TRAFFICITEMDETAIL": {
+            "ROADCLOSED": false,
+            "EVENT": {
+              "EVENTITEMCANCELLED": false,
+              "SCHEDULEDCONSTRUCTIONEVENT": {
+                "SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+                "SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+              }
+            }
+          },
+          "TRAFFICITEMDESCRIPTION": [
+            {
+              "content": "Bei Karl-Liebknecht-Straße - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+              "TYPE": "short_desc"
+            },
+            {
+              "content": "Bei Karl-Liebknecht-Straße - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. L1065, Stadtgebiet Berlin, Spandauer Straße in beiden Richtungen, in Höhe Kreuzung Karl-Liebknecht-Straße, Fahrbahn auf einen Fahrstreifen verengt, Baustelle, bis 28.02.2019",
+              "TYPE": "desc"
+            },
+            {
+              "content": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. L1065, Stadtgebiet Berlin, Spandauer Straße in beiden Richtungen, in Höhe Kreuzung Karl-Liebknecht-Straße, Fahrbahn auf einen Fahrstreifen verengt, Baustelle, bis 28.02.2019",
+              "TYPE": "no_exit_description"
+            }
+          ]
+        },
+        {
+          "TRAFFICITEMID": 2383386642916050000,
+          "ORIGINALTRAFFICITEMID": 2383386642916050000,
+          "TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+          "TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+          "STARTTIME": "04/03/2017 13:16:15",
+          "ENDTIME": "01/09/2018 22:59:00",
+          "ENTRYTIME": "11/20/2017 19:08:43",
+          "CRITICALITY": {
+            "ID": "2",
+            "DESCRIPTION": "minor"
+          },
+          "VERIFIED": true,
+          "ABBREVIATION": {
+            "SHORTDESC": "CONST",
+            "DESCRIPTION": "construction"
+          },
+          "COMMENTS": "B5, Stadtgebiet Berlin, Unter den Linden bis Karl-Liebknecht-Straße in beiden Richtungen, zwischen Kreuzung Friedrichstraße und Kreuzung Spandauer Straße, Fahrbahn auf einen Fahrstreifen verengt, geänderte Verkehrsführung im Baustellenbereich, bis 09.01.2018",
+          "RDSTMCLOCATIONS": {
+            "RDSTMC": [
+              {
+                "ORIGIN": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "24092",
+                  "LOCATIONDESC": "Alexanderplatz",
+                  "RDSDIRECTION": "+"
+                },
+                "TO": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "24091",
+                  "LOCATIONDESC": "Wilhelmstraße",
+                  "RDSDIRECTION": "+"
+                },
+                "DIRECTION": "-",
+                "ALERTC": {
+                  "TRAFFICCODE": 514,
+                  "QUANTIFIERS": 0,
+                  "DESCRIPTION": "Fahrbahn von auf einen Fahrstreifen verengt.",
+                  "ALERTCDURATION": "L",
+                  "ALERTCDIRECTION": 1,
+                  "UPDATECLASS": 5,
+                  "PHRASECODE": "D15",
+                  "EXTENT": "2",
+                  "DURATION": 0
+                }
+              },
+              {
+                "ORIGIN": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "24092",
+                  "LOCATIONDESC": "Alexanderplatz",
+                  "RDSDIRECTION": "+"
+                },
+                "TO": {
+                  "EBUCOUNTRYCODE": "D",
+                  "TABLEID": 1,
+                  "LOCATIONID": "24091",
+                  "LOCATIONDESC": "Wilhelmstraße",
+                  "RDSDIRECTION": "+"
+                },
+                "DIRECTION": "-",
+                "ALERTC": {
+                  "TRAFFICCODE": 810,
+                  "DESCRIPTION": "Veränderte Verkehrsführung im Baustellenbereich.",
+                  "ALERTCDURATION": "(L)",
+                  "ALERTCDIRECTION": 2,
+                  "UPDATECLASS": 11,
+                  "PHRASECODE": "E19",
+                  "EXTENT": "2",
+                  "DURATION": 0
+                }
+              }
+            ]
+          },
+          "LOCATION": {
+            "DEFINED": {
+              "ORIGIN": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 50398
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Alexanderplatz",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Alexanderplatz",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Alexanderplatz",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Karl-Liebknecht-Straße",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 24092
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "MITTE",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "MITTE",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "MITTE",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              },
+              "TO": {
+                "ROADWAY": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Unter den Linden",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Unter den Linden",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Unter den Linden",
+                      "TYPE": "LOCAL"
+                    }
+                  ],
+                  "ID": 50398
+                },
+                "POINT": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "Wilhelmstraße",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "Wilhelmstraße",
+                      "TYPE": "RDSGN"
+                    },
+                    {
+                      "content": "Wilhelmstraße",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "Unter den Linden",
+                      "TYPE": "BNAME"
+                    }
+                  ],
+                  "ID": 24091
+                },
+                "DIRECTION": {
+                  "DESCRIPTION": [
+                    {
+                      "content": "MITTE",
+                      "TYPE": "LOCAL"
+                    },
+                    {
+                      "content": "MITTE",
+                      "TYPE": "NTCSA"
+                    },
+                    {
+                      "content": "MITTE",
+                      "TYPE": "RDSGN"
+                    }
+                  ],
+                  "ID": 0
+                },
+                "PROXIMITY": {
+                  "ID": "AT",
+                  "DESCRIPTION": "at"
+                }
+              }
+            },
+            "GEOLOC": {
+              "ORIGIN": {
+                "LATITUDE": 52.52014,
+                "LONGITUDE": 13.4048
+              },
+              "TO": [
+                {
+                  "LATITUDE": 52.516964,
+                  "LONGITUDE": 13.385816
+                }
+              ]
+            },
+            "NAVTECH": {
+              "EDGE": {
+                "EDGEID": [
+                  "77301896",
+                  "572679720",
+                  "779384493",
+                  "779384495",
+                  "779384494",
+                  "779461616",
+                  "779461615",
+                  "779395080",
+                  "1197940642",
+                  "1197940641",
+                  "53507112",
+                  "53523160",
+                  "53507118",
+                  "53594251",
+                  "53507119",
+                  "572706270",
+                  "572706269",
+                  "53517201",
+                  "53517202",
+                  "77269777",
+                  "77269776",
+                  "709936265",
+                  "709936264",
+                  "53500452",
+                  "53516342",
+                  "53516291",
+                  "53516278",
+                  "53516297"
+                ]
+              },
+              "VERSIONID": "201704"
+            }
+          },
+          "TRAFFICITEMDETAIL": {
+            "ROADCLOSED": false,
+            "EVENT": {
+              "EVENTITEMCANCELLED": false,
+              "SCHEDULEDCONSTRUCTIONEVENT": {
+                "SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+                "SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+              }
+            }
+          },
+          "TRAFFICITEMDESCRIPTION": [
+            {
+              "content": "Zwischen Alexanderplatz und Wilhelmstraße - Veränderte Verkehrsführung im Baustellenbereich. Fahrbahn von auf einen Fahrstreifen verengt.",
+              "TYPE": "short_desc"
+            },
+            {
+              "content": "Zwischen Alexanderplatz und Wilhelmstraße - Veränderte Verkehrsführung im Baustellenbereich. Fahrbahn von auf einen Fahrstreifen verengt. B5, Stadtgebiet Berlin, Unter den Linden bis Karl-Liebknecht-Straße in beiden Richtungen, zwischen Kreuzung Friedrichstraße und Kreuzung Spandauer Straße, Fahrbahn auf einen Fahrstreifen verengt, geänderte Verkehrsführung im Baustellenbereich, bis 09.01.2018",
+              "TYPE": "desc"
+            },
+            {
+              "content": "Veränderte Verkehrsführung im Baustellenbereich. Fahrbahn von auf einen Fahrstreifen verengt. B5, Stadtgebiet Berlin, Unter den Linden bis Karl-Liebknecht-Straße in beiden Richtungen, zwischen Kreuzung Friedrichstraße und Kreuzung Spandauer Straße, Fahrbahn auf einen Fahrstreifen verengt, geänderte Verkehrsführung im Baustellenbereich, bis 09.01.2018",
+              "TYPE": "no_exit_description"
+            }
+          ]
+        }
+      ]
+    }
+  }

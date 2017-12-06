@@ -162,3 +162,15 @@ class PublicTransitResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+class TrafficIncidentResponse(HEREModel):
+    """A class representing the Traffic Incidents on Traffic Api response data."""
+
+    def __init__(self, **kwargs):
+        super(TrafficIncidentResponse, self).__init__()
+        self.param_defaults = {
+            'TRAFFICITEMS': None
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))

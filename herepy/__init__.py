@@ -32,7 +32,8 @@ from .models import (
     PlacesResponse,
     PlacesSuggestionsResponse,
     PlaceCategoriesResponse,
-    PublicTransitResponse
+    PublicTransitResponse,
+    TrafficIncidentResponse
 )
 
 from .utils import Utils
