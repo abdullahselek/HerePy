@@ -18,11 +18,14 @@ class GeocoderApi(HEREApi):
                  app_id=None,
                  app_code=None,
                  timeout=None):
-        """Return a GeocoderApi instance.
+        """Returns a GeocoderApi instance.
         Args:
-          app_id (string): App Id taken from HERE Developer Portal.
-          app_code (string): App Code taken from HERE Developer Portal.
-          timeout (int): Timeout limit for requests.
+          app_id (str):
+            App Id taken from HERE Developer Portal.
+          app_code (str):
+            App Code taken from HERE Developer Portal.
+          timeout (int):
+            Timeout limit for requests.
         """
 
         super(GeocoderApi, self).__init__(app_id, app_code, timeout)
@@ -43,7 +46,8 @@ class GeocoderApi(HEREApi):
     def free_form(self, searchtext):
         """Geocodes given search text
         Args:
-          searchtext (string): possible address text.
+          searchtext (str):
+            possible address text.
         Returns:
           GeocoderResponse or HEREError instance"""
 
@@ -53,9 +57,12 @@ class GeocoderApi(HEREApi):
     def address_with_boundingbox(self, searchtext, top_left, bottom_right):
         """Geocodes given search text with in given boundingbox
         Args:
-          searchtext (string): possible address text.
-          top_left (array): array including latitude and longitude in order.
-          bottom_right (array): array including latitude and longitude in order.
+          searchtext (str):
+            possible address text.
+          top_left (array):
+            array including latitude and longitude in order.
+          bottom_right (array):
+            array including latitude and longitude in order.
         Returns:
           GeocoderResponse or HEREError instance"""
 
@@ -72,10 +79,14 @@ class GeocoderApi(HEREApi):
                              country):
         """Geocodes with given address details
         Args:
-          house_number (int): house number.
-          street (string): street name.
-          city (string): city name.
-          country (string): country name.
+          house_number (int):
+            house number.
+          street (str):
+            street name.
+          city (str):
+            city name.
+          country (str):
+            country name.
         Returns:
           GeocoderResponse or HEREError instance"""
 
@@ -92,8 +103,10 @@ class GeocoderApi(HEREApi):
                             city):
         """Geocodes with given street and city
         Args:
-          street (string): street name.
-          city (string): city name.
+          street (str):
+            street name.
+          city (str):
+            city name.
         Returns:
           GeocoderResponse or HEREError instance"""
 
