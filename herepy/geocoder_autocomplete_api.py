@@ -18,11 +18,14 @@ class GeocoderAutoCompleteApi(HEREApi):
                  app_id=None,
                  app_code=None,
                  timeout=None):
-        """Return a GeocoderAutoCompleteApi instance.
+        """Returns a GeocoderAutoCompleteApi instance.
         Args:
-          app_id (string): App Id taken from HERE Developer Portal.
-          app_code (string): App Code taken from HERE Developer Portal.
-          timeout (int): Timeout limit for requests.
+          app_id (str):
+            App Id taken from HERE Developer Portal.
+          app_code (str):
+            App Code taken from HERE Developer Portal.
+          timeout (int):
+            Timeout limit for requests.
         """
 
         super(GeocoderAutoCompleteApi, self).__init__(app_id, app_code, timeout)
@@ -40,8 +43,10 @@ class GeocoderAutoCompleteApi(HEREApi):
     def address_suggestion(self, query, prox, radius):
         """Request a list of suggested addresses found within a specified area
         Args:
-          prox (array): array including latitude and longitude in order.
-          radius (int): Radius in meters
+          prox (array):
+            array including latitude and longitude in order.
+          radius (int):
+            Radius in meters
         Returns:
           GeocoderAutoCompleteApi or HEREError instance"""
 
@@ -54,8 +59,10 @@ class GeocoderAutoCompleteApi(HEREApi):
     def limit_results_byaddress(self, query, country_code):
         """Request a list of suggested addresses within a single country
         Args:
-          query (string): Query search string
-          countryCode (string): Country code (USA etc.)
+          query (str):
+            Query search string
+          countryCode (str):
+            Country code (USA etc.)
         Returns:
           GeocoderAutoCompleteApi or HEREError instance"""
 
@@ -68,9 +75,12 @@ class GeocoderAutoCompleteApi(HEREApi):
     def highlighting_matches(self, query, begin_highlight, end_highlight):
         """Request an annotated list of suggested addresses with matching tokens highlighted
         Args:
-          query (string): Query search string
-          begin_highlight (string): Mark the beginning of match in a token
-          end_highlight (string): Mark the end of match in a token
+          query (str):
+            Query search string
+          begin_highlight (str):
+            Mark the beginning of match in a token
+          end_highlight (str):
+            Mark the end of match in a token
         Returns:
           GeocoderAutoCompleteApi or HEREError instance"""
 
