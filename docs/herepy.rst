@@ -36,7 +36,7 @@ Models
 .. automodule:: herepy.models
     :members:
     :undoc-members:
-    :show-inheritance
+    :show-inheritance:
 
 Utilities
 ---------

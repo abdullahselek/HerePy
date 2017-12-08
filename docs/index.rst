@@ -1,44 +1,29 @@
 .. herepy documentation master file, created by
-   sphinx-quickstart on Wed Dec  6 14:33:23 2017.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to herepy's documentation!
-==================================
 
 Contents:
  
+Welcome to herepy's documentation!
+==================================
+**A Python wrapper around the HERE APIs.**
+
+Author: Abdullah Selek
+
+
+Contents:
+
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-.. automodule:: herepy
+   installation.rst
+   models.rst
+   herepy.rst
 
-.. autoclass:: GeocoderApi
-    :members:
-.. autoclass:: GeocoderAutoCompleteApi
-    :members:
-.. autoclass:: PlacesApi
-    :members:
-.. autoclass:: PublicTransitApi
-    :members:
-.. autoclass:: RoutingApi
-    :members:
-.. autoclass:: GeocoderResponse
-    :members:
-.. autoclass:: RoutingResponse
-    :members:
-.. autoclass:: GeocoderAutoCompleteResponse
-    :members:
-.. autoclass:: PlacesResponse
-    :members:
-.. autoclass:: PlacesSuggestionsResponse
-    :members:
-.. autoclass:: PlaceCategoriesResponse
-    :members:
-.. autoclass:: PublicTransitResponse
-    :members:
-.. autoclass:: TrafficIncidentResponse
-    :members:
+Introduction
+------------
+
+This library provides a pure Python interface for the `HERE API <https://developer.here.com/>`_. It works with Python versions from 2.7+ and Python 3.
+
+`HERE <https://www.here.com/>`_ provides location based services. HERE exposes a `rest APIs <https://developer.here.com/documentation>`_ and this library is intended to make it even easier for Python programmers to use.
 
 Indices and tables
 ==================
