@@ -7,6 +7,9 @@ HerePy
 .. image:: https://img.shields.io/pypi/pyversions/herepy.svg
     :target: https://pypi.org/project/herepy
 
+.. image:: https://readthedocs.org/projects/herepy/badge/?version=latest
+    :target: http://herepy.readthedocs.org/en/latest/?badge=latest
+
 .. image:: https://codecov.io/gh/abdullahselek/HerePy/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/abdullahselek/HerePy
 
