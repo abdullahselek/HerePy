@@ -4,14 +4,14 @@ from __future__ import unicode_literals
 import json
 
 class HEREModel(object):
-    """ Base class from which all here models will inherit. """
+    """ Base class from which all here models will inherit."""
 
     def __init__(self, **kwargs):
         self.param_defaults = {}
 
     def __str__(self):
         """ Returns a string representation of HEREModel. By default
-        this is the same as as_json_string(). """
+        this is the same as as_json_string()."""
         return self.as_json_string()
 
     def __eq__(self, other):
@@ -22,12 +22,12 @@ class HEREModel(object):
 
     def as_json_string(self):
         """ Returns the HEREModel as a JSON string based on key/value
-        pairs returned from the as_dict() method. """
+        pairs returned from the as_dict() method."""
         return json.dumps(self.as_dict(), sort_keys=True)
 
     def as_dict(self):
         """ Create a dictionary representation of the object. Please see inline
-        comments on construction when dictionaries contain HEREModels. """
+        comments on construction when dictionaries contain HEREModels."""
         data = {}
 
         for (key, value) in self.param_defaults.items():
@@ -66,8 +66,8 @@ class HEREModel(object):
         supplied by the inherited, calling class.
 
         Args:
-            data: A JSON dict, as converted from the JSON in the here API.
-
+            data (dict):
+              A JSON dict, as converted from the JSON in the here API.
         """
 
         json_data = data.copy()

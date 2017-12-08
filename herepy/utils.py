@@ -23,7 +23,8 @@ class Utils(object):
         """Return a string in key=value&key=value form.
         Values of None are not included in the output string.
         Args:
-          parameters (dict): dictionary of query parameters to be converted.
+          parameters (dict):
+            dictionary of query parameters to be converted.
         Returns:
           A URL-encoded string in "key=value&key=value" form
         """
@@ -39,8 +40,10 @@ class Utils(object):
         """Builds a url with given parameters which will
         be used in requests.
         Args:
-          url (string): base url.
-          extra_params (dict): dictionary of query parameters.
+          url (str):
+            base url.
+          extra_params (dict):
+            dictionary of query parameters.
         Returns:
           A encoded url ready for the request"""
 

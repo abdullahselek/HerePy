@@ -21,9 +21,12 @@ class RoutingApi(HEREApi):
                  timeout=None):
         """Returns a RoutingApi instance.
         Args:
-          app_id (string): App Id taken from HERE Developer Portal.
-          app_code (string): App Code taken from HERE Developer Portal.
-          timeout (int): Timeout limit for requests.
+          app_id (str):
+            App Id taken from HERE Developer Portal.
+          app_code (str):
+            App Code taken from HERE Developer Portal.
+          timeout (int):
+            Timeout limit for requests.
         """
 
         super(RoutingApi, self).__init__(app_id, app_code, timeout)
@@ -52,9 +55,12 @@ class RoutingApi(HEREApi):
                   modes=None):
         """Request a driving route between two points
         Args:
-          waypoint_a (array): array including latitude and longitude in order.
-          waypoint_b (array): array including latitude and longitude in order.
-          modes (array): array including RouteMode enums.
+          waypoint_a (array):
+            array including latitude and longitude in order.
+          waypoint_b (array):
+            array including latitude and longitude in order.
+          modes (array):
+            array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -75,9 +81,12 @@ class RoutingApi(HEREApi):
                          modes=None):
         """Request a pedastrian route between two points
         Args:
-          waypoint_a (array): array including latitude and longitude in order.
-          waypoint_b (array): array including latitude and longitude in order.
-          modes (array): array including RouteMode enums.
+          waypoint_a (array):
+            array including latitude and longitude in order.
+          waypoint_b (array):
+            array including latitude and longitude in order.
+          modes (array):
+            array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -98,10 +107,14 @@ class RoutingApi(HEREApi):
                            modes=None):
         """Request a intermediate route from three points
         Args:
-          waypoint_a (array): Starting array including latitude and longitude in order.
-          waypoint_b (array): Intermediate array including latitude and longitude in order.
-          waypoint_c (array): Last array including latitude and longitude in order.
-          modes (array): array including RouteMode enums.
+          waypoint_a (array):
+            Starting array including latitude and longitude in order.
+          waypoint_b (array):
+            Intermediate array including latitude and longitude in order.
+          waypoint_c (array):
+            Last array including latitude and longitude in order.
+          modes (array):
+            array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -123,11 +136,15 @@ class RoutingApi(HEREApi):
                          modes=None):
         """Request a public transport route between two points
         Args:
-          waypoint_a (array): Starting array including latitude and longitude in order.
-          waypoint_b (array): Intermediate array including latitude and longitude in order.
-          combine_change (bool): Enables the change manuever in the route response, which
+          waypoint_a (array):
+            Starting array including latitude and longitude in order.
+          waypoint_b (array):
+            Intermediate array including latitude and longitude in order.
+          combine_change (bool):
+            Enables the change manuever in the route response, which
             indicates a public transit line change.
-          modes (array): array including RouteMode enums.
+          modes (array):
+            array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -148,9 +165,12 @@ class RoutingApi(HEREApi):
                                modes=None):
         """Calculates the fastest car route between two location
         Args:
-          waypoint_a (array): array including latitude and longitude in order.
-          waypoint_b (array): array including latitude and longitude in order.
-          modes (array): array including RouteMode enums.
+          waypoint_a (array):
+            array including latitude and longitude in order.
+          waypoint_b (array):
+            array including latitude and longitude in order.
+          modes (array):
+            array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 
@@ -170,9 +190,12 @@ class RoutingApi(HEREApi):
                     modes=None):
         """Calculates the fastest truck route between two location
         Args:
-          waypoint_a (array): array including latitude and longitude in order.
-          waypoint_b (array): array including latitude and longitude in order.
-          modes (array): array including RouteMode enums.
+          waypoint_a (array):
+            array including latitude and longitude in order.
+          waypoint_b (array):
+            array including latitude and longitude in order.
+          modes (array):
+            array including RouteMode enums.
         Returns:
           RoutingResponse instance or HEREError"""
 

@@ -22,11 +22,14 @@ class PublicTransitApi(HEREApi):
                  app_id=None,
                  app_code=None,
                  timeout=None):
-        """Return a PublicTransitApi instance.
+        """Returns a PublicTransitApi instance.
         Args:
-          app_id (string): App Id taken from HERE Developer Portal.
-          app_code (string): App Code taken from HERE Developer Portal.
-          timeout (int): Timeout limit for requests.
+          app_id (str):
+            App Id taken from HERE Developer Portal.
+          app_code (str):
+            App Code taken from HERE Developer Portal.
+          timeout (int):
+            Timeout limit for requests.
         """
 
         super(PublicTransitApi, self).__init__(app_id, app_code, timeout)
@@ -51,11 +54,16 @@ class PublicTransitApi(HEREApi):
                               radius=20000):
         """Request a list of public transit stations based on name.
         Args:
-          center (array): array including latitude and longitude in order.
-          name (string): station name.
-          max_count (int): maximum number of stations  (Default is 5).
-          method (enum): Matching method from PublicTransitSearchMethod (Default is fuzzy).
-          radius (int): specifies radius in kilometers (Default is 20000km).
+          center (array):
+            array including latitude and longitude in order.
+          name (str):
+            station name.
+          max_count (int):
+            maximum number of stations  (Default is 5).
+          method (enum):
+            Matching method from PublicTransitSearchMethod (Default is fuzzy).
+          radius (int):
+            specifies radius in kilometers (Default is 20000km).
         """
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
@@ -70,9 +78,12 @@ class PublicTransitApi(HEREApi):
     def find_stations_nearby(self, center, radius=500, max_count=5):
         """Request a list of public transit stations within a given geo-location.
         Args:
-          center (array): array including latitude and longitude in order.
-          radius (int): specifies radius in meters (Default is 500m).
-          max_count (int): maximum number of stations  (Default is 5).
+          center (array):
+            array including latitude and longitude in order.
+          radius (int):
+            specifies radius in meters (Default is 500m).
+          max_count (int):
+            maximum number of stations  (Default is 5).
         """
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
@@ -93,8 +104,10 @@ class PublicTransitApi(HEREApi):
     def find_stations_by_id(self, ids, lang):
         """Request details of a specific transit station based on a previous request.
         Args:
-          ids (array): array contains station ids.
-          lang (string): language code for response like `en`.
+          ids (array):
+            array contains station ids.
+          lang (str):
+            language code for response like `en`.
         """
 
         data = {'stnIds': self.__prepare_station_ids(ids),
@@ -106,9 +119,12 @@ class PublicTransitApi(HEREApi):
     def find_transit_coverage_in_cities(self, center, political_view, radius):
         """Request a list of transit operators available in cities nearby.
         Args:
-          center (array): array including latitude and longitude in order.
-          political_view (string): switch for grouping results like `CHN`.
-          radius (int): specifies radius in meters.
+          center (array):
+            array including latitude and longitude in order.
+          political_view (str):
+            switch for grouping results like `CHN`.
+          radius (int):
+            specifies radius in meters.
         """
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
@@ -121,9 +137,12 @@ class PublicTransitApi(HEREApi):
     def next_nearby_departures_of_station(self, station_id, time, lang='en'):
         """Request a list of next departure times and destinations of a particular station.
         Args:
-          lang (string): language code for response like `en` Default is `en`.
-          station_id (int): station id for departures.
-          time (string): time formattes in yyyy-mm-ddThh:mm:ss.
+          lang (str):
+            language code for response like `en` Default is `en`.
+          station_id (int):
+            station id for departures.
+          time (str):
+            time formattes in yyyy-mm-ddThh:mm:ss.
         """
 
         data = {'lang': lang,
@@ -141,11 +160,16 @@ class PublicTransitApi(HEREApi):
                                       max_station=40):
         """Request a list of all next departure times and destinations from a given location.
         Args:
-          center (array): array including latitude and longitude in order.
-          time (string): time formattes in yyyy-mm-ddThh:mm:ss.
-          lang (string): language code for response like `en`. Default is `en`.
-          max (int): maximum number of next departures per station. Default is 40.
-          max_station (int): maximum number of stations for which departures are required. Default is 40.
+          center (array):
+            array including latitude and longitude in order.
+          time (str):
+            time formattes in yyyy-mm-ddThh:mm:ss.
+          lang (str):
+            language code for response like `en`. Default is `en`.
+          max (int):
+            maximum number of next departures per station. Default is 40.
+          max_station (int):
+            maximum number of stations for which departures are required. Default is 40.
         """
 
         data = {'lang': lang,
@@ -165,11 +189,16 @@ class PublicTransitApi(HEREApi):
                                      max_station=40):
         """Request a list of all next departure times and destinations for a give list of stations.
         Args:
-          station_ids (array): a list of stop ids.
-          time (string): time formattes in yyyy-mm-ddThh:mm:ss.
-          lang (string): language code for response like `en`. Default is `en`.
-          max (int): maximum number of next departures per station. Default is 40.
-          max_station (int): maximum number of stations for which departures are required. Default is 40.
+          station_ids (array):
+            a list of stop ids.
+          time (str):
+            time formattes in yyyy-mm-ddThh:mm:ss.
+          lang (str):
+            language code for response like `en`. Default is `en`.
+          max (int):
+            maximum number of next departures per station. Default is 40.
+          max_station (int):
+            maximum number of stations for which departures are required. Default is 40.
         """
 
         data = {'lang': lang,
@@ -188,10 +217,14 @@ class PublicTransitApi(HEREApi):
                         routing_type=PublicTransitRoutingType.time_tabled):
         """Request a public transit route between any two place.
         Args:
-          departure (array): array including latitude and longitude in order.
-          arrival (array): array including latitude and longitude in order.
-          time (string): time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType): type of routing. Default is time_tabled.
+          departure (array):
+            array including latitude and longitude in order.
+          arrival (array):
+            array including latitude and longitude in order.
+          time (str):
+            time formatted in yyyy-mm-ddThh:mm:ss.
+          routing_type (PublicTransitRoutingType):
+            type of routing. Default is time_tabled.
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
@@ -210,11 +243,16 @@ class PublicTransitApi(HEREApi):
                              routing_type=PublicTransitRoutingType.time_tabled):
         """Request a public transit route between any two place.
         Args:
-          departure (array): array including latitude and longitude in order.
-          arrival (array): array including latitude and longitude in order.
-          time (string): time formatted in yyyy-mm-ddThh:mm:ss.
-          show_arrival_times (boolean): flag to indicate if response should show arrival times.
-          routing_type (PublicTransitRoutingType): type of routing. Default is time_tabled
+          departure (array):
+            array including latitude and longitude in order.
+          arrival (array):
+            array including latitude and longitude in order.
+          time (str):
+            time formatted in yyyy-mm-ddThh:mm:ss.
+          show_arrival_times (boolean):
+            flag to indicate if response should show arrival times.
+          routing_type (PublicTransitRoutingType):
+            type of routing. Default is time_tabled
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
@@ -234,11 +272,16 @@ class PublicTransitApi(HEREApi):
                                        graph=0):
         """Request a public transit route between any two place.
         Args:
-          departure (array): array including latitude and longitude in order.
-          arrival (array): array including latitude and longitude in order.
-          time (string): time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType): type of routing. Default is time_tabled.
-          graph (int): Enable showing line graph. Default is 0 disabled, to enable set 1.
+          departure (array):
+            array including latitude and longitude in order.
+          arrival (array):
+            array including latitude and longitude in order.
+          time (str):
+            time formatted in yyyy-mm-ddThh:mm:ss.
+          routing_type (PublicTransitRoutingType):
+            type of routing. Default is time_tabled.
+          graph (int):
+            Enable showing line graph. Default is 0 disabled, to enable set 1.
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
@@ -258,12 +301,17 @@ class PublicTransitApi(HEREApi):
                               lang='en'):
         """Request a list of transit operator coverage within a specified city.
         Args:
-          city_name (string): the name or part of the name of the search city.
-          max (int): maximum number of results.
-          political_view (int): 1 enables, 0 disables grouping results.
-          details (int): with 1 supported list of operators and population added to response.
+          city_name (str):
+            the name or part of the name of the search city.
+          max (int):
+            maximum number of results.
+          political_view (int):
+            1 enables, 0 disables grouping results.
+          details (int):
+            with 1 supported list of operators and population added to response.
             Set to 0 just return the matching city names.
-          lang (string): the language of the response, default `en`.
+          lang (str):
+            the language of the response, default `en`.
         """
 
         data = {'name': city_name,
@@ -280,8 +328,10 @@ class PublicTransitApi(HEREApi):
     def coverage_nearby(self, details, center):
         """Request a list of transit operators and station coverage nearby.
         Args:
-          details (int): 0 disables showing line info, 1 enables showing line info.abs
-          center (array): array including latitude and longitude in order.
+          details (int):
+            0 disables showing line info, 1 enables showing line info.abs
+          center (array):
+            array including latitude and longitude in order.
         """
         data = {'details': details,
                 'center': str.format('{0},{1}', center[0], center[1]),
@@ -297,11 +347,16 @@ class PublicTransitApi(HEREApi):
                                           changes=-1):
         """Request a direct public transit route excluding changes and transfers.
         Args:
-          departure (array): array including latitude and longitude in order.
-          arrival (array): array including latitude and longitude in order.
-          time (string): time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType): type of routing. Default is time_tabled.
-          changes (int): Maximum number of changes or transfers. Default is -1 and max is 6.
+          departure (array):
+            array including latitude and longitude in order.
+          arrival (array):
+            array including latitude and longitude in order.
+          time (str):
+            time formatted in yyyy-mm-ddThh:mm:ss.
+          routing_type (PublicTransitRoutingType):
+            type of routing. Default is time_tabled.
+          changes (int):
+            Maximum number of changes or transfers. Default is -1 and max is 6.
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),

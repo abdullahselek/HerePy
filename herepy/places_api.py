@@ -22,11 +22,14 @@ class PlacesApi(HEREApi):
                  app_id=None,
                  app_code=None,
                  timeout=None):
-        """Return a PlacesApi instance.
+        """Returns a PlacesApi instance.
         Args:
-          app_id (string): App Id taken from HERE Developer Portal.
-          app_code (string): App Code taken from HERE Developer Portal.
-          timeout (int): Timeout limit for requests.
+          app_id (str):
+            App Id taken from HERE Developer Portal.
+          app_code (str):
+            App Code taken from HERE Developer Portal.
+          timeout (int):
+            Timeout limit for requests.
         """
 
         super(PlacesApi, self).__init__(app_id, app_code, timeout)
@@ -65,8 +68,10 @@ class PlacesApi(HEREApi):
     def onebox_search(self, coordinates, query):
         """Request a list of nearby places based on a query string
         Args:
-          coordinates (array): array including latitude and longitude in order.
-          query (string): search term.
+          coordinates (array):
+            array including latitude and longitude in order.
+          query (str):
+            search term.
         Returns:
           PlacesResponse instance or HEREError"""
 
@@ -79,7 +84,8 @@ class PlacesApi(HEREApi):
     def places_at(self, coordinates):
         """Request a list of popular places around a location
         Args:
-          coordinates (array): array including latitude and longitude in order.
+          coordinates (array):
+            array including latitude and longitude in order.
         Returns:
           PlacesResponse instance or HEREError"""
 
@@ -99,8 +105,10 @@ class PlacesApi(HEREApi):
     def category_places_at(self, coordinates, categories=None):
         """Request a list of places within a category around a location
         Args:
-          coordinates (array): array including latitude and longitude in order.
-          categories (array): array including PlacesCategory enums.
+          coordinates (array):
+            array including latitude and longitude in order.
+          categories (array):
+            array including PlacesCategory enums.
         Returns:
           PlacesResponse instance or HEREError"""
 
@@ -116,7 +124,8 @@ class PlacesApi(HEREApi):
     def nearby_places(self, coordinates):
         """Request a list of places close to a location
         Args:
-          coordinates (array): array including latitude and longitude in order.
+          coordinates (array):
+            array including latitude and longitude in order.
         Returns:
           PlacesResponse instance or HEREError"""
 
@@ -128,8 +137,10 @@ class PlacesApi(HEREApi):
     def search_suggestions(self, coordinates, query):
         """Request a list of suggestions based on a partial query string
         Args:
-          coordinates (array): array including latitude and longitude in order.
-          query (string): search term.
+          coordinates (array):
+            array including latitude and longitude in order.
+          query (str):
+            search term.
         Returns:
           PlacesSuggestionsResponse instance or HEREError"""
 
@@ -142,7 +153,8 @@ class PlacesApi(HEREApi):
     def place_categories(self, coordinates):
         """Request a list of place categories available for a given location
         Args:
-          coordinates (array): array including latitude and longitude in order.
+          coordinates (array):
+            array including latitude and longitude in order.
         Returns:
           PlaceCategoriesResponse instance or HEREError"""
 
@@ -154,8 +166,10 @@ class PlacesApi(HEREApi):
     def places_at_boundingbox(self, coordinates_a, coordinates_b):
         """Request a list of popular places within a specified area
         Args:
-          coordinates_a (array): array including latitude and longitude in order.
-          coordinates_b (array): array including latitude and longitude in order.
+          coordinates_a (array):
+            array including latitude and longitude in order.
+          coordinates_b (array):
+            array including latitude and longitude in order.
         Returns:
           PlacesResponse instance or HEREError"""
 
@@ -167,8 +181,10 @@ class PlacesApi(HEREApi):
     def places_with_language(self, coordinates, language):
         """Request a list of popular places around a location using a foreign language
         Args:
-          coordinates (array): array including latitude and longitude in order.
-          language (string): string value for language like `en-US`
+          coordinates (array):
+            array including latitude and longitude in order.
+          language (str):
+            string value for language like `en-US`
         Returns:
           PlacesResponse instance or HEREError"""
 
