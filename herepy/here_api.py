@@ -7,11 +7,14 @@ class HEREApi(object):
                  app_id=None,
                  app_code=None,
                  timeout=None):
-        """Return a Api instance.
+        """Returns a Api instance.
         Args:
-          app_id (string): App Id taken from HERE Developer Portal.
-          app_code (string): App Code taken from HERE Developer Portal.
-          timeout (int): Timeout limit for requests.
+          app_id (str):
+            App Id taken from HERE Developer Portal.
+          app_code (str):
+            App Code taken from HERE Developer Portal.
+          timeout (int):
+            Timeout limit for requests.
         """
 
         self.__set_credentials(app_id, app_code)
@@ -25,8 +28,10 @@ class HEREApi(object):
                           app_code):
         """Setter for credentials.
         Args:
-          app_id (string): App Id taken from HERE Developer Portal.
-          app_code (string): App Code taken from HERE Developer Portal.
+          app_id (str):
+            App Id taken from HERE Developer Portal.
+          app_code (str):
+            App Code taken from HERE Developer Portal.
         """
         self._app_id = app_id
         self._app_code = app_code
