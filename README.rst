@@ -67,7 +67,7 @@ The test suite can be run against a single Python version which requires ``pip i
 
 To run the unit tests with a single Python version::
 
-    $ pytest
+    $ py.test -v
 
 to also run code coverage::
 
