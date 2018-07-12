@@ -44,7 +44,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.address_with_boundingbox('200 S Mathilda Sunnyvale CA', [42.3952,-71.1056], [42.3312,-71.0228])
+        response = self._api.address_with_boundingbox('200 S Mathilda Sunnyvale CA', [42.3952, -71.1056], [42.3312, -71.0228])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.GeocoderResponse)
 
@@ -54,7 +54,7 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.address_with_boundingbox('', [-42.3952,-71.1056], [-42.3312,-71.0228])
+        response = self._api.address_with_boundingbox('', [-42.3952, -71.1056], [-42.3312, -71.0228])
         self.assertIsInstance(response, herepy.HEREError)
 
     @responses.activate
