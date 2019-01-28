@@ -1,0 +1,118 @@
+{
+    "astronomy": {
+      "astronomy": [
+        {
+          "sunrise": "7:12AM",
+          "sunset": "4:14PM",
+          "moonrise": "12:25PM",
+          "moonset": "12:20AM",
+          "moonPhase": 0.54,
+          "moonPhaseDesc": "FirstQuarter",
+          "iconName": "cw_first_qtr",
+          "city": "Chicago",
+          "latitude": 41.83,
+          "longitude": -87.68,
+          "utcTime": "2013-12-10T00:00:00.00-06:00"
+        },
+        {
+          "sunrise": "7:13AM",
+          "sunset": "4:14PM",
+          "moonrise": "12:57PM",
+          "moonset": "1:25AM",
+          "moonPhase": 0.645,
+          "moonPhaseDesc": "Waxinggibbous",
+          "iconName": "cw_waxing_gibbous",
+          "city": "Chicago",
+          "latitude": 41.83,
+          "longitude": -87.68,
+          "utcTime": "2013-12-11T00:00:00.00-06:00"
+        },
+        {
+          "sunrise": "7:14AM",
+          "sunset": "4:14PM",
+          "moonrise": "1:30PM",
+          "moonset": "2:28AM",
+          "moonPhase": 0.741,
+          "moonPhaseDesc": "Waxinggibbous",
+          "iconName": "cw_waxing_gibbous",
+          "city": "Chicago",
+          "latitude": 41.83,
+          "longitude": -87.68,
+          "utcTime": "2013-12-12T00:00:00.00-06:00"
+        },
+        {
+          "sunrise": "7:14AM",
+          "sunset": "4:14PM",
+          "moonrise": "2:05PM",
+          "moonset": "3:30AM",
+          "moonPhase": 0.825,
+          "moonPhaseDesc": "Waxinggibbous",
+          "iconName": "cw_waxing_gibbous",
+          "city": "Chicago",
+          "latitude": 41.83,
+          "longitude": -87.68,
+          "utcTime": "2013-12-13T00:00:00.00-06:00"
+        },
+        {
+          "sunrise": "7:15AM",
+          "sunset": "4:15PM",
+          "moonrise": "2:43PM",
+          "moonset": "4:28AM",
+          "moonPhase": 0.895,
+          "moonPhaseDesc": "Waxinggibbous",
+          "iconName": "cw_waxing_gibbous",
+          "city": "Chicago",
+          "latitude": 41.83,
+          "longitude": -87.68,
+          "utcTime": "2013-12-14T00:00:00.00-06:00"
+        },
+        {
+          "sunrise": "7:16AM",
+          "sunset": "4:15PM",
+          "moonrise": "3:26PM",
+          "moonset": "5:26AM",
+          "moonPhase": 0.947,
+          "moonPhaseDesc": "Fullmoon",
+          "iconName": "cw_full_moon",
+          "city": "Chicago",
+          "latitude": 41.83,
+          "longitude": -87.68,
+          "utcTime": "2013-12-15T00:00:00.00-06:00"
+        },
+        {
+          "sunrise": "7:17AM",
+          "sunset": "4:15PM",
+          "moonrise": "4:12PM",
+          "moonset": "6:18AM",
+          "moonPhase": 0.981,
+          "moonPhaseDesc": "Fullmoon",
+          "iconName": "cw_full_moon",
+          "city": "Chicago",
+          "latitude": 41.83,
+          "longitude": -87.68,
+          "utcTime": "2013-12-16T00:00:00.00-06:00"
+        },
+        {
+          "sunrise": "7:17AM",
+          "sunset": "4:15PM",
+          "moonrise": "5:02PM",
+          "moonset": "7:07AM",
+          "moonPhase": 0.998,
+          "moonPhaseDesc": "Fullmoon",
+          "iconName": "cw_full_moon",
+          "city": "Chicago",
+          "latitude": 41.83,
+          "longitude": -87.68,
+          "utcTime": "2013-12-17T00:00:00.00-06:00"
+        }
+      ],
+      "country": "UnitedStates",
+      "state": "Illinois",
+      "city": "Chicago",
+      "latitude": 41.85003,
+      "longitude": -87.65005,
+      "timezone": -6
+    },
+    "feedCreation": "2013-12-10T15:44:37.120",
+    "metric": true
+  }

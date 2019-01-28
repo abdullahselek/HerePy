@@ -174,3 +174,15 @@ class TrafficIncidentResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+class DestinationWeatherResponse(HEREModel):
+    """A class representing the Weather Forecasts for DestinationWeather Api."""
+
+    def __init__(self, **kwargs):
+        super(DestinationWeatherResponse, self).__init__()
+        self.param_defaults = {
+            'astronomy': None
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))

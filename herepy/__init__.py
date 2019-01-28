@@ -33,7 +33,8 @@ from .models import (
     PlacesSuggestionsResponse,
     PlaceCategoriesResponse,
     PublicTransitResponse,
-    TrafficIncidentResponse
+    TrafficIncidentResponse,
+    DestinationWeatherResponse
 )
 
 from .utils import Utils
