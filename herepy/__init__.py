@@ -42,3 +42,4 @@ from .routing_api import RoutingApi
 from .geocoder_autocomplete_api import GeocoderAutoCompleteApi
 from .places_api import PlacesApi
 from .public_transit_api import PublicTransitApi
+from .destination_weather_api import DestinationWeatherApi
