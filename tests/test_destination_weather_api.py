@@ -18,3 +18,22 @@ class DestinationWeatherApiTest(unittest.TestCase):
         self.assertEqual(self._api._app_id, 'app_id')
         self.assertEqual(self._api._app_code, 'app_code')
         self.assertEqual(self._api._base_url, 'https://weather.api.here.com/weather/1.0/report.json')
+
+    @responses.activate
+    def test_forecast_astronomy_whensucceed(self):
+        with open('testdata/models/destination_weather.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://weather.api.here.com/weather/1.0/report.json',
+                  expectedResponse, status=200)
+        response = self._api.forecast_astronomy('London')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+
+    @responses.activate
+    def test_forecast_astronomy_whenerroroccured(self):
+        with open('testdata/models/destination_weather_error.json', 'r') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://weather.api.here.com/weather/1.0/report.json',
+                  expectedResponse, status=200)
+        response = self._api.forecast_astronomy('London')
+        self.assertIsInstance(response, herepy.HEREError)
