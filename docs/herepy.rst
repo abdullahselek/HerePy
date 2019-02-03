@@ -24,6 +24,10 @@ APIS
     :members:
     :undoc-members:
     :show-inheritance:
+.. automodule:: herepy.destination_weather_api
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 .. automodule:: herepy.error
     :members:

@@ -10,3 +10,4 @@ HerePy provides the following models of the objects returned by the HERE APIs:
 * :py:class:`herepy.PlacesSuggestionsResponse`
 * :py:class:`herepy.PlaceCategoriesResponse`
 * :py:class:`herepy.PublicTransitResponse`
+* :py:class:`herepy.DestinationWeatherResponse`
