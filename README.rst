@@ -83,17 +83,19 @@ Models
 The library utilizes models to represent various data structures returned by HERE::
 
     * herepy.GeocoderResponse
+    * herepy.GeocoderReverseResponse
     * herepy.RoutingResponse
     * herepy.GeocoderAutoCompleteResponse
     * herepy.PlacesResponse
     * herepy.PlacesSuggestionsResponse
     * herepy.PlaceCategoriesResponse
     * herepy.PublicTransitResponse
+    * herepy.RmeResponse
 
 GeocoderApi
 -----------
 
-Is the wrapper for HERE Geoder API, to use this wrapper and all other wrappers you need a AppId and AppCode which you
+Is the wrapper for HERE Gecoder API, to use this wrapper and all other wrappers you need a AppId and AppCode which you
 can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
 Initiation of GeocoderApi::
@@ -120,10 +122,27 @@ Geocoding with given street and city::
 
     response = geocoderApi.street_intersection('Barbaros', 'Istanbul')
 
+GeocoderReverseApi
+------------------
+
+Is the wrapper for HERE Geocoder Reverse API, to use this wrapper and all other wrappers you need a AppId and AppCode
+which you can get from `HERE Developer Portal <https://developer.here.com/>`_.
+
+Initiation of GeocoderReverseApi::
+
+    import herepy
+
+    geocoderReverseApi = herepy.GeocoderReverseApi('app_id', 'app_code')
+
+
+Retrieving address of a given point:
+
+    response = geocoderReverseApi.retrieve_addresses([42.3952,-71.1056])
+
 RoutingApi
 ----------
 
-Initiation of GeocoderApi::
+Initiation of RoutingApi::
 
     import herepy
 
@@ -237,6 +256,22 @@ Initiation of PublicTransitApi::
     import herepy
 
     publicTransitApi = herepy.PublicTransitApi('app_id', 'app_code')
+
+RmeApi
+------
+
+Initiation of RmeApi:
+
+    import herepy
+
+    rmeApi = herepy.RmeApi('app_id', 'app_code')
+
+Get information about points of a gpx file:
+
+    with open('my-gpx.file') as gpx_file:
+        content = gpx_file.read()
+        response = rmeApi.match_route(content, ['ROAD_GEOM_FCn(*)'])
+
 
 License
 -------

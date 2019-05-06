@@ -8,7 +8,7 @@ __author__       = 'Abdullah Selek'
 __email__        = 'abdullahselek@gmail.com'
 __copyright__    = 'Copyright (c) 2017 Abdullah Selek'
 __license__      = 'MIT License'
-__version__      = '0.5.0'
+__version__      = '0.6.0'
 __url__          = 'https://github.com/abdullahselek/HerePy'
 __download_url__ = 'https://pypi.org/pypi/herepy'
 __description__  = 'A Python wrapper around the HERE APIs'
@@ -27,20 +27,24 @@ from .here_enum import (
 
 from .models import (
     GeocoderResponse,
+    GeocoderReverseResponse,
     RoutingResponse,
     GeocoderAutoCompleteResponse,
     PlacesResponse,
     PlacesSuggestionsResponse,
     PlaceCategoriesResponse,
     PublicTransitResponse,
+    RmeResponse,
     TrafficIncidentResponse,
     DestinationWeatherResponse
 )
 
 from .utils import Utils
 from .geocoder_api import GeocoderApi
+from .geocoder_reverse_api import GeocoderReverseApi
 from .routing_api import RoutingApi
 from .geocoder_autocomplete_api import GeocoderAutoCompleteApi
 from .places_api import PlacesApi
 from .public_transit_api import PublicTransitApi
+from .rme_api import RmeApi
 from .destination_weather_api import DestinationWeatherApi
