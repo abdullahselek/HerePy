@@ -25,7 +25,7 @@ class RmeApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://rme.api.here.com/2/matchroute.json',
                   expectedResponse, status=200)
-        with open('testdata/routes/sample.gpx') as gpx_file:
+        with open('testdata/routes/sample.gpx', encoding='utf-8') as gpx_file:
             gpx_content = gpx_file.read()
         response = self._api.match_route(gpx_content, ['ADAS_ATTRIB_FCn(SLOPES)'])
         self.assertTrue(response)
