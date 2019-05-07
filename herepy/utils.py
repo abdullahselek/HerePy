@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 from __future__ import division
+import zlib
+import base64
 
 try:
     # python 3
@@ -62,3 +64,9 @@ class Utils(object):
 
         # Return the rebuilt URL
         return urlunparse((scheme, netloc, path, params, query, fragment))
+
+    @staticmethod
+    def get_zipped_base64(content):
+        content_bytes = content.encode()
+        content_zipped = zlib.compress(content_bytes)
+        return base64.b64encode(content_zipped).decode('utf-8')

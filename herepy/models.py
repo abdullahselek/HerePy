@@ -91,6 +91,18 @@ class GeocoderResponse(HEREModel):
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
 
+class GeocoderReverseResponse(HEREModel):
+    """A class representing the Geocoder Reverse Api response data."""
+
+    def __init__(self, **kwargs):
+        super(GeocoderReverseResponse, self).__init__()
+        self.param_defaults = {
+            'Response': None
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))
+
 class RoutingResponse(HEREModel):
     """A class representing the Routing Api response data."""
 
@@ -110,6 +122,20 @@ class GeocoderAutoCompleteResponse(HEREModel):
         super(GeocoderAutoCompleteResponse, self).__init__()
         self.param_defaults = {
             'suggestions': None
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))
+
+class RmeResponse(HEREModel):
+    """A class representing the RME (Route Matcher) Api response data."""
+
+    def __init__(self, **kwargs):
+        super(RmeResponse, self).__init__()
+        self.param_defaults = {
+            'RouteLinks' : [],
+            'TracePoints' : [],
+            'Warnings' : []
         }
 
         for (param, default) in self.param_defaults.items():
