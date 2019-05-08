@@ -95,7 +95,7 @@ The library utilizes models to represent various data structures returned by HER
 GeocoderApi
 -----------
 
-Is the wrapper for HERE Gecoder API, to use this wrapper and all other wrappers you need a AppId and AppCode which you
+Is the wrapper for HERE Geocoder API, to use this wrapper and all other wrappers you need a AppId and AppCode which you
 can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
 Initiation of GeocoderApi::
@@ -137,7 +137,7 @@ Initiation of GeocoderReverseApi::
 
 Retrieving address of a given point:
 
-    response = geocoderReverseApi.retrieve_addresses([42.3952,-71.1056])
+    response = geocoderReverseApi.retrieve_addresses([42.3952, -71.1056])
 
 RoutingApi
 ----------
@@ -271,7 +271,6 @@ Get information about points of a gpx file:
     with open('my-gpx.file') as gpx_file:
         content = gpx_file.read()
         response = rmeApi.match_route(content, ['ROAD_GEOM_FCn(*)'])
-
 
 License
 -------

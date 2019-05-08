@@ -43,7 +43,7 @@ class RmeApi(HEREApi):
         except ValueError as err:
             return HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
-    def match_route(self, gpx_file_content, route_mode='car',pde_layers=[]):
+    def match_route(self, gpx_file_content, route_mode='car', pde_layers=[]):
         """Retrieves misc information about the route given in gpx file
         Args:
           gpxfile content (str):
@@ -60,8 +60,6 @@ class RmeApi(HEREApi):
 
               ROAD_GEOM_FCn(*)
               SPEED_LIMITS_FCn(*)
-
-              
         Returns:
           RmeResponse or HEREError instance"""
 
