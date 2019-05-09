@@ -67,6 +67,6 @@ class Utils(object):
 
     @staticmethod
     def get_zipped_base64(content):
-        content_bytes = content.encode()
+        content_bytes = content.encode('utf-8')
         content_zipped = zlib.compress(content_bytes)
         return base64.b64encode(content_zipped).decode('utf-8')
