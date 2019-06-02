@@ -98,27 +98,37 @@ GeocoderApi
 Is the wrapper for HERE Geocoder API, to use this wrapper and all other wrappers you need a AppId and AppCode which you
 can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
-Initiation of GeocoderApi::
+Initiation of GeocoderApi
+
+.. code:: python
 
     import herepy
 
     geocoderApi = herepy.GeocoderApi('app_id', 'app_code')
 
-Geocoding given search text::
+Geocoding given search text
+
+.. code:: python
 
     response = geocoderApi.free_form('200 S Mathilda Sunnyvale CA')
 
-Geocoding given search text with in given boundingbox::
+Geocoding given search text with in given boundingbox
+
+.. code:: python
 
     response = geocoderApi.address_with_boundingbox('200 S Mathilda Sunnyvale CA',
                                                     [42.3952,-71.1056],
                                                     [42.3312,-71.0228])
 
-Geocoding with given address details::
+Geocoding with given address details
+
+.. code:: python
 
     response = geocoderApi.address_with_details(34, 'Barbaros', 'Istanbul', 'Turkey')
 
-Geocoding with given street and city::
+Geocoding with given street and city
+
+.. code:: python
 
     response = geocoderApi.street_intersection('Barbaros', 'Istanbul')
 
@@ -128,59 +138,77 @@ GeocoderReverseApi
 Is the wrapper for HERE Geocoder Reverse API, to use this wrapper and all other wrappers you need a AppId and AppCode
 which you can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
-Initiation of GeocoderReverseApi::
+Initiation of GeocoderReverseApi
+
+.. code:: python
 
     import herepy
 
     geocoderReverseApi = herepy.GeocoderReverseApi('app_id', 'app_code')
 
 
-Retrieving address of a given point:
+Retrieving address of a given point
+
+.. code:: python
 
     response = geocoderReverseApi.retrieve_addresses([42.3952, -71.1056])
 
 RoutingApi
 ----------
 
-Initiation of RoutingApi::
+Initiation of RoutingApi
+
+.. code:: python
 
     import herepy
 
     routingApi = herepy.RoutingApi('app_id', 'app_code')
 
-Calculate route for car::
+Calculate route for car
+
+.. code:: python
 
     response = routingApi.car_route([11.0, 12.0],
                                     [22.0, 23.0],
                                     [herepy.RouteMode.car, herepy.RouteMode.fastest])
 
-Calculate route for pedestrians::
+Calculate route for pedestrians
+
+.. code:: python
 
     response = routingApi.pedastrian_route([11.0, 12.0],
                                            [22.0, 23.0],
                                            [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
 
-Calculate route between three points::
+Calculate route between three points
+
+.. code:: python
 
     response = routingApi.intermediate_route([11.0, 12.0],
                                              [15.0, 16.0],
                                              [22.0, 23.0],
                                              [herepy.RouteMode.car, herepy.RouteMode.fastest])
 
-Route for public transport::
+Route for public transport
+
+.. code:: python
 
     response = routingApi.public_transport([11.0, 12.0],
                                            [15.0, 16.0],
                                            True,
                                            [herepy.RouteMode.publicTransport, herepy.RouteMode.fastest])
 
-Calculates the fastest car route between two location::
+Calculates the fastest car route between two location
+
+.. code:: python
 
     response = routingApi.location_near_motorway([11.0, 12.0],
                                                  [22.0, 23.0],
                                                  [herepy.RouteMode.car, herepy.RouteMode.fastest])
 
-Calculates the fastest truck route between two location::
+Calculates the fastest truck route between two location
+
+.. code:: python
 
     response = routingApi.truck_route([11.0, 12.0],
                                       [22.0, 23.0],
@@ -189,69 +217,97 @@ Calculates the fastest truck route between two location::
 GeocoderAutoCompleteApi
 -----------------------
 
-Initiation of GeocoderAutoCompleteApi::
+Initiation of GeocoderAutoCompleteApi
+
+.. code:: python
 
     import herepy
 
     geocoderAutoCompleteApi = herepy.GeocoderAutoCompleteApi('app_id', 'app_code')
 
-Request a list of suggested addresses found within a specified area::
+Request a list of suggested addresses found within a specified area
+
+.. code:: python
 
     response = geocoderAutoCompleteApi.address_suggestion('High', [51.5035,-0.1616], 100)
 
-Request a list of suggested addresses within a single country::
+Request a list of suggested addresses within a single country
+
+.. code:: python
 
     response = geocoderAutoCompleteApi.limit_results_byaddress('Nis', 'USA')
 
-Request an annotated list of suggested addresses with matching tokens highlighted::
+Request an annotated list of suggested addresses with matching tokens highlighted
+
+.. code:: python
 
     response = geocoderAutoCompleteApi.highlighting_matches('Wacker Chic', '**', '**')
 
 PlacesApi
 ---------
 
-Initiation of PlacesApi::
+Initiation of PlacesApi
+
+.. code:: python
 
     import herepy
 
     placesApi = herepy.PlacesApi('app_id', 'app_code')
 
-Request a list of nearby places based on a query string::
+Request a list of nearby places based on a query string
+
+.. code:: python
 
     response = placesApi.onebox_search([37.7905, -122.4107], 'restaurant')
 
-Request a list of popular places around a location::
+Request a list of popular places around a location
+
+.. code:: python
 
     response = placesApi.places_at([37.7905, -122.4107])
 
-Request a list of places within a category around a location::
+Request a list of places within a category around a location
+
+.. code:: python
 
     response = placesApi.category_places_at([37.7905, -122.4107], [herepy.PlacesCategory.eat_drink])
 
-Request a list of places close to a location::
+Request a list of places close to a location
+
+.. code:: python
 
     response = placesApi.nearby_places([37.7905, -122.4107])
 
-Request a list of suggestions based on a partial query string::
+Request a list of suggestions based on a partial query string
+
+.. code:: python
 
     response = placesApi.search_suggestions([52.5159, 13.3777], 'berlin')
 
-Request a list of place categories available for a given location::
+Request a list of place categories available for a given location
+
+.. code:: python
 
     response = placesApi.place_categories([52.5159, 13.3777])
 
-Request a list of popular places within a specified area::
+Request a list of popular places within a specified area
+
+.. code:: python
 
     response = placesApi.places_at_boundingbox([-122.408, 37.793], [-122.4070, 37.7942])
 
-Request a list of popular places around a location using a foreign language::
+Request a list of popular places around a location using a foreign language
+
+.. code:: python
 
     response = placesApi.places_with_language([48.8580, 2.2945], 'en-US')
 
 PublicTransitApi
 ----------------
 
-Initiation of PublicTransitApi::
+Initiation of PublicTransitApi
+
+.. code:: python
 
     import herepy
 
@@ -260,13 +316,17 @@ Initiation of PublicTransitApi::
 RmeApi
 ------
 
-Initiation of RmeApi:
+Initiation of RmeApi
+
+.. code:: python
 
     import herepy
 
     rmeApi = herepy.RmeApi('app_id', 'app_code')
 
-Get information about points of a gpx file:
+Get information about points of a gpx file
+
+.. code:: python
 
     with open('my-gpx.file') as gpx_file:
         content = gpx_file.read()
