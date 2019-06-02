@@ -12,6 +12,10 @@ APIS
     :members:
     :undoc-members:
     :show-inheritance:
+.. automodule:: herepy.geocoder_reverse_api
+    :members:
+    :undoc-members:
+    :show-inheritance:
 .. automodule:: herepy.places_api
     :members:
     :undoc-members:
@@ -25,6 +29,10 @@ APIS
     :undoc-members:
     :show-inheritance:
 .. automodule:: herepy.destination_weather_api
+    :members:
+    :undoc-members:
+    :show-inheritance:
+.. automodule:: herepy.rme_api
     :members:
     :undoc-members:
     :show-inheritance:
