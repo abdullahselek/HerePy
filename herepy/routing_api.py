@@ -49,6 +49,15 @@ class RoutingApi(HEREApi):
         mode_values = mode_values[:-1]
         return mode_values
 
+    def _route(self, waypoint_a, waypoint_b, modes=None):
+        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
+                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
+                'mode': self.__prepare_mode_values(modes),
+                'app_id': self._app_id,
+                'app_code': self._app_code,
+                'departure': 'now'}
+        return self.__get(data)
+
     def car_route(self,
                   waypoint_a,
                   waypoint_b,
@@ -66,14 +75,7 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
-
-        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
-                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
-                'mode':  self.__prepare_mode_values(modes),
-                'app_id': self._app_id,
-                'app_code': self._app_code,
-                'departure': 'now'}
-        return self.__get(data)
+        return self._route(waypoint_a, waypoint_b, modes)
 
     def pedastrian_route(self,
                          waypoint_a,
@@ -92,13 +94,7 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.pedestrian, RouteMode.fastest]
-
-        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
-                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
-                'mode':  self.__prepare_mode_values(modes),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
-        return self.__get(data)
+        return self._route(waypoint_a, waypoint_b, modes)
 
     def intermediate_route(self,
                            waypoint_a,
@@ -120,14 +116,7 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
-
-        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
-                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
-                'waypoint2': str.format('{0},{1}', waypoint_c[0], waypoint_c[1]),
-                'mode':  self.__prepare_mode_values(modes),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
-        return self.__get(data)
+        return self._route(waypoint_a, waypoint_b, modes)
 
     def public_transport(self,
                          waypoint_a,
@@ -150,14 +139,7 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.publicTransport, RouteMode.fastest]
-
-        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
-                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
-                'mode':  self.__prepare_mode_values(modes),
-                'combine_change': 'true' if combine_change == True else 'false',
-                'app_id': self._app_id,
-                'app_code': self._app_code}
-        return self.__get(data)
+        return self._route(waypoint_a, waypoint_b, modes)
 
     def location_near_motorway(self,
                                waypoint_a,
@@ -176,13 +158,7 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
-
-        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
-                'waypoint1': str.format('street!!{0},{1}', waypoint_b[0], waypoint_b[1]),
-                'mode':  self.__prepare_mode_values(modes),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
-        return self.__get(data)
+        return self._route(waypoint_a, waypoint_b, modes)
 
     def truck_route(self,
                     waypoint_a,
@@ -201,10 +177,4 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.truck, RouteMode.fastest]
-
-        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
-                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
-                'mode':  self.__prepare_mode_values(modes),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
-        return self.__get(data)
+        return self._route(waypoint_a, waypoint_b, modes)
