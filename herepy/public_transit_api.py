@@ -228,7 +228,7 @@ class PublicTransitApi(HEREApi):
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
-                'arr': str.format('{0}.{1}', arrival[0], arrival[1]),
+                'arr': str.format('{0},{1}', arrival[0], arrival[1]),
                 'time': time,
                 'app_id': self._app_id,
                 'app_code': self._app_code,
