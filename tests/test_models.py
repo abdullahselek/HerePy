@@ -107,7 +107,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(trafficIncidentResponse.as_dict())
 
     def test_destination_weather_response(self):
-        destinationWeatherResponse = herepy.DestinationWeatherResponse.new_from_jsondict(self.DESTINATION_WEATHER_SAMPLE_JSON)
+        destinationWeatherResponse = herepy.DestinationWeatherResponse.new_from_jsondict(self.DESTINATION_WEATHER_SAMPLE_JSON, {'observations': None})
         try:
             destinationWeatherResponse.__repr__()
         except Exception as e:

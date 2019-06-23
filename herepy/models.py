@@ -204,11 +204,28 @@ class TrafficIncidentResponse(HEREModel):
 class DestinationWeatherResponse(HEREModel):
     """A class representing the Weather Forecasts for DestinationWeather Api."""
 
-    def __init__(self, **kwargs):
+    def __init__(self, param_defaults, **kwargs):
         super(DestinationWeatherResponse, self).__init__()
-        self.param_defaults = {
-            'astronomy': None
-        }
+        self.param_defaults = param_defaults
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+    @classmethod
+    def new_from_jsondict(cls, data, param_defaults, **kwargs):
+        """ Create a new instance based on a JSON dict. Any kwargs should be
+        supplied by the inherited, calling class.
+
+        Args:
+            data (dict):
+              A JSON dict, as converted from the JSON in the here API.
+        """
+
+        json_data = data.copy()
+        if kwargs:
+            for key, val in kwargs.items():
+                json_data[key] = val
+
+        c = cls(param_defaults, **json_data)
+        c._json = data
+        return c
