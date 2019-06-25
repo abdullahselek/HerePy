@@ -50,6 +50,14 @@ Models
     :undoc-members:
     :show-inheritance:
 
+Enums
+-----
+
+.. automodule:: herepy.here_enum
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 Utilities
 ---------
 
