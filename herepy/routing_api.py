@@ -39,7 +39,7 @@ class RoutingApi(HEREApi):
         if json_data.get('response') != None:
             return RoutingResponse.new_from_jsondict(json_data)
         else:
-            return HEREError(json_data.get('details', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            return error_from_routing_service_error(json_data)
 
     @classmethod
     def __prepare_mode_values(cls, modes):
@@ -178,3 +178,89 @@ class RoutingApi(HEREApi):
         if modes is None:
             modes = [RouteMode.truck, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes)
+
+
+
+class InvalidCredentialsError(HEREError):
+
+    """Invalid Credentials Error Type.
+
+    This error is returned if the specified token was invalid or no contract
+    could be found for this token.
+
+    """
+
+
+class InvalidInputDataError(HEREError):
+
+    """Invalid Input Data Error Type.
+
+    This error is returned if the specified request parameters contain invalid
+    data, such as due to wrong parameter syntax or invalid parameter
+    combinations.
+
+    """
+
+
+class WaypointNotFoundError(HEREError):
+
+    """Waypoint not found Error Type.
+
+    This error indicates that one of the requested waypoints
+    (start/end or via point) could not be found in the routing network.
+
+    """
+
+
+class NoRouteFoundError(HEREError):
+
+    """No Route Found Error Type.
+
+    This error indicates that no route could be constructed based on the input
+    parameter.
+
+    """
+
+
+class LinkIdNotFoundError(HEREError):
+
+    """Link Not Found Error Type.
+
+    This error indicates that a link ID passed as input parameter could not be
+    found in the underlying map data.
+
+    """
+
+
+class RouteNotReconstructedError(HEREError):
+
+    """Route Not Reconstructed Error Type.
+
+    This error indicates that the RouteId is invalid (RouteId can not be
+    decoded into valid data) or route failed to be reconstructed from the
+    RouteId. In every case a mitigation is to re-run CalculateRoute request to
+    acquire a new proper RouteId.
+
+    """
+
+# pylint: disable=R0911
+def error_from_routing_service_error(json_data):
+    """Return the correct subclass for routing errors"""
+    if 'subtype' in json_data:
+        subtype = json_data['subtype']
+        details = json_data['details']
+
+        if subtype == 'InvalidCredentials':
+            return InvalidCredentialsError(details)
+        if subtype == 'InvalidInputData':
+            return InvalidInputDataError(details)
+        if subtype == 'WaypointNotFound':
+            return WaypointNotFoundError(details)
+        if subtype == 'NoRouteFound':
+            return NoRouteFoundError(details)
+        if subtype == 'LinkIdNotFound':
+            return LinkIdNotFoundError(details)
+        if subtype == 'RouteNotReconstructed':
+            return RouteNotReconstructedError(details)
+    # pylint: disable=W0212
+    return HEREError('Error occured on ' + sys._getframe(1).f_code.co_name)
