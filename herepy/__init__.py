@@ -39,10 +39,19 @@ from .models import (
     DestinationWeatherResponse
 )
 
+from .routing_api import (
+    RoutingApi,
+    InvalidCredentialsError,
+    InvalidInputDataError,
+    WaypointNotFoundError,
+    NoRouteFoundError,
+    LinkIdNotFoundError,
+    RouteNotReconstructedError
+)
+
 from .utils import Utils
 from .geocoder_api import GeocoderApi
 from .geocoder_reverse_api import GeocoderReverseApi
-from .routing_api import RoutingApi
 from .geocoder_autocomplete_api import GeocoderAutoCompleteApi
 from .places_api import PlacesApi
 from .public_transit_api import PublicTransitApi
