@@ -187,7 +187,6 @@ class InvalidCredentialsError(HEREError):
 
     This error is returned if the specified token was invalid or no contract
     could be found for this token.
-
     """
 
 
@@ -198,7 +197,6 @@ class InvalidInputDataError(HEREError):
     This error is returned if the specified request parameters contain invalid
     data, such as due to wrong parameter syntax or invalid parameter
     combinations.
-
     """
 
 
@@ -208,7 +206,6 @@ class WaypointNotFoundError(HEREError):
 
     This error indicates that one of the requested waypoints
     (start/end or via point) could not be found in the routing network.
-
     """
 
 
@@ -218,7 +215,6 @@ class NoRouteFoundError(HEREError):
 
     This error indicates that no route could be constructed based on the input
     parameter.
-
     """
 
 
@@ -228,7 +224,6 @@ class LinkIdNotFoundError(HEREError):
 
     This error indicates that a link ID passed as input parameter could not be
     found in the underlying map data.
-
     """
 
 
@@ -240,7 +235,6 @@ class RouteNotReconstructedError(HEREError):
     decoded into valid data) or route failed to be reconstructed from the
     RouteId. In every case a mitigation is to re-run CalculateRoute request to
     acquire a new proper RouteId.
-
     """
 
 # pylint: disable=R0911
