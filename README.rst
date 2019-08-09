@@ -16,9 +16,6 @@ HerePy
 .. image:: https://requires.io/github/abdullahselek/HerePy/requirements.svg?branch=master
     :target: https://requires.io/github/abdullahselek/HerePy/requirements/?branch=master
 
-.. image:: https://dependencyci.com/github/abdullahselek/HerePy/badge
-    :target: https://dependencyci.com/github/abdullahselek/HerePy
-
 +-------------------------------------------------------------------------+----------------------------------------------------------------------------------+
 |                                Linux                                    |                                       Windows                                    |
 +=========================================================================+==================================================================================+
