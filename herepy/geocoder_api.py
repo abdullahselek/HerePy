@@ -39,9 +39,9 @@ class GeocoderApi(HEREApi):
             if json_data.get('Response') != None:
                 return GeocoderResponse.new_from_jsondict(json_data)
             else:
-                return HEREError(json_data.get('Details', 'Error occured on function ' + sys._getframe(1).f_code.co_name))
+                raise HEREError(json_data.get('Details', 'Error occured on function ' + sys._getframe(1).f_code.co_name))
         except ValueError as err:
-            return HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
+            raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
     def free_form(self, searchtext):
         """Geocodes given search text
@@ -49,7 +49,9 @@ class GeocoderApi(HEREApi):
           searchtext (str):
             possible address text.
         Returns:
-          GeocoderResponse or HEREError instance"""
+          GeocoderResponse
+        Raises:
+          HEREError"""
 
         data = {'searchtext': searchtext, 'app_id': self._app_id, 'app_code': self._app_code}
         return self.__get(data)
@@ -64,7 +66,9 @@ class GeocoderApi(HEREApi):
           bottom_right (array):
             array including latitude and longitude in order.
         Returns:
-          GeocoderResponse or HEREError instance"""
+          GeocoderResponse
+        Raises:
+          HEREError"""
 
         data = {'searchtext': searchtext,
                 'mapview': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1]),
@@ -88,7 +92,9 @@ class GeocoderApi(HEREApi):
           country (str):
             country name.
         Returns:
-          GeocoderResponse or HEREError instance"""
+          GeocoderResponse
+        Raises:
+          HEREError"""
 
         data = {'housenumber': house_number,
                 'street': street,
@@ -108,7 +114,9 @@ class GeocoderApi(HEREApi):
           city (str):
             city name.
         Returns:
-          GeocoderResponse or HEREError instance"""
+          GeocoderResponse
+        Raises:
+          HEREError"""
 
         data = {'street': street,
                 'city': city,

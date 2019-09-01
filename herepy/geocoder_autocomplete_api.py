@@ -38,7 +38,7 @@ class GeocoderAutoCompleteApi(HEREApi):
         if json_data.get('suggestions') != None:
             return GeocoderAutoCompleteResponse.new_from_jsondict(json_data)
         else:
-            return HEREError(json_data.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            raise HEREError(json_data.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
     def address_suggestion(self, query, prox, radius):
         """Request a list of suggested addresses found within a specified area
@@ -48,7 +48,9 @@ class GeocoderAutoCompleteApi(HEREApi):
           radius (int):
             Radius in meters
         Returns:
-          GeocoderAutoCompleteApi or HEREError instance"""
+          GeocoderAutoCompleteApi
+        Raises:
+          HEREError"""
 
         data = {'query': query,
                 'prox': str.format('{0},{1},{2}', prox[0], prox[1], radius),
@@ -64,7 +66,9 @@ class GeocoderAutoCompleteApi(HEREApi):
           countryCode (str):
             Country code (USA etc.)
         Returns:
-          GeocoderAutoCompleteApi or HEREError instance"""
+          GeocoderAutoCompleteApi
+        Raises:
+          HEREError"""
 
         data = {'query': query,
                 'country': country_code,
@@ -82,7 +86,9 @@ class GeocoderAutoCompleteApi(HEREApi):
           end_highlight (str):
             Mark the end of match in a token
         Returns:
-          GeocoderAutoCompleteApi or HEREError instance"""
+          GeocoderAutoCompleteApi
+        Raises:
+          HEREError"""
 
         data = {'query': query,
                 'beginHighlight': begin_highlight,

@@ -35,6 +35,6 @@ class GeocoderReverseApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://reverse.geocoder.api.here.com/6.2/reversegeocode.json',
                   expectedResponse, status=200)
-        response = self._api.retrieve_addresses([None,None],0)
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.retrieve_addresses([None,None],0)
 

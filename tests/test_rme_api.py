@@ -38,6 +38,6 @@ class RmeApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://rme.api.here.com/2/matchroute.json',
                   expectedResponse, status=200)
-        response = self._api.match_route('')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.match_route('')
 

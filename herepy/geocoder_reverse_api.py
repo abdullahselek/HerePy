@@ -39,9 +39,9 @@ class GeocoderReverseApi(HEREApi):
             if json_data.get('Response') != None:
                 return GeocoderReverseResponse.new_from_jsondict(json_data)
             else:
-                return HEREError(json_data.get('Details', 'Error occured on function ' + sys._getframe(1).f_code.co_name))
+                raise HEREError(json_data.get('Details', 'Error occured on function ' + sys._getframe(1).f_code.co_name))
         except ValueError as err:
-            return HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
+            raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
     def retrieve_addresses(self, prox, radius=250, max_results=1, gen=9):
         """Gets the address information of a point within given radius
@@ -53,7 +53,9 @@ class GeocoderReverseApi(HEREApi):
           max_results (int):
             maximum resuls to retrieve.
         Returns:
-          GeocoderReverseResponse or HEREError instance"""
+          GeocoderReverseResponse
+        Raises:
+          HEREError"""
 
         data = {'prox': str.format('{0},{1},{2}', prox[0], prox[1], radius),
                 'mode': 'retrieveAddresses',

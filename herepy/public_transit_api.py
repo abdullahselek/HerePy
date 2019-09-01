@@ -42,9 +42,9 @@ class PublicTransitApi(HEREApi):
         if json_node in json_data.get('Res', {}):
             return PublicTransitResponse.new_from_jsondict(json_data)
         elif 'text' in json_data.get('Res', {}).get('Message', {}):
-            return HEREError(json_data['Res']['Message']['text'], 'Error occured on ' + sys._getframe(1).f_code.co_name)
+            raise HEREError(json_data['Res']['Message']['text'], 'Error occured on ' + sys._getframe(1).f_code.co_name)
         else:
-            return HEREError('Error occured on ' + sys._getframe(1).f_code.co_name)
+            raise HEREError('Error occured on ' + sys._getframe(1).f_code.co_name)
 
     def find_stations_by_name(self,
                               center,
@@ -64,6 +64,10 @@ class PublicTransitApi(HEREApi):
             Matching method from PublicTransitSearchMethod (Default is fuzzy).
           radius (int):
             specifies radius in kilometers (Default is 20000km).
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
@@ -84,6 +88,10 @@ class PublicTransitApi(HEREApi):
             specifies radius in meters (Default is 500m).
           max_count (int):
             maximum number of stations  (Default is 5).
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
@@ -108,6 +116,10 @@ class PublicTransitApi(HEREApi):
             array contains station ids.
           lang (str):
             language code for response like `en`.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'stnIds': self.__prepare_station_ids(ids),
@@ -125,6 +137,10 @@ class PublicTransitApi(HEREApi):
             switch for grouping results like `CHN`.
           radius (int):
             specifies radius in meters.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
@@ -143,6 +159,10 @@ class PublicTransitApi(HEREApi):
             station id for departures.
           time (str):
             time formattes in yyyy-mm-ddThh:mm:ss.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'lang': lang,
@@ -170,6 +190,10 @@ class PublicTransitApi(HEREApi):
             maximum number of next departures per station. Default is 40.
           max_station (int):
             maximum number of stations for which departures are required. Default is 40.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'lang': lang,
@@ -199,6 +223,10 @@ class PublicTransitApi(HEREApi):
             maximum number of next departures per station. Default is 40.
           max_station (int):
             maximum number of stations for which departures are required. Default is 40.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'lang': lang,
@@ -225,6 +253,10 @@ class PublicTransitApi(HEREApi):
             time formatted in yyyy-mm-ddThh:mm:ss.
           routing_type (PublicTransitRoutingType):
             type of routing. Default is time_tabled.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
@@ -252,7 +284,11 @@ class PublicTransitApi(HEREApi):
           show_arrival_times (boolean):
             flag to indicate if response should show arrival times.
           routing_type (PublicTransitRoutingType):
-            type of routing. Default is time_tabled
+            type of routing. Default is time_tabled.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
@@ -282,6 +318,10 @@ class PublicTransitApi(HEREApi):
             type of routing. Default is time_tabled.
           graph (int):
             Enable showing line graph. Default is 0 disabled, to enable set 1.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
@@ -312,6 +352,10 @@ class PublicTransitApi(HEREApi):
             Set to 0 just return the matching city names.
           lang (str):
             the language of the response, default `en`.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'name': city_name,
@@ -332,6 +376,10 @@ class PublicTransitApi(HEREApi):
             0 disables showing line info, 1 enables showing line info.abs
           center (array):
             array including latitude and longitude in order.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
         data = {'details': details,
                 'center': str.format('{0},{1}', center[0], center[1]),
@@ -357,6 +405,10 @@ class PublicTransitApi(HEREApi):
             type of routing. Default is time_tabled.
           changes (int):
             Maximum number of changes or transfers. Default is -1 and max is 6.
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
         """
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),

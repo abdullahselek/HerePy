@@ -35,8 +35,8 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.free_form('')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.free_form('')
 
     @responses.activate
     def test_address_withboundingbox_whensucceed(self):
@@ -54,8 +54,8 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.address_with_boundingbox('', [-42.3952, -71.1056], [-42.3312, -71.0228])
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.address_with_boundingbox('', [-42.3952, -71.1056], [-42.3312, -71.0228])
 
     @responses.activate
     def test_addresswithdetails_whensucceed(self):
@@ -73,8 +73,8 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.address_with_details(-34, '', '', '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.address_with_details(-34, '', '', '')
 
     @responses.activate
     def test_streetintersection_whensucceed(self):
@@ -92,5 +92,5 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.cit.api.here.com/6.2/geocode.json',
                   expectedResponse, status=200)
-        response = self._api.street_intersection('', '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.street_intersection('', '')
