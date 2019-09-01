@@ -39,9 +39,9 @@ class RmeApi(HEREApi):
             if json_data.get('TracePoints') != None:
                 return RmeResponse.new_from_jsondict(json_data)
             else:
-                return HEREError(json_data.get('Details', 'Error occured on function ' + sys._getframe(1).f_code.co_name))
+                raise HEREError(json_data.get('Details', 'Error occured on function ' + sys._getframe(1).f_code.co_name))
         except ValueError as err:
-            return HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
+            raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
     def match_route(self, gpx_file_content, route_mode='car', pde_layers=[]):
         """Retrieves misc information about the route given in gpx file
@@ -61,7 +61,9 @@ class RmeApi(HEREApi):
               ROAD_GEOM_FCn(*)
               SPEED_LIMITS_FCn(*)
         Returns:
-          RmeResponse or HEREError instance"""
+          RmeResponse
+        Raises:
+          HEREError"""
 
         data = {'file': Utils.get_zipped_base64(gpx_file_content),
                 'route_mode': route_mode,

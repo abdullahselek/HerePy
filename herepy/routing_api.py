@@ -39,7 +39,7 @@ class RoutingApi(HEREApi):
         if json_data.get('response') != None:
             return RoutingResponse.new_from_jsondict(json_data)
         else:
-            return error_from_routing_service_error(json_data)
+            raise error_from_routing_service_error(json_data)
 
     @classmethod
     def __prepare_mode_values(cls, modes):
@@ -71,7 +71,9 @@ class RoutingApi(HEREApi):
           modes (array):
             array including RouteMode enums.
         Returns:
-          RoutingResponse instance or HEREError"""
+          RoutingResponse
+        Raises:
+          HEREError"""
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
@@ -90,7 +92,9 @@ class RoutingApi(HEREApi):
           modes (array):
             array including RouteMode enums.
         Returns:
-          RoutingResponse instance or HEREError"""
+          RoutingResponse
+        Raises:
+          HEREError"""
 
         if modes is None:
             modes = [RouteMode.pedestrian, RouteMode.fastest]
@@ -112,7 +116,9 @@ class RoutingApi(HEREApi):
           modes (array):
             array including RouteMode enums.
         Returns:
-          RoutingResponse instance or HEREError"""
+          RoutingResponse
+        Raises:
+          HEREError"""
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
@@ -135,7 +141,9 @@ class RoutingApi(HEREApi):
           modes (array):
             array including RouteMode enums.
         Returns:
-          RoutingResponse instance or HEREError"""
+          RoutingResponse
+        Raises:
+          HEREError"""
 
         if modes is None:
             modes = [RouteMode.publicTransport, RouteMode.fastest]
@@ -154,7 +162,9 @@ class RoutingApi(HEREApi):
           modes (array):
             array including RouteMode enums.
         Returns:
-          RoutingResponse instance or HEREError"""
+          RoutingResponse
+        Raises:
+          HEREError"""
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
@@ -173,7 +183,9 @@ class RoutingApi(HEREApi):
           modes (array):
             array including RouteMode enums.
         Returns:
-          RoutingResponse instance or HEREError"""
+          RoutingResponse
+        Raises:
+          HEREError"""
 
         if modes is None:
             modes = [RouteMode.truck, RouteMode.fastest]

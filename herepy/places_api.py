@@ -45,7 +45,7 @@ class PlacesApi(HEREApi):
         if json_data.get('results') != None:
             return PlacesResponse.new_from_jsondict(json_data)
         else:
-            return HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            raise HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
     def __get_suggestions(self, data):
         url = Utils.build_url(self._base_url + 'suggest', extra_params=data)
@@ -54,7 +54,7 @@ class PlacesApi(HEREApi):
         if json_data.get('suggestions') != None:
             return PlacesSuggestionsResponse.new_from_jsondict(json_data)
         else:
-            return HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            raise HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
     def __get_categories(self, data):
         url = Utils.build_url(self._base_url + 'categories/places', extra_params=data)
@@ -63,7 +63,7 @@ class PlacesApi(HEREApi):
         if json_data.get('items') != None:
             return PlaceCategoriesResponse.new_from_jsondict(json_data)
         else:
-            return HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            raise HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
     def onebox_search(self, coordinates, query):
         """Request a list of nearby places based on a query string
@@ -73,7 +73,9 @@ class PlacesApi(HEREApi):
           query (str):
             search term.
         Returns:
-          PlacesResponse instance or HEREError"""
+          PlacesResponse
+        Raises:
+          HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'q':  query,
@@ -87,7 +89,9 @@ class PlacesApi(HEREApi):
           coordinates (array):
             array including latitude and longitude in order.
         Returns:
-          PlacesResponse instance or HEREError"""
+          PlacesResponse
+        Raises:
+          HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'app_id': self._app_id,
@@ -110,7 +114,9 @@ class PlacesApi(HEREApi):
           categories (array):
             array including PlacesCategory enums.
         Returns:
-          PlacesResponse instance or HEREError"""
+          PlacesResponse
+        Raises:
+          HEREError"""
 
         if categories is None:
           raise Exception(sys._getframe(0).f_code.co_name + ' function requires category types!')
@@ -127,7 +133,9 @@ class PlacesApi(HEREApi):
           coordinates (array):
             array including latitude and longitude in order.
         Returns:
-          PlacesResponse instance or HEREError"""
+          PlacesResponse
+        Raises:
+          HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'app_id': self._app_id,
@@ -142,7 +150,9 @@ class PlacesApi(HEREApi):
           query (str):
             search term.
         Returns:
-          PlacesSuggestionsResponse instance or HEREError"""
+          PlacesResponse
+        Raises:
+          HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'q': query,
@@ -156,7 +166,9 @@ class PlacesApi(HEREApi):
           coordinates (array):
             array including latitude and longitude in order.
         Returns:
-          PlaceCategoriesResponse instance or HEREError"""
+          PlacesResponse
+        Raises:
+          HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'app_id': self._app_id,
@@ -171,7 +183,9 @@ class PlacesApi(HEREApi):
           coordinates_b (array):
             array including latitude and longitude in order.
         Returns:
-          PlacesResponse instance or HEREError"""
+          PlacesResponse
+        Raises:
+          HEREError"""
 
         data = {'in': str.format('{0},{1},{2},{3}', coordinates_a[0], coordinates_a[1], coordinates_b[0], coordinates_b[1]),
                 'app_id': self._app_id,
@@ -186,7 +200,9 @@ class PlacesApi(HEREApi):
           language (str):
             string value for language like `en-US`
         Returns:
-          PlacesResponse instance or HEREError"""
+          PlacesResponse
+        Raises:
+          HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'app_id': self._app_id,

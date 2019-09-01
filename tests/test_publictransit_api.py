@@ -40,9 +40,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/stations/by_name.json',
                   expectedResponse, status=200)
-        response = self._api.find_stations_by_name([40.7505, -73.9910],
-                                                   '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.find_stations_by_name([40.7505, -73.9910], '')
 
     @responses.activate
     def test_find_stations_nearby_whensucceed(self):
@@ -60,8 +59,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/stations/by_geocoord.json',
                   expectedResponse, status=200)
-        response = self._api.find_stations_nearby([-9999, -9999])
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.find_stations_nearby([-9999, -9999])
 
     @responses.activate
     def test_find_stations_by_id_whensucceed(self):
@@ -79,8 +78,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/stations/by_ids.json',
                   expectedResponse, status=200)
-        response = self._api.find_stations_by_id([-99999], 'tr')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.find_stations_by_id([-99999], 'tr')
 
     @responses.activate
     def test_find_transit_coverage_in_cities_whensucceed(self):
@@ -98,8 +97,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/city.json',
                   expectedResponse, status=200)
-        response = self._api.find_transit_coverage_in_cities([-9999, -9999], '', 100)
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.find_transit_coverage_in_cities([-9999, -9999], '', 100)
 
     @responses.activate
     def test_next_nearby_departures_of_station_whensucceed(self):
@@ -117,8 +116,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/board.json',
                   expectedResponse, status=200)
-        response = self._api.next_nearby_departures_of_station(-1, '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.next_nearby_departures_of_station(-1, '')
 
     @responses.activate
     def test_next_departures_from_location_whensucceed(self):
@@ -136,8 +135,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/multiboard/by_geocoord.json',
                   expectedResponse, status=200)
-        response = self._api.next_departures_from_location([-9999, -9999], '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.next_departures_from_location([-9999, -9999], '')
 
     @responses.activate
     def test_next_departures_for_stations_whensucceed(self):
@@ -155,8 +154,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/multiboard/by_stn_ids.json',
                   expectedResponse, status=200)
-        response = self._api.next_departures_for_stations([-99999, -99999, -99999], '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.next_departures_for_stations([-99999, -99999, -99999], '')
 
     @responses.activate
     def test_calculate_route_whensucceed(self):
@@ -174,8 +173,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/route.json',
                   expectedResponse, status=200)
-        response = self._api.calculate_route([-9999, -9999], [-9999, -9999], '2017-11-22T07:30:00', herepy.PublicTransitRoutingType.time_tabled)
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.calculate_route([-9999, -9999], [-9999, -9999], '2017-11-22T07:30:00', herepy.PublicTransitRoutingType.time_tabled)
 
     @responses.activate
     def test_calculate_route_time_whensucceed(self):
@@ -197,12 +196,12 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/route.json',
                   expectedResponse, status=200)
-        response = self._api.calculate_route_time([-9999, -9999],
-                                                  [-9999, -9999],
-                                                  '2017-11-22T07:30:00',
-                                                  1,
-                                                  herepy.PublicTransitRoutingType.time_tabled)
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.calculate_route_time([-9999, -9999],
+                                           [-9999, -9999],
+                                           '2017-11-22T07:30:00',
+                                           1,
+                                           herepy.PublicTransitRoutingType.time_tabled)
 
     @responses.activate
     def test_transit_route_shows_line_graph_whensucceed(self):
@@ -222,10 +221,10 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/route.json',
                   expectedResponse, status=200)
-        response = self._api.transit_route_shows_line_graph([-9999, -9999],
-                                                            [-9999, -9999],
-                                                            '2017-11-22T07:30:00')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.transit_route_shows_line_graph([-9999, -9999],
+                                                     [-9999, -9999],
+                                                     '2017-11-22T07:30:00')
 
     @responses.activate
     def test_coverage_witin_a_city_whensucceed(self):
@@ -243,8 +242,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/search.json',
                   expectedResponse, status=200)
-        response = self._api.coverage_witin_a_city('', 10, 1, 0)
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.coverage_witin_a_city('', 10, 1, 0)
 
     @responses.activate
     def test_coverage_nearby_whensucceed(self):
@@ -262,8 +261,8 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/coverage/nearby.json',
                   expectedResponse, status=200)
-        response = self._api.coverage_nearby(0, [-9999, -9999])
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.coverage_nearby(0, [-9999, -9999])
 
     @responses.activate
     def test_route_excluding_changes_transfers_whensucceed(self):
@@ -283,7 +282,7 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://cit.transit.api.here.com/v3/route.json',
                   expectedResponse, status=200)
-        response = self._api.route_excluding_changes_transfers([-9998, -9998],
-                                                               [-9999, -9999],
-                                                               '2017-12-11T07:30:00')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.route_excluding_changes_transfers([-9998, -9998],
+                                                        [-9999, -9999],
+                                                        '2017-12-11T07:30:00')

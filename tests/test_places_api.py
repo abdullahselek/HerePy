@@ -36,8 +36,8 @@ class PlacesApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/search',
                   expectedResponse, status=200)
-        response = self._api.onebox_search([37.7905, -122.4107], '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.onebox_search([37.7905, -122.4107], '')
 
     @responses.activate
     def test_places_at_whensucceed(self):
@@ -55,8 +55,8 @@ class PlacesApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/explore',
                   expectedResponse, status=200)
-        response = self._api.places_at([-9999.0, -9999.0])
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.places_at([-9999.0, -9999.0])
 
     @responses.activate
     def test_category_places_at_whensucceed(self):
@@ -74,8 +74,8 @@ class PlacesApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/explore',
                   expectedResponse, status=200)
-        response = self._api.category_places_at([-9999.0, -9999.0], [herepy.PlacesCategory.eat_drink])
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.category_places_at([-9999.0, -9999.0], [herepy.PlacesCategory.eat_drink])
 
     def test_category_places_at_withoutnocategories(self):
         with self.assertRaises(Exception) as context:
@@ -98,8 +98,8 @@ class PlacesApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/here',
                   expectedResponse, status=200)
-        response = self._api.nearby_places([-9999.0, -9999.0])
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.nearby_places([-9999.0, -9999.0])
 
     @responses.activate
     def test_search_suggestions_whensucceed(self):
@@ -117,8 +117,8 @@ class PlacesApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/suggest',
                   expectedResponse, status=200)
-        response = self._api.search_suggestions([-9999.0, -9999.0], '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.search_suggestions([-9999.0, -9999.0], '')
 
     @responses.activate
     def test_place_categories_whensucceed(self):
@@ -136,8 +136,8 @@ class PlacesApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/categories/places',
                   expectedResponse, status=200)
-        response = self._api.place_categories([-9999.0, -9999.0])
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.place_categories([-9999.0, -9999.0])
 
     @responses.activate
     def test_places_at_boundingbox_whensucceed(self):
@@ -155,8 +155,8 @@ class PlacesApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/explore',
                   expectedResponse, status=200)
-        response = self._api.places_at_boundingbox([-9999.0, -9999.0], [-9999.0, -9999.0])
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.places_at_boundingbox([-9999.0, -9999.0], [-9999.0, -9999.0])
 
     @responses.activate
     def test_places_with_language_whensucceed(self):
@@ -174,5 +174,5 @@ class PlacesApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://places.cit.api.here.com/places/v1/discover/explore',
                   expectedResponse, status=200)
-        response = self._api.places_with_language([-9999.0, -9999.0], '')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.places_with_language([-9999.0, -9999.0], '')

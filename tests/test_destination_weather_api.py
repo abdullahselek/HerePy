@@ -35,5 +35,5 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://weather.api.here.com/weather/1.0/report.json',
                   expectedResponse, status=200)
-        response = self._api.forecast_astronomy('London')
-        self.assertIsInstance(response, herepy.HEREError)
+        with self.assertRaises(herepy.HEREError):
+            self._api.forecast_astronomy('London')

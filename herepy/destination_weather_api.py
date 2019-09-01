@@ -56,7 +56,9 @@ class DestinationWeatherApi(HEREApi):
           product (str):
             A parameter identifying the type of report to obtain. Default value `observation`.
         Returns:
-          DestinationWeatherResponse instance or HEREError
+          DestinationWeatherResponse
+        Raises:
+          HEREError
         """
 
         data = {'app_id': self._app_id,
@@ -69,4 +71,4 @@ class DestinationWeatherApi(HEREApi):
         if json_data.get(self._product_node(product)) != None:
             return DestinationWeatherResponse.new_from_jsondict(json_data, param_defaults={self._product_node(product): None})
         else:
-            return HEREError(json_data.get('Message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            raise HEREError(json_data.get('Message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
