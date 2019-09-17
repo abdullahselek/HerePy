@@ -6,11 +6,13 @@ class RouteMode(Enum):
     """Modes which is used in routing api functions."""
 
     fastest = 'fastest'
+    bicycle = 'bicycle'
     car = 'car'
     traffic_disabled = 'traffic:disabled'
     enabled = 'enabled'
     pedestrian = 'pedestrian'
     publicTransport = 'publicTransport'
+    publicTransportTimeTable = 'publicTransportTimeTable'
     truck = 'truck'
     traffic_default = 'traffic:default'
 

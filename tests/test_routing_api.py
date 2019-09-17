@@ -20,6 +20,16 @@ class RoutingApiTest(unittest.TestCase):
         self.assertEqual(self._api._base_url, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json')
 
     @responses.activate
+    def test_bicycleroute_withdefaultmodes_whensucceed(self):
+        with codecs.open('testdata/models/routing_bicycle.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.bicycle_route([41.9798, -87.8801], [41.9043, -87.9216])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
+
+    @responses.activate
     def test_carroute_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
@@ -69,7 +79,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_pedastrianroute_whensucceed(self):
-        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
+        with codecs.open('testdata/models/routing_pedestrian.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
@@ -79,7 +89,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_pedastrianroute_withdefaultmodes_whensucceed(self):
-        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
+        with codecs.open('testdata/models/routing_pedestrian.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
@@ -165,7 +175,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_publictransport_whensucceed(self):
-        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
+        with codecs.open('testdata/models/routing_public.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
@@ -178,7 +188,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_publictransport_withdefaultmodes_whensucceed(self):
-        with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
+        with codecs.open('testdata/models/routing_public.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
@@ -220,6 +230,18 @@ class RoutingApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.public_transport([11.0, 12.0], [47.013399, -10.171986], True)
+
+    @responses.activate
+    def test_publictransporttimetable_withdefaultmodes_whensucceed(self):
+        with codecs.open('testdata/models/routing_public_time_table.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        response = self._api.public_transport_timetable([11.0, 12.0],
+                                              [15.0, 16.0],
+                                              True)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_locationnearmotorway_whensucceed(self):

@@ -56,7 +56,44 @@ class RoutingApi(HEREApi):
                 'app_id': self._app_id,
                 'app_code': self._app_code,
                 'departure': 'now'}
-        return self.__get(data)
+        response = self.__get(data)
+        route = response.response["route"]
+        maneuver = route[0]["leg"][0]["maneuver"]
+
+        if any(mode in modes for mode in [RouteMode.car, RouteMode.truck]):
+            # Get Route for Car and Truck
+            response.route_short = self._get_route_from_vehicle_maneuver(maneuver)
+        elif any(mode in modes for mode in [RouteMode.publicTransport, RouteMode.publicTransportTimeTable]):
+            # Get Route for Public Transport
+            public_transport_line = route[0]["publicTransportLine"]
+            response.route_short = self._get_route_from_public_transport_line(
+                public_transport_line
+            )
+        elif any(mode in modes for mode in [RouteMode.pedestrian, RouteMode.bicycle]):
+            # Get Route for Pedestrian and Biyclce
+            response.route_short = self._get_route_from_non_vehicle_maneuver(maneuver)
+        return response
+
+    def bicycle_route(self,
+                  waypoint_a,
+                  waypoint_b,
+                  modes=None):
+        """Request a bicycle route between two points
+        Args:
+          waypoint_a (array):
+            array including latitude and longitude in order.
+          waypoint_b (array):
+            array including latitude and longitude in order.
+          modes (array):
+            array including RouteMode enums.
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError"""
+
+        if modes is None:
+            modes = [RouteMode.bicycle, RouteMode.fastest]
+        return self._route(waypoint_a, waypoint_b, modes)
 
     def car_route(self,
                   waypoint_a,
@@ -149,6 +186,31 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.publicTransport, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes)
 
+    def public_transport_timetable(self,
+                         waypoint_a,
+                         waypoint_b,
+                         combine_change,
+                         modes=None):
+        """Request a public transport route between two points based on timetables
+        Args:
+          waypoint_a (array):
+            Starting array including latitude and longitude in order.
+          waypoint_b (array):
+            Intermediate array including latitude and longitude in order.
+          combine_change (bool):
+            Enables the change manuever in the route response, which
+            indicates a public transit line change.
+          modes (array):
+            array including RouteMode enums.
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError"""
+
+        if modes is None:
+            modes = [RouteMode.publicTransportTimeTable, RouteMode.fastest]
+        return self._route(waypoint_a, waypoint_b, modes)
+
     def location_near_motorway(self,
                                waypoint_a,
                                waypoint_b,
@@ -190,6 +252,71 @@ class RoutingApi(HEREApi):
         if modes is None:
             modes = [RouteMode.truck, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes)
+
+    @staticmethod
+    def _get_route_from_non_vehicle_maneuver(maneuver):
+        """Extract a short route description from the maneuver instructions."""
+        road_names = []
+
+        for step in maneuver:
+            instruction = step["instruction"]
+            try:
+                road_name = instruction.split('<span class="next-street">')[1].split(
+                    "</span>"
+                )[0]
+                road_name = road_name.replace("(", "").replace(")", "")
+
+                # Only add if it does not repeat
+                if not road_names or road_names[-1] != road_name:
+                    road_names.append(road_name)
+            except IndexError:
+                pass  # No street name found in this maneuver step
+        route = "; ".join(list(map(str, road_names)))
+        return route
+
+    @staticmethod
+    def _get_route_from_public_transport_line(
+        public_transport_line_segment
+    ):
+        """Extract a short route description from the public transport lines."""
+        lines = []
+        for line_info in public_transport_line_segment:
+            lines.append(line_info["lineName"] + " - " + line_info["destination"])
+
+        route = "; ".join(list(map(str, lines)))
+        return route
+
+    @staticmethod
+    def _get_route_from_vehicle_maneuver(maneuver):
+        """Extract a short route description from the maneuver instructions."""
+        road_names = []
+
+        for step in maneuver:
+            instruction = step["instruction"]
+            try:
+                road_number = instruction.split('<span class="number">')[1].split(
+                    "</span>"
+                )[0]
+                road_name = road_number.replace("(", "").replace(")", "")
+
+                try:
+                    street_name = instruction.split('<span class="next-street">')[
+                        1
+                    ].split("</span>")[0]
+                    street_name = street_name.replace("(", "").replace(")", "")
+
+                    road_name += " - " + street_name
+                except IndexError:
+                    pass  # No street name found in this maneuver step
+
+                # Only add if it does not repeat
+                if not road_names or road_names[-1] != road_name:
+                    road_names.append(road_name)
+            except IndexError:
+                pass  # No road number found in this maneuver step
+
+        route = "; ".join(list(map(str, road_names)))
+        return route
 
 
 
