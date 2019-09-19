@@ -60,16 +60,16 @@ class RoutingApi(HEREApi):
         route = response.response["route"]
         maneuver = route[0]["leg"][0]["maneuver"]
 
-        if any(mode in modes for mode in [RouteMode.car, RouteMode.truck]):
+        if any(str(mode) in modes for mode in [RouteMode.car, RouteMode.truck]):
             # Get Route for Car and Truck
             response.route_short = self._get_route_from_vehicle_maneuver(maneuver)
-        elif any(mode in modes for mode in [RouteMode.publicTransport, RouteMode.publicTransportTimeTable]):
+        elif any(str(mode) in modes for mode in [RouteMode.publicTransport, RouteMode.publicTransportTimeTable]):
             # Get Route for Public Transport
             public_transport_line = route[0]["publicTransportLine"]
             response.route_short = self._get_route_from_public_transport_line(
                 public_transport_line
             )
-        elif any(mode in modes for mode in [RouteMode.pedestrian, RouteMode.bicycle]):
+        elif any(str(mode) in modes for mode in [RouteMode.pedestrian, RouteMode.bicycle]):
             # Get Route for Pedestrian and Biyclce
             response.route_short = self._get_route_from_non_vehicle_maneuver(maneuver)
         return response
