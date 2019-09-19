@@ -109,7 +109,8 @@ class RoutingResponse(HEREModel):
     def __init__(self, **kwargs):
         super(RoutingResponse, self).__init__()
         self.param_defaults = {
-            'response': None
+            'response': None,
+            'route_short': None
         }
 
         for (param, default) in self.param_defaults.items():
