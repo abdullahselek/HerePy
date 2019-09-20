@@ -6,15 +6,19 @@ class RouteMode(Enum):
     """Modes which is used in routing api functions."""
 
     fastest = 'fastest'
+    shortest = 'shortest'
+    balanced = 'balanced'
     bicycle = 'bicycle'
     car = 'car'
+    car_hov = 'carHOV'
+    traffic_enabled = 'traffic:enabled'
     traffic_disabled = 'traffic:disabled'
+    traffic_default = 'traffic:default'
     enabled = 'enabled'
     pedestrian = 'pedestrian'
     publicTransport = 'publicTransport'
     publicTransportTimeTable = 'publicTransportTimeTable'
     truck = 'truck'
-    traffic_default = 'traffic:default'
 
     def __str__(self):
         return '%s' % self._value_

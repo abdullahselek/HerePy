@@ -11,8 +11,14 @@ class RouteModeTest(unittest.TestCase):
     def test_valueofenum(self):
         fastest = herepy.RouteMode.fastest        
         self.assertEqual(fastest.__str__(), 'fastest')
+        shortest = herepy.RouteMode.shortest        
+        self.assertEqual(shortest.__str__(), 'shortest')
+        balanced = herepy.RouteMode.balanced        
+        self.assertEqual(balanced.__str__(), 'balanced')
         car = herepy.RouteMode.car
         self.assertEqual(car.__str__(), 'car')
+        car_hov = herepy.RouteMode.car_hov
+        self.assertEqual(car_hov.__str__(), 'carHOV')
         traffic_disabled = herepy.RouteMode.traffic_disabled
         self.assertEqual(traffic_disabled.__str__(), 'traffic:disabled')
         enabled = herepy.RouteMode.enabled
@@ -25,6 +31,8 @@ class RouteModeTest(unittest.TestCase):
         self.assertEqual(truck.__str__(), 'truck')
         traffic_default = herepy.RouteMode.traffic_default
         self.assertEqual(traffic_default.__str__(), 'traffic:default')
+        traffic_enabled = herepy.RouteMode.traffic_enabled
+        self.assertEqual(traffic_enabled.__str__(), 'traffic:enabled')
 
 class PlacesCategoryTest(unittest.TestCase):
 
