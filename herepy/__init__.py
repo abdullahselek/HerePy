@@ -22,7 +22,8 @@ from .here_enum import (
     RouteMode,
     PlacesCategory,
     PublicTransitSearchMethod,
-    PublicTransitRoutingType
+    PublicTransitRoutingType,
+    WeatherProductType
 )
 
 from .models import (
@@ -37,6 +38,12 @@ from .models import (
     RmeResponse,
     TrafficIncidentResponse,
     DestinationWeatherResponse
+)
+
+from .destination_weather_api import (
+    DestinationWeatherApi,
+    UnauthorizedError,
+    InvalidRequestError
 )
 
 from .routing_api import (
@@ -56,4 +63,3 @@ from .geocoder_autocomplete_api import GeocoderAutoCompleteApi
 from .places_api import PlacesApi
 from .public_transit_api import PublicTransitApi
 from .rme_api import RmeApi
-from .destination_weather_api import DestinationWeatherApi

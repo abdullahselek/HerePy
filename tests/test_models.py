@@ -31,7 +31,7 @@ class ModelsTest(unittest.TestCase):
     with open('testdata/models/traffic_api_incidents.json', 'rb') as f:
         TRAFFIC_INCIDENTS_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
-    with open('testdata/models/destination_weather.json', 'rb') as f:
+    with open('testdata/models/destination_weather_observations.json', 'rb') as f:
         DESTINATION_WEATHER_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
     def test_geocoder_response(self):
