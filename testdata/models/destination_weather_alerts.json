@@ -1,0 +1,13 @@
+{
+    "alerts": {
+        "alerts": [],
+        "country": "United States",
+        "state": "New York",
+        "city": "New York",
+        "latitude": 40.79962,
+        "longitude": -73.970314,
+        "timezone": -5
+    },
+    "feedCreation": "2019-10-04T14:20:43.936Z",
+    "metric": true
+}

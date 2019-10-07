@@ -1,0 +1,873 @@
+{
+    "nwsAlerts": {
+        "watch": [
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT UNTIL 6 AM EDT SATURDAY.  * WINDS AND SEAS. Southeast winds 15 to 25 kt with gusts up to 30 kt, becoming Northwest on Friday. Seas 4 to 7 feet.",
+                "zone": [
+                    {
+                        "value": "ANZ350",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Moriches Inlet NY to Montauk Point NY out 20 nm",
+                        "latitude": "40.75318",
+                        "longitude": "-72.20833"
+                    },
+                    {
+                        "value": "ANZ353",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Fire Island Inlet NY to Moriches Inlet NY out 20 nm",
+                        "latitude": "40.52838",
+                        "longitude": "-72.96292"
+                    },
+                    {
+                        "value": "ANZ355",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Sandy Hook NJ to Fire Island Inlet NY out 20 nm",
+                        "latitude": "40.44624",
+                        "longitude": "-73.62661"
+                    }
+                ],
+                "name": "Davis Park",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "40.58",
+                "longitude": "-72.93",
+                "validFromTimeLocal": "2019-10-03T04:23:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-04T18:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT FROM 6 AM TO 10 PM EDT FRIDAY.  * WINDS. Northwest 10 to 20 kt with gusts up to 30 kt.",
+                "zone": [
+                    {
+                        "value": "ANZ330",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Long Island Sound East of New Haven CT/Port Jefferson NY",
+                        "latitude": "41.17471",
+                        "longitude": "-72.45937"
+                    },
+                    {
+                        "value": "ANZ345",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "South Shore Bays from Jones Inlet through Shinnecock Bay ",
+                        "latitude": "40.74284",
+                        "longitude": "-72.99518"
+                    },
+                    {
+                        "value": "ANZ340",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Peconic and Gardiners Bays",
+                        "latitude": "41.01932",
+                        "longitude": "-72.33314"
+                    },
+                    {
+                        "value": "ANZ335",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Long Island Sound West of New Haven CT/Port Jefferson NY",
+                        "latitude": "41.04384",
+                        "longitude": "-73.35686"
+                    }
+                ],
+                "name": "Hulse Landing",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "41.00",
+                "longitude": "-72.79",
+                "validFromTimeLocal": "2019-10-03T04:23:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-04T18:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT FROM 6 AM TO 10 PM EDT FRIDAY.  * WINDS. Northwest 10 to 20 kt with gusts up to 30 kt.",
+                "zone": [
+                    {
+                        "value": "ANZ338",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "New York Harbor",
+                        "latitude": "40.54999",
+                        "longitude": "-74.08848"
+                    }
+                ],
+                "name": "New Dorp Beach",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "40.55",
+                "longitude": "-74.09",
+                "validFromTimeLocal": "2019-10-03T04:23:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-04T18:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY REMAINS IN EFFECT UNTIL 6 AM EDT SATURDAY.  * WINDS AND SEAS. North winds 15 to 25 kt with gusts up to 30 kt. Seas 4 to 7 feet.",
+                "zone": [
+                    {
+                        "value": "ANZ453",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Great Egg Inlet to Cape May NJ out 20 nm",
+                        "latitude": "39.00461",
+                        "longitude": "-74.63119"
+                    },
+                    {
+                        "value": "ANZ452",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Little Egg Inlet to Great Egg Inlet NJ out 20 nm",
+                        "latitude": "39.2595",
+                        "longitude": "-74.35732"
+                    },
+                    {
+                        "value": "ANZ454",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Cape May NJ to Cape Henlopen DE out 20 nm",
+                        "latitude": "38.77348",
+                        "longitude": "-74.84177"
+                    },
+                    {
+                        "value": "ANZ455",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Cape Henlopen to Fenwick Island DE out 20 nm",
+                        "latitude": "38.57603",
+                        "longitude": "-74.99548"
+                    },
+                    {
+                        "value": "ANZ450",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Sandy Hook to Manasquan Inlet NJ out 20 nm",
+                        "latitude": "40.21046",
+                        "longitude": "-73.84981"
+                    },
+                    {
+                        "value": "ANZ451",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Manasquan Inlet to Little Egg Inlet NJ out 20 nm",
+                        "latitude": "39.68182",
+                        "longitude": "-74.0638"
+                    }
+                ],
+                "name": "Longport",
+                "country": "United States",
+                "state": "New Jersey",
+                "latitude": "39.25",
+                "longitude": "-74.46",
+                "validFromTimeLocal": "2019-10-03T03:43:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T06:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY REMAINS IN EFFECT UNTIL 6 AM EDT SATURDAY.  * WINDS AND SEAS. North winds 15 to 25 kt with gusts up to 30 kt. Seas 4 to 7 feet.",
+                "zone": [
+                    {
+                        "value": "ANZ453",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Great Egg Inlet to Cape May NJ out 20 nm",
+                        "latitude": "39.00461",
+                        "longitude": "-74.63119"
+                    },
+                    {
+                        "value": "ANZ452",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Little Egg Inlet to Great Egg Inlet NJ out 20 nm",
+                        "latitude": "39.2595",
+                        "longitude": "-74.35732"
+                    },
+                    {
+                        "value": "ANZ454",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Cape May NJ to Cape Henlopen DE out 20 nm",
+                        "latitude": "38.77348",
+                        "longitude": "-74.84177"
+                    },
+                    {
+                        "value": "ANZ455",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Cape Henlopen to Fenwick Island DE out 20 nm",
+                        "latitude": "38.57603",
+                        "longitude": "-74.99548"
+                    },
+                    {
+                        "value": "ANZ450",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Sandy Hook to Manasquan Inlet NJ out 20 nm",
+                        "latitude": "40.21046",
+                        "longitude": "-73.84981"
+                    },
+                    {
+                        "value": "ANZ451",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Manasquan Inlet to Little Egg Inlet NJ out 20 nm",
+                        "latitude": "39.68182",
+                        "longitude": "-74.0638"
+                    }
+                ],
+                "name": "Longport",
+                "country": "United States",
+                "state": "New Jersey",
+                "latitude": "39.25",
+                "longitude": "-74.46",
+                "validFromTimeLocal": "2019-10-03T16:07:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T06:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY REMAINS IN EFFECT UNTIL 6 AM EDT SATURDAY.  * WINDS AND SEAS. Easterly winds becoming northwesterly late tonight of 15 to 25 kt with gusts up to 30 kt. Seas 3 to 6 feet.",
+                "zone": [
+                    {
+                        "value": "ANZ453",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Great Egg Inlet to Cape May NJ out 20 nm",
+                        "latitude": "39.00461",
+                        "longitude": "-74.63119"
+                    },
+                    {
+                        "value": "ANZ452",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Little Egg Inlet to Great Egg Inlet NJ out 20 nm",
+                        "latitude": "39.2595",
+                        "longitude": "-74.35732"
+                    },
+                    {
+                        "value": "ANZ454",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Cape May NJ to Cape Henlopen DE out 20 nm",
+                        "latitude": "38.77348",
+                        "longitude": "-74.84177"
+                    },
+                    {
+                        "value": "ANZ455",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Cape Henlopen to Fenwick Island DE out 20 nm",
+                        "latitude": "38.57603",
+                        "longitude": "-74.99548"
+                    },
+                    {
+                        "value": "ANZ450",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Sandy Hook to Manasquan Inlet NJ out 20 nm",
+                        "latitude": "40.21046",
+                        "longitude": "-73.84981"
+                    },
+                    {
+                        "value": "ANZ451",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Manasquan Inlet to Little Egg Inlet NJ out 20 nm",
+                        "latitude": "39.68182",
+                        "longitude": "-74.0638"
+                    }
+                ],
+                "name": "Longport",
+                "country": "United States",
+                "state": "New Jersey",
+                "latitude": "39.25",
+                "longitude": "-74.46",
+                "validFromTimeLocal": "2019-10-03T21:21:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T06:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT FROM 6 AM TO 10 PM EDT FRIDAY.  * WINDS. Northwest 10 to 20 kt with gusts up to 30 kt.",
+                "zone": [
+                    {
+                        "value": "ANZ330",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Long Island Sound East of New Haven CT/Port Jefferson NY",
+                        "latitude": "41.17471",
+                        "longitude": "-72.45937"
+                    },
+                    {
+                        "value": "ANZ345",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "South Shore Bays from Jones Inlet through Shinnecock Bay ",
+                        "latitude": "40.74284",
+                        "longitude": "-72.99518"
+                    },
+                    {
+                        "value": "ANZ340",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Peconic and Gardiners Bays",
+                        "latitude": "41.01932",
+                        "longitude": "-72.33314"
+                    },
+                    {
+                        "value": "ANZ335",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Long Island Sound West of New Haven CT/Port Jefferson NY",
+                        "latitude": "41.04384",
+                        "longitude": "-73.35686"
+                    }
+                ],
+                "name": "Hulse Landing",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "41.00",
+                "longitude": "-72.79",
+                "validFromTimeLocal": "2019-10-03T15:38:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-04T22:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT FROM 6 AM TO 10 PM EDT FRIDAY.  * WINDS. Northwest 10 to 20 kt with gusts up to 30 kt.",
+                "zone": [
+                    {
+                        "value": "ANZ338",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "New York Harbor",
+                        "latitude": "40.54999",
+                        "longitude": "-74.08848"
+                    }
+                ],
+                "name": "New Dorp Beach",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "40.55",
+                "longitude": "-74.09",
+                "validFromTimeLocal": "2019-10-03T15:38:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-04T22:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT UNTIL 6 AM EDT SATURDAY.  * WINDS AND SEAS. Southeast winds 15 to 25 kt with gusts up to 30 kt, becoming Northwest on Friday. Seas 4 to 7 feet.",
+                "zone": [
+                    {
+                        "value": "ANZ350",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Moriches Inlet NY to Montauk Point NY out 20 nm",
+                        "latitude": "40.75318",
+                        "longitude": "-72.20833"
+                    },
+                    {
+                        "value": "ANZ353",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Fire Island Inlet NY to Moriches Inlet NY out 20 nm",
+                        "latitude": "40.52838",
+                        "longitude": "-72.96292"
+                    },
+                    {
+                        "value": "ANZ355",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Sandy Hook NJ to Fire Island Inlet NY out 20 nm",
+                        "latitude": "40.44624",
+                        "longitude": "-73.62661"
+                    }
+                ],
+                "name": "Davis Park",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "40.58",
+                "longitude": "-72.93",
+                "validFromTimeLocal": "2019-10-03T15:38:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T06:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT UNTIL 6 PM EDT THIS EVENING.  * WINDS. N 15 to 20 kt with gusts up to 30 kt.",
+                "zone": [
+                    {
+                        "value": "ANZ345",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "South Shore Bays from Jones Inlet through Shinnecock Bay ",
+                        "latitude": "40.74284",
+                        "longitude": "-72.99518"
+                    },
+                    {
+                        "value": "ANZ335",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Long Island Sound West of New Haven CT/Port Jefferson NY",
+                        "latitude": "41.04384",
+                        "longitude": "-73.35686"
+                    }
+                ],
+                "name": "Nissequogue",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "40.89",
+                "longitude": "-73.18",
+                "validFromTimeLocal": "2019-10-04T04:30:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-04T18:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY REMAINS IN EFFECT UNTIL 10 PM EDT THIS EVENING.  * WINDS. N 15 to 20 kt with gusts up to 30 kt.",
+                "zone": [
+                    {
+                        "value": "ANZ338",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "New York Harbor",
+                        "latitude": "40.54999",
+                        "longitude": "-74.08848"
+                    }
+                ],
+                "name": "New Dorp Beach",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "40.55",
+                "longitude": "-74.09",
+                "validFromTimeLocal": "2019-10-04T04:30:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-04T22:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT UNTIL 8 AM EDT SATURDAY.  * WINDS AND SEAS. NW winds 15 to 20 kt with gusts up to 25 kt early this morning, becoming N 20 to 25 kt with gusts up to 30 kt. Seas 3 to 5 ft.",
+                "zone": [
+                    {
+                        "value": "ANZ350",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Moriches Inlet NY to Montauk Point NY out 20 nm",
+                        "latitude": "40.75318",
+                        "longitude": "-72.20833"
+                    },
+                    {
+                        "value": "ANZ353",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Fire Island Inlet NY to Moriches Inlet NY out 20 nm",
+                        "latitude": "40.52838",
+                        "longitude": "-72.96292"
+                    },
+                    {
+                        "value": "ANZ355",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Sandy Hook NJ to Fire Island Inlet NY out 20 nm",
+                        "latitude": "40.44624",
+                        "longitude": "-73.62661"
+                    }
+                ],
+                "name": "Davis Park",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "40.58",
+                "longitude": "-72.93",
+                "validFromTimeLocal": "2019-10-04T04:30:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T08:00:00.000-04:00"
+            },
+            {
+                "type": "11",
+                "description": "Small Craft Advisory",
+                "severity": 70,
+                "message": "SMALL CRAFT ADVISORY NOW IN EFFECT UNTIL 2 PM EDT SATURDAY.  * WINDS AND SEAS. Northwest wind 15 to 20 knots with gusts up to 30 knots today. North wind 15 to 20 knots with gusts up to 30 knots tonight. Northeast wind 15 to 20 knots with gusts up to 25 knots on Saturday. Seas 4 to 6 feet.",
+                "zone": [
+                    {
+                        "value": "ANZ453",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Great Egg Inlet to Cape May NJ out 20 nm",
+                        "latitude": "39.00461",
+                        "longitude": "-74.63119"
+                    },
+                    {
+                        "value": "ANZ452",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Little Egg Inlet to Great Egg Inlet NJ out 20 nm",
+                        "latitude": "39.2595",
+                        "longitude": "-74.35732"
+                    },
+                    {
+                        "value": "ANZ454",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Cape May NJ to Cape Henlopen DE out 20 nm",
+                        "latitude": "38.77348",
+                        "longitude": "-74.84177"
+                    },
+                    {
+                        "value": "ANZ455",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Cape Henlopen to Fenwick Island DE out 20 nm",
+                        "latitude": "38.57603",
+                        "longitude": "-74.99548"
+                    },
+                    {
+                        "value": "ANZ450",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Sandy Hook to Manasquan Inlet NJ out 20 nm",
+                        "latitude": "40.21046",
+                        "longitude": "-73.84981"
+                    },
+                    {
+                        "value": "ANZ451",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "*",
+                        "stateName": "*",
+                        "name": "Coastal waters from Manasquan Inlet to Little Egg Inlet NJ out 20 nm",
+                        "latitude": "39.68182",
+                        "longitude": "-74.0638"
+                    }
+                ],
+                "name": "Longport",
+                "country": "United States",
+                "state": "New Jersey",
+                "latitude": "39.25",
+                "longitude": "-74.46",
+                "validFromTimeLocal": "2019-10-04T04:00:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T14:00:00.000-04:00"
+            },
+            {
+                "type": "12",
+                "description": "Frost Advisory",
+                "severity": 42,
+                "message": "FROST ADVISORY IN EFFECT FROM MIDNIGHT TONIGHT TO 9 AM EDT SATURDAY.  * WHAT. Temperatures falling into the mid 30s will result in frost formation. * WHERE. In New Jersey, Western Passaic County. In Connecticut, Northern Fairfield, Northern New Haven, Middlesex, and New London Counties. In New York, Orange and Putnam Counties. * WHEN. From midnight tonight to 9 AM EDT Saturday. * IMPACTS. Frost could kill sensitive outdoor vegetation if left uncovered.",
+                "zone": [
+                    {
+                        "value": "CTZ005",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "CT",
+                        "stateName": "Connecticut",
+                        "name": "Northern Fairfield",
+                        "latitude": "41.4099",
+                        "longitude": "-73.31345"
+                    },
+                    {
+                        "value": "CTZ006",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "CT",
+                        "stateName": "Connecticut",
+                        "name": "Northern New Haven",
+                        "latitude": "41.47202",
+                        "longitude": "-73.03328"
+                    },
+                    {
+                        "value": "CTZ007",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "CT",
+                        "stateName": "Connecticut",
+                        "name": "Northern Middlesex",
+                        "latitude": "41.47837",
+                        "longitude": "-72.53005"
+                    },
+                    {
+                        "value": "CTZ008",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "CT",
+                        "stateName": "Connecticut",
+                        "name": "Northern New London",
+                        "latitude": "41.52776",
+                        "longitude": "-72.12857"
+                    },
+                    {
+                        "value": "CTZ011",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "CT",
+                        "stateName": "Connecticut",
+                        "name": "Southern Middlesex",
+                        "latitude": "41.32894",
+                        "longitude": "-72.4637"
+                    },
+                    {
+                        "value": "CTZ012",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "CT",
+                        "stateName": "Connecticut",
+                        "name": "Southern New London",
+                        "latitude": "41.36202",
+                        "longitude": "-71.96285"
+                    },
+                    {
+                        "value": "NJZ002",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "NJ",
+                        "stateName": "New Jersey",
+                        "name": "Western Passaic",
+                        "latitude": "41.08652",
+                        "longitude": "-74.36065"
+                    },
+                    {
+                        "value": "NYZ067",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "NY",
+                        "stateName": "New York",
+                        "name": "Orange",
+                        "latitude": "41.38668",
+                        "longitude": "-74.35751"
+                    },
+                    {
+                        "value": "NYZ068",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "NY",
+                        "stateName": "New York",
+                        "name": "Putnam",
+                        "latitude": "41.4256",
+                        "longitude": "-73.75622"
+                    }
+                ],
+                "name": "West Seymour",
+                "country": "United States",
+                "state": "Connecticut",
+                "latitude": "41.39",
+                "longitude": "-73.10",
+                "validFromTimeLocal": "2019-10-04T04:30:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T09:00:00.000-04:00"
+            },
+            {
+                "type": "12",
+                "description": "Frost Advisory",
+                "severity": 42,
+                "message": "FROST ADVISORY IN EFFECT FROM 2 AM TO 9 AM EDT SATURDAY.  * WHAT. Temperatures as low as the middle 30s may result in the development of frost, especially in sheltered valleys. * WHERE. Sussex County in New Jersey. Monroe County and Carbon County in Pennsylvania. * WHEN. From 2:00 AM until 9:00 AM Saturday. * IMPACTS. Frost could damage or kill sensitive outdoor vegetation if it is left unprotected.",
+                "zone": [
+                    {
+                        "value": "NJZ001",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "NJ",
+                        "stateName": "New Jersey",
+                        "name": "Sussex",
+                        "latitude": "41.12579",
+                        "longitude": "-74.68044"
+                    },
+                    {
+                        "value": "PAZ054",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "PA",
+                        "stateName": "Pennsylvania",
+                        "name": "Carbon",
+                        "latitude": "40.93665",
+                        "longitude": "-75.74046"
+                    },
+                    {
+                        "value": "PAZ055",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "PA",
+                        "stateName": "Pennsylvania",
+                        "name": "Monroe",
+                        "latitude": "41.03458",
+                        "longitude": "-75.31002"
+                    }
+                ],
+                "name": "Mount Zion [Monroe County]",
+                "country": "United States",
+                "state": "Pennsylvania",
+                "latitude": "41.03",
+                "longitude": "-75.24",
+                "validFromTimeLocal": "2019-10-04T05:38:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T09:00:00.000-04:00"
+            },
+            {
+                "type": "12",
+                "description": "Frost Advisory",
+                "severity": 42,
+                "message": "FROST ADVISORY IN EFFECT FROM MIDNIGHT TONIGHT TO 9 AM EDT SATURDAY.  * WHAT. Temperatures falling into the mid 30s will result in frost formation. * WHERE. In New Jersey, Western Passaic County. In Connecticut, Northern Fairfield, Northern New Haven, Middlesex, and New London Counties. In New York, Orange and Putnam Counties. * WHEN. From midnight tonight to 9 AM EDT Saturday. * IMPACTS. Frost could kill sensitive outdoor vegetation if left uncovered.",
+                "zone": [
+                    {
+                        "value": "NJZ002",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "NJ",
+                        "stateName": "New Jersey",
+                        "name": "Western Passaic",
+                        "latitude": "41.08652",
+                        "longitude": "-74.36065"
+                    }
+                ],
+                "name": "Upper Macopin",
+                "country": "United States",
+                "state": "New Jersey",
+                "latitude": "41.09",
+                "longitude": "-74.36",
+                "validFromTimeLocal": "2019-10-04T04:30:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T09:00:00.000-04:00"
+            },
+            {
+                "type": "12",
+                "description": "Frost Advisory",
+                "severity": 42,
+                "message": "FROST ADVISORY IN EFFECT FROM MIDNIGHT TONIGHT TO 9 AM EDT SATURDAY.  * WHAT. Temperatures falling into the mid 30s will result in frost formation. * WHERE. In New Jersey, Western Passaic County. In Connecticut, Northern Fairfield, Northern New Haven, Middlesex, and New London Counties. In New York, Orange and Putnam Counties. * WHEN. From midnight tonight to 9 AM EDT Saturday. * IMPACTS. Frost could kill sensitive outdoor vegetation if left uncovered.",
+                "zone": [
+                    {
+                        "value": "NYZ067",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "NY",
+                        "stateName": "New York",
+                        "name": "Orange",
+                        "latitude": "41.38668",
+                        "longitude": "-74.35751"
+                    },
+                    {
+                        "value": "NYZ068",
+                        "country": "US",
+                        "countryName": "United States",
+                        "state": "NY",
+                        "stateName": "New York",
+                        "name": "Putnam",
+                        "latitude": "41.4256",
+                        "longitude": "-73.75622"
+                    }
+                ],
+                "name": "Mountainville",
+                "country": "United States",
+                "state": "New York",
+                "latitude": "41.41",
+                "longitude": "-74.06",
+                "validFromTimeLocal": "2019-10-04T04:30:00.000-04:00",
+                "validUntilTimeLocal": "2019-10-05T09:00:00.000-04:00"
+            }
+        ]
+    },
+    "feedCreation": "2019-10-04T14:24:23.660Z",
+    "metric": true
+}
