@@ -30,6 +30,7 @@ from .models import (
     GeocoderResponse,
     GeocoderReverseResponse,
     RoutingResponse,
+    RoutingMatrixResponse,
     GeocoderAutoCompleteResponse,
     PlacesResponse,
     PlacesSuggestionsResponse,

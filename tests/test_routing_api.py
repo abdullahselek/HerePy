@@ -17,7 +17,6 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(self._api, herepy.RoutingApi)
         self.assertEqual(self._api._app_id, 'app_id')
         self.assertEqual(self._api._app_code, 'app_code')
-        self.assertEqual(self._api._base_url, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json')
 
     @responses.activate
     def test_bicycleroute_withdefaultmodes_whensucceed(self):
@@ -431,3 +430,51 @@ class RoutingApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.truck_route([11.0, 12.0], [47.013399, -10.171986])
+
+    @responses.activate
+    def test_matrix_whensucceed(self):
+        with codecs.open('testdata/models/routing_matrix.json', mode='r', encoding='utf-8') as f:
+            server_response = f.read()
+        responses.add(responses.GET, 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json',
+                      server_response, status=200)
+        response = self._api.matrix(
+            start_waypoints=[[9.933231, -84.076831]],
+            destination_waypoints=[[9.934574, -84.065544]])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+
+    @responses.activate
+    def test_matrix_multiple_starts(self):
+        with codecs.open('testdata/models/routing_matrix_multiple_starts.json', mode='r', encoding='utf-8') as f:
+            server_response = f.read()
+        responses.add(responses.GET, 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json',
+                      server_response, status=200)
+        response = self._api.matrix(
+            start_waypoints=[[9.933231, -84.076831], [9.934574, -84.065544]],
+            destination_waypoints=[[9.934574, -84.065544]])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+
+    @responses.activate
+    def test_matrix_multiple_destinations(self):
+        with codecs.open('testdata/models/routing_matrix_multiple_destinations.json', mode='r', encoding='utf-8') as f:
+            server_response = f.read()
+        responses.add(responses.GET, 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json',
+                      server_response, status=200)
+        response = self._api.matrix(
+            start_waypoints=[[9.933231, -84.076831]],
+            destination_waypoints=[[9.934574, -84.065544], [9.612552, -84.62892]])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+
+    @responses.activate
+    def test_matrix_bad_request(self):
+        with codecs.open('testdata/models/routing_matrix_bad_request.json', mode='r', encoding='utf-8') as f:
+            server_response = f.read()
+        responses.add(responses.GET, 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json',
+                      server_response, status=400)
+        with self.assertRaises(herepy.InvalidInputDataError):
+            self._api.matrix(
+                start_waypoints=[[9.933231, -84.076831]],
+                destination_waypoints=[[9.934574, -84.065544]],
+                modes=[herepy.RouteMode.pedestrian, herepy.RouteMode.car])

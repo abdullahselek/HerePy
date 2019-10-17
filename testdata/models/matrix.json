@@ -1,0 +1,22 @@
+{
+    "response": {
+        "metaInfo": {
+            "timestamp": "2019-10-16T22:21:58Z",
+            "mapVersion": "8.30.101.154",
+            "moduleVersion": "7.2.201941-5473",
+            "interfaceVersion": "2.6.72",
+            "availableMapVersion": [
+                "8.30.101.154"
+            ]
+        },
+        "matrixEntry": [
+            {
+                "startIndex": 0,
+                "destinationIndex": 0,
+                "summary": {
+                    "costFactor": 320
+                }
+            }
+        ]
+    }
+}
