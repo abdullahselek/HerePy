@@ -52,12 +52,12 @@ class RoutingApi(HEREApi):
         return mode_values
 
     @classmethod
-    def __coordinate_list_to_coordinate_string(cls, waypoint_a):
+    def __array_to_waypoint(cls, waypoint_a):
         return str.format('geo!{0},{1}', waypoint_a[0], waypoint_a[1])
 
     def _route(self, waypoint_a, waypoint_b, modes=None):
-        data = {'waypoint0': self.__coordinate_list_to_coordinate_string(waypoint_a),
-                'waypoint1': self.__coordinate_list_to_coordinate_string(waypoint_b),
+        data = {'waypoint0': self.__array_to_waypoint(waypoint_a),
+                'waypoint1': self.__array_to_waypoint(waypoint_b),
                 'mode': self.__prepare_mode_values(modes),
                 'app_id': self._app_id,
                 'app_code': self._app_code,
@@ -277,7 +277,6 @@ class RoutingApi(HEREApi):
         Returns:
           RoutingMatrixResponse
         Raises:
-          ValueError: If an invalid or redundant mode is passed.
           HEREError: If an error is received from the server.
         """
         data = {
@@ -287,9 +286,9 @@ class RoutingApi(HEREApi):
             'mode': self.__prepare_mode_values(modes)
         }
         for i, start_waypoint in enumerate(start_waypoints):
-            data['start' + str(i)] = self.__coordinate_list_to_coordinate_string(start_waypoint)
+            data['start' + str(i)] = self.__array_to_waypoint(start_waypoint)
         for i, destination_waypoint in enumerate(destination_waypoints):
-            data['destination' + str(i)] = self.__coordinate_list_to_coordinate_string(destination_waypoint)
+            data['destination' + str(i)] = self.__array_to_waypoint(destination_waypoint)
         response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
         return response
 
