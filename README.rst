@@ -211,6 +211,17 @@ Calculates the fastest truck route between two location
                                       [22.0, 23.0],
                                       [herepy.RouteMode.truck, herepy.RouteMode.fastest])
 
+Calculate an MxN cost matrix for M start points and N destinations
+
+.. code:: python
+
+    response = routingApi.matrix(
+        start_waypoints=[[11.0, 12.0], [13.0, 14.0]],
+        destination_waypoints=[[21.0, 22.0], [23.0, 24.0]],
+        departure='2013-07-04T17:00:00+02',
+        modes=[herepy.RouteMode.fastest, herepy.RouteMode.car])
+
+
 GeocoderAutoCompleteApi
 -----------------------
 
