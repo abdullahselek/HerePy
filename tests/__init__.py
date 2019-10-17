@@ -1,1 +1,0 @@
-"""HerePY test package initialization"""
