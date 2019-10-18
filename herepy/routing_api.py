@@ -279,6 +279,7 @@ class RoutingApi(HEREApi):
         Raises:
           HEREError: If an error is received from the server.
         """
+
         data = {
             'app_id': self._app_id,
             'app_code': self._app_code,
