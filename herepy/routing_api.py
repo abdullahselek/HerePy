@@ -10,7 +10,7 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RoutingResponse, RoutingMatrixResponse
-from herepy.here_enum import RouteMode
+from herepy.here_enum import RouteMode, MatrixSummaryAttribute
 
 class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
@@ -81,9 +81,9 @@ class RoutingApi(HEREApi):
         return response
 
     def bicycle_route(self,
-                  waypoint_a,
-                  waypoint_b,
-                  modes=None):
+                      waypoint_a,
+                      waypoint_b,
+                      modes=None):
         """Request a bicycle route between two points
         Args:
           waypoint_a (array):
@@ -193,10 +193,10 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes)
 
     def public_transport_timetable(self,
-                         waypoint_a,
-                         waypoint_b,
-                         combine_change,
-                         modes=None):
+                                   waypoint_a,
+                                   waypoint_b,
+                                   combine_change,
+                                   modes=None):
         """Request a public transport route between two points based on timetables
         Args:
           waypoint_a (array):
@@ -263,7 +263,8 @@ class RoutingApi(HEREApi):
                start_waypoints,
                destination_waypoints,
                departure='now',
-               modes=[]):
+               modes=[],
+               summary_attributes=[]):
         """Request a matrix of route summaries between M starts and N destinations.
         Args:
           start_waypoints (array):
@@ -284,7 +285,8 @@ class RoutingApi(HEREApi):
             'app_id': self._app_id,
             'app_code': self._app_code,
             'departure': departure,
-            'mode': self.__prepare_mode_values(modes)
+            'mode': self.__prepare_mode_values(modes),
+            'summaryAttributes': ','.join([attribute.__str__() for attribute in summary_attributes])
         }
         for i, start_waypoint in enumerate(start_waypoints):
             data['start' + str(i)] = self.__array_to_waypoint(start_waypoint)
@@ -316,7 +318,7 @@ class RoutingApi(HEREApi):
 
     @staticmethod
     def _get_route_from_public_transport_line(
-        public_transport_line_segment
+            public_transport_line_segment
     ):
         """Extract a short route description from the public transport lines."""
         lines = []

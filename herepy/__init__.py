@@ -20,6 +20,7 @@ from .error import HEREError
 
 from .here_enum import (
     RouteMode,
+    MatrixSummaryAttribute,
     PlacesCategory,
     PublicTransitSearchMethod,
     PublicTransitRoutingType,
