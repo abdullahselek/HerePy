@@ -12,7 +12,10 @@ class ModelsTest(unittest.TestCase):
 
     with open('testdata/models/routing.json', 'rb') as f:
         ROUTING_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
-    
+
+    with open('testdata/models/matrix.json', 'rb') as f:
+        ROUTING_MATRIX_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
+
     with open('testdata/models/geocoder_autocomplete.json', 'rb') as f:
         GEOCODER_AUTO_COMPLETE_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
@@ -51,6 +54,15 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(routingResponse.as_json_string())
         self.assertTrue(routingResponse.as_dict())
+
+    def test_routingapi_matrix_response(self):
+        routing_matrix_response = herepy.RoutingResponse.new_from_jsondict(self.ROUTING_MATRIX_SAMPLE_JSON)
+        try:
+            routing_matrix_response.__repr__()
+        except Exception as e:
+            self.fail(e)
+        self.assertTrue(routing_matrix_response.as_json_string())
+        self.assertTrue(routing_matrix_response.as_dict())
 
     def test_geocoder_autocompleteresponse(self):
         geocoderAutoCompleteResponse = herepy.GeocoderAutoCompleteResponse.new_from_jsondict(self.GEOCODER_AUTO_COMPLETE_SAMPLE_JSON)

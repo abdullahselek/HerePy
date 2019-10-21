@@ -20,6 +20,7 @@ from .error import HEREError
 
 from .here_enum import (
     RouteMode,
+    MatrixSummaryAttribute,
     PlacesCategory,
     PublicTransitSearchMethod,
     PublicTransitRoutingType,
@@ -30,6 +31,7 @@ from .models import (
     GeocoderResponse,
     GeocoderReverseResponse,
     RoutingResponse,
+    RoutingMatrixResponse,
     GeocoderAutoCompleteResponse,
     PlacesResponse,
     PlacesSuggestionsResponse,

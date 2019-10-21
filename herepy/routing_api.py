@@ -9,11 +9,14 @@ import requests
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
-from herepy.models import RoutingResponse
-from herepy.here_enum import RouteMode
+from herepy.models import RoutingResponse, RoutingMatrixResponse
+from herepy.here_enum import RouteMode, MatrixSummaryAttribute
 
 class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
+
+    URL_CALCULATE_ROUTE = 'https://route.cit.api.here.com/routing/7.2/calculateroute.json'
+    URL_CALCULATE_MATRIX = 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json'
 
     def __init__(self,
                  app_id=None,
@@ -30,14 +33,13 @@ class RoutingApi(HEREApi):
         """
 
         super(RoutingApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://route.cit.api.here.com/routing/7.2/calculateroute.json'
 
-    def __get(self, data):
-        url = Utils.build_url(self._base_url, extra_params=data)
+    def __get(self, base_url, data, response_cls):
+        url = Utils.build_url(base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode('utf8'))
-        if json_data.get('response') != None:
-            return RoutingResponse.new_from_jsondict(json_data)
+        if json_data.get('response') is not None:
+            return response_cls.new_from_jsondict(json_data)
         else:
             raise error_from_routing_service_error(json_data)
 
@@ -49,14 +51,18 @@ class RoutingApi(HEREApi):
         mode_values = mode_values[:-1]
         return mode_values
 
+    @classmethod
+    def __array_to_waypoint(cls, waypoint_a):
+        return str.format('geo!{0},{1}', waypoint_a[0], waypoint_a[1])
+
     def _route(self, waypoint_a, waypoint_b, modes=None):
-        data = {'waypoint0': str.format('{0},{1}', waypoint_a[0], waypoint_a[1]),
-                'waypoint1': str.format('{0},{1}', waypoint_b[0], waypoint_b[1]),
+        data = {'waypoint0': self.__array_to_waypoint(waypoint_a),
+                'waypoint1': self.__array_to_waypoint(waypoint_b),
                 'mode': self.__prepare_mode_values(modes),
                 'app_id': self._app_id,
                 'app_code': self._app_code,
                 'departure': 'now'}
-        response = self.__get(data)
+        response = self.__get(self.URL_CALCULATE_ROUTE, data, RoutingResponse)
         route = response.response["route"]
         maneuver = route[0]["leg"][0]["maneuver"]
 
@@ -75,9 +81,9 @@ class RoutingApi(HEREApi):
         return response
 
     def bicycle_route(self,
-                  waypoint_a,
-                  waypoint_b,
-                  modes=None):
+                      waypoint_a,
+                      waypoint_b,
+                      modes=None):
         """Request a bicycle route between two points
         Args:
           waypoint_a (array):
@@ -187,10 +193,10 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes)
 
     def public_transport_timetable(self,
-                         waypoint_a,
-                         waypoint_b,
-                         combine_change,
-                         modes=None):
+                                   waypoint_a,
+                                   waypoint_b,
+                                   combine_change,
+                                   modes=None):
         """Request a public transport route between two points based on timetables
         Args:
           waypoint_a (array):
@@ -253,6 +259,42 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.truck, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes)
 
+    def matrix(self,
+               start_waypoints,
+               destination_waypoints,
+               departure='now',
+               modes=[],
+               summary_attributes=[]):
+        """Request a matrix of route summaries between M starts and N destinations.
+        Args:
+          start_waypoints (array):
+            array of arrays of coordinates [lat,long] of start waypoints.
+          destination_waypoints (array):
+            array of arrays of coordinates [lat,long] of destination waypoints.
+          departure (str):
+            time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
+          modes (array):
+            array of RouteMode enums following [Type, TransportMode, TrafficMode, Feature].
+        Returns:
+          RoutingMatrixResponse
+        Raises:
+          HEREError: If an error is received from the server.
+        """
+
+        data = {
+            'app_id': self._app_id,
+            'app_code': self._app_code,
+            'departure': departure,
+            'mode': self.__prepare_mode_values(modes),
+            'summaryAttributes': ','.join([attribute.__str__() for attribute in summary_attributes])
+        }
+        for i, start_waypoint in enumerate(start_waypoints):
+            data['start' + str(i)] = self.__array_to_waypoint(start_waypoint)
+        for i, destination_waypoint in enumerate(destination_waypoints):
+            data['destination' + str(i)] = self.__array_to_waypoint(destination_waypoint)
+        response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
+        return response
+
     @staticmethod
     def _get_route_from_non_vehicle_maneuver(maneuver):
         """Extract a short route description from the maneuver instructions."""
@@ -276,7 +318,7 @@ class RoutingApi(HEREApi):
 
     @staticmethod
     def _get_route_from_public_transport_line(
-        public_transport_line_segment
+            public_transport_line_segment
     ):
         """Extract a short route description from the public transport lines."""
         lines = []

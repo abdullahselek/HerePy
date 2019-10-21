@@ -2,6 +2,7 @@
 
 from enum import Enum
 
+
 class RouteMode(Enum):
     """Modes which is used in routing api functions."""
 
@@ -19,6 +20,17 @@ class RouteMode(Enum):
     publicTransport = 'publicTransport'
     publicTransportTimeTable = 'publicTransportTimeTable'
     truck = 'truck'
+
+    def __str__(self):
+        return '%s' % self._value_
+
+class MatrixSummaryAttribute(Enum):
+    """Defines an attribute to be included in the route matrix entries"""
+
+    travel_time = 'traveltime'
+    cost_factor = 'costfactor'
+    distance = 'distance'
+    route_id = 'routeid'
 
     def __str__(self):
         return '%s' % self._value_

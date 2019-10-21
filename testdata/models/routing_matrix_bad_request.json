@@ -1,0 +1,21 @@
+{
+    "_type": "ns2:RoutingServiceErrorType",
+    "type": "ApplicationError",
+    "subtype": "InvalidInputData",
+    "details": "Request should not contain more than 15 starts",
+    "additionalData": [
+        {
+            "key": "start",
+            "value": ""
+        }
+    ],
+    "metaInfo": {
+        "timestamp": "2019-10-16T22:47:02Z",
+        "mapVersion": "8.30.101.154",
+        "moduleVersion": "7.2.201941-5473",
+        "interfaceVersion": "2.6.72",
+        "availableMapVersion": [
+            "8.30.101.154"
+        ]
+    }
+}
