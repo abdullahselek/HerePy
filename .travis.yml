@@ -1,11 +1,19 @@
 language: python
 
+os:
+  - linux
+
 python:
   - "2.7"
   - "3.5"
   - "3.6"
-  - "3.7-dev"
+  - "3.7"
+  - "3.8"
   - "nightly"
+
+jobs:
+  allow_failures:
+    - python: nightly
 
 # command to install dependencies
 install:
