@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import datetime
 import os
 import sys
 import unittest
@@ -478,3 +479,26 @@ class RoutingApiTest(unittest.TestCase):
                 start_waypoints=[[9.933231, -84.076831]],
                 destination_waypoints=[[9.934574, -84.065544]],
                 modes=[herepy.RouteMode.pedestrian, herepy.RouteMode.car])
+
+    @responses.activate
+    def test_departure_as_datetime(self):
+        with codecs.open('testdata/models/routing_truck_route_short.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        date = datetime.datetime(2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200)))
+        response = self._api.truck_route([11.0, 12.0],
+                                         [22.0, 23.0],
+                                         departure=date)
+
+    @responses.activate
+    def test_departure_as_string(self):
+        with codecs.open('testdata/models/routing_truck_route_short.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+                  expectedResponse, status=200)
+        date = "2013-07-04T17:00:00+02:00"
+        response = self._api.truck_route([11.0, 12.0],
+                                         [22.0, 23.0],
+                                         departure=date)
+        
