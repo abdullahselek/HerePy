@@ -98,6 +98,8 @@ class RoutingApi(HEREApi):
             array including latitude and longitude in order.
           modes (array):
             array including RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
           RoutingResponse
         Raises:
@@ -120,6 +122,8 @@ class RoutingApi(HEREApi):
             array including latitude and longitude in order.
           modes (array):
             array including RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
           RoutingResponse
         Raises:
@@ -142,6 +146,8 @@ class RoutingApi(HEREApi):
             array including latitude and longitude in order.
           modes (array):
             array including RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
           RoutingResponse
         Raises:
@@ -167,6 +173,8 @@ class RoutingApi(HEREApi):
             Last array including latitude and longitude in order.
           modes (array):
             array including RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
           RoutingResponse
         Raises:
@@ -193,6 +201,8 @@ class RoutingApi(HEREApi):
             indicates a public transit line change.
           modes (array):
             array including RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
           RoutingResponse
         Raises:
@@ -220,6 +230,10 @@ class RoutingApi(HEREApi):
             indicates a public transit line change.
           modes (array):
             array including RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `None`.
+          arrival (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `None`.
         Returns:
           RoutingResponse
         Raises:
@@ -242,6 +256,8 @@ class RoutingApi(HEREApi):
             array including latitude and longitude in order.
           modes (array):
             array including RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
           RoutingResponse
         Raises:
@@ -264,6 +280,8 @@ class RoutingApi(HEREApi):
             array including latitude and longitude in order.
           modes (array):
             array including RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
           RoutingResponse
         Raises:
