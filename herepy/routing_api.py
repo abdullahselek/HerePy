@@ -55,13 +55,18 @@ class RoutingApi(HEREApi):
     def __array_to_waypoint(cls, waypoint_a):
         return str.format('geo!{0},{1}', waypoint_a[0], waypoint_a[1])
 
-    def _route(self, waypoint_a, waypoint_b, modes=None):
+    def _route(self, waypoint_a, waypoint_b, modes=None, departure=None, arrival=None):
         data = {'waypoint0': self.__array_to_waypoint(waypoint_a),
                 'waypoint1': self.__array_to_waypoint(waypoint_b),
                 'mode': self.__prepare_mode_values(modes),
                 'app_id': self._app_id,
-                'app_code': self._app_code,
-                'departure': 'now'}
+                'app_code': self._app_code}
+        if departure is not None and arrival is not None:
+            raise HEREError("Specify either departure or arrival, not both.")
+        if departure is not None:
+            data["departure"] = departure
+        if arrival is not None:
+            data["arrival"] = arrival
         response = self.__get(self.URL_CALCULATE_ROUTE, data, RoutingResponse)
         route = response.response["route"]
         maneuver = route[0]["leg"][0]["maneuver"]
@@ -83,7 +88,8 @@ class RoutingApi(HEREApi):
     def bicycle_route(self,
                       waypoint_a,
                       waypoint_b,
-                      modes=None):
+                      modes=None,
+                      departure='now'):
         """Request a bicycle route between two points
         Args:
           waypoint_a (array):
@@ -99,12 +105,13 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.bicycle, RouteMode.fastest]
-        return self._route(waypoint_a, waypoint_b, modes)
+        return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def car_route(self,
                   waypoint_a,
                   waypoint_b,
-                  modes=None):
+                  modes=None,
+                  departure='now'):
         """Request a driving route between two points
         Args:
           waypoint_a (array):
@@ -120,12 +127,13 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
-        return self._route(waypoint_a, waypoint_b, modes)
+        return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def pedastrian_route(self,
                          waypoint_a,
                          waypoint_b,
-                         modes=None):
+                         modes=None,
+                         departure='now'):
         """Request a pedastrian route between two points
         Args:
           waypoint_a (array):
@@ -141,13 +149,14 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.pedestrian, RouteMode.fastest]
-        return self._route(waypoint_a, waypoint_b, modes)
+        return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def intermediate_route(self,
                            waypoint_a,
                            waypoint_b,
                            waypoint_c,
-                           modes=None):
+                           modes=None,
+                           departure='now'):
         """Request a intermediate route from three points
         Args:
           waypoint_a (array):
@@ -165,13 +174,14 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
-        return self._route(waypoint_a, waypoint_b, modes)
+        return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def public_transport(self,
                          waypoint_a,
                          waypoint_b,
                          combine_change,
-                         modes=None):
+                         modes=None,
+                         departure='now'):
         """Request a public transport route between two points
         Args:
           waypoint_a (array):
@@ -190,13 +200,15 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.publicTransport, RouteMode.fastest]
-        return self._route(waypoint_a, waypoint_b, modes)
+        return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def public_transport_timetable(self,
                                    waypoint_a,
                                    waypoint_b,
                                    combine_change,
-                                   modes=None):
+                                   modes=None,
+                                   departure=None,
+                                   arrival=None):
         """Request a public transport route between two points based on timetables
         Args:
           waypoint_a (array):
@@ -215,12 +227,13 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.publicTransportTimeTable, RouteMode.fastest]
-        return self._route(waypoint_a, waypoint_b, modes)
+        return self._route(waypoint_a, waypoint_b, modes, departure, arrival)
 
     def location_near_motorway(self,
                                waypoint_a,
                                waypoint_b,
-                               modes=None):
+                               modes=None,
+                               departure='now'):
         """Calculates the fastest car route between two location
         Args:
           waypoint_a (array):
@@ -236,12 +249,13 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.car, RouteMode.fastest]
-        return self._route(waypoint_a, waypoint_b, modes)
+        return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def truck_route(self,
                     waypoint_a,
                     waypoint_b,
-                    modes=None):
+                    modes=None,
+                    departure='now'):
         """Calculates the fastest truck route between two location
         Args:
           waypoint_a (array):
@@ -257,7 +271,7 @@ class RoutingApi(HEREApi):
 
         if modes is None:
             modes = [RouteMode.truck, RouteMode.fastest]
-        return self._route(waypoint_a, waypoint_b, modes)
+        return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def matrix(self,
                start_waypoints,
