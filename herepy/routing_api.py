@@ -314,14 +314,16 @@ class RoutingApi(HEREApi):
 
     @staticmethod
     def _convert_datetime_to_isoformat(datetime_object):
-      """Convert a datetime.datetime object to an ISO8601 string."""
-      if isinstance(datetime_object, datetime.datetime):
-        datetime_object = datetime_object.isoformat()
-      return datetime_object
+        """Convert a datetime.datetime object to an ISO8601 string."""
+
+        if isinstance(datetime_object, datetime.datetime):
+          datetime_object = datetime_object.isoformat()
+        return datetime_object
 
     @staticmethod
     def _get_route_from_non_vehicle_maneuver(maneuver):
         """Extract a short route description from the maneuver instructions."""
+
         road_names = []
 
         for step in maneuver:
@@ -345,6 +347,7 @@ class RoutingApi(HEREApi):
             public_transport_line_segment
     ):
         """Extract a short route description from the public transport lines."""
+
         lines = []
         for line_info in public_transport_line_segment:
             lines.append(line_info["lineName"] + " - " + line_info["destination"])
@@ -355,6 +358,7 @@ class RoutingApi(HEREApi):
     @staticmethod
     def _get_route_from_vehicle_maneuver(maneuver):
         """Extract a short route description from the maneuver instructions."""
+
         road_names = []
 
         for step in maneuver:
@@ -445,6 +449,7 @@ class RouteNotReconstructedError(HEREError):
 # pylint: disable=R0911
 def error_from_routing_service_error(json_data):
     """Return the correct subclass for routing errors"""
+
     if 'subtype' in json_data:
         subtype = json_data['subtype']
         details = json_data['details']
