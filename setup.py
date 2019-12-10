@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import, print_function
 
 import os
 import re
@@ -37,8 +35,8 @@ setup(
     download_url=extract_metaitem('download_url'),
     packages=find_packages(exclude=('tests', 'docs')),
     platforms=['Any'],
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*",
-    install_requires=['future', 'requests', 'enum34;python_version<"3.4"'],
+    python_requires=">=3.5",
+    install_requires=['future', 'requests'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     keywords='here api',
@@ -48,7 +46,6 @@ setup(
         'Operating System :: OS Independent',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',

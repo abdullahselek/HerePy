@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # herepy documentation build configuration file, created by
 # sphinx-quickstart on Wed Dec  6 14:33:23 2017.

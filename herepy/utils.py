@@ -1,19 +1,9 @@
 #!/usr/bin/env python
 
-from __future__ import division
 import zlib
 import base64
 
-try:
-    # python 3
-    from urllib.parse import (
-        urlparse, urlunparse, urlencode
-    )
-except ImportError:
-    from urlparse import (
-        urlparse, urlunparse
-    )
-    from urllib import urlencode
+from urllib.parse import (urlparse, urlunparse, urlencode)
 
 from herepy.error import HEREError
 

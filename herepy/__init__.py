@@ -2,8 +2,6 @@
 
 """A library that provides a Python interface to the HERE APIs"""
 
-from __future__ import absolute_import
-
 __author__       = 'Abdullah Selek'
 __email__        = 'abdullahselek@gmail.com'
 __copyright__    = 'Copyright (c) 2017 Abdullah Selek'
