@@ -14,24 +14,21 @@ from herepy.here_enum import RouteMode, MatrixSummaryAttribute
 class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
 
-    URL_CALCULATE_ROUTE = 'https://route.cit.api.here.com/routing/7.2/calculateroute.json'
-    URL_CALCULATE_MATRIX = 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json'
+    URL_CALCULATE_ROUTE = 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json'
+    URL_CALCULATE_MATRIX = 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json'
 
     def __init__(self,
-                 app_id=None,
-                 app_code=None,
+                 api_key=None,
                  timeout=None):
         """Returns a RoutingApi instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
-          app_code (str):
-            App Code taken from HERE Developer Portal.
+          api_key (str):
+            API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
         """
 
-        super(RoutingApi, self).__init__(app_id, app_code, timeout)
+        super(RoutingApi, self).__init__(api_key, timeout)
 
     def __get(self, base_url, data, response_cls):
         url = Utils.build_url(base_url, extra_params=data)
@@ -58,8 +55,7 @@ class RoutingApi(HEREApi):
         data = {'waypoint0': self.__array_to_waypoint(waypoint_a),
                 'waypoint1': self.__array_to_waypoint(waypoint_b),
                 'mode': self.__prepare_mode_values(modes),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         if departure is not None and arrival is not None:
             raise HEREError("Specify either departure or arrival, not both.")
         if departure is not None:
@@ -315,8 +311,7 @@ class RoutingApi(HEREApi):
         """
 
         data = {
-            'app_id': self._app_id,
-            'app_code': self._app_code,
+            'apikey': self._api_key,
             'departure': departure,
             'mode': self.__prepare_mode_values(modes),
             'summaryAttributes': ','.join([attribute.__str__() for attribute in summary_attributes])

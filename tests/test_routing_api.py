@@ -11,19 +11,18 @@ import herepy
 class RoutingApiTest(unittest.TestCase):
 
     def setUp(self):
-        api = herepy.RoutingApi('app_id', 'app_code')
+        api = herepy.RoutingApi('api_key')
         self._api = api
 
     def test_initiation(self):
         self.assertIsInstance(self._api, herepy.RoutingApi)
-        self.assertEqual(self._api._app_id, 'app_id')
-        self.assertEqual(self._api._app_code, 'app_code')
+        self.assertEqual(self._api._api_key, 'api_key')
 
     @responses.activate
     def test_bicycleroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing_bicycle.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.bicycle_route([41.9798, -87.8801], [41.9043, -87.9216])
         self.assertTrue(response)
@@ -33,7 +32,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_bicycleroute_route_short(self):
         with codecs.open('testdata/models/routing_bicycle.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.bicycle_route([41.9798, -87.8801], [41.9043, -87.9216])
         expected_short_route = (
@@ -47,7 +46,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_carroute_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.car_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertTrue(response)
@@ -57,7 +56,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_carroute_route_short(self):
         with codecs.open('testdata/models/routing_car_route_short.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.car_route([38.9, -77.04833], [39.0, -77.1])
         expected_short_route = (
@@ -70,7 +69,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_carroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.car_route([11.0, 12.0], [22.0, 23.0])
         self.assertTrue(response)
@@ -80,7 +79,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_carroute_when_error_invalid_input_data_occured(self):
         with open('testdata/models/routing_error_invalid_input_data.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.InvalidInputDataError):
             self._api.car_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
@@ -89,9 +88,9 @@ class RoutingApiTest(unittest.TestCase):
     def test_carroute_when_error_invalid_credentials_occured(self):
         with open('testdata/models/routing_error_invalid_credentials.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        api = herepy.RoutingApi('wrong_app_id', 'wrong_app_code')
+        api = herepy.RoutingApi('wrong_api_key', 'wrong_app_code')
         with self.assertRaises(herepy.InvalidCredentialsError):
             api.car_route([11.0, 12.0], [22.0, 23.0])
 
@@ -99,7 +98,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_carroute_when_error_no_route_found_occured(self):
         with open('testdata/models/routing_error_no_route_found.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.car_route([11.0, 12.0], [47.013399, -10.171986])
@@ -108,7 +107,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_pedastrianroute_whensucceed(self):
         with codecs.open('testdata/models/routing_pedestrian.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.pedastrian_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
         self.assertTrue(response)
@@ -118,7 +117,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_pedastrianroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing_pedestrian.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.pedastrian_route([11.0, 12.0], [22.0, 23.0])
         self.assertTrue(response)
@@ -128,7 +127,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_pedastrianroute_when_error_invalid_input_data_occured(self):
         with open('testdata/models/routing_error_invalid_input_data.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.InvalidInputDataError):
             self._api.pedastrian_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
@@ -137,9 +136,9 @@ class RoutingApiTest(unittest.TestCase):
     def test_pedastrianroute_when_error_invalid_credentials_occured(self):
         with open('testdata/models/routing_error_invalid_credentials.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        api = herepy.RoutingApi('wrong_app_id', 'wrong_app_code')
+        api = herepy.RoutingApi('wrong_api_key', 'wrong_app_code')
         with self.assertRaises(herepy.InvalidCredentialsError):
             api.pedastrian_route([11.0, 12.0], [22.0, 23.0])
 
@@ -147,7 +146,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_pedastrianroute_when_error_no_route_found_occured(self):
         with open('testdata/models/routing_error_no_route_found.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.pedastrian_route([11.0, 12.0], [47.013399, -10.171986])
@@ -156,7 +155,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_pedastrianroute_route_short(self):
         with codecs.open('testdata/models/routing_pedestrian.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.pedastrian_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest])
         expected_short_route = (
@@ -170,7 +169,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_intermediateroute_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertTrue(response)
@@ -180,7 +179,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_intermediateroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0])
         self.assertTrue(response)
@@ -190,7 +189,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_intermediateroute_when_error_invalid_input_data_occured(self):
         with open('testdata/models/routing_error_invalid_input_data.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.InvalidInputDataError):
             self._api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
@@ -199,9 +198,9 @@ class RoutingApiTest(unittest.TestCase):
     def test_intermediateroute_when_error_invalid_credentials_occured(self):
         with open('testdata/models/routing_error_invalid_credentials.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        api = herepy.RoutingApi('wrong_app_id', 'wrong_app_code')
+        api = herepy.RoutingApi('wrong_api_key', 'wrong_app_code')
         with self.assertRaises(herepy.InvalidCredentialsError):
             api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0])
 
@@ -209,7 +208,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_intermediateroute_when_error_no_route_found_occured(self):
         with open('testdata/models/routing_error_no_route_found.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.intermediate_route([11.0, 12.0], [47.013399, -10.171986], [22.0, 23.0])
@@ -218,7 +217,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_publictransport_whensucceed(self):
         with codecs.open('testdata/models/routing_public.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.public_transport([11.0, 12.0],
                                               [15.0, 16.0],
@@ -231,7 +230,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_publictransport_route_short(self):
         with codecs.open('testdata/models/routing_public.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.public_transport([11.0, 12.0],
                                               [15.0, 16.0],
@@ -245,7 +244,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_publictransport_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing_public.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.public_transport([11.0, 12.0],
                                               [15.0, 16.0],
@@ -257,7 +256,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_publictransport_when_error_invalid_input_data_occured(self):
         with open('testdata/models/routing_error_invalid_input_data.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.InvalidInputDataError):
             self._api.public_transport([11.0, 12.0],
@@ -269,9 +268,9 @@ class RoutingApiTest(unittest.TestCase):
     def test_publictransport_when_error_invalid_credentials_occured(self):
         with open('testdata/models/routing_error_invalid_credentials.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        api = herepy.RoutingApi('wrong_app_id', 'wrong_app_code')
+        api = herepy.RoutingApi('wrong_api_key', 'wrong_app_code')
         with self.assertRaises(herepy.InvalidCredentialsError):
             api.public_transport([11.0, 12.0],
                                  [15.0, 16.0],
@@ -281,7 +280,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_publictransport_when_error_no_route_found_occured(self):
         with open('testdata/models/routing_error_no_route_found.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.public_transport([11.0, 12.0], [47.013399, -10.171986], True)
@@ -290,7 +289,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_publictransporttimetable_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing_public_time_table.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.public_transport_timetable([11.0, 12.0],
                                               [15.0, 16.0],
@@ -302,7 +301,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_publictransporttimetable_route_short(self):
         with codecs.open('testdata/models/routing_public_time_table.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.public_transport_timetable([11.0, 12.0],
                                               [15.0, 16.0],
@@ -316,7 +315,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_locationnearmotorway_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.location_near_motorway([11.0, 12.0],
                                                     [22.0, 23.0],
@@ -328,7 +327,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_locationnearmotorway_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.location_near_motorway([11.0, 12.0],
                                                     [22.0, 23.0])
@@ -339,7 +338,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_locationnearmotorway_when_error_invalid_input_data_occured(self):
         with open('testdata/models/routing_error_invalid_input_data.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.InvalidInputDataError):
             self._api.location_near_motorway([11.0, 12.0],
@@ -350,9 +349,9 @@ class RoutingApiTest(unittest.TestCase):
     def test_locationnearmotorway_when_error_invalid_credentials_occured(self):
         with open('testdata/models/routing_error_invalid_credentials.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        api = herepy.RoutingApi('wrong_app_id', 'wrong_app_code')
+        api = herepy.RoutingApi('wrong_api_key', 'wrong_app_code')
         with self.assertRaises(herepy.InvalidCredentialsError):
             api.location_near_motorway([11.0, 12.0], [22.0, 23.0])
 
@@ -360,7 +359,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_locationnearmotorway_when_error_no_route_found_occured(self):
         with open('testdata/models/routing_error_no_route_found.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.location_near_motorway([11.0, 12.0], [47.013399, -10.171986])
@@ -369,7 +368,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_truckroute_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.truck_route([11.0, 12.0],
                                          [22.0, 23.0],
@@ -381,7 +380,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_truckroute_route_short(self):
         with codecs.open('testdata/models/routing_truck_route_short.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.truck_route([11.0, 12.0],
                                          [22.0, 23.0])
@@ -395,7 +394,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_truckroute_withdefaultmodes_whensucceed(self):
         with codecs.open('testdata/models/routing.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         response = self._api.truck_route([11.0, 12.0],
                                          [22.0, 23.0])
@@ -406,7 +405,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_truckroute_when_error_invalid_input_data_occured(self):
         with open('testdata/models/routing_error_invalid_input_data.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.InvalidInputDataError):
             self._api.truck_route([11.0, 12.0],
@@ -417,9 +416,9 @@ class RoutingApiTest(unittest.TestCase):
     def test_truckroute_when_error_invalid_credentials_occured(self):
         with open('testdata/models/routing_error_invalid_credentials.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
-        api = herepy.RoutingApi('wrong_app_id', 'wrong_app_code')
+        api = herepy.RoutingApi('wrong_api_key', 'wrong_app_code')
         with self.assertRaises(herepy.InvalidCredentialsError):
             api.truck_route([11.0, 12.0], [22.0, 23.0])
 
@@ -427,7 +426,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_truckroute_when_error_no_route_found_occured(self):
         with open('testdata/models/routing_error_no_route_found.json', 'r') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.truck_route([11.0, 12.0], [47.013399, -10.171986])
@@ -436,7 +435,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_matrix_whensucceed(self):
         with codecs.open('testdata/models/routing_matrix.json', mode='r', encoding='utf-8') as f:
             server_response = f.read()
-        responses.add(responses.GET, 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json',
+        responses.add(responses.GET, 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json',
                       server_response, status=200)
         response = self._api.matrix(
             start_waypoints=[[9.933231, -84.076831]],
@@ -448,7 +447,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_matrix_multiple_starts(self):
         with codecs.open('testdata/models/routing_matrix_multiple_starts.json', mode='r', encoding='utf-8') as f:
             server_response = f.read()
-        responses.add(responses.GET, 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json',
+        responses.add(responses.GET, 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json',
                       server_response, status=200)
         response = self._api.matrix(
             start_waypoints=[[9.933231, -84.076831], [9.934574, -84.065544]],
@@ -460,7 +459,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_matrix_multiple_destinations(self):
         with codecs.open('testdata/models/routing_matrix_multiple_destinations.json', mode='r', encoding='utf-8') as f:
             server_response = f.read()
-        responses.add(responses.GET, 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json',
+        responses.add(responses.GET, 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json',
                       server_response, status=200)
         response = self._api.matrix(
             start_waypoints=[[9.933231, -84.076831]],
@@ -472,7 +471,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_matrix_bad_request(self):
         with codecs.open('testdata/models/routing_matrix_bad_request.json', mode='r', encoding='utf-8') as f:
             server_response = f.read()
-        responses.add(responses.GET, 'https://matrix.route.api.here.com/routing/7.2/calculatematrix.json',
+        responses.add(responses.GET, 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json',
                       server_response, status=400)
         with self.assertRaises(herepy.InvalidInputDataError):
             self._api.matrix(
@@ -484,7 +483,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_departure_as_datetime(self):
         with codecs.open('testdata/models/routing_truck_route_short.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         date = datetime.datetime(2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200)))
         response = self._api.truck_route([11.0, 12.0],
@@ -495,7 +494,7 @@ class RoutingApiTest(unittest.TestCase):
     def test_departure_as_string(self):
         with codecs.open('testdata/models/routing_truck_route_short.json', mode='r', encoding='utf-8') as f:
             expectedResponse = f.read()
-        responses.add(responses.GET, 'https://route.cit.api.here.com/routing/7.2/calculateroute.json',
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
                   expectedResponse, status=200)
         date = "2013-07-04T17:00:00+02:00"
         response = self._api.truck_route([11.0, 12.0],

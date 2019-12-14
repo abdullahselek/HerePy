@@ -17,21 +17,18 @@ class PublicTransitApi(HEREApi):
     """A python interface into the HERE Public Transit API"""
 
     def __init__(self,
-                 app_id=None,
-                 app_code=None,
+                 api_key=None,
                  timeout=None):
         """Returns a PublicTransitApi instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
-          app_code (str):
-            App Code taken from HERE Developer Portal.
+          api_key (str):
+            API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
         """
 
-        super(PublicTransitApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://cit.transit.api.here.com/v3/'
+        super(PublicTransitApi, self).__init__(api_key, timeout)
+        self._base_url = 'https://transit.ls.hereapi.com/v3/'
 
     def __get(self, data, path, json_node):
         url = Utils.build_url(self._base_url + path, extra_params=data)
@@ -70,8 +67,7 @@ class PublicTransitApi(HEREApi):
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
                 'name':  name,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'max': max_count,
                 'method': method.__str__(),
                 'radius': radius}
@@ -94,8 +90,7 @@ class PublicTransitApi(HEREApi):
 
         data = {'center': str.format('{0},{1}', center[0], center[1]),
                 'radius': radius,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'max': max_count}
         return self.__get(data, 'stations/by_geocoord.json', 'Stations')
 
@@ -122,8 +117,7 @@ class PublicTransitApi(HEREApi):
 
         data = {'stnIds': self.__prepare_station_ids(ids),
                 'lang': lang,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data, 'stations/by_ids.json', 'Stations')
 
     def find_transit_coverage_in_cities(self, center, political_view, radius):
@@ -144,8 +138,7 @@ class PublicTransitApi(HEREApi):
         data = {'center': str.format('{0},{1}', center[0], center[1]),
                 'politicalview': political_view,
                 'radius': radius,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key,}
         return self.__get(data, 'coverage/city.json', 'Coverage')
 
     def next_nearby_departures_of_station(self, station_id, time, lang='en'):
@@ -166,8 +159,7 @@ class PublicTransitApi(HEREApi):
         data = {'lang': lang,
                 'stnId': station_id,
                 'time': time,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data, 'board.json', 'NextDepartures')
 
     def next_departures_from_location(self,
@@ -197,8 +189,7 @@ class PublicTransitApi(HEREApi):
         data = {'lang': lang,
                 'center': str.format('{0},{1}', center[0], center[1]),
                 'time': time,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'max': max,
                 'maxStn': max_station}
         return self.__get(data, 'multiboard/by_geocoord.json', 'MultiNextDepartures')
@@ -229,8 +220,7 @@ class PublicTransitApi(HEREApi):
 
         data = {'lang': lang,
                 'time': time,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'max': max,
                 'maxStn': max_station,
                 'stnIds': self.__prepare_station_ids(station_ids)}
@@ -260,8 +250,7 @@ class PublicTransitApi(HEREApi):
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
                 'arr': str.format('{0},{1}', arrival[0], arrival[1]),
                 'time': time,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'routing': routing_type.__str__()}
         return self.__get(data, 'route.json', 'Connections')
 
@@ -292,8 +281,7 @@ class PublicTransitApi(HEREApi):
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
                 'arr': str.format('{0},{1}', arrival[0], arrival[1]),
                 'time': time,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'arrival': 1 if show_arrival_times == True else 0,
                 'routing': routing_type.__str__()}
         return self.__get(data, 'route.json', 'Connections')
@@ -325,8 +313,7 @@ class PublicTransitApi(HEREApi):
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
                 'arr': str.format('{0},{1}', arrival[0], arrival[1]),
                 'time': time,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'routing': routing_type.__str__(),
                 'graph': graph}
         return self.__get(data, 'route.json', 'Connections')
@@ -357,8 +344,7 @@ class PublicTransitApi(HEREApi):
         """
 
         data = {'name': city_name,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'max': max,
                 'details': details,
                 'politicalview': political_view,
@@ -381,8 +367,7 @@ class PublicTransitApi(HEREApi):
         """
         data = {'details': details,
                 'center': str.format('{0},{1}', center[0], center[1]),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data, 'coverage/nearby.json', 'LocalCoverage')
 
     def route_excluding_changes_transfers(self,
@@ -412,8 +397,7 @@ class PublicTransitApi(HEREApi):
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
                 'arr': str.format('{0},{1}', arrival[0], arrival[1]),
                 'time': time,
-                'app_id': self._app_id,
-                'app_code': self._app_code,
+                'apikey': self._api_key,
                 'routing': routing_type.__str__(),
                 'changes': changes}
         return self.__get(data, 'route.json', 'Connections')

@@ -17,21 +17,18 @@ class PlacesApi(HEREApi):
     """A python interface into the HERE Places (Search) API"""
 
     def __init__(self,
-                 app_id=None,
-                 app_code=None,
+                 api_key=None,
                  timeout=None):
         """Returns a PlacesApi instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
-          app_code (str):
-            App Code taken from HERE Developer Portal.
+          api_key (str):
+            API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
         """
 
-        super(PlacesApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://places.cit.api.here.com/places/v1/'
+        super(PlacesApi, self).__init__(api_key, timeout)
+        self._base_url = 'https://places.ls.hereapi.com/places/v1/'
 
     def __get(self, data, path, headers=None):
         url = Utils.build_url(self._base_url + path, extra_params=data)
@@ -77,8 +74,7 @@ class PlacesApi(HEREApi):
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'q':  query,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data, 'discover/search')
 
     def places_at(self, coordinates):
@@ -92,8 +88,7 @@ class PlacesApi(HEREApi):
           HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data, 'discover/explore')
 
     @classmethod
@@ -121,8 +116,7 @@ class PlacesApi(HEREApi):
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'cat': self.__prepare_category_values(categories),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data, 'discover/explore')
 
     def nearby_places(self, coordinates):
@@ -136,8 +130,7 @@ class PlacesApi(HEREApi):
           HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data, 'discover/here')
 
     def search_suggestions(self, coordinates, query):
@@ -154,8 +147,7 @@ class PlacesApi(HEREApi):
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
                 'q': query,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get_suggestions(data)
 
     def place_categories(self, coordinates):
@@ -169,8 +161,7 @@ class PlacesApi(HEREApi):
           HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get_categories(data)
 
     def places_at_boundingbox(self, coordinates_a, coordinates_b):
@@ -186,8 +177,7 @@ class PlacesApi(HEREApi):
           HEREError"""
 
         data = {'in': str.format('{0},{1},{2},{3}', coordinates_a[0], coordinates_a[1], coordinates_b[0], coordinates_b[1]),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data, 'discover/explore')
 
     def places_with_language(self, coordinates, language):
@@ -203,7 +193,6 @@ class PlacesApi(HEREApi):
           HEREError"""
 
         data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         headers = {'accept-language': language}
         return self.__get(data, 'discover/explore')

@@ -13,21 +13,18 @@ class GeocoderApi(HEREApi):
     """A python interface into the HERE Geocoder API"""
 
     def __init__(self,
-                 app_id=None,
-                 app_code=None,
+                 api_key=None,
                  timeout=None):
         """Returns a GeocoderApi instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
-          app_code (str):
-            App Code taken from HERE Developer Portal.
+          api_key (str):
+            API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
         """
 
-        super(GeocoderApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://geocoder.cit.api.here.com/6.2/geocode.json'
+        super(GeocoderApi, self).__init__(api_key, timeout)
+        self._base_url = 'https://geocoder.ls.hereapi.com/6.2/geocode.json'
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
@@ -51,7 +48,7 @@ class GeocoderApi(HEREApi):
         Raises:
           HEREError"""
 
-        data = {'searchtext': searchtext, 'app_id': self._app_id, 'app_code': self._app_code}
+        data = {'searchtext': searchtext, 'apiKey': self._api_key}
         return self.__get(data)
 
     def address_with_boundingbox(self, searchtext, top_left, bottom_right):
@@ -70,8 +67,7 @@ class GeocoderApi(HEREApi):
 
         data = {'searchtext': searchtext,
                 'mapview': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1]),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apiKey': self._api_key}
         return self.__get(data)
 
     def address_with_details(self,
@@ -98,8 +94,7 @@ class GeocoderApi(HEREApi):
                 'street': street,
                 'city': city,
                 'country': country,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apiKey': self._api_key}
         return self.__get(data)
 
     def street_intersection(self,
@@ -118,6 +113,5 @@ class GeocoderApi(HEREApi):
 
         data = {'street': street,
                 'city': city,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apiKey': self._api_key}
         return self.__get(data)
