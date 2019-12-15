@@ -92,7 +92,7 @@ The library utilizes models to represent various data structures returned by HER
 GeocoderApi
 -----------
 
-Is the wrapper for HERE Geocoder API, to use this wrapper and all other wrappers you need a AppId and AppCode which you
+Is the wrapper for HERE Geocoder API, to use this wrapper and all other wrappers you need an API key which you
 can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
 Initiation of GeocoderApi
@@ -101,7 +101,7 @@ Initiation of GeocoderApi
 
     import herepy
 
-    geocoderApi = herepy.GeocoderApi('app_id', 'app_code')
+    geocoderApi = herepy.GeocoderApi('api_key')
 
 Geocoding given search text
 
@@ -132,7 +132,7 @@ Geocoding with given street and city
 GeocoderReverseApi
 ------------------
 
-Is the wrapper for HERE Geocoder Reverse API, to use this wrapper and all other wrappers you need a AppId and AppCode
+Is the wrapper for HERE Geocoder Reverse API, to use this wrapper and all other wrappers you need an API key
 which you can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
 Initiation of GeocoderReverseApi
@@ -141,7 +141,7 @@ Initiation of GeocoderReverseApi
 
     import herepy
 
-    geocoderReverseApi = herepy.GeocoderReverseApi('app_id', 'app_code')
+    geocoderReverseApi = herepy.GeocoderReverseApi('api_key')
 
 
 Retrieving address of a given point
@@ -159,7 +159,7 @@ Initiation of RoutingApi
 
     import herepy
 
-    routingApi = herepy.RoutingApi('app_id', 'app_code')
+    routingApi = herepy.RoutingApi('api_key')
 
 Calculate route for car
 
@@ -231,7 +231,7 @@ Initiation of GeocoderAutoCompleteApi
 
     import herepy
 
-    geocoderAutoCompleteApi = herepy.GeocoderAutoCompleteApi('app_id', 'app_code')
+    geocoderAutoCompleteApi = herepy.GeocoderAutoCompleteApi('api_key')
 
 Request a list of suggested addresses found within a specified area
 
@@ -260,7 +260,7 @@ Initiation of PlacesApi
 
     import herepy
 
-    placesApi = herepy.PlacesApi('app_id', 'app_code')
+    placesApi = herepy.PlacesApi('api_key')
 
 Request a list of nearby places based on a query string
 
@@ -319,7 +319,7 @@ Initiation of PublicTransitApi
 
     import herepy
 
-    publicTransitApi = herepy.PublicTransitApi('app_id', 'app_code')
+    publicTransitApi = herepy.PublicTransitApi('api_key')
 
 RmeApi
 ------
@@ -330,7 +330,7 @@ Initiation of RmeApi
 
     import herepy
 
-    rmeApi = herepy.RmeApi('app_id', 'app_code')
+    rmeApi = herepy.RmeApi('api_key')
 
 Get information about points of a gpx file
 
