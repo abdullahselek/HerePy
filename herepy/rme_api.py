@@ -13,21 +13,18 @@ class RmeApi(HEREApi):
     """A python interface into the RME API"""
 
     def __init__(self,
-                 app_id=None,
-                 app_code=None,
+                 api_key=None,
                  timeout=None):
         """Returns a RmeApi instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
-          app_code (str):
-            App Code taken from HERE Developer Portal.
+          api_key (str):
+            API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
         """
 
-        super(RmeApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://rme.api.here.com/2/matchroute.json'
+        super(RmeApi, self).__init__(api_key, timeout)
+        self._base_url = 'https://m.fleet.ls.hereapi.com/2/matchroute.json'
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
@@ -64,9 +61,8 @@ class RmeApi(HEREApi):
           HEREError"""
 
         data = {'file': Utils.get_zipped_base64(gpx_file_content),
-                'route_mode': route_mode,
+                'routemode': route_mode,
                 'attributes': ','.join(pde_layers),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data)
 

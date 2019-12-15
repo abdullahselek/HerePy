@@ -13,21 +13,18 @@ class GeocoderAutoCompleteApi(HEREApi):
     """A python interface into the HERE Geocoder Auto Complete API"""
 
     def __init__(self,
-                 app_id=None,
-                 app_code=None,
+                 api_key=None,
                  timeout=None):
         """Returns a GeocoderAutoCompleteApi instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
-          app_code (str):
-            App Code taken from HERE Developer Portal.
+          api_key (str):
+            API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
         """
 
-        super(GeocoderAutoCompleteApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://autocomplete.geocoder.cit.api.here.com/6.2/suggest.json'
+        super(GeocoderAutoCompleteApi, self).__init__(api_key, timeout)
+        self._base_url = 'http://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json'
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
@@ -52,8 +49,7 @@ class GeocoderAutoCompleteApi(HEREApi):
 
         data = {'query': query,
                 'prox': str.format('{0},{1},{2}', prox[0], prox[1], radius),
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data)
 
     def limit_results_byaddress(self, query, country_code):
@@ -70,8 +66,7 @@ class GeocoderAutoCompleteApi(HEREApi):
 
         data = {'query': query,
                 'country': country_code,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data)
 
     def highlighting_matches(self, query, begin_highlight, end_highlight):
@@ -91,6 +86,5 @@ class GeocoderAutoCompleteApi(HEREApi):
         data = {'query': query,
                 'beginHighlight': begin_highlight,
                 'endHighlight': end_highlight,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apikey': self._api_key}
         return self.__get(data)

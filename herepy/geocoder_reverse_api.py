@@ -13,21 +13,18 @@ class GeocoderReverseApi(HEREApi):
     """A python interface into the HERE Geocoder Reverse API"""
 
     def __init__(self,
-                 app_id=None,
-                 app_code=None,
+                 api_key=None,
                  timeout=None):
         """Returns a GeocoderApi instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
-          app_code (str):
-            App Code taken from HERE Developer Portal.
+          api_key (str):
+            API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
         """
 
-        super(GeocoderReverseApi, self).__init__(app_id, app_code, timeout)
-        self._base_url = 'https://reverse.geocoder.api.here.com/6.2/reversegeocode.json'
+        super(GeocoderReverseApi, self).__init__(api_key, timeout)
+        self._base_url = 'https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json'
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
@@ -59,7 +56,6 @@ class GeocoderReverseApi(HEREApi):
                 'mode': 'retrieveAddresses',
                 'maxresults': max_results,
                 'gen': gen,
-                'app_id': self._app_id,
-                'app_code': self._app_code}
+                'apiKey': self._api_key}
         return self.__get(data)
 
