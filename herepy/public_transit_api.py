@@ -32,7 +32,6 @@ class PublicTransitApi(HEREApi):
 
     def __get(self, data, path, json_node):
         url = Utils.build_url(self._base_url + path, extra_params=data)
-        print(url)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode('utf8'))
         if json_node in json_data.get('Res', {}):
