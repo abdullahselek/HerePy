@@ -231,7 +231,8 @@ class PublicTransitApi(HEREApi):
                         departure,
                         arrival,
                         time,
-                        changes=3,
+                        max_connections=3,
+                        changes=-1,
                         lang="en",
                         include_modes=None,
                         exclude_modes=None,
@@ -249,9 +250,13 @@ class PublicTransitApi(HEREApi):
             array including latitude and longitude in order.
           time (str):
             time formatted in yyyy-mm-ddThh:mm:ss.
-          changes (int):
+          max_connections (int):
             Specifies the number of following departure/arrivals the response should include.
             The possible values are: 1-6.
+          changes (int):
+            Specifies the maximum number of changes or transfers allowed in a route.
+            0-6 or -1.
+            The default is -1 (which disables the filter, or unlimited no of changes permitted).
           lang (str):
             Specifies the language of the response.
           include_modes (array[PublicTransitModeType]):
@@ -278,6 +283,7 @@ class PublicTransitApi(HEREApi):
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
                 'arr': str.format('{0},{1}', arrival[0], arrival[1]),
+                'max': max_connections,
                 'time': time,
                 'changes': changes,
                 'lang': lang,
