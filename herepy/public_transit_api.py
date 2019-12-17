@@ -32,6 +32,7 @@ class PublicTransitApi(HEREApi):
 
     def __get(self, data, path, json_node):
         url = Utils.build_url(self._base_url + path, extra_params=data)
+        print(url)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode('utf8'))
         if json_node in json_data.get('Res', {}):
@@ -230,6 +231,15 @@ class PublicTransitApi(HEREApi):
                         departure,
                         arrival,
                         time,
+                        changes=3,
+                        lang="en",
+                        include_modes=None,
+                        exclude_modes=None,
+                        units="metric",
+                        max_walking_distance=2000,
+                        walking_speed=100,
+                        show_arrival_times=True,
+                        graph=False,
                         routing_type=PublicTransitRoutingType.time_tabled):
         """Request a public transit route between any two place.
         Args:
@@ -239,37 +249,25 @@ class PublicTransitApi(HEREApi):
             array including latitude and longitude in order.
           time (str):
             time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType):
-            type of routing. Default is time_tabled.
-        Returns:
-          PublicTransitResponse
-        Raises:
-          HEREError
-        """
-
-        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
-                'arr': str.format('{0},{1}', arrival[0], arrival[1]),
-                'time': time,
-                'apikey': self._api_key,
-                'routing': routing_type.__str__()}
-        return self.__get(data, 'route.json', 'Connections')
-
-    def calculate_route_time(self,
-                             departure,
-                             arrival,
-                             time,
-                             show_arrival_times,
-                             routing_type=PublicTransitRoutingType.time_tabled):
-        """Request a public transit route between any two place.
-        Args:
-          departure (array):
-            array including latitude and longitude in order.
-          arrival (array):
-            array including latitude and longitude in order.
-          time (str):
-            time formatted in yyyy-mm-ddThh:mm:ss.
+          changes (int):
+            Specifies the number of following departure/arrivals the response should include.
+            The possible values are: 1-6.
+          lang (str):
+            Specifies the language of the response.
+          include_modes (array[PublicTransitModeType]):
+            Specifies the transit type filter used to determine which types of transit to include in the response.
+          exclude_modes (array[PublicTransitModeType]):
+            Specifies the transit type filter used to determine which types of transit to exclude in the response.
+          units (str):
+            Units of measurement used. metric oder imperial.
+          max_walking_distance (int):
+            Specifies a maximum walking distance in meters. Allowed values are 0-6000.
+          walking_speed (int):
+            Specifies the walking speed in percent of normal walking speed. Allowed values are 50-200.
           show_arrival_times (boolean):
-            flag to indicate if response should show arrival times.
+            flag to indicate if response should show arrival times or departure times.
+          graph (boolean):
+            flag to indicate if response should contain coordinate pairs to allow the drawing of a polyline for the route.
           routing_type (PublicTransitRoutingType):
             type of routing. Default is time_tabled.
         Returns:
@@ -281,41 +279,24 @@ class PublicTransitApi(HEREApi):
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
                 'arr': str.format('{0},{1}', arrival[0], arrival[1]),
                 'time': time,
-                'apikey': self._api_key,
+                'changes': changes,
+                'lang': lang,
+                'units': units,
+                'walk': ",".join([str(max_walking_distance), str(walking_speed)]),
                 'arrival': 1 if show_arrival_times == True else 0,
-                'routing': routing_type.__str__()}
-        return self.__get(data, 'route.json', 'Connections')
-
-    def transit_route_shows_line_graph(self,
-                                       departure,
-                                       arrival,
-                                       time,
-                                       routing_type=PublicTransitRoutingType.time_tabled,
-                                       graph=0):
-        """Request a public transit route between any two place.
-        Args:
-          departure (array):
-            array including latitude and longitude in order.
-          arrival (array):
-            array including latitude and longitude in order.
-          time (str):
-            time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType):
-            type of routing. Default is time_tabled.
-          graph (int):
-            Enable showing line graph. Default is 0 disabled, to enable set 1.
-        Returns:
-          PublicTransitResponse
-        Raises:
-          HEREError
-        """
-
-        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
-                'arr': str.format('{0},{1}', arrival[0], arrival[1]),
-                'time': time,
                 'apikey': self._api_key,
-                'routing': routing_type.__str__(),
-                'graph': graph}
+                'graph': 1 if graph == True else 0,
+                'routing': routing_type.__str__()}
+
+        modes = None
+        if include_modes is not None and exclude_modes is not None:
+            raise HEREError("Specify either include_modes or exclude_modes, not both.")
+        if include_modes is not None:
+            modes = ",".join(mode.__str__() for mode in include_modes)
+        if exclude_modes is not None:
+            modes = ",".join( "-" + mode.__str__() for mode in exclude_modes)
+        if modes is not None:
+            data["modes"] = modes
         return self.__get(data, 'route.json', 'Connections')
 
     def coverage_witin_a_city(self,

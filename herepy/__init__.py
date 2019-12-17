@@ -22,6 +22,7 @@ from .here_enum import (
     PlacesCategory,
     PublicTransitSearchMethod,
     PublicTransitRoutingType,
+    PublicTransitModeType,
     WeatherProductType
 )
 

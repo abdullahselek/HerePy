@@ -77,6 +77,29 @@ class PublicTransitRoutingType(Enum):
 
     def __str__(self):
         return '%s' % self._value_
+
+class PublicTransitModeType(Enum):
+    """Mode types used in public transit api"""
+
+    high_speed_train = 'high_speed_train'
+    intercity_train = 'intercity_train'
+    inter_regional_train = 'inter_regional_train'
+    regional_train = 'regional_train'
+    city_train = 'city_train'
+    bus = 'bus'
+    ferry = 'ferry'
+    subway = 'subway'
+    light_rail = 'light_rail'
+    private_bus = 'private_bus'
+    inclined = 'inclined'
+    aerial = 'aerial'
+    bus_rapid = 'bus_rapid'
+    monorail = 'monorail'
+    flight = 'flight'
+    walk = 'walk'
+
+    def __str__(self):
+        return '%s' % self._value_
     
 class WeatherProductType(Enum):
     """Identifis the type of report to obtain."""

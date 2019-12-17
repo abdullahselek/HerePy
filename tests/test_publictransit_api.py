@@ -162,7 +162,29 @@ class PublicTransitApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
                   expectedResponse, status=200)
-        response = self._api.calculate_route([41.9773, -87.9019], [41.8961, -87.6552], '2017-11-22T07:30:00', herepy.PublicTransitRoutingType.time_tabled)
+        response = self._api.calculate_route([41.9773, -87.9019], [41.8961, -87.6552], '2017-11-22T07:30:00')
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+
+    @responses.activate
+    def test_calculate_route_include_modes(self):
+        with io.open('testdata/models/public_transit_calculate_route.json', 'r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
+                  expectedResponse, status=200)
+        include_modes = [herepy.PublicTransitModeType.bus, herepy.PublicTransitModeType.city_train]
+        response = self._api.calculate_route([41.9773, -87.9019], [41.8961, -87.6552], '2017-11-22T07:30:00', include_modes=include_modes)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+
+    @responses.activate
+    def test_calculate_route_exclude_modes(self):
+        with io.open('testdata/models/public_transit_calculate_route.json', 'r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
+                  expectedResponse, status=200)
+        exclude_modes = [herepy.PublicTransitModeType.bus, herepy.PublicTransitModeType.city_train]
+        response = self._api.calculate_route([41.9773, -87.9019], [41.8961, -87.6552], '2017-11-22T07:30:00', exclude_modes=exclude_modes)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
@@ -173,57 +195,7 @@ class PublicTransitApiTest(unittest.TestCase):
         responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
                   expectedResponse, status=200)
         with self.assertRaises(herepy.HEREError):
-            self._api.calculate_route([-9999, -9999], [-9999, -9999], '2017-11-22T07:30:00', herepy.PublicTransitRoutingType.time_tabled)
-
-    @responses.activate
-    def test_calculate_route_time_whensucceed(self):
-        with io.open('testdata/models/public_transit_api_calculate_route_time.json', 'r', encoding='utf-8') as f:
-            expectedResponse = f.read()
-        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
-                  expectedResponse, status=200)
-        response = self._api.calculate_route_time([41.9773, -87.9019],
-                                                  [41.8961, -87.6552],
-                                                  '2017-11-22T07:30:00',
-                                                  1,
-                                                  herepy.PublicTransitRoutingType.time_tabled)
-        self.assertTrue(response)
-        self.assertIsInstance(response, herepy.PublicTransitResponse)
-
-    @responses.activate
-    def test_calculate_route_time_whenerroroccured(self):
-        with open('testdata/models/public_transit_api_error.json', 'r') as f:
-            expectedResponse = f.read()
-        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
-                  expectedResponse, status=200)
-        with self.assertRaises(herepy.HEREError):
-            self._api.calculate_route_time([-9999, -9999],
-                                           [-9999, -9999],
-                                           '2017-11-22T07:30:00',
-                                           1,
-                                           herepy.PublicTransitRoutingType.time_tabled)
-
-    @responses.activate
-    def test_transit_route_shows_line_graph_whensucceed(self):
-        with io.open('testdata/models/public_transit_api_calculate_route_time.json', 'r', encoding='utf-8') as f:
-            expectedResponse = f.read()
-        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
-                  expectedResponse, status=200)
-        response = self._api.transit_route_shows_line_graph([41.9773, -87.9019],
-                                                            [41.8961, -87.6552],
-                                                            '2017-11-22T07:30:00',)
-        self.assertTrue(response)
-        self.assertIsInstance(response, herepy.PublicTransitResponse)
-
-    @responses.activate
-    def test_transit_route_shows_line_graph_whenerroroccured(self):
-        with open('testdata/models/public_transit_api_error.json', 'r') as f:
-            expectedResponse = f.read()
-        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
-                  expectedResponse, status=200)
-        with self.assertRaises(herepy.HEREError):
-            self._api.transit_route_shows_line_graph([-9999, -9999],
-                                                     [-9999, -9999],
-                                                     '2017-11-22T07:30:00')
+            self._api.calculate_route([-9999, -9999], [-9999, -9999], '2017-11-22T07:30:00')
 
     @responses.activate
     def test_coverage_witin_a_city_whensucceed(self):
