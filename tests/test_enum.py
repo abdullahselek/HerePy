@@ -48,12 +48,10 @@ class PublicTransitSearchMethodTest(unittest.TestCase):
         strict = herepy.PublicTransitSearchMethod.strict
         self.assertEqual(strict.__str__(), 'strict')
 
-class PublicTransitRoutingTypeTest(unittest.TestCase):
+class PublicTransitRoutingModeTest(unittest.TestCase):
 
     def test_valueofenum(self):
-        time_tabled = herepy.PublicTransitRoutingType.time_tabled
-        self.assertEqual(time_tabled.__str__(), 'tt')
-        simple = herepy.PublicTransitRoutingType.simple
-        self.assertEqual(simple.__str__(), 'sr')
-        all = herepy.PublicTransitRoutingType.all
-        self.assertEqual(all.__str__(), 'all')
+        schedule = herepy.PublicTransitRoutingMode.schedule
+        self.assertEqual(schedule.__str__(), 'schedule')
+        realtime = herepy.PublicTransitRoutingMode.realtime
+        self.assertEqual(realtime.__str__(), 'realtime')

@@ -68,12 +68,11 @@ class PublicTransitSearchMethod(Enum):
     def __str__(self):
         return '%s' % self._value_
 
-class PublicTransitRoutingType(Enum):
+class PublicTransitRoutingMode(Enum):
     """Routing types used in public transit api"""
 
-    time_tabled = 'tt'
-    simple = 'sr'
-    all = 'all'
+    schedule = 'schedule'
+    realtime = 'realtime'
 
     def __str__(self):
         return '%s' % self._value_
@@ -81,22 +80,22 @@ class PublicTransitRoutingType(Enum):
 class PublicTransitModeType(Enum):
     """Mode types used in public transit api"""
 
-    high_speed_train = 'high_speed_train'
-    intercity_train = 'intercity_train'
-    inter_regional_train = 'inter_regional_train'
-    regional_train = 'regional_train'
-    city_train = 'city_train'
-    bus = 'bus'
-    ferry = 'ferry'
-    subway = 'subway'
-    light_rail = 'light_rail'
-    private_bus = 'private_bus'
-    inclined = 'inclined'
-    aerial = 'aerial'
-    bus_rapid = 'bus_rapid'
-    monorail = 'monorail'
-    flight = 'flight'
-    walk = 'walk'
+    high_speed_train = 0
+    intercity_train = 1
+    inter_regional_train = 2
+    regional_train = 3
+    city_train = 4
+    bus = 5
+    ferry = 6
+    subway = 7
+    light_rail = 8
+    private_bus = 9
+    inclined = 10
+    aerial = 11
+    bus_rapid = 12
+    monorail = 13
+    flight = 14
+    walk = 20
 
     def __str__(self):
         return '%s' % self._value_

@@ -10,7 +10,8 @@ from herepy.error import HEREError
 from herepy.models import PublicTransitResponse
 from herepy.here_enum import (
     PublicTransitSearchMethod,
-    PublicTransitRoutingType
+    PublicTransitRoutingMode,
+    PublicTransitModeType
 )
 
 class PublicTransitApi(HEREApi):
@@ -240,8 +241,8 @@ class PublicTransitApi(HEREApi):
                         walking_speed=100,
                         show_arrival_times=True,
                         graph=False,
-                        routing_type=PublicTransitRoutingType.time_tabled):
-        """Request a public transit route between any two place.
+                        routing_mode=PublicTransitRoutingMode.schedule):
+        """Request a public transit route between any two places.
         Args:
           departure (array):
             array including latitude and longitude in order.
@@ -291,7 +292,7 @@ class PublicTransitApi(HEREApi):
                 'arrival': 1 if show_arrival_times == True else 0,
                 'apikey': self._api_key,
                 'graph': 1 if graph == True else 0,
-                'routing': routing_type.__str__()}
+                'routingMode': routing_mode.__str__()}
 
         modes = None
         if include_modes is not None and exclude_modes is not None:
@@ -302,7 +303,10 @@ class PublicTransitApi(HEREApi):
             modes = ",".join( "-" + mode.__str__() for mode in exclude_modes)
         if modes is not None:
             data["modes"] = modes
-        return self.__get(data, 'route.json', 'Connections')
+
+        response = self.__get(data, 'route.json', 'Connections')
+        response_with_short_route = _get_response_with_short_route(response)
+        return response_with_short_route
 
     def coverage_witin_a_city(self,
                               city_name,
@@ -356,34 +360,20 @@ class PublicTransitApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data, 'coverage/nearby.json', 'LocalCoverage')
 
-    def route_excluding_changes_transfers(self,
-                                          departure,
-                                          arrival,
-                                          time,
-                                          routing_type=PublicTransitRoutingType.time_tabled,
-                                          changes=-1):
-        """Request a direct public transit route excluding changes and transfers.
-        Args:
-          departure (array):
-            array including latitude and longitude in order.
-          arrival (array):
-            array including latitude and longitude in order.
-          time (str):
-            time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType):
-            type of routing. Default is time_tabled.
-          changes (int):
-            Maximum number of changes or transfers. Default is -1 and max is 6.
-        Returns:
-          PublicTransitResponse
-        Raises:
-          HEREError
-        """
+def _get_response_with_short_route(public_transit_response):
+    response = public_transit_response
+    connections = response.Res["Connections"]["Connection"]
 
-        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
-                'arr': str.format('{0},{1}', arrival[0], arrival[1]),
-                'time': time,
-                'apikey': self._api_key,
-                'routing': routing_type.__str__(),
-                'changes': changes}
-        return self.__get(data, 'route.json', 'Connections')
+    for connection in connections:
+      connection["short_route"] = _get_route_from_public_transit_connection(connection)
+    return response
+
+def _get_route_from_public_transit_connection(public_transit_connection):
+      sections = public_transit_connection["Sections"]["Sec"]
+      lines = []
+      for section in sections:
+        if str(section["mode"]) != str(PublicTransitModeType["walk"]):
+          transport = section["Dep"]["Transport"]
+          lines.append(transport["name"] + " - " + transport["dir"])
+      route = "; ".join(list(map(str, lines)))
+      return route

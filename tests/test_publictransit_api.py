@@ -189,6 +189,20 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
+    def test_calculate_route_short_route(self):
+        with io.open('testdata/models/public_transit_api_calculate_route_many_transfers.json', 'r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
+                  expectedResponse, status=200)
+        expected_short_route = ("RE 29511 - Frankfurt(Main)Hbf; ICE 76 - Hamburg-Altona; "
+            "ICE 849 - Berlin Gesundbrunnen; S5 - Strausberg Nord")
+        response = self._api.calculate_route([41.9773, -87.9019], [41.8961, -87.6552], '2017-11-22T07:30:00')
+        short_route = response.Res["Connections"]["Connection"][0]["short_route"]
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.PublicTransitResponse)
+        self.assertEqual(short_route, expected_short_route)
+
+    @responses.activate
     def test_calculate_route_whenerroroccured(self):
         with open('testdata/models/public_transit_api_error.json', 'r') as f:
             expectedResponse = f.read()
@@ -234,26 +248,3 @@ class PublicTransitApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         with self.assertRaises(herepy.HEREError):
             self._api.coverage_nearby(0, [-9999, -9999])
-
-    @responses.activate
-    def test_route_excluding_changes_transfers_whensucceed(self):
-        with io.open('testdata/models/public_transit_api_router_exclude_changes.json', 'r', encoding='utf-8') as f:
-            expectedResponse = f.read()
-        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
-                  expectedResponse, status=200)
-        response = self._api.route_excluding_changes_transfers([40.752470, -73.97800],
-                                                               [40.750501, -73.99351],
-                                                               '2017-12-11T07:30:00')
-        self.assertTrue(response)
-        self.assertIsInstance(response, herepy.PublicTransitResponse)
-
-    @responses.activate
-    def test_croute_excluding_changes_transfers_whenerroroccured(self):
-        with open('testdata/models/public_transit_api_error.json', 'r') as f:
-            expectedResponse = f.read()
-        responses.add(responses.GET, 'https://transit.ls.hereapi.com/v3/route.json',
-                  expectedResponse, status=200)
-        with self.assertRaises(herepy.HEREError):
-            self._api.route_excluding_changes_transfers([-9998, -9998],
-                                                        [-9999, -9999],
-                                                        '2017-12-11T07:30:00')
