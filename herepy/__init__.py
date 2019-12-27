@@ -21,7 +21,8 @@ from .here_enum import (
     MatrixSummaryAttribute,
     PlacesCategory,
     PublicTransitSearchMethod,
-    PublicTransitRoutingType,
+    PublicTransitRoutingMode,
+    PublicTransitModeType,
     WeatherProductType
 )
 

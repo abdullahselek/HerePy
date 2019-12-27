@@ -10,7 +10,8 @@ from herepy.error import HEREError
 from herepy.models import PublicTransitResponse
 from herepy.here_enum import (
     PublicTransitSearchMethod,
-    PublicTransitRoutingType
+    PublicTransitRoutingMode,
+    PublicTransitModeType
 )
 
 class PublicTransitApi(HEREApi):
@@ -230,8 +231,18 @@ class PublicTransitApi(HEREApi):
                         departure,
                         arrival,
                         time,
-                        routing_type=PublicTransitRoutingType.time_tabled):
-        """Request a public transit route between any two place.
+                        max_connections=3,
+                        changes=-1,
+                        lang="en",
+                        include_modes=None,
+                        exclude_modes=None,
+                        units="metric",
+                        max_walking_distance=2000,
+                        walking_speed=100,
+                        show_arrival_times=True,
+                        graph=False,
+                        routing_mode=PublicTransitRoutingMode.schedule):
+        """Request a public transit route between any two places.
         Args:
           departure (array):
             array including latitude and longitude in order.
@@ -239,37 +250,29 @@ class PublicTransitApi(HEREApi):
             array including latitude and longitude in order.
           time (str):
             time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType):
-            type of routing. Default is time_tabled.
-        Returns:
-          PublicTransitResponse
-        Raises:
-          HEREError
-        """
-
-        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
-                'arr': str.format('{0},{1}', arrival[0], arrival[1]),
-                'time': time,
-                'apikey': self._api_key,
-                'routing': routing_type.__str__()}
-        return self.__get(data, 'route.json', 'Connections')
-
-    def calculate_route_time(self,
-                             departure,
-                             arrival,
-                             time,
-                             show_arrival_times,
-                             routing_type=PublicTransitRoutingType.time_tabled):
-        """Request a public transit route between any two place.
-        Args:
-          departure (array):
-            array including latitude and longitude in order.
-          arrival (array):
-            array including latitude and longitude in order.
-          time (str):
-            time formatted in yyyy-mm-ddThh:mm:ss.
+          max_connections (int):
+            Specifies the number of following departure/arrivals the response should include.
+            The possible values are: 1-6.
+          changes (int):
+            Specifies the maximum number of changes or transfers allowed in a route.
+            0-6 or -1.
+            The default is -1 (which disables the filter, or unlimited no of changes permitted).
+          lang (str):
+            Specifies the language of the response.
+          include_modes (array[PublicTransitModeType]):
+            Specifies the transit type filter used to determine which types of transit to include in the response.
+          exclude_modes (array[PublicTransitModeType]):
+            Specifies the transit type filter used to determine which types of transit to exclude in the response.
+          units (str):
+            Units of measurement used. metric oder imperial.
+          max_walking_distance (int):
+            Specifies a maximum walking distance in meters. Allowed values are 0-6000.
+          walking_speed (int):
+            Specifies the walking speed in percent of normal walking speed. Allowed values are 50-200.
           show_arrival_times (boolean):
-            flag to indicate if response should show arrival times.
+            flag to indicate if response should show arrival times or departure times.
+          graph (boolean):
+            flag to indicate if response should contain coordinate pairs to allow the drawing of a polyline for the route.
           routing_type (PublicTransitRoutingType):
             type of routing. Default is time_tabled.
         Returns:
@@ -280,43 +283,30 @@ class PublicTransitApi(HEREApi):
 
         data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
                 'arr': str.format('{0},{1}', arrival[0], arrival[1]),
+                'max': max_connections,
                 'time': time,
-                'apikey': self._api_key,
+                'changes': changes,
+                'lang': lang,
+                'units': units,
+                'walk': ",".join([str(max_walking_distance), str(walking_speed)]),
                 'arrival': 1 if show_arrival_times == True else 0,
-                'routing': routing_type.__str__()}
-        return self.__get(data, 'route.json', 'Connections')
-
-    def transit_route_shows_line_graph(self,
-                                       departure,
-                                       arrival,
-                                       time,
-                                       routing_type=PublicTransitRoutingType.time_tabled,
-                                       graph=0):
-        """Request a public transit route between any two place.
-        Args:
-          departure (array):
-            array including latitude and longitude in order.
-          arrival (array):
-            array including latitude and longitude in order.
-          time (str):
-            time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType):
-            type of routing. Default is time_tabled.
-          graph (int):
-            Enable showing line graph. Default is 0 disabled, to enable set 1.
-        Returns:
-          PublicTransitResponse
-        Raises:
-          HEREError
-        """
-
-        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
-                'arr': str.format('{0},{1}', arrival[0], arrival[1]),
-                'time': time,
                 'apikey': self._api_key,
-                'routing': routing_type.__str__(),
-                'graph': graph}
-        return self.__get(data, 'route.json', 'Connections')
+                'graph': 1 if graph == True else 0,
+                'routingMode': routing_mode.__str__()}
+
+        modes = None
+        if include_modes is not None and exclude_modes is not None:
+            raise HEREError("Specify either include_modes or exclude_modes, not both.")
+        if include_modes is not None:
+            modes = ",".join(mode.__str__() for mode in include_modes)
+        if exclude_modes is not None:
+            modes = ",".join( "-" + mode.__str__() for mode in exclude_modes)
+        if modes is not None:
+            data["modes"] = modes
+
+        response = self.__get(data, 'route.json', 'Connections')
+        response_with_short_route = self._get_response_with_short_route(response)
+        return response_with_short_route
 
     def coverage_witin_a_city(self,
                               city_name,
@@ -370,34 +360,20 @@ class PublicTransitApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data, 'coverage/nearby.json', 'LocalCoverage')
 
-    def route_excluding_changes_transfers(self,
-                                          departure,
-                                          arrival,
-                                          time,
-                                          routing_type=PublicTransitRoutingType.time_tabled,
-                                          changes=-1):
-        """Request a direct public transit route excluding changes and transfers.
-        Args:
-          departure (array):
-            array including latitude and longitude in order.
-          arrival (array):
-            array including latitude and longitude in order.
-          time (str):
-            time formatted in yyyy-mm-ddThh:mm:ss.
-          routing_type (PublicTransitRoutingType):
-            type of routing. Default is time_tabled.
-          changes (int):
-            Maximum number of changes or transfers. Default is -1 and max is 6.
-        Returns:
-          PublicTransitResponse
-        Raises:
-          HEREError
-        """
+    def _get_response_with_short_route(self, public_transit_response):
+        response = public_transit_response
+        connections = response.Res["Connections"]["Connection"]
 
-        data = {'dep': str.format('{0},{1}', departure[0], departure[1]),
-                'arr': str.format('{0},{1}', arrival[0], arrival[1]),
-                'time': time,
-                'apikey': self._api_key,
-                'routing': routing_type.__str__(),
-                'changes': changes}
-        return self.__get(data, 'route.json', 'Connections')
+        for connection in connections:
+            connection["short_route"] = self._get_route_from_public_transit_connection(connection)
+        return response
+
+    def _get_route_from_public_transit_connection(self, public_transit_connection):
+        sections = public_transit_connection["Sections"]["Sec"]
+        lines = []
+        for section in sections:
+            if str(section["mode"]) != str(PublicTransitModeType["walk"]):
+                transport = section["Dep"]["Transport"]
+                lines.append(transport["name"] + " - " + transport["dir"])
+        route = "; ".join(list(map(str, lines)))
+        return route
