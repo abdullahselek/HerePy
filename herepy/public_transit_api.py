@@ -305,7 +305,7 @@ class PublicTransitApi(HEREApi):
             data["modes"] = modes
 
         response = self.__get(data, 'route.json', 'Connections')
-        response_with_short_route = _get_response_with_short_route(response)
+        response_with_short_route = self._get_response_with_short_route(response)
         return response_with_short_route
 
     def coverage_witin_a_city(self,
@@ -360,20 +360,20 @@ class PublicTransitApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data, 'coverage/nearby.json', 'LocalCoverage')
 
-def _get_response_with_short_route(public_transit_response):
-    response = public_transit_response
-    connections = response.Res["Connections"]["Connection"]
+    def _get_response_with_short_route(self, public_transit_response):
+        response = public_transit_response
+        connections = response.Res["Connections"]["Connection"]
 
-    for connection in connections:
-      connection["short_route"] = _get_route_from_public_transit_connection(connection)
-    return response
+        for connection in connections:
+            connection["short_route"] = self._get_route_from_public_transit_connection(connection)
+        return response
 
-def _get_route_from_public_transit_connection(public_transit_connection):
-      sections = public_transit_connection["Sections"]["Sec"]
-      lines = []
-      for section in sections:
-        if str(section["mode"]) != str(PublicTransitModeType["walk"]):
-          transport = section["Dep"]["Transport"]
-          lines.append(transport["name"] + " - " + transport["dir"])
-      route = "; ".join(list(map(str, lines)))
-      return route
+    def _get_route_from_public_transit_connection(self, public_transit_connection):
+        sections = public_transit_connection["Sections"]["Sec"]
+        lines = []
+        for section in sections:
+            if str(section["mode"]) != str(PublicTransitModeType["walk"]):
+                transport = section["Dep"]["Transport"]
+                lines.append(transport["name"] + " - " + transport["dir"])
+        route = "; ".join(list(map(str, lines)))
+        return route
