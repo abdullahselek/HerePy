@@ -33,4 +33,10 @@ jobs:
     - name: Test with pytest
       run: |
         py.test -s -v --cov-report xml --cov=herepy tests/
-        codecov
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
+        flags: unittests
+        fail_ci_if_error: true
