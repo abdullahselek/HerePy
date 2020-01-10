@@ -8,13 +8,14 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import GeocoderResponse
+from typing import List
 
 class GeocoderApi(HEREApi):
     """A python interface into the HERE Geocoder API"""
 
     def __init__(self,
-                 api_key=None,
-                 timeout=None):
+                 api_key: str=None,
+                 timeout: int=None):
         """Returns a GeocoderApi instance.
         Args:
           api_key (str):
@@ -38,7 +39,7 @@ class GeocoderApi(HEREApi):
         except ValueError as err:
             raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
-    def free_form(self, searchtext):
+    def free_form(self, searchtext: str):
         """Geocodes given search text
         Args:
           searchtext (str):
@@ -51,7 +52,7 @@ class GeocoderApi(HEREApi):
         data = {'searchtext': searchtext, 'apiKey': self._api_key}
         return self.__get(data)
 
-    def address_with_boundingbox(self, searchtext, top_left, bottom_right):
+    def address_with_boundingbox(self, searchtext: str, top_left: List[float], bottom_right: List[float]):
         """Geocodes given search text with in given boundingbox
         Args:
           searchtext (str):
@@ -71,10 +72,10 @@ class GeocoderApi(HEREApi):
         return self.__get(data)
 
     def address_with_details(self,
-                             house_number,
-                             street,
-                             city,
-                             country):
+                             house_number: int,
+                             street: str,
+                             city: str,
+                             country: str):
         """Geocodes with given address details
         Args:
           house_number (int):
@@ -98,8 +99,8 @@ class GeocoderApi(HEREApi):
         return self.__get(data)
 
     def street_intersection(self,
-                            street,
-                            city):
+                            street: str,
+                            city: str):
         """Geocodes with given street and city
         Args:
           street (str):
