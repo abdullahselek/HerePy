@@ -14,7 +14,7 @@ from herepy.here_enum import WeatherProductType
 class DestinationWeatherApi(HEREApi):
     """A python interface into the HERE Destination Weather API"""
 
-    def __init__(self, api_key=None, timeout=None):
+    def __init__(self, api_key: str=None, timeout: int=None):
         """Returns a DestinationWeatherApi instance.
         Args:
           api_key (str):
@@ -67,18 +67,18 @@ class DestinationWeatherApi(HEREApi):
             return "nwsAlerts"
 
     def weather_for_location_name(
-        self, location_name, product, one_observation=True, metric=True
+        self, location_name: str, product: WeatherProductType, one_observation: bool=True, metric: bool=True
     ):
         """Request the product for given location name.
         Args:
           location_name (str):
             Location name.
+          product (WeatherProductType):
+            A WeatherProductType identifying the type of report to obtain.
           one_observation (bool):
             Limit the result to the best mapped weather station.
           metric (bool):
             Use the metric system.
-          product (WeatherProductType):
-            A WeatherProductType identifying the type of report to obtain.
         Returns:
           DestinationWeatherResponse
         Raises:
@@ -95,18 +95,18 @@ class DestinationWeatherApi(HEREApi):
         return self._get(data, product)
 
     def weather_for_zip_code(
-        self, zip_code, product, one_observation=True, metric=True
+        self, zip_code: int, product: WeatherProductType, one_observation: bool=True, metric: bool=True
     ):
         """Request the product for given location name.
         Args:
           zip_code (int):
             U.S. zip code.
+          product (WeatherProductType):
+            A WeatherProductType identifying the type of report to obtain.
           one_observation (bool):
             Limit the result to the best mapped weather station.
           metric (bool):
             Use the metric system.
-          product (WeatherProductType):
-            A WeatherProductType identifying the type of report to obtain.
         Returns:
           DestinationWeatherResponse
         Raises:
@@ -123,7 +123,7 @@ class DestinationWeatherApi(HEREApi):
         return self._get(data, product)
 
     def weather_for_coordinates(
-        self, latitude, longitude, product, one_observation=True, metric=True
+        self, latitude: float, longitude: float, product: WeatherProductType, one_observation: bool=True, metric:bool=True
     ):
         """Request the product for given location name.
         Args:
@@ -131,12 +131,12 @@ class DestinationWeatherApi(HEREApi):
             Latitude.
           longitude (float):
             Longitude.
+          product (WeatherProductType):
+            A WeatherProductType identifying the type of report to obtain.
           one_observation (bool):
             Limit the result to the best mapped weather station.
           metric (bool):
             Use the metric system.
-          product (WeatherProductType):
-            A WeatherProductType identifying the type of report to obtain.
         Returns:
           DestinationWeatherResponse
         Raises:
