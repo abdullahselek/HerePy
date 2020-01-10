@@ -1,6 +1,9 @@
 HerePy
 ======
 
+.. image:: https://github.com/abdullahselek/HerePy/workflows/HerePy%20CI/badge.svg
+    :target: https://github.com/abdullahselek/HerePy/actions
+
 .. image:: https://img.shields.io/pypi/v/herepy.svg
     :target: https://pypi.python.org/pypi/herepy/
 
