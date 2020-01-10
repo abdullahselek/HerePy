@@ -8,13 +8,14 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import GeocoderAutoCompleteResponse
+from typing import List
 
 class GeocoderAutoCompleteApi(HEREApi):
     """A python interface into the HERE Geocoder Auto Complete API"""
 
     def __init__(self,
-                 api_key=None,
-                 timeout=None):
+                 api_key: str=None,
+                 timeout: int=None):
         """Returns a GeocoderAutoCompleteApi instance.
         Args:
           api_key (str):
@@ -35,11 +36,13 @@ class GeocoderAutoCompleteApi(HEREApi):
         else:
             raise HEREError(json_data.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
-    def address_suggestion(self, query, prox, radius):
+    def address_suggestion(self, query: str, prox: List[float], radius: int):
         """Request a list of suggested addresses found within a specified area
         Args:
+          query (str):
+            Query search string
           prox (array):
-            array including latitude and longitude in order.
+            Array including latitude and longitude in order.
           radius (int):
             Radius in meters
         Returns:
@@ -52,7 +55,7 @@ class GeocoderAutoCompleteApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data)
 
-    def limit_results_byaddress(self, query, country_code):
+    def limit_results_byaddress(self, query: str, country_code: str):
         """Request a list of suggested addresses within a single country
         Args:
           query (str):
@@ -69,7 +72,7 @@ class GeocoderAutoCompleteApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data)
 
-    def highlighting_matches(self, query, begin_highlight, end_highlight):
+    def highlighting_matches(self, query: str, begin_highlight: str, end_highlight: str):
         """Request an annotated list of suggested addresses with matching tokens highlighted
         Args:
           query (str):
