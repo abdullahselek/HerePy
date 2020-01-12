@@ -12,13 +12,15 @@ from herepy.models import (
     PlacesSuggestionsResponse,
     PlaceCategoriesResponse
 )
+from herepy.here_enum import PlacesCategory
+from typing import List
 
 class PlacesApi(HEREApi):
     """A python interface into the HERE Places (Search) API"""
 
     def __init__(self,
-                 api_key=None,
-                 timeout=None):
+                 api_key: str=None,
+                 timeout: int=None):
         """Returns a PlacesApi instance.
         Args:
           api_key (str):
@@ -60,7 +62,7 @@ class PlacesApi(HEREApi):
         else:
             raise HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
-    def onebox_search(self, coordinates, query):
+    def onebox_search(self, coordinates: List[float], query: str):
         """Request a list of nearby places based on a query string
         Args:
           coordinates (array):
@@ -77,7 +79,7 @@ class PlacesApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data, 'discover/search')
 
-    def places_at(self, coordinates):
+    def places_at(self, coordinates: List[float]):
         """Request a list of popular places around a location
         Args:
           coordinates (array):
@@ -99,7 +101,7 @@ class PlacesApi(HEREApi):
         category_values = category_values[:-1]
         return category_values
 
-    def category_places_at(self, coordinates, categories=None):
+    def category_places_at(self, coordinates: List[float], categories: List[PlacesCategory]=None):
         """Request a list of places within a category around a location
         Args:
           coordinates (array):
@@ -119,7 +121,7 @@ class PlacesApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data, 'discover/explore')
 
-    def nearby_places(self, coordinates):
+    def nearby_places(self, coordinates: List[float]):
         """Request a list of places close to a location
         Args:
           coordinates (array):
@@ -133,7 +135,7 @@ class PlacesApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data, 'discover/here')
 
-    def search_suggestions(self, coordinates, query):
+    def search_suggestions(self, coordinates: List[float], query: str):
         """Request a list of suggestions based on a partial query string
         Args:
           coordinates (array):
@@ -150,7 +152,7 @@ class PlacesApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get_suggestions(data)
 
-    def place_categories(self, coordinates):
+    def place_categories(self, coordinates: List[float]):
         """Request a list of place categories available for a given location
         Args:
           coordinates (array):
@@ -164,7 +166,7 @@ class PlacesApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get_categories(data)
 
-    def places_at_boundingbox(self, coordinates_a, coordinates_b):
+    def places_at_boundingbox(self, coordinates_a: List[float], coordinates_b: List[float]):
         """Request a list of popular places within a specified area
         Args:
           coordinates_a (array):
@@ -180,7 +182,7 @@ class PlacesApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data, 'discover/explore')
 
-    def places_with_language(self, coordinates, language):
+    def places_with_language(self, coordinates: List[float], language: str):
         """Request a list of popular places around a location using a foreign language
         Args:
           coordinates (array):
