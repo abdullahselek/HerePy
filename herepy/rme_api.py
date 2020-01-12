@@ -8,13 +8,14 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RmeResponse
+from typing import List
 
 class RmeApi(HEREApi):
     """A python interface into the RME API"""
 
     def __init__(self,
-                 api_key=None,
-                 timeout=None):
+                 api_key: str=None,
+                 timeout: int=None):
         """Returns a RmeApi instance.
         Args:
           api_key (str):
@@ -38,7 +39,7 @@ class RmeApi(HEREApi):
         except ValueError as err:
             raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
-    def match_route(self, gpx_file_content, route_mode='car', pde_layers=[]):
+    def match_route(self, gpx_file_content: str, route_mode: str='car', pde_layers: List[str]=[]):
         """Retrieves misc information about the route given in gpx file
         Args:
           gpxfile content (str):
@@ -65,4 +66,3 @@ class RmeApi(HEREApi):
                 'attributes': ','.join(pde_layers),
                 'apikey': self._api_key}
         return self.__get(data)
-
