@@ -10,6 +10,7 @@ from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RoutingResponse, RoutingMatrixResponse
 from herepy.here_enum import RouteMode, MatrixSummaryAttribute
+from typing import List
 
 class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
@@ -18,8 +19,8 @@ class RoutingApi(HEREApi):
     URL_CALCULATE_MATRIX = 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json'
 
     def __init__(self,
-                 api_key=None,
-                 timeout=None):
+                 api_key: str=None,
+                 timeout: int=None):
         """Returns a RoutingApi instance.
         Args:
           api_key (str):
@@ -83,10 +84,10 @@ class RoutingApi(HEREApi):
         return response
 
     def bicycle_route(self,
-                      waypoint_a,
-                      waypoint_b,
-                      modes=None,
-                      departure='now'):
+                      waypoint_a: List[float],
+                      waypoint_b: List[float],
+                      modes: List[RouteMode]=None,
+                      departure: str='now'):
         """Request a bicycle route between two points
         Args:
           waypoint_a (array):
@@ -107,10 +108,10 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def car_route(self,
-                  waypoint_a,
-                  waypoint_b,
-                  modes=None,
-                  departure='now'):
+                  waypoint_a: List[float],
+                  waypoint_b: List[float],
+                  modes: List[RouteMode]=None,
+                  departure: str='now'):
         """Request a driving route between two points
         Args:
           waypoint_a (array):
@@ -131,10 +132,10 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def pedastrian_route(self,
-                         waypoint_a,
-                         waypoint_b,
-                         modes=None,
-                         departure='now'):
+                         waypoint_a: List[float],
+                         waypoint_b: List[float],
+                         modes: List[RouteMode]=None,
+                         departure: str='now'):
         """Request a pedastrian route between two points
         Args:
           waypoint_a (array):
@@ -155,11 +156,11 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def intermediate_route(self,
-                           waypoint_a,
-                           waypoint_b,
-                           waypoint_c,
-                           modes=None,
-                           departure='now'):
+                           waypoint_a: List[float],
+                           waypoint_b: List[float],
+                           waypoint_c: List[float],
+                           modes: List[RouteMode]=None,
+                           departure: str='now'):
         """Request a intermediate route from three points
         Args:
           waypoint_a (array):
@@ -182,10 +183,10 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def public_transport(self,
-                         waypoint_a,
-                         waypoint_b,
-                         combine_change,
-                         modes=None,
+                         waypoint_a: List[float],
+                         waypoint_b: List[float],
+                         combine_change: bool,
+                         modes: List[RouteMode]=None,
                          departure='now'):
         """Request a public transport route between two points
         Args:
@@ -210,12 +211,12 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def public_transport_timetable(self,
-                                   waypoint_a,
-                                   waypoint_b,
-                                   combine_change,
-                                   modes=None,
-                                   departure=None,
-                                   arrival=None):
+                                   waypoint_a: List[float],
+                                   waypoint_b: List[float],
+                                   combine_change: bool,
+                                   modes: List[RouteMode]=None,
+                                   departure: str=None,
+                                   arrival: str=None):
         """Request a public transport route between two points based on timetables
         Args:
           waypoint_a (array):
@@ -241,10 +242,10 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure, arrival)
 
     def location_near_motorway(self,
-                               waypoint_a,
-                               waypoint_b,
-                               modes=None,
-                               departure='now'):
+                               waypoint_a: List[float],
+                               waypoint_b: List[float],
+                               modes: List[RouteMode]=None,
+                               departure: str='now'):
         """Calculates the fastest car route between two location
         Args:
           waypoint_a (array):
@@ -265,10 +266,10 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def truck_route(self,
-                    waypoint_a,
-                    waypoint_b,
-                    modes=None,
-                    departure='now'):
+                    waypoint_a: List[float],
+                    waypoint_b: List[float],
+                    modes: List[RouteMode]=None,
+                    departure: str='now'):
         """Calculates the fastest truck route between two location
         Args:
           waypoint_a (array):
@@ -289,11 +290,11 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def matrix(self,
-               start_waypoints,
-               destination_waypoints,
-               departure='now',
-               modes=[],
-               summary_attributes=[]):
+               start_waypoints: List[float],
+               destination_waypoints: List[float],
+               departure: str='now',
+               modes: List[RouteMode]=[],
+               summary_attributes: List[MatrixSummaryAttribute]=[]):
         """Request a matrix of route summaries between M starts and N destinations.
         Args:
           start_waypoints (array):
@@ -304,6 +305,8 @@ class RoutingApi(HEREApi):
             time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
           modes (array):
             array of RouteMode enums following [Type, TransportMode, TrafficMode, Feature].
+          summary_attributes (array):
+            array of MatrixSummaryAttribute enums.
         Returns:
           RoutingMatrixResponse
         Raises:
