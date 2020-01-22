@@ -224,6 +224,14 @@ Calculate an MxN cost matrix for M start points and N destinations
         departure='2013-07-04T17:00:00+02',
         modes=[herepy.RouteMode.fastest, herepy.RouteMode.car])
 
+Calculate route providing names instead of coordinates
+
+.. code:: python
+
+    response = routingApi.car_route([11.0, 12.0],
+                                    '200 S Mathilda Sunnyvale CA',
+                                    [herepy.RouteMode.car, herepy.RouteMode.fastest])
+
 
 GeocoderAutoCompleteApi
 -----------------------

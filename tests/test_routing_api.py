@@ -456,6 +456,22 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
+    def test_matrix_multiple_start_names(self):
+        with codecs.open('testdata/models/routing_matrix_multiple_starts.json', mode='r', encoding='utf-8') as f:
+            server_response = f.read()
+        responses.add(responses.GET, 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json',
+                      server_response, status=200)
+        with open('testdata/models/geocoder.json', 'r') as f:
+            expectedGeocoderResponse = f.read()
+        responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+                  expectedGeocoderResponse, status=200)
+        response = self._api.matrix(
+            start_waypoints=['Seattle', 'Kentucky'],
+            destination_waypoints=[[9.934574, -84.065544]])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+
+    @responses.activate
     def test_matrix_multiple_destinations(self):
         with codecs.open('testdata/models/routing_matrix_multiple_destinations.json', mode='r', encoding='utf-8') as f:
             server_response = f.read()
@@ -464,6 +480,22 @@ class RoutingApiTest(unittest.TestCase):
         response = self._api.matrix(
             start_waypoints=[[9.933231, -84.076831]],
             destination_waypoints=[[9.934574, -84.065544], [9.612552, -84.62892]])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+
+    @responses.activate
+    def test_matrix_multiple_destinations(self):
+        with codecs.open('testdata/models/routing_matrix_multiple_destinations.json', mode='r', encoding='utf-8') as f:
+            server_response = f.read()
+        responses.add(responses.GET, 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json',
+                      server_response, status=200)
+        with open('testdata/models/geocoder.json', 'r') as f:
+            expectedGeocoderResponse = f.read()
+        responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+                  expectedGeocoderResponse, status=200)
+        response = self._api.matrix(
+            start_waypoints=[[9.933231, -84.076831]],
+            destination_waypoints=['Seattle', 'Kentucky'])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
@@ -500,4 +532,30 @@ class RoutingApiTest(unittest.TestCase):
         response = self._api.truck_route([11.0, 12.0],
                                          [22.0, 23.0],
                                          departure=date)
-        
+
+    @responses.activate
+    def test_location_by_name(self):
+        with codecs.open('testdata/models/routing_truck_route_short.json', mode='r', encoding='utf-8') as f:
+            expectedRoutingResponse = f.read()
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
+                  expectedRoutingResponse, status=200)
+        with open('testdata/models/geocoder.json', 'r') as f:
+            expectedGeocoderResponse = f.read()
+        responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+                  expectedGeocoderResponse, status=200)
+        response = self._api.truck_route('200 S Mathilda Sunnyvale CA',
+                                         '200 S Mathilda Sunnyvale CA')
+                                         
+    @responses.activate
+    def test_location_by_name_throws_WaypointNotFoundError(self):
+        with codecs.open('testdata/models/routing_truck_route_short.json', mode='r', encoding='utf-8') as f:
+            expectedRoutingResponse = f.read()
+        responses.add(responses.GET, 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json',
+                  expectedRoutingResponse, status=200)
+        with open('testdata/models/geocoder_error.json', 'r') as f:
+            expectedGeocoderResponse = f.read()
+        responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+                  expectedGeocoderResponse, status=200)
+        with self.assertRaises(herepy.WaypointNotFoundError):
+            response = self._api.truck_route('200 S Mathilda Sunnyvale CA',
+                                            '200 S Mathilda Sunnyvale CA')

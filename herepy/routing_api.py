@@ -5,12 +5,13 @@ import sys
 import json
 import requests
 
+from herepy.geocoder_api import GeocoderApi
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RoutingResponse, RoutingMatrixResponse
 from herepy.here_enum import RouteMode, MatrixSummaryAttribute
-from typing import List
+from typing import List, Union
 
 class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
@@ -53,6 +54,10 @@ class RoutingApi(HEREApi):
         return str.format('geo!{0},{1}', waypoint_a[0], waypoint_a[1])
 
     def _route(self, waypoint_a, waypoint_b, modes=None, departure=None, arrival=None):
+        if isinstance(waypoint_a, str):
+            waypoint_a = self._get_coordinates_for_location_name(waypoint_a)
+        if isinstance(waypoint_b, str):
+            waypoint_b = self._get_coordinates_for_location_name(waypoint_b)
         data = {'waypoint0': self.__array_to_waypoint(waypoint_a),
                 'waypoint1': self.__array_to_waypoint(waypoint_b),
                 'mode': self.__prepare_mode_values(modes),
@@ -84,16 +89,18 @@ class RoutingApi(HEREApi):
         return response
 
     def bicycle_route(self,
-                      waypoint_a: List[float],
-                      waypoint_b: List[float],
+                      waypoint_a: Union[List[float], str],
+                      waypoint_b: Union[List[float], str],
                       modes: List[RouteMode]=None,
                       departure: str='now'):
         """Request a bicycle route between two points
         Args:
-          waypoint_a (array):
-            array including latitude and longitude in order.
-          waypoint_b (array):
-            array including latitude and longitude in order.
+          waypoint_a:
+            array including latitude and longitude in order
+            or string with the location name
+          waypoint_b:
+            array including latitude and longitude in order
+            or string with the location name.
           modes (array):
             array including RouteMode enums.
           departure (str):
@@ -108,16 +115,18 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def car_route(self,
-                  waypoint_a: List[float],
-                  waypoint_b: List[float],
+                  waypoint_a: Union[List[float], str],
+                  waypoint_b: Union[List[float], str],
                   modes: List[RouteMode]=None,
                   departure: str='now'):
         """Request a driving route between two points
         Args:
           waypoint_a (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
+            or string with the location name.
           waypoint_b (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
+            or string with the location name.
           modes (array):
             array including RouteMode enums.
           departure (str):
@@ -132,16 +141,18 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def pedastrian_route(self,
-                         waypoint_a: List[float],
-                         waypoint_b: List[float],
+                         waypoint_a: Union[List[float], str],
+                         waypoint_b: Union[List[float], str],
                          modes: List[RouteMode]=None,
                          departure: str='now'):
         """Request a pedastrian route between two points
         Args:
           waypoint_a (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
+            or string with the location name.
           waypoint_b (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
+            or string with the location name.
           modes (array):
             array including RouteMode enums.
           departure (str):
@@ -156,19 +167,22 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def intermediate_route(self,
-                           waypoint_a: List[float],
-                           waypoint_b: List[float],
-                           waypoint_c: List[float],
+                           waypoint_a: Union[List[float], str],
+                           waypoint_b: Union[List[float], str],
+                           waypoint_c: Union[List[float], str],
                            modes: List[RouteMode]=None,
                            departure: str='now'):
         """Request a intermediate route from three points
         Args:
           waypoint_a (array):
-            Starting array including latitude and longitude in order.
+            Starting array including latitude and longitude in order
+            or string with the location name.
           waypoint_b (array):
-            Intermediate array including latitude and longitude in order.
+            Intermediate array including latitude and longitude in order
+            or string with the location name.
           waypoint_c (array):
-            Last array including latitude and longitude in order.
+            Last array including latitude and longitude in order
+            or string with the location name.
           modes (array):
             array including RouteMode enums.
           departure (str):
@@ -183,17 +197,19 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def public_transport(self,
-                         waypoint_a: List[float],
-                         waypoint_b: List[float],
+                         waypoint_a: Union[List[float], str],
+                         waypoint_b: Union[List[float], str],
                          combine_change: bool,
                          modes: List[RouteMode]=None,
                          departure='now'):
         """Request a public transport route between two points
         Args:
           waypoint_a (array):
-            Starting array including latitude and longitude in order.
+            Starting array including latitude and longitude in order
+            or string with the location name.
           waypoint_b (array):
-            Intermediate array including latitude and longitude in order.
+            Intermediate array including latitude and longitude in order
+            or string with the location name.
           combine_change (bool):
             Enables the change manuever in the route response, which
             indicates a public transit line change.
@@ -211,8 +227,8 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def public_transport_timetable(self,
-                                   waypoint_a: List[float],
-                                   waypoint_b: List[float],
+                                   waypoint_a: Union[List[float], str],
+                                   waypoint_b: Union[List[float], str],
                                    combine_change: bool,
                                    modes: List[RouteMode]=None,
                                    departure: str=None,
@@ -220,9 +236,11 @@ class RoutingApi(HEREApi):
         """Request a public transport route between two points based on timetables
         Args:
           waypoint_a (array):
-            Starting array including latitude and longitude in order.
+            Starting array including latitude and longitude in order
+            or string with the location name.
           waypoint_b (array):
-            Intermediate array including latitude and longitude in order.
+            Intermediate array including latitude and longitude in order
+            or string with the location name.
           combine_change (bool):
             Enables the change manuever in the route response, which
             indicates a public transit line change.
@@ -242,16 +260,18 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure, arrival)
 
     def location_near_motorway(self,
-                               waypoint_a: List[float],
-                               waypoint_b: List[float],
+                               waypoint_a: Union[List[float], str],
+                               waypoint_b: Union[List[float], str],
                                modes: List[RouteMode]=None,
                                departure: str='now'):
         """Calculates the fastest car route between two location
         Args:
           waypoint_a (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
+            or string with the location name.
           waypoint_b (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
+            or string with the location name.
           modes (array):
             array including RouteMode enums.
           departure (str):
@@ -266,16 +286,18 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def truck_route(self,
-                    waypoint_a: List[float],
-                    waypoint_b: List[float],
+                    waypoint_a: Union[List[float], str],
+                    waypoint_b: Union[List[float], str],
                     modes: List[RouteMode]=None,
                     departure: str='now'):
         """Calculates the fastest truck route between two location
         Args:
           waypoint_a (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
+            or string with the location name.
           waypoint_b (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
+            or string with the location name.
           modes (array):
             array including RouteMode enums.
           departure (str):
@@ -290,8 +312,8 @@ class RoutingApi(HEREApi):
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
     def matrix(self,
-               start_waypoints: List[float],
-               destination_waypoints: List[float],
+               start_waypoints: Union[List[float], str],
+               destination_waypoints: Union[List[float], str],
                departure: str='now',
                modes: List[RouteMode]=[],
                summary_attributes: List[MatrixSummaryAttribute]=[]):
@@ -299,8 +321,10 @@ class RoutingApi(HEREApi):
         Args:
           start_waypoints (array):
             array of arrays of coordinates [lat,long] of start waypoints.
+            or array of string with the location names.
           destination_waypoints (array):
             array of arrays of coordinates [lat,long] of destination waypoints.
+            or array of string with the location names.
           departure (str):
             time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
           modes (array):
@@ -320,11 +344,26 @@ class RoutingApi(HEREApi):
             'summaryAttributes': ','.join([attribute.__str__() for attribute in summary_attributes])
         }
         for i, start_waypoint in enumerate(start_waypoints):
+            if isinstance(start_waypoint, str):
+                start_waypoint = self._get_coordinates_for_location_name(start_waypoint)
             data['start' + str(i)] = self.__array_to_waypoint(start_waypoint)
         for i, destination_waypoint in enumerate(destination_waypoints):
+            if isinstance(destination_waypoint, str):
+                destination_waypoint = self._get_coordinates_for_location_name(destination_waypoint)
             data['destination' + str(i)] = self.__array_to_waypoint(destination_waypoint)
         response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
         return response
+
+    def _get_coordinates_for_location_name(self, location_name: str) -> List[float]:
+        """Use the Geocoder API to resolve a location name to a set of coordinates."""
+
+        geocoder_api = GeocoderApi(self._api_key)
+        try:
+            geocoder_response = geocoder_api.free_form(location_name)
+            coordinates = geocoder_response.Response["View"][0]["Result"][0]["Location"]["NavigationPosition"][0]
+            return [coordinates["Latitude"], coordinates["Longitude"]]
+        except (HEREError) as here_error:
+            raise WaypointNotFoundError(here_error.message)
 
     @staticmethod
     def _convert_datetime_to_isoformat(datetime_object):
