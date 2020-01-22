@@ -96,10 +96,10 @@ class RoutingApi(HEREApi):
         """Request a bicycle route between two points
         Args:
           waypoint_a:
-            array including latitude and longitude in order.
-            or string with the location name.
+            array including latitude and longitude in order
+            or string with the location name
           waypoint_b:
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           modes (array):
             array including RouteMode enums.
@@ -122,10 +122,10 @@ class RoutingApi(HEREApi):
         """Request a driving route between two points
         Args:
           waypoint_a (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           waypoint_b (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           modes (array):
             array including RouteMode enums.
@@ -148,10 +148,10 @@ class RoutingApi(HEREApi):
         """Request a pedastrian route between two points
         Args:
           waypoint_a (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           waypoint_b (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           modes (array):
             array including RouteMode enums.
@@ -175,13 +175,13 @@ class RoutingApi(HEREApi):
         """Request a intermediate route from three points
         Args:
           waypoint_a (array):
-            Starting array including latitude and longitude in order.
+            Starting array including latitude and longitude in order
             or string with the location name.
           waypoint_b (array):
-            Intermediate array including latitude and longitude in order.
+            Intermediate array including latitude and longitude in order
             or string with the location name.
           waypoint_c (array):
-            Last array including latitude and longitude in order.
+            Last array including latitude and longitude in order
             or string with the location name.
           modes (array):
             array including RouteMode enums.
@@ -205,10 +205,10 @@ class RoutingApi(HEREApi):
         """Request a public transport route between two points
         Args:
           waypoint_a (array):
-            Starting array including latitude and longitude in order.
+            Starting array including latitude and longitude in order
             or string with the location name.
           waypoint_b (array):
-            Intermediate array including latitude and longitude in order.
+            Intermediate array including latitude and longitude in order
             or string with the location name.
           combine_change (bool):
             Enables the change manuever in the route response, which
@@ -236,10 +236,10 @@ class RoutingApi(HEREApi):
         """Request a public transport route between two points based on timetables
         Args:
           waypoint_a (array):
-            Starting array including latitude and longitude in order.
+            Starting array including latitude and longitude in order
             or string with the location name.
           waypoint_b (array):
-            Intermediate array including latitude and longitude in order.
+            Intermediate array including latitude and longitude in order
             or string with the location name.
           combine_change (bool):
             Enables the change manuever in the route response, which
@@ -267,10 +267,10 @@ class RoutingApi(HEREApi):
         """Calculates the fastest car route between two location
         Args:
           waypoint_a (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           waypoint_b (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           modes (array):
             array including RouteMode enums.
@@ -293,10 +293,10 @@ class RoutingApi(HEREApi):
         """Calculates the fastest truck route between two location
         Args:
           waypoint_a (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           waypoint_b (array):
-            array including latitude and longitude in order.
+            array including latitude and longitude in order
             or string with the location name.
           modes (array):
             array including RouteMode enums.
