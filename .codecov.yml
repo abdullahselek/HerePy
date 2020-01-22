@@ -1,0 +1,5 @@
+# Documentation: https://docs.codecov.io/docs/codecov-yaml
+
+codecov:
+  token: "7ad2216e-6198-4a10-8c68-72e2d3f139ec"
+  require_ci_to_pass: yes
