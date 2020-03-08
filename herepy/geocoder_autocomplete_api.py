@@ -25,7 +25,7 @@ class GeocoderAutoCompleteApi(HEREApi):
         """
 
         super(GeocoderAutoCompleteApi, self).__init__(api_key, timeout)
-        self._base_url = 'http://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json'
+        self._base_url = 'https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json'
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
