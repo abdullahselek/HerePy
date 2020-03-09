@@ -29,7 +29,7 @@ HerePy
 Introduction
 ============
 
-This library provides a pure Python interface for the `HERE API <https://developer.here.com/>`_. It works with Python versions Python 3.x.
+This library provides a pure Python interface for the `HERE API <https://developer.here.com/>`_. It works with Python versions 3.x.
 
 `HERE <https://www.here.com/>`_ provides location based services. HERE exposes a `rest APIs <https://developer.here.com/documentation>`_ and this library is intended to make it even easier for Python programmers to use.
 
