@@ -1,0 +1,73 @@
+site_name: HerePy
+site_description: A Python wrapper around the HERE APIs
+site_url: https://herepy.readthedocs.io/
+theme:
+  name: material
+  palette:
+    primary: teal
+    accent: amber
+  # logo: img/icon-white.svg
+  favicon: img/favicon.png
+  language: en
+repo_name: abdullahselek/HerePy
+repo_url: https://github.com/abdullahselek/HerePy
+edit_uri: ''
+nav:
+- HerePy: index.md
+- installation.md
+- API Documentations:
+  - api/destination_weather_api.md
+  - api/geocoder_api.md
+  - api/geocoder_autocomplete_api.md
+  - api/geocoder_reverse_api.md
+  - api/here_api.md
+  - api/places_api.md
+  - api/public_transit_api.md
+  - api/rme_api.md
+  - api/routing_api.md
+- Models:
+  - models/models.md
+- Enums:
+  - enums/enums.md
+- Utils:
+  - utils/utils.md
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: true
+      watch:
+        - herepy
+markdown_extensions:
+- toc:
+    permalink: true
+- markdown.extensions.codehilite:
+    guess_lang: false
+- markdown_include.include:
+    base_path: docs
+- admonition
+- codehilite
+- extra
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_div_format ''
+extra:
+  social:
+  - type: github
+    link: https://github.com/abdullahselek/HerePy
+  - type: linkedin
+    link: https://www.linkedin.com/in/abdullahselek
+  - type: globe
+    link: https://abdullahselek.com
+extra_css:
+- css/termynal.css
+- css/custom.css
+extra_javascript:
+- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
+- js/termynal.js
+- js/custom.js
