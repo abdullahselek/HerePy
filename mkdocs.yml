@@ -51,11 +51,11 @@ markdown_extensions:
 - admonition
 - codehilite
 - extra
-- pymdownx.superfences:
-    custom_fences:
-    - name: mermaid
-      class: mermaid
-      format: !!python/name:pymdownx.superfences.fence_div_format ''
+# - pymdownx.superfences:
+#     custom_fences:
+#     - name: mermaid
+#       class: mermaid
+#       format: !!python/name:pymdownx.superfences.fence_div_format ''
 extra:
   social:
   - type: github
