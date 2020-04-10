@@ -7,7 +7,7 @@
 [![requirements](https://requires.io/github/abdullahselek/HerePy/requirements.svg?branch=master)](https://requires.io/github/abdullahselek/HerePy/requirements/?branch=master)
 
 
-**Documentation**: <a href="https://abdullahselek.github.io/HerePy" target="_blank">https://abdullahselek.github.io/HerePy</a>
+**Documentation**: <a href="https://herepy.abdullahselek.com" target="_blank">https://herepy.abdullahselek.com</a>
 
 **Source Code**: <a href="https://github.com/abdullahselek/HerePy" target="_blank">https://github.com/abdullahselek/HerePy</a>
 

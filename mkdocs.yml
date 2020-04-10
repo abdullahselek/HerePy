@@ -1,6 +1,6 @@
 site_name: HerePy
 site_description: A Python wrapper around the HERE APIs
-site_url: https://herepy.readthedocs.io/
+site_url: https://herepy.abdullahselek.com/
 theme:
   name: material
   palette:
