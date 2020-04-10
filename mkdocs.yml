@@ -7,7 +7,7 @@ theme:
     primary: teal
     accent: amber
   # logo: img/icon-white.svg
-  favicon: img/favicon.png
+  favicon: images/favicon.png
   language: en
 repo_name: abdullahselek/HerePy
 repo_url: https://github.com/abdullahselek/HerePy
@@ -51,18 +51,13 @@ markdown_extensions:
 - admonition
 - codehilite
 - extra
-# - pymdownx.superfences:
-#     custom_fences:
-#     - name: mermaid
-#       class: mermaid
-#       format: !!python/name:pymdownx.superfences.fence_div_format ''
 extra:
   social:
-  - type: github
+  - icon: fontawesome/brands/github-alt
     link: https://github.com/abdullahselek/HerePy
-  - type: linkedin
+  - icon: fontawesome/brands/linkedin
     link: https://www.linkedin.com/in/abdullahselek
-  - type: globe
+  - icon: fontawesome/solid/globe
     link: https://abdullahselek.com
 extra_css:
 - css/termynal.css

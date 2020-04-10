@@ -1,12 +1,8 @@
-future
-requests
-
-pytest
-pytest-cov
-pytest-runner
-codecov
-responses
-six
-mock
-tox
-tox-pyenv
+pytest == 5.4.1
+pytest-cov == 2.8.1
+pytest-runner == 5.2
+codecov == 2.0.22
+responses == 0.10.12
+six == 1.14.0
+tox == 3.14.6
+tox-pyenv == 1.1.0

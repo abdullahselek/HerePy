@@ -21,6 +21,9 @@ def extract_metaitem(meta):
         return meta_match.group(1)
     raise RuntimeError('Unable to find __{meta}__ string.'.format(meta=meta))
 
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setup(
     name='herepy',
     version=extract_metaitem('version'),
@@ -36,7 +39,7 @@ setup(
     packages=find_packages(exclude=('tests', 'docs')),
     platforms=['Any'],
     python_requires=">=3.5",
-    install_requires=['future', 'requests'],
+    install_requires=requirements,
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     keywords='here api',
