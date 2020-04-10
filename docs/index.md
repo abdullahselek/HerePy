@@ -19,6 +19,7 @@ Available clients are:
 * Destination Weather API
 * Geocoder API
 * Geocoder Autocomplete API
+* Reverse Geocoder API
 * Places API
 * Public Transit API
 * Fleet Telematics Route Matching API
