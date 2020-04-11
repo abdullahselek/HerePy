@@ -6,7 +6,6 @@ theme:
   palette:
     primary: teal
     accent: amber
-  # logo: img/icon-white.svg
   favicon: images/favicon.png
   language: en
 repo_name: abdullahselek/HerePy
