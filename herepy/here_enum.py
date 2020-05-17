@@ -24,6 +24,7 @@ class RouteMode(Enum):
     def __str__(self):
         return '%s' % self._value_
 
+
 class MatrixSummaryAttribute(Enum):
     """Defines an attribute to be included in the route matrix entries"""
 
@@ -34,6 +35,7 @@ class MatrixSummaryAttribute(Enum):
 
     def __str__(self):
         return '%s' % self._value_
+
 
 class PlacesCategory(Enum):
     """Categories which are used in places api functions."""
@@ -59,6 +61,7 @@ class PlacesCategory(Enum):
     def __str__(self):
         return '%s' % self._value_
 
+
 class PublicTransitSearchMethod(Enum):
     """Search methods used in public transit search function"""
 
@@ -68,6 +71,7 @@ class PublicTransitSearchMethod(Enum):
     def __str__(self):
         return '%s' % self._value_
 
+
 class PublicTransitRoutingMode(Enum):
     """Routing types used in public transit api"""
 
@@ -76,6 +80,7 @@ class PublicTransitRoutingMode(Enum):
 
     def __str__(self):
         return '%s' % self._value_
+
 
 class PublicTransitModeType(Enum):
     """Mode types used in public transit api"""
@@ -100,6 +105,7 @@ class PublicTransitModeType(Enum):
     def __str__(self):
         return '%s' % self._value_
     
+
 class WeatherProductType(Enum):
     """Identifis the type of report to obtain."""
 
@@ -110,6 +116,64 @@ class WeatherProductType(Enum):
     forecast_astronomy = 'forecast_astronomy'
     alerts = 'alerts'
     nws_alerts = 'nws_alerts'
+
+    def __str__(self):
+        return '%s' % self._value_
+
+
+class EVStationConnectorTypes(Enum):
+    """Defines the current connector types supported by the EV Charging Stations API."""
+
+    unspecified = 0
+    other = 1
+    unallowed = 2
+    small_paddle_inductive = 3
+    large_paddle_inductive = 4
+    nema_5_15 = 5
+    nema_5_20 = 6
+    bs_546_3_pin = 7
+    cee_7_5 = 8
+    cee_7_4_schuko = 9
+    cee_7_7 = 10
+    bs_1363__is_401_411__ms_58 = 11
+    si_32 = 12
+    as_nzs_3112 = 13
+    cpcs_ccc = 14
+    iram_2073 = 15
+    sev_1011__t13 = 16
+    sev_1011__t15 = 17
+    sev_1011__t23 = 18
+    sev_1011__t25 = 19
+    section_107_2_d1 = 20
+    thailand_tis_166_2549 = 21
+    cei_23_16__VII = 22
+    south_african_15_a__250_v = 23
+    iec_60906_1_3_pin = 24
+    avcon_connector = 25
+    tesla_connector_high_power_wall = 26
+    tesla_connector_universal_mobile = 27
+    tesla_connector_spare_mobile = 28
+    jevs_g_105 = 29
+    iec_62196_2_type_1 = 30
+    iec_62196_2_type_2_mennekes = 31
+    iec_62196_2_type_3c = 32
+    iec_62196_3_type_1_combo = 33
+    iec_62196_3_type_2_combo = 34
+    iec_60309_industrial_p_n_e = 35
+    iec_60309_industrial_3p_e_n = 36
+    iec_60309_industrial_2p_e_ac = 37
+    iec_60309_industrial_p_n_e_ceeplus = 38
+    iec_60309_industrial_3p_n_e = 39
+    better_place_plug = 40
+    marechal_plug = 41
+    domestic_plug_socket_type_j = 42
+    tesla_connector = 43
+    iec_61851_1 = 44
+    iec_62196_2_type_2_sae_j1772 = 45
+    iec_60309_industrial_2p_e_dc = 46
+    i_type_as__nz_3112 = 47
+    domestic_plug_socket_type_a = 48
+    domestic_plug_socket_type_c = 49
 
     def __str__(self):
         return '%s' % self._value_

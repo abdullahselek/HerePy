@@ -23,7 +23,8 @@ from .here_enum import (
     PublicTransitSearchMethod,
     PublicTransitRoutingMode,
     PublicTransitModeType,
-    WeatherProductType
+    WeatherProductType,
+    EVStationConnectorTypes
 )
 
 from .models import (
@@ -64,3 +65,4 @@ from .geocoder_autocomplete_api import GeocoderAutoCompleteApi
 from .places_api import PlacesApi
 from .public_transit_api import PublicTransitApi
 from .rme_api import RmeApi
+from .ev_charging_stations_api import EVChargingStationsApi

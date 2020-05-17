@@ -8,8 +8,6 @@ class HEREApi(object):
                  timeout: int=None):
         """Returns a Api instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
@@ -21,6 +19,7 @@ class HEREApi(object):
             self._timeout = timeout
         else:
             self._timeout = 20
+
 
     def __set_credentials(self,
                           api_key):
