@@ -37,3 +37,15 @@ class EVChargingStationsApi(unittest.TestCase):
                                                     EVStationConnectorTypes.large_paddle_inductive])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
+
+
+    @responses.activate
+    def test_get_stations_circular_search_whenerroroccured(self):
+        with open('testdata/models/ev_charging_stations_error_unauthorized.json', 'r') as f:
+            expected_response = f.read()
+        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
+                  expected_response, status=200)
+        with self.assertRaises(herepy.HEREError):
+            self._api.get_stations_circular_search(latitude=52.516667,
+                                                   longitude=13.383333,
+                                                   radius=5000)

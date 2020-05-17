@@ -86,7 +86,7 @@ class GeocoderApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.GeocoderResponse)
 
     @responses.activate
-    def test_streetintersection__whenerroroccured(self):
+    def test_streetintersection_whenerroroccured(self):
         with open('testdata/models/geocoder_error.json', 'r') as f:
             expectedResponse = f.read()
         responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
