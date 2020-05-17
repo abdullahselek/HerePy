@@ -60,6 +60,25 @@ class EVChargingStationsApi():
                                      longitude: float,
                                      radius: int,
                                      connectortypes: List[EVStationConnectorTypes]=None):
+        """Makes a search request for charging stations.
+           A circular search area defined by the latitude and longitude of its center
+           (compliant with WGS 84) and an integer representing the radius of the area
+           in meters, all separated by commas.
+        Args:
+          latitude (float):
+            latitude.
+          longitude (float):
+            longitude.
+          radius (int):
+            Radius of circular area in meter. Radius can be a maximum of 200 km (200000).
+          connectortypes (List[EVStationConnectorTypes]):
+            Optional, to identify the connector types.
+        Returns:
+          EVChargingStationsResponse
+        Raises:
+          HEREError
+        """
+
         if connectortypes:
             connector_types_str = self.__connector_types_str(connectortypes)
             data = {'app_id': self._app_id,

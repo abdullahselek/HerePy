@@ -24,3 +24,4 @@ Available clients are:
 * Public Transit API
 * Fleet Telematics Route Matching API
 * Routing API
+* EV Charging Stations API
