@@ -39,7 +39,8 @@ from .models import (
     PublicTransitResponse,
     RmeResponse,
     TrafficIncidentResponse,
-    DestinationWeatherResponse
+    DestinationWeatherResponse,
+    EVChargingStationsResponse
 )
 
 from .destination_weather_api import (

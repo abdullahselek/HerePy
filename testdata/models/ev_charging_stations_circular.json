@@ -1,0 +1,90 @@
+{
+    "hasMore": true,
+    "count": 50,
+    "evStations": {
+        "evStation": [
+        {
+            "totalNumberOfConnectors": 2,
+            "connectors": {
+                "connector": [
+                {
+                    "supplierName": "RWE eRoaming",
+                    "connectorType": {
+                        "name": "IEC 62196-2 type 2 (Mennekes)",
+                        "id": "31"
+                    },
+                    "chargeCapacity": "380-480VAC, 3-phase at max. 32 A",
+                    "maxPowerLevel": 22.08,
+                    "customerChargeLevel": "3",
+                    "customerConnectorName": "AC EV connector (Mennekes - type 2)",
+                    "fixedCable": false,
+                    "connectorDetails": {
+                        "privateAccess": false,
+                        "open24x7": true,
+                        "openingHours": {
+                            "regularOpeningHours": [
+                            {
+                                "daymask": 127,
+                                "period": [
+                                {
+                                    "from": "00:00:00",
+                                    "to": "24:00:00"
+                                }
+                            ]
+                        }
+                    ],
+                    "annualOpenings": [ ]
+                  },
+                  "pay": true,
+                  "manufacturer": "RWE"
+                },
+                "chargingPoint": {
+                    "chargeMode": "3",
+                    "voltsRange": "380-480V AC",
+                    "phases": 3,
+                    "ampsRange": "32A",
+                    "numberOfConnectors": 2
+                }
+              }
+            ]
+          },
+          "evStationDetails": {
+            "paymentMethods": {
+                "subscription": {
+                    "provider": "RWE eRoaming",
+                    "accept": true
+              },
+              "note": "Mobile Payment Option Available"
+            },
+            "notes": "Ladestation RWE Effizienz GmbH"
+          },
+          "address": {
+            "city": "Berlin",
+            "country": "DEU",
+            "region": "Berlin",
+            "street": "Luisenstraße",
+            "streetNumber": "31",
+            "postalCode": "10117"
+          },
+          "contacts": {
+            "phone": [
+              {
+                "value": "+498002255793",
+                "label": "PHONE"
+              }
+            ]
+          },
+          "distance": 421,
+          "position": {
+            "latitude": 52.5199013,
+            "longitude": 13.3800898
+          },
+          "name": "RWE Effizienz GmbH",
+          "id": "276u33db-b2c840878cfc409fa5a0aef858419037",
+          "lastUpdateTimestamp": "2015-08-28T04:39:27.737Z",
+          "timeZone":"Europe/Berlin"
+        }
+      ]
+    }
+  }
+  

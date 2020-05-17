@@ -239,3 +239,18 @@ class DestinationWeatherResponse(HEREModel):
         c = cls(param_defaults, **json_data)
         c._json = data
         return c
+
+
+class EVChargingStationsResponse(HEREModel):
+    """A class representing the EV Charging Stations response data."""
+
+    def __init__(self, **kwargs):
+        super(EVChargingStationsResponse, self).__init__()
+        self.param_defaults = {
+            'hasMore': False,
+            'count': 0,
+            'evStations' : None,
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))
