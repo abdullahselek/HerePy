@@ -93,6 +93,39 @@ class EVChargingStationsApi():
         return response
 
 
+    def get_stations_bounding_box(self,
+                                  top_left: List[float],
+                                  bottom_right: List[float],
+                                  connectortypes: List[EVStationConnectorTypes]=None):
+        """Makes a search request for charging stations with in given
+           bounding box. The bounding box can have a maximum height / width of 400km.
+        Args:
+          top_left (array):
+            array including latitude and longitude in order.
+          bottom_right (array):
+            array including latitude and longitude in order.
+          connectortypes (List[EVStationConnectorTypes]):
+            Optional, to identify the connector types.
+        Returns:
+          EVChargingStationsResponse
+        Raises:
+          HEREError
+        """
+
+        if connectortypes:
+            connector_types_str = self.__connector_types_str(connectortypes)
+            data = {'app_id': self._app_id,
+                    'app_code': self._app_code,
+                    'bbox': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1]),
+                    'connectortype': connector_types_str}
+        else:
+            data = {'app_id': self._app_id,
+                    'app_code': self._app_code,
+                    'bbox': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1])}
+        response = self.__get(self._base_url + 'stations.json', data, EVChargingStationsResponse)
+        return response
+
+
 class UnauthorizedError(HEREError):
 
     """Unauthorized Error Type.

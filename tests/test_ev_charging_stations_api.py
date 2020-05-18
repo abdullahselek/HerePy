@@ -49,3 +49,28 @@ class EVChargingStationsApi(unittest.TestCase):
             self._api.get_stations_circular_search(latitude=52.516667,
                                                    longitude=13.383333,
                                                    radius=5000)
+
+
+    @responses.activate
+    def test_get_stations_bounding_box_whensucceed(self):
+        with open('testdata/models/ev_charging_stations_circular.json', 'r') as f:
+            expected_response = f.read()
+        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
+                  expected_response, status=200)
+        response = self._api.get_stations_bounding_box(top_left=[52.8, 11.37309],
+                                                       bottom_right=[52.31, 13.2],
+                                                       connectortypes=[EVStationConnectorTypes.small_paddle_inductive,
+                                                    EVStationConnectorTypes.large_paddle_inductive])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.EVChargingStationsResponse)
+
+
+    @responses.activate
+    def test_get_stations_bounding_box_whenerroroccured(self):
+        with open('testdata/models/ev_charging_stations_error_unauthorized.json', 'r') as f:
+            expected_response = f.read()
+        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
+                  expected_response, status=200)
+        with self.assertRaises(herepy.HEREError):
+            self._api.get_stations_bounding_box(top_left=[52.8, 11.37309],
+                                                bottom_right=[52.31, 13.2])
