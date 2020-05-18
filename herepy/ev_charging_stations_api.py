@@ -55,6 +55,16 @@ class EVChargingStationsApi():
         return connector_types_str
 
 
+    def __corridor_str(self, points: List[float]):
+        if len(points) % 2 != 0:
+            points = points[:-1]
+        corridor_str = ''
+        for i in range(0, len(points), 2):
+            corridor_str += str.format('{0},{1};', points[i], points[i + 1])
+        corridor_str = corridor_str[:-1]
+        return corridor_str
+
+
     def get_stations_circular_search(self,
                                      latitude: float,
                                      longitude: float,
@@ -122,6 +132,37 @@ class EVChargingStationsApi():
             data = {'app_id': self._app_id,
                     'app_code': self._app_code,
                     'bbox': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1])}
+        response = self.__get(self._base_url + 'stations.json', data, EVChargingStationsResponse)
+        return response
+
+
+    def get_stations_corridor(self,
+                              points: List[float],
+                              connectortypes: List[EVStationConnectorTypes]=None):
+        """Makes a search request for charging stations with in given corridor.
+           Maximum corridor area is 5000 km2.
+        Args:
+          points (array):
+            array including latitude and longitude pairs in order.
+          connectortypes (List[EVStationConnectorTypes]):
+            Optional, to identify the connector types.
+        Returns:
+          EVChargingStationsResponse
+        Raises:
+          HEREError
+        """
+
+        if connectortypes:
+            connector_types_str = self.__connector_types_str(connectortypes)
+            data = {'app_id': self._app_id,
+                    'app_code': self._app_code,
+                    'corridor': self.__corridor_str(points),
+                    'connectortype': connector_types_str}
+        else:
+            data = {'app_id': self._app_id,
+                    'app_code': self._app_code,
+                    'corridor': self.__corridor_str(points)}
+        print(data)
         response = self.__get(self._base_url + 'stations.json', data, EVChargingStationsResponse)
         return response
 
