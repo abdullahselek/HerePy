@@ -88,6 +88,7 @@ The library utilizes models to represent various data structures returned by HER
     * herepy.PlaceCategoriesResponse
     * herepy.PublicTransitResponse
     * herepy.RmeResponse
+    * herepy.EVChargingStationsResponse
 
 GeocoderApi
 -----------
@@ -347,6 +348,50 @@ Get information about points of a gpx file
     with open('my-gpx.file') as gpx_file:
         content = gpx_file.read()
         response = rmeApi.match_route(content, ['ROAD_GEOM_FCn(*)'])
+
+EVChargingStationsApi
+------------------
+
+Initiation of EVChargingStationsApi
+
+.. code:: python
+
+    import herepy
+
+    ev_charging_api = herepy.EVChargingStationsApi(app_id='app_id', app_code='app_code')
+
+Makes a search request for charging stations within a circular area
+
+.. code:: python
+
+    response = ev_charging_api.get_stations_circular_search(latitude=52.516667,
+                                                            longitude=13.383333,
+                                                            radius=5000,
+                                                            connectortypes=[EVStationConnectorTypes.small_paddle_inductive,
+                                                        EVStationConnectorTypes.large_paddle_inductive])
+
+Makes a search request for charging stations with in given bounding box
+
+.. code:: python
+
+    response = ev_charging_api.get_stations_bounding_box(top_left=[52.8, 11.37309],
+                                                         bottom_right=[52.31, 13.2],
+                                                         connectortypes=[EVStationConnectorTypes.small_paddle_inductive,
+                                                        EVStationConnectorTypes.large_paddle_inductive])
+
+Makes a search request for charging stations with in given corridor
+
+.. code:: python
+
+    response = ev_charging_api.get_stations_corridor(points=[52.51666, 13.38333, 52.13333, 11.61666, 53.56527, 10.00138],
+                                                     connectortypes=[EVStationConnectorTypes.small_paddle_inductive,
+                                                    EVStationConnectorTypes.large_paddle_inductive])
+
+Retrieves the full/updated information about a single charging station only
+
+.. code:: python
+
+    response = ev_charging_api.get_station_details(station_id='276u33db-b2c840878cfc409fa5a0aef858419037')
 
 License
 -------
