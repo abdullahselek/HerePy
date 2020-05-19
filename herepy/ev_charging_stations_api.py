@@ -162,8 +162,26 @@ class EVChargingStationsApi():
             data = {'app_id': self._app_id,
                     'app_code': self._app_code,
                     'corridor': self.__corridor_str(points)}
-        print(data)
         response = self.__get(self._base_url + 'stations.json', data, EVChargingStationsResponse)
+        return response
+
+
+    def get_station_details(self, station_id: str):
+        """Based on the results of a search for charging stations, this method
+        retrieves the full/updated information about a single charging station only.
+        Args:
+          station_id (str):
+            station_id is an attribute of the evStation element with a unique value.
+        Returns:
+          EVChargingStationsResponse
+        Raises:
+          HEREError
+        """
+
+        data = {'app_id': self._app_id,
+                'app_code': self._app_code}
+        url = self._base_url + 'stations/' + station_id + '.json'
+        response = self.__get(url, data, EVChargingStationsResponse)
         return response
 
 

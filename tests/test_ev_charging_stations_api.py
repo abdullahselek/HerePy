@@ -97,3 +97,26 @@ class EVChargingStationsApi(unittest.TestCase):
                   expected_response, status=200)
         with self.assertRaises(herepy.HEREError):
             self._api.get_stations_corridor(points=[52.51666, 13.38333, 52.13333, 11.61666, 53.56527, 10.00138, 11.0])
+
+
+    @responses.activate
+    def test_get_station_details_whensucceed(self):
+        station_id = '276u33db-b2c840878cfc409fa5a0aef858419037'
+        with open('testdata/models/ev_charging_station_details.json', 'r') as f:
+            expected_response = f.read()
+        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations/' + station_id + '.json',
+                  expected_response, status=200)
+        response = self._api.get_station_details(station_id=station_id)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.EVChargingStationsResponse)
+
+
+    @responses.activate
+    def test_get_station_details_whenerroroccured(self):
+        station_id = '276u33db-b2c840878cfc409fa5a0aef858419037'
+        with open('testdata/models/ev_charging_stations_error_unauthorized.json', 'r') as f:
+            expected_response = f.read()
+        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations/' + station_id + '.json',
+                  expected_response, status=200)
+        with self.assertRaises(herepy.HEREError):
+            self._api.get_station_details(station_id=station_id)
