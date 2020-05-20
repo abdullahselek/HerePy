@@ -6,6 +6,7 @@ import codecs
 
 from setuptools import setup, find_packages
 
+
 cwd = os.path.abspath(os.path.dirname(__file__))
 
 def read(filename):
@@ -30,6 +31,7 @@ setup(
     license=extract_metaitem('license'),
     description=extract_metaitem('description'),
     long_description=(read('README.rst')),
+    long_description_content_type='text/x-rst',
     author=extract_metaitem('author'),
     author_email=extract_metaitem('email'),
     maintainer=extract_metaitem('author'),

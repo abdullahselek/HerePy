@@ -350,7 +350,7 @@ Get information about points of a gpx file
         response = rmeApi.match_route(content, ['ROAD_GEOM_FCn(*)'])
 
 EVChargingStationsApi
-------------------
+---------------------
 
 Initiation of EVChargingStationsApi
 
