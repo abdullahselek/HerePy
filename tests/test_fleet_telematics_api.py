@@ -19,3 +19,10 @@ class FleetTelematicsApiTest(unittest.TestCase):
         self.assertEqual(self._api._api_key, 'api_key')
         self.assertEqual(self._api._base_url, 'https://wse.ls.hereapi.com/2/')
 
+
+    def test_destination_param(self):
+        destination_param = herepy.DestinationParam(text='FranfurtCentralStation',
+                                                    latitude=50.1073,
+                                                    longitude=8.6647)
+        param_str = destination_param.__str__()
+        self.assertEqual(param_str, 'FranfurtCentralStation;50.1073,8.6647')

@@ -254,3 +254,18 @@ class EVChargingStationsResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+
+class WaypointSequenceResponse(HEREModel):
+    """A class representing the Fleet Telematics Waypoint Sequence response data."""
+
+    def __init__(self, **kwargs):
+        super(WaypointSequenceResponse, self).__init__()
+        self.param_defaults = {
+            'results': None,
+            'errors': None,
+            'warnings': None,
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))

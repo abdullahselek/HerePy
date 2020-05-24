@@ -40,7 +40,8 @@ from .models import (
     RmeResponse,
     TrafficIncidentResponse,
     DestinationWeatherResponse,
-    EVChargingStationsResponse
+    EVChargingStationsResponse,
+    WaypointSequenceResponse
 )
 
 from .destination_weather_api import (
@@ -67,4 +68,7 @@ from .places_api import PlacesApi
 from .public_transit_api import PublicTransitApi
 from .rme_api import RmeApi
 from .ev_charging_stations_api import EVChargingStationsApi
-from .fleet_telematics_api import FleetTelematicsApi
+from .fleet_telematics_api import (
+    FleetTelematicsApi,
+    DestinationParam
+)
