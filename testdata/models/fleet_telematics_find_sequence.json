@@ -1,0 +1,97 @@
+{
+  "results": [{
+    "waypoints": [{
+      "id": "WiesbadenCentralStation",
+      "lat": 50.0715,
+      "lng": 8.2434,
+      "sequence": 0,
+      "estimatedArrival": null,
+      "estimatedDeparture": "2014-12-09T09:30:00+01:00",
+      "fulfilledConstraints": []
+    },
+    {
+      "id": "FranfurtCentralStation",
+      "lat": 50.1073,
+      "lng": 8.6647,
+      "sequence": 1,
+      "estimatedArrival": null,
+      "estimatedDeparture": "2014-12-09T10:01:02+01:00",
+      "fulfilledConstraints": []
+    },
+    {
+      "id": "HanauCentralStation",
+      "lat": 50.1218,
+      "lng": 8.9298,
+      "sequence": 2,
+      "estimatedArrival": null,
+      "estimatedDeparture": "2014-12-09T10:30:43+01:00",
+      "fulfilledConstraints": []
+    },
+    {
+      "id": "FrankfurtAirport",
+      "lat": 50.0505,
+      "lng": 8.5698,
+      "sequence": 3,
+      "estimatedArrival": null,
+      "estimatedDeparture": "2014-12-09T10:56:10+01:00",
+      "fulfilledConstraints": []
+    },
+    {
+      "id": "DarmstadtCentralStation",
+      "lat": 49.8728,
+      "lng": 8.6326,
+      "sequence": 4,
+      "estimatedArrival": null,
+      "estimatedDeparture": "2014-12-09T11:16:55+01:00",
+      "fulfilledConstraints": []
+    },
+    {
+      "id": "MainzCentralStation",
+      "lat": 50.0021,
+      "lng": 8.259,
+      "sequence": 5,
+      "estimatedArrival": null,
+      "estimatedDeparture": null,
+      "fulfilledConstraints": []
+    }],
+    "distance": "169262",
+    "time": "8362",
+    "interconnections": [{
+      "fromWaypoint": "WiesbadenCentralStation",
+      "toWaypoint": "FranfurtCentralStation",
+      "distance": 36461.0,
+      "time": 1862.0
+    },
+    {
+      "fromWaypoint": "FranfurtCentralStation",
+      "toWaypoint": "HanauCentralStation",
+      "distance": 34485.0,
+      "time": 1781.0
+    },
+    {
+      "fromWaypoint": "HanauCentralStation",
+      "toWaypoint": "FrankfurtAirport",
+      "distance": 33489.0,
+      "time": 1527.0
+    },
+    {
+      "fromWaypoint": "FrankfurtAirport",
+      "toWaypoint": "DarmstadtCentralStation",
+      "distance": 26905.0,
+      "time": 1245.0
+    },
+    {
+      "fromWaypoint": "DarmstadtCentralStation",
+      "toWaypoint": "MainzCentralStation",
+      "distance": 37922.0,
+      "time": 1947.0
+    }],
+    "description": "Targeted best time; with improvement for traffic"
+  }],
+  "errors": [],
+  "processingTimeDesc": "1345ms",
+  "responseCode": "200",
+  "warnings": null,
+  "requestId": null
+}
+

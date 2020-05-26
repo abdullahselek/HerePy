@@ -29,7 +29,12 @@ class FleetTelematicsApiTest(unittest.TestCase):
         self.assertEqual(param_str, 'FranfurtCentralStation;50.1073,8.6647')
 
 
-    def test_create_find_sequence_parameters(self):
+    @responses.activate
+    def test_find_sequence_whensucceed(self):
+        with open('testdata/models/fleet_telematics_find_sequence.json', 'r') as f:
+            expected_response = f.read()
+        responses.add(responses.GET, 'https://wse.ls.hereapi.com/2/findsequence.json',
+                  expected_response, status=200)
         start = herepy.DestinationParam(text='WiesbadenCentralStation',
                                         latitude=50.0715,
                                         longitude=8.2434)
@@ -46,16 +51,34 @@ class FleetTelematicsApiTest(unittest.TestCase):
                                       latitude=50.0021,
                                       longitude=8.259)
         modes = [herepy.RouteMode.fastest, herepy.RouteMode.car, herepy.RouteMode.traffic_enabled]
-        data = self._api.create_find_sequence_parameters(start=start,
-                                                         intermediate_destinations=intermediate_destinations,
-                                                         end=end,
-                                                         modes=modes)
-        self.assertEqual(data, {'apiKey': 'api_key',
-                                'start': 'WiesbadenCentralStation;50.0715,8.2434',
-                                'destination1': 'FranfurtCentralStation;50.1073,8.6647',
-                                'destination2': 'DarmstadtCentralStation;49.8728,8.6326',
-                                'destination3': 'FrankfurtAirport;50.0505,8.5698',
-                                'end': 'MainzCentralStation;50.0021,8.259',
-                                'improveFor': 'time',
-                                'departure': 'now',
-                                'mode' : 'fastest;car;traffic:enabled;'})
+        response = self._api.find_sequence(start=start,
+                                           intermediate_destinations=intermediate_destinations,
+                                           end=end,
+                                           modes=modes)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.WaypointSequenceResponse)
+
+
+    @responses.activate
+    def test_find_sequence_whenerroroccured(self):
+        with open('testdata/models/fleet_telematics_unauthorized_error.json', 'r') as f:
+            expected_response = f.read()
+        responses.add(responses.GET, 'https://wse.ls.hereapi.com/2/findsequence.json',
+                  expected_response, status=200)
+
+        start = herepy.DestinationParam(text='WiesbadenCentralStation',
+                                         latitude=50.0715,
+                                         longitude=8.2434)
+        intermediate_destinations = [herepy.DestinationParam(text='FranfurtCentralStation',
+                                                             latitude=50.1073,
+                                                             longitude=8.6647)]
+        end = herepy.DestinationParam(text='MainzCentralStation',
+                                      latitude=50.0021,
+                                      longitude=8.259)
+        modes = [herepy.RouteMode.fastest, herepy.RouteMode.car, herepy.RouteMode.traffic_enabled]
+
+        with self.assertRaises(herepy.HEREError):
+            self._api.find_sequence(start=start,
+                                    intermediate_destinations=intermediate_destinations,
+                                    end=end,
+                                    modes=modes)
