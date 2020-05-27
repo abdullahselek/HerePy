@@ -101,6 +101,22 @@ class FleetTelematicsApi(HEREApi):
                       intermediate_destinations: List[DestinationParam],
                       end: DestinationParam,
                       modes: List[RouteMode]):
+        """Finds time-optimized waypoint sequence route.
+        Args:
+          start (DestinationParam):
+            Starting point.
+          intermediate_destinations (List[DestinationParam]):
+            Intermediate points between start and end points.
+          end (DestinationParam):
+            End point.
+          modes (List[RouteMode]):
+            Route modes.
+        Returns:
+          WaypointSequenceResponse
+        Raises:
+          HEREError
+        """
+
         data = self.__create_find_sequence_parameters(start=start,
                                                       intermediate_destinations=intermediate_destinations,
                                                       end=end,
