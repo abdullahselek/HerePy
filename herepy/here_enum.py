@@ -177,3 +177,13 @@ class EVStationConnectorTypes(Enum):
 
     def __str__(self):
         return '%s' % self._value_
+
+
+class MultiplePickupOfferType(Enum):
+    """Defines types of Fleet Telematics Api's pickup offers."""
+
+    pickup = 'pickup'
+    drop = 'drop'
+
+    def __str__(self):
+        return '%s' % self._value_

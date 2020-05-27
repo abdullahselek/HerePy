@@ -93,7 +93,7 @@ class PublicTransitRoutingModeTest(unittest.TestCase):
         self.assertEqual(realtime.__str__(), 'realtime')
 
 
-class EVStationConnectorTypes(unittest.TestCase):
+class EVStationConnectorTypesTest(unittest.TestCase):
 
     def test_valueofenum(self):
         unspecified = herepy.EVStationConnectorTypes.unspecified
@@ -200,3 +200,12 @@ class EVStationConnectorTypes(unittest.TestCase):
         self.assertEqual(domestic_plug_socket_type_a.__str__(), '48')
         domestic_plug_socket_type_c = herepy.EVStationConnectorTypes.domestic_plug_socket_type_c
         self.assertEqual(domestic_plug_socket_type_c.__str__(), '49')
+
+
+class MultiplePickupOfferTypeTest(unittest.TestCase):
+
+    def test_valueofenum(self):
+        pickup = herepy.MultiplePickupOfferType.pickup
+        self.assertEqual(pickup.__str__(), 'pickup')
+        drop = herepy.MultiplePickupOfferType.drop
+        self.assertEqual(drop.__str__(), 'drop')

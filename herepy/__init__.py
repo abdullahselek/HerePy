@@ -24,7 +24,8 @@ from .here_enum import (
     PublicTransitRoutingMode,
     PublicTransitModeType,
     WeatherProductType,
-    EVStationConnectorTypes
+    EVStationConnectorTypes,
+    MultiplePickupOfferType
 )
 
 from .models import (
