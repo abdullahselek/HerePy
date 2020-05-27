@@ -4,10 +4,10 @@ import sys
 import json
 import requests
 
-from typing import List
+from typing import List, Optional
 
 from herepy.here_api import HEREApi
-from herepy.here_enum import RouteMode
+from herepy.here_enum import RouteMode, MultiplePickupOfferType
 from herepy.utils import Utils
 from herepy.models import WaypointSequenceResponse
 from herepy.error import HEREError
@@ -38,7 +38,52 @@ class DestinationParam(object):
 
 
     def __str__(self):
+        """Returns string value of instance used in requests."""
+
         return str.format('{0};{1},{2}', self.text, self.latitude, self.longitude)
+
+
+class DestinationPickupParam(object):
+    """Class that represents destination parameters used to find pickups in FleetTelematicsApi."""
+
+    def __init__(self,
+                 latitude: float,
+                 longitude: float,
+                 param_type: MultiplePickupOfferType,
+                 item: str,
+                 value: Optional[int]=None):
+        """Initiates a new destination pickup param instance.
+        Args:
+          latitude (float):
+            Latitude of coordinate.
+          longitude (float):
+            Longitude of coordinate.
+          param_type (MultiplePickupOfferType):
+            Type of param, `pickup` or `drop`.
+          item (str):
+            Item you pickup or drop.
+          value (Optional[int]):
+            Number of items.
+        Returns:
+          DestinationParam instance.
+        """
+
+        self.latitude = latitude
+        self.longitude = longitude
+        self.param_type = param_type
+        self.item = item
+        self.value = value
+
+
+    def __str__(self):
+        """Returns string value of instance used in requests."""
+
+        if self.value:
+            return str.format('{0},{1};{2}:{3},value:{4}', self.latitude,
+                       self.longitude, self.param_type,
+                       self.item, self.value)
+        return str.format('{0},{1};{2}:{3}', self.latitude, self.longitude,
+                   self.param_type, self.item)
 
 
 class FleetTelematicsApi(HEREApi):

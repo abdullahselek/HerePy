@@ -8,6 +8,23 @@ import responses
 import herepy
 
 
+class DestinationPickupParamTest(unittest.TestCase):
+
+    def test_valueofparam(self):
+        pickup_param = herepy.DestinationPickupParam(
+                           latitude=50.11562, longitude=8.63121,
+                           param_type=herepy.MultiplePickupOfferType.pickup, item='GRAPEFRUITS',
+                           value=1000)
+        param_str = pickup_param.__str__()
+        self.assertEqual(param_str, '50.11562,8.63121;pickup:GRAPEFRUITS,value:1000')
+
+        pickup_param = herepy.DestinationPickupParam(
+                           latitude=50.11562, longitude=8.63121,
+                           param_type=herepy.MultiplePickupOfferType.drop, item='APPLES')
+        param_str = pickup_param.__str__()
+        self.assertEqual(param_str, '50.11562,8.63121;drop:APPLES')
+
+
 class FleetTelematicsApiTest(unittest.TestCase):
 
     def setUp(self):

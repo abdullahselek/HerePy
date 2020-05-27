@@ -71,5 +71,6 @@ from .rme_api import RmeApi
 from .ev_charging_stations_api import EVChargingStationsApi
 from .fleet_telematics_api import (
     FleetTelematicsApi,
-    DestinationParam
+    DestinationParam,
+    DestinationPickupParam
 )
