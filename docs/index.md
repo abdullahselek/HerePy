@@ -25,3 +25,4 @@ Available clients are:
 * Fleet Telematics Route Matching API
 * Routing API
 * EV Charging Stations API
+* Fleet Telematics API
