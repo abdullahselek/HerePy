@@ -89,6 +89,7 @@ The library utilizes models to represent various data structures returned by HER
     * herepy.PublicTransitResponse
     * herepy.RmeResponse
     * herepy.EVChargingStationsResponse
+    * herepy.WaypointSequenceResponse
 
 GeocoderApi
 -----------
@@ -392,6 +393,42 @@ Retrieves the full/updated information about a single charging station only
 .. code:: python
 
     response = ev_charging_api.get_station_details(station_id='276u33db-b2c840878cfc409fa5a0aef858419037')
+
+FleetTelematicsApi
+-----------------
+
+Initiation of FleetTelematicsApi
+
+.. code:: python
+
+    import herepy
+
+    fleetTelematicsApi = herepy.FleetTelematicsApi(api_key='api_key')
+
+Finds time-optimized waypoint sequence route
+
+.. code:: python
+
+    start = herepy.DestinationParam(text='WiesbadenCentralStation',
+                                    latitude=50.0715,
+                                    longitude=8.2434)
+    intermediate_destinations = [herepy.DestinationParam(text='FranfurtCentralStation',
+                                                         latitude=50.1073,
+                                                         longitude=8.6647)]
+    intermediate_destinations.append(herepy.DestinationParam(text='DarmstadtCentralStation',
+                                                             latitude=49.8728,
+                                                             longitude=8.6326))
+    intermediate_destinations.append(herepy.DestinationParam(text='FrankfurtAirport',
+                                                             latitude=50.0505,
+                                                             longitude=8.5698))
+    end = herepy.DestinationParam(text='MainzCentralStation',
+                                  latitude=50.0021,
+                                  longitude=8.259)
+    modes = [herepy.RouteMode.fastest, herepy.RouteMode.car, herepy.RouteMode.traffic_enabled]
+    response = fleetTelematicsApi.find_sequence(start=start,
+                                                intermediate_destinations=intermediate_destinations,
+                                                end=end,
+                                                modes=modes)
 
 License
 -------
