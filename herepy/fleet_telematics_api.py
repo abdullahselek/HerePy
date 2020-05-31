@@ -131,6 +131,45 @@ class FleetTelematicsApi(HEREApi):
         return data
 
 
+    def __create_find_pickup_parameters(self,
+                                        modes: List[RouteMode],
+                                        start: DestinationPickupParam,
+                                        departure: str,
+                                        capacity: int,
+                                        vehicle_cost: float,
+                                        driver_cost: int,
+                                        max_detour: int,
+                                        rest_times: bool,
+                                        end: DestinationParam,
+                                        intermediate_destinations: List[DestinationPickupParam]):
+        data = {}
+
+        modes_str = ''
+        for route_mode in modes:
+            modes_str += route_mode.__str__() + ';'
+        mode_str = modes_str[:-1]
+        data['mode'] = modes_str
+        data['start'] = 'waypoint0;' + start.__str__()
+        data['departure'] = departure
+        data['capacity'] = capacity
+        data['vehicleCost'] = vehicle_cost
+        data['driverCost'] = driver_cost
+        data['maxDetour'] = max_detour
+
+        rest_times_str = 'disabled'
+        if rest_times:
+            rest_times_str = 'enabled'
+        data['restTimes'] = rest_times_str
+
+        count = 0
+        for destination_pickup_param in intermediate_destinations:
+            data[str.format('destination{0}', count)] = str.format('waypoint{0};', count + 1) + destination_pickup_param.__str__()
+            count += 1
+
+        data['end'] = str.format('waypoint{0};{1},{2}', count + 1, end.latitude, end.longitude)
+        return data
+
+
     def __get(self, base_url, data, response_cls):
         url = Utils.build_url(base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
@@ -167,6 +206,31 @@ class FleetTelematicsApi(HEREApi):
                                                       end=end,
                                                       modes=modes)
         response = self.__get(self._base_url + 'findsequence.json', data, WaypointSequenceResponse)
+        return response
+
+
+    def find_pickups(self,
+                     modes: List[RouteMode],
+                     start: DestinationPickupParam,
+                     departure: str,
+                     capacity: int,
+                     vehicle_cost: float,
+                     driver_cost: int,
+                     max_detour: int,
+                     rest_times: bool,
+                     intermediate_destinations: List[DestinationPickupParam],
+                     end: DestinationParam):
+        data = self.__create_find_pickup_parameters(modes=modes,
+                                                    start=start,
+                                                    departure=departure,
+                                                    capacity=capacity,
+                                                    vehicle_cost=vehicle_cost,
+                                                    driver_cost=driver_cost,
+                                                    max_detour=max_detour,
+                                                    rest_times=rest_times,
+                                                    intermediate_destinations=intermediate_destinations,
+                                                    end=end)
+        response = self.__get(self._base_url + 'findpickups.json', data, WaypointSequenceResponse)
         return response
 
 

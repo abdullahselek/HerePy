@@ -1,0 +1,152 @@
+{
+  "results": [
+    {
+      "waypoints": [
+        {
+          "id": "waypoint0",
+          "lat": 50.11562,
+          "lng": 8.63121,
+          "sequence": 0,
+          "estimatedArrival": null,
+          "estimatedDeparture": "2017-09-07T09:10:43Z",
+          "fulfilledConstraints": [ "pickup:GRAPEFRUITS,value:1000,load:0 (start -> end)" ]
+        },
+        {
+          "id": "waypoint4",
+          "lat": 50.118654,
+          "lng": 8.619956,
+          "sequence": 1,
+          "estimatedArrival": "2017-09-07T09:13:27Z",
+          "estimatedDeparture": "2017-09-07T09:13:27Z",
+          "fulfilledConstraints": [ "pickup:APPLES,value:30,load:0 (destination3 -> destination0)" ]
+        },
+        {
+          "id": "waypoint1",
+          "lat": 50.118578,
+          "lng": 8.636551,
+          "sequence": 2,
+          "estimatedArrival": "2017-09-07T09:18:06Z",
+          "estimatedDeparture": "2017-09-07T09:18:06Z",
+          "fulfilledConstraints": [ "drop:APPLES,value:30,load:0 (destination3 -> destination0)" ]
+        },
+        {
+          "id": "waypoint2",
+          "lat": 50.12254,
+          "lng": 8.63107,
+          "sequence": 3,
+          "estimatedArrival": "2017-09-07T09:22:43Z",
+          "estimatedDeparture": "2017-09-07T09:22:43Z",
+          "fulfilledConstraints": [ "pickup:BANANAS,value:30,load:0 (destination1 -> destination2)" ]
+        },
+        {
+          "id": "waypoint6",
+          "lat": 50.130299,
+          "lng": 8.613031,
+          "sequence": 4,
+          "estimatedArrival": "2017-09-07T09:29:05Z",
+          "estimatedDeparture": "2017-09-07T09:29:05Z",
+          "fulfilledConstraints": [ "pickup:PEACHES,value:50,load:0 (destination5 -> destination4)" ]
+        },
+        {
+          "id": "waypoint3",
+          "lat": 50.12892,
+          "lng": 8.62983,
+          "sequence": 5,
+          "estimatedArrival": "2017-09-07T09:35:06Z",
+          "estimatedDeparture": "2017-09-07T09:35:06Z",
+          "fulfilledConstraints": [ "drop:BANANAS,value:30,load:0 (destination1 -> destination2)" ]
+        },
+        {
+          "id": "waypoint5",
+          "lat": 50.123998,
+          "lng": 8.640626,
+          "sequence": 6,
+          "estimatedArrival": "2017-09-07T09:40:19Z",
+          "estimatedDeparture": "2017-09-07T09:40:19Z",
+          "fulfilledConstraints": [ "drop:PEACHES,value:50,load:0 (destination5 -> destination4)" ]
+        },
+        {
+          "id": "waypoint7",
+          "lat": 50.13254,
+          "lng": 8.64928,
+          "sequence": 7,
+          "estimatedArrival": "2017-09-07T09:47:00Z",
+          "estimatedDeparture": null,
+          "fulfilledConstraints": [ "drop:GRAPEFRUITS,value:1000,load:0 (start -> end)" ]
+        }
+      ],
+      "distance": "16948",
+      "time": "2177",
+      "interconnections": [
+        {
+          "fromWaypoint": "waypoint0",
+          "toWaypoint": "waypoint4",
+          "distance": 1108,
+          "time": 164,
+          "rest": 0,
+          "waiting": 0
+        },
+        {
+          "fromWaypoint": "waypoint4",
+          "toWaypoint": "waypoint1",
+          "distance": 1804,
+          "time": 279,
+          "rest": 0,
+          "waiting": 0
+        },
+        {
+          "fromWaypoint": "waypoint1",
+          "toWaypoint": "waypoint2",
+          "distance": 2255,
+          "time": 277,
+          "rest": 0,
+          "waiting": 0
+        },
+        {
+          "fromWaypoint": "waypoint2",
+          "toWaypoint": "waypoint6",
+          "distance": 2808,
+          "time": 382,
+          "rest": 0,
+          "waiting": 0
+        },
+        {
+          "fromWaypoint": "waypoint6",
+          "toWaypoint": "waypoint3",
+          "distance": 2391,
+          "time": 361,
+          "rest": 0,
+          "waiting": 0
+        },
+        {
+          "fromWaypoint": "waypoint3",
+          "toWaypoint": "waypoint5",
+          "distance": 1982,
+          "time": 313,
+          "rest": 0,
+          "waiting": 0
+        },
+        {
+          "fromWaypoint": "waypoint5",
+          "toWaypoint": "waypoint7",
+          "distance": 4600,
+          "time": 401,
+          "rest": 0,
+          "waiting": 0
+        }
+      ],
+      "description": "Targeted best solution: optimal; without traffic",
+      "timeBreakdown": {
+        "driving": 2177,
+        "service": 0,
+        "rest": 0,
+        "waiting": 0
+      }
+    }
+  ],
+  "errors": [ ],
+  "processingTimeDesc": "311ms",
+  "responseCode": "200",
+  "warnings": null,
+  "requestId": null
+}
