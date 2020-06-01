@@ -139,7 +139,7 @@ class FleetTelematicsApi(HEREApi):
                                         vehicle_cost: float,
                                         driver_cost: int,
                                         max_detour: int,
-                                        rest_times: bool,
+                                        rest_times: str,
                                         end: DestinationParam,
                                         intermediate_destinations: List[DestinationPickupParam]):
         data = {}
@@ -147,7 +147,7 @@ class FleetTelematicsApi(HEREApi):
         modes_str = ''
         for route_mode in modes:
             modes_str += route_mode.__str__() + ';'
-        mode_str = modes_str[:-1]
+        modes_str = modes_str[:-1]
         data['mode'] = modes_str
         data['start'] = 'waypoint0;' + start.__str__()
         data['departure'] = departure
@@ -155,11 +155,7 @@ class FleetTelematicsApi(HEREApi):
         data['vehicleCost'] = vehicle_cost
         data['driverCost'] = driver_cost
         data['maxDetour'] = max_detour
-
-        rest_times_str = 'disabled'
-        if rest_times:
-            rest_times_str = 'enabled'
-        data['restTimes'] = rest_times_str
+        data['restTimes'] = rest_times
 
         count = 0
         for destination_pickup_param in intermediate_destinations:
@@ -217,9 +213,44 @@ class FleetTelematicsApi(HEREApi):
                      vehicle_cost: float,
                      driver_cost: int,
                      max_detour: int,
-                     rest_times: bool,
+                     rest_times: str,
                      intermediate_destinations: List[DestinationPickupParam],
                      end: DestinationParam):
+        """Find cheaper route by picking up some additional goods along the route.
+        Args:
+          modes (List[RouteMode]):
+            Route modes.
+          start (DestinationPickupParam):
+            Starting point.
+          departure (str):
+            Time when travel is expected to start. The format is as xsd type xs:datetime `[-]CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]`
+          capacity (int):
+            Amount of payload the vehicle including trailers can carry, volume and/or weight.
+            No unit is specified, but the value must be in the same unit as the waypoint pickup load values.
+          vehicle_cost (float):
+            Cost per kilometer. No currency is specified, but the value must be in the same currency as the driverCost and
+            the waypoint drop-off values.
+          driver_cost (int):
+            Cost per hour. No currency is specified, but the value must be in the same currency as the vehicleCost and
+            the waypoint drop-off values.
+          max_detour (int):
+            Overall maximum additional seconds spent to pickup and drop-off items along the route, compared to the time
+            without picking up anything.
+          rest_times (str):
+            The parameter restTimes can be set to
+            `disabled`
+               rest times are not considered. This is equivalent to omitting the parameter restTimes
+            `default`
+               Use internal default. The default are simplified European rules: After 4.5h driving 45min rest and after 9h driving 11h rest.
+            `durations:...` and `serviceTimes:...`
+               You can provide values for driving and rest periods and define if service times at waypoints can be used for resting. You must provide both parameters.
+          intermediate_destinations (List[DestinationPickupParam]):
+            Intermediate destinations, at least one. If no end parameter is provided, one of these values is
+            selected as end of the sequence.
+          end (DestinationParam):
+            End of the journey.
+        """
+
         data = self.__create_find_pickup_parameters(modes=modes,
                                                     start=start,
                                                     departure=departure,
