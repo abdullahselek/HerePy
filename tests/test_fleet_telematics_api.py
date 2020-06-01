@@ -99,3 +99,53 @@ class FleetTelematicsApiTest(unittest.TestCase):
                                     intermediate_destinations=intermediate_destinations,
                                     end=end,
                                     modes=modes)
+
+
+    @responses.activate
+    def test_find_pickups_whensucceed(self):
+        with open('testdata/models/fleet_telematics_find_pickups.json', 'r') as f:
+            expected_response = f.read()
+        responses.add(responses.GET, 'https://wse.ls.hereapi.com/2/findpickups.json',
+                  expected_response, status=200)
+
+        modes = [herepy.RouteMode.fastest, herepy.RouteMode.car, herepy.RouteMode.traffic_enabled]
+        start = herepy.DestinationPickupParam(latitude=50.115620,
+                    longitude=8.631210,
+                    param_type=herepy.MultiplePickupOfferType.pickup,
+                    item='GRAPEFRUITS',
+                    value=1000)
+        departure = '2016-10-14T07:30:00+02:00'
+        capacity = 10000
+        vehicle_cost = 0.29
+        driver_cost = 20
+        max_detour = 60
+        rest_times = 'disabled'
+        intermediate_destinations = [herepy.DestinationPickupParam(
+            latitude=50.118578,
+            longitude=8.636551,
+            param_type=herepy.MultiplePickupOfferType.drop,
+            item='APPLES',
+            value=30
+        ), herepy.DestinationPickupParam(
+            latitude=50.122540,
+            longitude=8.631070,
+            param_type=herepy.MultiplePickupOfferType.pickup,
+            item='BANANAS')
+        ]
+        end = herepy.DestinationParam(
+            text=None,
+            latitude=50.132540,
+            longitude=8.649280
+        )
+        response = self._api.find_pickups(modes=modes,
+                        start=start,
+                        departure=departure,
+                        capacity=capacity,
+                        vehicle_cost=vehicle_cost,
+                        driver_cost=driver_cost,
+                        max_detour=max_detour,
+                        rest_times=rest_times,
+                        intermediate_destinations=intermediate_destinations,
+                        end=end)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.WaypointSequenceResponse)
