@@ -13,85 +13,12 @@ from herepy.models import WaypointSequenceResponse
 from herepy.error import HEREError
 
 
-class DestinationParam(object):
-    """Class that represents destination parameters used in FleetTelematicsApi."""
-
-    def __init__(self,
-                 text:str,
-                 latitude: float,
-                 longitude: float):
-        """Initiates a new destination param instance.
-        Args:
-          text (str):
-            String value that indicates location text.
-          latitude (float):
-            Latitude of coordinate.
-          longitude (float):
-            Longitude of coordinate.
-        Returns:
-          DestinationParam instance.
-        """
-
-        self.text = text
-        self.latitude = latitude
-        self.longitude = longitude
-
-
-    def __str__(self):
-        """Returns string value of instance used in requests."""
-
-        return str.format('{0};{1},{2}', self.text, self.latitude, self.longitude)
-
-
-class DestinationPickupParam(object):
-    """Class that represents destination parameters used to find pickups in FleetTelematicsApi."""
-
-    def __init__(self,
-                 latitude: float,
-                 longitude: float,
-                 param_type: MultiplePickupOfferType,
-                 item: str,
-                 value: Optional[int]=None):
-        """Initiates a new destination pickup param instance.
-        Args:
-          latitude (float):
-            Latitude of coordinate.
-          longitude (float):
-            Longitude of coordinate.
-          param_type (MultiplePickupOfferType):
-            Type of param, `pickup` or `drop`.
-          item (str):
-            Item you pickup or drop.
-          value (Optional[int]):
-            Number of items.
-        Returns:
-          DestinationParam instance.
-        """
-
-        self.latitude = latitude
-        self.longitude = longitude
-        self.param_type = param_type
-        self.item = item
-        self.value = value
-
-
-    def __str__(self):
-        """Returns string value of instance used in requests."""
-
-        if self.value:
-            return str.format('{0},{1};{2}:{3},value:{4}', self.latitude,
-                       self.longitude, self.param_type,
-                       self.item, self.value)
-        return str.format('{0},{1};{2}:{3}', self.latitude, self.longitude,
-                   self.param_type, self.item)
-
-
 class FleetTelematicsApi(HEREApi):
     """A python interface into the HERE Fleet Telematics API"""
 
     def __init__(self,
                  api_key: str=None,
-		 timeout: int=None):
+                 timeout: int=None):
         """Returns a FleetTelematicsApi instance.
         Args:
           api_key (str):
@@ -107,19 +34,21 @@ class FleetTelematicsApi(HEREApi):
 
 
     def __create_find_sequence_parameters(self,
-                                          start: DestinationParam,
-                                          intermediate_destinations: List[DestinationParam],
-                                          end: DestinationParam,
-                                          modes: List[RouteMode]):
+            start: str,
+            departure: str,
+            intermediate_destinations: List[str],
+            end: str,
+            modes: List[RouteMode]):
         data = {'apiKey': self._api_key,
-                'start': start.__str__()}
+                'start': start.__str__(),
+                'departure': departure}
 
         count = 0
         for destination_param in intermediate_destinations:
             count += 1
-            data[str.format('destination{0}', count)] = destination_param.__str__()
+            data[str.format('destination{0}', count)] = destination_param
 
-        data['end'] = end.__str__()
+        data['end'] = end
         data['improveFor'] = 'time'
         data['departure'] = 'now'
 
@@ -132,16 +61,16 @@ class FleetTelematicsApi(HEREApi):
 
 
     def __create_find_pickup_parameters(self,
-                                        modes: List[RouteMode],
-                                        start: DestinationPickupParam,
-                                        departure: str,
-                                        capacity: int,
-                                        vehicle_cost: float,
-                                        driver_cost: int,
-                                        max_detour: int,
-                                        rest_times: str,
-                                        end: DestinationParam,
-                                        intermediate_destinations: List[DestinationPickupParam]):
+            modes: List[RouteMode],
+            start: str,
+            departure: str,
+            capacity: int,
+            vehicle_cost: float,
+            driver_cost: int,
+            max_detour: int,
+            rest_times: str,
+            end: str,
+            intermediate_destinations: List[str]):
         data = {}
 
         modes_str = ''
@@ -149,7 +78,7 @@ class FleetTelematicsApi(HEREApi):
             modes_str += route_mode.__str__() + ';'
         modes_str = modes_str[:-1]
         data['mode'] = modes_str
-        data['start'] = 'waypoint0;' + start.__str__()
+        data['start'] = 'waypoint0;' + start
         data['departure'] = departure
         data['capacity'] = capacity
         data['vehicleCost'] = vehicle_cost
@@ -159,10 +88,10 @@ class FleetTelematicsApi(HEREApi):
 
         count = 0
         for destination_pickup_param in intermediate_destinations:
-            data[str.format('destination{0}', count)] = str.format('waypoint{0};', count + 1) + destination_pickup_param.__str__()
+            data[str.format('destination{0}', count)] = str.format('waypoint{0};', count + 1) + destination_pickup_param
             count += 1
 
-        data['end'] = str.format('waypoint{0};{1},{2}', count + 1, end.latitude, end.longitude)
+        data['end'] = str.format('waypoint{0};{1}', count + 1, end)
         return data
 
 
@@ -177,18 +106,21 @@ class FleetTelematicsApi(HEREApi):
 
 
     def find_sequence(self,
-                      start: DestinationParam,
-                      intermediate_destinations: List[DestinationParam],
-                      end: DestinationParam,
-                      modes: List[RouteMode]):
+            start: str,
+            departure: str,
+            intermediate_destinations: List[str],
+            end: str,
+            modes: List[RouteMode]):
         """Finds time-optimized waypoint sequence route.
         Args:
-          start (DestinationParam):
-            Starting point.
-          intermediate_destinations (List[DestinationParam]):
-            Intermediate points between start and end points.
-          end (DestinationParam):
-            End point.
+          start (str):
+            Starting point. `str.format('{0};{1},{2}', text, latitude, longitude)`
+          departure (str):
+            Time when travel is expected to start. The format is as xsd type xs:datetime `[-]CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]`
+          intermediate_destinations (List[str]):
+            Intermediate points between start and end points. List of `str.format('{0};{1},{2}', text, latitude, longitude)`.
+          end (str):
+            End point. `str.format('{0};{1},{2}', text, latitude, longitude)`
           modes (List[RouteMode]):
             Route modes.
         Returns:
@@ -198,6 +130,7 @@ class FleetTelematicsApi(HEREApi):
         """
 
         data = self.__create_find_sequence_parameters(start=start,
+                                                      departure=departure,
                                                       intermediate_destinations=intermediate_destinations,
                                                       end=end,
                                                       modes=modes)
@@ -206,22 +139,22 @@ class FleetTelematicsApi(HEREApi):
 
 
     def find_pickups(self,
-                     modes: List[RouteMode],
-                     start: DestinationPickupParam,
-                     departure: str,
-                     capacity: int,
-                     vehicle_cost: float,
-                     driver_cost: int,
-                     max_detour: int,
-                     rest_times: str,
-                     intermediate_destinations: List[DestinationPickupParam],
-                     end: DestinationParam):
-        """Find cheaper route by picking up some additional goods along the route.
+            modes: List[RouteMode],
+            start: str,
+            departure: str,
+            capacity: int,
+            vehicle_cost: float,
+            driver_cost: int,
+            max_detour: int,
+            rest_times: str,
+            intermediate_destinations: List[str],
+            end: str):
+        """Finds cheaper route by picking up some additional goods along the route.
         Args:
           modes (List[RouteMode]):
             Route modes.
-          start (DestinationPickupParam):
-            Starting point.
+          start (str):
+            Starting point. `str.format('{0};{1},{2}', text, latitude, longitude)`
           departure (str):
             Time when travel is expected to start. The format is as xsd type xs:datetime `[-]CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]`
           capacity (int):
@@ -247,20 +180,26 @@ class FleetTelematicsApi(HEREApi):
           intermediate_destinations (List[DestinationPickupParam]):
             Intermediate destinations, at least one. If no end parameter is provided, one of these values is
             selected as end of the sequence.
-          end (DestinationParam):
-            End of the journey.
+            `str.format('{0},{1};{2}:{3},value:{4}', latitude,
+                  longitude, param_type,
+                  item, value)`
+            or
+            `str.format('{0},{1};{2}:{3}', latitude, longitude,
+                  param_type, item)`
+          end (str):
+            End of the journey. `str.format('{0};{1},{2}', text, latitude, longitude)`
         """
 
         data = self.__create_find_pickup_parameters(modes=modes,
-                                                    start=start,
-                                                    departure=departure,
-                                                    capacity=capacity,
-                                                    vehicle_cost=vehicle_cost,
-                                                    driver_cost=driver_cost,
-                                                    max_detour=max_detour,
-                                                    rest_times=rest_times,
-                                                    intermediate_destinations=intermediate_destinations,
-                                                    end=end)
+                    start=start,
+                    departure=departure,
+                    capacity=capacity,
+                    vehicle_cost=vehicle_cost,
+                    driver_cost=driver_cost,
+                    max_detour=max_detour,
+                    rest_times=rest_times,
+                    intermediate_destinations=intermediate_destinations,
+                    end=end)
         response = self.__get(self._base_url + 'findpickups.json', data, WaypointSequenceResponse)
         return response
 
