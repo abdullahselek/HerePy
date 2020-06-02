@@ -1,5 +1,5 @@
 site_name: HerePy
-site_description: A Python wrapper around the HERE APIs
+site_description: A library that provides a Python interface to the HERE APIs
 site_url: https://herepy.abdullahselek.com/
 theme:
   name: material

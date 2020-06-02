@@ -6,10 +6,10 @@ __author__       = 'Abdullah Selek'
 __email__        = 'abdullahselek@gmail.com'
 __copyright__    = 'Copyright (c) 2017 Abdullah Selek'
 __license__      = 'MIT License'
-__version__      = '2.2.0'
+__version__      = '2.3.0'
 __url__          = 'https://github.com/abdullahselek/HerePy'
 __download_url__ = 'https://pypi.org/pypi/herepy'
-__description__  = 'A Python wrapper around the HERE APIs'
+__description__  = 'A library that provides a Python interface to the HERE APIs'
 
 
 import json
