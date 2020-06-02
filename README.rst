@@ -395,7 +395,7 @@ Retrieves the full/updated information about a single charging station only
     response = ev_charging_api.get_station_details(station_id='276u33db-b2c840878cfc409fa5a0aef858419037')
 
 FleetTelematicsApi
------------------
+------------------
 
 Initiation of FleetTelematicsApi
 
@@ -409,26 +409,48 @@ Finds time-optimized waypoint sequence route
 
 .. code:: python
 
-    start = herepy.DestinationParam(text='WiesbadenCentralStation',
-                                    latitude=50.0715,
-                                    longitude=8.2434)
-    intermediate_destinations = [herepy.DestinationParam(text='FranfurtCentralStation',
-                                                         latitude=50.1073,
-                                                         longitude=8.6647)]
-    intermediate_destinations.append(herepy.DestinationParam(text='DarmstadtCentralStation',
-                                                             latitude=49.8728,
-                                                             longitude=8.6326))
-    intermediate_destinations.append(herepy.DestinationParam(text='FrankfurtAirport',
-                                                             latitude=50.0505,
-                                                             longitude=8.5698))
-    end = herepy.DestinationParam(text='MainzCentralStation',
-                                  latitude=50.0021,
-                                  longitude=8.259)
+    start = str.format('{0};{1},{2}', 'WiesbadenCentralStation', 50.0715, 8.2434)
+    intermediate_destinations = [str.format('{0};{1},{2}', 'FranfurtCentralStation', 50.1073, 8.6647),
+        str.format('{0};{1},{2}', 'DarmstadtCentralStation', 49.8728, 8.6326),
+        str.format('{0};{1},{2}', 'FrankfurtAirport', 50.0505, 8.5698)]
+    end = str.format('{0};{1},{2}', 'MainzCentralStation', 50.0021, 8.259)
     modes = [herepy.RouteMode.fastest, herepy.RouteMode.car, herepy.RouteMode.traffic_enabled]
-    response = fleetTelematicsApi.find_sequence(start=start,
-                                                intermediate_destinations=intermediate_destinations,
-                                                end=end,
-                                                modes=modes)
+    response = self._api.find_sequence(start=start,
+            departure='2014-12-09T09:30:00%2b01:00',
+            intermediate_destinations=intermediate_destinations,
+            end=end,
+            modes=modes)
+
+To find cheaper route by picking up some additional goods along the route
+
+.. code:: python
+
+    modes = [herepy.RouteMode.fastest, herepy.RouteMode.car, herepy.RouteMode.traffic_enabled]
+    start = str.format('{0},{1};{2}:{3},value:{4}', 50.115620,
+                8.631210, herepy.MultiplePickupOfferType.pickup.__str__(),
+                'GRAPEFRUITS', 1000)
+    departure = '2016-10-14T07:30:00+02:00'
+    capacity = 10000
+    vehicle_cost = 0.29
+    driver_cost = 20
+    max_detour = 60
+    rest_times = 'disabled'
+    intermediate_destinations = [str.format('{0},{1};{2}:{3},value:{4}', 50.118578,
+                8.636551, herepy.MultiplePickupOfferType.drop.__str__(),
+                'APPLES', 30),
+            str.format('{0},{1};{2}:{3}', 50.122540, 8.631070,
+                herepy.MultiplePickupOfferType.pickup.__str__(), 'BANANAS')]
+    end = str.format('{1},{2}', 'MainzCentralStation', 50.132540, 8.649280)
+    response = self._api.find_pickups(modes=modes,
+            start=start,
+            departure=departure,
+            capacity=capacity,
+            vehicle_cost=vehicle_cost,
+            driver_cost=driver_cost,
+            max_detour=max_detour,
+            rest_times=rest_times,
+            intermediate_destinations=intermediate_destinations,
+            end=end)
 
 License
 -------
