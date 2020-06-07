@@ -463,7 +463,7 @@ class RoutingApiTest(unittest.TestCase):
                       server_response, status=200)
         with open('testdata/models/geocoder.json', 'r') as f:
             expectedGeocoderResponse = f.read()
-        responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+        responses.add(responses.GET, 'https://geocode.search.hereapi.com/v1/geocode',
                   expectedGeocoderResponse, status=200)
         response = self._api.matrix(
             start_waypoints=['Seattle', 'Kentucky'],
@@ -491,7 +491,7 @@ class RoutingApiTest(unittest.TestCase):
                       server_response, status=200)
         with open('testdata/models/geocoder.json', 'r') as f:
             expectedGeocoderResponse = f.read()
-        responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+        responses.add(responses.GET, 'https://geocode.search.hereapi.com/v1/geocode',
                   expectedGeocoderResponse, status=200)
         response = self._api.matrix(
             start_waypoints=[[9.933231, -84.076831]],
@@ -541,7 +541,7 @@ class RoutingApiTest(unittest.TestCase):
                   expectedRoutingResponse, status=200)
         with open('testdata/models/geocoder.json', 'r') as f:
             expectedGeocoderResponse = f.read()
-        responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+        responses.add(responses.GET, 'https://geocode.search.hereapi.com/v1/geocode',
                   expectedGeocoderResponse, status=200)
         response = self._api.truck_route('200 S Mathilda Sunnyvale CA',
                                          '200 S Mathilda Sunnyvale CA')
@@ -554,7 +554,7 @@ class RoutingApiTest(unittest.TestCase):
                   expectedRoutingResponse, status=200)
         with open('testdata/models/geocoder_error.json', 'r') as f:
             expectedGeocoderResponse = f.read()
-        responses.add(responses.GET, 'https://geocoder.ls.hereapi.com/6.2/geocode.json',
+        responses.add(responses.GET, 'https://geocode.search.hereapi.com/v1/geocode',
                   expectedGeocoderResponse, status=200)
         with self.assertRaises(herepy.WaypointNotFoundError):
             response = self._api.truck_route('200 S Mathilda Sunnyvale CA',

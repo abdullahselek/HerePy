@@ -360,8 +360,8 @@ class RoutingApi(HEREApi):
         geocoder_api = GeocoderApi(self._api_key)
         try:
             geocoder_response = geocoder_api.free_form(location_name)
-            coordinates = geocoder_response.Response["View"][0]["Result"][0]["Location"]["NavigationPosition"][0]
-            return [coordinates["Latitude"], coordinates["Longitude"]]
+            coordinates = geocoder_response.items[0]["position"]
+            return [coordinates["lat"], coordinates["lng"]]
         except (HEREError) as here_error:
             raise WaypointNotFoundError(here_error.message)
 

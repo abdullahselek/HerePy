@@ -1,81 +1,42 @@
 {
-    "Response": {
-        "MetaInfo": {
-            "Timestamp": "2017-10-24T11:03:18.694+0000"
-        },
-        "View": [
-            {
-                "_type": "SearchResultsViewType",
-                "ViewId": 0,
-                "Result": [
-                    {
-                        "Relevance": 1,
-                        "MatchLevel": "houseNumber",
-                        "MatchQuality": {
-                            "State": 1,
-                            "City": 1,
-                            "Street": [
-                                0.9
-                            ],
-                            "HouseNumber": 1
-                        },
-                        "MatchType": "pointAddress",
-                        "Location": {
-                            "LocationId": "NT_nL.dzNwdSJgdcF4U8dYEiC_yADM",
-                            "LocationType": "address",
-                            "DisplayPosition": {
-                                "Latitude": 37.37634,
-                                "Longitude": -122.03405
-                            },
-                            "NavigationPosition": [
-                                {
-                                    "Latitude": 37.37643,
-                                    "Longitude": -122.03444
-                                }
-                            ],
-                            "MapView": {
-                                "TopLeft": {
-                                    "Latitude": 37.3774642,
-                                    "Longitude": -122.0354646
-                                },
-                                "BottomRight": {
-                                    "Latitude": 37.3752158,
-                                    "Longitude": -122.0326354
-                                }
-                            },
-                            "Address": {
-                                "Label": "200 S Mathilda Ave, Sunnyvale, CA 94086, United States",
-                                "Country": "USA",
-                                "State": "CA",
-                                "County": "Santa Clara",
-                                "City": "Sunnyvale",
-                                "District": "Heritage District",
-                                "Street": "S Mathilda Ave",
-                                "HouseNumber": "200",
-                                "PostalCode": "94086",
-                                "AdditionalData": [
-                                    {
-                                        "value": "United States",
-                                        "key": "CountryName"
-                                    },
-                                    {
-                                        "value": "California",
-                                        "key": "StateName"
-                                    },
-                                    {
-                                        "value": "Santa Clara",
-                                        "key": "CountyName"
-                                    },
-                                    {
-                                        "value": "N",
-                                        "key": "PostalCodeType"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+	"items": [{
+		"title": "InvalidenstraÃŸe 117, 10115 Berlin, Deutschland",
+		"id": "here:af:streetsection:tVuvjJYhO86yd5jk1cmzNB:CgcIBCCf2912EAEaAzExNyhk",
+		"resultType": "houseNumber",
+		"houseNumberType": "PA",
+		"address": {
+			"label": "InvalidenstraÃŸe 117, 10115 Berlin, Deutschland",
+			"countryCode": "DEU",
+			"countryName": "Deutschland",
+			"state": "Berlin",
+			"county": "Berlin",
+			"city": "Berlin",
+			"district": "Mitte",
+			"street": "InvalidenstraÃŸe",
+			"postalCode": "10115",
+			"houseNumber": "117"
+		},
+		"position": {
+			"lat": 52.53041,
+			"lng": 13.38527
+		},
+		"access": [{
+			"lat": 52.53105,
+			"lng": 13.3848
+		}],
+		"mapView": {
+			"west": 13.38379,
+			"south": 52.52951,
+			"east": 13.38675,
+			"north": 52.53131
+		},
+		"scoring": {
+			"queryScore": 1.0,
+			"fieldScore": {
+				"city": 1.0,
+				"streets": [1.0],
+				"houseNumber": 1.0
+			}
+		}
+	}]
 }
