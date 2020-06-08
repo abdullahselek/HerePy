@@ -94,7 +94,7 @@ class GeocoderReverseResponse(HEREModel):
     def __init__(self, **kwargs):
         super(GeocoderReverseResponse, self).__init__()
         self.param_defaults = {
-            'Response': None
+            'items': None
         }
 
         for (param, default) in self.param_defaults.items():

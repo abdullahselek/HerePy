@@ -25,38 +25,37 @@ class GeocoderReverseApi(HEREApi):
         """
 
         super(GeocoderReverseApi, self).__init__(api_key, timeout)
-        self._base_url = 'https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json'
+        self._base_url = 'https://revgeocode.search.hereapi.com/v1/revgeocode'
+
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         try:
             json_data = json.loads(response.content.decode('utf8'))
-            if json_data.get('Response') != None:
+            if json_data.get('items') != None:
                 return GeocoderReverseResponse.new_from_jsondict(json_data)
             else:
                 raise HEREError(json_data.get('Details', 'Error occured on function ' + sys._getframe(1).f_code.co_name))
         except ValueError as err:
             raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
-    def retrieve_addresses(self, prox: List[float], radius: int=250, max_results: int=1, gen: int=9):
-        """Gets the address information of a point within given radius
+    def retrieve_addresses(self, prox: List[float], limit: int=1, lang: str='en-US'):
+        """Gets the address information of a point.
         Args:
           prox (lat/lon):
             latitude longitude of the point
-          radius (int):
-            radius of the area in meters
-          max_results (int):
-            maximum resuls to retrieve.
+          limit (int):
+            Limits items to return, with default value 1. Max value 100.
+          lang (str):
+            BCP47 compliant Language Code.
         Returns:
           GeocoderReverseResponse
         Raises:
           HEREError"""
 
-        data = {'prox': str.format('{0},{1},{2}', prox[0], prox[1], radius),
-                'mode': 'retrieveAddresses',
-                'maxresults': max_results,
-                'gen': gen,
+        data = {'at': str.format('{0},{1}', prox[0], prox[1]),
+                'limit': limit,
+                'lang': lang,
                 'apiKey': self._api_key}
         return self.__get(data)
-

@@ -1,102 +1,38 @@
 {
-    "Response": {
-        "MetaInfo": {
-            "Timestamp": "2019-05-03T11:57:06.503+0000",
-            "NextPageInformation": "2"
+    "items": [
+      {
+        "title": "Via di Porta Cavalleggeri, 71, 00165 Rome, Italy",
+        "resultType": "houseNumber",
+        "houseNumberType": "PA",
+        "address": {
+          "label": "Via di Porta Cavalleggeri, 71, 00165 Rome, Italy",
+          "countryCode": "ITA",
+          "countryName": "Italy",
+          "state": "Latium",
+          "county": "Rome",
+          "city": "Rome",
+          "district": "Aurelio",
+          "street": "Via di Porta Cavalleggeri",
+          "postalCode": "00165",
+          "houseNumber": "71"
         },
-        "View": [
-            {
-                "_type": "SearchResultsViewType",
-                "ViewId": 0,
-                "Result": [
-                    {
-                        "Relevance": 1.0,
-                        "Distance": 13.6,
-                        "MatchLevel": "houseNumber",
-                        "MatchQuality": {
-                            "Country": 1.0,
-                            "State": 1.0,
-                            "County": 1.0,
-                            "City": 1.0,
-                            "District": 1.0,
-                            "Street": [
-                                1.0
-                            ],
-                            "HouseNumber": 1.0,
-                            "PostalCode": 1.0
-                        },
-                        "MatchType": "pointAddress",
-                        "Location": {
-                            "LocationId": "NT_Opil2LPZVRLZjlWNLJQuWB_0ITN",
-                            "LocationType": "address",
-                            "DisplayPosition": {
-                                "Latitude": 41.88432,
-                                "Longitude": -87.63877
-                            },
-                            "NavigationPosition": [
-                                {
-                                    "Latitude": 41.88449,
-                                    "Longitude": -87.63877
-                                }
-                            ],
-                            "MapView": {
-                                "TopLeft": {
-                                    "Latitude": 41.8854442,
-                                    "Longitude": -87.64028
-                                },
-                                "BottomRight": {
-                                    "Latitude": 41.8831958,
-                                    "Longitude": -87.63726
-                                }
-                            },
-                            "Address": {
-                                "Label": "425 W Randolph St, Chicago, IL 60606, United States",
-                                "Country": "USA",
-                                "State": "IL",
-                                "County": "Cook",
-                                "City": "Chicago",
-                                "District": "West Loop",
-                                "Street": "W Randolph St",
-                                "HouseNumber": "425",
-                                "PostalCode": "60606",
-                                "AdditionalData": [
-                                    {
-                                        "value": "United States",
-                                        "key": "CountryName"
-                                    },
-                                    {
-                                        "value": "Illinois",
-                                        "key": "StateName"
-                                    },
-                                    {
-                                        "value": "Cook",
-                                        "key": "CountyName"
-                                    },
-                                    {
-                                        "value": "N",
-                                        "key": "PostalCodeType"
-                                    }
-                                ]
-                            },
-                            "MapReference": {
-                                "ReferenceId": "776372180",
-                                "MapId": "NAAM191N0",
-                                "MapVersion": "Q1/2019",
-                                "MapReleaseDate": "2019-01-28",
-                                "Spot": 0.52,
-                                "SideOfStreet": "right",
-                                "CountryId": "21000001",
-                                "StateId": "21002247",
-                                "CountyId": "21002623",
-                                "CityId": "21002647",
-                                "BuildingId": "9000000000002726912",
-                                "AddressId": "79186508",
-                                "RoadLinkId": "170008450"
-                            }
-                        }
-                    }
-                ]
-            }
-        ]
-    }
-}
+        "position": {
+          "lat": 41.89991,
+          "lng": 12.45449
+        },
+        "access": [
+          {
+            "lat": 41.89999,
+            "lng": 12.45443
+          }
+        ],
+        "distance": 3,
+        "mapView": {
+          "west": 12.456,
+          "south": 41.89879,
+          "east": 12.45298,
+          "north": 41.90103
+        }
+      }
+    ]
+  }
