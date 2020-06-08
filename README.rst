@@ -271,47 +271,17 @@ Request a list of nearby places based on a query string
 
     response = placesApi.onebox_search([37.7905, -122.4107], 'restaurant')
 
-Request a list of popular places around a location
+Search list of places with a query and country parameter
 
 .. code:: python
 
-    response = placesApi.places_at([37.7905, -122.4107])
+    response = placesApi.search_in_country([37.7905, -122.4107], 'cafe', 'USA')
 
-Request a list of places within a category around a location
-
-.. code:: python
-
-    response = placesApi.category_places_at([37.7905, -122.4107], [herepy.PlacesCategory.eat_drink])
-
-Request a list of places close to a location
+Search places with in a given coordinates, radius and query
 
 .. code:: python
 
-    response = placesApi.nearby_places([37.7905, -122.4107])
-
-Request a list of suggestions based on a partial query string
-
-.. code:: python
-
-    response = placesApi.search_suggestions([52.5159, 13.3777], 'berlin')
-
-Request a list of place categories available for a given location
-
-.. code:: python
-
-    response = placesApi.place_categories([52.5159, 13.3777])
-
-Request a list of popular places within a specified area
-
-.. code:: python
-
-    response = placesApi.places_at_boundingbox([-122.408, 37.793], [-122.4070, 37.7942])
-
-Request a list of popular places around a location using a foreign language
-
-.. code:: python
-
-    response = placesApi.places_with_language([48.8580, 2.2945], 'en-US')
+    response = placesApi.places_in_circle([37.7905, -122.4107], 1000, 'cafe')
 
 PublicTransitApi
 ----------------
