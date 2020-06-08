@@ -35,8 +35,6 @@ from .models import (
     RoutingMatrixResponse,
     GeocoderAutoCompleteResponse,
     PlacesResponse,
-    PlacesSuggestionsResponse,
-    PlaceCategoriesResponse,
     PublicTransitResponse,
     RmeResponse,
     TrafficIncidentResponse,

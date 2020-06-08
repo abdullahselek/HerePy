@@ -22,12 +22,6 @@ class ModelsTest(unittest.TestCase):
     with open('testdata/models/places_api.json', 'rb') as f:
         PLACES_API_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
-    with open('testdata/models/places_api_suggestions.json', 'rb') as f:
-        PLACES_API_SUGGESTIONS_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
-
-    with open('testdata/models/places_api_categories.json', 'rb') as f:
-        PLACES_API_CATEGORIES_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
-
     with open('testdata/models/public_transit_api.json', 'rb') as f:
         PUBLIC_TRANSIT_API_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
@@ -81,24 +75,6 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(placesApiResponse.as_json_string())
         self.assertTrue(placesApiResponse.as_dict())
-
-    def test_placesapi_suggestions_response(self):
-        placesSuggestionsResponse = herepy.PlacesSuggestionsResponse.new_from_jsondict(self.PLACES_API_SUGGESTIONS_SAMPLE_JSON)
-        try:
-            placesSuggestionsResponse.__repr__()
-        except Exception as e:
-            self.fail(e)
-        self.assertTrue(placesSuggestionsResponse.as_json_string())
-        self.assertTrue(placesSuggestionsResponse.as_dict())
-
-    def test_placesapi_categories_response(self):
-        placeCategoriesResponse = herepy.PlaceCategoriesResponse.new_from_jsondict(self.PLACES_API_CATEGORIES_SAMPLE_JSON)
-        try:
-            placeCategoriesResponse.__repr__()
-        except Exception as e:
-            self.fail(e)
-        self.assertTrue(placeCategoriesResponse.as_json_string())
-        self.assertTrue(placeCategoriesResponse.as_dict())
 
     def test_publictransitapi_response(self):
         publicTransitResponse = herepy.PublicTransitResponse.new_from_jsondict(self.PUBLIC_TRANSIT_API_SAMPLE_JSON)

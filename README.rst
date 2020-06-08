@@ -84,8 +84,6 @@ The library utilizes models to represent various data structures returned by HER
     * herepy.RoutingResponse
     * herepy.GeocoderAutoCompleteResponse
     * herepy.PlacesResponse
-    * herepy.PlacesSuggestionsResponse
-    * herepy.PlaceCategoriesResponse
     * herepy.PublicTransitResponse
     * herepy.RmeResponse
     * herepy.EVChargingStationsResponse

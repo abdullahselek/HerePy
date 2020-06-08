@@ -1,4 +1,4 @@
 {
-    "status": 401,
-    "message": "Missing authentication parameters"
+    "error":"Unauthorized",
+    "error_description":"apiKey invalid. apiKey not found."
 }
