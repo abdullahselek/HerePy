@@ -25,13 +25,13 @@ class GeocoderAutoCompleteApi(HEREApi):
         """
 
         super(GeocoderAutoCompleteApi, self).__init__(api_key, timeout)
-        self._base_url = 'https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json'
+        self._base_url = 'https://autosuggest.search.hereapi.com/v1/autosuggest'
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode('utf8'))
-        if json_data.get('suggestions') != None:
+        if json_data.get('items') != None:
             return GeocoderAutoCompleteResponse.new_from_jsondict(json_data)
         else:
             raise HEREError(json_data.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
@@ -50,8 +50,8 @@ class GeocoderAutoCompleteApi(HEREApi):
         Raises:
           HEREError"""
 
-        data = {'query': query,
-                'prox': str.format('{0},{1},{2}', prox[0], prox[1], radius),
+        data = {'q': query,
+                'in': str.format('circle:{0},{1};r={2}', prox[0], prox[1], radius),
                 'apikey': self._api_key}
         return self.__get(data)
 
@@ -67,27 +67,7 @@ class GeocoderAutoCompleteApi(HEREApi):
         Raises:
           HEREError"""
 
-        data = {'query': query,
-                'country': country_code,
-                'apikey': self._api_key}
-        return self.__get(data)
-
-    def highlighting_matches(self, query: str, begin_highlight: str, end_highlight: str):
-        """Request an annotated list of suggested addresses with matching tokens highlighted
-        Args:
-          query (str):
-            Query search string
-          begin_highlight (str):
-            Mark the beginning of match in a token
-          end_highlight (str):
-            Mark the end of match in a token
-        Returns:
-          GeocoderAutoCompleteApi
-        Raises:
-          HEREError"""
-
-        data = {'query': query,
-                'beginHighlight': begin_highlight,
-                'endHighlight': end_highlight,
+        data = {'q': query,
+                'in': 'countryCode:' + country_code,
                 'apikey': self._api_key}
         return self.__get(data)

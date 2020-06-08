@@ -1,87 +1,63 @@
 {
-    "suggestions": [
-        {
-            "label": "United Kingdom, London, Highgate",
-            "language": "en",
-            "countryCode": "GBR",
-            "locationId": "NT_gC-4PB1cHHR1B-VyE7AN5B",
-            "address": {
-                "country": "United Kingdom",
-                "state": "England",
-                "county": "London",
-                "city": "London",
-                "district": "Highgate",
-                "postalCode": "N6 6"
-            },
-            "distance": 7600,
-            "matchLevel": "district"
+    "items": [
+      {
+        "title": "Hackescher Hof",
+        "id": "here:pds:place:276u33db-fb00197ffa5041b2b656ea3d23145dca",
+        "resultType": "place",
+        "address": {
+          "label": "Hackescher Hof, Rosenthaler Straße 40, 10178 Berlin, Deutschland"
         },
-        {
-            "label": "United Kingdom, London, Highbury",
-            "language": "en",
-            "countryCode": "GBR",
-            "locationId": "NT_TUAiU.8xnDeTQXfYSrFWgB",
-            "address": {
-                "country": "United Kingdom",
-                "state": "England",
-                "county": "London",
-                "city": "London",
-                "district": "Highbury",
-                "postalCode": "N5 1"
-            },
-            "distance": 7044,
-            "matchLevel": "district"
+        "position": { "lat": 52.52401, "lng": 13.40249 },
+        "distance": 523,
+        "categories": [ { "id": "100-1000-0000" } ],
+        "foodTypes": [ { "id": "300-000" } ],
+        "highlights": { "title": [ ], "address": { "label": [ ] } }
+      },
+      {
+        "title": "restaurant",
+        "id": "here:cm:ontology:restaurant",
+        "resultType": "categoryQuery",
+        "href": "http://ci.opensearch.dev.api.here.com/v1/discover?q=restaurant&_ontology=restaurant&at=52.51998%2C13.39851",
+        "highlights": { "title": [{ "start": 0, "end": 3 }] }
+      },
+      {
+        "title": "Cordobar",
+        "id": "here:pds:place:276u33db-6b5445c1f1854148a8b351822a0ddc0c",
+        "resultType": "place",
+        "address": {
+          "label": "Cordobar, Große Hamburger Straße 32, 10115 Berlin, Deutschland"
         },
-        {
-            "label": "United Kingdom, NW10 4, London, High Street",
-            "language": "en",
-            "countryCode": "GBR",
-            "locationId": "NT_hGTc1QCKAC1c7HXR8igBAD",
-            "address": {
-                "country": "United Kingdom",
-                "state": "England",
-                "county": "London",
-                "city": "London",
-                "district": "Old Oak Common",
-                "street": "High Street",
-                "postalCode": "NW10 4"
-            },
-            "distance": 6790,
-            "matchLevel": "street"
+        "position": { "lat": 52.52572, "lng": 13.39888 },
+        "distance": 639,
+        "categories": [ { "id": "100-1000-0000" } ],
+        "foodTypes": [ { "id": "300-000" } ],
+        "highlights": { "title": [ ], "address": { "label": [ ] } }
+      },
+      {
+        "title": "McDonald's",
+        "id": "here:pds:place:276u33db-dc6f6db9cef943c1b1ff3f74b30f03f9",
+        "resultType": "place",
+        "address": {
+          "label": "McDonald's, Friedrichstraße 142, 10117 Berlin, Deutschland"
         },
-        {
-            "label": "United Kingdom, NW10 2, London, High Road",
-            "language": "en",
-            "countryCode": "GBR",
-            "locationId": "NT_bDlRHNjixnA-EKtwcu32QD",
-            "address": {
-                "country": "United Kingdom",
-                "state": "England",
-                "county": "London",
-                "city": "London",
-                "district": "Willesden",
-                "street": "High Road",
-                "postalCode": "NW10 2"
-            },
-            "distance": 7215,
-            "matchLevel": "street"
+        "position": { "lat": 52.52003, "lng": 13.38812 },
+        "distance": 703,
+        "categories": [{ "id": "100-1000-0009" }],
+        "foodTypes": [{ "id": "800-067" }],
+        "highlights": { "title": [ ], "address": { "label": [ ] } }
+      },
+      {
+        "title": "Meliá Berlin",
+        "id": "here:pds:place:276u33db-10e35e5ad0b0460e9fe49fc85a2bb8e7",
+        "resultType": "place",
+        "address": {
+          "label": "Meliá Berlin, Friedrichstraße 103, 10117 Berlin, Deutschland"
         },
-        {
-            "label": "United Kingdom, N14 6, London, High Street",
-            "language": "en",
-            "countryCode": "GBR",
-            "locationId": "NT_iKXR-s4EWX.poxEICioQzA",
-            "address": {
-                "country": "United Kingdom",
-                "state": "England",
-                "county": "London",
-                "city": "London",
-                "district": "Southgate",
-                "street": "High Street",
-                "postalCode": "N14 6"
-            },
-            "distance": 14071,
-            "matchLevel": "street"
-        }
+        "position": { "lat": 52.52138, "lng": 13.38833 },
+        "distance": 706,
+        "categories": [ { "id": "100-1000-0000" } ],
+        "foodTypes": [{ "id": "300-000" } ],
+        "highlights": { "title": [ ], "address": { "label": [ ] } }
+      }
     ]
-}
+  }

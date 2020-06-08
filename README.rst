@@ -255,11 +255,6 @@ Request a list of suggested addresses within a single country
 
     response = geocoderAutoCompleteApi.limit_results_byaddress('Nis', 'USA')
 
-Request an annotated list of suggested addresses with matching tokens highlighted
-
-.. code:: python
-
-    response = geocoderAutoCompleteApi.highlighting_matches('Wacker Chic', '**', '**')
 
 PlacesApi
 ---------
