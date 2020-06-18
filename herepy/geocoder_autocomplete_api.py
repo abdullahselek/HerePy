@@ -36,7 +36,7 @@ class GeocoderAutoCompleteApi(HEREApi):
         else:
             raise HEREError(json_data.get('error_description', 'Error occured on ' + sys._getframe(1).f_code.co_name))
 
-    def address_suggestion(self, query: str, prox: List[float], radius: int):
+    def address_suggestion(self, query: str, prox: List[float], radius: int, lang: str='en-US'):
         """Request a list of suggested addresses found within a specified area
         Args:
           query (str):
@@ -45,6 +45,8 @@ class GeocoderAutoCompleteApi(HEREApi):
             Array including latitude and longitude in order.
           radius (int):
             Radius in meters
+          lang (str):
+            BCP47 compliant Language Code.
         Returns:
           GeocoderAutoCompleteApi
         Raises:
@@ -52,16 +54,19 @@ class GeocoderAutoCompleteApi(HEREApi):
 
         data = {'q': query,
                 'in': str.format('circle:{0},{1};r={2}', prox[0], prox[1], radius),
-                'apikey': self._api_key}
+                'apikey': self._api_key,
+                'lang': lang}
         return self.__get(data)
 
-    def limit_results_byaddress(self, query: str, country_code: str):
+    def limit_results_byaddress(self, query: str, country_code: str, lang: str='en-US'):
         """Request a list of suggested addresses within a single country
         Args:
           query (str):
             Query search string
           countryCode (str):
             Country code (USA etc.)
+          lang (str):
+            BCP47 compliant Language Code.
         Returns:
           GeocoderAutoCompleteApi
         Raises:
@@ -69,5 +74,6 @@ class GeocoderAutoCompleteApi(HEREApi):
 
         data = {'q': query,
                 'in': 'countryCode:' + country_code,
-                'apikey': self._api_key}
+                'apikey': self._api_key,
+                'lang': lang}
         return self.__get(data)
