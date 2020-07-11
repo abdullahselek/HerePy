@@ -9,6 +9,7 @@ from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import DestinationWeatherResponse
 from herepy.here_enum import WeatherProductType
+from typing import Optional
 
 
 class DestinationWeatherApi(HEREApi):
@@ -68,7 +69,7 @@ class DestinationWeatherApi(HEREApi):
 
     def weather_for_location_name(
         self, location_name: str, product: WeatherProductType, one_observation: bool=True, metric: bool=True
-    ):
+    ) -> Optional[DestinationWeatherResponse]:
         """Request the product for given location name.
         Args:
           location_name (str):
@@ -96,7 +97,7 @@ class DestinationWeatherApi(HEREApi):
 
     def weather_for_zip_code(
         self, zip_code: int, product: WeatherProductType, one_observation: bool=True, metric: bool=True
-    ):
+    ) -> Optional[DestinationWeatherResponse]:
         """Request the product for given location name.
         Args:
           zip_code (int):
@@ -124,7 +125,7 @@ class DestinationWeatherApi(HEREApi):
 
     def weather_for_coordinates(
         self, latitude: float, longitude: float, product: WeatherProductType, one_observation: bool=True, metric:bool=True
-    ):
+    ) -> Optional[DestinationWeatherResponse]:
         """Request the product for given location name.
         Args:
           latitude (float):
