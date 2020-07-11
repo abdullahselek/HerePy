@@ -4,7 +4,7 @@ import sys
 import json
 import requests
 
-from typing import List
+from typing import List, Optional
 from herepy.here_enum import EVStationConnectorTypes
 from herepy.utils import Utils
 from herepy.error import HEREError
@@ -69,7 +69,7 @@ class EVChargingStationsApi():
                                      latitude: float,
                                      longitude: float,
                                      radius: int,
-                                     connectortypes: List[EVStationConnectorTypes]=None):
+                                     connectortypes: List[EVStationConnectorTypes]=None) -> Optional[EVChargingStationsResponse]:
         """Makes a search request for charging stations.
            A circular search area defined by the latitude and longitude of its center
            (compliant with WGS 84) and an integer representing the radius of the area
@@ -106,7 +106,7 @@ class EVChargingStationsApi():
     def get_stations_bounding_box(self,
                                   top_left: List[float],
                                   bottom_right: List[float],
-                                  connectortypes: List[EVStationConnectorTypes]=None):
+                                  connectortypes: List[EVStationConnectorTypes]=None) -> Optional[EVChargingStationsResponse]:
         """Makes a search request for charging stations with in given
            bounding box. The bounding box can have a maximum height / width of 400km.
         Args:
@@ -138,7 +138,7 @@ class EVChargingStationsApi():
 
     def get_stations_corridor(self,
                               points: List[float],
-                              connectortypes: List[EVStationConnectorTypes]=None):
+                              connectortypes: List[EVStationConnectorTypes]=None) -> Optional[EVChargingStationsResponse]:
         """Makes a search request for charging stations with in given corridor.
            Maximum corridor area is 5000 km2.
         Args:
@@ -166,7 +166,7 @@ class EVChargingStationsApi():
         return response
 
 
-    def get_station_details(self, station_id: str):
+    def get_station_details(self, station_id: str) -> Optional[EVChargingStationsResponse]:
         """Based on the results of a search for charging stations, this method
         retrieves the full/updated information about a single charging station only.
         Args:
