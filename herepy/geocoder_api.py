@@ -8,7 +8,7 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import GeocoderResponse
-from typing import List
+from typing import List, Optional
 
 
 class GeocoderApi(HEREApi):
@@ -42,7 +42,7 @@ class GeocoderApi(HEREApi):
             raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
 
-    def free_form(self, searchtext: str, lang: str='en-US'):
+    def free_form(self, searchtext: str, lang: str='en-US') -> Optional[GeocoderResponse]:
         """Geocodes given search text
         Args:
           searchtext (str):
@@ -62,7 +62,7 @@ class GeocoderApi(HEREApi):
                                  searchtext: str,
                                  top_left: List[float],
                                  bottom_right: List[float],
-                                 lang: str='en-US'):
+                                 lang: str='en-US') -> Optional[GeocoderResponse]:
         """Geocodes given search text with in given boundingbox
         Args:
           searchtext (str):
@@ -90,7 +90,7 @@ class GeocoderApi(HEREApi):
                              street: str,
                              city: str,
                              country: str,
-                             lang: str='en-US'):
+                             lang: str='en-US') -> Optional[GeocoderResponse]:
         """Geocodes with given address details
         Args:
           house_number (int):
@@ -120,7 +120,7 @@ class GeocoderApi(HEREApi):
     def street_intersection(self,
                             street: str,
                             city: str,
-                            lang: str='en-US'):
+                            lang: str='en-US') -> Optional[GeocoderResponse]:
         """Geocodes with given street and city
         Args:
           street (str):
