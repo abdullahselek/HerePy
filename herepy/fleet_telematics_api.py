@@ -110,7 +110,7 @@ class FleetTelematicsApi(HEREApi):
             departure: str,
             intermediate_destinations: List[str],
             end: str,
-            modes: List[RouteMode]):
+            modes: List[RouteMode]) -> Optional[WaypointSequenceResponse]:
         """Finds time-optimized waypoint sequence route.
         Args:
           start (str):
@@ -148,7 +148,7 @@ class FleetTelematicsApi(HEREApi):
             max_detour: int,
             rest_times: str,
             intermediate_destinations: List[str],
-            end: str):
+            end: str) -> Optional[WaypointSequenceResponse]:
         """Finds cheaper route by picking up some additional goods along the route.
         Args:
           modes (List[RouteMode]):
@@ -188,6 +188,10 @@ class FleetTelematicsApi(HEREApi):
                   param_type, item)`
           end (str):
             End of the journey. `str.format('{0};{1},{2}', text, latitude, longitude)`
+        Returns:
+          WaypointSequenceResponse
+        Raises:
+          HEREError
         """
 
         data = self.__create_find_pickup_parameters(modes=modes,
