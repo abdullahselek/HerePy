@@ -8,7 +8,7 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import GeocoderReverseResponse
-from typing import List
+from typing import List, Optional
 
 class GeocoderReverseApi(HEREApi):
     """A python interface into the HERE Geocoder Reverse API"""
@@ -40,7 +40,7 @@ class GeocoderReverseApi(HEREApi):
         except ValueError as err:
             raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
-    def retrieve_addresses(self, prox: List[float], limit: int=1, lang: str='en-US'):
+    def retrieve_addresses(self, prox: List[float], limit: int=1, lang: str='en-US') -> Optional[GeocoderReverseResponse]:
         """Gets the address information of a point.
         Args:
           prox (lat/lon):
