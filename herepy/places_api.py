@@ -9,7 +9,7 @@ from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import PlacesResponse
 from herepy.here_enum import PlacesCategory
-from typing import List
+from typing import List, Optional
 
 class PlacesApi(HEREApi):
     """A python interface into the HERE Places (Search) API"""
@@ -43,7 +43,7 @@ class PlacesApi(HEREApi):
                       coordinates: List[float],
                       query: str,
                       limit: int=10,
-                      lang: str='en-US'):
+                      lang: str='en-US') -> Optional[PlacesResponse]:
         """Request a list of places based on a query string.
         Args:
           coordinates (array):
@@ -72,7 +72,7 @@ class PlacesApi(HEREApi):
                           query: str,
                           country_code: str,
                           limit: int=10,
-                          lang: str='en-US'):
+                          lang: str='en-US') -> Optional[PlacesResponse]:
         """Request a list of places based on a query string.
         Args:
           coordinates (array):
@@ -103,7 +103,7 @@ class PlacesApi(HEREApi):
                          coordinates: List[float],
                          radius: int,
                          query: str,
-                         lang: str='en-US'):
+                         lang: str='en-US') -> Optional[PlacesResponse]:
         """Request a list of popular places around a location
         Args:
           coordinates (array):
