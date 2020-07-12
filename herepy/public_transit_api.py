@@ -13,7 +13,8 @@ from herepy.here_enum import (
     PublicTransitRoutingMode,
     PublicTransitModeType
 )
-from typing import List
+from typing import List, Optional
+
 
 class PublicTransitApi(HEREApi):
     """A python interface into the HERE Public Transit API"""
@@ -48,7 +49,7 @@ class PublicTransitApi(HEREApi):
                               name: str,
                               max_count: int=5,
                               method: PublicTransitSearchMethod=PublicTransitSearchMethod.fuzzy,
-                              radius: int=20000):
+                              radius: int=20000) -> Optional[PublicTransitResponse]:
         """Request a list of public transit stations based on name.
         Args:
           center (array):
@@ -75,7 +76,7 @@ class PublicTransitApi(HEREApi):
                 'radius': radius}
         return self.__get(data, 'stations/by_name.json', 'Stations')
 
-    def find_stations_nearby(self, center: List[float], radius: int=500, max_count: int=5):
+    def find_stations_nearby(self, center: List[float], radius: int=500, max_count: int=5) -> Optional[PublicTransitResponse]:
         """Request a list of public transit stations within a given geo-location.
         Args:
           center (array):
@@ -104,7 +105,7 @@ class PublicTransitApi(HEREApi):
         station_ids = station_ids[:-1]
         return station_ids
 
-    def find_stations_by_id(self, ids: List[int], lang: str):
+    def find_stations_by_id(self, ids: List[int], lang: str) -> Optional[PublicTransitResponse]:
         """Request details of a specific transit station based on a previous request.
         Args:
           ids (array):
@@ -122,7 +123,7 @@ class PublicTransitApi(HEREApi):
                 'apikey': self._api_key}
         return self.__get(data, 'stations/by_ids.json', 'Stations')
 
-    def find_transit_coverage_in_cities(self, center: List[float], political_view: str, radius: int):
+    def find_transit_coverage_in_cities(self, center: List[float], political_view: str, radius: int) -> Optional[PublicTransitResponse]:
         """Request a list of transit operators available in cities nearby.
         Args:
           center (array):
@@ -143,7 +144,7 @@ class PublicTransitApi(HEREApi):
                 'apikey': self._api_key,}
         return self.__get(data, 'coverage/city.json', 'Coverage')
 
-    def next_nearby_departures_of_station(self, station_id: int, time: str, lang: str='en'):
+    def next_nearby_departures_of_station(self, station_id: int, time: str, lang: str='en') -> Optional[PublicTransitResponse]:
         """Request a list of next departure times and destinations of a particular station.
         Args:
           lang (str):
@@ -169,7 +170,7 @@ class PublicTransitApi(HEREApi):
                                       time: str,
                                       lang: str='en',
                                       max: int=40,
-                                      max_station: int=40):
+                                      max_station: int=40) -> Optional[PublicTransitResponse]:
         """Request a list of all next departure times and destinations from a given location.
         Args:
           center (array):
@@ -201,7 +202,7 @@ class PublicTransitApi(HEREApi):
                                      time: str,
                                      lang: str='en',
                                      max: int=40,
-                                     max_station: int=40):
+                                     max_station: int=40) -> Optional[PublicTransitResponse]:
         """Request a list of all next departure times and destinations for a give list of stations.
         Args:
           station_ids (array):
@@ -242,7 +243,7 @@ class PublicTransitApi(HEREApi):
                         walking_speed: int=100,
                         show_arrival_times: bool=True,
                         graph: bool=False,
-                        routing_mode: PublicTransitRoutingMode=PublicTransitRoutingMode.schedule):
+                        routing_mode: PublicTransitRoutingMode=PublicTransitRoutingMode.schedule) -> Optional[PublicTransitResponse]:
         """Request a public transit route between any two places.
         Args:
           departure (array):
@@ -314,7 +315,7 @@ class PublicTransitApi(HEREApi):
                               political_view: int,
                               max: int=None,
                               details: int=1,
-                              lang: str='en'):
+                              lang: str='en') -> Optional[PublicTransitResponse]:
         """Request a list of transit operator coverage within a specified city.
         Args:
           city_name (str):
@@ -344,7 +345,7 @@ class PublicTransitApi(HEREApi):
             del data['max']
         return self.__get(data, 'coverage/search.json', 'Coverage')
 
-    def coverage_nearby(self, details: int, center: List[float]):
+    def coverage_nearby(self, details: int, center: List[float]) -> Optional[PublicTransitResponse]:
         """Request a list of transit operators and station coverage nearby.
         Args:
           details (int):
