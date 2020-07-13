@@ -8,7 +8,7 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RmeResponse
-from typing import List
+from typing import List, Optional
 
 class RmeApi(HEREApi):
     """A python interface into the RME API"""
@@ -39,7 +39,7 @@ class RmeApi(HEREApi):
         except ValueError as err:
             raise HEREError('Error occured on function ' + sys._getframe(1).f_code.co_name + ' ' + str(err))
 
-    def match_route(self, gpx_file_content: str, route_mode: str='car', pde_layers: List[str]=[]):
+    def match_route(self, gpx_file_content: str, route_mode: str='car', pde_layers: List[str]=[]) -> Optional[RmeResponse]:
         """Retrieves misc information about the route given in gpx file
         Args:
           gpxfile content (str):
