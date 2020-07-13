@@ -11,7 +11,8 @@ from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RoutingResponse, RoutingMatrixResponse
 from herepy.here_enum import RouteMode, MatrixSummaryAttribute
-from typing import List, Union
+from typing import List, Union, Optional
+
 
 class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
@@ -92,7 +93,7 @@ class RoutingApi(HEREApi):
                       waypoint_a: Union[List[float], str],
                       waypoint_b: Union[List[float], str],
                       modes: List[RouteMode]=None,
-                      departure: str='now'):
+                      departure: str='now') -> Optional[RoutingResponse]:
         """Request a bicycle route between two points
         Args:
           waypoint_a:
@@ -118,7 +119,7 @@ class RoutingApi(HEREApi):
                   waypoint_a: Union[List[float], str],
                   waypoint_b: Union[List[float], str],
                   modes: List[RouteMode]=None,
-                  departure: str='now'):
+                  departure: str='now') -> Optional[RoutingResponse]:
         """Request a driving route between two points
         Args:
           waypoint_a (array):
@@ -144,7 +145,7 @@ class RoutingApi(HEREApi):
                          waypoint_a: Union[List[float], str],
                          waypoint_b: Union[List[float], str],
                          modes: List[RouteMode]=None,
-                         departure: str='now'):
+                         departure: str='now') -> Optional[RoutingResponse]:
         """Request a pedastrian route between two points
         Args:
           waypoint_a (array):
@@ -171,7 +172,7 @@ class RoutingApi(HEREApi):
                            waypoint_b: Union[List[float], str],
                            waypoint_c: Union[List[float], str],
                            modes: List[RouteMode]=None,
-                           departure: str='now'):
+                           departure: str='now') -> Optional[RoutingResponse]:
         """Request a intermediate route from three points
         Args:
           waypoint_a (array):
@@ -201,7 +202,7 @@ class RoutingApi(HEREApi):
                          waypoint_b: Union[List[float], str],
                          combine_change: bool,
                          modes: List[RouteMode]=None,
-                         departure='now'):
+                         departure='now') -> Optional[RoutingResponse]:
         """Request a public transport route between two points
         Args:
           waypoint_a (array):
@@ -232,7 +233,7 @@ class RoutingApi(HEREApi):
                                    combine_change: bool,
                                    modes: List[RouteMode]=None,
                                    departure: str=None,
-                                   arrival: str=None):
+                                   arrival: str=None) -> Optional[RoutingResponse]:
         """Request a public transport route between two points based on timetables
         Args:
           waypoint_a (array):
@@ -263,7 +264,7 @@ class RoutingApi(HEREApi):
                                waypoint_a: Union[List[float], str],
                                waypoint_b: Union[List[float], str],
                                modes: List[RouteMode]=None,
-                               departure: str='now'):
+                               departure: str='now') -> Optional[RoutingResponse]:
         """Calculates the fastest car route between two location
         Args:
           waypoint_a (array):
@@ -289,7 +290,7 @@ class RoutingApi(HEREApi):
                     waypoint_a: Union[List[float], str],
                     waypoint_b: Union[List[float], str],
                     modes: List[RouteMode]=None,
-                    departure: str='now'):
+                    departure: str='now') -> Optional[RoutingResponse]:
         """Calculates the fastest truck route between two location
         Args:
           waypoint_a (array):
@@ -316,7 +317,7 @@ class RoutingApi(HEREApi):
                destination_waypoints: Union[List[float], str],
                departure: str='now',
                modes: List[RouteMode]=[],
-               summary_attributes: List[MatrixSummaryAttribute]=[]):
+               summary_attributes: List[MatrixSummaryAttribute]=[]) -> Optional[RoutingResponse]:
         """Request a matrix of route summaries between M starts and N destinations.
         Args:
           start_waypoints (array):
