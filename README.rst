@@ -378,7 +378,7 @@ Finds time-optimized waypoint sequence route
         str.format('{0};{1},{2}', 'FrankfurtAirport', 50.0505, 8.5698)]
     end = str.format('{0};{1},{2}', 'MainzCentralStation', 50.0021, 8.259)
     modes = [herepy.RouteMode.fastest, herepy.RouteMode.car, herepy.RouteMode.traffic_enabled]
-    response = self._api.find_sequence(start=start,
+    response = fleetTelematicsApi.find_sequence(start=start,
             departure='2014-12-09T09:30:00%2b01:00',
             intermediate_destinations=intermediate_destinations,
             end=end,
@@ -404,7 +404,7 @@ To find cheaper route by picking up some additional goods along the route
             str.format('{0},{1};{2}:{3}', 50.122540, 8.631070,
                 herepy.MultiplePickupOfferType.pickup.__str__(), 'BANANAS')]
     end = str.format('{1},{2}', 'MainzCentralStation', 50.132540, 8.649280)
-    response = self._api.find_pickups(modes=modes,
+    response = fleetTelematicsApi.find_pickups(modes=modes,
             start=start,
             departure=departure,
             capacity=capacity,
