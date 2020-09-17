@@ -40,6 +40,9 @@ class DestinationWeatherApi(HEREApi):
             raise error
 
     def _get_error_from_response(self, json_data):
+        if "error" in json_data:
+            if json_data["error"] == "Unauthorized":
+                return UnauthorizedError(json_data["error_description"])
         error_type = json_data.get("Type")
         error_message = json_data.get(
             "Message", "Error occured on " + sys._getframe(1).f_code.co_name

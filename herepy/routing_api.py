@@ -504,6 +504,10 @@ class RouteNotReconstructedError(HEREError):
 def error_from_routing_service_error(json_data):
     """Return the correct subclass for routing errors"""
 
+    if 'error' in json_data:
+        if json_data['error'] == 'Unauthorized':
+            return InvalidCredentialsError(json_data['error_description'] )
+
     if 'subtype' in json_data:
         subtype = json_data['subtype']
         details = json_data['details']
