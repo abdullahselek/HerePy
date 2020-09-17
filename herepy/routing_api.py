@@ -512,8 +512,6 @@ def error_from_routing_service_error(json_data):
         subtype = json_data['subtype']
         details = json_data['details']
 
-        if subtype == 'InvalidCredentials':
-            return InvalidCredentialsError(details)
         if subtype == 'InvalidInputData':
             return InvalidInputDataError(details)
         if subtype == 'WaypointNotFound':

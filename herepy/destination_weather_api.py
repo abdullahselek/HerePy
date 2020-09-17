@@ -47,9 +47,7 @@ class DestinationWeatherApi(HEREApi):
         error_message = json_data.get(
             "Message", "Error occured on " + sys._getframe(1).f_code.co_name
         )
-        if error_type == "Unauthorized":
-            return UnauthorizedError(error_message)
-        elif error_type == "Invalid Request":
+        if error_type == "Invalid Request":
             return InvalidRequestError(error_message)
         else:
             return HEREError(error_message)
