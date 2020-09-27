@@ -209,3 +209,16 @@ class MultiplePickupOfferTypeTest(unittest.TestCase):
         self.assertEqual(pickup.__str__(), 'pickup')
         drop = herepy.MultiplePickupOfferType.drop
         self.assertEqual(drop.__str__(), 'drop')
+
+
+class IncidentsCriticalityTest(unittest.TestCase):
+
+    def test_valueofenum(self):
+        critical = herepy.IncidentsCriticality.critical
+        self.assertEqual(critical.__str__(), 'critical')
+        major = herepy.IncidentsCriticality.major
+        self.assertEqual(major.__str__(), 'major')
+        minor = herepy.IncidentsCriticality.minor
+        self.assertEqual(minor.__str__(), 'minor')
+        lowImpact = herepy.IncidentsCriticality.lowImpact
+        self.assertEqual(lowImpact.__str__(), 'lowImpact')

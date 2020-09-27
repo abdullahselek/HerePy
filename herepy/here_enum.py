@@ -187,3 +187,15 @@ class MultiplePickupOfferType(Enum):
 
     def __str__(self):
         return '%s' % self._value_
+
+
+class IncidentsCriticality(Enum):
+    """Defines an attribute to be included in the traffic incidents requests."""
+
+    critical = 'critical'
+    major = 'major'
+    minor = 'minor'
+    lowImpact = 'lowImpact'
+
+    def __str__(self):
+        return '%s' % self._value_
