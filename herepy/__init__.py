@@ -14,7 +14,11 @@ __description__  = 'A library that provides a Python interface to the HERE APIs'
 
 import json
 
-from .error import HEREError
+from .error import (
+    HEREError,
+    UnauthorizedError,
+    InvalidRequestError
+)
 
 from .here_enum import (
     RouteMode,
@@ -43,11 +47,7 @@ from .models import (
     WaypointSequenceResponse
 )
 
-from .destination_weather_api import (
-    DestinationWeatherApi,
-    UnauthorizedError,
-    InvalidRequestError
-)
+from .destination_weather_api import DestinationWeatherApi
 
 from .routing_api import (
     RoutingApi,

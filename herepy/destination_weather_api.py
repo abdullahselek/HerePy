@@ -6,7 +6,7 @@ import requests
 
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
-from herepy.error import HEREError
+from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
 from herepy.models import DestinationWeatherResponse
 from herepy.here_enum import WeatherProductType
 from typing import Optional
@@ -154,19 +154,3 @@ class DestinationWeatherApi(HEREApi):
             "longitude": longitude,
         }
         return self._get(data, product)
-
-
-class UnauthorizedError(HEREError):
-
-    """Unauthorized Error Type.
-
-    Indicates authentication failure, invalid credentials were supplied.
-    """
-
-
-class InvalidRequestError(HEREError):
-
-    """Invalid Request Error Type.
-
-    Indicates an invalid or missing parameter value in the request, for example value given for the product parameter does not exist.
-    """

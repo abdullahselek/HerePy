@@ -176,7 +176,7 @@ class PublicTransitResponse(HEREModel):
             setattr(self, param, kwargs.get(param, default))
 
 class TrafficIncidentResponse(HEREModel):
-    """A class representing the Traffic Incidents on Traffic Api response data."""
+    """A class representing the Traffic Incidents response provided by Traffic Api."""
 
     def __init__(self, **kwargs):
         super(TrafficIncidentResponse, self).__init__()
