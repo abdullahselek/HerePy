@@ -68,3 +68,4 @@ from .public_transit_api import PublicTransitApi
 from .rme_api import RmeApi
 from .ev_charging_stations_api import EVChargingStationsApi
 from .fleet_telematics_api import FleetTelematicsApi
+from .traffic_api import TrafficApi
