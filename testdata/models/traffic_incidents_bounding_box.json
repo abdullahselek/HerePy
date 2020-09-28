@@ -1,0 +1,3305 @@
+{
+	"TIMESTAMP": "09/28/2020 19:57:13 GMT",
+	"VERSION": 5.0,
+	"TRAFFICITEMS": {
+		"TRAFFICITEM": [{
+			"TRAFFICITEMID": 13226266251493426,
+			"ORIGINALTRAFFICITEMID": 13226266251493426,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:39",
+			"ENDTIME": "12/01/2020 16:00:00",
+			"ENTRYTIME": "09/17/2020 14:37:39",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "32914",
+						"LOCATIONDESC": "Ebertstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "32914",
+						"LOCATIONDESC": "Ebertstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 514,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Fahrbahn von auf einen Fahrstreifen verengt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D15",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Behrenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 14671
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Wilhelmstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Wilhelmstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Wilhelmstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 32914
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "TIERGARTEN",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "TIERGARTEN",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "TIERGARTEN",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Behrenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 14671
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Ebertstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Ebertstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Ebertstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 32914
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "TIERGARTEN",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "TIERGARTEN",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "TIERGARTEN",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51485,
+						"LONGITUDE": 13.37998
+					},
+					"TO": [{
+						"LATITUDE": 52.51468,
+						"LONGITUDE": 13.37916
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1201542272", "1201542271", "1239968150"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Ebertstraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Ebertstraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2463344423416628021,
+			"ORIGINALTRAFFICITEMID": 2463344423416628021,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:39",
+			"ENDTIME": "03/25/2021 09:00:00",
+			"ENTRYTIME": "09/21/2020 20:54:11",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "02649",
+						"LOCATIONDESC": "Friedrichstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 515,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Fahrbahn von auf zwei Fahrstreifen verengt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D16",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "02649",
+						"LOCATIONDESC": "Friedrichstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Leipziger Straße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Leipziger Straße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Leipziger Straße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 50187
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Fischerinsel",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Fischerinsel",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Fischerinsel",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Leipziger Straße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 2649
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "ZEHLENDORF",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "ZEHLENDORF",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "ZEHLENDORF",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Leipziger Straße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Leipziger Straße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Leipziger Straße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 50187
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Friedrichstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Friedrichstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Friedrichstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Leipziger Straße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 2649
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "ZEHLENDORF",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "ZEHLENDORF",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "ZEHLENDORF",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51353,
+						"LONGITUDE": 13.40486
+					},
+					"TO": [{
+						"LATITUDE": 52.51255,
+						"LONGITUDE": 13.40351
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["774043300", "774043306", "774043305"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Friedrichstraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf zwei Fahrstreifen verengt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Friedrichstraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf zwei Fahrstreifen verengt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf zwei Fahrstreifen verengt.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 884182405987368354,
+			"ORIGINALTRAFFICITEMID": 884182405987368354,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:40",
+			"ENDTIME": "10/14/2020 10:00:00",
+			"ENTRYTIME": "09/17/2020 14:37:40",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "26821",
+						"LOCATIONDESC": "Luisenstraße",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "26821",
+						"LOCATIONDESC": "Luisenstraße",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 518,
+						"DESCRIPTION": "Fahrbahnverengung.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D19",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Reinhardtstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9295
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Albrechtstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Albrechtstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Albrechtstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 26821
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "KREUZBERG",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "KREUZBERG",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "KREUZBERG",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Reinhardtstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9295
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Luisenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 26821
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "KREUZBERG",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "KREUZBERG",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "KREUZBERG",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.5232,
+						"LONGITUDE": 13.38348
+					},
+					"TO": [{
+						"LATITUDE": 52.52265,
+						"LONGITUDE": 13.38002
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["897705743", "780236865", "780236864", "781761927", "1204473321", "1204473320", "1204473319"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Luisenstraße - Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Luisenstraße - Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1244897448996860746,
+			"ORIGINALTRAFFICITEMID": 3501759667376464469,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/28/2020 14:38:25",
+			"ENDTIME": "10/02/2020 14:37:30",
+			"ENTRYTIME": "09/28/2020 14:38:25",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "26943",
+						"LOCATIONDESC": "Schadowstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "26943",
+						"LOCATIONDESC": "Schadowstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 514,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Fahrbahn von auf einen Fahrstreifen verengt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D15",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Unter den Linden",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9319
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Friedrichstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Friedrichstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Friedrichstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "BNAME"
+							}],
+							"ID": 26943
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "SCHEIDEMANNSTRAßE",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "SCHEIDEMANNSTRAßE",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "SCHEIDEMANNSTRAßE",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Unter den Linden",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9319
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Schadowstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Schadowstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Schadowstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "BNAME"
+							}],
+							"ID": 26943
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "SCHEIDEMANNSTRAßE",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "SCHEIDEMANNSTRAßE",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "SCHEIDEMANNSTRAßE",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51702,
+						"LONGITUDE": 13.38668
+					},
+					"TO": [{
+						"LATITUDE": 52.51686,
+						"LONGITUDE": 13.38428
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1248501753", "1248501756"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Schadowstraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Schadowstraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2968717309996070771,
+			"ORIGINALTRAFFICITEMID": 4236453839236016668,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/21/2020 07:14:24",
+			"ENDTIME": "10/22/2020 08:00:00",
+			"ENTRYTIME": "09/21/2020 07:14:24",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Scharnhorststraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Habersaathstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Scharnhorststraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Am Pankepark"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.53054,
+						"LONGITUDE": 13.37395
+					},
+					"TO": [{
+						"LATITUDE": 52.531846,
+						"LONGITUDE": 13.372664
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["781733854", "783898014", "783898015"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Habersaathstraße und Am Pankepark - Bauarbeiten auf Abschnitt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Habersaathstraße und Am Pankepark - Bauarbeiten auf Abschnitt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2870220569475776547,
+			"ORIGINALTRAFFICITEMID": 2870220569475776547,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:38",
+			"ENDTIME": "10/14/2020 08:00:00",
+			"ENTRYTIME": "09/17/2020 14:37:38",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Tucholskystraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Johannisstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Tucholskystraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Oranienburger Straße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.524524,
+						"LONGITUDE": 13.392614
+					},
+					"TO": [{
+						"LATITUDE": 52.524775,
+						"LONGITUDE": 13.39275
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["53501259"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Johannisstraße und Oranienburger Straße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Johannisstraße und Oranienburger Straße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1584451418958229571,
+			"ORIGINALTRAFFICITEMID": 1584451418958229571,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:39",
+			"ENDTIME": "10/14/2020 10:00:00",
+			"ENTRYTIME": "09/17/2020 14:37:39",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "26820",
+						"LOCATIONDESC": "Albrechtstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "26820",
+						"LOCATIONDESC": "Albrechtstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 518,
+						"DESCRIPTION": "Fahrbahnverengung.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D19",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Reinhardtstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9295
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Luisenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 26820
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "WEDDING",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "WEDDING",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "WEDDING",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Reinhardtstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9295
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Albrechtstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Albrechtstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Albrechtstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 26820
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "WEDDING",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "WEDDING",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "WEDDING",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.52265,
+						"LONGITUDE": 13.38002
+					},
+					"TO": [{
+						"LATITUDE": 52.5232,
+						"LONGITUDE": 13.38348
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1204473319", "1204473320", "1204473321", "781761927", "780236864", "780236865", "897705743"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Albrechtstraße - Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Albrechtstraße - Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1403269486023260906,
+			"ORIGINALTRAFFICITEMID": 206569817097513382,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/28/2020 14:38:25",
+			"ENDTIME": "10/02/2020 14:37:30",
+			"ENTRYTIME": "09/28/2020 14:38:25",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "26823",
+						"LOCATIONDESC": "Glinkastraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "26823",
+						"LOCATIONDESC": "Glinkastraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 518,
+						"DESCRIPTION": "Fahrbahnverengung.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D19",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Behrenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9295
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Wilhelmstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Wilhelmstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Wilhelmstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 26823
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "WEDDING",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "WEDDING",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "WEDDING",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Behrenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9295
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Glinkastraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Glinkastraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Glinkastraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 26823
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "WEDDING",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "WEDDING",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "WEDDING",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51518,
+						"LONGITUDE": 13.3819
+					},
+					"TO": [{
+						"LATITUDE": 52.51545,
+						"LONGITUDE": 13.38571
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1198162193", "1201265769", "1201265770", "1201265778", "1201265779", "810268295", "810268296"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Glinkastraße - Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Glinkastraße - Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 243754105635273015,
+			"ORIGINALTRAFFICITEMID": 3878868147293196622,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/24/2020 08:39:09",
+			"ENDTIME": "10/28/2020 09:30:00",
+			"ENTRYTIME": "09/24/2020 08:39:09",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Gartenstraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Invalidenstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Gartenstraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Schröderstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.530452,
+						"LONGITUDE": 13.3914
+					},
+					"TO": [{
+						"LATITUDE": 52.530138,
+						"LONGITUDE": 13.3918
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1044853608", "53499878"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Invalidenstraße und Schröderstraße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Invalidenstraße und Schröderstraße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 4437723030503640190,
+			"ORIGINALTRAFFICITEMID": 4437723030503640190,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:39",
+			"ENDTIME": "11/30/2020 19:29:30",
+			"ENTRYTIME": "09/21/2020 20:54:11",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "27330",
+						"LOCATIONDESC": "Tunnel-Tiergarten-Spreebogen",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 518,
+						"DESCRIPTION": "Fahrbahnverengung.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D19",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "27330",
+						"LOCATIONDESC": "Tunnel-Tiergarten-Spreebogen",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 743,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "E1.D15",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Invalidenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 50738
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Clara-Jaschke-Straße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Clara-Jaschke-Straße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Clara-Jaschke-Straße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 27330
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "PRENZLAUER BERG",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "PRENZLAUER BERG",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "PRENZLAUER BERG",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Invalidenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 50738
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Tunnel-Tiergarten-Spreebogen",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Tunnel-Tiergarten-Spreebogen",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Tunnel-Tiergarten-Spreebogen",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 27330
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "PRENZLAUER BERG",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "PRENZLAUER BERG",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "PRENZLAUER BERG",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.52539,
+						"LONGITUDE": 13.36623
+					},
+					"TO": [{
+						"LATITUDE": 52.52575,
+						"LONGITUDE": 13.36758
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["781731123", "781731124", "928030951"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Tunnel-Tiergarten-Spreebogen - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. Fahrbahnverengung.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Tunnel-Tiergarten-Spreebogen - Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. Fahrbahnverengung.",
+				"TYPE": "desc"
+			}, {
+				"content": "Baustelle; Fahrbahn von auf einen Fahrstreifen verengt. Fahrbahnverengung.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2520135894778805158,
+			"ORIGINALTRAFFICITEMID": 2520135894778805158,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:39",
+			"ENDTIME": "10/22/2020 08:45:00",
+			"ENTRYTIME": "09/17/2020 14:37:39",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Hinter dem Gießhaus"
+						},
+						"STREET2": {
+							"ADDRESS1": "Unter den Linden"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Hinter dem Gießhaus"
+						},
+						"STREET2": {
+							"ADDRESS1": "Am Festungsgraben"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.517764,
+						"LONGITUDE": 13.396213
+					},
+					"TO": [{
+						"LATITUDE": 52.518167,
+						"LONGITUDE": 13.396117
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1275972789", "1275972790"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Unter den Linden und Am Festungsgraben - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Unter den Linden und Am Festungsgraben - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1751932771362941630,
+			"ORIGINALTRAFFICITEMID": 1751932771362941630,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "03/12/2020 07:00:00",
+			"ENDTIME": "12/01/2020 22:59:00",
+			"ENTRYTIME": "09/17/2020 14:37:05",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "B2, B5 Berlin, Behrenstraße in Höhe Cora-Berliner-Straße Fahrbahn auf einen Fahrstreifen verengt, Bauarbeiten, von 12.03.2020 ca. 08:00 Uhr bis voraussichtlich 01.12.2020",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": ""
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51655,
+						"LONGITUDE": 13.3808
+					},
+					"TO": [{
+						"LATITUDE": 52.51625,
+						"LONGITUDE": 13.3769
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["733069234", "572707795", "1248634021", "1248634022", "1239903469", "1239903470", "53500408", "1248468818", "1248468817", "1089845870", "1089845869", "53609842", "53609843", "592191657"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt. B2, B5 Berlin, Behrenstraße in Höhe Cora-Berliner-Straße Fahrbahn auf einen Fahrstreifen verengt, Bauarbeiten, von 12.03.2020 ca. 08:00 Uhr bis voraussichtlich 01.12.2020",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt. B2, B5 Berlin, Behrenstraße in Höhe Cora-Berliner-Straße Fahrbahn auf einen Fahrstreifen verengt, Bauarbeiten, von 12.03.2020 ca. 08:00 Uhr bis voraussichtlich 01.12.2020",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1487401194723045956,
+			"ORIGINALTRAFFICITEMID": 3543897678986314121,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/28/2020 14:38:25",
+			"ENDTIME": "10/02/2020 14:37:30",
+			"ENTRYTIME": "09/28/2020 14:38:25",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "32915",
+						"LOCATIONDESC": "Wilhelmstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "32915",
+						"LOCATIONDESC": "Wilhelmstraße",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 518,
+						"DESCRIPTION": "Fahrbahnverengung.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D19",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Behrenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 14671
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Glinkastraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Glinkastraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Glinkastraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 32915
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "TIERGARTEN",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "TIERGARTEN",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "TIERGARTEN",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Behrenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 14671
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Wilhelmstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Wilhelmstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Wilhelmstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Behrenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 32915
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "TIERGARTEN",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "TIERGARTEN",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "TIERGARTEN",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51545,
+						"LONGITUDE": 13.38572
+					},
+					"TO": [{
+						"LATITUDE": 52.51518,
+						"LONGITUDE": 13.3819
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["810268296", "810268295", "1201265779", "1201265778", "1201265770", "1201265769", "1198162193"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Wilhelmstraße - Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Wilhelmstraße - Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahnverengung.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2051551110347917762,
+			"ORIGINALTRAFFICITEMID": 2977009338605034882,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/28/2020 14:38:25",
+			"ENDTIME": "10/02/2020 14:37:30",
+			"ENTRYTIME": "09/28/2020 14:38:38",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "32848",
+						"LOCATIONDESC": "Friedrichstraße",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 514,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Fahrbahn von auf einen Fahrstreifen verengt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D15",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "32848",
+						"LOCATIONDESC": "Friedrichstraße",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Unter den Linden",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9295
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Schadowstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Schadowstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Schadowstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "BNAME"
+							}],
+							"ID": 32848
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "KREUZBERG",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "KREUZBERG",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "KREUZBERG",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Unter den Linden",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 9295
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Friedrichstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Friedrichstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Friedrichstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Unter den Linden",
+								"TYPE": "BNAME"
+							}],
+							"ID": 32848
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "KREUZBERG",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "KREUZBERG",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "KREUZBERG",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51658,
+						"LONGITUDE": 13.38399
+					},
+					"TO": [{
+						"LATITUDE": 52.51671,
+						"LONGITUDE": 13.38577
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["724151418", "724151419"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Friedrichstraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Friedrichstraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 4292770858827768789,
+			"ORIGINALTRAFFICITEMID": 4292770858827768789,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:38",
+			"ENDTIME": "10/20/2020 08:45:00",
+			"ENTRYTIME": "09/17/2020 14:37:38",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "41128",
+						"LOCATIONDESC": "Marienstraße",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "41128",
+						"LOCATIONDESC": "Marienstraße",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 513,
+						"DESCRIPTION": "Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 2,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "E14",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Luisenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 41121
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Reinhardtstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Reinhardtstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 41128
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "MITTE",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "MITTE",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "MITTE",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Luisenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 41121
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Marienstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Marienstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Marienstraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Luisenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 41128
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "MITTE",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "MITTE",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "MITTE",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.52259,
+						"LONGITUDE": 13.37961
+					},
+					"TO": [{
+						"LATITUDE": 52.52171,
+						"LONGITUDE": 13.37978
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["53500239", "53500257"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Marienstraße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Marienstraße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 4145309094893662215,
+			"ORIGINALTRAFFICITEMID": 4590995904803678389,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/21/2020 07:14:24",
+			"ENDTIME": "10/20/2020 08:30:00",
+			"ENTRYTIME": "09/21/2020 07:14:24",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Tucholskystraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Auguststraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Tucholskystraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Torstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.526856,
+						"LONGITUDE": 13.393296
+					},
+					"TO": [{
+						"LATITUDE": 52.527884,
+						"LONGITUDE": 13.392649
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["53500091", "1199146844", "1199146845"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Auguststraße und Torstraße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Auguststraße und Torstraße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2272714776253445941,
+			"ORIGINALTRAFFICITEMID": 1271161058937932850,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/28/2020 09:00:54",
+			"ENDTIME": "10/02/2020 09:00:00",
+			"ENTRYTIME": "09/28/2020 09:00:54",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Dorothea-Schlegel-Platz"
+						},
+						"STREET2": {
+							"ADDRESS1": "Reichstagufer"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Neustädtische Kirchstraße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Dorotheenstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51999,
+						"LONGITUDE": 13.385226
+					},
+					"TO": [{
+						"LATITUDE": 52.519271,
+						"LONGITUDE": 13.385363
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["53500319", "572658050"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Reichstagufer und Dorotheenstraße - Bauarbeiten auf Abschnitt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Reichstagufer und Dorotheenstraße - Bauarbeiten auf Abschnitt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 3611709413232421949,
+			"ORIGINALTRAFFICITEMID": 3611709413232421949,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:38",
+			"ENDTIME": "03/25/2021 09:00:00",
+			"ENTRYTIME": "09/17/2020 14:37:38",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "20255",
+						"LOCATIONDESC": "Fischerinsel",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "20255",
+						"LOCATIONDESC": "Fischerinsel",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 515,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Fahrbahn von auf zwei Fahrstreifen verengt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D16",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Gertraudenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Gertraudenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Gertraudenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 50187
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Fischerinsel",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Fischerinsel",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Fischerinsel",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Gertraudenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 20255
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "BIESDORF",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "BIESDORF",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "BIESDORF",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Gertraudenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Gertraudenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Gertraudenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 50187
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Fischerinsel",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Fischerinsel",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Fischerinsel",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Gertraudenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 20255
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "BIESDORF",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "BIESDORF",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "BIESDORF",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.51256,
+						"LONGITUDE": 13.40377
+					},
+					"TO": [{
+						"LATITUDE": 52.51346,
+						"LONGITUDE": 13.40506
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["774043307", "774043308", "733292641"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Fischerinsel - Bauarbeiten auf Abschnitt. Fahrbahn von auf zwei Fahrstreifen verengt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Fischerinsel - Bauarbeiten auf Abschnitt. Fahrbahn von auf zwei Fahrstreifen verengt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf zwei Fahrstreifen verengt.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2645233353501972180,
+			"ORIGINALTRAFFICITEMID": 2645233353501972180,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:38",
+			"ENDTIME": "10/13/2020 08:45:00",
+			"ENTRYTIME": "09/17/2020 14:37:38",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Am Weidendamm"
+						},
+						"STREET2": {
+							"ADDRESS1": "Geschwister-Scholl-Straße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Am Weidendamm"
+						},
+						"STREET2": {
+							"ADDRESS1": "Planckstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.522108,
+						"LONGITUDE": 13.391338
+					},
+					"TO": [{
+						"LATITUDE": 52.522103,
+						"LONGITUDE": 13.390666
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["53500244"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Geschwister-Scholl-Straße und Planckstraße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Geschwister-Scholl-Straße und Planckstraße - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2414696297691587281,
+			"ORIGINALTRAFFICITEMID": 2414696297691587281,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:39",
+			"ENDTIME": "10/22/2020 08:45:00",
+			"ENTRYTIME": "09/17/2020 14:37:39",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Hinter dem Gießhaus"
+						},
+						"STREET2": {
+							"ADDRESS1": "Am Festungsgraben"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Hinter dem Gießhaus"
+						},
+						"STREET2": {
+							"ADDRESS1": "Unter den Linden"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.518167,
+						"LONGITUDE": 13.396117
+					},
+					"TO": [{
+						"LATITUDE": 52.517764,
+						"LONGITUDE": 13.396213
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1275972790", "1275972789"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Am Festungsgraben und Unter den Linden - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Am Festungsgraben und Unter den Linden - Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Für beide Richtungen nur ein Fahrstreifen abwechselnd frei.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 3763059312106214589,
+			"ORIGINALTRAFFICITEMID": 1099729783007379902,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/23/2020 06:40:37",
+			"ENDTIME": "10/15/2020 07:30:00",
+			"ENTRYTIME": "09/23/2020 06:40:37",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Französische Straße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Charlottenstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Französische Straße"
+						},
+						"STREET2": {
+							"ADDRESS1": "Markgrafenstraße"
+						},
+						"COUNTY": "Berlin",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.514939,
+						"LONGITUDE": 13.391801
+					},
+					"TO": [{
+						"LATITUDE": 52.514956,
+						"LONGITUDE": 13.392058
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 218
+					},
+					"COUNTY": "Berlin",
+					"MUNICIPALITY": {
+						"NAME": "Berlin"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["733154934"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Zwischen Charlottenstraße und Markgrafenstraße - Bauarbeiten auf Abschnitt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Zwischen Charlottenstraße und Markgrafenstraße - Bauarbeiten auf Abschnitt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 4303853538155919766,
+			"ORIGINALTRAFFICITEMID": 4303853538155919766,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/17/2020 14:37:39",
+			"ENDTIME": "12/16/2020 08:00:00",
+			"ENTRYTIME": "09/21/2020 20:54:11",
+			"CRITICALITY": {
+				"ID": "2",
+				"DESCRIPTION": "minor"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "27331",
+						"LOCATIONDESC": "Chausseestraße",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 514,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Fahrbahn von auf einen Fahrstreifen verengt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 5,
+						"PHRASECODE": "D15",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}, {
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "D",
+						"TABLEID": 1,
+						"LOCATIONID": "27331",
+						"LOCATIONDESC": "Chausseestraße",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 803,
+						"QUANTIFIERS": 0,
+						"DESCRIPTION": "Bauarbeiten auf Abschnitt.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"UPDATECLASS": 11,
+						"PHRASECODE": "E11",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Invalidenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 50738
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Friedrich-List-Ufer",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Friedrich-List-Ufer",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Friedrich-List-Ufer",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 27331
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "PRENZLAUER BERG",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "PRENZLAUER BERG",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "PRENZLAUER BERG",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "Invalidenstraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 50738
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Chausseestraße",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Chausseestraße",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Chausseestraße",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "Invalidenstraße",
+								"TYPE": "BNAME"
+							}],
+							"ID": 27331
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "PRENZLAUER BERG",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "PRENZLAUER BERG",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "PRENZLAUER BERG",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 52.52846,
+						"LONGITUDE": 13.37606
+					},
+					"TO": [{
+						"LATITUDE": 52.52934,
+						"LONGITUDE": 13.37904
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1060046442", "1198521270", "1198521271", "1060046447", "1060046449"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Bei Chausseestraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Bei Chausseestraße - Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "desc"
+			}, {
+				"content": "Bauarbeiten auf Abschnitt. Fahrbahn von auf einen Fahrstreifen verengt.",
+				"TYPE": "no_exit_description"
+			}]
+		}]
+	}
+}
