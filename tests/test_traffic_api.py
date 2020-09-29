@@ -30,6 +30,7 @@ class TrafficApiTest(unittest.TestCase):
                             criticality=[herepy.here_enum.IncidentsCriticality.minor, herepy.here_enum.IncidentsCriticality.major, herepy.here_enum.IncidentsCriticality.critical])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.TrafficIncidentResponse)
+        self.assertIsNotNone(response.as_dict())
 
 
     @responses.activate
@@ -53,6 +54,7 @@ class TrafficApiTest(unittest.TestCase):
                                             width=1000)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.TrafficIncidentResponse)
+        self.assertIsNotNone(response.as_dict())
 
 
     @responses.activate
