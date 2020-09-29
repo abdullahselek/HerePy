@@ -30,7 +30,8 @@ from .here_enum import (
     WeatherProductType,
     EVStationConnectorTypes,
     MultiplePickupOfferType,
-    IncidentsCriticality
+    IncidentsCriticalityStr,
+    IncidentsCriticalityInt
 )
 
 from .models import (

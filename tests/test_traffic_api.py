@@ -27,7 +27,7 @@ class TrafficApiTest(unittest.TestCase):
         responses.add(responses.GET, 'https://traffic.ls.hereapi.com/traffic/6.0/incidents.json',
                   expectedResponse, status=200)
         response = self._api.incidents_in_bounding_box(top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035],
-                            criticality=[herepy.here_enum.IncidentsCriticality.minor, herepy.here_enum.IncidentsCriticality.major, herepy.here_enum.IncidentsCriticality.critical])
+                            criticality=[herepy.IncidentsCriticalityStr.minor, herepy.IncidentsCriticalityStr.major, herepy.IncidentsCriticalityStr.critical])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.TrafficIncidentResponse)
         self.assertIsNotNone(response.as_dict())
@@ -41,7 +41,7 @@ class TrafficApiTest(unittest.TestCase):
                   expectedResponse, status=200)
         with self.assertRaises(herepy.UnauthorizedError):
             self._api.incidents_in_bounding_box(top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035],
-                    criticality=[herepy.here_enum.IncidentsCriticality.minor])
+                    criticality=[herepy.IncidentsCriticalityStr.minor])
 
 
     @responses.activate

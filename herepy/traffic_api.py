@@ -8,7 +8,7 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
 from herepy.models import TrafficIncidentResponse
-from herepy.here_enum import IncidentsCriticality
+from herepy.here_enum import IncidentsCriticalityStr
 
 from typing import List, Optional
 
@@ -58,7 +58,7 @@ class TrafficApi(HEREApi):
             return HEREError(error_message)
 
 
-    def __prepare_criticality_values(self, criticality_enums: [IncidentsCriticality]):
+    def __prepare_criticality_values(self, criticality_enums: [IncidentsCriticalityStr]):
         criticality_values = ""
         for criticality in criticality_enums:
             criticality_values += criticality.__str__() + ','
@@ -75,7 +75,7 @@ class TrafficApi(HEREApi):
 
 
     def incidents_in_bounding_box(self, top_left: List[float],
-                    bottom_right: List[float], criticality: [IncidentsCriticality]) -> Optional[TrafficIncidentResponse]:
+                    bottom_right: List[float], criticality: [IncidentsCriticalityStr]) -> Optional[TrafficIncidentResponse]:
         """Request traffic incident information within specified area.
         Args:
           top_left (array):
@@ -83,7 +83,7 @@ class TrafficApi(HEREApi):
           bottom_right (array):
             Array including latitude and longitude in order.
           criticality (array):
-            List of IncidentsCriticality.
+            List of IncidentsCriticalityStr.
         Returns:
           TrafficIncidentResponse
         Raises:
