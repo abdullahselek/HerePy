@@ -79,9 +79,9 @@ class TrafficApi(HEREApi):
         """Request traffic incident information within specified area.
         Args:
           top_left (array):
-            array including latitude and longitude in order.
+            Array including latitude and longitude in order.
           bottom_right (array):
-            array including latitude and longitude in order.
+            Array including latitude and longitude in order.
           criticality (array):
             List of IncidentsCriticality.
         Returns:
