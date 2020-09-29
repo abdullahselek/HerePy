@@ -1,0 +1,1952 @@
+{
+	"TIMESTAMP": "09/29/2020 17:42:05 GMT",
+	"VERSION": 5.0,
+	"TRAFFICITEMS": {
+		"TRAFFICITEM": [{
+			"TRAFFICITEMID": 4000087041216842193,
+			"ORIGINALTRAFFICITEMID": 3421974384509319290,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 00:00:00",
+			"ENDTIME": "09/29/2020 23:59:00",
+			"ENTRYTIME": "09/29/2020 00:01:37",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": ""
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Garrick Street"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51171,
+						"LONGITUDE": -0.12611
+					},
+					"TO": [{
+						"LATITUDE": 51.51164,
+						"LONGITUDE": -0.12619
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25306762"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 3788757477897227465,
+			"ORIGINALTRAFFICITEMID": 3969795981639080506,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 00:00:00",
+			"ENDTIME": "09/29/2020 23:59:00",
+			"ENTRYTIME": "09/29/2020 00:01:37",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Garrick Street"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51164,
+						"LONGITUDE": -0.12619
+					},
+					"TO": [{
+						"LATITUDE": 51.51171,
+						"LONGITUDE": -0.12611
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25306762"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1765786749549236988,
+			"ORIGINALTRAFFICITEMID": 1765786749549236988,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "MISCELLANEOUS",
+			"STARTTIME": "09/29/2020 15:29:29",
+			"ENDTIME": "09/30/2020 14:36:34",
+			"ENTRYTIME": "09/29/2020 17:33:13",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CLOS",
+				"DESCRIPTION": ""
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "C",
+						"TABLEID": 7,
+						"LOCATIONID": "07262",
+						"LOCATIONDESC": "Vauxhall Bridge North",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 401,
+						"DESCRIPTION": "Closed.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"URGENCY": "U",
+						"UPDATECLASS": 5,
+						"PHRASECODE": "C1",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "A3212",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "A3212",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "A3212",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 659
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Trafalgar Square",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Trafalgar Square",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Trafalgar Square",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "A3212",
+								"TYPE": "BNAME"
+							}],
+							"ID": 7262
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "BATTERSEA BRIDGE NORTH",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "BATTERSEA BRIDGE NORTH",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "BATTERSEA BRIDGE NORTH",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "A3212",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "A3212",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "A3212",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 659
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Vauxhall Bridge North",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Vauxhall Bridge North",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Vauxhall Bridge North",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "A3212",
+								"TYPE": "BNAME"
+							}],
+							"ID": 7262
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "BATTERSEA BRIDGE NORTH",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "BATTERSEA BRIDGE NORTH",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "BATTERSEA BRIDGE NORTH",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.50031,
+						"LONGITUDE": -0.12613
+					},
+					"TO": [{
+						"LATITUDE": 51.49698,
+						"LONGITUDE": -0.12564
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["943239142", "943239141", "25308212", "1217997269", "1217997268", "773277736", "943239138", "1217990819", "1217990818", "1217897785", "1217897784", "943239136", "1217902028", "1217902027"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"INCIDENT": {
+					"RESPONSEVEHICLES": false,
+					"MISCELLANEOUSINCIDENT": {
+						"MISCELLANEOUSTYPEDESC": ""
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed at Vauxhall Bridge North - Closed.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed at Vauxhall Bridge North - Closed.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 3532514538316210716,
+			"ORIGINALTRAFFICITEMID": 3301733783660872108,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 14:37:00",
+			"ENDTIME": "09/30/2020 14:36:26",
+			"ENTRYTIME": "09/29/2020 14:37:00",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Hinde Street"
+						},
+						"STREET2": {
+							"ADDRESS1": "Marylebone Lane"
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Hinde Street"
+						},
+						"STREET2": {
+							"ADDRESS1": "Mandeville Place"
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51702,
+						"LONGITUDE": -0.15072
+					},
+					"TO": [{
+						"LATITUDE": 51.51694,
+						"LONGITUDE": -0.15129
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					},
+					"MUNICIPALITY": {
+						"NAME": "London"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25304862"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed between Marylebone Lane and Mandeville Place - Closed due to roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed between Marylebone Lane and Mandeville Place - Closed due to roadwork.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed due to roadwork.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 3411196708515459064,
+			"ORIGINALTRAFFICITEMID": 1663227246476875078,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "MISCELLANEOUS",
+			"STARTTIME": "09/29/2020 12:21:12",
+			"ENDTIME": "09/30/2020 12:19:37",
+			"ENTRYTIME": "09/29/2020 12:21:12",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CLOS",
+				"DESCRIPTION": ""
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": ""
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51776,
+						"LONGITUDE": -0.15357
+					},
+					"TO": [{
+						"LATITUDE": 51.51745,
+						"LONGITUDE": -0.15537
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25304644", "938380837", "938380836"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"INCIDENT": {
+					"RESPONSEVEHICLES": false,
+					"MISCELLANEOUSINCIDENT": {
+						"MISCELLANEOUSTYPEDESC": ""
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 4365451313311276849,
+			"ORIGINALTRAFFICITEMID": 430292198701061918,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 14:37:00",
+			"ENDTIME": "09/30/2020 14:36:26",
+			"ENTRYTIME": "09/29/2020 14:37:00",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Alfred Mews"
+						},
+						"STREET2": {
+							"ADDRESS1": "Tottenham Court Road"
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Alfred Mews"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.520821,
+						"LONGITUDE": -0.13456
+					},
+					"TO": [{
+						"LATITUDE": 51.52116,
+						"LONGITUDE": -0.1335
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					},
+					"MUNICIPALITY": {
+						"NAME": "London"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25303456"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed past Tottenham Court Road - Closed due to roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed past Tottenham Court Road - Closed due to roadwork.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed due to roadwork.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 714006933722800294,
+			"ORIGINALTRAFFICITEMID": 2395738065896834547,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "MISCELLANEOUS",
+			"STARTTIME": "09/29/2020 17:32:26",
+			"ENDTIME": "09/30/2020 17:31:36",
+			"ENTRYTIME": "09/29/2020 17:32:26",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CLOS",
+				"DESCRIPTION": ""
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "C",
+						"TABLEID": 7,
+						"LOCATIONID": "07263",
+						"LOCATIONDESC": "Trafalgar Square",
+						"RDSDIRECTION": "-"
+					},
+					"DIRECTION": "+",
+					"ALERTC": {
+						"TRAFFICCODE": 401,
+						"DESCRIPTION": "Closed.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"URGENCY": "U",
+						"UPDATECLASS": 5,
+						"PHRASECODE": "C1",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "A3212",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "A3212",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "A3212",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 659
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Vauxhall Bridge North",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Vauxhall Bridge North",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Vauxhall Bridge North",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "A3212",
+								"TYPE": "BNAME"
+							}],
+							"ID": 7263
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "TRAFALGAR SQUARE",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "TRAFALGAR SQUARE",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "TRAFALGAR SQUARE",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "A3212",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "A3212",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "A3212",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 659
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Trafalgar Square",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Trafalgar Square",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Trafalgar Square",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "A3212",
+								"TYPE": "BNAME"
+							}],
+							"ID": 7263
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "TRAFALGAR SQUARE",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "TRAFALGAR SQUARE",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "TRAFALGAR SQUARE",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.49698,
+						"LONGITUDE": -0.12564
+					},
+					"TO": [{
+						"LATITUDE": 51.50023,
+						"LONGITUDE": -0.12638
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1217902027", "1217902028", "943239136", "1217897784", "1217897785", "1217990818", "1217990819", "943239138", "773277736", "1217997268", "1217997269", "25308212", "25308162"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"INCIDENT": {
+					"RESPONSEVEHICLES": false,
+					"MISCELLANEOUSINCIDENT": {
+						"MISCELLANEOUSTYPEDESC": ""
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed at Trafalgar Square - Closed.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed at Trafalgar Square - Closed.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 3283082868339700312,
+			"ORIGINALTRAFFICITEMID": 2149315827627358567,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "MISCELLANEOUS",
+			"STARTTIME": "09/29/2020 14:37:02",
+			"ENDTIME": "09/30/2020 14:36:34",
+			"ENTRYTIME": "09/29/2020 14:37:02",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CLOS",
+				"DESCRIPTION": ""
+			},
+			"RDSTMCLOCATIONS": {
+				"RDSTMC": [{
+					"ORIGIN": {
+						"EBUCOUNTRYCODE": "C",
+						"TABLEID": 7,
+						"LOCATIONID": "30555",
+						"LOCATIONDESC": "Leicester Square",
+						"RDSDIRECTION": "+"
+					},
+					"DIRECTION": "-",
+					"ALERTC": {
+						"TRAFFICCODE": 401,
+						"DESCRIPTION": "Closed.",
+						"ALERTCDURATION": "L",
+						"ALERTCDIRECTION": 1,
+						"URGENCY": "U",
+						"UPDATECLASS": 5,
+						"PHRASECODE": "C1",
+						"EXTENT": "1",
+						"DURATION": 0
+					}
+				}]
+			},
+			"LOCATION": {
+				"DEFINED": {
+					"ORIGIN": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "B404",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "B404",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "B404",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 12963
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "A401/Shaftesbury Avenue",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "A401/Shaftesbury Avenue",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "A401/Shaftesbury Avenue",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "B404",
+								"TYPE": "BNAME"
+							}],
+							"ID": 30555
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "LEICESTER SQUARE",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "LEICESTER SQUARE",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "LEICESTER SQUARE",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					},
+					"TO": {
+						"ROADWAY": {
+							"DESCRIPTION": [{
+								"content": "B404",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "B404",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "B404",
+								"TYPE": "LOCAL"
+							}],
+							"ID": 12963
+						},
+						"POINT": {
+							"DESCRIPTION": [{
+								"content": "Leicester Square",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "Leicester Square",
+								"TYPE": "RDSGN"
+							}, {
+								"content": "Leicester Square",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "B404",
+								"TYPE": "BNAME"
+							}],
+							"ID": 30555
+						},
+						"DIRECTION": {
+							"DESCRIPTION": [{
+								"content": "LEICESTER SQUARE",
+								"TYPE": "LOCAL"
+							}, {
+								"content": "LEICESTER SQUARE",
+								"TYPE": "NTCSA"
+							}, {
+								"content": "LEICESTER SQUARE",
+								"TYPE": "RDSGN"
+							}],
+							"ID": 0
+						},
+						"PROXIMITY": {
+							"ID": "AT",
+							"DESCRIPTION": "at"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.5137,
+						"LONGITUDE": -0.12702
+					},
+					"TO": [{
+						"LATITUDE": 51.51268,
+						"LONGITUDE": -0.12719
+					}]
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25306032", "25306194", "25306342"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"INCIDENT": {
+					"RESPONSEVEHICLES": false,
+					"MISCELLANEOUSINCIDENT": {
+						"MISCELLANEOUSTYPEDESC": ""
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed at Leicester Square - Closed.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed at Leicester Square - Closed.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 4592860756013063690,
+			"ORIGINALTRAFFICITEMID": 4043854790602425864,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 14:37:00",
+			"ENDTIME": "09/30/2020 14:36:26",
+			"ENTRYTIME": "09/29/2020 14:37:00",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Hinde Street"
+						},
+						"STREET2": {
+							"ADDRESS1": "Thayer Street"
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Hinde Street"
+						},
+						"STREET2": {
+							"ADDRESS1": "Bentinck Street"
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51694,
+						"LONGITUDE": -0.15129
+					},
+					"TO": [{
+						"LATITUDE": 51.51702,
+						"LONGITUDE": -0.15072
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					},
+					"MUNICIPALITY": {
+						"NAME": "London"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25304862"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed between Thayer Street and Bentinck Street - Closed due to roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed between Thayer Street and Bentinck Street - Closed due to roadwork.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed due to roadwork.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1798380986036926802,
+			"ORIGINALTRAFFICITEMID": 3666939246308096643,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "MISCELLANEOUS",
+			"STARTTIME": "09/29/2020 17:11:27",
+			"ENDTIME": "09/30/2020 17:10:38",
+			"ENTRYTIME": "09/29/2020 17:11:27",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CLOS",
+				"DESCRIPTION": ""
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": ""
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51857,
+						"LONGITUDE": -0.12837
+					},
+					"TO": [{
+						"LATITUDE": 51.51583,
+						"LONGITUDE": -0.12605
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["972183758", "1218083800", "1218083799", "1218083944", "1218083943", "25304611", "25304734", "25304812", "1151481677", "1151481676", "734372889", "734372888"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"INCIDENT": {
+					"RESPONSEVEHICLES": false,
+					"MISCELLANEOUSINCIDENT": {
+						"MISCELLANEOUSTYPEDESC": ""
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 2875090571896046377,
+			"ORIGINALTRAFFICITEMID": 3326196735732065386,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 14:37:00",
+			"ENDTIME": "09/30/2020 14:36:26",
+			"ENTRYTIME": "09/29/2020 14:37:00",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Alfred Mews"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "APP",
+							"DESCRIPTION": "approaching"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Alfred Mews"
+						},
+						"STREET2": {
+							"ADDRESS1": "Tottenham Court Road"
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "APP",
+							"DESCRIPTION": "approaching"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.52116,
+						"LONGITUDE": -0.1335
+					},
+					"TO": [{
+						"LATITUDE": 51.520821,
+						"LONGITUDE": -0.13456
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					},
+					"MUNICIPALITY": {
+						"NAME": "London"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25303456"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed approaching Tottenham Court Road - Closed due to roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed approaching Tottenham Court Road - Closed due to roadwork.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed due to roadwork.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 20636238036129951,
+			"ORIGINALTRAFFICITEMID": 1965331951607909525,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 00:00:00",
+			"ENDTIME": "09/29/2020 23:59:00",
+			"ENTRYTIME": "09/29/2020 00:01:37",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": ""
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Exeter Street"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51165,
+						"LONGITUDE": -0.12107
+					},
+					"TO": [{
+						"LATITUDE": 51.51156,
+						"LONGITUDE": -0.12074
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1152374989", "1152374988"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 4198483734936763275,
+			"ORIGINALTRAFFICITEMID": 3733275782022346336,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 16:37:01",
+			"ENDTIME": "09/30/2020 16:36:34",
+			"ENTRYTIME": "09/29/2020 16:37:05",
+			"CRITICALITY": {
+				"ID": "0",
+				"DESCRIPTION": "critical"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Riding House Street"
+						},
+						"STREET2": {
+							"ADDRESS1": "Cleveland Street"
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Riding House Street"
+						},
+						"STREET2": {
+							"ADDRESS1": "Langham Place"
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "MID",
+							"DESCRIPTION": "midway between"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51916,
+						"LONGITUDE": -0.13937
+					},
+					"TO": [{
+						"LATITUDE": 51.51829,
+						"LONGITUDE": -0.14191
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					},
+					"MUNICIPALITY": {
+						"NAME": "London"
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25304121", "25304200", "25304257", "25304294", "25304352"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": true,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Closed between Cleveland Street and Langham Place - Closed due to roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Closed between Cleveland Street and Langham Place - Closed due to roadwork.",
+				"TYPE": "desc"
+			}, {
+				"content": "Closed due to roadwork.",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 860125064055828532,
+			"ORIGINALTRAFFICITEMID": 4353153356580466761,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 00:00:00",
+			"ENDTIME": "09/29/2020 23:59:00",
+			"ENTRYTIME": "09/29/2020 00:01:37",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": ""
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Wellington Street"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51177,
+						"LONGITUDE": -0.12102
+					},
+					"TO": [{
+						"LATITUDE": 51.512,
+						"LONGITUDE": -0.1206
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25306732"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1950625218983620753,
+			"ORIGINALTRAFFICITEMID": 1238542438164024643,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 00:00:00",
+			"ENDTIME": "09/29/2020 23:59:00",
+			"ENTRYTIME": "09/29/2020 00:01:37",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Wellington Street"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.512,
+						"LONGITUDE": -0.1206
+					},
+					"TO": [{
+						"LATITUDE": 51.51177,
+						"LONGITUDE": -0.12102
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25306732"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 3947126635478951881,
+			"ORIGINALTRAFFICITEMID": 3947126635478951881,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "08/18/2020 23:00:00",
+			"ENDTIME": "01/01/2021 23:59:00",
+			"ENTRYTIME": "09/24/2020 13:21:57",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Restricted vehicle access on and around Cornwall Road.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": ""
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Roupell Street"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.50436,
+						"LONGITUDE": -0.11025
+					},
+					"TO": [{
+						"LATITUDE": 51.50469,
+						"LONGITUDE": -0.10833
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1159792415", "1159792416", "1163339724", "1163339725"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Restricted vehicle access on and around Cornwall Road.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Restricted vehicle access on and around Cornwall Road.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 3439463951453425403,
+			"ORIGINALTRAFFICITEMID": 1723164925526687140,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 00:00:00",
+			"ENDTIME": "09/29/2020 23:59:00",
+			"ENTRYTIME": "09/29/2020 00:01:37",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Maiden Lane"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51039,
+						"LONGITUDE": -0.12396
+					},
+					"TO": [{
+						"LATITUDE": 51.51045,
+						"LONGITUDE": -0.12379
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25307076", "25398591"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1692076907780012410,
+			"ORIGINALTRAFFICITEMID": 1874748893153393548,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 00:00:00",
+			"ENDTIME": "09/29/2020 23:59:00",
+			"ENTRYTIME": "09/29/2020 00:01:37",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": ""
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					},
+					"TO": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Maiden Lane"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51045,
+						"LONGITUDE": -0.12379
+					},
+					"TO": [{
+						"LATITUDE": 51.51039,
+						"LONGITUDE": -0.12396
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["25398591", "25307076"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}, {
+			"TRAFFICITEMID": 1190576937885033878,
+			"ORIGINALTRAFFICITEMID": 3955756824225344196,
+			"TRAFFICITEMSTATUSSHORTDESC": "ACTIVE",
+			"TRAFFICITEMTYPEDESC": "CONSTRUCTION",
+			"STARTTIME": "09/29/2020 00:00:00",
+			"ENDTIME": "09/29/2020 23:59:00",
+			"ENTRYTIME": "09/29/2020 00:01:37",
+			"CRITICALITY": {
+				"ID": "1",
+				"DESCRIPTION": "major"
+			},
+			"VERIFIED": true,
+			"ABBREVIATION": {
+				"SHORTDESC": "CONST",
+				"DESCRIPTION": "construction"
+			},
+			"COMMENTS": "Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+			"LOCATION": {
+				"INTERSECTION": {
+					"ORIGIN": {
+						"ID": "",
+						"STREET1": {
+							"ADDRESS1": "Exeter Street"
+						},
+						"STREET2": {
+							"ADDRESS1": ""
+						},
+						"COUNTY": "",
+						"STATE": "",
+						"PROXIMITY": {
+							"ID": "AFT",
+							"DESCRIPTION": "past"
+						}
+					}
+				},
+				"GEOLOC": {
+					"ORIGIN": {
+						"LATITUDE": 51.51156,
+						"LONGITUDE": -0.12074
+					},
+					"TO": [{
+						"LATITUDE": 51.51165,
+						"LONGITUDE": -0.12107
+					}]
+				},
+				"POLITICALBOUNDARY": {
+					"METROAREA": {
+						"value": "",
+						"ID": 222
+					}
+				},
+				"NAVTECH": {
+					"EDGE": {
+						"EDGEID": ["1152374988", "1152374989"]
+					},
+					"VERSIONID": "202003"
+				}
+			},
+			"TRAFFICITEMDETAIL": {
+				"ROADCLOSED": false,
+				"EVENT": {
+					"EVENTITEMCANCELLED": false,
+					"SCHEDULEDCONSTRUCTIONEVENT": {
+						"SCHEDULEDCONSTRUCTIONTYPEDESC": "CONSTRUCTION",
+						"SCHEDULEDCONSTRUCTIONDETAIL": "construction"
+					}
+				}
+			},
+			"TRAFFICITEMDESCRIPTION": [{
+				"content": "Roadwork.",
+				"TYPE": "short_desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "desc"
+			}, {
+				"content": "Roadwork. Pedestrian and cycle only zones in Covent Garden.Emergency access will be maintained at all times. #covid19",
+				"TYPE": "no_exit_description"
+			}]
+		}]
+	}
+}

@@ -66,6 +66,14 @@ class TrafficApi(HEREApi):
         return criticality_values
 
 
+    def __prepare_corridor_value(self, points: List[List[float]], width: int):
+        corridor_str = ''
+        for lat_long_pair in points:
+            corridor_str += str.format('{0},{1};', lat_long_pair[0], lat_long_pair[1])
+        corridor_str += str(width)
+        return corridor_str
+
+
     def incidents_in_bounding_box(self, top_left: List[float],
                     bottom_right: List[float], criticality: [IncidentsCriticality]) -> Optional[TrafficIncidentResponse]:
         """Request traffic incident information within specified area.
@@ -84,4 +92,21 @@ class TrafficApi(HEREApi):
         data = {'bbox': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1]),
                 'apiKey': self._api_key,
                 'criticality': self.__prepare_criticality_values(criticality_enums=criticality)}
+        return self.__get(self._base_url + 'incidents.json', data)
+
+
+    def incidents_in_corridor(self, points: List[List[float]], width: int):
+        """Request traffic incidents for a defined route.
+        Args:
+          points (array):
+            Array including array of latitude and longitude pairs in order.
+          width (int):
+            Width of corridor.
+        Returns:
+          TrafficIncidentResponse
+        Raises:
+          HEREError"""
+
+        data = {'corridor': self.__prepare_corridor_value(points=points, width=width),
+                'apiKey': self._api_key}
         return self.__get(self._base_url + 'incidents.json', data)

@@ -41,3 +41,26 @@ class TrafficApiTest(unittest.TestCase):
         with self.assertRaises(herepy.UnauthorizedError):
             self._api.incidents_in_bounding_box(top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035],
                     criticality=[herepy.here_enum.IncidentsCriticality.minor])
+
+
+    @responses.activate
+    def test_incidents_in_corridor_success(self):
+        with codecs.open('testdata/models/traffic_incidents_corridor.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://traffic.ls.hereapi.com/traffic/6.0/incidents.json',
+                  expectedResponse, status=200)
+        response = self._api.incidents_in_corridor(points=[[51.5072, -0.1275], [51.50781, -0.13112], [51.51006, -0.1346]],
+                                            width=1000)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.TrafficIncidentResponse)
+
+
+    @responses.activate
+    def test_incidents_in_corridor_fails(self):
+        with codecs.open('testdata/models/traffic_incidents_error.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://traffic.ls.hereapi.com/traffic/6.0/incidents.json',
+                  expectedResponse, status=200)
+        with self.assertRaises(herepy.UnauthorizedError):
+            self._api.incidents_in_corridor(points=[[51.5072, -0.1275], [51.50781, -0.13112]],
+                                            width=1000)
