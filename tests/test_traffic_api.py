@@ -66,3 +66,27 @@ class TrafficApiTest(unittest.TestCase):
         with self.assertRaises(herepy.UnauthorizedError):
             self._api.incidents_in_corridor(points=[[51.5072, -0.1275], [51.50781, -0.13112]],
                                             width=1000)
+
+
+    @responses.activate
+    def test_incidents_via_proximity_success(self):
+        with codecs.open('testdata/models/traffic_incidents_proximity.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://traffic.ls.hereapi.com/traffic/6.0/incidents.json',
+                  expectedResponse, status=200)
+        response = self._api.incidents_via_proximity(latitude=52.5311, longitude=13.3644,
+                            radius=15000, criticality=[herepy.IncidentsCriticalityInt.critical, herepy.IncidentsCriticalityInt.major])
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.TrafficIncidentResponse)
+        self.assertIsNotNone(response.as_dict())
+
+
+    @responses.activate
+    def test_incidents_via_proximity_fails(self):
+        with codecs.open('testdata/models/traffic_incidents_error.json', mode='r', encoding='utf-8') as f:
+            expectedResponse = f.read()
+        responses.add(responses.GET, 'https://traffic.ls.hereapi.com/traffic/6.0/incidents.json',
+                  expectedResponse, status=200)
+        with self.assertRaises(herepy.UnauthorizedError):
+            self._api.incidents_via_proximity(latitude=52.5311, longitude=13.3644,
+                        radius=15000, criticality=[herepy.IncidentsCriticalityInt.critical, herepy.IncidentsCriticalityInt.major])

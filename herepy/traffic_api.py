@@ -8,7 +8,7 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
 from herepy.models import TrafficIncidentResponse
-from herepy.here_enum import IncidentsCriticalityStr
+from herepy.here_enum import IncidentsCriticalityStr, IncidentsCriticalityInt
 
 from typing import List, Optional
 
@@ -58,10 +58,18 @@ class TrafficApi(HEREApi):
             return HEREError(error_message)
 
 
-    def __prepare_criticality_values(self, criticality_enums: [IncidentsCriticalityStr]):
+    def __prepare_criticality_str_values(self, criticality_enums: [IncidentsCriticalityStr]):
         criticality_values = ""
         for criticality in criticality_enums:
             criticality_values += criticality.__str__() + ','
+        criticality_values = criticality_values[:-1]
+        return criticality_values
+
+
+    def __prepare_criticality_int_values(self, criticality_enums: [IncidentsCriticalityInt]):
+        criticality_values = ''
+        for criticality in criticality_enums:
+            criticality_values += str(criticality.__int__()) + ','
         criticality_values = criticality_values[:-1]
         return criticality_values
 
@@ -91,7 +99,7 @@ class TrafficApi(HEREApi):
 
         data = {'bbox': str.format('{0},{1};{2},{3}', top_left[0], top_left[1], bottom_right[0], bottom_right[1]),
                 'apiKey': self._api_key,
-                'criticality': self.__prepare_criticality_values(criticality_enums=criticality)}
+                'criticality': self.__prepare_criticality_str_values(criticality_enums=criticality)}
         return self.__get(self._base_url + 'incidents.json', data)
 
 
@@ -108,5 +116,31 @@ class TrafficApi(HEREApi):
           HEREError"""
 
         data = {'corridor': self.__prepare_corridor_value(points=points, width=width),
+                'apiKey': self._api_key}
+        return self.__get(self._base_url + 'incidents.json', data)
+
+
+    def incidents_via_proximity(self,
+                                latitude: float,
+                                longitude: float,
+                                radius: int,
+                                criticality: [IncidentsCriticalityInt]) -> Optional[TrafficIncidentResponse]:
+        """Request traffic incident information within specified area.
+        Args:
+          latitude (float):
+            Latitude of specified area.
+          longitude (float):
+            Longitude of specified area.
+          radius (int):
+            Radius of area in meters.
+          criticality (array):
+            List of IncidentsCriticalityInt.
+        Returns:
+          TrafficIncidentResponse
+        Raises:
+          HEREError"""
+
+        data = {'prox': str.format('{0},{1},{2}', latitude, longitude, radius),
+                'criticality': self.__prepare_criticality_int_values(criticality_enums=criticality),
                 'apiKey': self._api_key}
         return self.__get(self._base_url + 'incidents.json', data)
