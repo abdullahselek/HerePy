@@ -210,4 +210,4 @@ class IncidentsCriticalityInt(Enum):
     lowImpact = 3
 
     def __int__(self):
-        return '%s' % self._value_
+        return self._value_

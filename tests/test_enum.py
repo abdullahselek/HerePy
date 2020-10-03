@@ -222,3 +222,16 @@ class IncidentsCriticalityStrTest(unittest.TestCase):
         self.assertEqual(minor.__str__(), 'minor')
         lowImpact = herepy.IncidentsCriticalityStr.lowImpact
         self.assertEqual(lowImpact.__str__(), 'lowImpact')
+
+
+class IncidentsCriticalityIntTest(unittest.TestCase):
+
+    def test_valueofenum(self):
+        critical = herepy.IncidentsCriticalityInt.critical
+        self.assertEqual(critical.__int__(), 0)
+        major = herepy.IncidentsCriticalityInt.major
+        self.assertEqual(major.__int__(), 1)
+        minor = herepy.IncidentsCriticalityInt.minor
+        self.assertEqual(minor.__int__(), 2)
+        lowImpact = herepy.IncidentsCriticalityInt.lowImpact
+        self.assertEqual(lowImpact.__int__(), 3)
