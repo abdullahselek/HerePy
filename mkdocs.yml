@@ -26,6 +26,7 @@ nav:
   - api/routing_api.md
   - api/ev_charging_stations_api.md
   - api/fleet_telematics_api.md
+  - api/traffic_api.md
 - Models:
   - models/models.md
 - Enums:

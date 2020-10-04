@@ -26,3 +26,4 @@ Available clients are:
 * Routing API
 * EV Charging Stations API
 * Fleet Telematics API
+* Traffic API
