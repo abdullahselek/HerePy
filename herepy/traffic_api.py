@@ -103,7 +103,7 @@ class TrafficApi(HEREApi):
         return self.__get(self._base_url + 'incidents.json', data)
 
 
-    def incidents_in_corridor(self, points: List[List[float]], width: int):
+    def incidents_in_corridor(self, points: List[List[float]], width: int) -> Optional[TrafficIncidentResponse]:
         """Request traffic incidents for a defined route.
         Args:
           points (array):
@@ -120,11 +120,8 @@ class TrafficApi(HEREApi):
         return self.__get(self._base_url + 'incidents.json', data)
 
 
-    def incidents_via_proximity(self,
-                                latitude: float,
-                                longitude: float,
-                                radius: int,
-                                criticality: [IncidentsCriticalityInt]) -> Optional[TrafficIncidentResponse]:
+    def incidents_via_proximity(self, latitude: float, longitude: float,
+                  radius: int, criticality: [IncidentsCriticalityInt]) -> Optional[TrafficIncidentResponse]:
         """Request traffic incident information within specified area.
         Args:
           latitude (float):
