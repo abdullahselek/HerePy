@@ -31,6 +31,10 @@ class ModelsTest(unittest.TestCase):
     with open('testdata/models/destination_weather_observations.json', 'rb') as f:
         DESTINATION_WEATHER_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
 
+    with open('testdata/models/traffic_api_flow.json', 'rb') as f:
+        TRAFFIC_FLOW_SAMPLE_JSON = json.loads(f.read().decode('utf8'))
+
+
     def test_geocoder_response(self):
         geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(self.GEOCODER_SAMPLE_JSON)    
         try:
@@ -102,3 +106,12 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(destinationWeatherResponse.as_json_string())
         self.assertTrue(destinationWeatherResponse.as_dict())
+
+    def test_traffic_flow_response(self):
+        destinationWeatherResponse = herepy.DestinationWeatherResponse.new_from_jsondict(self.TRAFFIC_FLOW_SAMPLE_JSON, {'RWS': None})
+        try:
+            destinationWeatherResponse.__repr__()
+        except Exception as e:
+            self.fail(e)
+        self.assertIsNotNone(destinationWeatherResponse.as_json_string())
+        self.assertIsNotNone(destinationWeatherResponse.as_dict())

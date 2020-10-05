@@ -46,7 +46,8 @@ from .models import (
     TrafficIncidentResponse,
     DestinationWeatherResponse,
     EVChargingStationsResponse,
-    WaypointSequenceResponse
+    WaypointSequenceResponse,
+    TrafficFlowResponse
 )
 
 from .destination_weather_api import DestinationWeatherApi

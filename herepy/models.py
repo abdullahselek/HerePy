@@ -245,3 +245,17 @@ class WaypointSequenceResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+
+class TrafficFlowResponse(HEREModel):
+    """A class representing the Traffic API Flow response data."""
+
+    def __init__(self, **kwargs):
+        super(TrafficFlowResponse, self).__init__()
+        self.param_defaults = {
+            'RWS': [],
+            'error': None,
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))
