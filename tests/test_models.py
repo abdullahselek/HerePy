@@ -44,6 +44,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(geocoderResponse.as_json_string())
         self.assertTrue(geocoderResponse.as_dict())
 
+
     def test_routing_response(self):
         routingResponse = herepy.RoutingResponse.new_from_jsondict(self.ROUTING_SAMPLE_JSON)
         try:
@@ -52,6 +53,7 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(routingResponse.as_json_string())
         self.assertTrue(routingResponse.as_dict())
+
 
     def test_routingapi_matrix_response(self):
         routing_matrix_response = herepy.RoutingResponse.new_from_jsondict(self.ROUTING_MATRIX_SAMPLE_JSON)
@@ -62,6 +64,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(routing_matrix_response.as_json_string())
         self.assertTrue(routing_matrix_response.as_dict())
 
+
     def test_geocoder_autocompleteresponse(self):
         geocoderAutoCompleteResponse = herepy.GeocoderAutoCompleteResponse.new_from_jsondict(self.GEOCODER_AUTO_COMPLETE_SAMPLE_JSON)
         try:
@@ -70,6 +73,7 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(geocoderAutoCompleteResponse.as_json_string())
         self.assertTrue(geocoderAutoCompleteResponse.as_dict())
+
 
     def test_placesapi_response(self):
         placesApiResponse = herepy.PlacesResponse.new_from_jsondict(self.PLACES_API_SAMPLE_JSON)
@@ -80,6 +84,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(placesApiResponse.as_json_string())
         self.assertTrue(placesApiResponse.as_dict())
 
+
     def test_publictransitapi_response(self):
         publicTransitResponse = herepy.PublicTransitResponse.new_from_jsondict(self.PUBLIC_TRANSIT_API_SAMPLE_JSON)
         try:
@@ -88,6 +93,7 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(publicTransitResponse.as_json_string())
         self.assertTrue(publicTransitResponse.as_dict())
+
 
     def test_traffic_incident_response(self):
         trafficIncidentResponse = herepy.TrafficIncidentResponse.new_from_jsondict(self.TRAFFIC_INCIDENTS_SAMPLE_JSON)
@@ -98,6 +104,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(trafficIncidentResponse.as_json_string())
         self.assertTrue(trafficIncidentResponse.as_dict())
 
+
     def test_destination_weather_response(self):
         destinationWeatherResponse = herepy.DestinationWeatherResponse.new_from_jsondict(self.DESTINATION_WEATHER_SAMPLE_JSON, {'observations': None})
         try:
@@ -106,6 +113,7 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertTrue(destinationWeatherResponse.as_json_string())
         self.assertTrue(destinationWeatherResponse.as_dict())
+
 
     def test_traffic_flow_response(self):
         destinationWeatherResponse = herepy.DestinationWeatherResponse.new_from_jsondict(self.TRAFFIC_FLOW_SAMPLE_JSON, {'RWS': None})

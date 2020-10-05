@@ -19,6 +19,7 @@ class UtilsTest(unittest.TestCase):
         encodedParameters = Utils.encode_parameters(data)
         self.assertTrue(encodedParameters)
 
+
     def test_buildurl(self):
         data = {'searchtext': '200 S Mathilda Sunnyvale CA', 'app_id': 'app_id', 'app_code': 'app_code'}
         url = Utils.build_url('https://geocoder.cit.api.here.com/6.2/geocode.json', data)
