@@ -11,12 +11,11 @@ from herepy.models import PlacesResponse
 from herepy.here_enum import PlacesCategory
 from typing import List, Optional
 
+
 class PlacesApi(HEREApi):
     """A python interface into the HERE Places (Search) API"""
 
-    def __init__(self,
-                 api_key: str=None,
-                 timeout: int=None):
+    def __init__(self, api_key: str = None, timeout: int = None):
         """Returns a PlacesApi instance.
         Args:
           api_key (str):
@@ -26,24 +25,24 @@ class PlacesApi(HEREApi):
         """
 
         super(PlacesApi, self).__init__(api_key, timeout)
-        self._base_url = 'https://discover.search.hereapi.com/v1/discover'
-
+        self._base_url = "https://discover.search.hereapi.com/v1/discover"
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
-        json_data = json.loads(response.content.decode('utf8'))
-        if json_data.get('items') != None:
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("items") != None:
             return PlacesResponse.new_from_jsondict(json_data)
         else:
-            raise HEREError(json_data.get('message', 'Error occured on ' + sys._getframe(1).f_code.co_name))
+            raise HEREError(
+                json_data.get(
+                    "message", "Error occured on " + sys._getframe(1).f_code.co_name
+                )
+            )
 
-
-    def onebox_search(self,
-                      coordinates: List[float],
-                      query: str,
-                      limit: int=10,
-                      lang: str='en-US') -> Optional[PlacesResponse]:
+    def onebox_search(
+        self, coordinates: List[float], query: str, limit: int = 10, lang: str = "en-US"
+    ) -> Optional[PlacesResponse]:
         """Request a list of places based on a query string.
         Args:
           coordinates (array):
@@ -59,20 +58,23 @@ class PlacesApi(HEREApi):
         Raises:
           HEREError"""
 
-        data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
-                'q': query,
-                'limit': limit,
-                'lang': lang,
-                'apiKey': self._api_key}
+        data = {
+            "at": str.format("{0},{1}", coordinates[0], coordinates[1]),
+            "q": query,
+            "limit": limit,
+            "lang": lang,
+            "apiKey": self._api_key,
+        }
         return self.__get(data)
 
-
-    def search_in_country(self,
-                          coordinates: List[float],
-                          query: str,
-                          country_code: str,
-                          limit: int=10,
-                          lang: str='en-US') -> Optional[PlacesResponse]:
+    def search_in_country(
+        self,
+        coordinates: List[float],
+        query: str,
+        country_code: str,
+        limit: int = 10,
+        lang: str = "en-US",
+    ) -> Optional[PlacesResponse]:
         """Request a list of places based on a query string.
         Args:
           coordinates (array):
@@ -90,20 +92,19 @@ class PlacesApi(HEREApi):
         Raises:
           HEREError"""
 
-        data = {'at': str.format('{0},{1}', coordinates[0], coordinates[1]),
-                'q': query,
-                'limit': limit,
-                'in': 'countryCode:' + country_code,
-                'lang': lang,
-                'apiKey': self._api_key}
+        data = {
+            "at": str.format("{0},{1}", coordinates[0], coordinates[1]),
+            "q": query,
+            "limit": limit,
+            "in": "countryCode:" + country_code,
+            "lang": lang,
+            "apiKey": self._api_key,
+        }
         return self.__get(data)
 
-
-    def places_in_circle(self,
-                         coordinates: List[float],
-                         radius: int,
-                         query: str,
-                         lang: str='en-US') -> Optional[PlacesResponse]:
+    def places_in_circle(
+        self, coordinates: List[float], radius: int, query: str, lang: str = "en-US"
+    ) -> Optional[PlacesResponse]:
         """Request a list of popular places around a location
         Args:
           coordinates (array):
@@ -119,8 +120,12 @@ class PlacesApi(HEREApi):
         Raises:
           HEREError"""
 
-        data = {'in': str.format('circle:{0},{1};r={2}', coordinates[0], coordinates[1], radius),
-                'q': query,
-                'lang': lang,
-                'apiKey': self._api_key}
+        data = {
+            "in": str.format(
+                "circle:{0},{1};r={2}", coordinates[0], coordinates[1], radius
+            ),
+            "q": query,
+            "lang": lang,
+            "apiKey": self._api_key,
+        }
         return self.__get(data)

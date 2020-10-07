@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
+
 class HEREApi(object):
     """ Base class from which all wrappers inherit."""
 
-    def __init__(self,
-                 api_key: str=None,
-                 timeout: int=None):
+    def __init__(self, api_key: str = None, timeout: int = None):
         """Returns a Api instance.
         Args:
           api_key (str):
@@ -20,9 +19,7 @@ class HEREApi(object):
         else:
             self._timeout = 20
 
-
-    def __set_credentials(self,
-                          api_key):
+    def __set_credentials(self, api_key):
         """Setter for credentials.
         Args:
           api_key (str):

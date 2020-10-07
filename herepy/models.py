@@ -1,5 +1,6 @@
 import json
 
+
 class HEREModel(object):
     """ Base class from which all here models will inherit."""
 
@@ -7,7 +8,7 @@ class HEREModel(object):
         self.param_defaults = {}
 
     def __str__(self):
-        """ Returns a string representation of HEREModel. By default
+        """Returns a string representation of HEREModel. By default
         this is the same as as_json_string()."""
         return self.as_json_string()
 
@@ -18,12 +19,12 @@ class HEREModel(object):
         return not self.__eq__(other)
 
     def as_json_string(self):
-        """ Returns the HEREModel as a JSON string based on key/value
+        """Returns the HEREModel as a JSON string based on key/value
         pairs returned from the as_dict() method."""
         return json.dumps(self.as_dict(), sort_keys=True)
 
     def as_dict(self):
-        """ Create a dictionary representation of the object. Please see inline
+        """Create a dictionary representation of the object. Please see inline
         comments on construction when dictionaries contain HEREModels."""
         data = {}
 
@@ -38,7 +39,7 @@ class HEREModel(object):
             if isinstance(getattr(self, key, None), (list, tuple, set)):
                 data[key] = list()
                 for subobj in getattr(self, key, None):
-                    if getattr(subobj, 'as_dict', None):
+                    if getattr(subobj, "as_dict", None):
                         data[key].append(subobj.as_dict())
                     else:
                         data[key].append(subobj)
@@ -47,7 +48,7 @@ class HEREModel(object):
             # and we can assign the data[key] directly with the as_dict()
             # method of the object. An example being a Status object contained
             # within a User object.
-            elif getattr(getattr(self, key, None), 'as_dict', None):
+            elif getattr(getattr(self, key, None), "as_dict", None):
                 data[key] = getattr(self, key).as_dict()
 
             # If the value doesn't have an as_dict() method, i.e., it's not
@@ -59,7 +60,7 @@ class HEREModel(object):
 
     @classmethod
     def new_from_jsondict(cls, data, **kwargs):
-        """ Create a new instance based on a JSON dict. Any kwargs should be
+        """Create a new instance based on a JSON dict. Any kwargs should be
         supplied by the inherited, calling class.
 
         Args:
@@ -76,42 +77,39 @@ class HEREModel(object):
         c._json = data
         return c
 
+
 class GeocoderResponse(HEREModel):
     """A class representing the Geocoder Api response data."""
 
     def __init__(self, **kwargs):
         super(GeocoderResponse, self).__init__()
-        self.param_defaults = {
-            'items': None
-        }
+        self.param_defaults = {"items": None}
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class GeocoderReverseResponse(HEREModel):
     """A class representing the Geocoder Reverse Api response data."""
 
     def __init__(self, **kwargs):
         super(GeocoderReverseResponse, self).__init__()
-        self.param_defaults = {
-            'items': None
-        }
+        self.param_defaults = {"items": None}
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class RoutingResponse(HEREModel):
     """A class representing the Routing Api response data."""
 
     def __init__(self, **kwargs):
         super(RoutingResponse, self).__init__()
-        self.param_defaults = {
-            'response': None,
-            'route_short': None
-        }
+        self.param_defaults = {"response": None, "route_short": None}
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class RoutingMatrixResponse(HEREModel):
     """A class representing the Routing Api matrix response data."""
@@ -119,73 +117,67 @@ class RoutingMatrixResponse(HEREModel):
     def __init__(self, **kwargs):
         super(RoutingMatrixResponse, self).__init__()
         self.param_defaults = {
-            'response': None,
+            "response": None,
         }
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class GeocoderAutoCompleteResponse(HEREModel):
     """A class representing the Geocoder Autocomplete Api response data."""
 
     def __init__(self, **kwargs):
         super(GeocoderAutoCompleteResponse, self).__init__()
-        self.param_defaults = {
-            'items': None
-        }
+        self.param_defaults = {"items": None}
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class RmeResponse(HEREModel):
     """A class representing the RME (Route Matcher) Api response data."""
 
     def __init__(self, **kwargs):
         super(RmeResponse, self).__init__()
-        self.param_defaults = {
-            'RouteLinks' : [],
-            'TracePoints' : [],
-            'Warnings' : []
-        }
+        self.param_defaults = {"RouteLinks": [], "TracePoints": [], "Warnings": []}
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class PlacesResponse(HEREModel):
     """A class representing the Places (Search) Api response data."""
 
     def __init__(self, **kwargs):
         super(PlacesResponse, self).__init__()
-        self.param_defaults = {
-            'items': None
-        }
+        self.param_defaults = {"items": None}
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class PublicTransitResponse(HEREModel):
     """A class representing the Public Transit Api response data."""
 
     def __init__(self, **kwargs):
         super(PublicTransitResponse, self).__init__()
-        self.param_defaults = {
-            'Res': None
-        }
+        self.param_defaults = {"Res": None}
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class TrafficIncidentResponse(HEREModel):
     """A class representing the Traffic Incidents response provided by Traffic Api."""
 
     def __init__(self, **kwargs):
         super(TrafficIncidentResponse, self).__init__()
-        self.param_defaults = {
-            'TRAFFICITEMS': None
-        }
+        self.param_defaults = {"TRAFFICITEMS": None}
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
 
 class DestinationWeatherResponse(HEREModel):
     """A class representing the Weather Forecasts for DestinationWeather Api."""
@@ -199,7 +191,7 @@ class DestinationWeatherResponse(HEREModel):
 
     @classmethod
     def new_from_jsondict(cls, data, param_defaults, **kwargs):
-        """ Create a new instance based on a JSON dict. Any kwargs should be
+        """Create a new instance based on a JSON dict. Any kwargs should be
         supplied by the inherited, calling class.
 
         Args:
@@ -223,9 +215,9 @@ class EVChargingStationsResponse(HEREModel):
     def __init__(self, **kwargs):
         super(EVChargingStationsResponse, self).__init__()
         self.param_defaults = {
-            'hasMore': False,
-            'count': 0,
-            'evStations' : None,
+            "hasMore": False,
+            "count": 0,
+            "evStations": None,
         }
 
         for (param, default) in self.param_defaults.items():
@@ -238,9 +230,9 @@ class WaypointSequenceResponse(HEREModel):
     def __init__(self, **kwargs):
         super(WaypointSequenceResponse, self).__init__()
         self.param_defaults = {
-            'results': None,
-            'errors': None,
-            'warnings': None,
+            "results": None,
+            "errors": None,
+            "warnings": None,
         }
 
         for (param, default) in self.param_defaults.items():
@@ -253,8 +245,8 @@ class TrafficFlowResponse(HEREModel):
     def __init__(self, **kwargs):
         super(TrafficFlowResponse, self).__init__()
         self.param_defaults = {
-            'RWS': [],
-            'error': None,
+            "RWS": [],
+            "error": None,
         }
 
         for (param, default) in self.param_defaults.items():

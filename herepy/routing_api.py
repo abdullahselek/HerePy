@@ -17,12 +17,12 @@ from typing import List, Union, Optional
 class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
 
-    URL_CALCULATE_ROUTE = 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json'
-    URL_CALCULATE_MATRIX = 'https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json'
+    URL_CALCULATE_ROUTE = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json"
+    URL_CALCULATE_MATRIX = (
+        "https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json"
+    )
 
-    def __init__(self,
-                 api_key: str=None,
-                 timeout: int=None):
+    def __init__(self, api_key: str = None, timeout: int = None):
         """Returns a RoutingApi instance.
         Args:
           api_key (str):
@@ -36,8 +36,8 @@ class RoutingApi(HEREApi):
     def __get(self, base_url, data, response_cls):
         url = Utils.build_url(base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
-        json_data = json.loads(response.content.decode('utf8'))
-        if json_data.get('response') is not None:
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("response") is not None:
             return response_cls.new_from_jsondict(json_data)
         else:
             raise error_from_routing_service_error(json_data)
@@ -46,23 +46,25 @@ class RoutingApi(HEREApi):
     def __prepare_mode_values(cls, modes):
         mode_values = ""
         for mode in modes:
-            mode_values += mode.__str__() + ';'
+            mode_values += mode.__str__() + ";"
         mode_values = mode_values[:-1]
         return mode_values
 
     @classmethod
     def __array_to_waypoint(cls, waypoint_a):
-        return str.format('geo!{0},{1}', waypoint_a[0], waypoint_a[1])
+        return str.format("geo!{0},{1}", waypoint_a[0], waypoint_a[1])
 
     def _route(self, waypoint_a, waypoint_b, modes=None, departure=None, arrival=None):
         if isinstance(waypoint_a, str):
             waypoint_a = self._get_coordinates_for_location_name(waypoint_a)
         if isinstance(waypoint_b, str):
             waypoint_b = self._get_coordinates_for_location_name(waypoint_b)
-        data = {'waypoint0': self.__array_to_waypoint(waypoint_a),
-                'waypoint1': self.__array_to_waypoint(waypoint_b),
-                'mode': self.__prepare_mode_values(modes),
-                'apikey': self._api_key}
+        data = {
+            "waypoint0": self.__array_to_waypoint(waypoint_a),
+            "waypoint1": self.__array_to_waypoint(waypoint_b),
+            "mode": self.__prepare_mode_values(modes),
+            "apikey": self._api_key,
+        }
         if departure is not None and arrival is not None:
             raise HEREError("Specify either departure or arrival, not both.")
         if departure is not None:
@@ -78,7 +80,10 @@ class RoutingApi(HEREApi):
         if any(mode in modes for mode in [RouteMode.car, RouteMode.truck]):
             # Get Route for Car and Truck
             response.route_short = self._get_route_from_vehicle_maneuver(maneuver)
-        elif any(mode in modes for mode in [RouteMode.publicTransport, RouteMode.publicTransportTimeTable]):
+        elif any(
+            mode in modes
+            for mode in [RouteMode.publicTransport, RouteMode.publicTransportTimeTable]
+        ):
             # Get Route for Public Transport
             public_transport_line = route[0]["publicTransportLine"]
             response.route_short = self._get_route_from_public_transport_line(
@@ -89,11 +94,13 @@ class RoutingApi(HEREApi):
             response.route_short = self._get_route_from_non_vehicle_maneuver(maneuver)
         return response
 
-    def bicycle_route(self,
-                      waypoint_a: Union[List[float], str],
-                      waypoint_b: Union[List[float], str],
-                      modes: List[RouteMode]=None,
-                      departure: str='now') -> Optional[RoutingResponse]:
+    def bicycle_route(
+        self,
+        waypoint_a: Union[List[float], str],
+        waypoint_b: Union[List[float], str],
+        modes: List[RouteMode] = None,
+        departure: str = "now",
+    ) -> Optional[RoutingResponse]:
         """Request a bicycle route between two points
         Args:
           waypoint_a:
@@ -115,11 +122,13 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.bicycle, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def car_route(self,
-                  waypoint_a: Union[List[float], str],
-                  waypoint_b: Union[List[float], str],
-                  modes: List[RouteMode]=None,
-                  departure: str='now') -> Optional[RoutingResponse]:
+    def car_route(
+        self,
+        waypoint_a: Union[List[float], str],
+        waypoint_b: Union[List[float], str],
+        modes: List[RouteMode] = None,
+        departure: str = "now",
+    ) -> Optional[RoutingResponse]:
         """Request a driving route between two points
         Args:
           waypoint_a (array):
@@ -141,11 +150,13 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.car, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def pedastrian_route(self,
-                         waypoint_a: Union[List[float], str],
-                         waypoint_b: Union[List[float], str],
-                         modes: List[RouteMode]=None,
-                         departure: str='now') -> Optional[RoutingResponse]:
+    def pedastrian_route(
+        self,
+        waypoint_a: Union[List[float], str],
+        waypoint_b: Union[List[float], str],
+        modes: List[RouteMode] = None,
+        departure: str = "now",
+    ) -> Optional[RoutingResponse]:
         """Request a pedastrian route between two points
         Args:
           waypoint_a (array):
@@ -167,12 +178,14 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.pedestrian, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def intermediate_route(self,
-                           waypoint_a: Union[List[float], str],
-                           waypoint_b: Union[List[float], str],
-                           waypoint_c: Union[List[float], str],
-                           modes: List[RouteMode]=None,
-                           departure: str='now') -> Optional[RoutingResponse]:
+    def intermediate_route(
+        self,
+        waypoint_a: Union[List[float], str],
+        waypoint_b: Union[List[float], str],
+        waypoint_c: Union[List[float], str],
+        modes: List[RouteMode] = None,
+        departure: str = "now",
+    ) -> Optional[RoutingResponse]:
         """Request a intermediate route from three points
         Args:
           waypoint_a (array):
@@ -197,12 +210,14 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.car, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def public_transport(self,
-                         waypoint_a: Union[List[float], str],
-                         waypoint_b: Union[List[float], str],
-                         combine_change: bool,
-                         modes: List[RouteMode]=None,
-                         departure='now') -> Optional[RoutingResponse]:
+    def public_transport(
+        self,
+        waypoint_a: Union[List[float], str],
+        waypoint_b: Union[List[float], str],
+        combine_change: bool,
+        modes: List[RouteMode] = None,
+        departure="now",
+    ) -> Optional[RoutingResponse]:
         """Request a public transport route between two points
         Args:
           waypoint_a (array):
@@ -227,13 +242,15 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.publicTransport, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def public_transport_timetable(self,
-                                   waypoint_a: Union[List[float], str],
-                                   waypoint_b: Union[List[float], str],
-                                   combine_change: bool,
-                                   modes: List[RouteMode]=None,
-                                   departure: str=None,
-                                   arrival: str=None) -> Optional[RoutingResponse]:
+    def public_transport_timetable(
+        self,
+        waypoint_a: Union[List[float], str],
+        waypoint_b: Union[List[float], str],
+        combine_change: bool,
+        modes: List[RouteMode] = None,
+        departure: str = None,
+        arrival: str = None,
+    ) -> Optional[RoutingResponse]:
         """Request a public transport route between two points based on timetables
         Args:
           waypoint_a (array):
@@ -260,11 +277,13 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.publicTransportTimeTable, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure, arrival)
 
-    def location_near_motorway(self,
-                               waypoint_a: Union[List[float], str],
-                               waypoint_b: Union[List[float], str],
-                               modes: List[RouteMode]=None,
-                               departure: str='now') -> Optional[RoutingResponse]:
+    def location_near_motorway(
+        self,
+        waypoint_a: Union[List[float], str],
+        waypoint_b: Union[List[float], str],
+        modes: List[RouteMode] = None,
+        departure: str = "now",
+    ) -> Optional[RoutingResponse]:
         """Calculates the fastest car route between two location
         Args:
           waypoint_a (array):
@@ -286,11 +305,13 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.car, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def truck_route(self,
-                    waypoint_a: Union[List[float], str],
-                    waypoint_b: Union[List[float], str],
-                    modes: List[RouteMode]=None,
-                    departure: str='now') -> Optional[RoutingResponse]:
+    def truck_route(
+        self,
+        waypoint_a: Union[List[float], str],
+        waypoint_b: Union[List[float], str],
+        modes: List[RouteMode] = None,
+        departure: str = "now",
+    ) -> Optional[RoutingResponse]:
         """Calculates the fastest truck route between two location
         Args:
           waypoint_a (array):
@@ -312,12 +333,14 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.truck, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def matrix(self,
-               start_waypoints: Union[List[float], str],
-               destination_waypoints: Union[List[float], str],
-               departure: str='now',
-               modes: List[RouteMode]=[],
-               summary_attributes: List[MatrixSummaryAttribute]=[]) -> Optional[RoutingResponse]:
+    def matrix(
+        self,
+        start_waypoints: Union[List[float], str],
+        destination_waypoints: Union[List[float], str],
+        departure: str = "now",
+        modes: List[RouteMode] = [],
+        summary_attributes: List[MatrixSummaryAttribute] = [],
+    ) -> Optional[RoutingResponse]:
         """Request a matrix of route summaries between M starts and N destinations.
         Args:
           start_waypoints (array):
@@ -339,19 +362,25 @@ class RoutingApi(HEREApi):
         """
 
         data = {
-            'apikey': self._api_key,
-            'departure': departure,
-            'mode': self.__prepare_mode_values(modes),
-            'summaryAttributes': ','.join([attribute.__str__() for attribute in summary_attributes])
+            "apikey": self._api_key,
+            "departure": departure,
+            "mode": self.__prepare_mode_values(modes),
+            "summaryAttributes": ",".join(
+                [attribute.__str__() for attribute in summary_attributes]
+            ),
         }
         for i, start_waypoint in enumerate(start_waypoints):
             if isinstance(start_waypoint, str):
                 start_waypoint = self._get_coordinates_for_location_name(start_waypoint)
-            data['start' + str(i)] = self.__array_to_waypoint(start_waypoint)
+            data["start" + str(i)] = self.__array_to_waypoint(start_waypoint)
         for i, destination_waypoint in enumerate(destination_waypoints):
             if isinstance(destination_waypoint, str):
-                destination_waypoint = self._get_coordinates_for_location_name(destination_waypoint)
-            data['destination' + str(i)] = self.__array_to_waypoint(destination_waypoint)
+                destination_waypoint = self._get_coordinates_for_location_name(
+                    destination_waypoint
+                )
+            data["destination" + str(i)] = self.__array_to_waypoint(
+                destination_waypoint
+            )
         response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
         return response
 
@@ -371,7 +400,7 @@ class RoutingApi(HEREApi):
         """Convert a datetime.datetime object to an ISO8601 string."""
 
         if isinstance(datetime_object, datetime.datetime):
-          datetime_object = datetime_object.isoformat()
+            datetime_object = datetime_object.isoformat()
         return datetime_object
 
     @staticmethod
@@ -397,9 +426,7 @@ class RoutingApi(HEREApi):
         return route
 
     @staticmethod
-    def _get_route_from_public_transport_line(
-            public_transport_line_segment
-    ):
+    def _get_route_from_public_transport_line(public_transport_line_segment):
         """Extract a short route description from the public transport lines."""
 
         lines = []
@@ -441,7 +468,6 @@ class RoutingApi(HEREApi):
 
         route = "; ".join(list(map(str, road_names)))
         return route
-
 
 
 class InvalidCredentialsError(HEREError):
@@ -500,27 +526,28 @@ class RouteNotReconstructedError(HEREError):
     acquire a new proper RouteId.
     """
 
+
 # pylint: disable=R0911
 def error_from_routing_service_error(json_data):
     """Return the correct subclass for routing errors"""
 
-    if 'error' in json_data:
-        if json_data['error'] == 'Unauthorized':
-            return InvalidCredentialsError(json_data['error_description'] )
+    if "error" in json_data:
+        if json_data["error"] == "Unauthorized":
+            return InvalidCredentialsError(json_data["error_description"])
 
-    if 'subtype' in json_data:
-        subtype = json_data['subtype']
-        details = json_data['details']
+    if "subtype" in json_data:
+        subtype = json_data["subtype"]
+        details = json_data["details"]
 
-        if subtype == 'InvalidInputData':
+        if subtype == "InvalidInputData":
             return InvalidInputDataError(details)
-        if subtype == 'WaypointNotFound':
+        if subtype == "WaypointNotFound":
             return WaypointNotFoundError(details)
-        if subtype == 'NoRouteFound':
+        if subtype == "NoRouteFound":
             return NoRouteFoundError(details)
-        if subtype == 'LinkIdNotFound':
+        if subtype == "LinkIdNotFound":
             return LinkIdNotFoundError(details)
-        if subtype == 'RouteNotReconstructed':
+        if subtype == "RouteNotReconstructed":
             return RouteNotReconstructedError(details)
     # pylint: disable=W0212
-    return HEREError('Error occured on ' + sys._getframe(1).f_code.co_name)
+    return HEREError("Error occured on " + sys._getframe(1).f_code.co_name)

@@ -15,7 +15,7 @@ from typing import Optional
 class DestinationWeatherApi(HEREApi):
     """A python interface into the HERE Destination Weather API"""
 
-    def __init__(self, api_key: str=None, timeout: int=None):
+    def __init__(self, api_key: str = None, timeout: int = None):
         """Returns a DestinationWeatherApi instance.
         Args:
           api_key (str):
@@ -69,7 +69,11 @@ class DestinationWeatherApi(HEREApi):
             return "nwsAlerts"
 
     def weather_for_location_name(
-        self, location_name: str, product: WeatherProductType, one_observation: bool=True, metric: bool=True
+        self,
+        location_name: str,
+        product: WeatherProductType,
+        one_observation: bool = True,
+        metric: bool = True,
     ) -> Optional[DestinationWeatherResponse]:
         """Request the product for given location name.
         Args:
@@ -97,7 +101,11 @@ class DestinationWeatherApi(HEREApi):
         return self._get(data, product)
 
     def weather_for_zip_code(
-        self, zip_code: int, product: WeatherProductType, one_observation: bool=True, metric: bool=True
+        self,
+        zip_code: int,
+        product: WeatherProductType,
+        one_observation: bool = True,
+        metric: bool = True,
     ) -> Optional[DestinationWeatherResponse]:
         """Request the product for given location name.
         Args:
@@ -125,7 +133,12 @@ class DestinationWeatherApi(HEREApi):
         return self._get(data, product)
 
     def weather_for_coordinates(
-        self, latitude: float, longitude: float, product: WeatherProductType, one_observation: bool=True, metric:bool=True
+        self,
+        latitude: float,
+        longitude: float,
+        product: WeatherProductType,
+        one_observation: bool = True,
+        metric: bool = True,
     ) -> Optional[DestinationWeatherResponse]:
         """Request the product for given location name.
         Args:

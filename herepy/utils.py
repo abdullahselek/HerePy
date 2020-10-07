@@ -3,9 +3,10 @@
 import zlib
 import base64
 
-from urllib.parse import (urlparse, urlunparse, urlencode)
+from urllib.parse import urlparse, urlunparse, urlencode
 
 from herepy.error import HEREError
+
 
 class Utils(object):
     """Helper class for main api classes"""
@@ -25,7 +26,9 @@ class Utils(object):
         if not isinstance(parameters, dict):
             raise HEREError("`parameters` must be a dict.")
         else:
-            return urlencode(dict((k, v) for k, v in parameters.items() if v is not None))
+            return urlencode(
+                dict((k, v) for k, v in parameters.items() if v is not None)
+            )
 
     @staticmethod
     def build_url(url, extra_params=None):
@@ -48,7 +51,7 @@ class Utils(object):
             extra_query = Utils.encode_parameters(extra_params)
             # Add it to the existing query
             if query:
-                query += '&' + extra_query
+                query += "&" + extra_query
             else:
                 query = extra_query
 
@@ -57,6 +60,6 @@ class Utils(object):
 
     @staticmethod
     def get_zipped_base64(content):
-        content_bytes = content.encode('utf-8')
+        content_bytes = content.encode("utf-8")
         content_zipped = zlib.compress(content_bytes)
-        return base64.b64encode(content_zipped).decode('utf-8')
+        return base64.b64encode(content_zipped).decode("utf-8")

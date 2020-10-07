@@ -16,9 +16,7 @@ from herepy.error import HEREError
 class FleetTelematicsApi(HEREApi):
     """A python interface into the HERE Fleet Telematics API"""
 
-    def __init__(self,
-                 api_key: str=None,
-                 timeout: int=None):
+    def __init__(self, api_key: str = None, timeout: int = None):
         """Returns a FleetTelematicsApi instance.
         Args:
           api_key (str):
@@ -30,87 +28,93 @@ class FleetTelematicsApi(HEREApi):
         """
 
         super(FleetTelematicsApi, self).__init__(api_key, timeout)
-        self._base_url = 'https://wse.ls.hereapi.com/2/'
+        self._base_url = "https://wse.ls.hereapi.com/2/"
 
-
-    def __create_find_sequence_parameters(self,
-            start: str,
-            departure: str,
-            intermediate_destinations: List[str],
-            end: str,
-            modes: List[RouteMode]):
-        data = {'apiKey': self._api_key,
-                'start': start.__str__(),
-                'departure': departure}
+    def __create_find_sequence_parameters(
+        self,
+        start: str,
+        departure: str,
+        intermediate_destinations: List[str],
+        end: str,
+        modes: List[RouteMode],
+    ):
+        data = {
+            "apiKey": self._api_key,
+            "start": start.__str__(),
+            "departure": departure,
+        }
 
         count = 0
         for destination_param in intermediate_destinations:
             count += 1
-            data[str.format('destination{0}', count)] = destination_param
+            data[str.format("destination{0}", count)] = destination_param
 
-        data['end'] = end
-        data['improveFor'] = 'time'
-        data['departure'] = 'now'
+        data["end"] = end
+        data["improveFor"] = "time"
+        data["departure"] = "now"
 
-        modes_str = ''
+        modes_str = ""
         for route_mode in modes:
-            modes_str += route_mode.__str__() + ';'
+            modes_str += route_mode.__str__() + ";"
 
-        data['mode'] = modes_str
+        data["mode"] = modes_str
         return data
 
-
-    def __create_find_pickup_parameters(self,
-            modes: List[RouteMode],
-            start: str,
-            departure: str,
-            capacity: int,
-            vehicle_cost: float,
-            driver_cost: int,
-            max_detour: int,
-            rest_times: str,
-            end: str,
-            intermediate_destinations: List[str]):
+    def __create_find_pickup_parameters(
+        self,
+        modes: List[RouteMode],
+        start: str,
+        departure: str,
+        capacity: int,
+        vehicle_cost: float,
+        driver_cost: int,
+        max_detour: int,
+        rest_times: str,
+        end: str,
+        intermediate_destinations: List[str],
+    ):
         data = {}
 
-        modes_str = ''
+        modes_str = ""
         for route_mode in modes:
-            modes_str += route_mode.__str__() + ';'
+            modes_str += route_mode.__str__() + ";"
         modes_str = modes_str[:-1]
-        data['mode'] = modes_str
-        data['start'] = 'waypoint0;' + start
-        data['departure'] = departure
-        data['capacity'] = capacity
-        data['vehicleCost'] = vehicle_cost
-        data['driverCost'] = driver_cost
-        data['maxDetour'] = max_detour
-        data['restTimes'] = rest_times
+        data["mode"] = modes_str
+        data["start"] = "waypoint0;" + start
+        data["departure"] = departure
+        data["capacity"] = capacity
+        data["vehicleCost"] = vehicle_cost
+        data["driverCost"] = driver_cost
+        data["maxDetour"] = max_detour
+        data["restTimes"] = rest_times
 
         count = 0
         for destination_pickup_param in intermediate_destinations:
-            data[str.format('destination{0}', count)] = str.format('waypoint{0};', count + 1) + destination_pickup_param
+            data[str.format("destination{0}", count)] = (
+                str.format("waypoint{0};", count + 1) + destination_pickup_param
+            )
             count += 1
 
-        data['end'] = str.format('waypoint{0};{1}', count + 1, end)
+        data["end"] = str.format("waypoint{0};{1}", count + 1, end)
         return data
-
 
     def __get(self, base_url, data, response_cls):
         url = Utils.build_url(base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
-        json_data = json.loads(response.content.decode('utf8'))
-        if json_data.get('results') is not None:
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("results") is not None:
             return response_cls.new_from_jsondict(json_data)
         else:
             raise error_from_fleet_telematics_service_error(json_data)
 
-
-    def find_sequence(self,
-            start: str,
-            departure: str,
-            intermediate_destinations: List[str],
-            end: str,
-            modes: List[RouteMode]) -> Optional[WaypointSequenceResponse]:
+    def find_sequence(
+        self,
+        start: str,
+        departure: str,
+        intermediate_destinations: List[str],
+        end: str,
+        modes: List[RouteMode],
+    ) -> Optional[WaypointSequenceResponse]:
         """Finds time-optimized waypoint sequence route.
         Args:
           start (str):
@@ -129,26 +133,31 @@ class FleetTelematicsApi(HEREApi):
           HEREError
         """
 
-        data = self.__create_find_sequence_parameters(start=start,
-                                                      departure=departure,
-                                                      intermediate_destinations=intermediate_destinations,
-                                                      end=end,
-                                                      modes=modes)
-        response = self.__get(self._base_url + 'findsequence.json', data, WaypointSequenceResponse)
+        data = self.__create_find_sequence_parameters(
+            start=start,
+            departure=departure,
+            intermediate_destinations=intermediate_destinations,
+            end=end,
+            modes=modes,
+        )
+        response = self.__get(
+            self._base_url + "findsequence.json", data, WaypointSequenceResponse
+        )
         return response
 
-
-    def find_pickups(self,
-            modes: List[RouteMode],
-            start: str,
-            departure: str,
-            capacity: int,
-            vehicle_cost: float,
-            driver_cost: int,
-            max_detour: int,
-            rest_times: str,
-            intermediate_destinations: List[str],
-            end: str) -> Optional[WaypointSequenceResponse]:
+    def find_pickups(
+        self,
+        modes: List[RouteMode],
+        start: str,
+        departure: str,
+        capacity: int,
+        vehicle_cost: float,
+        driver_cost: int,
+        max_detour: int,
+        rest_times: str,
+        intermediate_destinations: List[str],
+        end: str,
+    ) -> Optional[WaypointSequenceResponse]:
         """Finds cheaper route by picking up some additional goods along the route.
         Args:
           modes (List[RouteMode]):
@@ -194,17 +203,21 @@ class FleetTelematicsApi(HEREApi):
           HEREError
         """
 
-        data = self.__create_find_pickup_parameters(modes=modes,
-                    start=start,
-                    departure=departure,
-                    capacity=capacity,
-                    vehicle_cost=vehicle_cost,
-                    driver_cost=driver_cost,
-                    max_detour=max_detour,
-                    rest_times=rest_times,
-                    intermediate_destinations=intermediate_destinations,
-                    end=end)
-        response = self.__get(self._base_url + 'findpickups.json', data, WaypointSequenceResponse)
+        data = self.__create_find_pickup_parameters(
+            modes=modes,
+            start=start,
+            departure=departure,
+            capacity=capacity,
+            vehicle_cost=vehicle_cost,
+            driver_cost=driver_cost,
+            max_detour=max_detour,
+            rest_times=rest_times,
+            intermediate_destinations=intermediate_destinations,
+            end=end,
+        )
+        response = self.__get(
+            self._base_url + "findpickups.json", data, WaypointSequenceResponse
+        )
         return response
 
 
@@ -219,11 +232,11 @@ class UnauthorizedError(HEREError):
 def error_from_fleet_telematics_service_error(json_data: dict):
     """Return the correct subclass for sequence errors"""
 
-    if 'Type' in json_data:
-        error_type = json_data['error']
-        message = json_data['error_description']
+    if "Type" in json_data:
+        error_type = json_data["error"]
+        message = json_data["error_description"]
 
-        if error_type == 'Unauthorized':
+        if error_type == "Unauthorized":
             return UnauthorizedError(message)
     # pylint: disable=W0212
-    return HEREError('Error occured on ' + sys._getframe(1).f_code.co_name)
+    return HEREError("Error occured on " + sys._getframe(1).f_code.co_name)

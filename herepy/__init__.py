@@ -2,23 +2,19 @@
 
 """A library that provides a Python interface to the HERE APIs"""
 
-__author__       = 'Abdullah Selek'
-__email__        = 'abdullahselek@gmail.com'
-__copyright__    = 'Copyright (c) 2017 Abdullah Selek'
-__license__      = 'MIT License'
-__version__      = '3.0.2'
-__url__          = 'https://github.com/abdullahselek/HerePy'
-__download_url__ = 'https://pypi.org/pypi/herepy'
-__description__  = 'A library that provides a Python interface to the HERE APIs'
+__author__ = "Abdullah Selek"
+__email__ = "abdullahselek@gmail.com"
+__copyright__ = "Copyright (c) 2017 Abdullah Selek"
+__license__ = "MIT License"
+__version__ = "3.0.2"
+__url__ = "https://github.com/abdullahselek/HerePy"
+__download_url__ = "https://pypi.org/pypi/herepy"
+__description__ = "A library that provides a Python interface to the HERE APIs"
 
 
 import json
 
-from .error import (
-    HEREError,
-    UnauthorizedError,
-    InvalidRequestError
-)
+from .error import HEREError, UnauthorizedError, InvalidRequestError
 
 from .here_enum import (
     RouteMode,
@@ -31,7 +27,7 @@ from .here_enum import (
     EVStationConnectorTypes,
     MultiplePickupOfferType,
     IncidentsCriticalityStr,
-    IncidentsCriticalityInt
+    IncidentsCriticalityInt,
 )
 
 from .models import (
@@ -47,7 +43,7 @@ from .models import (
     DestinationWeatherResponse,
     EVChargingStationsResponse,
     WaypointSequenceResponse,
-    TrafficFlowResponse
+    TrafficFlowResponse,
 )
 
 from .destination_weather_api import DestinationWeatherApi
@@ -59,7 +55,7 @@ from .routing_api import (
     WaypointNotFoundError,
     NoRouteFoundError,
     LinkIdNotFoundError,
-    RouteNotReconstructedError
+    RouteNotReconstructedError,
 )
 
 from .utils import Utils
