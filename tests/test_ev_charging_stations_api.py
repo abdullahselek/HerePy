@@ -11,112 +11,165 @@ from herepy.here_enum import EVStationConnectorTypes
 
 
 class EVChargingStationsApi(unittest.TestCase):
-
     def setUp(self):
-        api = herepy.EVChargingStationsApi(app_id='app_id', app_code='app_code')
+        api = herepy.EVChargingStationsApi(app_id="app_id", app_code="app_code")
         self._api = api
-
 
     def test_initiation(self):
         self.assertIsInstance(self._api, herepy.EVChargingStationsApi)
-        self.assertEqual(self._api._app_id, 'app_id')
-        self.assertEqual(self._api._app_code, 'app_code')
-        self.assertEqual(self._api._base_url, 'https://ev-v2.cit.cc.api.here.com/ev/')
-
+        self.assertEqual(self._api._app_id, "app_id")
+        self.assertEqual(self._api._app_code, "app_code")
+        self.assertEqual(self._api._base_url, "https://ev-v2.cit.cc.api.here.com/ev/")
 
     @responses.activate
     def test_get_stations_circular_search_whensucceed(self):
-        with open('testdata/models/ev_charging_stations_circular.json', 'r') as f:
+        with open("testdata/models/ev_charging_stations_circular.json", "r") as f:
             expected_response = f.read()
-        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
-                  expected_response, status=200)
-        response = self._api.get_stations_circular_search(latitude=52.516667,
-                                                          longitude=13.383333,
-                                                          radius=5000,
-                                                          connectortypes=[EVStationConnectorTypes.small_paddle_inductive,
-                                                    EVStationConnectorTypes.large_paddle_inductive])
+        responses.add(
+            responses.GET,
+            "https://ev-v2.cit.cc.api.here.com/ev/stations.json",
+            expected_response,
+            status=200,
+        )
+        response = self._api.get_stations_circular_search(
+            latitude=52.516667,
+            longitude=13.383333,
+            radius=5000,
+            connectortypes=[
+                EVStationConnectorTypes.small_paddle_inductive,
+                EVStationConnectorTypes.large_paddle_inductive,
+            ],
+        )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
-
 
     @responses.activate
     def test_get_stations_circular_search_whenerroroccured(self):
-        with open('testdata/models/ev_charging_stations_error_unauthorized.json', 'r') as f:
+        with open(
+            "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
+        ) as f:
             expected_response = f.read()
-        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
-                  expected_response, status=200)
+        responses.add(
+            responses.GET,
+            "https://ev-v2.cit.cc.api.here.com/ev/stations.json",
+            expected_response,
+            status=200,
+        )
         with self.assertRaises(herepy.HEREError):
-            self._api.get_stations_circular_search(latitude=52.516667,
-                                                   longitude=13.383333,
-                                                   radius=5000)
-
+            self._api.get_stations_circular_search(
+                latitude=52.516667, longitude=13.383333, radius=5000
+            )
 
     @responses.activate
     def test_get_stations_bounding_box_whensucceed(self):
-        with open('testdata/models/ev_charging_stations_circular.json', 'r') as f:
+        with open("testdata/models/ev_charging_stations_circular.json", "r") as f:
             expected_response = f.read()
-        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
-                  expected_response, status=200)
-        response = self._api.get_stations_bounding_box(top_left=[52.8, 11.37309],
-                                                       bottom_right=[52.31, 13.2],
-                                                       connectortypes=[EVStationConnectorTypes.small_paddle_inductive,
-                                                    EVStationConnectorTypes.large_paddle_inductive])
+        responses.add(
+            responses.GET,
+            "https://ev-v2.cit.cc.api.here.com/ev/stations.json",
+            expected_response,
+            status=200,
+        )
+        response = self._api.get_stations_bounding_box(
+            top_left=[52.8, 11.37309],
+            bottom_right=[52.31, 13.2],
+            connectortypes=[
+                EVStationConnectorTypes.small_paddle_inductive,
+                EVStationConnectorTypes.large_paddle_inductive,
+            ],
+        )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
-
 
     @responses.activate
     def test_get_stations_bounding_box_whenerroroccured(self):
-        with open('testdata/models/ev_charging_stations_error_unauthorized.json', 'r') as f:
+        with open(
+            "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
+        ) as f:
             expected_response = f.read()
-        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
-                  expected_response, status=200)
+        responses.add(
+            responses.GET,
+            "https://ev-v2.cit.cc.api.here.com/ev/stations.json",
+            expected_response,
+            status=200,
+        )
         with self.assertRaises(herepy.HEREError):
-            self._api.get_stations_bounding_box(top_left=[52.8, 11.37309],
-                                                bottom_right=[52.31, 13.2])
-
+            self._api.get_stations_bounding_box(
+                top_left=[52.8, 11.37309], bottom_right=[52.31, 13.2]
+            )
 
     @responses.activate
     def test_get_stations_corridor_whensucceed(self):
-        with open('testdata/models/ev_charging_stations_circular.json', 'r') as f:
+        with open("testdata/models/ev_charging_stations_circular.json", "r") as f:
             expected_response = f.read()
-        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
-                  expected_response, status=200)
-        response = self._api.get_stations_corridor(points=[52.51666, 13.38333, 52.13333, 11.61666, 53.56527, 10.00138],
-                                                   connectortypes=[EVStationConnectorTypes.small_paddle_inductive,
-                                                    EVStationConnectorTypes.large_paddle_inductive])
+        responses.add(
+            responses.GET,
+            "https://ev-v2.cit.cc.api.here.com/ev/stations.json",
+            expected_response,
+            status=200,
+        )
+        response = self._api.get_stations_corridor(
+            points=[52.51666, 13.38333, 52.13333, 11.61666, 53.56527, 10.00138],
+            connectortypes=[
+                EVStationConnectorTypes.small_paddle_inductive,
+                EVStationConnectorTypes.large_paddle_inductive,
+            ],
+        )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
 
-
     @responses.activate
     def test_get_stations_corridor_whenerroroccured(self):
-        with open('testdata/models/ev_charging_stations_error_unauthorized.json', 'r') as f:
+        with open(
+            "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
+        ) as f:
             expected_response = f.read()
-        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations.json',
-                  expected_response, status=200)
+        responses.add(
+            responses.GET,
+            "https://ev-v2.cit.cc.api.here.com/ev/stations.json",
+            expected_response,
+            status=200,
+        )
         with self.assertRaises(herepy.HEREError):
-            self._api.get_stations_corridor(points=[52.51666, 13.38333, 52.13333, 11.61666, 53.56527, 10.00138, 11.0])
-
+            self._api.get_stations_corridor(
+                points=[
+                    52.51666,
+                    13.38333,
+                    52.13333,
+                    11.61666,
+                    53.56527,
+                    10.00138,
+                    11.0,
+                ]
+            )
 
     @responses.activate
     def test_get_station_details_whensucceed(self):
-        station_id = '276u33db-b2c840878cfc409fa5a0aef858419037'
-        with open('testdata/models/ev_charging_station_details.json', 'r') as f:
+        station_id = "276u33db-b2c840878cfc409fa5a0aef858419037"
+        with open("testdata/models/ev_charging_station_details.json", "r") as f:
             expected_response = f.read()
-        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations/' + station_id + '.json',
-                  expected_response, status=200)
+        responses.add(
+            responses.GET,
+            "https://ev-v2.cit.cc.api.here.com/ev/stations/" + station_id + ".json",
+            expected_response,
+            status=200,
+        )
         response = self._api.get_station_details(station_id=station_id)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
 
-
     @responses.activate
     def test_get_station_details_whenerroroccured(self):
-        station_id = '276u33db-b2c840878cfc409fa5a0aef858419037'
-        with open('testdata/models/ev_charging_stations_error_unauthorized.json', 'r') as f:
+        station_id = "276u33db-b2c840878cfc409fa5a0aef858419037"
+        with open(
+            "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
+        ) as f:
             expected_response = f.read()
-        responses.add(responses.GET, 'https://ev-v2.cit.cc.api.here.com/ev/stations/' + station_id + '.json',
-                  expected_response, status=200)
+        responses.add(
+            responses.GET,
+            "https://ev-v2.cit.cc.api.here.com/ev/stations/" + station_id + ".json",
+            expected_response,
+            status=200,
+        )
         with self.assertRaises(herepy.HEREError):
             self._api.get_station_details(station_id=station_id)
