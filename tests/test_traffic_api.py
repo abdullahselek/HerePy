@@ -48,7 +48,7 @@ class TrafficApiTest(unittest.TestCase):
     @responses.activate
     def test_incidents_in_bounding_box_fails(self):
         with codecs.open(
-            "testdata/models/traffic_incidents_error.json", mode="r", encoding="utf-8"
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
         ) as f:
             expectedResponse = f.read()
         responses.add(
@@ -89,7 +89,7 @@ class TrafficApiTest(unittest.TestCase):
     @responses.activate
     def test_incidents_in_corridor_fails(self):
         with codecs.open(
-            "testdata/models/traffic_incidents_error.json", mode="r", encoding="utf-8"
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
         ) as f:
             expectedResponse = f.read()
         responses.add(
@@ -133,7 +133,7 @@ class TrafficApiTest(unittest.TestCase):
     @responses.activate
     def test_incidents_via_proximity_fails(self):
         with codecs.open(
-            "testdata/models/traffic_incidents_error.json", mode="r", encoding="utf-8"
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
         ) as f:
             expectedResponse = f.read()
         responses.add(
@@ -171,3 +171,18 @@ class TrafficApiTest(unittest.TestCase):
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.TrafficFlowResponse)
         self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_flow_using_quadkey_fails(self):
+        with codecs.open(
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        with self.assertRaises(herepy.UnauthorizedError):
+            self._api.flow_using_quadkey(quadkey="0313131311102300")
