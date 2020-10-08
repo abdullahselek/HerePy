@@ -182,3 +182,31 @@ class TrafficApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "flow.json", data)
+
+    def flow_within_boundingbox(
+        self,
+        top_left: List[float],
+        bottom_right: List[float],
+    ):
+        """Request traffic flow information within specified area.
+        Args:
+          top_left (array):
+            Array including latitude and longitude in order.
+          bottom_right (array):
+            Array including latitude and longitude in order.
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "bbox": str.format(
+                "{0},{1};{2},{3}",
+                top_left[0],
+                top_left[1],
+                bottom_right[0],
+                bottom_right[1],
+            ),
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url + "flow.json", data)

@@ -186,3 +186,41 @@ class TrafficApiTest(unittest.TestCase):
         )
         with self.assertRaises(herepy.UnauthorizedError):
             self._api.flow_using_quadkey(quadkey="0313131311102300")
+
+    @responses.activate
+    def test_flow_within_boundingbox_success(self):
+        with codecs.open(
+            "testdata/models/traffic_api_flow.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.flow_within_boundingbox(
+            top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035]
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.TrafficFlowResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_flow_within_boundingbox_fails(self):
+        with codecs.open(
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        with self.assertRaises(herepy.UnauthorizedError):
+            self._api.flow_within_boundingbox(
+                top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035]
+            )
