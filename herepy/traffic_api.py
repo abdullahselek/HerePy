@@ -7,7 +7,7 @@ import requests
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
-from herepy.models import TrafficIncidentResponse
+from herepy.models import TrafficIncidentResponse, TrafficFlowResponse
 from herepy.here_enum import IncidentsCriticalityStr, IncidentsCriticalityInt
 
 from typing import List, Optional
@@ -35,6 +35,10 @@ class TrafficApi(HEREApi):
         if json_data.get("TRAFFICITEMS") != None:
             return TrafficIncidentResponse.new_from_jsondict(
                 json_data, param_defaults={"TRAFFICITEMS": None}
+            )
+        elif json_data.get("RWS") != None:
+            return TrafficFlowResponse.new_from_jsondict(
+                json_data, param_defaults={"RWS": None}
             )
         else:
             error = self.__get_error_from_response(json_data)
@@ -162,3 +166,19 @@ class TrafficApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "incidents.json", data)
+
+    def flow_using_quadkey(self, quadkey: str):
+        """Request traffic flow information using a quadkey.
+        Args:
+          quadkey (str):
+            The quadkey unique defines a region of the globe using a standard addressing algorthm.
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "quadkey": quadkey,
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url + "flow.json", data)

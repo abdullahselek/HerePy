@@ -152,3 +152,22 @@ class TrafficApiTest(unittest.TestCase):
                     herepy.IncidentsCriticalityInt.major,
                 ],
             )
+
+    @responses.activate
+    def test_flow_using_quadkey_success(self):
+        with codecs.open(
+            "testdata/models/traffic_api_flow.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.flow_using_quadkey(quadkey="0313131311102300")
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.TrafficFlowResponse)
+        self.assertIsNotNone(response.as_dict())
