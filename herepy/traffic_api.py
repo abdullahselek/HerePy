@@ -167,7 +167,7 @@ class TrafficApi(HEREApi):
         }
         return self.__get(self._base_url + "incidents.json", data)
 
-    def flow_using_quadkey(self, quadkey: str):
+    def flow_using_quadkey(self, quadkey: str) -> Optional[TrafficFlowResponse]:
         """Request traffic flow information using a quadkey.
         Args:
           quadkey (str):
@@ -187,7 +187,7 @@ class TrafficApi(HEREApi):
         self,
         top_left: List[float],
         bottom_right: List[float],
-    ):
+    ) -> Optional[TrafficFlowResponse]:
         """Request traffic flow information within specified area.
         Args:
           top_left (array):
