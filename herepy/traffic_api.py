@@ -210,3 +210,30 @@ class TrafficApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "flow.json", data)
+
+    def flow_using_proximity(
+        self, latitude: float, longitude: float, distance: int
+    ) -> Optional[TrafficFlowResponse]:
+        """Request traffic flow for a circle around a defined point.
+        Args:
+          latitude (float):
+            Array including latitude and longitude in order.
+          longitude (float):
+            Array including latitude and longitude in order.
+          distance (int):
+            Extending a distance of metres in all directions.
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "prox": str.format(
+                "{0},{1},{2}",
+                latitude,
+                longitude,
+                distance,
+            ),
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url + "flow.json", data)
