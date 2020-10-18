@@ -211,3 +211,13 @@ class IncidentsCriticalityInt(Enum):
 
     def __int__(self):
         return self._value_
+
+
+class FlowProximityAdditionalAttributes(Enum):
+    """Defines an additional attribute to be included in the traffic flow requests."""
+
+    functional_class = "fc"
+    shape = "sh"
+
+    def __str__(self):
+        return "%s" % self._value_

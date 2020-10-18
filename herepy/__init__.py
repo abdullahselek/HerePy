@@ -28,6 +28,7 @@ from .here_enum import (
     MultiplePickupOfferType,
     IncidentsCriticalityStr,
     IncidentsCriticalityInt,
+    FlowProximityAdditionalAttributes,
 )
 
 from .models import (

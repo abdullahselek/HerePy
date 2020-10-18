@@ -267,3 +267,11 @@ class IncidentsCriticalityIntTest(unittest.TestCase):
         self.assertEqual(minor.__int__(), 2)
         lowImpact = herepy.IncidentsCriticalityInt.lowImpact
         self.assertEqual(lowImpact.__int__(), 3)
+
+
+class FlowProximityAdditionalAttributesTest(unittest.TestCase):
+    def test_valueofenum(self):
+        functional_class = herepy.FlowProximityAdditionalAttributes.functional_class
+        self.assertEqual(functional_class.__str__(), "fc")
+        shape = herepy.FlowProximityAdditionalAttributes.shape
+        self.assertEqual(shape.__str__(), "sh")
