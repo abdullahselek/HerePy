@@ -278,7 +278,13 @@ class TrafficApiTest(unittest.TestCase):
             status=200,
         )
         response = self._api.flow_using_proximity_returning_additional_attributes(
-            latitude=51.5072, longitude=-0.1275, distance=100, attributes=[herepy.here_enum.FlowProximityAdditionalAttributes.functional_class, herepy.here_enum.FlowProximityAdditionalAttributes.shape]
+            latitude=51.5072,
+            longitude=-0.1275,
+            distance=100,
+            attributes=[
+                herepy.here_enum.FlowProximityAdditionalAttributes.functional_class,
+                herepy.here_enum.FlowProximityAdditionalAttributes.shape,
+            ],
         )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.TrafficFlowResponse)
@@ -298,5 +304,11 @@ class TrafficApiTest(unittest.TestCase):
         )
         with self.assertRaises(herepy.UnauthorizedError):
             self._api.flow_using_proximity_returning_additional_attributes(
-            latitude=51.5072, longitude=-0.1275, distance=100, attributes=[herepy.here_enum.FlowProximityAdditionalAttributes.functional_class, herepy.here_enum.FlowProximityAdditionalAttributes.shape]
-        )
+                latitude=51.5072,
+                longitude=-0.1275,
+                distance=100,
+                attributes=[
+                    herepy.here_enum.FlowProximityAdditionalAttributes.functional_class,
+                    herepy.here_enum.FlowProximityAdditionalAttributes.shape,
+                ],
+            )

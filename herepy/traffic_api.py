@@ -8,7 +8,11 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
 from herepy.models import TrafficIncidentResponse, TrafficFlowResponse
-from herepy.here_enum import IncidentsCriticalityStr, IncidentsCriticalityInt, FlowProximityAdditionalAttributes
+from herepy.here_enum import (
+    IncidentsCriticalityStr,
+    IncidentsCriticalityInt,
+    FlowProximityAdditionalAttributes,
+)
 
 from typing import List, Optional
 from enum import Enum
@@ -58,9 +62,7 @@ class TrafficApi(HEREApi):
         else:
             return HEREError(error_message)
 
-    def __prepare_str_values(
-        self, enums: [Enum]
-    ):
+    def __prepare_str_values(self, enums: [Enum]):
         values = ""
         for enum in enums:
             values += enum.__str__() + ","
@@ -111,9 +113,7 @@ class TrafficApi(HEREApi):
                 bottom_right[1],
             ),
             "apiKey": self._api_key,
-            "criticality": self.__prepare_str_values(
-                enums=criticality
-            ),
+            "criticality": self.__prepare_str_values(enums=criticality),
         }
         return self.__get(self._base_url + "incidents.json", data)
 
@@ -240,7 +240,11 @@ class TrafficApi(HEREApi):
         return self.__get(self._base_url + "flow.json", data)
 
     def flow_using_proximity_returning_additional_attributes(
-        self, latitude: float, longitude: float, distance: int, attributes: [FlowProximityAdditionalAttributes]
+        self,
+        latitude: float,
+        longitude: float,
+        distance: int,
+        attributes: [FlowProximityAdditionalAttributes],
     ) -> Optional[TrafficFlowResponse]:
         """Request traffic flow information using proximity, returning shape and functional class.
         Args:
@@ -264,9 +268,7 @@ class TrafficApi(HEREApi):
                 longitude,
                 distance,
             ),
-            "responseattibutes": self.__prepare_str_values(
-                enums=attributes
-            ),
+            "responseattibutes": self.__prepare_str_values(enums=attributes),
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "flow.json", data)
