@@ -272,3 +272,32 @@ class TrafficApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "flow.json", data)
+
+    def flow_with_minimum_jam_factor(
+        self, top_left: List[float], bottom_right: List[float], min_jam_factor: int
+    ) -> Optional[TrafficFlowResponse]:
+        """Request traffic flow information in specified area with a jam factor.
+        Args:
+          top_left (array):
+            Array including latitude and longitude in order.
+          bottom_right (array):
+            Array including latitude and longitude in order.
+          min_jam_factor (int):
+            Severe congestion with a jam factor greater than 7.
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "bbox": str.format(
+                "{0},{1};{2},{3}",
+                top_left[0],
+                top_left[1],
+                bottom_right[0],
+                bottom_right[1],
+            ),
+            "minjamfactor": str.format("{0}", min_jam_factor),
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url + "flow.json", data)

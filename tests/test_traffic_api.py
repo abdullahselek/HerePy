@@ -312,3 +312,45 @@ class TrafficApiTest(unittest.TestCase):
                     herepy.here_enum.FlowProximityAdditionalAttributes.shape,
                 ],
             )
+
+    @responses.activate
+    def test_flow_with_minimum_jam_factor_success(self):
+        with codecs.open(
+            "testdata/models/traffic_api_flow_minjamfactor.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.flow_with_minimum_jam_factor(
+            top_left=[52.5311, 13.3644],
+            bottom_right=[52.5114, 13.4035],
+            min_jam_factor=7,
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.TrafficFlowResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_flow_with_minimum_jam_factor_fails(self):
+        with codecs.open(
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        with self.assertRaises(herepy.UnauthorizedError):
+            self._api.flow_with_minimum_jam_factor(
+                top_left=[52.5311, 13.3644],
+                bottom_right=[52.5114, 13.4035],
+                min_jam_factor=7,
+            )
