@@ -242,7 +242,7 @@ class TrafficApi(HEREApi):
     def flow_using_proximity_returning_additional_attributes(
         self, latitude: float, longitude: float, distance: int, attributes: [FlowProximityAdditionalAttributes]
     ) -> Optional[TrafficFlowResponse]:
-        """Request traffic flow for a circle around a defined point.
+        """Request traffic flow information using proximity, returning shape and functional class.
         Args:
           latitude (float):
             Array including latitude and longitude in order.
@@ -250,7 +250,7 @@ class TrafficApi(HEREApi):
             Array including latitude and longitude in order.
           distance (int):
             Extending a distance of metres in all directions.
-          attirbutes: (array:
+          attributes (array):
             Array that contains FlowProximityAdditionalAttributes.
         Returns:
           TrafficFlowResponse
