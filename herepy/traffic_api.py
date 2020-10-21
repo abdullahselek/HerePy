@@ -8,9 +8,10 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
 from herepy.models import TrafficIncidentResponse, TrafficFlowResponse
-from herepy.here_enum import IncidentsCriticalityStr, IncidentsCriticalityInt
+from herepy.here_enum import IncidentsCriticalityStr, IncidentsCriticalityInt, FlowProximityAdditionalAttributes
 
 from typing import List, Optional
+from enum import Enum
 
 
 class TrafficApi(HEREApi):
@@ -57,14 +58,14 @@ class TrafficApi(HEREApi):
         else:
             return HEREError(error_message)
 
-    def __prepare_criticality_str_values(
-        self, criticality_enums: [IncidentsCriticalityStr]
+    def __prepare_str_values(
+        self, enums: [Enum]
     ):
-        criticality_values = ""
-        for criticality in criticality_enums:
-            criticality_values += criticality.__str__() + ","
-        criticality_values = criticality_values[:-1]
-        return criticality_values
+        values = ""
+        for enum in enums:
+            values += enum.__str__() + ","
+        values = values[:-1]
+        return values
 
     def __prepare_criticality_int_values(
         self, criticality_enums: [IncidentsCriticalityInt]
@@ -110,8 +111,8 @@ class TrafficApi(HEREApi):
                 bottom_right[1],
             ),
             "apiKey": self._api_key,
-            "criticality": self.__prepare_criticality_str_values(
-                criticality_enums=criticality
+            "criticality": self.__prepare_str_values(
+                enums=criticality
             ),
         }
         return self.__get(self._base_url + "incidents.json", data)
@@ -233,6 +234,38 @@ class TrafficApi(HEREApi):
                 latitude,
                 longitude,
                 distance,
+            ),
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url + "flow.json", data)
+
+    def flow_using_proximity_returning_additional_attributes(
+        self, latitude: float, longitude: float, distance: int, attributes: [FlowProximityAdditionalAttributes]
+    ) -> Optional[TrafficFlowResponse]:
+        """Request traffic flow for a circle around a defined point.
+        Args:
+          latitude (float):
+            Array including latitude and longitude in order.
+          longitude (float):
+            Array including latitude and longitude in order.
+          distance (int):
+            Extending a distance of metres in all directions.
+          attirbutes: (array:
+            Array that contains FlowProximityAdditionalAttributes.
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "prox": str.format(
+                "{0},{1},{2}",
+                latitude,
+                longitude,
+                distance,
+            ),
+            "responseattibutes": self.__prepare_str_values(
+                enums=attributes
             ),
             "apiKey": self._api_key,
         }
