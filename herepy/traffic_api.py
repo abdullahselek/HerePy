@@ -274,7 +274,7 @@ class TrafficApi(HEREApi):
         return self.__get(self._base_url + "flow.json", data)
 
     def flow_with_minimum_jam_factor(
-        self, top_left: List[float], bottom_right: List[float], min_jam_factor: int
+        self, top_left: List[float], bottom_right: List[float], min_jam_factor: int = 7
     ) -> Optional[TrafficFlowResponse]:
         """Request traffic flow information in specified area with a jam factor.
         Args:
