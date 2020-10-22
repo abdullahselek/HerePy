@@ -301,3 +301,23 @@ class TrafficApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "flow.json", data)
+
+    def flow_in_corridor(
+        self, points: List[List[float]], width: int
+    ) -> Optional[TrafficFlowResponse]:
+        """Request traffic flow for a defined route.
+        Args:
+          points (array):
+            Array including array of latitude and longitude pairs in order.
+          width (int):
+            Width of corridor (in meters).
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "corridor": self.__prepare_corridor_value(points=points, width=width),
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url + "flow.json", data)

@@ -354,3 +354,42 @@ class TrafficApiTest(unittest.TestCase):
                 bottom_right=[52.5114, 13.4035],
                 min_jam_factor=7,
             )
+
+    @responses.activate
+    def test_flow_in_corridor_success(self):
+        with codecs.open(
+            "testdata/models/traffic_api_flow_corridor.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.flow_in_corridor(
+            points=[[51.5072, -0.1275], [51.50781, -0.13112], [51.51006, -0.1346]],
+            width=1000,
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.TrafficFlowResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_flow_in_corridor_fails(self):
+        with codecs.open(
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        with self.assertRaises(herepy.UnauthorizedError):
+            self._api.flow_in_corridor(
+                points=[[51.5072, -0.1275], [51.50781, -0.13112]], width=1000
+            )
