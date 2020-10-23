@@ -180,7 +180,7 @@ class TrafficApi(HEREApi):
         """Request traffic flow information using a quadkey.
         Args:
           quadkey (str):
-            The quadkey unique defines a region of the globe using a standard addressing algorthm.
+            The quadkey unique defines a region of the globe using a standard addressing algortihm.
         Returns:
           TrafficFlowResponse
         Raises:
@@ -341,3 +341,24 @@ class TrafficApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "flowavailability.json", data)
+
+    def additional_attributes(
+        self, quadkey: str, attributes: [FlowProximityAdditionalAttributes]
+    ) -> [TrafficFlowResponse]:
+        """Request traffic flow including shape and functional class information.
+        Args:
+          quadkey (str):
+            The quadkey unique defines a region of the globe using a standard addressing algortihm.
+          attributes (array):
+            Array that contains FlowProximityAdditionalAttributes.
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "quadkey": quadkey,
+            "responseattibutes": self.__prepare_str_values(enums=attributes),
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url + "flow.json", data)

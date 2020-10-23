@@ -427,3 +427,43 @@ class TrafficApiTest(unittest.TestCase):
         )
         with self.assertRaises(herepy.UnauthorizedError):
             self._api.flow_availability_data()
+
+    @responses.activate
+    def test_additional_attributes_success(self):
+        with codecs.open(
+            "testdata/models/traffic_api_additional_attributes.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.additional_attributes(
+            quadkey="0313131311102312213",
+            attributes=[herepy.FlowProximityAdditionalAttributes.functional_class],
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.TrafficFlowResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_additional_attributes_fails(self):
+        with codecs.open(
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            expectedResponse,
+            status=200,
+        )
+        with self.assertRaises(herepy.UnauthorizedError):
+            self._api.additional_attributes(
+                quadkey="0313131311102312213",
+                attributes=[herepy.FlowProximityAdditionalAttributes.functional_class],
+            )
