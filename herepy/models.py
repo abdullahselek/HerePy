@@ -251,3 +251,17 @@ class TrafficFlowResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+
+class TrafficFlowAvailabilityResponse(HEREModel):
+    """A class representing the Traffic API Flow availability response data."""
+
+    def __init__(self, **kwargs):
+        super(TrafficFlowAvailabilityResponse, self).__init__()
+        self.param_defaults = {
+            "Response": [],
+            "error": None,
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))

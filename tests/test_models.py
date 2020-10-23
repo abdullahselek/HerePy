@@ -35,6 +35,9 @@ class ModelsTest(unittest.TestCase):
     with open("testdata/models/traffic_api_flow.json", "rb") as f:
         TRAFFIC_FLOW_SAMPLE_JSON = json.loads(f.read().decode("utf8"))
 
+    with open("testdata/models/traffic_api_flow_availability.json", "rb") as f:
+        TRAFFIC_FLOW_AVAILABILITY_JSON = json.loads(f.read().decode("utf8"))
+
     def test_geocoder_response(self):
         geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(
             self.GEOCODER_SAMPLE_JSON
@@ -128,14 +131,28 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(destinationWeatherResponse.as_dict())
 
     def test_traffic_flow_response(self):
-        destinationWeatherResponse = (
-            herepy.DestinationWeatherResponse.new_from_jsondict(
-                self.TRAFFIC_FLOW_SAMPLE_JSON, {"RWS": None}
+        trafficFlowResponse = (
+            herepy.TrafficFlowResponse.new_from_jsondict(
+                self.TRAFFIC_FLOW_SAMPLE_JSON
             )
         )
         try:
-            destinationWeatherResponse.__repr__()
+            trafficFlowResponse.__repr__()
         except Exception as e:
             self.fail(e)
-        self.assertIsNotNone(destinationWeatherResponse.as_json_string())
-        self.assertIsNotNone(destinationWeatherResponse.as_dict())
+        self.assertIsNotNone(trafficFlowResponse.as_json_string())
+        self.assertIsNotNone(trafficFlowResponse.as_dict())
+
+    def test_traffic_flow_availability_response(self):
+        trafficFlowAvailabilityResponse = (
+            herepy.TrafficFlowAvailabilityResponse.new_from_jsondict(
+                self.TRAFFIC_FLOW_AVAILABILITY_JSON
+            )
+        )
+        try:
+            trafficFlowAvailabilityResponse.__repr__()
+        except Exception as e:
+            self.fail(e)
+        self.assertIsNotNone(trafficFlowAvailabilityResponse.as_json_string())
+        self.assertIsNotNone(trafficFlowAvailabilityResponse.as_dict())
+        self.assertIsNotNone(trafficFlowAvailabilityResponse.as_dict()["Response"]["Region"])

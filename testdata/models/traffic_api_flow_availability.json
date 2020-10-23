@@ -1,0 +1,548 @@
+{
+	"Request": {
+		"MetaInfo": {
+			"VerboseMode": -1
+		},
+		"Profile": "NTdefault"
+	},
+	"Response": {
+		"MetaInfo": {
+			"MapVersion": "CDT_WORLD_MAP_ECC_SORTED",
+			"ModuleVersion": "6.0.135.0",
+			"InterfaceVersion": "6.0",
+			"Timestamp": "2020-10-23T19:19:45.97:8Z"
+		},
+		"Profile": "NTdefault",
+		"Region": [{
+			"TmcTableId": "A0101",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Alabama/Georgia USA"
+		}, {
+			"TmcTableId": "A0102",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Florida USA"
+		}, {
+			"TmcTableId": "A0103",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Eastern PA/Southern NJ/Delaware USA"
+		}, {
+			"TmcTableId": "A0104",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Western PA/New York USA"
+		}, {
+			"TmcTableId": "A0105",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Northern CA/Nevada USA"
+		}, {
+			"TmcTableId": "A0106",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Southern CA and Las Vegas USA"
+		}, {
+			"TmcTableId": "A0107",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Illinois/Indiana/Wisconsin USA"
+		}, {
+			"TmcTableId": "A0108",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Michigan/Ohio USA"
+		}, {
+			"TmcTableId": "A0110",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Virginia/Maryland/North Carolina/South Delaware USA"
+		}, {
+			"TmcTableId": "A0111",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Northern Texas/Oklahoma USA"
+		}, {
+			"TmcTableId": "A0112",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Southern Texas USA"
+		}, {
+			"TmcTableId": "A0113",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "AR/LA/MS/TN USA"
+		}, {
+			"TmcTableId": "A0114",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Oregon/Washington USA"
+		}, {
+			"TmcTableId": "A0115",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Arizona/New Mexico/Texas USA"
+		}, {
+			"TmcTableId": "A0116",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Colorado/Utah USA"
+		}, {
+			"TmcTableId": "A0117",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Idaho/Montana/Wyoming USA"
+		}, {
+			"TmcTableId": "A0118",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "North Central States USA"
+		}, {
+			"TmcTableId": "A0119",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Kansas/Missouri/Southern Illinois USA"
+		}, {
+			"TmcTableId": "A0120",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "New York/Northern NJ/Connecticut USA"
+		}, {
+			"TmcTableId": "A0121",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Kentucky/Tennessee/Indiana USA"
+		}, {
+			"TmcTableId": "A0122",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Ohio/West Virginia USA"
+		}, {
+			"TmcTableId": "A0125",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "North Carolina/South Carolina USA"
+		}, {
+			"TmcTableId": "A0126",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Hawaii USA"
+		}, {
+			"TmcTableId": "A0129",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "New England USA"
+		}, {
+			"TmcTableId": "A0133",
+			"Country3": "USA",
+			"Country2": "US",
+			"Name": "Alaska USA"
+		}, {
+			"TmcTableId": "A0832",
+			"Country3": "PRI",
+			"Country2": "PR",
+			"Name": "Puerto Rico"
+		}, {
+			"TmcTableId": "A1C09",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "Ontario Canada"
+		}, {
+			"TmcTableId": "A1C23",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "British Columbia Canada"
+		}, {
+			"TmcTableId": "A1C24",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "Quebec Canada"
+		}, {
+			"TmcTableId": "A1C27",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "Alberta Canada"
+		}, {
+			"TmcTableId": "A1C28",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "Manitoba Canada"
+		}, {
+			"TmcTableId": "A1C30",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "NB, NS, PEI Canada"
+		}, {
+			"TmcTableId": "A1C31",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "Saskatchewan Canada"
+		}, {
+			"TmcTableId": "A1C34",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "Newfoundland and Labrador Canada"
+		}, {
+			"TmcTableId": "A1C35",
+			"Country3": "CAN",
+			"Country2": "CA",
+			"Name": "Yukon-Nunavut Canada"
+		}, {
+			"TmcTableId": "A2A47",
+			"Country3": "ARG",
+			"Country2": "AR",
+			"Name": "Argentina"
+		}, {
+			"TmcTableId": "A2B14",
+			"Country3": "BRA",
+			"Country2": "BR",
+			"Name": "Sul, Sudeste Brazil"
+		}, {
+			"TmcTableId": "A2B15",
+			"Country3": "BRA",
+			"Country2": "BR",
+			"Name": "Norte, Nordeste, Centro-Oeste Brazil"
+		}, {
+			"TmcTableId": "A3208",
+			"Country3": "COL",
+			"Country2": "CO",
+			"Name": "Colombia"
+		}, {
+			"TmcTableId": "A3C50",
+			"Country3": "CHL",
+			"Country2": "CL",
+			"Name": "Chile"
+		}, {
+			"TmcTableId": "A5F36",
+			"Country3": "MEX",
+			"Country2": "MX",
+			"Name": "Mexico"
+		}, {
+			"TmcTableId": "D0A17",
+			"Country3": "ZAF",
+			"Country2": "ZA",
+			"Name": "South Africa"
+		}, {
+			"TmcTableId": "E0301",
+			"Country3": "AND",
+			"Country2": "AD",
+			"Name": "Andorra"
+		}, {
+			"TmcTableId": "E0501",
+			"Country3": "ITA",
+			"Country2": "IT",
+			"Name": "Italy"
+		}, {
+			"TmcTableId": "E0601",
+			"Country3": "BEL",
+			"Country2": "BE",
+			"Name": "Belgium"
+		}, {
+			"TmcTableId": "E0723",
+			"Country3": "RUS",
+			"Country2": "RU",
+			"Name": "Moscow Russia"
+		}, {
+			"TmcTableId": "E0724",
+			"Country3": "RUS",
+			"Country2": "RU",
+			"Name": "St. Petersburg Russia"
+		}, {
+			"TmcTableId": "E0725",
+			"Country3": "RUS",
+			"Country2": "RU",
+			"Name": "Yekaterinburg Russia"
+		}, {
+			"TmcTableId": "E0726",
+			"Country3": "RUS",
+			"Country2": "RU",
+			"Name": "Nizny Novgorod Russia"
+		}, {
+			"TmcTableId": "E0727",
+			"Country3": "RUS",
+			"Country2": "RU",
+			"Name": "Krasnodar, Rostov-on-Don, Sochi, Stavropol"
+		}, {
+			"TmcTableId": "E0728",
+			"Country3": "RUS",
+			"Country2": "RU",
+			"Name": "Novosibirsk, Krasnoyarsk, Kemerovo, Irkutsk, Vladivostok"
+		}, {
+			"TmcTableId": "E0A01",
+			"Country3": "AUT",
+			"Country2": "AT",
+			"Name": "Austria"
+		}, {
+			"TmcTableId": "E0B01",
+			"Country3": "HUN",
+			"Country2": "HU",
+			"Name": "Hungary"
+		}, {
+			"TmcTableId": "E0D01",
+			"Country3": "DEU",
+			"Country2": "DE",
+			"Name": "Germany"
+		}, {
+			"TmcTableId": "E1118",
+			"Country3": "GRC",
+			"Country2": "GR",
+			"Name": "Greece"
+		}, {
+			"TmcTableId": "E1218",
+			"Country3": "CYP",
+			"Country2": "CY",
+			"Name": "Cyprus"
+		}, {
+			"TmcTableId": "E1409",
+			"Country3": "CHE",
+			"Country2": "CH",
+			"Name": "Switzerland"
+		}, {
+			"TmcTableId": "E1617",
+			"Country3": "FIN",
+			"Country2": "FI",
+			"Name": "Finland"
+		}, {
+			"TmcTableId": "E1701",
+			"Country3": "LUX",
+			"Country2": "LU",
+			"Name": "Luxembourg"
+		}, {
+			"TmcTableId": "E1801",
+			"Country3": "BGR",
+			"Country2": "BG",
+			"Name": "Bulgaria"
+		}, {
+			"TmcTableId": "E1909",
+			"Country3": "DNK",
+			"Country2": "DK",
+			"Name": "Denmark"
+		}, {
+			"TmcTableId": "E1C07",
+			"Country3": "GBR",
+			"Country2": "GB",
+			"Name": "United Kingdom"
+		}, {
+			"TmcTableId": "E1E01",
+			"Country3": "ROU",
+			"Country2": "RO",
+			"Name": "Romania"
+		}, {
+			"TmcTableId": "E1F32",
+			"Country3": "FRA",
+			"Country2": "FR",
+			"Name": "France"
+		}, {
+			"TmcTableId": "E2225",
+			"Country3": "CZE",
+			"Country2": "CZ",
+			"Name": "Czech Republic"
+		}, {
+			"TmcTableId": "E2305",
+			"Country3": "POL",
+			"Country2": "PL",
+			"Name": "Poland"
+		}, {
+			"TmcTableId": "E2551",
+			"Country3": "SVK",
+			"Country2": "SK",
+			"Name": "Slovakia"
+		}, {
+			"TmcTableId": "E2C43",
+			"Country3": "LTU",
+			"Country2": "LT",
+			"Name": "Lithuania"
+		}, {
+			"TmcTableId": "E2E17",
+			"Country3": "ESP",
+			"Country2": "ES",
+			"Name": "Spain"
+		}, {
+			"TmcTableId": "E2F49",
+			"Country3": "NOR",
+			"Country2": "NO",
+			"Name": "Norway"
+		}, {
+			"TmcTableId": "E3242",
+			"Country3": "IRL",
+			"Country2": "IE",
+			"Name": "Ireland"
+		}, {
+			"TmcTableId": "E3339",
+			"Country3": "TUR",
+			"Country2": "TR",
+			"Name": "Turkey"
+		}, {
+			"TmcTableId": "E3340",
+			"Country3": "TUR",
+			"Country2": "TR",
+			"Name": "Turkey"
+		}, {
+			"TmcTableId": "E3817",
+			"Country3": "NLD",
+			"Country2": "NL",
+			"Name": "Netherlands"
+		}, {
+			"TmcTableId": "E3951",
+			"Country3": "LVA",
+			"Country2": "LV",
+			"Name": "Latvia"
+		}, {
+			"TmcTableId": "E3C33",
+			"Country3": "HRV",
+			"Country2": "HR",
+			"Name": "Croatia"
+		}, {
+			"TmcTableId": "E3E33",
+			"Country3": "SWE",
+			"Country2": "SE",
+			"Name": "Sweden"
+		}, {
+			"TmcTableId": "E4259",
+			"Country3": "EST",
+			"Country2": "EE",
+			"Name": "Estonia"
+		}, {
+			"TmcTableId": "E4633",
+			"Country3": "UKR",
+			"Country2": "UA",
+			"Name": "Ukraine"
+		}, {
+			"TmcTableId": "E4842",
+			"Country3": "PRT",
+			"Country2": "PT",
+			"Name": "Portugal"
+		}, {
+			"TmcTableId": "E4933",
+			"Country3": "SVN",
+			"Country2": "SI",
+			"Name": "Slovenia"
+		}, {
+			"TmcTableId": "F0153",
+			"Country3": "AUS",
+			"Country2": "AU",
+			"Name": "Canberra, CT Australia"
+		}, {
+			"TmcTableId": "F0254",
+			"Country3": "AUS",
+			"Country2": "AU",
+			"Name": "Sydney, NSW Australia"
+		}, {
+			"TmcTableId": "F0301",
+			"Country3": "AUS",
+			"Country2": "AU",
+			"Name": "Melbourne, V Australia"
+		}, {
+			"TmcTableId": "F0456",
+			"Country3": "AUS",
+			"Country2": "AU",
+			"Name": "Brisbane, Q Australia"
+		}, {
+			"TmcTableId": "F0557",
+			"Country3": "AUS",
+			"Country2": "AU",
+			"Name": "Adelaide, SA Austaralia"
+		}, {
+			"TmcTableId": "F0658",
+			"Country3": "AUS",
+			"Country2": "AU",
+			"Name": "Perth, WA Austaralia"
+		}, {
+			"TmcTableId": "F0759",
+			"Country3": "AUS",
+			"Country2": "AU",
+			"Name": "Hobart, TAS Australia"
+		}, {
+			"TmcTableId": "F0860",
+			"Country3": "AUS",
+			"Country2": "AU",
+			"Name": "Darwin, NT Australia"
+		}, {
+			"TmcTableId": "F0926",
+			"Country3": "SAU",
+			"Country2": "SA",
+			"Name": "Saudi Arabia"
+		}, {
+			"TmcTableId": "F0E58",
+			"Country3": "BHR",
+			"Country2": "BH",
+			"Name": "Bahrain"
+		}, {
+			"TmcTableId": "F0F05",
+			"Country3": "MYS",
+			"Country2": "MY",
+			"Name": "Kaula Lumpur, Johor Bahru Malaysia"
+		}, {
+			"TmcTableId": "F1626",
+			"Country3": "OMN",
+			"Country2": "OM",
+			"Name": "Oman"
+		}, {
+			"TmcTableId": "F1941",
+			"Country3": "NZL",
+			"Country2": "NZ",
+			"Name": "New Zealand"
+		}, {
+			"TmcTableId": "F1D13",
+			"Country3": "TWN",
+			"Country2": "TW",
+			"Name": "Taiwan"
+		}, {
+			"TmcTableId": "F2130",
+			"Country3": "KWT",
+			"Country2": "KW",
+			"Name": "Kuwait"
+		}, {
+			"TmcTableId": "F2252",
+			"Country3": "QAT",
+			"Country2": "QA",
+			"Name": "Qatar"
+		}, {
+			"TmcTableId": "F2502",
+			"Country3": "IND",
+			"Country2": "IN",
+			"Name": "Central India"
+		}, {
+			"TmcTableId": "F2503",
+			"Country3": "IND",
+			"Country2": "IN",
+			"Name": "South India"
+		}, {
+			"TmcTableId": "F2504",
+			"Country3": "IND",
+			"Country2": "IN",
+			"Name": "North India"
+		}, {
+			"TmcTableId": "F2732",
+			"Country3": "VNM",
+			"Country2": "VN",
+			"Name": "Vietnam"
+		}, {
+			"TmcTableId": "F2834",
+			"Country3": "PHL",
+			"Country2": "PH",
+			"Name": "Philippines"
+		}, {
+			"TmcTableId": "F2A10",
+			"Country3": "SGP",
+			"Country2": "SG",
+			"Name": "Singapore"
+		}, {
+			"TmcTableId": "F2C23",
+			"Country3": "IDN",
+			"Country2": "ID",
+			"Name": "Jakarta Indonesia"
+		}, {
+			"TmcTableId": "F2D19",
+			"Country3": "ARE",
+			"Country2": "AE",
+			"Name": "United Arab Emirates (Dubai- Abu Dhabi- Sharjah)"
+		}, {
+			"TmcTableId": "F3219",
+			"Country3": "THA",
+			"Country2": "TH",
+			"Name": "Thailand"
+		}]
+	}
+}
