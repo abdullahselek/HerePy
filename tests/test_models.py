@@ -131,10 +131,8 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(destinationWeatherResponse.as_dict())
 
     def test_traffic_flow_response(self):
-        trafficFlowResponse = (
-            herepy.TrafficFlowResponse.new_from_jsondict(
-                self.TRAFFIC_FLOW_SAMPLE_JSON
-            )
+        trafficFlowResponse = herepy.TrafficFlowResponse.new_from_jsondict(
+            self.TRAFFIC_FLOW_SAMPLE_JSON
         )
         try:
             trafficFlowResponse.__repr__()
@@ -155,4 +153,6 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertIsNotNone(trafficFlowAvailabilityResponse.as_json_string())
         self.assertIsNotNone(trafficFlowAvailabilityResponse.as_dict())
-        self.assertIsNotNone(trafficFlowAvailabilityResponse.as_dict()["Response"]["Region"])
+        self.assertIsNotNone(
+            trafficFlowAvailabilityResponse.as_dict()["Response"]["Region"]
+        )

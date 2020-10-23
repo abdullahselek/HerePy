@@ -7,7 +7,11 @@ import requests
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
-from herepy.models import TrafficIncidentResponse, TrafficFlowResponse
+from herepy.models import (
+    TrafficIncidentResponse,
+    TrafficFlowResponse,
+    TrafficFlowAvailabilityResponse,
+)
 from herepy.here_enum import (
     IncidentsCriticalityStr,
     IncidentsCriticalityInt,
@@ -44,6 +48,10 @@ class TrafficApi(HEREApi):
         elif json_data.get("RWS") != None:
             return TrafficFlowResponse.new_from_jsondict(
                 json_data, param_defaults={"RWS": None}
+            )
+        elif json_data.get("Response") != None:
+            return TrafficFlowAvailabilityResponse.new_from_jsondict(
+                json_data, param_defaults={"Response": None}
             )
         else:
             error = self.__get_error_from_response(json_data)
@@ -321,3 +329,15 @@ class TrafficApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "flow.json", data)
+
+    def flow_availability_data(self) -> Optional[TrafficFlowAvailabilityResponse]:
+        """Flow availability requests allow you to see what traffic flow coverage exists in the current Traffic API.
+        Returns:
+          TrafficFlowAvailabilityResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url + "flowavailability.json", data)
