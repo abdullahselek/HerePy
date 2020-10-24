@@ -77,17 +77,39 @@ To run the unit tests against a set of Python versions::
 Models
 ------
 
-The library utilizes models to represent various data structures returned by HERE::
+The library utilizes models to represent various data structures returned by **herepy**::
 
     * herepy.GeocoderResponse
     * herepy.GeocoderReverseResponse
     * herepy.RoutingResponse
+    * herepy.RoutingMatrixResponse
     * herepy.GeocoderAutoCompleteResponse
     * herepy.PlacesResponse
     * herepy.PublicTransitResponse
     * herepy.RmeResponse
+    * herepy.TrafficIncidentResponse
+    * herepy.DestinationWeatherResponse
     * herepy.EVChargingStationsResponse
     * herepy.WaypointSequenceResponse
+    * herepy.TrafficFlowResponse
+    * herepy.TrafficFlowAvailabilityResponse
+
+API Clients
+-----------
+
+Available API client in **herepy**::
+
+    * herepy.DestinationWeatherApi
+    * herepy.EVChargingStationsApi
+    * herepy.FleetTelematicsApi
+    * herepy.GeocoderApi
+    * herepy.GeocoderAutoCompleteApi
+    * herepy.GeocoderReverseApi
+    * herepy.PlacesApi
+    * herepy.PublicTransitApi
+    * herepy.RmeApi
+    * herepy.RoutingApi
+    * herepy.TrafficApi
 
 GeocoderApi
 -----------
