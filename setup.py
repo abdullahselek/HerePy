@@ -44,7 +44,7 @@ setup(
     install_requires=requirements,
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
-    keywords='here api',
+    keywords='here api, here technologies, here python api clients, rest api clients',
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
@@ -56,5 +56,6 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
 )
