@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from herepy import DestinationWeatherApi
-from herepy.here_enum import WeatherProductType
+from herepy import DestinationWeatherApi, WeatherProductType
+
+destination_weather_api = DestinationWeatherApi("api_key")
 
 # weather conditions with given location name
-destination_weather_api = DestinationWeatherApi("api_key")
 response = destination_weather_api.weather_for_location_name(
     location_name="Berlin", product=WeatherProductType.forecast_7days
 )
