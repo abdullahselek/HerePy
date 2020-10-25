@@ -232,7 +232,7 @@ class UnauthorizedError(HEREError):
 def error_from_fleet_telematics_service_error(json_data: dict):
     """Return the correct subclass for sequence errors"""
 
-    if "Type" in json_data:
+    if "error" in json_data:
         error_type = json_data["error"]
         message = json_data["error_description"]
 
