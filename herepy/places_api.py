@@ -6,7 +6,7 @@ import requests
 
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
-from herepy.error import HEREError
+from herepy.error import HEREError, UnauthorizedError
 from herepy.models import PlacesResponse
 from herepy.here_enum import PlacesCategory
 from typing import List, Optional
@@ -33,6 +33,9 @@ class PlacesApi(HEREApi):
         json_data = json.loads(response.content.decode("utf8"))
         if json_data.get("items") != None:
             return PlacesResponse.new_from_jsondict(json_data)
+        elif "error" in json_data:
+              if json_data["error"] == "Unauthorized":
+                raise UnauthorizedError(json_data["error_description"])
         else:
             raise HEREError(
                 json_data.get(
