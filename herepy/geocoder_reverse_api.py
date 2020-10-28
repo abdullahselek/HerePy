@@ -35,7 +35,7 @@ class GeocoderReverseApi(HEREApi):
                 return GeocoderReverseResponse.new_from_jsondict(json_data)
             elif "error" in json_data:
                 if json_data["error"] == "Unauthorized":
-                  raise UnauthorizedError(json_data["error_description"])
+                    raise UnauthorizedError(json_data["error_description"])
             else:
                 raise HEREError(
                     json_data.get(

@@ -34,7 +34,7 @@ class PlacesApi(HEREApi):
         if json_data.get("items") != None:
             return PlacesResponse.new_from_jsondict(json_data)
         elif "error" in json_data:
-              if json_data["error"] == "Unauthorized":
+            if json_data["error"] == "Unauthorized":
                 raise UnauthorizedError(json_data["error_description"])
         else:
             raise HEREError(

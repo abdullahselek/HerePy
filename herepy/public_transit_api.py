@@ -6,7 +6,7 @@ import requests
 
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
-from herepy.error import HEREError
+from herepy.error import HEREError, UnauthorizedError
 from herepy.models import PublicTransitResponse
 from herepy.here_enum import (
     PublicTransitSearchMethod,
@@ -42,6 +42,9 @@ class PublicTransitApi(HEREApi):
                 json_data["Res"]["Message"]["text"],
                 "Error occured on " + sys._getframe(1).f_code.co_name,
             )
+        elif "error" in json_data:
+            if json_data["error"] == "Unauthorized":
+                raise UnauthorizedError(json_data["error_description"])
         else:
             raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
 
