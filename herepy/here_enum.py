@@ -231,3 +231,14 @@ class IsolineRoutingMode(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class IsolineRoutingTransportMode(Enum):
+    """Mode of transport to be used for the calculation of the isolines."""
+
+    car = "car"
+    truck = "truck"
+    pedastrian = "pedastrian"
+
+    def __str__(self):
+        return "%s" % self._value_
