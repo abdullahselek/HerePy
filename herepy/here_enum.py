@@ -221,3 +221,13 @@ class FlowProximityAdditionalAttributes(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class IsolineRoutingMode(Enum):
+    """Defines an attribute which specifies optimization is applied during isoline calculation."""
+
+    fast = "fast"
+    short = "short"
+
+    def __str__(self):
+        return "%s" % self._value_

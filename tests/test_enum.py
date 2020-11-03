@@ -275,3 +275,12 @@ class FlowProximityAdditionalAttributesTest(unittest.TestCase):
         self.assertEqual(functional_class.__str__(), "fc")
         shape = herepy.FlowProximityAdditionalAttributes.shape
         self.assertEqual(shape.__str__(), "sh")
+
+
+class IsolineRoutingModeTest(unittest.TestCase):
+
+    def test_valueofenum(self):
+        fast = herepy.IsolineRoutingMode.fast
+        self.assertEqual(fast.__str__(), "fast")
+        short = herepy.IsolineRoutingMode.short
+        self.assertEqual(short.__str__(), "short")

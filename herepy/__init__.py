@@ -29,6 +29,7 @@ from .here_enum import (
     IncidentsCriticalityStr,
     IncidentsCriticalityInt,
     FlowProximityAdditionalAttributes,
+    IsolineRoutingMode,
 )
 
 from .models import (
