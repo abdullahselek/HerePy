@@ -265,3 +265,18 @@ class TrafficFlowAvailabilityResponse(HEREModel):
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
+
+
+class IsolineRoutingResponse(HEREModel):
+    """A class representing the Isoline Routing API Flow response data."""
+
+    def __init__(self, **kwargs):
+        super(IsolineRoutingResponse, self).__init__()
+        self.param_defaults = {
+            "departure": None,
+            "isolines": [],
+            "error": None,
+        }
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))

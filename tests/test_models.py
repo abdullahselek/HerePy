@@ -38,6 +38,9 @@ class ModelsTest(unittest.TestCase):
     with open("testdata/models/traffic_api_flow_availability.json", "rb") as f:
         TRAFFIC_FLOW_AVAILABILITY_JSON = json.loads(f.read().decode("utf8"))
 
+    with open("testdata/models/isoline_routing_distance_response.json", "rb") as f:
+        ISOLINE_ROUTING_DISTANCE_JSON = json.loads(f.read().decode("utf8"))
+
     def test_geocoder_response(self):
         geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(
             self.GEOCODER_SAMPLE_JSON
@@ -155,4 +158,23 @@ class ModelsTest(unittest.TestCase):
         self.assertIsNotNone(trafficFlowAvailabilityResponse.as_dict())
         self.assertIsNotNone(
             trafficFlowAvailabilityResponse.as_dict()["Response"]["Region"]
+        )
+
+    def test_isoline_routing_response(self):
+        isolineRoutingDistanceResponse = (
+            herepy.IsolineRoutingResponse.new_from_jsondict(
+                self.ISOLINE_ROUTING_DISTANCE_JSON
+            )
+        )
+        try:
+            isolineRoutingDistanceResponse.__repr__()
+        except Exception as e:
+            self.fail(e)
+        self.assertIsNotNone(isolineRoutingDistanceResponse.as_json_string())
+        self.assertIsNotNone(isolineRoutingDistanceResponse.as_dict())
+        self.assertIsNotNone(
+            isolineRoutingDistanceResponse.as_dict()["departure"]
+        )
+        self.assertTrue(
+            len(isolineRoutingDistanceResponse.as_dict()["isolines"]) > 0
         )

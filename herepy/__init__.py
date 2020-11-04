@@ -49,6 +49,7 @@ from .models import (
     WaypointSequenceResponse,
     TrafficFlowResponse,
     TrafficFlowAvailabilityResponse,
+    IsolineRoutingResponse,
 )
 
 from .destination_weather_api import DestinationWeatherApi
