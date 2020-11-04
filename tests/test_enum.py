@@ -295,3 +295,14 @@ class IsolineRoutingTransportModeTest(unittest.TestCase):
         self.assertEqual(truck.__str__(), "truck")
         pedastrian = herepy.IsolineRoutingTransportMode.pedastrian
         self.assertEqual(pedastrian.__str__(), "pedastrian")
+
+
+class IsolineRoutingOptimizationModeTest(unittest.TestCase):
+
+    def test_valueofenum(self):
+        quality = herepy.IsolineRoutingOptimizationMode.quality
+        self.assertEqual(quality.__str__(), "quality")
+        performance = herepy.IsolineRoutingOptimizationMode.performance
+        self.assertEqual(performance.__str__(), "performance")
+        balanced = herepy.IsolineRoutingOptimizationMode.balanced
+        self.assertEqual(balanced.__str__(), "balanced")    \

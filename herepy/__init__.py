@@ -31,6 +31,7 @@ from .here_enum import (
     FlowProximityAdditionalAttributes,
     IsolineRoutingMode,
     IsolineRoutingTransportMode,
+    IsolineRoutingOptimizationMode,
 )
 
 from .models import (

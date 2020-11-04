@@ -242,3 +242,14 @@ class IsolineRoutingTransportMode(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class IsolineRoutingOptimizationMode(Enum):
+    """Mode of how isoline calculation is optimized."""
+
+    quality = "quality"
+    performance = "performance"
+    balanced = "balanced"
+
+    def __str__(self):
+        return "%s" % self._value_
