@@ -305,4 +305,4 @@ class IsolineRoutingOptimizationModeTest(unittest.TestCase):
         performance = herepy.IsolineRoutingOptimizationMode.performance
         self.assertEqual(performance.__str__(), "performance")
         balanced = herepy.IsolineRoutingOptimizationMode.balanced
-        self.assertEqual(balanced.__str__(), "balanced")    \
+        self.assertEqual(balanced.__str__(), "balanced")
