@@ -51,7 +51,7 @@ class RoutingApi(HEREApi):
         return mode_values
 
     @classmethod
-    def __array_to_waypoint(cls, waypoint_a):
+    def __list_to_waypoint(cls, waypoint_a):
         return str.format("geo!{0},{1}", waypoint_a[0], waypoint_a[1])
 
     def _route(self, waypoint_a, waypoint_b, modes=None, departure=None, arrival=None):
@@ -60,8 +60,8 @@ class RoutingApi(HEREApi):
         if isinstance(waypoint_b, str):
             waypoint_b = self._get_coordinates_for_location_name(waypoint_b)
         data = {
-            "waypoint0": self.__array_to_waypoint(waypoint_a),
-            "waypoint1": self.__array_to_waypoint(waypoint_b),
+            "waypoint0": self.__list_to_waypoint(waypoint_a),
+            "waypoint1": self.__list_to_waypoint(waypoint_b),
             "mode": self.__prepare_mode_values(modes),
             "apikey": self._api_key,
         }
@@ -372,13 +372,13 @@ class RoutingApi(HEREApi):
         for i, start_waypoint in enumerate(start_waypoints):
             if isinstance(start_waypoint, str):
                 start_waypoint = self._get_coordinates_for_location_name(start_waypoint)
-            data["start" + str(i)] = self.__array_to_waypoint(start_waypoint)
+            data["start" + str(i)] = self.__list_to_waypoint(start_waypoint)
         for i, destination_waypoint in enumerate(destination_waypoints):
             if isinstance(destination_waypoint, str):
                 destination_waypoint = self._get_coordinates_for_location_name(
                     destination_waypoint
                 )
-            data["destination" + str(i)] = self.__array_to_waypoint(
+            data["destination" + str(i)] = self.__list_to_waypoint(
                 destination_waypoint
             )
         response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
