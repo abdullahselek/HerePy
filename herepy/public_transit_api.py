@@ -58,8 +58,8 @@ class PublicTransitApi(HEREApi):
     ) -> Optional[PublicTransitResponse]:
         """Request a list of public transit stations based on name.
         Args:
-          center (array):
-            array including latitude and longitude in order.
+          center (List):
+            List contains latitude and longitude in order.
           name (str):
             station name.
           max_count (int):
@@ -89,8 +89,8 @@ class PublicTransitApi(HEREApi):
     ) -> Optional[PublicTransitResponse]:
         """Request a list of public transit stations within a given geo-location.
         Args:
-          center (array):
-            array including latitude and longitude in order.
+          center (List):
+            List contains latitude and longitude in order.
           radius (int):
             specifies radius in meters (Default is 500m).
           max_count (int):
@@ -122,8 +122,8 @@ class PublicTransitApi(HEREApi):
     ) -> Optional[PublicTransitResponse]:
         """Request details of a specific transit station based on a previous request.
         Args:
-          ids (array):
-            array contains station ids.
+          ids (List):
+            List contains station ids.
           lang (str):
             language code for response like `en`.
         Returns:
@@ -144,8 +144,8 @@ class PublicTransitApi(HEREApi):
     ) -> Optional[PublicTransitResponse]:
         """Request a list of transit operators available in cities nearby.
         Args:
-          center (array):
-            array including latitude and longitude in order.
+          center (List):
+            List contains latitude and longitude in order.
           political_view (str):
             switch for grouping results like `CHN`.
           radius (int):
@@ -199,8 +199,8 @@ class PublicTransitApi(HEREApi):
     ) -> Optional[PublicTransitResponse]:
         """Request a list of all next departure times and destinations from a given location.
         Args:
-          center (array):
-            array including latitude and longitude in order.
+          center (List):
+            List contains latitude and longitude in order.
           time (str):
             time formattes in yyyy-mm-ddThh:mm:ss.
           lang (str):
@@ -235,7 +235,7 @@ class PublicTransitApi(HEREApi):
     ) -> Optional[PublicTransitResponse]:
         """Request a list of all next departure times and destinations for a give list of stations.
         Args:
-          station_ids (array):
+          station_ids (List):
             a list of stop ids.
           time (str):
             time formattes in yyyy-mm-ddThh:mm:ss.
@@ -280,10 +280,10 @@ class PublicTransitApi(HEREApi):
     ) -> Optional[PublicTransitResponse]:
         """Request a public transit route between any two places.
         Args:
-          departure (array):
-            array including latitude and longitude in order.
-          arrival (array):
-            array including latitude and longitude in order.
+          departure (List):
+            List contains latitude and longitude in order.
+          arrival (List):
+            List contains latitude and longitude in order.
           time (str):
             time formatted in yyyy-mm-ddThh:mm:ss.
           max_connections (int):
@@ -295,9 +295,9 @@ class PublicTransitApi(HEREApi):
             The default is -1 (which disables the filter, or unlimited no of changes permitted).
           lang (str):
             Specifies the language of the response.
-          include_modes (array[PublicTransitModeType]):
+          include_modes (List[PublicTransitModeType]):
             Specifies the transit type filter used to determine which types of transit to include in the response.
-          exclude_modes (array[PublicTransitModeType]):
+          exclude_modes (List[PublicTransitModeType]):
             Specifies the transit type filter used to determine which types of transit to exclude in the response.
           units (str):
             Units of measurement used. metric oder imperial.
@@ -392,8 +392,8 @@ class PublicTransitApi(HEREApi):
         Args:
           details (int):
             0 disables showing line info, 1 enables showing line info.abs
-          center (array):
-            array including latitude and longitude in order.
+          center (List):
+            List contains latitude and longitude in order.
         Returns:
           PublicTransitResponse
         Raises:

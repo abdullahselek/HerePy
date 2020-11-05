@@ -48,8 +48,8 @@ class PlacesApi(HEREApi):
     ) -> Optional[PlacesResponse]:
         """Request a list of places based on a query string.
         Args:
-          coordinates (array):
-            array including latitude and longitude in order.
+          coordinates (List):
+            List contains latitude and longitude in order.
           query (str):
             search term.
           limit (int):
@@ -80,8 +80,8 @@ class PlacesApi(HEREApi):
     ) -> Optional[PlacesResponse]:
         """Request a list of places based on a query string.
         Args:
-          coordinates (array):
-            array including latitude and longitude in order.
+          coordinates (List):
+            List contains latitude and longitude in order.
           query (str):
             search term.
           country_code (str):
@@ -110,8 +110,8 @@ class PlacesApi(HEREApi):
     ) -> Optional[PlacesResponse]:
         """Request a list of popular places around a location
         Args:
-          coordinates (array):
-            array including latitude and longitude in order.
+          coordinates (List):
+            List contains latitude and longitude in order.
           radius (int):
             Circle radius (in meters).
           query (str):

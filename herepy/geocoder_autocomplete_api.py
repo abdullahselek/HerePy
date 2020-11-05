@@ -47,8 +47,8 @@ class GeocoderAutoCompleteApi(HEREApi):
         Args:
           query (str):
             Query search string
-          prox (array):
-            Array including latitude and longitude in order.
+          prox (List):
+            List contains latitude and longitude in order.
           radius (int):
             Radius in meters
           lang (str):

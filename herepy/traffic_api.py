@@ -101,11 +101,11 @@ class TrafficApi(HEREApi):
     ) -> Optional[TrafficIncidentResponse]:
         """Request traffic incident information within specified area.
         Args:
-          top_left (array):
-            Array including latitude and longitude in order.
-          bottom_right (array):
-            Array including latitude and longitude in order.
-          criticality (array):
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
+          criticality (List):
             List of IncidentsCriticalityStr.
         Returns:
           TrafficIncidentResponse
@@ -130,8 +130,8 @@ class TrafficApi(HEREApi):
     ) -> Optional[TrafficIncidentResponse]:
         """Request traffic incidents for a defined route.
         Args:
-          points (array):
-            Array including array of latitude and longitude pairs in order.
+          points (List):
+            List contains lists of latitude and longitude pairs in order.
           width (int):
             Width of corridor.
         Returns:
@@ -160,7 +160,7 @@ class TrafficApi(HEREApi):
             Longitude of specified area.
           radius (int):
             Radius of area in meters.
-          criticality (array):
+          criticality (List):
             List of IncidentsCriticalityInt.
         Returns:
           TrafficIncidentResponse
@@ -199,10 +199,10 @@ class TrafficApi(HEREApi):
     ) -> Optional[TrafficFlowResponse]:
         """Request traffic flow information within specified area.
         Args:
-          top_left (array):
-            Array including latitude and longitude in order.
-          bottom_right (array):
-            Array including latitude and longitude in order.
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
         Returns:
           TrafficFlowResponse
         Raises:
@@ -226,9 +226,9 @@ class TrafficApi(HEREApi):
         """Request traffic flow for a circle around a defined point.
         Args:
           latitude (float):
-            Array including latitude and longitude in order.
+            List contains latitude and longitude in order.
           longitude (float):
-            Array including latitude and longitude in order.
+            List contains latitude and longitude in order.
           distance (int):
             Extending a distance of metres in all directions.
         Returns:
@@ -257,13 +257,13 @@ class TrafficApi(HEREApi):
         """Request traffic flow information using proximity, returning shape and functional class.
         Args:
           latitude (float):
-            Array including latitude and longitude in order.
+            List contains latitude and longitude in order.
           longitude (float):
-            Array including latitude and longitude in order.
+            List contains latitude and longitude in order.
           distance (int):
             Extending a distance of metres in all directions.
-          attributes (array):
-            Array that contains FlowProximityAdditionalAttributes.
+          attributes (List):
+            List that contains FlowProximityAdditionalAttributes.
         Returns:
           TrafficFlowResponse
         Raises:
@@ -286,10 +286,10 @@ class TrafficApi(HEREApi):
     ) -> Optional[TrafficFlowResponse]:
         """Request traffic flow information in specified area with a jam factor.
         Args:
-          top_left (array):
-            Array including latitude and longitude in order.
-          bottom_right (array):
-            Array including latitude and longitude in order.
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
           min_jam_factor (int):
             Severe congestion with a jam factor greater than 7.
         Returns:
@@ -315,8 +315,8 @@ class TrafficApi(HEREApi):
     ) -> Optional[TrafficFlowResponse]:
         """Request traffic flow for a defined route.
         Args:
-          points (array):
-            Array including array of latitude and longitude pairs in order.
+          points (List):
+            List contains lists of latitude and longitude pairs in order.
           width (int):
             Width of corridor (in meters).
         Returns:
@@ -349,8 +349,8 @@ class TrafficApi(HEREApi):
         Args:
           quadkey (str):
             The quadkey unique defines a region of the globe using a standard addressing algortihm.
-          attributes (array):
-            Array that contains FlowProximityAdditionalAttributes.
+          attributes (List):
+            List that contains FlowProximityAdditionalAttributes.
         Returns:
           TrafficFlowResponse
         Raises:

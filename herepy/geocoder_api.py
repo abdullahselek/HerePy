@@ -76,10 +76,10 @@ class GeocoderApi(HEREApi):
         Args:
           searchtext (str):
             possible address text.
-          top_left (array):
-            array including latitude and longitude in order.
-          bottom_right (array):
-            array including latitude and longitude in order.
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
           lang (str):
             BCP47 compliant Language Code.
         Returns:

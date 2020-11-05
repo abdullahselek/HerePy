@@ -104,13 +104,13 @@ class RoutingApi(HEREApi):
         """Request a bicycle route between two points
         Args:
           waypoint_a:
-            array including latitude and longitude in order
+            List contains latitude and longitude in order
             or string with the location name
           waypoint_b:
-            array including latitude and longitude in order
+            List contains latitude and longitude in order
             or string with the location name.
-          modes (array):
-            array including RouteMode enums.
+          modes (List):
+            List contains RouteMode enums.
           departure (str):
             Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
@@ -131,14 +131,14 @@ class RoutingApi(HEREApi):
     ) -> Optional[RoutingResponse]:
         """Request a driving route between two points
         Args:
-          waypoint_a (array):
-            array including latitude and longitude in order
+          waypoint_a (List):
+            List contains latitude and longitude in order
             or string with the location name.
-          waypoint_b (array):
-            array including latitude and longitude in order
+          waypoint_b (List):
+            List contains latitude and longitude in order
             or string with the location name.
-          modes (array):
-            array including RouteMode enums.
+          modes (List):
+            List contains RouteMode enums.
           departure (str):
             Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
@@ -159,14 +159,14 @@ class RoutingApi(HEREApi):
     ) -> Optional[RoutingResponse]:
         """Request a pedastrian route between two points
         Args:
-          waypoint_a (array):
-            array including latitude and longitude in order
+          waypoint_a (List):
+            List contains latitude and longitude in order
             or string with the location name.
-          waypoint_b (array):
-            array including latitude and longitude in order
+          waypoint_b (List):
+            List contains latitude and longitude in order
             or string with the location name.
-          modes (array):
-            array including RouteMode enums.
+          modes (List):
+            List contains RouteMode enums.
           departure (str):
             Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
@@ -188,17 +188,17 @@ class RoutingApi(HEREApi):
     ) -> Optional[RoutingResponse]:
         """Request a intermediate route from three points
         Args:
-          waypoint_a (array):
-            Starting array including latitude and longitude in order
+          waypoint_a (List):
+            Starting List contains latitude and longitude in order
             or string with the location name.
-          waypoint_b (array):
-            Intermediate array including latitude and longitude in order
+          waypoint_b (List):
+            Intermediate List contains latitude and longitude in order
             or string with the location name.
-          waypoint_c (array):
-            Last array including latitude and longitude in order
+          waypoint_c (List):
+            Last List contains latitude and longitude in order
             or string with the location name.
-          modes (array):
-            array including RouteMode enums.
+          modes (List):
+            List contains RouteMode enums.
           departure (str):
             Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
@@ -220,17 +220,17 @@ class RoutingApi(HEREApi):
     ) -> Optional[RoutingResponse]:
         """Request a public transport route between two points
         Args:
-          waypoint_a (array):
-            Starting array including latitude and longitude in order
+          waypoint_a (List):
+            Starting List contains latitude and longitude in order
             or string with the location name.
-          waypoint_b (array):
-            Intermediate array including latitude and longitude in order
+          waypoint_b (List):
+            Intermediate List contains latitude and longitude in order
             or string with the location name.
           combine_change (bool):
             Enables the change manuever in the route response, which
             indicates a public transit line change.
-          modes (array):
-            array including RouteMode enums.
+          modes (List):
+            List contains RouteMode enums.
           departure (str):
             Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
@@ -253,17 +253,17 @@ class RoutingApi(HEREApi):
     ) -> Optional[RoutingResponse]:
         """Request a public transport route between two points based on timetables
         Args:
-          waypoint_a (array):
-            Starting array including latitude and longitude in order
+          waypoint_a (List):
+            Starting List contains latitude and longitude in order
             or string with the location name.
-          waypoint_b (array):
-            Intermediate array including latitude and longitude in order
+          waypoint_b (List):
+            Intermediate List contains latitude and longitude in order
             or string with the location name.
           combine_change (bool):
             Enables the change manuever in the route response, which
             indicates a public transit line change.
-          modes (array):
-            array including RouteMode enums.
+          modes (List):
+            List contains RouteMode enums.
           departure (str):
             Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `None`.
           arrival (str):
@@ -286,14 +286,14 @@ class RoutingApi(HEREApi):
     ) -> Optional[RoutingResponse]:
         """Calculates the fastest car route between two location
         Args:
-          waypoint_a (array):
-            array including latitude and longitude in order
+          waypoint_a (List):
+            List contains latitude and longitude in order
             or string with the location name.
-          waypoint_b (array):
-            array including latitude and longitude in order
+          waypoint_b (List):
+            List contains latitude and longitude in order
             or string with the location name.
-          modes (array):
-            array including RouteMode enums.
+          modes (List):
+            List contains RouteMode enums.
           departure (str):
             Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
@@ -314,14 +314,14 @@ class RoutingApi(HEREApi):
     ) -> Optional[RoutingResponse]:
         """Calculates the fastest truck route between two location
         Args:
-          waypoint_a (array):
-            array including latitude and longitude in order
+          waypoint_a (List):
+            List contains latitude and longitude in order
             or string with the location name.
-          waypoint_b (array):
-            array including latitude and longitude in order
+          waypoint_b (List):
+            List contains latitude and longitude in order
             or string with the location name.
-          modes (array):
-            array including RouteMode enums.
+          modes (List):
+            List contains RouteMode enums.
           departure (str):
             Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
         Returns:
@@ -343,18 +343,18 @@ class RoutingApi(HEREApi):
     ) -> Optional[RoutingResponse]:
         """Request a matrix of route summaries between M starts and N destinations.
         Args:
-          start_waypoints (array):
-            array of arrays of coordinates [lat,long] of start waypoints.
-            or array of string with the location names.
-          destination_waypoints (array):
-            array of arrays of coordinates [lat,long] of destination waypoints.
-            or array of string with the location names.
+          start_waypoints (List):
+            List of lists of coordinates [lat,long] of start waypoints.
+            or list of string with the location names.
+          destination_waypoints (List):
+            List of lists of coordinates [lat,long] of destination waypoints.
+            or list of string with the location names.
           departure (str):
             time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
-          modes (array):
-            array of RouteMode enums following [Type, TransportMode, TrafficMode, Feature].
-          summary_attributes (array):
-            array of MatrixSummaryAttribute enums.
+          modes (List):
+            List of RouteMode enums following [Type, TransportMode, TrafficMode, Feature].
+          summary_attributes (List):
+            List of MatrixSummaryAttribute enums.
         Returns:
           RoutingMatrixResponse
         Raises:

@@ -112,10 +112,10 @@ class EVChargingStationsApi:
         """Makes a search request for charging stations with in given
            bounding box. The bounding box can have a maximum height / width of 400km.
         Args:
-          top_left (array):
-            array including latitude and longitude in order.
-          bottom_right (array):
-            array including latitude and longitude in order.
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
           connectortypes (List[EVStationConnectorTypes]):
             Optional, to identify the connector types.
         Returns:
@@ -161,8 +161,8 @@ class EVChargingStationsApi:
         """Makes a search request for charging stations with in given corridor.
            Maximum corridor area is 5000 km2.
         Args:
-          points (array):
-            array including latitude and longitude pairs in order.
+          points (List):
+            List contains latitude and longitude pairs in order.
           connectortypes (List[EVStationConnectorTypes]):
             Optional, to identify the connector types.
         Returns:
