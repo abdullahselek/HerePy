@@ -58,7 +58,23 @@ class IsolineRoutingApi(HEREApi):
         origin: List[float],
         range: int,
         routing_mode: IsolineRoutingMode,
-    ):
+    ) -> Optional[IsolineRoutingResponse]:
+        """A distance-based isoline, also called an Isodistance,
+        can be requested using range[type]=distance and providing range[values] in meters.
+        Args:
+          transport_mode (IsolineRoutingTransportMode):
+            Transport mode of routing.
+          origin (List):
+            List including latitude and longitude in order.
+          range (int):
+            Range of isoline in meters.
+          routing_mode (IsolineRoutingMode):
+            Isoline routing mode.
+        Returns:
+          IsolineRoutingResponse
+        Raises:
+          HEREError"""
+
         data = {
             "transportMode": transport_mode.__str__(),
             "origin": str.format("{0},{1}", origin[0], origin[1]),
