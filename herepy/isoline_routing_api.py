@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 
+import sys
+import json
+import requests
+
+from typing import List, Optional
 from herepy.here_api import HEREApi
+from herepy.utils import Utils
+from herepy.models import IsolineRoutingResponse
+from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
+from herepy.here_enum import IsolineRoutingTransportMode, IsolineRoutingMode
 
 
 class IsolineRoutingApi(HEREApi):
@@ -17,3 +26,45 @@ class IsolineRoutingApi(HEREApi):
 
         super(IsolineRoutingApi, self).__init__(api_key, timeout)
         self._base_url = "https://isoline.router.hereapi.com/v8/isolines"
+
+    def __get_error_from_response(self, json_data):
+        if "error" in json_data:
+            if json_data["error"] == "Unauthorized":
+                return UnauthorizedError(json_data["error_description"])
+        error_type = json_data.get("Type")
+        error_message = json_data.get(
+            "Message", "Error occured on " + sys._getframe(1).f_code.co_name
+        )
+        if error_type == "Invalid Request":
+            return InvalidRequestError(error_message)
+        else:
+            return HEREError(error_message)
+
+    def __get(self, url, data):
+        url = Utils.build_url(url, extra_params=data)
+        response = requests.get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("departure") != None and json_data.get("isolines") != None:
+            return IsolineRoutingResponse.new_from_jsondict(
+                json_data, param_defaults={"departure": None, "isolines": None}
+            )
+        else:
+            error = self.__get_error_from_response(json_data)
+            raise error
+
+    def distance_based_isoline(
+        self,
+        transport_mode: IsolineRoutingTransportMode,
+        origin: List[float],
+        range: int,
+        routing_mode: IsolineRoutingMode,
+    ):
+        data = {
+            "transportMode": transport_mode.__str__(),
+            "origin": str.format("{0},{1}", origin[0], origin[1]),
+            "range[type]": "distance",
+            "range[values]": range,
+            "routingMode": routing_mode.__str__(),
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url, data)

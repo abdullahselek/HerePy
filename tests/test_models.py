@@ -172,9 +172,5 @@ class ModelsTest(unittest.TestCase):
             self.fail(e)
         self.assertIsNotNone(isolineRoutingDistanceResponse.as_json_string())
         self.assertIsNotNone(isolineRoutingDistanceResponse.as_dict())
-        self.assertIsNotNone(
-            isolineRoutingDistanceResponse.as_dict()["departure"]
-        )
-        self.assertTrue(
-            len(isolineRoutingDistanceResponse.as_dict()["isolines"]) > 0
-        )
+        self.assertIsNotNone(isolineRoutingDistanceResponse.as_dict()["departure"])
+        self.assertTrue(len(isolineRoutingDistanceResponse.as_dict()["isolines"]) > 0)

@@ -278,7 +278,6 @@ class FlowProximityAdditionalAttributesTest(unittest.TestCase):
 
 
 class IsolineRoutingModeTest(unittest.TestCase):
-
     def test_valueofenum(self):
         fast = herepy.IsolineRoutingMode.fast
         self.assertEqual(fast.__str__(), "fast")
@@ -287,7 +286,6 @@ class IsolineRoutingModeTest(unittest.TestCase):
 
 
 class IsolineRoutingTransportModeTest(unittest.TestCase):
-
     def test_valueofenum(self):
         car = herepy.IsolineRoutingTransportMode.car
         self.assertEqual(car.__str__(), "car")
@@ -298,7 +296,6 @@ class IsolineRoutingTransportModeTest(unittest.TestCase):
 
 
 class IsolineRoutingOptimizationModeTest(unittest.TestCase):
-
     def test_valueofenum(self):
         quality = herepy.IsolineRoutingOptimizationMode.quality
         self.assertEqual(quality.__str__(), "quality")
