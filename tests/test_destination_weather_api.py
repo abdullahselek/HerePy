@@ -5,17 +5,23 @@ import time
 import unittest
 import json
 import responses
-import herepy
-from herepy.here_enum import WeatherProductType
+
+from herepy import (
+    DestinationWeatherApi,
+    DestinationWeatherResponse,
+    WeatherProductType,
+    InvalidRequestError,
+    UnauthorizedError,
+)
 
 
 class DestinationWeatherApiTest(unittest.TestCase):
     def setUp(self):
-        api = herepy.DestinationWeatherApi("api_key")
+        api = DestinationWeatherApi("api_key")
         self._api = api
 
     def test_initiation(self):
-        self.assertIsInstance(self._api, herepy.DestinationWeatherApi)
+        self.assertIsInstance(self._api, DestinationWeatherApi)
         self.assertEqual(self._api._api_key, "api_key")
         self.assertEqual(
             self._api._base_url,
@@ -34,9 +40,9 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_7days
+        product = WeatherProductType.forecast_7days
         name = "Berlin"
-        with self.assertRaises(herepy.InvalidRequestError):
+        with self.assertRaises(InvalidRequestError):
             self._api.weather_for_location_name(name, product)
 
     @responses.activate
@@ -51,9 +57,9 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_7days
+        product = WeatherProductType.forecast_7days
         name = "Berlin"
-        with self.assertRaises(herepy.UnauthorizedError):
+        with self.assertRaises(UnauthorizedError):
             self._api.weather_for_location_name(name, product)
 
     @responses.activate
@@ -66,11 +72,11 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_7days
+        product = WeatherProductType.forecast_7days
         name = "Berlin"
         response = self._api.weather_for_location_name(name, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
 
     @responses.activate
     def test_weather_for_coordinates(self):
@@ -82,12 +88,12 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_7days
+        product = WeatherProductType.forecast_7days
         latitude = 52.51784
         longitude = 13.38736
         response = self._api.weather_for_coordinates(latitude, longitude, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
 
     @responses.activate
     def test_weather_for_zip_code(self):
@@ -99,11 +105,11 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_7days
+        product = WeatherProductType.forecast_7days
         zip_code = "10025"
         response = self._api.weather_for_zip_code(zip_code, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
 
     @responses.activate
     def test_weather_product_type_alerts(self):
@@ -115,11 +121,11 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.alerts
+        product = WeatherProductType.alerts
         zip_code = "10025"
         response = self._api.weather_for_zip_code(zip_code, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
 
     @responses.activate
     def test_weather_product_type_forecast_7days(self):
@@ -131,11 +137,11 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_7days
+        product = WeatherProductType.forecast_7days
         zip_code = "10025"
         response = self._api.weather_for_zip_code(zip_code, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
 
     @responses.activate
     def test_weather_product_type_forecast_7days_simple(self):
@@ -149,11 +155,11 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_7days_simple
+        product = WeatherProductType.forecast_7days_simple
         zip_code = "10025"
         response = self._api.weather_for_zip_code(zip_code, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
 
     @responses.activate
     def test_weather_product_type_forecast_astronomy(self):
@@ -167,11 +173,11 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_astronomy
+        product = WeatherProductType.forecast_astronomy
         zip_code = "10025"
         response = self._api.weather_for_zip_code(zip_code, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
 
     @responses.activate
     def test_weather_product_type_forecast_hourly(self):
@@ -185,11 +191,11 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.forecast_hourly
+        product = WeatherProductType.forecast_hourly
         zip_code = "10025"
         response = self._api.weather_for_zip_code(zip_code, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
 
     @responses.activate
     def test_weather_product_type_nws_alerts(self):
@@ -203,8 +209,8 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        product = herepy.WeatherProductType.nws_alerts
+        product = WeatherProductType.nws_alerts
         zip_code = "10025"
         response = self._api.weather_for_zip_code(zip_code, product)
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.DestinationWeatherResponse)
+        self.assertIsInstance(response, DestinationWeatherResponse)
