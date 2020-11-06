@@ -84,3 +84,32 @@ class IsolineRoutingApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url, data)
+
+    def time_isoline(
+        self,
+        transport_mode: IsolineRoutingTransportMode,
+        origin: List[float],
+        range: int
+    ):
+        """A time-based isoline, also called an Isochrone,
+        can be requested by using range[type]=time and providing range[values] in seconds.
+        Args:
+          transport_mode (IsolineRoutingTransportMode):
+            Transport mode of routing.
+          origin (List):
+            List including latitude and longitude in order.
+          range (int):
+            Range of isoline in meters.
+        Returns:
+          IsolineRoutingResponse
+        Raises:
+          HEREError"""
+
+        data = {
+            "transportMode": transport_mode.__str__(),
+            "origin": str.format("{0},{1}", origin[0], origin[1]),
+            "range[type]": "time",
+            "range[values]": range,
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url, data)        

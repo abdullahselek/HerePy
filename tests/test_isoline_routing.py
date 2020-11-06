@@ -71,3 +71,45 @@ class IsolineRoutingApiTest(unittest.TestCase):
                 range=4000,
                 routing_mode=IsolineRoutingMode.short,
             )
+
+    @responses.activate
+    def test_time_isoline_success(self):
+        with codecs.open(
+            "testdata/models/isoline_routing_distance_response.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://isoline.router.hereapi.com/v8/isolines",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.time_isoline(
+            transport_mode=IsolineRoutingTransportMode.car,
+            origin=[52.51578, 13.37749],
+            range=300,
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, IsolineRoutingResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_time_isoline_fails(self):
+        with codecs.open(
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://isoline.router.hereapi.com/v8/isolines",
+            expectedResponse,
+            status=200,
+        )
+        with self.assertRaises(UnauthorizedError):
+            self._api.time_isoline(
+                transport_mode=IsolineRoutingTransportMode.car,
+                origin=[52.51578, 13.37749],
+                range=300
+            )
