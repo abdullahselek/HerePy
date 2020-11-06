@@ -89,8 +89,8 @@ class IsolineRoutingApi(HEREApi):
         self,
         transport_mode: IsolineRoutingTransportMode,
         origin: List[float],
-        range: int
-    ):
+        range: int,
+    ) -> Optional[IsolineRoutingResponse]:
         """A time-based isoline, also called an Isochrone,
         can be requested by using range[type]=time and providing range[values] in seconds.
         Args:
@@ -112,4 +112,4 @@ class IsolineRoutingApi(HEREApi):
             "range[values]": range,
             "apiKey": self._api_key,
         }
-        return self.__get(self._base_url, data)        
+        return self.__get(self._base_url, data)

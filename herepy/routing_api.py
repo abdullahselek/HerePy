@@ -378,9 +378,7 @@ class RoutingApi(HEREApi):
                 destination_waypoint = self._get_coordinates_for_location_name(
                     destination_waypoint
                 )
-            data["destination" + str(i)] = self.__list_to_waypoint(
-                destination_waypoint
-            )
+            data["destination" + str(i)] = self.__list_to_waypoint(destination_waypoint)
         response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
         return response
 

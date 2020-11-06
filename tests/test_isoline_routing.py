@@ -111,5 +111,5 @@ class IsolineRoutingApiTest(unittest.TestCase):
             self._api.time_isoline(
                 transport_mode=IsolineRoutingTransportMode.car,
                 origin=[52.51578, 13.37749],
-                range=300
+                range=300,
             )
