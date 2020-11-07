@@ -253,3 +253,13 @@ class IsolineRoutingOptimizationMode(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class IsolineRoutingRangeType(Enum):
+    """Type of ranges how isoline calculation is optimized."""
+
+    distance = "distance"
+    time = "time"
+
+    def __str__(self):
+        return "%s" % self._value_

@@ -32,6 +32,7 @@ from .here_enum import (
     IsolineRoutingMode,
     IsolineRoutingTransportMode,
     IsolineRoutingOptimizationMode,
+    IsolineRoutingRangeType,
 )
 
 from .models import (

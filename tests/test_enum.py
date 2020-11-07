@@ -19,6 +19,7 @@ from herepy import (
     IsolineRoutingMode,
     IsolineRoutingTransportMode,
     IsolineRoutingOptimizationMode,
+    IsolineRoutingRangeType,
 )
 from enum import Enum
 
@@ -319,3 +320,11 @@ class IsolineRoutingOptimizationModeTest(unittest.TestCase):
         self.assertEqual(performance.__str__(), "performance")
         balanced = IsolineRoutingOptimizationMode.balanced
         self.assertEqual(balanced.__str__(), "balanced")
+
+
+class IsolineRoutingRangeTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        distance = IsolineRoutingRangeType.distance
+        self.assertEqual(distance.__str__(), "distance")
+        time = IsolineRoutingRangeType.time
+        self.assertEqual(time.__str__(), "time")
