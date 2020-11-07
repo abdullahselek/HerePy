@@ -9,7 +9,7 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.models import IsolineRoutingResponse
 from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
-from herepy.here_enum import IsolineRoutingTransportMode, IsolineRoutingMode
+from herepy.here_enum import IsolineRoutingTransportMode, IsolineRoutingMode, IsolineRoutingRangeType
 
 
 class IsolineRoutingApi(HEREApi):
@@ -78,7 +78,7 @@ class IsolineRoutingApi(HEREApi):
         data = {
             "transportMode": transport_mode.__str__(),
             "origin": str.format("{0},{1}", origin[0], origin[1]),
-            "range[type]": "distance",
+            "range[type]": IsolineRoutingRangeType.distance,
             "range[values]": range,
             "routingMode": routing_mode.__str__(),
             "apiKey": self._api_key,
@@ -108,7 +108,7 @@ class IsolineRoutingApi(HEREApi):
         data = {
             "transportMode": transport_mode.__str__(),
             "origin": str.format("{0},{1}", origin[0], origin[1]),
-            "range[type]": "time",
+            "range[type]": IsolineRoutingRangeType.time,
             "range[values]": range,
             "apiKey": self._api_key,
         }
