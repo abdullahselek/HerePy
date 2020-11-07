@@ -260,6 +260,7 @@ class IsolineRoutingRangeType(Enum):
 
     distance = "distance"
     time = "time"
+    consumption = "consumption"
 
     def __str__(self):
         return "%s" % self._value_

@@ -328,3 +328,5 @@ class IsolineRoutingRangeTypeTest(unittest.TestCase):
         self.assertEqual(distance.__str__(), "distance")
         time = IsolineRoutingRangeType.time
         self.assertEqual(time.__str__(), "time")
+        consumption = IsolineRoutingRangeType.consumption
+        self.assertEqual(consumption.__str__(), "consumption")
