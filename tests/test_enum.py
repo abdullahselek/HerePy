@@ -135,9 +135,7 @@ class EVStationConnectorTypesTest(unittest.TestCase):
         cee_7_7 = EVStationConnectorTypes.cee_7_7
         self.assertEqual(cee_7_7.__str__(), "10")
 
-        bs_1363__is_401_411__ms_58 = (
-            EVStationConnectorTypes.bs_1363__is_401_411__ms_58
-        )
+        bs_1363__is_401_411__ms_58 = EVStationConnectorTypes.bs_1363__is_401_411__ms_58
         self.assertEqual(bs_1363__is_401_411__ms_58.__str__(), "11")
         si_32 = EVStationConnectorTypes.si_32
         self.assertEqual(si_32.__str__(), "12")
@@ -162,9 +160,7 @@ class EVStationConnectorTypesTest(unittest.TestCase):
         self.assertEqual(thailand_tis_166_2549.__str__(), "21")
         cei_23_16__VII = EVStationConnectorTypes.cei_23_16__VII
         self.assertEqual(cei_23_16__VII.__str__(), "22")
-        south_african_15_a__250_v = (
-            EVStationConnectorTypes.south_african_15_a__250_v
-        )
+        south_african_15_a__250_v = EVStationConnectorTypes.south_african_15_a__250_v
         self.assertEqual(south_african_15_a__250_v.__str__(), "23")
         iec_60906_1_3_pin = EVStationConnectorTypes.iec_60906_1_3_pin
         self.assertEqual(iec_60906_1_3_pin.__str__(), "24")
@@ -193,17 +189,11 @@ class EVStationConnectorTypesTest(unittest.TestCase):
         self.assertEqual(iec_62196_2_type_2_mennekes.__str__(), "31")
         iec_62196_2_type_3c = EVStationConnectorTypes.iec_62196_2_type_3c
         self.assertEqual(iec_62196_2_type_3c.__str__(), "32")
-        iec_62196_3_type_1_combo = (
-            EVStationConnectorTypes.iec_62196_3_type_1_combo
-        )
+        iec_62196_3_type_1_combo = EVStationConnectorTypes.iec_62196_3_type_1_combo
         self.assertEqual(iec_62196_3_type_1_combo.__str__(), "33")
-        iec_62196_3_type_2_combo = (
-            EVStationConnectorTypes.iec_62196_3_type_2_combo
-        )
+        iec_62196_3_type_2_combo = EVStationConnectorTypes.iec_62196_3_type_2_combo
         self.assertEqual(iec_62196_3_type_2_combo.__str__(), "34")
-        iec_60309_industrial_p_n_e = (
-            EVStationConnectorTypes.iec_60309_industrial_p_n_e
-        )
+        iec_60309_industrial_p_n_e = EVStationConnectorTypes.iec_60309_industrial_p_n_e
         self.assertEqual(iec_60309_industrial_p_n_e.__str__(), "35")
         iec_60309_industrial_3p_e_n = (
             EVStationConnectorTypes.iec_60309_industrial_3p_e_n

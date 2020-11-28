@@ -9,7 +9,11 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.models import IsolineRoutingResponse
 from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
-from herepy.here_enum import IsolineRoutingTransportMode, IsolineRoutingMode, IsolineRoutingRangeType
+from herepy.here_enum import (
+    IsolineRoutingTransportMode,
+    IsolineRoutingMode,
+    IsolineRoutingRangeType,
+)
 
 
 class IsolineRoutingApi(HEREApi):
@@ -123,16 +127,43 @@ class IsolineRoutingApi(HEREApi):
         traffic_speed_table: List[float],
         ascent: int,
         descent: float,
-        auxiliary_consumption: float
+        auxiliary_consumption: float,
     ):
+        """Electric vehicles have a limited reachable range based on their current battery
+        charge and factors affecting the rate of energy consumed, such as road slope or auxiliary
+        power usage. Therefore, it is useful to visualize the appropriate range to avoid running
+        out of energy before reaching a charging point.
+        Args:
+          transport_mode (IsolineRoutingTransportMode):
+            Transport mode of routing.
+          origin (List):
+            List including latitude and longitude in order.
+          range (int):
+            Range of isoline in meters.
+          transport_mode (IsolineRoutingTransportMode):
+            Transport mode of routing.
+          free_flow_speed_table (List[float]):
+            Free flow speed table.
+          traffic_speed_table (List[float]):
+            Traffic speed table.
+          ascent (int):
+            Int value of ascent.
+          descent (float):
+            Value of descent.
+          auxiliary_consumption (float):
+            Auxiliary consumption.
+        Returns:
+          IsolineRoutingResponse
+        Raises:
+          HEREError"""
+
         free_speed_table = [0]
         free_speed_table.extend(free_flow_speed_table)
-        free_speed_table_str = ','.join([str(n) for n in free_speed_table])
-        
+        free_speed_table_str = ",".join([str(n) for n in free_speed_table])
 
         speed_table = [0]
         speed_table.extend(traffic_speed_table)
-        speed_table_str = ','.join([str(n) for n in speed_table])
+        speed_table_str = ",".join([str(n) for n in speed_table])
 
         data = {
             "origin": str.format("{0},{1}", origin[0], origin[1]),
