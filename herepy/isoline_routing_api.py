@@ -113,3 +113,37 @@ class IsolineRoutingApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url, data)
+
+    def isoline_based_on_consumption(
+        self,
+        origin: List[float],
+        range: int,
+        transport_mode: IsolineRoutingTransportMode,
+        free_flow_speed_table: List[float],
+        traffic_speed_table: List[float],
+        ascent: int,
+        descent: float,
+        auxiliary_consumption: float
+    ):
+        free_speed_table = [0]
+        free_speed_table.extend(free_flow_speed_table)
+        free_speed_table_str = ','.join([str(n) for n in free_speed_table])
+        
+
+        speed_table = [0]
+        speed_table.extend(traffic_speed_table)
+        speed_table_str = ','.join([str(n) for n in speed_table])
+
+        data = {
+            "origin": str.format("{0},{1}", origin[0], origin[1]),
+            "range[type]": IsolineRoutingRangeType.consumption.__str__(),
+            "range[values]": range,
+            "transportMode": transport_mode.__str__(),
+            "ev[freeFlowSpeedTable]": free_speed_table_str,
+            "ev[trafficSpeedTable]": speed_table_str,
+            "ev[ascent]": ascent,
+            "ev[descent]": descent,
+            "ev[auxiliaryConsumption]": auxiliary_consumption,
+            "apiKey": self._api_key,
+        }
+        return self.__get(self._base_url, data)

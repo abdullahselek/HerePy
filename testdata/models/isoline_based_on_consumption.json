@@ -1,0 +1,28 @@
+{
+    "isolines" : [
+      {
+        "range" : {
+          "type" : "consumption",
+          "value" : 200000
+        },
+        "polygons" : [
+          {
+            "outer" : "BG8_-vkD--5kYA89gF0uV-rgCq9qBAo9qBp9qB-rgCzuV061CA-rgC0uV0uV-rgCzuV-rgCp9qBq9qBp9qB83gEn9qBo9qBAq9qB-rgC0uVy61CA-rgC2uVy61Cy61Cq9qB83gEq9qBo9qB0uV-rgCzuV-rgCp9qBq9qBzuV-rgCAm1rF1uV-rgCn9qBo9qB1uV-rgC2uV-rgC83gE83gE0uV-rgCA061CzuV-rgC73gE83gEp9qB63gE9rgC2uVx61CA9rgC0uV1uV-rgCAy61CzuV-rgCp9qBq9qBn9qB83gE9rgC0uVz61CA9rgCzuVn9qB73gE9rgCzuV9rgC0uVp9qBq9qB9rgC0uV9rgCzuVp9qBp9qB7rgCzuVl1rFA9rgC1uVp9qB73gEty2Gty2GzuV9rgCA3vhI0uV9rgCq9qBn9qB0uV9rgCAnvkYzuV9rgCp9qBp9qBzuV9rgCAx61C0uV9rgC83gEp9qB83gE73gE83gEn9qBq9qBp9qB63gEp9qBq9qBn9qB-rgC1uVm1rFA-rgCzuVo9qB73gE-rgCzuV-rgCq3K2uV-lgBA001B"
+          }
+        ]
+      }
+    ],
+    "departure" : {
+      "place" : {
+        "type" : "place",
+        "location" : {
+          "lat" : 52.532800199999997,
+          "lng" : 13.352254200000001
+        },
+        "originalLocation" : {
+          "lat" : 52.532988000000003,
+          "lng" : 13.352852
+        }
+      }
+    }
+  }
