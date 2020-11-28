@@ -78,7 +78,7 @@ class IsolineRoutingApi(HEREApi):
         data = {
             "transportMode": transport_mode.__str__(),
             "origin": str.format("{0},{1}", origin[0], origin[1]),
-            "range[type]": IsolineRoutingRangeType.distance,
+            "range[type]": IsolineRoutingRangeType.distance.__str__(),
             "range[values]": range,
             "routingMode": routing_mode.__str__(),
             "apiKey": self._api_key,
@@ -108,7 +108,7 @@ class IsolineRoutingApi(HEREApi):
         data = {
             "transportMode": transport_mode.__str__(),
             "origin": str.format("{0},{1}", origin[0], origin[1]),
-            "range[type]": IsolineRoutingRangeType.time,
+            "range[type]": IsolineRoutingRangeType.time.__str__(),
             "range[values]": range,
             "apiKey": self._api_key,
         }
