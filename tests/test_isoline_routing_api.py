@@ -13,6 +13,7 @@ from herepy import (
     IsolineRoutingTransportMode,
     IsolineRoutingMode,
     UnauthorizedError,
+    HEREError
 )
 
 
@@ -252,4 +253,80 @@ class IsolineRoutingApiTest(unittest.TestCase):
                 ascent=9,
                 descent=4.3,
                 auxiliary_consumption=1.8,
+            )
+
+    @responses.activate
+    def test_isoline_routing_at_specific_time_succeed(self):
+        with codecs.open(
+            "testdata/models/isoline_routing_api_specific_time.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://isoline.router.hereapi.com/v8/isolines",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.isoline_routing_at_specific_time(
+            transport_mode=IsolineRoutingTransportMode.car,
+            range=300,
+            origin=[52.51578, 13.37749],
+            departure_time="2020-05-10T09:30:00",
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, IsolineRoutingResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_isoline_routing_at_specific_time_succeed_with_destination(self):
+        with codecs.open(
+            "testdata/models/isoline_routing_api_specific_time.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://isoline.router.hereapi.com/v8/isolines",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.isoline_routing_at_specific_time(
+            transport_mode=IsolineRoutingTransportMode.car,
+            range=300,
+            destination=[52.51578, 13.37749],
+            arrival_time="2020-05-10T09:30:00",
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, IsolineRoutingResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_isoline_routing_at_specific_time_fails(self):
+        with codecs.open(
+            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://isoline.router.hereapi.com/v8/isolines",
+            expectedResponse,
+            status=200,
+        )
+        with self.assertRaises(UnauthorizedError):
+            self._api.isoline_routing_at_specific_time(
+                transport_mode=IsolineRoutingTransportMode.car,
+                range=300,
+                origin=[52.51578, 13.37749],
+                departure_time="2020-05-10T09:30:00",
+            )
+
+    @responses.activate
+    def test_isoline_routing_at_specific_time_fails_with_missing_parameters(self):
+        with self.assertRaises(HEREError):
+            self._api.isoline_routing_at_specific_time(
+                transport_mode=IsolineRoutingTransportMode.car,
+                range=300,
             )

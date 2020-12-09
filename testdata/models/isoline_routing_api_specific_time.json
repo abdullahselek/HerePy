@@ -1,0 +1,30 @@
+{
+    "departure": {
+      "time": "2020-03-03T18:00:00+01:00",
+      "place": {
+        "type": "place",
+        "location": {
+          "lat": 52.5157611,
+          "lng": 13.3774232
+        },
+        "originalLocation": {
+          "lat": 52.51578,
+          "lng": 13.37749
+        }
+      }
+    },
+    "isolines": [
+      {
+        "range": {
+          "type": "time",
+          "value": 300
+        },
+        "polygons": [
+          {
+            "outer": "BGq1mlkDyt9tZwViQ2KmgBA-qB4KmgBuVuV4KmgB3KmgBtVuV3KmgBAmtN4KmgBuVAwVrgCuVvVuVrgCwVtV2KlgBA7qB4KlgBuVvVwVrgCuVtVAtVtVvV3KlgBA7qB4KlgBsgCvVsgCrgCuVA4KmgBA4gE2KmgBwVwV2KmgBA8qB1KmgBrgCwV3KmgBA61C3KmgBtVAtVvVlgB1KlgB2K3KmgBA-qB3KmgBtVuVtVsgCvVwV1KmgBA4gE2KmgBwVuV2KmgBA-qB4KmgB61C61CwVA2KlgBA9qB4KlgBuVtV4KlgBA9qB4KlgB8qB7qBwVA2KmgBA8qB1KmgBvVwV1KmgBA8qB2KmgBwVAuVrgCmgB1KmgB2KAwVtVuV3KmgBA8qB4KmgB8qB-qBsgCuV-qB-qB2KmgB1KmgBlgB4KlgB3KtVtVlgB3KlgB4K3KmgBA61C3KmgBlgB4KlgB3KtVrgCtVtVvVrgCtVvVtVrgClgB1KlgB2K3KmgBA81C4KmgBuVuV4KmgBA2rF2KmgBwVuV2KmgBA61C4KmgBuVuV4KmgB3KmgBtVwVtVsgCvVuV1KmgBA-qB2KmgBmgB2K-qBAmgB4KuVuVmgB4KmgB3K-qB7qB4KlgB3KlgBtVvVvVrgCtVtV3KlgB4KlgBsgCtVuVrgCmgB3KmgB4K4KmgB3KmgBtVuV3KmgB4KmgBmgB4KmgB3K8qB9qB4KlgB3KlgBtVtV3KlgB4KlgBmgB1KmgB2K-qB-qB2KmgBA8qB4KmgBmgB4K-qBAmgB4KsgCsgCsgCuV2KmgB1KmgB71C61CrgCwV1KmgB2KmgBwVuV2KmgBA61C1KmgBlgB4KlgB3K3KlgBA51C3KlgBtVtVtVrgCvVAtVuVrgCuV3KmgB4KmgBmgB4K-qBAmgB4K2KmgBAy2G4KmgBuVAwVvVmgB1KmgB2K8qB-qB4KmgBA-qB3KmgBlgB2Kx2GAlgB4K3KmgBA-qB4KmgBuVuV4KmgBA-qB3KmgBtVuV3KmgBA61C4KmgBmgB4KmgB3KuVtVmgB3KmgB4K4KmgBA8qB3KmgBlgB4K7qBAlgB4K3KmgBA8qB3KmgBlgB4K7qBAlgB4K3KmgBA8qB1KmgBlgB4KlgB3K3KlgBA3gE3KlgBlgB1K7qBAlgB2KAwVsgCuV2KmgBA4gE1KmgBvVuV1KmgBAwhI2KmgBwVuV2KmgB1KmgBrgCsgC3KmgBA-qB4KmgBuVuVuVsgCwVwV2KmgB1KmgB9qB8qBlgB4KlgB3K3KlgBA51C1KlgBvVtV1KlgBA9qB3KlgBtVtV3KlgBA9qB3KlgBtVA3KmgBA61C4KmgBuVwVAuV7qB-qBvVA7qB9qB3KlgBA3gE3KlgBlgB3KlgB4KtVsgClgB4KlgB3K1KlgBA3gE3KlgBlgB1KlgB2KAuVuVwV4KmgBAy2G3KmgBlgB4KlgB3K7qB9qB3KlgB4KlgBuVtV4KlgBA9qB3KlgBrgCtV3KlgBA7qB4KlgBsgCvVAtVtVtVvVrgCtVAtVuVvVA1KlgBA9qB3KlgBtVA3KmgBA02G3KkgBlgB4KlgB3K1KjgBA71C3KlgBtVtV3KlgB4KlgBuVtVAvVtVtVvVrgClgB3KzrFAlgB1K3KlgBA9qB1KlgBlgB3K3gEAlgB1K3KlgB4KlgBorDprDAtVlgB3K7qBAlgB1K3KlgB4KlgBmgB3K61CAmgB3K4KlgBA7qB3KlgBl2En2E3KlgBA51C4KlgBkhGjhGuVrgCsgCtV8qB9qBwVrgCuVtV4KlgBA9qB2KlgBwVtV2KlgB1KlgBprDprD3KlgB4KlgBmgB1KmgB2KsgCsgCuVA4KlgBA1gE3KlgBtVvV3KlgBA7qB4KlgBmgB3KmgB4KuVuVsgCuVwVwVsgCuVuVuVsgCwV4KmgB3KmgBlgB2K9qBAlgB4K1KmgBA8qB2KmgBsgCwVwVuVsgCuV2KmgBA-qB4KmgBmgB4K61CAmgB3KuVtVsgCvV4KlgB3KlgBtVtV3KlgBA7tR1KlgBvVvV1KlgBAthI3KlgB9qB9qBjgB3KlgB4KvVuVlgB4K7qBAlgB4KvVuVlgB4K7qBAlgB3K3KlgBA9qB4KlgBuVtVAtVrgCvV3KlgB4KlgBmgB1K-qBAmgB2K8qB-qBwVsgCmgB4KmgB3KuVtVmgB3K-qBAkgB3KwVrgCuVtV4KlgBA3gE3KlgBtVtV3KlgBA9tR4KlgBuVpFuVmgB"
+          }
+        ]
+      }
+    ]
+  }
+  

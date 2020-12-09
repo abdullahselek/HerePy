@@ -178,3 +178,57 @@ class IsolineRoutingApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url, data)
+
+    def isoline_routing_at_specific_time(self,
+        transport_mode: IsolineRoutingTransportMode,
+        range: int,
+        origin: Optional[List[float]] = None,
+        departure_time: Optional[str] = None,
+        destination: Optional[List[float]] = None,
+        arrival_time: Optional[str] = None,
+    ):
+        """To calculate an isoline around an origin with a specific time, use departureTime.
+        For a reverse isoline, that is, when using destination, you can use arrivalTime.
+        If departureTime or arrivalTime are specified as "any", the isoline calculation will
+        not take traffic flow and other time-dependent effects into account. This can be useful
+        when it is not certain for what time of the day the isoline needs to be computed.
+        Args:
+          transport_mode (IsolineRoutingTransportMode):
+            Transport mode of routing.
+          origin (List):
+            List including latitude and longitude in order.
+          departure_time (str):
+            Departure time of the routing in format yyyy-MM-ddThh:mm:ss.
+          destination (List):
+            List including latitude and longitude in order.
+          arrival_time (str):
+            Arrival time of the planned routing in format yyyy-MM-ddThh:mm:ss.
+          range (int):
+            Range of isoline in meters.
+        Returns:
+          IsolineRoutingResponse
+        Raises:
+          HEREError"""
+
+        if origin and departure_time:
+            data = {
+                "transportMode": transport_mode.__str__(),
+                "origin": str.format("{0},{1}", origin[0], origin[1]),
+                "departureTime": departure_time,
+                "range[type]": IsolineRoutingRangeType.time.__str__(),
+                "range[values]": range,
+                "apiKey": self._api_key,
+            }
+            return self.__get(self._base_url, data)
+        elif destination and arrival_time:
+            data = {
+                "transportMode": transport_mode.__str__(),
+                "destination": str.format("{0},{1}", destination[0], destination[1]),
+                "arrivalTime": arrival_time,
+                "range[type]": IsolineRoutingRangeType.time.__str__(),
+                "range[values]": range,
+                "apiKey": self._api_key,
+            }
+            return self.__get(self._base_url, data)
+        else:
+          raise HEREError("Please provide either origin & departure_time or destination & arrival_time.")
