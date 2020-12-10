@@ -274,6 +274,7 @@ class IsolineRoutingResponse(HEREModel):
         super(IsolineRoutingResponse, self).__init__()
         self.param_defaults = {
             "departure": None,
+            "arrival": None,
             "isolines": [],
             "error": None,
         }
