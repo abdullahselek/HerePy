@@ -232,3 +232,47 @@ class IsolineRoutingApi(HEREApi):
             return self.__get(self._base_url, data)
         else:
           raise HEREError("Please provide either origin & departure_time or destination & arrival_time.")
+
+    def multi_range_routing(self,
+        transport_mode: IsolineRoutingTransportMode,
+        ranges: List[int],
+        origin: Optional[List[float]] = None,
+        destination: Optional[List[float]] = None,
+    ):
+        """Isoline routing can be requested with multiple ranges which allows for the calculation
+        of many isolines with the same start or destination.
+        Args:
+          transport_mode (IsolineRoutingTransportMode):
+            Transport mode of routing.
+          ranges (List):
+            Range values for isoline routing.
+          origin (List):
+            List including latitude and longitude in order.
+          destination (List):
+            List including latitude and longitude in order.
+        Returns:
+          IsolineRoutingResponse
+        Raises:
+          HEREError"""
+
+        string_ranges = [str(int) for int in ranges]
+        if origin:
+            data = {
+                "transportMode": transport_mode.__str__(),
+                "origin": str.format("{0},{1}", origin[0], origin[1]),
+                "range[type]": IsolineRoutingRangeType.distance.__str__(),
+                "range[values]": ",".join(string_ranges),
+                "apiKey": self._api_key,
+            }
+            return self.__get(self._base_url, data)
+        elif destination:
+            data = {
+                "transportMode": transport_mode.__str__(),
+                "destination": str.format("{0},{1}", destination[0], destination[1]),
+                "range[type]": IsolineRoutingRangeType.distance.__str__(),
+                "range[values]": ",".join(string_ranges),
+                "apiKey": self._api_key,
+            }
+            return self.__get(self._base_url, data)
+        else:
+            raise HEREError("Please provide values for origin or destination parameter.")
