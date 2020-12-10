@@ -1,0 +1,50 @@
+{
+    "arrival": {
+      "place": {
+        "type": "place",
+        "location": {
+          "lat": 52.5157611,
+          "lng": 13.3774232
+        },
+        "originalLocation": {
+          "lat": 52.51578,
+          "lng": 13.37749
+        }
+      }
+    },
+    "isolines": [
+      {
+        "range": {
+          "type": "distance",
+          "value": 1000
+        },
+        "polygons": [
+          {
+            "outer": "BGsrqlkD630vZAgnJ2KmgBwVA2KlgBA3gE4KlgBmgB1KmgB2K4KmgBA02G2KmgBmgB2K-qBAmgB4K4KmgBA4gE3KmgBlgB4KlgB3K3KlgBA9qB1KlgBvVA1KmgBAwhI2KmgBwVuV2KmgBA-qB4KmgBmgB4KmgB3KuVrgCsgCtVwVvVuVA4KmgBA-qB2KmgBwVuV2KmgB1KmgBlgB4K3gEAlgB4K3KmgB4KmgBuVuV4KmgBA-qB2KmgBwVuV2KmgBA-qB1KmgBrgCuVvVuVlgB4KlgB3KtVtVlgB3KlgB4K9qB8qB1KmgB2KmgBwVwV2KmgB1KmgBlgB2K9qBAlgB1K3KlgB4KlgBuVvVAtV7qB9qBrgCtVvVtVpgCtVrgCrgCrgCvV3KlgB4KlgBuVtV4KlgBA3gE3KlgBrgCtV3KlgBA9qB1KlgBvVArgCsgCtVA3KlgBA3gE4KlgB-qB7qBsgCvV2KlgB1KlgBvVtV1KlgBA9qB2KlgBqrDnrD4KlgBA9qB2KlgBwVA2KmgBA-qB4KmgBuVAwVvVmgB1KkgB2K4KmgB3KmgBpgCsgC3KmgBA81C4KmgBuVuV4KmgBA8qB2KmgBmgB4K4gEAmgB3KAtVtVtV3KlgBAh4O3KlgBtVvV3KlgBAzrF4KlgBmgB3KmgBsF4KkQA6a"
+          }
+        ]
+      },
+      {
+        "range": {
+          "type": "distance",
+          "value": 2000
+        },
+        "polygons": [
+          {
+            "outer": "BGugplkDyy4uZ4K6auVwV4KmgBA61C2KmgBo2Em2E2KmgB1KmgBrgCuV3KmgBA81C4KmgBuVuV4KmgBA2rF2KmgBwVuV2KmgBA61C4KmgBuVuV4KmgB3KmgBtVwVtVsgCvVuV1KmgBA-qB2KmgBmgB2K-qBAmgB4KuVuVmgB4K-qBAmgB4K4KmgB3KmgBtVuV3KmgB4KmgB8qB-qBwVA2KlgBAz2G1KlgBvVAtVwVlgB2KlgB1K3KlgBA9qB4KlgBuVtVAvVtVtV3KlgBA9qB4KlgBuVAwVwVuVAuVrgCwVAuVsgCuVuVuVsgCwVuV2KmgB1KmgBvVwV1KmgB2KmgBmgB2K-qBAmgB4K4KmgB3KmgBrgCuV3KmgB4KmgBmgB4K-qBAmgB4KsgCsgCmgB2K8qBAmgB4K4KmgBA8qB4KmgBsgCwV2KmgB1KmgBvVuV1KmgB2KmgBwVuV2KmgBA4gE1KmgBvVAtVrgCtVA3KmgBA-qB3KmgBtVAtVtVrgCvV3KlgB4KlgBuVtV4KlgB3KlgB9qB9qBtVAtVwVlgB2K9qBAlgB4K3KmgBA61C4KmgBuVwVAuVtVuV3KmgBA4gE4KmgBmgB4K-qBAmgB3KuVrgCmgB1KmgB2K4KmgBA61C3KmgBrgCwV3KmgBA8qB1KmgBvVA1KlgBA7qB3KlgBtVA3KmgBAy2G3KmgBlgB4KlgB3KtVtVlgB3K3gEAlgB4K1KmgBA61C2KmgBwVuV2KmgB1KmgBvVwV1KmgBA61C3KmgBtVA9qB9qB3KlgBA7qB1KlgBvVA1KmgBA2gE2KmgBwVwV2KmgBA8qB1KmgBvVA7qB7qB3KlgBA9qB3KlgBtVA3KmgBA2rF1KmgBvVA7qB9qB3KlgBA9qB3KlgBtVtVtVrgCvVArgCsgCjgB4KlgB3K3KlgBA51C4KlgBuVvVAtVlgB1KlgB2KtVsgCvVAtVrgCrgCtV3KlgBA9qB1KlgBlgB1K9qBAlgB3K9qB9qBtVrgCtVtVvVrgClgB3K7qBAlgB1K3KlgBA71C3KlgBtVAtVwVlgB2KlgB1KtVvVlgBtV9qBtVlgBvV3KlgB4KlgBuVtV4KlgBA7qB4KlgBuVvV4KlgB3KlgBrgCrgC3KlgBA51C4KlgBuVAwVuVsgCwVqgCsgCmgB2KmgB1KAvVtVtVtVrgCvVtVtVrgCtVvVtVrgCvVArgCsgClgB4KlgB3K1KlgB2KlgB-qB7qBsgCvVuVpgCwVvVuVrgCuVtVuVrgC-qB9qBsgCtVuVrgCwVtV2KlgBA9qB1KlgBn2El2E1KlgB2KlgB-qB9qBuVAwVsgC61C61CuVA4KlgBA1gE3KlgBtVvV3KlgBA7qB4KlgBuVAwVuVmgB4K8qBAmgB2KwVwVmgB2K61CAmgB4K4KmgBA4gE3KmgBtVAvVrgClgB3KlgB4K1KmgBA8qB2KmgB-qB-qBsgCuV-qB-qB2KmgBA-qB4KmgBuVAwVvVmgB1K61CAmgB3K8qB9qB4KlgBA7qB3KlgBtVvV3KlgBA54S1KlgBvVtV1KlgBAvhI2KlgBwVtV2KlgBA9qB4KlgBuVpF4KiQA6a"
+          }
+        ]
+      },
+      {
+        "range": {
+          "type": "distance",
+          "value": 3000
+        },
+        "polygons": [
+          {
+            "outer": "BGogolkDyt9tZuViQwVsgCuVuVuVsgCmgB4KmgB3KwVtVsgCtVuVvVmgB1KmgB2K4KmgBA2rF2KmgBsgCuV4KmgB3KmgBlgB4K51CAlgB4KAuVuVuV4KmgBA4gE4KmgBsgCuVsgCsgCsgCwVuVuVmgB4K8qBAmgB2K4KmgBAwhI3KmgBtVuV3KmgBA-qB4KmgBmgB4KmgB3K-qB9qBuVrgCuVA-qB-qB4KmgB3KmgBrgCsgC3KmgB4KmgBuVuV4KmgB3KmgBtVwV3KmgBA4gE1KmgBrgCuVAuV8qB-qBwVAuVtVmgB3KmgB4K4KmgB3KmgBrgCqgC3KmgB4KmgBmgB4K-qBAmgB4K8qB8qBwVsgCuVwV4KmgB3KmgBlgBuVlgBmgB3K-qBA4gE4KmgBuVAo2En2EsgCtV61C51CAvVtVtV3KlgB4KlgBmgB3K61CAmgB1KuVrgCmgB3KmgB4K4KmgB3KmgBtVuVvVsgCrgCuV7qB-qBAuVuVwV4KmgBA61C3KmgBtVAvVrgCtVAtVsgC9qB-qBtVAtVrgCvVA7qB8qBAwVuVuV4KmgBA8qB2KmgBwVwV2KmgBA8qB4KmgBuVAsgCrgCmgB1KmgB2K4KmgB3KmgBtVwV3KmgBA8qB3KmgBpgCwV71C61CAuV-qB-qBuVAqrDprDmgB1KmgB2K2KmgB1KmgBl2Eo2E3KmgB4KmgBuVAsgCrgCmgB3KmgB4K2KmgB1KmgBvVuVtVsgCtVuVAuVsgCsgC2KmgBA-qB1KmgBlgB4KlgB3KvVrgC7qB9qBtVA9qB-qB3KmgBA-qB4KmgBuVuV4KmgBA-qB3KmgBtVuVAuVuVwV4KmgBA8qB3KmgBlgB4KlgB3KtVrgCtVAvVwVrgCuV1KmgBA4gE2KmgBwVuV2KmgBA4gE1KmgBlgB4KlgB3K3KlgBA9qB3KlgBtVAtVwVrgCuVvVuVtVA3KlgBA51C1KlgBvVAtVuVlgB4K9qBAlgB4KtVuV1KuVuVwVmgBuV61C61C4KmgB3KmgBlgBwVlgBmgB3K8qBA81C1KmgB9qB8qBtVAtVrgCvVtVtV3KtVwVAmgBuVuVuVsgCsgCsgCuVsgCsgCsgC4KmgBA8qB3KmgBlgB4K7qBAlgB3K3KlgBA7qB1KlgBvVAtVuVtVA3KlgBA3gE3KlgBtVtVtVrgCvVtVtVrgCtVA3KmgBA2gE3KmgBtVwV3KmgB4KmgBuVuV4KmgB3KmgBlgB4KlgB3KrgCrgCtVA3KmgBA-qB1KmgBlgB2KlgB1K3KlgBA9qB3KlgBtVtV3KlgB1K9qBlgBlgB9qB3KlgB4KtVuVlgB4KlgB3K3KlgBA7qB1KlgBvVA1KmgBA8qB3KmgBtVAvVtVtVAtVuVvVA1KlgBA1gE3KlgBlgB3KlgB4K9qB8qB1KmgBA-qB3KmgBtVAvVvVtVAtVwVlgB2KlgB1K3KlgB4KlgBuVtV4KlgBA9qB3KlgBtVtV3KlgBA9qB4KlgBuVtVAvVrgCtVAtVuVvV4KlgBA51C3KlgBrgCtV1KlgB2KlgBmgB3KmgB4KwVuVuVA4KlgBA7qB3KlgBrgCvVrgCrgCrgCtV1KlgB2KlgBmgB3K-qB1KuVvVtV1KlgB3KtVtVrgCvVvVrgCrgCtVtVrgCtVA3KmgBA2rF4KmgBsgCuV2KmgBA4gE1KmgBvVuV1KmgBA-qB3KmgBlgB2KlgB1K3KlgBA3gE1KlgBvVArgCsgCtVAtVrgCvVtV1KlgB2KlgBwVvV2KlgBAzrF1KlgB71C71CrgCtV7qB9qB3KlgB4KlgBuVtV4KlgBA51C3KlgBrgCrgC3KlgB4KlgBsgCtV4KlgB3KlgB9qB9qBpgCtV3KlgB4KlgBuVvV2KlgBA7qB4KlgBmgB3K-qBAmgB4K8qB8qB4KmgBA-qB4KmgBmgB4K61CAmgB3KAtVrgCvV9qB7qB1KlgB2KlgBmgB3KmgB4KwVuVsgCuVuV4KuVtV4K9qBA9qB4KjgBuVAuVuVwVA2KlgB1KlgBrgCtVvVvVrgCtV1KlgB2KlgBmgB3KmgB4KwVuVmgB4K61CAmgB4KuVuVwVA8qB9qBAtV7qB9qBlgB1K9qBAlgB3K9qB9qBtVrgCtVtV3KlgBA9qB4KlgBuVtVAtV9qB9qBlgB3K7qBAlgB4KvVuVlgB4KlgB3K1KlgBA7qB2KlgBmgB3K-qBAmgB1K4KlgBA71C3KlgBrgCtVtVtVvVAtVsgClgB2KlgB1KtVrgCvVvV1KlgB2KlgBsgCtVwVrgCuVAuVsgCwVAuVrgC-qB9qBuVAuVwVmgB2KmgB1K4KlgB3KlgBtVvVAtVsgCrgCuVrgCsgCtVwVvVuVAuVwVwVA2KlgBA9qB4KlgBmgB1K8qBAmgB3KwVrgC8qB9qBwVAuVwVmgB2K61CAmgB1K4KlgB3KlgBtVvV3KlgBA7qB4KlgBuVAwVuVuVA4KlgBA9qB2KlgBwVA2KmgBA81C4KmgBuVuVwVsgCmgB4KmgB3KuVtVmgB3K-qBAkgB3KwVrgCuVtV4KlgBA1rF3KlgBtVtV3KlgBAniM3KlgBtVtV1KlgB2KlgB-qB9qBmgB1KmgBsFuVmgB"
+          }
+        ]
+      }
+    ]
+  }

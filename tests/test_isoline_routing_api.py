@@ -256,9 +256,9 @@ class IsolineRoutingApiTest(unittest.TestCase):
             )
 
     @responses.activate
-    def test_isoline_routing_at_specific_time_succeed(self):
+    def test_isoline_routing_at_specific_time_with_origin_succeed(self):
         with codecs.open(
-            "testdata/models/isoline_routing_api_specific_time.json",
+            "testdata/models/isoline_routing_api_specific_time_departure.json",
             mode="r",
             encoding="utf-8",
         ) as f:
@@ -280,9 +280,9 @@ class IsolineRoutingApiTest(unittest.TestCase):
         self.assertIsNotNone(response.as_dict())
 
     @responses.activate
-    def test_isoline_routing_at_specific_time_succeed_with_destination(self):
+    def test_isoline_routing_at_specific_time_succeed_with_destination_succeed(self):
         with codecs.open(
-            "testdata/models/isoline_routing_api_specific_time.json",
+            "testdata/models/isoline_routing_api_specific_time_arrival.json",
             mode="r",
             encoding="utf-8",
         ) as f:
@@ -334,7 +334,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
     @responses.activate
     def test_multi_range_routing_with_origin_succeed(self):
         with codecs.open(
-            "testdata/models/isoline_routing_api_multi_range.json",
+            "testdata/models/isoline_routing_api_multi_range_departure.json",
             mode="r",
             encoding="utf-8",
         ) as f:
@@ -357,7 +357,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
     @responses.activate
     def test_multi_range_routing_with_destination_succeed(self):
         with codecs.open(
-            "testdata/models/isoline_routing_api_multi_range.json",
+            "testdata/models/isoline_routing_api_multi_range_arrival.json",
             mode="r",
             encoding="utf-8",
         ) as f:
@@ -383,4 +383,58 @@ class IsolineRoutingApiTest(unittest.TestCase):
             self._api.multi_range_routing(
                 transport_mode=IsolineRoutingTransportMode.car,
                 ranges=[1000, 2000, 3000],
+            )
+
+    @responses.activate
+    def test_reverse_direction_isoline_with_origin_succeed(self):
+        with codecs.open(
+            "testdata/models/isoline_routing_api_multi_range_departure.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://isoline.router.hereapi.com/v8/isolines",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.reverse_direction_isoline(
+            transport_mode=IsolineRoutingTransportMode.car,
+            range=1000,
+            origin=[52.51578, 13.37749]
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, IsolineRoutingResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_reverse_direction_isoline_with_destination_succeed(self):
+        with codecs.open(
+            "testdata/models/isoline_routing_api_multi_range_arrival.json",
+            mode="r",
+            encoding="utf-8",
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://isoline.router.hereapi.com/v8/isolines",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.reverse_direction_isoline(
+            transport_mode=IsolineRoutingTransportMode.car,
+            range=1000,
+            destination=[52.51578, 13.37749]
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, IsolineRoutingResponse)
+        self.assertIsNotNone(response.as_dict())
+
+    @responses.activate
+    def test_reverse_direction_isoline_with_missing_parameters_fails(self):
+        with self.assertRaises(HEREError):
+            self._api.reverse_direction_isoline(
+                transport_mode=IsolineRoutingTransportMode.car,
+                range=1000,
             )

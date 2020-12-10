@@ -44,13 +44,13 @@ class IsolineRoutingApi(HEREApi):
         else:
             return HEREError(error_message)
 
-    def __get(self, url, data):
+    def __get(self, url, data, json_key):
         url = Utils.build_url(url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode("utf8"))
-        if json_data.get("departure") != None and json_data.get("isolines") != None:
+        if json_data.get(json_key) != None and json_data.get("isolines") != None:
             return IsolineRoutingResponse.new_from_jsondict(
-                json_data, param_defaults={"departure": None, "isolines": None}
+                json_data, param_defaults={json_key: None, "isolines": None}
             )
         else:
             error = self.__get_error_from_response(json_data)
@@ -87,7 +87,7 @@ class IsolineRoutingApi(HEREApi):
             "routingMode": routing_mode.__str__(),
             "apiKey": self._api_key,
         }
-        return self.__get(self._base_url, data)
+        return self.__get(self._base_url, data, "departure")
 
     def time_isoline(
         self,
@@ -116,7 +116,7 @@ class IsolineRoutingApi(HEREApi):
             "range[values]": range,
             "apiKey": self._api_key,
         }
-        return self.__get(self._base_url, data)
+        return self.__get(self._base_url, data, "departure")
 
     def isoline_based_on_consumption(
         self,
@@ -177,7 +177,7 @@ class IsolineRoutingApi(HEREApi):
             "ev[auxiliaryConsumption]": auxiliary_consumption,
             "apiKey": self._api_key,
         }
-        return self.__get(self._base_url, data)
+        return self.__get(self._base_url, data, "departure")
 
     def isoline_routing_at_specific_time(self,
         transport_mode: IsolineRoutingTransportMode,
@@ -219,7 +219,7 @@ class IsolineRoutingApi(HEREApi):
                 "range[values]": range,
                 "apiKey": self._api_key,
             }
-            return self.__get(self._base_url, data)
+            return self.__get(self._base_url, data, "departure")
         elif destination and arrival_time:
             data = {
                 "transportMode": transport_mode.__str__(),
@@ -229,7 +229,7 @@ class IsolineRoutingApi(HEREApi):
                 "range[values]": range,
                 "apiKey": self._api_key,
             }
-            return self.__get(self._base_url, data)
+            return self.__get(self._base_url, data, "arrival")
         else:
           raise HEREError("Please provide either origin & departure_time or destination & arrival_time.")
 
@@ -264,7 +264,7 @@ class IsolineRoutingApi(HEREApi):
                 "range[values]": ",".join(string_ranges),
                 "apiKey": self._api_key,
             }
-            return self.__get(self._base_url, data)
+            return self.__get(self._base_url, data, "departure")
         elif destination:
             data = {
                 "transportMode": transport_mode.__str__(),
@@ -273,6 +273,49 @@ class IsolineRoutingApi(HEREApi):
                 "range[values]": ",".join(string_ranges),
                 "apiKey": self._api_key,
             }
-            return self.__get(self._base_url, data)
+            return self.__get(self._base_url, data, "arrival")
+        else:
+            raise HEREError("Please provide values for origin or destination parameter.")
+
+    def reverse_direction_isoline(self,
+        transport_mode: IsolineRoutingTransportMode,
+        range: int,
+        origin: Optional[List[float]] = None,
+        destination: Optional[List[float]] = None,
+    ):
+        """Calculates an isoline in the reverse direction. To trigger calculation in reverse direction,
+        use the destination parameter instead of origin.
+        Args:
+          transport_mode (IsolineRoutingTransportMode):
+            Transport mode of routing.
+          ranges (List):
+            Range values for isoline routing.
+          origin (List):
+            List including latitude and longitude in order.
+          destination (List):
+            List including latitude and longitude in order.
+        Returns:
+          IsolineRoutingResponse
+        Raises:
+          HEREError"""
+
+        if origin:
+            data = {
+                "transportMode": transport_mode.__str__(),
+                "origin": str.format("{0},{1}", origin[0], origin[1]),
+                "range[type]": IsolineRoutingRangeType.time.__str__(),
+                "range[values]": range,
+                "apiKey": self._api_key,
+            }
+            return self.__get(self._base_url, data, "departure")
+        elif destination:
+            data = {
+                "transportMode": transport_mode.__str__(),
+                "destination": str.format("{0},{1}", destination[0], destination[1]),
+                "range[type]": IsolineRoutingRangeType.time.__str__(),
+                "range[values]": range,
+                "apiKey": self._api_key,
+            }
+            return self.__get(self._base_url, data, "arrival")
         else:
             raise HEREError("Please provide values for origin or destination parameter.")
