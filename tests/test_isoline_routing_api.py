@@ -46,7 +46,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         response = self._api.distance_based_isoline(
             transport_mode=IsolineRoutingTransportMode.car,
             origin=[52.51578, 13.37749],
-            range=4000,
+            ranges=[3000, 4000],
             routing_mode=IsolineRoutingMode.short,
         )
         self.assertTrue(response)
@@ -69,7 +69,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
             self._api.distance_based_isoline(
                 transport_mode=IsolineRoutingTransportMode.car,
                 origin=[52.51578, 13.37749],
-                range=4000,
+                ranges=[3000, 4000],
                 routing_mode=IsolineRoutingMode.short,
             )
 
@@ -90,7 +90,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         response = self._api.time_isoline(
             transport_mode=IsolineRoutingTransportMode.car,
             origin=[52.51578, 13.37749],
-            range=300,
+            ranges=[300, 400],
         )
         self.assertTrue(response)
         self.assertIsInstance(response, IsolineRoutingResponse)
@@ -112,7 +112,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
             self._api.time_isoline(
                 transport_mode=IsolineRoutingTransportMode.car,
                 origin=[52.51578, 13.37749],
-                range=300,
+                ranges=[300, 400],
             )
 
     @responses.activate
@@ -131,7 +131,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         )
         response = self._api.isoline_based_on_consumption(
             origin=[52.532988, 13.352852],
-            range=20000,
+            ranges=[20000, 30000],
             transport_mode=IsolineRoutingTransportMode.car,
             free_flow_speed_table=[
                 0.239,
@@ -202,7 +202,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         with self.assertRaises(UnauthorizedError):
             self._api.isoline_based_on_consumption(
                 origin=[52.532988, 13.352852],
-                range=20000,
+                ranges=[20000, 30000],
                 transport_mode=IsolineRoutingTransportMode.car,
                 free_flow_speed_table=[
                     0.239,
@@ -271,7 +271,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         )
         response = self._api.isoline_routing_at_specific_time(
             transport_mode=IsolineRoutingTransportMode.car,
-            range=300,
+            ranges=[300, 400],
             origin=[52.51578, 13.37749],
             departure_time="2020-05-10T09:30:00",
         )
@@ -295,7 +295,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         )
         response = self._api.isoline_routing_at_specific_time(
             transport_mode=IsolineRoutingTransportMode.car,
-            range=300,
+            ranges=[300, 400],
             destination=[52.51578, 13.37749],
             arrival_time="2020-05-10T09:30:00",
         )
@@ -318,7 +318,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         with self.assertRaises(UnauthorizedError):
             self._api.isoline_routing_at_specific_time(
                 transport_mode=IsolineRoutingTransportMode.car,
-                range=300,
+                ranges=[300, 400],
                 origin=[52.51578, 13.37749],
                 departure_time="2020-05-10T09:30:00",
             )
@@ -328,7 +328,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         with self.assertRaises(HEREError):
             self._api.isoline_routing_at_specific_time(
                 transport_mode=IsolineRoutingTransportMode.car,
-                range=300,
+                ranges=[300, 400],
             )
 
     @responses.activate
@@ -401,7 +401,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         )
         response = self._api.reverse_direction_isoline(
             transport_mode=IsolineRoutingTransportMode.car,
-            range=1000,
+            ranges=[1000, 2000],
             origin=[52.51578, 13.37749]
         )
         self.assertTrue(response)
@@ -424,7 +424,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         )
         response = self._api.reverse_direction_isoline(
             transport_mode=IsolineRoutingTransportMode.car,
-            range=1000,
+            ranges=[1000, 2000],
             destination=[52.51578, 13.37749]
         )
         self.assertTrue(response)
@@ -436,5 +436,5 @@ class IsolineRoutingApiTest(unittest.TestCase):
         with self.assertRaises(HEREError):
             self._api.reverse_direction_isoline(
                 transport_mode=IsolineRoutingTransportMode.car,
-                range=1000,
+                ranges=[1000, 2000],
             )

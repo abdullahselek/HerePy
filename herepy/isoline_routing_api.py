@@ -60,7 +60,7 @@ class IsolineRoutingApi(HEREApi):
         self,
         transport_mode: IsolineRoutingTransportMode,
         origin: List[float],
-        range: int,
+        ranges: List[int],
         routing_mode: IsolineRoutingMode,
     ) -> Optional[IsolineRoutingResponse]:
         """A distance-based isoline, also called an Isodistance,
@@ -70,8 +70,8 @@ class IsolineRoutingApi(HEREApi):
             Transport mode of routing.
           origin (List):
             List including latitude and longitude in order.
-          range (int):
-            Range of isoline in meters.
+          ranges (List):
+            List of range values for isoline (in meters).
           routing_mode (IsolineRoutingMode):
             Isoline routing mode.
         Returns:
@@ -79,11 +79,12 @@ class IsolineRoutingApi(HEREApi):
         Raises:
           HEREError"""
 
+        string_ranges = [str(int) for int in ranges]
         data = {
             "transportMode": transport_mode.__str__(),
             "origin": str.format("{0},{1}", origin[0], origin[1]),
             "range[type]": IsolineRoutingRangeType.distance.__str__(),
-            "range[values]": range,
+            "range[values]": ",".join(string_ranges),
             "routingMode": routing_mode.__str__(),
             "apiKey": self._api_key,
         }
@@ -93,7 +94,7 @@ class IsolineRoutingApi(HEREApi):
         self,
         transport_mode: IsolineRoutingTransportMode,
         origin: List[float],
-        range: int,
+        ranges: List[int],
     ) -> Optional[IsolineRoutingResponse]:
         """A time-based isoline, also called an Isochrone,
         can be requested by using range[type]=time and providing range[values] in seconds.
@@ -102,18 +103,19 @@ class IsolineRoutingApi(HEREApi):
             Transport mode of routing.
           origin (List):
             List including latitude and longitude in order.
-          range (int):
-            Range of isoline in meters.
+          ranges (List):
+            List of range values for isoline (in meters).
         Returns:
           IsolineRoutingResponse
         Raises:
           HEREError"""
 
+        string_ranges = [str(int) for int in ranges]
         data = {
             "transportMode": transport_mode.__str__(),
             "origin": str.format("{0},{1}", origin[0], origin[1]),
             "range[type]": IsolineRoutingRangeType.time.__str__(),
-            "range[values]": range,
+            "range[values]": ",".join(string_ranges),
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url, data, "departure")
@@ -121,7 +123,7 @@ class IsolineRoutingApi(HEREApi):
     def isoline_based_on_consumption(
         self,
         origin: List[float],
-        range: int,
+        ranges: List[int],
         transport_mode: IsolineRoutingTransportMode,
         free_flow_speed_table: List[float],
         traffic_speed_table: List[float],
@@ -138,8 +140,8 @@ class IsolineRoutingApi(HEREApi):
             Transport mode of routing.
           origin (List):
             List including latitude and longitude in order.
-          range (int):
-            Range of isoline in meters.
+          ranges (List):
+            List of range values for isoline (in meters).
           transport_mode (IsolineRoutingTransportMode):
             Transport mode of routing.
           free_flow_speed_table (List[float]):
@@ -157,6 +159,8 @@ class IsolineRoutingApi(HEREApi):
         Raises:
           HEREError"""
 
+        string_ranges = [str(int) for int in ranges]
+
         free_speed_table = [0]
         free_speed_table.extend(free_flow_speed_table)
         free_speed_table_str = ",".join([str(n) for n in free_speed_table])
@@ -168,7 +172,7 @@ class IsolineRoutingApi(HEREApi):
         data = {
             "origin": str.format("{0},{1}", origin[0], origin[1]),
             "range[type]": IsolineRoutingRangeType.consumption.__str__(),
-            "range[values]": range,
+            "range[values]": ",".join(string_ranges),
             "transportMode": transport_mode.__str__(),
             "ev[freeFlowSpeedTable]": free_speed_table_str,
             "ev[trafficSpeedTable]": speed_table_str,
@@ -181,7 +185,7 @@ class IsolineRoutingApi(HEREApi):
 
     def isoline_routing_at_specific_time(self,
         transport_mode: IsolineRoutingTransportMode,
-        range: int,
+        ranges: List[int],
         origin: Optional[List[float]] = None,
         departure_time: Optional[str] = None,
         destination: Optional[List[float]] = None,
@@ -195,6 +199,8 @@ class IsolineRoutingApi(HEREApi):
         Args:
           transport_mode (IsolineRoutingTransportMode):
             Transport mode of routing.
+          ranges (List):
+            List of range values for isoline (in meters).
           origin (List):
             List including latitude and longitude in order.
           departure_time (str):
@@ -203,20 +209,19 @@ class IsolineRoutingApi(HEREApi):
             List including latitude and longitude in order.
           arrival_time (str):
             Arrival time of the planned routing in format yyyy-MM-ddThh:mm:ss.
-          range (int):
-            Range of isoline in meters.
         Returns:
           IsolineRoutingResponse
         Raises:
           HEREError"""
 
+        string_ranges = [str(int) for int in ranges]
         if origin and departure_time:
             data = {
                 "transportMode": transport_mode.__str__(),
                 "origin": str.format("{0},{1}", origin[0], origin[1]),
                 "departureTime": departure_time,
                 "range[type]": IsolineRoutingRangeType.time.__str__(),
-                "range[values]": range,
+                "range[values]": ",".join(string_ranges),
                 "apiKey": self._api_key,
             }
             return self.__get(self._base_url, data, "departure")
@@ -226,7 +231,7 @@ class IsolineRoutingApi(HEREApi):
                 "destination": str.format("{0},{1}", destination[0], destination[1]),
                 "arrivalTime": arrival_time,
                 "range[type]": IsolineRoutingRangeType.time.__str__(),
-                "range[values]": range,
+                "range[values]": ",".join(string_ranges),
                 "apiKey": self._api_key,
             }
             return self.__get(self._base_url, data, "arrival")
@@ -279,7 +284,7 @@ class IsolineRoutingApi(HEREApi):
 
     def reverse_direction_isoline(self,
         transport_mode: IsolineRoutingTransportMode,
-        range: int,
+        ranges: List[int],
         origin: Optional[List[float]] = None,
         destination: Optional[List[float]] = None,
     ):
@@ -299,12 +304,13 @@ class IsolineRoutingApi(HEREApi):
         Raises:
           HEREError"""
 
+        string_ranges = [str(int) for int in ranges]
         if origin:
             data = {
                 "transportMode": transport_mode.__str__(),
                 "origin": str.format("{0},{1}", origin[0], origin[1]),
                 "range[type]": IsolineRoutingRangeType.time.__str__(),
-                "range[values]": range,
+                "range[values]": ",".join(string_ranges),
                 "apiKey": self._api_key,
             }
             return self.__get(self._base_url, data, "departure")
