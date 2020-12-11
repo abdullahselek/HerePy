@@ -183,7 +183,8 @@ class IsolineRoutingApi(HEREApi):
         }
         return self.__get(self._base_url, data, "departure")
 
-    def isoline_routing_at_specific_time(self,
+    def isoline_routing_at_specific_time(
+        self,
         transport_mode: IsolineRoutingTransportMode,
         ranges: List[int],
         origin: Optional[List[float]] = None,
@@ -236,9 +237,12 @@ class IsolineRoutingApi(HEREApi):
             }
             return self.__get(self._base_url, data, "arrival")
         else:
-          raise HEREError("Please provide either origin & departure_time or destination & arrival_time.")
+            raise HEREError(
+                "Please provide either origin & departure_time or destination & arrival_time."
+            )
 
-    def multi_range_routing(self,
+    def multi_range_routing(
+        self,
         transport_mode: IsolineRoutingTransportMode,
         ranges: List[int],
         origin: Optional[List[float]] = None,
@@ -280,9 +284,12 @@ class IsolineRoutingApi(HEREApi):
             }
             return self.__get(self._base_url, data, "arrival")
         else:
-            raise HEREError("Please provide values for origin or destination parameter.")
+            raise HEREError(
+                "Please provide values for origin or destination parameter."
+            )
 
-    def reverse_direction_isoline(self,
+    def reverse_direction_isoline(
+        self,
         transport_mode: IsolineRoutingTransportMode,
         ranges: List[int],
         origin: Optional[List[float]] = None,
@@ -324,4 +331,6 @@ class IsolineRoutingApi(HEREApi):
             }
             return self.__get(self._base_url, data, "arrival")
         else:
-            raise HEREError("Please provide values for origin or destination parameter.")
+            raise HEREError(
+                "Please provide values for origin or destination parameter."
+            )

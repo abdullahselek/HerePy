@@ -13,7 +13,7 @@ from herepy import (
     IsolineRoutingTransportMode,
     IsolineRoutingMode,
     UnauthorizedError,
-    HEREError
+    HEREError,
 )
 
 
@@ -348,7 +348,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         response = self._api.multi_range_routing(
             transport_mode=IsolineRoutingTransportMode.car,
             ranges=[1000, 2000, 3000],
-            origin=[52.51578, 13.37749]
+            origin=[52.51578, 13.37749],
         )
         self.assertTrue(response)
         self.assertIsInstance(response, IsolineRoutingResponse)
@@ -371,7 +371,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         response = self._api.multi_range_routing(
             transport_mode=IsolineRoutingTransportMode.car,
             ranges=[1000, 2000, 3000],
-            destination=[52.51578, 13.37749]
+            destination=[52.51578, 13.37749],
         )
         self.assertTrue(response)
         self.assertIsInstance(response, IsolineRoutingResponse)
@@ -402,7 +402,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         response = self._api.reverse_direction_isoline(
             transport_mode=IsolineRoutingTransportMode.car,
             ranges=[1000, 2000],
-            origin=[52.51578, 13.37749]
+            origin=[52.51578, 13.37749],
         )
         self.assertTrue(response)
         self.assertIsInstance(response, IsolineRoutingResponse)
@@ -425,7 +425,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
         response = self._api.reverse_direction_isoline(
             transport_mode=IsolineRoutingTransportMode.car,
             ranges=[1000, 2000],
-            destination=[52.51578, 13.37749]
+            destination=[52.51578, 13.37749],
         )
         self.assertTrue(response)
         self.assertIsInstance(response, IsolineRoutingResponse)
