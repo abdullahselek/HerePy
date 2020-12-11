@@ -49,13 +49,13 @@ Check out the latest development version anonymously with::
 
 To install dependencies, run either::
 
-    $ pip install -Ur requirements.testing.txt
-    $ pip install -Ur requirements.txt
+    $ pip install -r requirements.testing.txt
+    $ pip install -r requirements.txt
 
 To install the minimal dependencies for production use (i.e., what is installed
 with ``pip install herepy``) run::
 
-    $ pip install -Ur requirements.txt
+    $ pip install -r requirements.txt
 
 Running Tests
 =============
@@ -93,6 +93,7 @@ The library utilizes models to represent various data structures returned by **h
     * herepy.WaypointSequenceResponse
     * herepy.TrafficFlowResponse
     * herepy.TrafficFlowAvailabilityResponse
+    * herepy.IsolineRoutingResponse
 
 API Clients
 ===========
@@ -110,6 +111,7 @@ Available API clients in **herepy**::
     * herepy.RmeApi
     * herepy.RoutingApi
     * herepy.TrafficApi
+    * herepy.IsolineRoutingApi
 
 Documentation
 =============
