@@ -106,7 +106,12 @@ class PlacesApi(HEREApi):
         return self.__get(data)
 
     def places_in_circle(
-        self, coordinates: List[float], radius: int, query: str, limit: int = 20, lang: str = "en-US"
+        self,
+        coordinates: List[float],
+        radius: int,
+        query: str,
+        limit: int = 20,
+        lang: str = "en-US",
     ) -> Optional[PlacesResponse]:
         """Request a list of popular places around a location
         Args:
