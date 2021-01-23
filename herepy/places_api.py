@@ -44,7 +44,7 @@ class PlacesApi(HEREApi):
             )
 
     def onebox_search(
-        self, coordinates: List[float], query: str, limit: int = 10, lang: str = "en-US"
+        self, coordinates: List[float], query: str, limit: int = 20, lang: str = "en-US"
     ) -> Optional[PlacesResponse]:
         """Request a list of places based on a query string.
         Args:
@@ -75,7 +75,7 @@ class PlacesApi(HEREApi):
         coordinates: List[float],
         query: str,
         country_code: str,
-        limit: int = 10,
+        limit: int = 20,
         lang: str = "en-US",
     ) -> Optional[PlacesResponse]:
         """Request a list of places based on a query string.
