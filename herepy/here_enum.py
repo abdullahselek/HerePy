@@ -276,3 +276,24 @@ class MapTileApiType(Enum):
     def __str__(self):
         return "%s" % self._value_
 
+
+class BaseMapTileResourceType(Enum):
+    """Type of Base Map Tile Resources."""
+
+    alabeltile = "alabeltile"
+    basetile = "basetile"
+    blinetile = "blinetile"
+    labeltile = "labeltile"
+    linetile = "linetile"
+    lltile = "lltile"
+    maptile = "maptile"
+    streettile = "streettile"
+    trucktile = "trucktile"
+    truckonlytile = "truckonlytile"
+    xbasetile = "xbasetile"
+    trucknopttile = "trucknopttile"
+    mapnopttile = "mapnopttile"
+
+    def __str__(self):
+        return "%s" % self._value_
+

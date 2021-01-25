@@ -21,6 +21,7 @@ from herepy import (
     IsolineRoutingOptimizationMode,
     IsolineRoutingRangeType,
     MapTileApiType,
+    BaseMapTileResourceType,
 )
 from enum import Enum
 
@@ -331,3 +332,33 @@ class MapTileApiTypeTest(unittest.TestCase):
         self.assertEqual(base.__str__(), "base")
         traffic = MapTileApiType.traffic
         self.assertEqual(traffic.__str__(), "traffic")
+
+
+class BaseMapTileResourceTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        alabeltile = BaseMapTileResourceType.alabeltile
+        self.assertEqual(alabeltile.__str__(), "alabeltile")
+        basetile = BaseMapTileResourceType.basetile
+        self.assertEqual(basetile.__str__(), "basetile")
+        blinetile = BaseMapTileResourceType.blinetile
+        self.assertEqual(blinetile.__str__(), "blinetile")
+        labeltile = BaseMapTileResourceType.labeltile
+        self.assertEqual(labeltile.__str__(), "labeltile")
+        linetile = BaseMapTileResourceType.linetile
+        self.assertEqual(linetile.__str__(), "linetile")
+        lltile = BaseMapTileResourceType.lltile
+        self.assertEqual(lltile.__str__(), "lltile")
+        maptile = BaseMapTileResourceType.maptile
+        self.assertEqual(maptile.__str__(), "maptile")
+        streettile = BaseMapTileResourceType.streettile
+        self.assertEqual(streettile.__str__(), "streettile")
+        trucktile = BaseMapTileResourceType.trucktile
+        self.assertEqual(trucktile.__str__(), "trucktile")
+        truckonlytile = BaseMapTileResourceType.truckonlytile
+        self.assertEqual(truckonlytile.__str__(), "truckonlytile")
+        xbasetile = BaseMapTileResourceType.xbasetile
+        self.assertEqual(xbasetile.__str__(), "xbasetile")
+        trucknopttile = BaseMapTileResourceType.trucknopttile
+        self.assertEqual(trucknopttile.__str__(), "trucknopttile")
+        mapnopttile = BaseMapTileResourceType.mapnopttile
+        self.assertEqual(mapnopttile.__str__(), "mapnopttile")
