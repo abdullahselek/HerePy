@@ -23,6 +23,7 @@ from herepy import (
     MapTileApiType,
     BaseMapTileResourceType,
     AerialMapTileResourceType,
+    TrafficMapTileResourceType,
 )
 from enum import Enum
 
@@ -393,3 +394,15 @@ class AerialMapTileResourceTypeTest(unittest.TestCase):
         self.assertEqual(trucknopttile.__str__(), "trucknopttile")
         mapnopttile = AerialMapTileResourceType.mapnopttile
         self.assertEqual(mapnopttile.__str__(), "mapnopttile")
+
+
+class TrafficMapTileResourceTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        flowbasetile = TrafficMapTileResourceType.flowbasetile
+        self.assertEqual(flowbasetile.__str__(), "flowbasetile")
+        flowlabeltile = TrafficMapTileResourceType.flowlabeltile
+        self.assertEqual(flowlabeltile.__str__(), "flowlabeltile")
+        flowtile = TrafficMapTileResourceType.flowtile
+        self.assertEqual(flowtile.__str__(), "flowtile")
+        traffictile = TrafficMapTileResourceType.traffictile
+        self.assertEqual(traffictile.__str__(), "traffictile")

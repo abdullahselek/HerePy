@@ -36,6 +36,7 @@ from .here_enum import (
     MapTileApiType,
     BaseMapTileResourceType,
     AerialMapTileResourceType,
+    TrafficMapTileResourceType,
 )
 
 from .models import (

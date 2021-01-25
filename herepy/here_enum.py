@@ -318,3 +318,14 @@ class AerialMapTileResourceType(Enum):
     def __str__(self):
         return "%s" % self._value_
 
+
+class TrafficMapTileResourceType(Enum):
+    """Type of Traffic Map Tile Resources."""
+
+    flowbasetile = "flowbasetile"
+    flowlabeltile = "flowlabeltile"
+    flowtile = "flowtile"
+    traffictile = "traffictile"
+
+    def __str__(self):
+        return "%s" % self._value_
