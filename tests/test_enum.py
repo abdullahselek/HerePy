@@ -22,6 +22,7 @@ from herepy import (
     IsolineRoutingRangeType,
     MapTileApiType,
     BaseMapTileResourceType,
+    AerialMapTileResourceType,
 )
 from enum import Enum
 
@@ -361,4 +362,34 @@ class BaseMapTileResourceTypeTest(unittest.TestCase):
         trucknopttile = BaseMapTileResourceType.trucknopttile
         self.assertEqual(trucknopttile.__str__(), "trucknopttile")
         mapnopttile = BaseMapTileResourceType.mapnopttile
+        self.assertEqual(mapnopttile.__str__(), "mapnopttile")
+
+
+class AerialMapTileResourceTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        alabeltile = AerialMapTileResourceType.alabeltile
+        self.assertEqual(alabeltile.__str__(), "alabeltile")
+        basetile = AerialMapTileResourceType.basetile
+        self.assertEqual(basetile.__str__(), "basetile")
+        blinetile = AerialMapTileResourceType.blinetile
+        self.assertEqual(blinetile.__str__(), "blinetile")
+        labeltile = AerialMapTileResourceType.labeltile
+        self.assertEqual(labeltile.__str__(), "labeltile")
+        linetile = AerialMapTileResourceType.linetile
+        self.assertEqual(linetile.__str__(), "linetile")
+        lltile = AerialMapTileResourceType.lltile
+        self.assertEqual(lltile.__str__(), "lltile")
+        maptile = AerialMapTileResourceType.maptile
+        self.assertEqual(maptile.__str__(), "maptile")
+        streettile = AerialMapTileResourceType.streettile
+        self.assertEqual(streettile.__str__(), "streettile")
+        trucktile = AerialMapTileResourceType.trucktile
+        self.assertEqual(trucktile.__str__(), "trucktile")
+        truckonlytile = AerialMapTileResourceType.truckonlytile
+        self.assertEqual(truckonlytile.__str__(), "truckonlytile")
+        xbasetile = AerialMapTileResourceType.xbasetile
+        self.assertEqual(xbasetile.__str__(), "xbasetile")
+        trucknopttile = AerialMapTileResourceType.trucknopttile
+        self.assertEqual(trucknopttile.__str__(), "trucknopttile")
+        mapnopttile = AerialMapTileResourceType.mapnopttile
         self.assertEqual(mapnopttile.__str__(), "mapnopttile")

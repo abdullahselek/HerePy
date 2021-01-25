@@ -35,6 +35,7 @@ from .here_enum import (
     IsolineRoutingRangeType,
     MapTileApiType,
     BaseMapTileResourceType,
+    AerialMapTileResourceType,
 )
 
 from .models import (
