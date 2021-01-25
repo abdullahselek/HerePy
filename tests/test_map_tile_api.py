@@ -6,17 +6,16 @@ import io
 import unittest
 import responses
 import codecs
-import herepy
+
+from herepy import MapTileApi, MapTileApiType
 
 
 class MapTileApiTest(unittest.TestCase):
     def setUp(self):
-        api = herepy.MapTileApi("api_key")
+        api = MapTileApi(api_key="api_key", api_type=MapTileApiType.base)
         self._api = api
 
     def test_initiation(self):
-        self.assertIsInstance(self._api, herepy.MapTileApi)
+        self.assertIsInstance(self._api, MapTileApi)
         self.assertEqual(self._api._api_key, "api_key")
-        self.assertEqual(
-            self._api._base_url, "https://2.base.maps.ls.hereapi.com/maptile/2.1/"
-        )
+        self.assertIsNotNone(self._api._base_url)

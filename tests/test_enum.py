@@ -20,6 +20,7 @@ from herepy import (
     IsolineRoutingTransportMode,
     IsolineRoutingOptimizationMode,
     IsolineRoutingRangeType,
+    MapTileApiType,
 )
 from enum import Enum
 
@@ -320,3 +321,13 @@ class IsolineRoutingRangeTypeTest(unittest.TestCase):
         self.assertEqual(time.__str__(), "time")
         consumption = IsolineRoutingRangeType.consumption
         self.assertEqual(consumption.__str__(), "consumption")
+
+
+class MapTileApiTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        aerial = MapTileApiType.aerial
+        self.assertEqual(aerial.__str__(), "aerial")
+        base = MapTileApiType.base
+        self.assertEqual(base.__str__(), "base")
+        traffic = MapTileApiType.traffic
+        self.assertEqual(traffic.__str__(), "traffic")

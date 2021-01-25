@@ -264,3 +264,15 @@ class IsolineRoutingRangeType(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class MapTileApiType(Enum):
+    """Type of Map Tile Api."""
+
+    aerial = "aerial"
+    base = "base"
+    traffic = "traffic"
+
+    def __str__(self):
+        return "%s" % self._value_
+
