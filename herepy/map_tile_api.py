@@ -45,7 +45,7 @@ class MapTileApi(HEREApi):
         size: int = 256,
         tile_format: str = "png8",
         query_parameters: Optional[Dict] = None,
-    ):
+    ) -> Optional[bytes]:
         server = randrange(1, 4)
         url = str.format(
             "https://{}.{}.maps.ls.hereapi.com/maptile/2.1/{}/{}/{}/{}/{}/{}/{}/{}",
