@@ -47,6 +47,45 @@ class MapTileApi(HEREApi):
         tile_format: str = "png8",
         query_parameters: Optional[Dict] = None,
     ) -> Optional[bytes]:
+        """Returns optional bytes value of map tile with given parameters.
+        Args:
+          api_type (MapTileApiType):
+            MapTileApiType used to generate url.
+          resource_type (MapTileResourceType):
+            Resource type to download map tile.
+          map_id (str):
+            Specifies the map version, either newest or with a hash value.
+            https://developer.here.com/documentation/map-tile/dev_guide/topics/map-versions.html
+          scheme (str):
+            Specifies the view scheme. A complete list of the supported schemes may be obtained
+            by using the https://developer.here.com/documentation/map-tile/dev_guide/topics/resource-info.html
+            resource.
+          zoom (int):
+            Zoom level of the map image.
+          column (int):
+            Can be any number between 0 and number of columns - 1, both inclusive.
+            The number of tiles per column is a function of the zoom: number of columns = 2zoom.
+          row (int):
+            can be any number between 0 and number of rows - 1, both inclusive.
+            The number of tiles per row is a function of the zoom: number of rows = 2zoom.
+          size (int):
+            Returned image size. The following sizes ([width, height]) are supported:
+            256 = [256, 256]
+            512 = [512, 512]
+            The following sizes ([width, height]) are deprecated, although usage is still accepted:
+            128 = [128, 128]
+          tile_format (str):
+            Returned image format. The following image formats are supported:
+            png – PNG format, 24 bit, RGB
+            png8 – PNG format, 8 bit, indexed color
+            jpg – JPG format at 90% quality
+            Please note that JPG is recommended for satellite and hybrid schemes only.
+          query_parameters (Optional[Dict]):
+            Optional Query Parameter. Refer to the API definition for values.
+        Returns:
+          Map tile as bytes.
+        """
+
         server = randrange(1, 4)
         url = str.format(
             "https://{}.{}.maps.ls.hereapi.com/maptile/2.1/{}/{}/{}/{}/{}/{}/{}/{}",
