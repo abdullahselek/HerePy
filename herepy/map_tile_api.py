@@ -15,6 +15,7 @@ from herepy import (
     AerialMapTileResourceType,
     TrafficMapTileResourceType,
 )
+from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 
 
 class MapTileApi(HEREApi):
@@ -33,6 +34,19 @@ class MapTileApi(HEREApi):
 
         super(MapTileApi, self).__init__(api_key, timeout)
         self._base_url = None
+
+    def __get_error_from_response(self, json_data):
+        if "error" in json_data:
+            if json_data["error"] == "Unauthorized":
+                return UnauthorizedError(json_data["error_description"])
+        error_type = json_data.get("Type")
+        error_message = json_data.get(
+            "Message", "Error occured on " + sys._getframe(1).f_code.co_name
+        )
+        if error_type == "Invalid Request":
+            return InvalidRequestError(error_message)
+        else:
+            return HEREError(error_message)
 
     def get_maptile(
         self,
@@ -84,6 +98,8 @@ class MapTileApi(HEREApi):
             Optional Query Parameter. Refer to the API definition for values.
         Returns:
           Map tile as bytes.
+        Raises:
+          HEREError
         """
 
         server = randrange(1, 4)
@@ -106,4 +122,9 @@ class MapTileApi(HEREApi):
             query_parameters = {"apiKey": self._api_key}
         url = Utils.build_url(url, extra_params=query_parameters)
         response = requests.get(url, timeout=self._timeout, stream=True)
+        if isinstance(response.content, bytes):
+            json_data = json.loads(response.content.decode("utf8"))
+            if "error" in json_data:
+                error = self.__get_error_from_response(json_data)
+                raise error
         return response.content
