@@ -10,6 +10,7 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy import (
     MapTileApiType,
+    MapTileResourceType,
     BaseMapTileResourceType,
     AerialMapTileResourceType,
     TrafficMapTileResourceType,
@@ -36,7 +37,7 @@ class MapTileApi(HEREApi):
     def get_maptile(
         self,
         api_type: MapTileApiType = MapTileApiType.base,
-        resource_type: BaseMapTileResourceType = BaseMapTileResourceType.alabeltile,
+        resource_type: MapTileResourceType = BaseMapTileResourceType.alabeltile,
         map_id: str = "newest",
         scheme: str = "normal.day",
         zoom: int = 13,

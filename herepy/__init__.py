@@ -34,6 +34,7 @@ from .here_enum import (
     IsolineRoutingOptimizationMode,
     IsolineRoutingRangeType,
     MapTileApiType,
+    MapTileResourceType,
     BaseMapTileResourceType,
     AerialMapTileResourceType,
     TrafficMapTileResourceType,

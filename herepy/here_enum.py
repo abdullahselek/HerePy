@@ -277,7 +277,12 @@ class MapTileApiType(Enum):
         return "%s" % self._value_
 
 
-class BaseMapTileResourceType(Enum):
+class MapTileResourceType(Enum):
+    def __str__(self):
+        return "%s" % self._value_
+
+
+class BaseMapTileResourceType(MapTileResourceType):
     """Type of Base Map Tile Resources."""
 
     alabeltile = "alabeltile"
@@ -294,11 +299,8 @@ class BaseMapTileResourceType(Enum):
     trucknopttile = "trucknopttile"
     mapnopttile = "mapnopttile"
 
-    def __str__(self):
-        return "%s" % self._value_
 
-
-class AerialMapTileResourceType(Enum):
+class AerialMapTileResourceType(MapTileResourceType):
     """Type of Aerial Map Tile Resources."""
 
     alabeltile = "alabeltile"
@@ -315,17 +317,11 @@ class AerialMapTileResourceType(Enum):
     trucknopttile = "trucknopttile"
     mapnopttile = "mapnopttile"
 
-    def __str__(self):
-        return "%s" % self._value_
 
-
-class TrafficMapTileResourceType(Enum):
+class TrafficMapTileResourceType(MapTileResourceType):
     """Type of Traffic Map Tile Resources."""
 
     flowbasetile = "flowbasetile"
     flowlabeltile = "flowlabeltile"
     flowtile = "flowtile"
     traffictile = "traffictile"
-
-    def __str__(self):
-        return "%s" % self._value_
