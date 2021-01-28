@@ -121,8 +121,11 @@ class MapTileApi(HEREApi):
         url = Utils.build_url(url, extra_params=query_parameters)
         response = requests.get(url, timeout=self._timeout, stream=True)
         if isinstance(response.content, bytes):
-            json_data = json.loads(response.content.decode("utf8"))
-            if "error" in json_data:
-                error = self.__get_error_from_response(json_data)
-                raise error
+            try:
+                json_data = json.loads(response.content.decode("utf8"))
+                if "error" in json_data:
+                    error = self.__get_error_from_response(json_data)
+                    raise error
+            except UnicodeDecodeError as err:
+                print("Map tile downloaded")
         return response.content
