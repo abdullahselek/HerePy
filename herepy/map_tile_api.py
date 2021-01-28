@@ -26,8 +26,6 @@ class MapTileApi(HEREApi):
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
-          api_type (MapTileApiType):
-            Type of tile used in changing base url.
           timeout (int):
             Timeout limit for requests.
         """
