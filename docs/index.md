@@ -28,3 +28,4 @@ Available clients are:
 * Fleet Telematics API
 * Traffic API
 * Isoline Routing API
+* Map Tile API
