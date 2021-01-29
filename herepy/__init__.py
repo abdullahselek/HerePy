@@ -82,3 +82,4 @@ from .fleet_telematics_api import FleetTelematicsApi
 from .traffic_api import TrafficApi
 from .isoline_routing_api import IsolineRoutingApi
 from .map_tile_api import MapTileApi
+from .vector_tile_api import VectorTileApi
