@@ -24,6 +24,7 @@ from herepy import (
     BaseMapTileResourceType,
     AerialMapTileResourceType,
     TrafficMapTileResourceType,
+    VectorMapTileLayer
 )
 from enum import Enum
 
@@ -406,3 +407,11 @@ class TrafficMapTileResourceTypeTest(unittest.TestCase):
         self.assertEqual(flowtile.__str__(), "flowtile")
         traffictile = TrafficMapTileResourceType.traffictile
         self.assertEqual(traffictile.__str__(), "traffictile")
+
+
+class VectorMapTileLayerTest(unittest.TestCase):
+    def test_valueofenum(self):
+        base = VectorMapTileLayer.base
+        self.assertEqual(base.__str__(), "base")
+        case = VectorMapTileLayer.case
+        self.assertEqual(case.__str__(), "case")

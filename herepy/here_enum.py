@@ -325,3 +325,13 @@ class TrafficMapTileResourceType(MapTileResourceType):
     flowlabeltile = "flowlabeltile"
     flowtile = "flowtile"
     traffictile = "traffictile"
+
+
+class VectorMapTileLayer(Enum):
+    """Type of Vector Map Tile Layer"""
+
+    base = "base"
+    case = "case"
+
+    def __str__(self):
+        return "%s" % self._value_
