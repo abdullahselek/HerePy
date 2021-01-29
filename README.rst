@@ -112,6 +112,7 @@ Available API clients in **herepy**::
     * herepy.RoutingApi
     * herepy.TrafficApi
     * herepy.IsolineRoutingApi
+    * herepy.MapTileApi
 
 Documentation
 =============
