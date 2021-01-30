@@ -34,6 +34,28 @@ class VectorTileApi(HEREApi):
         zoom: int = 11,
         tile_format: str = "omv",
         query_parameters: Optional[Dict] = None) -> Optional[bytes]:
+        """Retrieves the protocol buffer encoded binary tile.
+          x (int):
+            Specifies the X coordinate index. This parameter is dependent upon the tile Zoom level.
+          y (int):
+            Specifies the Y coordinate index. This parameter is dependent upon the tile Zoom level.
+          layer (VectorMapTileLayer):
+            Specifies the layers available in the tile. The access to each layer is determined by the contract of the user.
+          projection (str):
+            Specifies the tile projection. mc - Mercator Projection.
+          zoom (int):
+            Specifies the tile Zoom level. Accepted values range from 0-17. minimum - 0, maximum - 17.
+          tile_format (str):
+            Specifies the tile format.
+            omv - Optimized Map for Visualization (follows Map Vector Tile open specification).
+          query_parameters (Optional[Dict]):
+            Optional Query Parameter. Refer to the API definition for values.
+        Returns:
+          Vector tile as bytes.
+        Raises:
+          HEREError
+        """
+
         url = str.format(
             self._base_url + "{}/{}/{}/{}/{}/{}",
             layer.__str__(),
