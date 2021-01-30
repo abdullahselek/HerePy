@@ -33,7 +33,7 @@ class VectorTileApi(HEREApi):
         projection: str = "mc",
         zoom: int = 11,
         tile_format: str = "omv",
-        query_parameters: Optional[Dict] = None):
+        query_parameters: Optional[Dict] = None) -> Optional[bytes]:
         url = str.format(
             self._base_url + "{}/{}/{}/{}/{}/{}",
             layer.__str__(),
