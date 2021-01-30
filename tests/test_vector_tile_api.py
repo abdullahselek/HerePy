@@ -19,7 +19,9 @@ class VectorTileApiTest(unittest.TestCase):
     def test_initiation(self):
         self.assertIsInstance(self._api, VectorTileApi)
         self.assertEqual(self._api._api_key, "api_key")
-        self.assertEqual(self._api._base_url, "https://vector.hereapi.com/v2/vectortiles/")
+        self.assertEqual(
+            self._api._base_url, "https://vector.hereapi.com/v2/vectortiles/"
+        )
 
     @patch("herepy.vector_tile_api.requests.get")
     def test_get_vector_tile_succeed(self, mock_get):

@@ -33,7 +33,8 @@ class VectorTileApi(HEREApi):
         projection: str = "mc",
         zoom: int = 11,
         tile_format: str = "omv",
-        query_parameters: Optional[Dict] = None) -> Optional[bytes]:
+        query_parameters: Optional[Dict] = None,
+    ) -> Optional[bytes]:
         """Retrieves the protocol buffer encoded binary tile.
           x (int):
             Specifies the X coordinate index. This parameter is dependent upon the tile Zoom level.

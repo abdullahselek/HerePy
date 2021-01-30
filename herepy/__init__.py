@@ -72,6 +72,7 @@ from .routing_api import (
 )
 
 from .utils import Utils
+from .mercator_projection import MercatorProjection
 from .geocoder_api import GeocoderApi
 from .geocoder_reverse_api import GeocoderReverseApi
 from .geocoder_autocomplete_api import GeocoderAutoCompleteApi

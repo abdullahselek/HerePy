@@ -24,7 +24,7 @@ from herepy import (
     BaseMapTileResourceType,
     AerialMapTileResourceType,
     TrafficMapTileResourceType,
-    VectorMapTileLayer
+    VectorMapTileLayer,
 )
 from enum import Enum
 
