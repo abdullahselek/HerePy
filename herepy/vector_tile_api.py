@@ -34,6 +34,7 @@ class VectorTileApi(HEREApi):
         projection: str = "mc",
         tile_format: str = "omv",
         query_parameters: Optional[Dict] = None,
+        headers: Optional[Dict] = None,
     ) -> Optional[bytes]:
         """Retrieves the protocol buffer encoded binary tile.
           latitude (float):
@@ -50,7 +51,9 @@ class VectorTileApi(HEREApi):
             Specifies the tile format.
             omv - Optimized Map for Visualization (follows Map Vector Tile open specification).
           query_parameters (Optional[Dict]):
-            Optional Query Parameter. Refer to the API definition for values.
+            Optional Query Parameters. Refer to the API definition for values.
+          headers (Optional[Dict]):
+            Optional headers. Refer to the API definition for values.
         Returns:
           Vector tile as bytes.
         Raises:
@@ -74,7 +77,7 @@ class VectorTileApi(HEREApi):
         else:
             query_parameters = {"apiKey": self._api_key}
         url = Utils.build_url(url, extra_params=query_parameters)
-        response = requests.get(url, timeout=self._timeout, stream=True)
+        response = requests.get(url, headers=headers, timeout=self._timeout, stream=True)
         if isinstance(response.content, bytes):
             try:
                 json_data = json.loads(response.content.decode("utf8"))

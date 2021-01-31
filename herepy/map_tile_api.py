@@ -92,7 +92,7 @@ class MapTileApi(HEREApi):
             jpg – JPG format at 90% quality
             Please note that JPG is recommended for satellite and hybrid schemes only.
           query_parameters (Optional[Dict]):
-            Optional Query Parameter. Refer to the API definition for values.
+            Optional Query Parameters. Refer to the API definition for values.
         Returns:
           Map tile as bytes.
         Raises:
