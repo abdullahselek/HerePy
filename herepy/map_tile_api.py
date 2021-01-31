@@ -9,6 +9,7 @@ from typing import Dict, Optional
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy import (
+    MercatorProjection,
     MapTileApiType,
     MapTileResourceType,
     BaseMapTileResourceType,
@@ -48,19 +49,25 @@ class MapTileApi(HEREApi):
 
     def get_maptile(
         self,
+        latitude: float,
+        longitude: float,
+        zoom: int,
         api_type: MapTileApiType = MapTileApiType.base,
         resource_type: MapTileResourceType = BaseMapTileResourceType.alabeltile,
         map_id: str = "newest",
         scheme: str = "normal.day",
-        zoom: int = 13,
-        column: int = 4400,
-        row: int = 2686,
         size: int = 256,
         tile_format: str = "png8",
         query_parameters: Optional[Dict] = None,
     ) -> Optional[bytes]:
         """Returns optional bytes value of map tile with given parameters.
         Args:
+          latitude (float):
+            Latitude value to be used to fetch map tile.
+          longitude (float):
+            Longitude value to be used to fetch map tile.
+          zoom (int):
+            Zoom level of the map image.
           api_type (MapTileApiType):
             MapTileApiType used to generate url.
           resource_type (MapTileResourceType):
@@ -72,14 +79,6 @@ class MapTileApi(HEREApi):
             Specifies the view scheme. A complete list of the supported schemes may be obtained
             by using the https://developer.here.com/documentation/map-tile/dev_guide/topics/resource-info.html
             resource.
-          zoom (int):
-            Zoom level of the map image.
-          column (int):
-            Can be any number between 0 and number of columns - 1, both inclusive.
-            The number of tiles per column is a function of the zoom: number of columns = 2zoom.
-          row (int):
-            can be any number between 0 and number of rows - 1, both inclusive.
-            The number of tiles per row is a function of the zoom: number of rows = 2zoom.
           size (int):
             Returned image size. The following sizes ([width, height]) are supported:
             256 = [256, 256]
@@ -101,6 +100,9 @@ class MapTileApi(HEREApi):
         """
 
         server = randrange(1, 4)
+        column, row = MercatorProjection.get_column_row(
+            latitude=latitude, longitude=longitude, zoom=zoom
+        )
         url = str.format(
             "https://{}.{}.maps.ls.hereapi.com/maptile/2.1/{}/{}/{}/{}/{}/{}/{}/{}",
             server,
