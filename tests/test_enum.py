@@ -413,5 +413,5 @@ class VectorMapTileLayerTest(unittest.TestCase):
     def test_valueofenum(self):
         base = VectorMapTileLayer.base
         self.assertEqual(base.__str__(), "base")
-        case = VectorMapTileLayer.case
-        self.assertEqual(case.__str__(), "case")
+        core = VectorMapTileLayer.core
+        self.assertEqual(core.__str__(), "core")

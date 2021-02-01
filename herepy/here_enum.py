@@ -331,7 +331,7 @@ class VectorMapTileLayer(Enum):
     """Type of Vector Map Tile Layer"""
 
     base = "base"
-    case = "case"
+    core = "core"
 
     def __str__(self):
         return "%s" % self._value_
