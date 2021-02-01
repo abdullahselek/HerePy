@@ -28,11 +28,13 @@ class VectorTileApi(HEREApi):
 
     def __get_error_from_response(self, json_data):
         if "error" in json_data:
+            error_description = json_data["error_description"]
             if json_data["error"] == "Unauthorized":
-                return UnauthorizedError(json_data["error_description"])
+                return UnauthorizedError(error_description)
         error_type = json_data.get("Type")
         error_message = json_data.get(
-            "Message", "Error occured on " + sys._getframe(1).f_code.co_name
+            "Message",
+            error_description + ", error occured on " + sys._getframe(1).f_code.co_name,
         )
         if error_type == "Invalid Request":
             return InvalidRequestError(error_message)
@@ -91,7 +93,9 @@ class VectorTileApi(HEREApi):
         else:
             query_parameters = {"apiKey": self._api_key}
         url = Utils.build_url(url, extra_params=query_parameters)
-        response = requests.get(url, headers=headers, timeout=self._timeout, stream=True)
+        response = requests.get(
+            url, headers=headers, timeout=self._timeout, stream=True
+        )
         if isinstance(response.content, bytes):
             try:
                 json_data = json.loads(response.content.decode("utf8"))
