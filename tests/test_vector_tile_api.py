@@ -8,7 +8,7 @@ import codecs
 import json
 
 from unittest.mock import Mock, patch
-from herepy import VectorTileApi
+from herepy import VectorTileApi, UnauthorizedError
 
 
 class VectorTileApiTest(unittest.TestCase):
@@ -37,3 +37,11 @@ class VectorTileApiTest(unittest.TestCase):
         mock_get.return_value.content = None
         vector_tile = self._api.get_vectortile(latitude=52.525439, longitude=13.38727, zoom=12)
         self.assertIsNone(vector_tile)
+
+    @patch("herepy.vector_tile_api.requests.get")
+    def test_get_vector_tile_when_receives_unauthorized_error(self, mock_get):
+        with open("testdata/models/unauthorized_error.json", "rb") as f:
+            mock_get.return_value = Mock(ok=True)
+            mock_get.return_value.content = f.read()
+        with self.assertRaises(UnauthorizedError):
+            vector_tile = self._api.get_vectortile(latitude=52.525439, longitude=13.38727, zoom=12)

@@ -8,6 +8,7 @@ from typing import Optional, Dict
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy import VectorMapTileLayer, MercatorProjection
+from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 
 
 class VectorTileApi(HEREApi):
@@ -24,6 +25,19 @@ class VectorTileApi(HEREApi):
 
         super(VectorTileApi, self).__init__(api_key, timeout)
         self._base_url = "https://vector.hereapi.com/v2/vectortiles/"
+
+    def __get_error_from_response(self, json_data):
+        if "error" in json_data:
+            if json_data["error"] == "Unauthorized":
+                return UnauthorizedError(json_data["error_description"])
+        error_type = json_data.get("Type")
+        error_message = json_data.get(
+            "Message", "Error occured on " + sys._getframe(1).f_code.co_name
+        )
+        if error_type == "Invalid Request":
+            return InvalidRequestError(error_message)
+        else:
+            return HEREError(error_message)
 
     def get_vectortile(
         self,
