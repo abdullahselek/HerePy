@@ -113,6 +113,7 @@ Available API clients in **herepy**::
     * herepy.TrafficApi
     * herepy.IsolineRoutingApi
     * herepy.MapTileApi
+    * herepy.VectorTileApi
 
 Documentation
 =============
