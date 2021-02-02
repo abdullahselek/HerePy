@@ -29,3 +29,4 @@ Available clients are:
 * Traffic API
 * Isoline Routing API
 * Map Tile API
+* Vector Tile API

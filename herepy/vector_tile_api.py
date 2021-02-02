@@ -53,6 +53,7 @@ class VectorTileApi(HEREApi):
         headers: Optional[Dict] = None,
     ) -> Optional[bytes]:
         """Retrieves the protocol buffer encoded binary tile.
+        Args:
           latitude (float):
             Latitude value to be used to fetch map tile.
           longitude (float):
