@@ -85,3 +85,4 @@ from .traffic_api import TrafficApi
 from .isoline_routing_api import IsolineRoutingApi
 from .map_tile_api import MapTileApi
 from .vector_tile_api import VectorTileApi
+from .map_image_api import MapImageApi
