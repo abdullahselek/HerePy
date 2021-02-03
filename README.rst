@@ -13,6 +13,9 @@ HerePy
 .. image:: https://codecov.io/gh/abdullahselek/HerePy/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/abdullahselek/HerePy
 
+.. image:: https://pepy.tech/badge/herepy
+    :target: https://pepy.tech/project/herepy
+
 .. image:: https://requires.io/github/abdullahselek/HerePy/requirements.svg?branch=master
     :target: https://requires.io/github/abdullahselek/HerePy/requirements/?branch=master
 
