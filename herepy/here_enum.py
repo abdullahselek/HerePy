@@ -335,3 +335,22 @@ class VectorMapTileLayer(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class MapImageResourceType(Enum):
+    """Type of Map Image Resources"""
+
+    companylogo = "companylogo"
+    heat = "heat"
+    mapview = "mapview"
+    region = "region"
+    roadsign = "roadsign"
+    route = "route"
+    routing = "routing"
+    stat = "stat"
+    tiltmap = "tiltmap"
+    turnpoint = "turnpoint"
+    version = "version"
+
+    def __str__(self):
+        return "%s" % self._value_

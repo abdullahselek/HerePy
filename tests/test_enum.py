@@ -25,6 +25,7 @@ from herepy import (
     AerialMapTileResourceType,
     TrafficMapTileResourceType,
     VectorMapTileLayer,
+    MapImageResourceType,
 )
 from enum import Enum
 
@@ -415,3 +416,29 @@ class VectorMapTileLayerTest(unittest.TestCase):
         self.assertEqual(base.__str__(), "base")
         core = VectorMapTileLayer.core
         self.assertEqual(core.__str__(), "core")
+
+
+class MapImageResourceTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        companylogo = MapImageResourceType.companylogo
+        self.assertEqual(companylogo.__str__(), "companylogo")
+        heat = MapImageResourceType.heat
+        self.assertEqual(heat.__str__(), "heat")
+        mapview = MapImageResourceType.mapview
+        self.assertEqual(mapview.__str__(), "mapview")
+        region = MapImageResourceType.region
+        self.assertEqual(region.__str__(), "region")
+        roadsign = MapImageResourceType.roadsign
+        self.assertEqual(roadsign.__str__(), "roadsign")
+        route = MapImageResourceType.route
+        self.assertEqual(route.__str__(), "route")
+        routing = MapImageResourceType.routing
+        self.assertEqual(routing.__str__(), "routing")
+        stat = MapImageResourceType.stat
+        self.assertEqual(stat.__str__(), "stat")
+        tiltmap = MapImageResourceType.tiltmap
+        self.assertEqual(tiltmap.__str__(), "tiltmap")
+        turnpoint = MapImageResourceType.turnpoint
+        self.assertEqual(turnpoint.__str__(), "turnpoint")
+        version = MapImageResourceType.version
+        self.assertEqual(version.__str__(), "version")
