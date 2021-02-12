@@ -45,6 +45,7 @@ class MapImageApi(HEREApi):
         self,
         coordinates: List[float],
         zoom: int = 8,
+        map_scheme: Optional[int] = None,
         uncertainty: Optional[str] = None,
     ):
         """Retrieves the map image with given parameters.
@@ -53,6 +54,8 @@ class MapImageApi(HEREApi):
             List contains latitude and longitude in order.
           zoom (int):
             Zoom level for the map image.
+          map_scheme (Optional[int]):
+            Determines the map scheme to use for the map image.
           uncertainty (Optional[str]):
             The parameter u specifies position uncertainty, which is shown as a filled circle around a
             location defined in terms of its latitude and longitude. The value of the parameter u indicates
@@ -66,6 +69,8 @@ class MapImageApi(HEREApi):
             "z": zoom,
             "apiKey": self._api_key,
         }
+        if map_scheme:
+            data["t"] = map_scheme
         if uncertainty:
             data["u"] = uncertainty
         url = Utils.build_url(self._base_url, extra_params=data)
