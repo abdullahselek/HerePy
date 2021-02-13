@@ -57,3 +57,15 @@ class MapImageApiTest(unittest.TestCase):
         )
         self.assertIsNotNone(vector_tile)
         self.assertTrue(isinstance(vector_tile, bytes))
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_nodot_succeed(self, mock_get):
+        with open("testdata/images/new-delhi-uncertainty.jpg", "rb") as f:
+            mock_get.return_value = Mock(ok=True)
+            byte_im = f.read()
+            mock_get.return_value.content = byte_im
+        vector_tile = self._api.get_mapimage(
+            coordinates=[28.371425, 77.387695], uncertainty="5m", nodot=True
+        )
+        self.assertIsNotNone(vector_tile)
+        self.assertTrue(isinstance(vector_tile, bytes))

@@ -47,6 +47,7 @@ class MapImageApi(HEREApi):
         zoom: int = 8,
         map_scheme: Optional[int] = None,
         uncertainty: Optional[str] = None,
+        nodot: Optional[bool] = None,
     ):
         """Retrieves the map image with given parameters.
         Args:
@@ -61,6 +62,8 @@ class MapImageApi(HEREApi):
             location defined in terms of its latitude and longitude. The value of the parameter u indicates
             the radius of the circle representing uncertainty. In this case, the radius is set to 5 myriameters,
             which is 50000 meters.
+          nodot (Optional[bool]):
+            If provided map image will be without dots.
         Returns:
           Map image as bytes.
         """
@@ -73,6 +76,8 @@ class MapImageApi(HEREApi):
             data["t"] = map_scheme
         if uncertainty:
             data["u"] = uncertainty
+        if nodot:
+            data["nodot"] = None
         url = Utils.build_url(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         if isinstance(response.content, bytes):
