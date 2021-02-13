@@ -43,7 +43,12 @@ class MapImageApi(HEREApi):
 
     def get_mapimage(
         self,
-        coordinates: List[float],
+        top_left: List[float] = None,
+        bottom_right: List[float] = None,
+        coordinates: List[float] = None,
+        city_name: Optional[str] = None,
+        country_name: Optional[str] = None,
+        center: List[float] = None,
         zoom: int = 8,
         map_scheme: Optional[int] = None,
         uncertainty: Optional[str] = None,
@@ -51,8 +56,24 @@ class MapImageApi(HEREApi):
     ):
         """Retrieves the map image with given parameters.
         Args:
-          coordinates (List):
+          top_left (List[float]):
+            List contains latitude and longitude in order for the bounding box parameter.
+            Note: If poi or poix are given, then this parameter is ignored.
+            Note: If this parameter is provided, it ignores tx, tx.xy, ctr, ectr.
+            Note: If this parameter is provided then the geo search parameters are ignored, such as co.
+          bottom_right (List[float]):
+            List contains latitude and longitude in order for the bounding box parameter.
+            Note: If poi or poix are given, then this parameter is ignored.
+            Note: If this parameter is provided, it ignores tx, tx.xy, ctr, ectr.
+            Note: If this parameter is provided then the geo search parameters are ignored, such as co.
+          coordinates (List[float]):
             List contains latitude and longitude in order.
+          city_name (str):
+            City name for address based search. UTF-8 encoded and URL-encoded.
+          country_name (str):
+            Country name for address based search. UTF-8 encoded and URL-encoded.
+          center (List[float]):
+            Map center point geo coordinate. If the position is on the border of the map, the dot might be cropped.
           zoom (int):
             Zoom level for the map image.
           map_scheme (Optional[int]):
@@ -68,10 +89,25 @@ class MapImageApi(HEREApi):
           Map image as bytes.
         """
         data = {
-            "c": str.format("{0},{1}", coordinates[0], coordinates[1]),
             "z": zoom,
             "apiKey": self._api_key,
         }
+        if top_left and bottom_right:
+            data["bbox"] = str.format(
+                "{0},{1};{2},{3}",
+                top_left[0],
+                top_left[1],
+                bottom_right[0],
+                bottom_right[1],
+            )
+        if coordinates:
+            data["c"] = str.format("{0},{1}", coordinates[0], coordinates[1])
+        if city_name:
+            data["ci"] = city_name
+        if country_name:
+            data["co"] = country_name
+        if center:
+            data["ctr"] = str.format("{0},{1}", center[0], center[1])
         if map_scheme:
             data["t"] = map_scheme
         if uncertainty:
