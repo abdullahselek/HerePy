@@ -354,3 +354,14 @@ class MapImageResourceType(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class MapImageFormatType(Enum):
+    """Type of Map Image Formats"""
+
+    png = 0
+    jpeg = 1
+    gif = 2
+    bmp = 3
+    png8 = 4
+    svg = 5

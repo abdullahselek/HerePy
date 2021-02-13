@@ -40,6 +40,7 @@ from .here_enum import (
     TrafficMapTileResourceType,
     VectorMapTileLayer,
     MapImageResourceType,
+    MapImageFormatType,
 )
 
 from .models import (

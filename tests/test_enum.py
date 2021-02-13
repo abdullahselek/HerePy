@@ -26,6 +26,7 @@ from herepy import (
     TrafficMapTileResourceType,
     VectorMapTileLayer,
     MapImageResourceType,
+    MapImageFormatType,
 )
 from enum import Enum
 
@@ -442,3 +443,21 @@ class MapImageResourceTypeTest(unittest.TestCase):
         self.assertEqual(turnpoint.__str__(), "turnpoint")
         version = MapImageResourceType.version
         self.assertEqual(version.__str__(), "version")
+
+
+class VectorMapTileLayerTest(unittest.TestCase):
+    def test_valueofenum(self):
+        base = VectorMapTileLayer.base
+        self.assertEqual(base.__str__(), "base")
+        core = VectorMapTileLayer.core
+        self.assertEqual(core.__str__(), "core")
+
+
+class MapImageFormatTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(MapImageFormatType.png._value_, 0)
+        self.assertEqual(MapImageFormatType.jpeg._value_, 1)
+        self.assertEqual(MapImageFormatType.gif._value_, 2)
+        self.assertEqual(MapImageFormatType.bmp._value_, 3)
+        self.assertEqual(MapImageFormatType.png8._value_, 4)
+        self.assertEqual(MapImageFormatType.svg._value_, 5)

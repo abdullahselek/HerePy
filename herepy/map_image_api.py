@@ -49,6 +49,8 @@ class MapImageApi(HEREApi):
         city_name: Optional[str] = None,
         country_name: Optional[str] = None,
         center: List[float] = None,
+        encoded_geo_coordinate: str = None,
+        encoded_geo_center_coordinate: str = None,
         zoom: int = 8,
         map_scheme: Optional[int] = None,
         uncertainty: Optional[str] = None,
@@ -74,6 +76,10 @@ class MapImageApi(HEREApi):
             Country name for address based search. UTF-8 encoded and URL-encoded.
           center (List[float]):
             Map center point geo coordinate. If the position is on the border of the map, the dot might be cropped.
+          encoded_geo_coordinate (str):
+            Encoded equivalent of position geo coordinate parameter c. Parameter c is ignored if this parameter is specified.
+          encoded_geo_center_coordinate (str):
+            Encoded equivalent of map center point geo coordinate parameter ctr. Parameter ctr is ignored if this parameter is present.
           zoom (int):
             Zoom level for the map image.
           map_scheme (Optional[int]):
@@ -108,6 +114,10 @@ class MapImageApi(HEREApi):
             data["co"] = country_name
         if center:
             data["ctr"] = str.format("{0},{1}", center[0], center[1])
+        if encoded_geo_coordinate:
+            data["e"] = encoded_geo_coordinate
+        if encoded_geo_center_coordinate:
+            data["ectr"] = encoded_geo_center_coordinate
         if map_scheme:
             data["t"] = map_scheme
         if uncertainty:
