@@ -127,7 +127,10 @@ class MapImageApi(HEREApi):
             If provided map image will be without dots.
         Returns:
           Map image as bytes.
+        Raises:
+          HEREError
         """
+
         data = {
             "z": zoom,
             "apiKey": self._api_key,

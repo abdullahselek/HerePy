@@ -24,27 +24,41 @@ class MapImageApiTest(unittest.TestCase):
         )
 
     @patch("herepy.map_image_api.requests.get")
-    def test_get_mapimage_when_succeed(self, mock_get):
+    def test_get_mapimage_with_boundingbox(self, mock_get):
         with open("testdata/images/new-delhi-uncertainty.jpg", "rb") as f:
             mock_get.return_value = Mock(ok=True)
             byte_im = f.read()
             mock_get.return_value.content = byte_im
-        vector_tile = self._api.get_mapimage(
+        map_image = self._api.get_mapimage(
+            top_left=[52.8, 11.37309],
+            bottom_right=[52.31, 13.2],
+            zoom=16,
+        )
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_with_coordinates(self, mock_get):
+        with open("testdata/images/new-delhi-uncertainty.jpg", "rb") as f:
+            mock_get.return_value = Mock(ok=True)
+            byte_im = f.read()
+            mock_get.return_value.content = byte_im
+        map_image = self._api.get_mapimage(
             coordinates=[28.371425, 77.387695],
             uncertainty="5m",
         )
-        self.assertIsNotNone(vector_tile)
-        self.assertTrue(isinstance(vector_tile, bytes))
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
 
     @patch("herepy.map_image_api.requests.get")
     def test_get_mapimage_when_fails(self, mock_get):
         mock_get.return_value = Mock(ok=True)
         mock_get.return_value.content = None
-        vector_tile = self._api.get_mapimage(
+        map_image = self._api.get_mapimage(
             coordinates=[28.371425, 77.387695],
             uncertainty="5m",
         )
-        self.assertIsNone(vector_tile)
+        self.assertIsNone(map_image)
 
     @patch("herepy.map_image_api.requests.get")
     def test_get_mapimage_hybrid_daylight_succeed(self, mock_get):
@@ -52,11 +66,11 @@ class MapImageApiTest(unittest.TestCase):
             mock_get.return_value = Mock(ok=True)
             byte_im = f.read()
             mock_get.return_value.content = byte_im
-        vector_tile = self._api.get_mapimage(
+        map_image = self._api.get_mapimage(
             coordinates=[28.371425, 77.387695], uncertainty="5m", map_scheme=3
         )
-        self.assertIsNotNone(vector_tile)
-        self.assertTrue(isinstance(vector_tile, bytes))
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
 
     @patch("herepy.map_image_api.requests.get")
     def test_get_mapimage_nodot_succeed(self, mock_get):
@@ -64,8 +78,77 @@ class MapImageApiTest(unittest.TestCase):
             mock_get.return_value = Mock(ok=True)
             byte_im = f.read()
             mock_get.return_value.content = byte_im
-        vector_tile = self._api.get_mapimage(
+        map_image = self._api.get_mapimage(
             coordinates=[28.371425, 77.387695], uncertainty="5m", nodot=True
         )
-        self.assertIsNotNone(vector_tile)
-        self.assertTrue(isinstance(vector_tile, bytes))
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_city_name(self, mock_get):
+        with open("testdata/images/new-delhi-uncertainty.jpg", "rb") as f:
+            mock_get.return_value = Mock(ok=True)
+            byte_im = f.read()
+            mock_get.return_value.content = byte_im
+        map_image = self._api.get_mapimage(
+            coordinates=[60.17675, 24.929974],
+            city_name="Helsinki",
+            image_height=400,
+            show_position=True,
+            zoom=15,
+        )
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_country_name(self, mock_get):
+        with open("testdata/images/new-delhi-uncertainty.jpg", "rb") as f:
+            mock_get.return_value = Mock(ok=True)
+            byte_im = f.read()
+            mock_get.return_value.content = byte_im
+        map_image = self._api.get_mapimage(
+            coordinates=[60.17675, 24.929974], country_name="Finland", zoom=15
+        )
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_country_name_and_center(self, mock_get):
+        with open("testdata/images/new-delhi-uncertainty.jpg", "rb") as f:
+            mock_get.return_value = Mock(ok=True)
+            byte_im = f.read()
+            mock_get.return_value.content = byte_im
+        map_image = self._api.get_mapimage(
+            coordinates=[60.17675, 24.929974],
+            country_name="Finland",
+            center=[60.17, 24.90],
+            zoom=15,
+        )
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_encoded_geo_coordinate(self, mock_get):
+        with open("testdata/images/new-delhi-uncertainty.jpg", "rb") as f:
+            mock_get.return_value = Mock(ok=True)
+            byte_im = f.read()
+            mock_get.return_value.content = byte_im
+        map_image = self._api.get_mapimage(
+            encoded_geo_coordinate="QeL4rkKaxoA", zoom=10
+        )
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_label_languages(self, mock_get):
+        with open("testdata/images/new-delhi-uncertainty.jpg", "rb") as f:
+            mock_get.return_value = Mock(ok=True)
+            byte_im = f.read()
+            mock_get.return_value.content = byte_im
+        map_image = self._api.get_mapimage(
+            coordinates=[28.371425, 77.387695],
+            label_language="ger",
+            second_label_language="tur",
+        )
+        self.assertIsNotNone(map_image)
+        self.assertTrue(isinstance(map_image, bytes))
