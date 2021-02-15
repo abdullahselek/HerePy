@@ -30,3 +30,4 @@ Available clients are:
 * Isoline Routing API
 * Map Tile API
 * Vector Tile API
+* Map Image API

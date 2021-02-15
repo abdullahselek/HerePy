@@ -30,6 +30,7 @@ nav:
   - api/isoline_routing_api.md
   - api/map_tile_api.md
   - api/vector_tile_api.md
+  - api/map_image_api.md
 - Models:
   - models/models.md
 - Enums:
