@@ -42,8 +42,6 @@ setup(
     platforms=['Any'],
     python_requires=">=3.5",
     install_requires=requirements,
-    setup_requires=['pytest-runner'],
-    tests_require=['pytest'],
     keywords='here api, here technologies, here python api clients, rest api clients',
     classifiers=[
         'Intended Audience :: Developers',
