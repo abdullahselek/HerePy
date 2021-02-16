@@ -117,6 +117,7 @@ Available API clients in **herepy**::
     * herepy.IsolineRoutingApi
     * herepy.MapTileApi
     * herepy.VectorTileApi
+    * herepy.MapImageApi
 
 Documentation
 =============
