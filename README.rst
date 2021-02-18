@@ -16,6 +16,15 @@ HerePy
 .. image:: https://pepy.tech/badge/herepy
     :target: https://pepy.tech/project/herepy
 
+.. image:: https://img.shields.io/conda/vn/conda-forge/herepy?logo=conda-forge
+    :target: https://anaconda.org/conda-forge/herepy
+
+.. image:: https://anaconda.org/conda-forge/herepy/badges/latest_release_date.svg
+    :target: https://anaconda.org/conda-forge/herepy
+
+.. image:: https://anaconda.org/conda-forge/herepy/badges/license.svg
+    :target: https://anaconda.org/conda-forge/herepy
+
 .. image:: https://requires.io/github/abdullahselek/HerePy/requirements.svg?branch=master
     :target: https://requires.io/github/abdullahselek/HerePy/requirements/?branch=master
 
@@ -36,9 +45,17 @@ This library provides a pure Python interface for the `HERE API <https://develop
 Installing
 ==========
 
-You can install herepy using::
+You can install herepy using Python Package Index::
 
     $ pip install herepy
+
+Install with conda from the Anaconda conda-forge channel::
+
+    $ conda install -c conda-forge herepy
+
+Install from its source repository on GitHub::
+
+    $ pip install -e git+https://github.com/abdullahselek/HerePy#egg=herepy
 
 Getting the code
 ================
