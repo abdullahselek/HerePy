@@ -74,5 +74,6 @@ print(response.as_dict())
 response = routing_api.matrix(
     start_waypoints=[[9.933231, -84.076831]],
     destination_waypoints=[[9.934574, -84.065544]],
+    modes=[RouteMode.fastest, RouteMode.car, RouteMode.traffic_default]
 )
 print(response.as_dict())
