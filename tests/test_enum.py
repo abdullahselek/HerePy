@@ -27,6 +27,7 @@ from herepy import (
     VectorMapTileLayer,
     MapImageResourceType,
     MapImageFormatType,
+    RoutingMatrixMode,
 )
 from enum import Enum
 
@@ -461,3 +462,12 @@ class MapImageFormatTypeTest(unittest.TestCase):
         self.assertEqual(MapImageFormatType.bmp._value_, 3)
         self.assertEqual(MapImageFormatType.png8._value_, 4)
         self.assertEqual(MapImageFormatType.svg._value_, 5)
+
+
+class RoutingMatrixModeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(RoutingMatrixMode.world.__str__(), "world")
+        self.assertEqual(RoutingMatrixMode.circle.__str__(), "circle")
+        self.assertEqual(RoutingMatrixMode.bounding_box.__str__(), "boundingBox")
+        self.assertEqual(RoutingMatrixMode.polygon.__str__(), "polygon")
+        self.assertEqual(RoutingMatrixMode.auto_circle.__str__(), "autoCircle")

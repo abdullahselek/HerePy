@@ -36,6 +36,18 @@ class MatrixSummaryAttribute(Enum):
     def __str__(self):
         return "%s" % self._value_
 
+class RoutingMatrixMode(Enum):
+    """Defines modes of alculation of routing matrices"""
+
+    world = "world"
+    circle = "circle"
+    bounding_box = "boundingBox"
+    polygon = "polygon"
+    auto_circle = "autoCircle"
+
+    def __str__(self):
+        return "%s" % self._value_
+
 
 class PlacesCategory(Enum):
     """Categories which are used in places api functions."""
