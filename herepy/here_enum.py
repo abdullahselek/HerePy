@@ -26,7 +26,7 @@ class RouteMode(Enum):
 
 
 class MatrixSummaryAttribute(Enum):
-    """Defines an attribute to be included in the route matrix entries"""
+    """Defines an attribute to be included in the route matrix entries."""
 
     travel_time = "traveltime"
     cost_factor = "costfactor"
@@ -36,14 +36,51 @@ class MatrixSummaryAttribute(Enum):
     def __str__(self):
         return "%s" % self._value_
 
-class RoutingMatrixMode(Enum):
-    """Defines modes of alculation of routing matrices"""
+
+class MatrixRoutingType(Enum):
+    """Defines types of calculation of routing matrices."""
 
     world = "world"
     circle = "circle"
     bounding_box = "boundingBox"
     polygon = "polygon"
     auto_circle = "autoCircle"
+
+    def __str__(self):
+        return "%s" % self._value_
+
+
+class MatrixRoutingProfile(Enum):
+    """Defines profile IDs that enable the calculation of matrices with routes of arbitrary length."""
+
+    car_fast = "carFast"
+    car_short = "carShort"
+    truck_fast = "truckFast"
+    pedestrian = "pedestrian"
+    bicycle = "bicycle"
+
+    def __str__(self):
+        return "%s" % self._value_
+
+
+class MatrixRoutingMode(Enum):
+    """Optimization applied during route calculation of Matrix Routing API route."""
+
+    fast = "fast"
+    short = "short"
+
+    def __str__(self):
+        return "%s" % self._value_
+
+
+class MatrixRoutingTransportMode(Enum):
+    """Defines transport modes on Matrix Routing API. Depending on the transport mode special constraints,
+    speed attributes and weights are taken into account during route calculation."""
+
+    car = "car"
+    truck = "truck"
+    pedestrian = "pedestrian"
+    bicycle = "bicycle"
 
     def __str__(self):
         return "%s" % self._value_

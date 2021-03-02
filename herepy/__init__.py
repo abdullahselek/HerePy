@@ -41,7 +41,10 @@ from .here_enum import (
     VectorMapTileLayer,
     MapImageResourceType,
     MapImageFormatType,
-    RoutingMatrixMode,
+    MatrixRoutingType,
+    MatrixRoutingProfile,
+    MatrixRoutingMode,
+    MatrixRoutingTransportMode,
 )
 
 from .models import (
