@@ -28,10 +28,8 @@ class RouteMode(Enum):
 class MatrixSummaryAttribute(Enum):
     """Defines an attribute to be included in the route matrix entries."""
 
-    travel_time = "traveltime"
-    cost_factor = "costfactor"
-    distance = "distance"
-    route_id = "routeid"
+    travel_times = "travelTimes"
+    distances = "distances"
 
     def __str__(self):
         return "%s" % self._value_

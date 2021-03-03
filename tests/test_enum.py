@@ -497,3 +497,9 @@ class MatrixRoutingTransportModeTest(unittest.TestCase):
         self.assertEqual(MatrixRoutingTransportMode.truck.__str__(), "truck")
         self.assertEqual(MatrixRoutingTransportMode.pedestrian.__str__(), "pedestrian")
         self.assertEqual(MatrixRoutingTransportMode.bicycle.__str__(), "bicycle")
+
+
+class MatrixSummaryAttributeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(MatrixRoutingTransportMode.travel_times.__str__(), "travelTimes")
+        self.assertEqual(MatrixRoutingTransportMode.distances.__str__(), "distances")
