@@ -501,5 +501,5 @@ class MatrixRoutingTransportModeTest(unittest.TestCase):
 
 class MatrixSummaryAttributeTest(unittest.TestCase):
     def test_valueofenum(self):
-        self.assertEqual(MatrixRoutingTransportMode.travel_times.__str__(), "travelTimes")
-        self.assertEqual(MatrixRoutingTransportMode.distances.__str__(), "distances")
+        self.assertEqual(MatrixSummaryAttribute.travel_times.__str__(), "travelTimes")
+        self.assertEqual(MatrixSummaryAttribute.distances.__str__(), "distances")
