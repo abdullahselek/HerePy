@@ -4,13 +4,14 @@ import datetime
 import sys
 import json
 import requests
+import polling
 
 from herepy.geocoder_api import GeocoderApi
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RoutingResponse, RoutingMatrixResponse
-from herepy.here_enum import RouteMode, MatrixSummaryAttribute
+from herepy.here_enum import RouteMode, MatrixSummaryAttribute, MatrixRoutingType, MatrixRoutingMode, MatrixRoutingProfile, MatrixRoutingTransportMode
 from typing import List, Union, Optional
 
 
@@ -19,7 +20,7 @@ class RoutingApi(HEREApi):
 
     URL_CALCULATE_ROUTE = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json"
     URL_CALCULATE_MATRIX = (
-        "https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json"
+        "https://matrix.router.hereapi.com/v8/matrix"
     )
 
     def __init__(self, api_key: str = None, timeout: int = None):
@@ -333,54 +334,284 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.truck, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def matrix(
+    # def matrix(
+    #     self,
+    #     start_waypoints: Union[List[float], str],
+    #     destination_waypoints: Union[List[float], str],
+    #     departure: str = "now",
+    #     modes: List[RouteMode] = [],
+    #     summary_attributes: List[MatrixSummaryAttribute] = [],
+    # ) -> Optional[RoutingResponse]:
+    #     """Request a matrix of route summaries between M starts and N destinations.
+    #     Args:
+    #       start_waypoints (List):
+    #         List of lists of coordinates [lat,long] of start waypoints.
+    #         or list of string with the location names.
+    #       destination_waypoints (List):
+    #         List of lists of coordinates [lat,long] of destination waypoints.
+    #         or list of string with the location names.
+    #       departure (str):
+    #         time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
+    #       modes (List):
+    #         List of RouteMode enums following [Type, TransportMode, TrafficMode, Feature].
+    #       summary_attributes (List):
+    #         List of MatrixSummaryAttribute enums.
+    #     Returns:
+    #       RoutingMatrixResponse
+    #     Raises:
+    #       HEREError: If an error is received from the server.
+    #     """
+
+    #     data = {
+    #         "apikey": self._api_key,
+    #         "departure": departure,
+    #         "mode": self.__prepare_mode_values(modes),
+    #         "summaryAttributes": ",".join(
+    #             [attribute.__str__() for attribute in summary_attributes]
+    #         ),
+    #     }
+    #     for i, start_waypoint in enumerate(start_waypoints):
+    #         if isinstance(start_waypoint, str):
+    #             start_waypoint = self._get_coordinates_for_location_name(start_waypoint)
+    #         data["start" + str(i)] = self.__list_to_waypoint(start_waypoint)
+    #     for i, destination_waypoint in enumerate(destination_waypoints):
+    #         if isinstance(destination_waypoint, str):
+    #             destination_waypoint = self._get_coordinates_for_location_name(
+    #                 destination_waypoint
+    #             )
+    #         data["destination" + str(i)] = self.__list_to_waypoint(destination_waypoint)
+    #     response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
+    #     return response
+
+    def sync_matrix(
         self,
-        start_waypoints: Union[List[float], str],
-        destination_waypoints: Union[List[float], str],
-        departure: str = "now",
-        modes: List[RouteMode] = [],
-        summary_attributes: List[MatrixSummaryAttribute] = [],
+        origins: Union[List[float], str],
+        destinations: Union[List[float], str],
+        matrix_type: MatrixRoutingType,
+        center: List[float],
+        radius: int,
+        profile: Optional[MatrixRoutingProfile] = None,
+        departure: str = None,
+        routing_mode: Optional[MatrixRoutingMode] = None,
+        transport_mode: Optional[MatrixRoutingTransportMode] = None,
+        matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
     ) -> Optional[RoutingResponse]:
-        """Request a matrix of route summaries between M starts and N destinations.
+        """Sync request a matrix of route summaries between M starts and N destinations.
         Args:
-          start_waypoints (List):
+          origins (List):
             List of lists of coordinates [lat,long] of start waypoints.
             or list of string with the location names.
-          destination_waypoints (List):
+          destinations (List):
             List of lists of coordinates [lat,long] of destination waypoints.
             or list of string with the location names.
+          matrix_type (MatrixRoutingType):
+            Routing type used in definition of a region in which the matrix will be calculated.
+          profile (Optional[MatrixRoutingProfile]):
+            A profile ID enables the calculation of matrices with routes of arbitrary length.
           departure (str):
             time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
-          modes (List):
-            List of RouteMode enums following [Type, TransportMode, TrafficMode, Feature].
-          summary_attributes (List):
+          routing_mode (Optional[MatrixRoutingMode]):
+            Route mode used in optimization of route calculation.
+          transport_mode (Optional[MatrixRoutingTransportMode]):
+            Depending on the transport mode special constraints, speed attributes and weights
+            are taken into account during route calculation.
+          matrix_attributes (List):
             List of MatrixSummaryAttribute enums.
         Returns:
-          RoutingMatrixResponse
+          Dictionary
         Raises:
           HEREError: If an error is received from the server.
         """
 
-        data = {
-            "apikey": self._api_key,
-            "departure": departure,
-            "mode": self.__prepare_mode_values(modes),
-            "summaryAttributes": ",".join(
-                [attribute.__str__() for attribute in summary_attributes]
-            ),
+        request_body = {
+            "regionDefinition": {
+                "type": matrix_type.__str__(),
+                "center": {"lat": center[0], "lng": center[1]},
+                "radius": radius,
+            },
         }
-        for i, start_waypoint in enumerate(start_waypoints):
-            if isinstance(start_waypoint, str):
-                start_waypoint = self._get_coordinates_for_location_name(start_waypoint)
-            data["start" + str(i)] = self.__list_to_waypoint(start_waypoint)
-        for i, destination_waypoint in enumerate(destination_waypoints):
-            if isinstance(destination_waypoint, str):
+
+        if profile:
+            request_body["profile"] = profile.__str__()
+        if departure:
+            request_body["departureTime"] = departure
+        if routing_mode:
+            request_body["routingMode"] = routing_mode.__str__()
+        if transport_mode:
+            request_body["transportMode"] = transport_mode.__str__()
+        if matrix_attributes:
+            request_body["matrixAttributes"] = ",".join(
+                [attribute.__str__() for attribute in matrix_attributes]
+            )
+
+        query_params = {
+            "apiKey": self._api_key,
+            "async": "false",
+        }
+
+        origin_list = []
+        for i, origin in enumerate(origins):
+            if isinstance(origin, str):
+                origin_waypoint = self._get_coordinates_for_location_name(origin)
+            else:
+                origin_waypoint = origin
+            lat_long = {"lat": origin_waypoint[0], "lng": origin_waypoint[1]}
+            origin_list.append(lat_long)
+        request_body["origins"] = origin_list
+
+        destination_list = []
+        for i, destination in enumerate(destinations):
+            if isinstance(destination, str):
                 destination_waypoint = self._get_coordinates_for_location_name(
-                    destination_waypoint
+                    destination
                 )
-            data["destination" + str(i)] = self.__list_to_waypoint(destination_waypoint)
-        response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
-        return response
+            else:
+                destination_waypoint = destination
+            lat_long = {"lat": destination_waypoint[0], "lng": destination_waypoint[1]}
+            destination_list.append(lat_long)
+        request_body["destinations"] = origin_list
+
+        url = Utils.build_url(self.URL_CALCULATE_MATRIX, extra_params=query_params)
+        headers = {
+            "Content-Type": "application/json"
+        }
+        response = requests.post(url, json=request_body, headers=headers, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("matrix") is not None:
+            return json_data
+        else:
+            raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+
+    def __download_file(url, filename):
+        with requests.get(url, stream=True) as r:
+            r.raise_for_status()
+            with open(filename, 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192): 
+                    f.write(chunk)
+        print("{} file saved!".format(filename))
+        return filename
+
+    def async_matrix(
+        self,
+        origins: Union[List[float], str],
+        destinations: Union[List[float], str],
+        matrix_type: MatrixRoutingType,
+        center: List[float],
+        radius: int,
+        profile: Optional[MatrixRoutingProfile] = None,
+        departure: str = None,
+        routing_mode: Optional[MatrixRoutingMode] = None,
+        transport_mode: Optional[MatrixRoutingTransportMode] = None,
+        matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
+    ) -> Optional[str]:
+        """Sync request a matrix of route summaries between M starts and N destinations.
+        Args:
+          origins (List):
+            List of lists of coordinates [lat,long] of start waypoints.
+            or list of string with the location names.
+          destinations (List):
+            List of lists of coordinates [lat,long] of destination waypoints.
+            or list of string with the location names.
+          matrix_type (MatrixRoutingType):
+            Routing type used in definition of a region in which the matrix will be calculated.
+          center (List):
+            Center of region definition, latitude and longitude.
+          radius (int):
+            Center  of region definition.
+          profile (Optional[MatrixRoutingProfile]):
+            A profile ID enables the calculation of matrices with routes of arbitrary length.
+          departure (str):
+            time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
+          routing_mode (Optional[MatrixRoutingMode]):
+            Route mode used in optimization of route calculation.
+          transport_mode (Optional[MatrixRoutingTransportMode]):
+            Depending on the transport mode special constraints, speed attributes and weights
+            are taken into account during route calculation.
+          matrix_attributes (List):
+            List of MatrixSummaryAttribute enums.
+        Returns:
+          File name as a string.
+        Raises:
+          HEREError: If an error is received from the server.
+        """
+
+        request_body = {
+            "regionDefinition": {
+                "type": matrix_type.__str__(),
+                "center": {"lat": center[0], "lng": center[1]},
+                "radius": radius,
+            },
+        }
+
+        if profile:
+            request_body["profile"] = profile.__str__()
+        if departure:
+            request_body["departureTime"] = departure
+        if routing_mode:
+            request_body["routingMode"] = routing_mode.__str__()
+        if transport_mode:
+            request_body["transportMode"] = transport_mode.__str__()
+        if matrix_attributes:
+            request_body["matrixAttributes"] = ",".join(
+                [attribute.__str__() for attribute in matrix_attributes]
+            )
+
+        query_params = {
+            "apiKey": self._api_key
+        }
+
+        origin_list = []
+        for i, origin in enumerate(origins):
+            if isinstance(origin, str):
+                origin_waypoint = self._get_coordinates_for_location_name(origin)
+            else:
+                origin_waypoint = origin
+            lat_long = {"lat": origin_waypoint[0], "lng": origin_waypoint[1]}
+            origin_list.append(lat_long)
+        request_body["origins"] = origin_list
+
+        destination_list = []
+        for i, destination in enumerate(destinations):
+            if isinstance(destination, str):
+                destination_waypoint = self._get_coordinates_for_location_name(
+                    destination
+                )
+            else:
+                destination_waypoint = destination
+            lat_long = {"lat": destination_waypoint[0], "lng": destination_waypoint[1]}
+            destination_list.append(lat_long)
+        request_body["destinations"] = destination_list
+
+        url = Utils.build_url(self.URL_CALCULATE_MATRIX, extra_params=query_params)
+        headers = {
+            "Content-Type": "application/json"
+        }
+        json_data = json.dumps(request_body)
+        response = requests.post(url, json=request_body, headers=headers, timeout=self._timeout)
+        if response.status_code == requests.codes.ACCEPTED:
+            json_data = response.json()
+            print("Matrix {} calculation {}".format(json_data["matrixId"], json_data["status"]))
+            poll_url = Utils.build_url(json_data["statusUrl"], extra_params={"apiKey": self._api_key})
+            print("Polling matrix calculation started!")
+            result = polling.poll(
+                lambda: requests.get(poll_url).status_code == 303,
+                step=10,
+                poll_forever=True
+            )
+            print("Polling matrix calculation completed!")
+            try:
+                poll_data = json.loads(result.content.decode("utf8"))
+                print("Matrix {} calculation {}".format(poll_data["matrixId"], poll_data["status"]))
+                if poll_data["status"] == "completed":
+                    download_url = Utils.build_url(poll_data["resultUrl"], extra_params={"apiKey": self._api_key})
+                    self.__download_file()
+                elif poll_data["error"]:
+                    print("Can not download matrix calculation file")
+                    raise HEREError(poll_data["error"])
+            except:
+                raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+        else:
+            raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
 
     def _get_coordinates_for_location_name(self, location_name: str) -> List[float]:
         """Use the Geocoder API to resolve a location name to a set of coordinates."""
