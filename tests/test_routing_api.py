@@ -816,6 +816,48 @@ class RoutingApiTest(unittest.TestCase):
             )
 
     @responses.activate
+    def test_async_matrix_whensucceed(self):
+        with open(
+            "testdata/models/routing_async_matrix_calculation.json", mode="r", encoding="utf-8"
+        ) as f:
+            server_response = f.read()
+        responses.add(
+            responses.POST,
+            "https://matrix.router.hereapi.com/v8/matrix",
+            server_response,
+            status=202,
+        )
+        with open(
+            "testdata/models/routing_async_matrix_completed.json", mode="r", encoding="utf-8"
+        ) as f:
+            server_response = f.read()
+        responses.add(
+            responses.GET,
+            "https://com.com/status",
+            server_response,
+            status=303,
+        )
+        with open(
+            "testdata/files/async_matrix_route.gzip", mode="r", encoding="utf-8"
+        ) as f:
+            server_response = f.read()
+        responses.add(
+            responses.GET,
+            "https://com.com/file/async_matrix_route.gzip",
+            server_response,
+            status=200,
+        )
+        response = self._api.async_matrix(
+            origins=[[9.933231, -84.076831]],
+            destinations=[[9.934574, -84.065544]],
+            matrix_type=herepy.MatrixRoutingType.circle,
+            center=[9.933300, -84.066891],
+            radius=10000,
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, str)
+
+    @responses.activate
     def test_departure_as_datetime(self):
         with codecs.open(
             "testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8"

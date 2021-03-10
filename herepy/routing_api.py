@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import datetime
 import sys
 import json
@@ -482,8 +483,9 @@ class RoutingApi(HEREApi):
         else:
             raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
 
-    def __download_file(url, filename):
-        with requests.get(url, stream=True) as r:
+    def __download_file(self, fileurl: str):
+        filename = os.path.basename(fileurl)
+        with requests.get(fileurl, stream=True) as r:
             r.raise_for_status()
             with open(filename, 'wb') as f:
                 for chunk in r.iter_content(chunk_size=8192): 
@@ -493,7 +495,7 @@ class RoutingApi(HEREApi):
 
     def __is_correct_response(self, response):
         status_code = response.status_code
-        json_data = json.loads(response.content.decode("utf8"))
+        json_data = response.json()
         if status_code == 303:
             return json_data
         elif status_code == 200:
@@ -614,16 +616,16 @@ class RoutingApi(HEREApi):
             )
             print("Polling matrix calculation completed!")
             try:
-                poll_data = json.loads(result.content.decode("utf8"))
+                poll_data = result.json()
                 print("Matrix {} calculation {}".format(poll_data["matrixId"], poll_data["status"]))
                 if poll_data["status"] == "completed":
-                    download_url = Utils.build_url(poll_data["resultUrl"], extra_params={"apiKey": self._api_key})
-                    self.__download_file()
+                    download_url = Utils.build_url(poll_data["resultUrl"], extra_params={})
+                    return self.__download_file(fileurl=download_url)
                 elif poll_data["error"]:
                     print("Can not download matrix calculation file")
                     raise HEREError(poll_data["error"])
-            except:
-                raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+            except Exception as err:
+                raise HEREError(err)
         else:
             raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
 
