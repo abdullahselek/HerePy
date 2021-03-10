@@ -76,7 +76,7 @@ response = routing_api.sync_matrix(
     destinations=[[9.934574, -84.065544]],
     matrix_type=MatrixRoutingType.circle,
     center=[9.933300, -84.066891],
-    radius=10000
+    radius=10000,
 )
 print(response)
 
@@ -86,6 +86,6 @@ response = routing_api.async_matrix(
     destinations=[[9.934574, -84.065544]],
     matrix_type=MatrixRoutingType.circle,
     center=[9.933300, -84.066891],
-    radius=10000
+    radius=10000,
 )
 print(response)

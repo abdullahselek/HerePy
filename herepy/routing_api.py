@@ -12,7 +12,14 @@ from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
 from herepy.models import RoutingResponse, RoutingMatrixResponse
-from herepy.here_enum import RouteMode, MatrixSummaryAttribute, MatrixRoutingType, MatrixRoutingMode, MatrixRoutingProfile, MatrixRoutingTransportMode
+from herepy.here_enum import (
+    RouteMode,
+    MatrixSummaryAttribute,
+    MatrixRoutingType,
+    MatrixRoutingMode,
+    MatrixRoutingProfile,
+    MatrixRoutingTransportMode,
+)
 from typing import List, Union, Optional
 
 
@@ -20,9 +27,7 @@ class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
 
     URL_CALCULATE_ROUTE = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json"
-    URL_CALCULATE_MATRIX = (
-        "https://matrix.router.hereapi.com/v8/matrix"
-    )
+    URL_CALCULATE_MATRIX = "https://matrix.router.hereapi.com/v8/matrix"
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """Returns a RoutingApi instance.
@@ -473,10 +478,10 @@ class RoutingApi(HEREApi):
         request_body["destinations"] = origin_list
 
         url = Utils.build_url(self.URL_CALCULATE_MATRIX, extra_params=query_params)
-        headers = {
-            "Content-Type": "application/json"
-        }
-        response = requests.post(url, json=request_body, headers=headers, timeout=self._timeout)
+        headers = {"Content-Type": "application/json"}
+        response = requests.post(
+            url, json=request_body, headers=headers, timeout=self._timeout
+        )
         json_data = json.loads(response.content.decode("utf8"))
         if json_data.get("matrix") is not None:
             return json_data
@@ -487,8 +492,8 @@ class RoutingApi(HEREApi):
         filename = os.path.basename(fileurl)
         with requests.get(fileurl, stream=True) as r:
             r.raise_for_status()
-            with open(filename, 'wb') as f:
-                for chunk in r.iter_content(chunk_size=8192): 
+            with open(filename, "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
                     f.write(chunk)
         print("{} file saved!".format(filename))
         return filename
@@ -499,12 +504,26 @@ class RoutingApi(HEREApi):
         if status_code == 303:
             return json_data
         elif status_code == 200:
-            print("Matrix {} calculation {}".format(json_data["matrixId"], json_data["status"]))
+            print(
+                "Matrix {} calculation {}".format(
+                    json_data["matrixId"], json_data["status"]
+                )
+            )
             return False
         elif status_code == 401 or status_code == 403:
-            raise HEREError("Error occured on __is_correct_response: " + json_data["error"] + ", description: " + json_data["error_description"])
+            raise HEREError(
+                "Error occured on __is_correct_response: "
+                + json_data["error"]
+                + ", description: "
+                + json_data["error_description"]
+            )
         elif status_code == 404 or status_code == 500:
-            raise HEREError("Error occured on __is_correct_response: " + json_data["title"] + ", status: " + json_data["status"])
+            raise HEREError(
+                "Error occured on __is_correct_response: "
+                + json_data["title"]
+                + ", status: "
+                + json_data["status"]
+            )
 
     def async_matrix(
         self,
@@ -571,9 +590,7 @@ class RoutingApi(HEREApi):
                 [attribute.__str__() for attribute in matrix_attributes]
             )
 
-        query_params = {
-            "apiKey": self._api_key
-        }
+        query_params = {"apiKey": self._api_key}
 
         origin_list = []
         for i, origin in enumerate(origins):
@@ -598,28 +615,40 @@ class RoutingApi(HEREApi):
         request_body["destinations"] = destination_list
 
         url = Utils.build_url(self.URL_CALCULATE_MATRIX, extra_params=query_params)
-        headers = {
-            "Content-Type": "application/json"
-        }
+        headers = {"Content-Type": "application/json"}
         json_data = json.dumps(request_body)
-        response = requests.post(url, json=request_body, headers=headers, timeout=self._timeout)
+        response = requests.post(
+            url, json=request_body, headers=headers, timeout=self._timeout
+        )
         if response.status_code == requests.codes.ACCEPTED:
             json_data = response.json()
-            print("Matrix {} calculation {}".format(json_data["matrixId"], json_data["status"]))
-            poll_url = Utils.build_url(json_data["statusUrl"], extra_params={"apiKey": self._api_key})
+            print(
+                "Matrix {} calculation {}".format(
+                    json_data["matrixId"], json_data["status"]
+                )
+            )
+            poll_url = Utils.build_url(
+                json_data["statusUrl"], extra_params={"apiKey": self._api_key}
+            )
             print("Polling matrix calculation started!")
             result = polling.poll(
                 lambda: requests.get(poll_url),
                 check_success=self.__is_correct_response,
                 step=5,
-                poll_forever=True
+                poll_forever=True,
             )
             print("Polling matrix calculation completed!")
             try:
                 poll_data = result.json()
-                print("Matrix {} calculation {}".format(poll_data["matrixId"], poll_data["status"]))
+                print(
+                    "Matrix {} calculation {}".format(
+                        poll_data["matrixId"], poll_data["status"]
+                    )
+                )
                 if poll_data["status"] == "completed":
-                    download_url = Utils.build_url(poll_data["resultUrl"], extra_params={})
+                    download_url = Utils.build_url(
+                        poll_data["resultUrl"], extra_params={}
+                    )
                     return self.__download_file(fileurl=download_url)
                 elif poll_data["error"]:
                     print("Can not download matrix calculation file")

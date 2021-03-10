@@ -818,7 +818,9 @@ class RoutingApiTest(unittest.TestCase):
     @responses.activate
     def test_async_matrix_whensucceed(self):
         with open(
-            "testdata/models/routing_async_matrix_calculation.json", mode="r", encoding="utf-8"
+            "testdata/models/routing_async_matrix_calculation.json",
+            mode="r",
+            encoding="utf-8",
         ) as f:
             server_response = f.read()
         responses.add(
@@ -828,7 +830,9 @@ class RoutingApiTest(unittest.TestCase):
             status=202,
         )
         with open(
-            "testdata/models/routing_async_matrix_completed.json", mode="r", encoding="utf-8"
+            "testdata/models/routing_async_matrix_completed.json",
+            mode="r",
+            encoding="utf-8",
         ) as f:
             server_response = f.read()
         responses.add(
