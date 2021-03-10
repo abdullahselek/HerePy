@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from herepy import RoutingApi, RouteMode
+from herepy import RoutingApi, RouteMode, MatrixRoutingType
 
 routing_api = RoutingApi(api_key="api_key")
 
@@ -70,10 +70,22 @@ response = routing_api.truck_route(
 )
 print(response.as_dict())
 
-# fetches a matrix of route summaries between M starts and N destinations
-response = routing_api.matrix(
-    start_waypoints=[[9.933231, -84.076831]],
-    destination_waypoints=[[9.934574, -84.065544]],
-    modes=[RouteMode.fastest, RouteMode.car, RouteMode.traffic_default]
+# sync, fetches a matrix of route summaries between M starts and N destinations
+response = routing_api.sync_matrix(
+    origins=[[9.933231, -84.076831]],
+    destinations=[[9.934574, -84.065544]],
+    matrix_type=MatrixRoutingType.circle,
+    center=[9.933300, -84.066891],
+    radius=10000
 )
-print(response.as_dict())
+print(response)
+
+# async, fetches a matrix of route summaries between M starts and N destinations
+response = routing_api.async_matrix(
+    origins=[[9.933231, -84.076831]],
+    destinations=[[9.934574, -84.065544]],
+    matrix_type=MatrixRoutingType.circle,
+    center=[9.933300, -84.066891],
+    radius=10000
+)
+print(response)

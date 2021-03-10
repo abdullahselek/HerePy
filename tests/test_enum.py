@@ -27,6 +27,10 @@ from herepy import (
     VectorMapTileLayer,
     MapImageResourceType,
     MapImageFormatType,
+    MatrixRoutingType,
+    MatrixRoutingProfile,
+    MatrixRoutingMode,
+    MatrixRoutingTransportMode,
 )
 from enum import Enum
 
@@ -461,3 +465,41 @@ class MapImageFormatTypeTest(unittest.TestCase):
         self.assertEqual(MapImageFormatType.bmp._value_, 3)
         self.assertEqual(MapImageFormatType.png8._value_, 4)
         self.assertEqual(MapImageFormatType.svg._value_, 5)
+
+
+class MatrixRoutingTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(MatrixRoutingType.world.__str__(), "world")
+        self.assertEqual(MatrixRoutingType.circle.__str__(), "circle")
+        self.assertEqual(MatrixRoutingType.bounding_box.__str__(), "boundingBox")
+        self.assertEqual(MatrixRoutingType.polygon.__str__(), "polygon")
+        self.assertEqual(MatrixRoutingType.auto_circle.__str__(), "autoCircle")
+
+
+class MatrixRoutingProfileTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(MatrixRoutingProfile.car_fast.__str__(), "carFast")
+        self.assertEqual(MatrixRoutingProfile.car_short.__str__(), "carShort")
+        self.assertEqual(MatrixRoutingProfile.truck_fast.__str__(), "truckFast")
+        self.assertEqual(MatrixRoutingProfile.pedestrian.__str__(), "pedestrian")
+        self.assertEqual(MatrixRoutingProfile.bicycle.__str__(), "bicycle")
+
+
+class MatrixRoutingModeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(MatrixRoutingMode.fast.__str__(), "fast")
+        self.assertEqual(MatrixRoutingMode.short.__str__(), "short")
+
+
+class MatrixRoutingTransportModeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(MatrixRoutingTransportMode.car.__str__(), "car")
+        self.assertEqual(MatrixRoutingTransportMode.truck.__str__(), "truck")
+        self.assertEqual(MatrixRoutingTransportMode.pedestrian.__str__(), "pedestrian")
+        self.assertEqual(MatrixRoutingTransportMode.bicycle.__str__(), "bicycle")
+
+
+class MatrixSummaryAttributeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(MatrixSummaryAttribute.travel_times.__str__(), "travelTimes")
+        self.assertEqual(MatrixSummaryAttribute.distances.__str__(), "distances")

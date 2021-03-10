@@ -658,26 +658,29 @@ class RoutingApiTest(unittest.TestCase):
             self._api.truck_route([11.0, 12.0], [47.013399, -10.171986])
 
     @responses.activate
-    def test_matrix_whensucceed(self):
+    def test_sync_matrix_whensucceed(self):
         with codecs.open(
             "testdata/models/routing_matrix.json", mode="r", encoding="utf-8"
         ) as f:
             server_response = f.read()
         responses.add(
-            responses.GET,
-            "https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json",
+            responses.POST,
+            "https://matrix.router.hereapi.com/v8/matrix",
             server_response,
             status=200,
         )
-        response = self._api.matrix(
-            start_waypoints=[[9.933231, -84.076831]],
-            destination_waypoints=[[9.934574, -84.065544]],
+        response = self._api.sync_matrix(
+            origins=[[9.933231, -84.076831]],
+            destinations=[[9.934574, -84.065544]],
+            matrix_type=herepy.MatrixRoutingType.circle,
+            center=[9.933300, -84.066891],
+            radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+        self.assertIsInstance(response, dict)
 
     @responses.activate
-    def test_matrix_multiple_starts(self):
+    def test_sync_matrix_multiple_starts(self):
         with codecs.open(
             "testdata/models/routing_matrix_multiple_starts.json",
             mode="r",
@@ -685,20 +688,23 @@ class RoutingApiTest(unittest.TestCase):
         ) as f:
             server_response = f.read()
         responses.add(
-            responses.GET,
-            "https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json",
+            responses.POST,
+            "https://matrix.router.hereapi.com/v8/matrix",
             server_response,
             status=200,
         )
-        response = self._api.matrix(
-            start_waypoints=[[9.933231, -84.076831], [9.934574, -84.065544]],
-            destination_waypoints=[[9.934574, -84.065544]],
+        response = self._api.sync_matrix(
+            origins=[[9.933231, -84.076831], [9.934574, -84.065544]],
+            destinations=[[9.934574, -84.065544]],
+            matrix_type=herepy.MatrixRoutingType.circle,
+            center=[9.933300, -84.066891],
+            radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+        self.assertIsInstance(response, dict)
 
     @responses.activate
-    def test_matrix_multiple_start_names(self):
+    def test_sync_matrix_multiple_start_names(self):
         with codecs.open(
             "testdata/models/routing_matrix_multiple_starts.json",
             mode="r",
@@ -706,8 +712,8 @@ class RoutingApiTest(unittest.TestCase):
         ) as f:
             server_response = f.read()
         responses.add(
-            responses.GET,
-            "https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json",
+            responses.POST,
+            "https://matrix.router.hereapi.com/v8/matrix",
             server_response,
             status=200,
         )
@@ -719,15 +725,18 @@ class RoutingApiTest(unittest.TestCase):
             expectedGeocoderResponse,
             status=200,
         )
-        response = self._api.matrix(
-            start_waypoints=["Seattle", "Kentucky"],
-            destination_waypoints=[[9.934574, -84.065544]],
+        response = self._api.sync_matrix(
+            origins=["Seattle", "Kentucky"],
+            destinations=[[9.934574, -84.065544]],
+            matrix_type=herepy.MatrixRoutingType.circle,
+            center=[9.933300, -84.066891],
+            radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+        self.assertIsInstance(response, dict)
 
     @responses.activate
-    def test_matrix_multiple_destinations(self):
+    def test_sync_matrix_multiple_destinations(self):
         with codecs.open(
             "testdata/models/routing_matrix_multiple_destinations.json",
             mode="r",
@@ -735,20 +744,23 @@ class RoutingApiTest(unittest.TestCase):
         ) as f:
             server_response = f.read()
         responses.add(
-            responses.GET,
-            "https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json",
+            responses.POST,
+            "https://matrix.router.hereapi.com/v8/matrix",
             server_response,
             status=200,
         )
-        response = self._api.matrix(
-            start_waypoints=[[9.933231, -84.076831]],
-            destination_waypoints=[[9.934574, -84.065544], [9.612552, -84.62892]],
+        response = self._api.sync_matrix(
+            origins=[[9.933231, -84.076831]],
+            destinations=[[9.934574, -84.065544], [9.612552, -84.62892]],
+            matrix_type=herepy.MatrixRoutingType.circle,
+            center=[9.933300, -84.066891],
+            radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+        self.assertIsInstance(response, dict)
 
     @responses.activate
-    def test_matrix_multiple_destinations(self):
+    def test_sync_matrix_multiple_destinations(self):
         with codecs.open(
             "testdata/models/routing_matrix_multiple_destinations.json",
             mode="r",
@@ -756,8 +768,8 @@ class RoutingApiTest(unittest.TestCase):
         ) as f:
             server_response = f.read()
         responses.add(
-            responses.GET,
-            "https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json",
+            responses.POST,
+            "https://matrix.router.hereapi.com/v8/matrix",
             server_response,
             status=200,
         )
@@ -769,15 +781,18 @@ class RoutingApiTest(unittest.TestCase):
             expectedGeocoderResponse,
             status=200,
         )
-        response = self._api.matrix(
-            start_waypoints=[[9.933231, -84.076831]],
-            destination_waypoints=["Seattle", "Kentucky"],
+        response = self._api.sync_matrix(
+            origins=[[9.933231, -84.076831]],
+            destinations=["Seattle", "Kentucky"],
+            matrix_type=herepy.MatrixRoutingType.circle,
+            center=[9.933300, -84.066891],
+            radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
+        self.assertIsInstance(response, dict)
 
     @responses.activate
-    def test_matrix_bad_request(self):
+    def test_sync_matrix_bad_request(self):
         with codecs.open(
             "testdata/models/routing_matrix_bad_request.json",
             mode="r",
@@ -785,17 +800,62 @@ class RoutingApiTest(unittest.TestCase):
         ) as f:
             server_response = f.read()
         responses.add(
-            responses.GET,
-            "https://matrix.route.ls.hereapi.com/routing/7.2/calculatematrix.json",
+            responses.POST,
+            "https://matrix.router.hereapi.com/v8/matrix",
             server_response,
             status=400,
         )
-        with self.assertRaises(herepy.InvalidInputDataError):
-            self._api.matrix(
-                start_waypoints=[[9.933231, -84.076831]],
-                destination_waypoints=[[9.934574, -84.065544]],
-                modes=[herepy.RouteMode.pedestrian, herepy.RouteMode.car],
+        with self.assertRaises(herepy.HEREError):
+            self._api.sync_matrix(
+                origins=[[9.933231, -84.076831]],
+                destinations=[[9.934574, -84.065544]],
+                matrix_type=herepy.MatrixRoutingType.circle,
+                center=[9.933300, -84.066891],
+                radius=10000,
+                routing_mode=herepy.MatrixRoutingMode.fast,
             )
+
+    @responses.activate
+    def test_async_matrix_whensucceed(self):
+        with open(
+            "testdata/models/routing_async_matrix_calculation.json", mode="r", encoding="utf-8"
+        ) as f:
+            server_response = f.read()
+        responses.add(
+            responses.POST,
+            "https://matrix.router.hereapi.com/v8/matrix",
+            server_response,
+            status=202,
+        )
+        with open(
+            "testdata/models/routing_async_matrix_completed.json", mode="r", encoding="utf-8"
+        ) as f:
+            server_response = f.read()
+        responses.add(
+            responses.GET,
+            "https://com.com/status",
+            server_response,
+            status=303,
+        )
+        with open(
+            "testdata/files/async_matrix_route.gzip", mode="r", encoding="utf-8"
+        ) as f:
+            server_response = f.read()
+        responses.add(
+            responses.GET,
+            "https://com.com/file/async_matrix_route.gzip",
+            server_response,
+            status=200,
+        )
+        response = self._api.async_matrix(
+            origins=[[9.933231, -84.076831]],
+            destinations=[[9.934574, -84.065544]],
+            matrix_type=herepy.MatrixRoutingType.circle,
+            center=[9.933300, -84.066891],
+            radius=10000,
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, str)
 
     @responses.activate
     def test_departure_as_datetime(self):
