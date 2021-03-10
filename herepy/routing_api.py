@@ -491,6 +491,19 @@ class RoutingApi(HEREApi):
         print("{} file saved!".format(filename))
         return filename
 
+    def __is_correct_response(self, response):
+        status_code = response.status_code
+        json_data = json.loads(response.content.decode("utf8"))
+        if status_code == 303:
+            return json_data
+        elif status_code == 200:
+            print("Matrix {} calculation {}".format(json_data["matrixId"], json_data["status"]))
+            return False
+        elif status_code == 401 or status_code == 403:
+            raise HEREError("Error occured on __is_correct_response: " + json_data["error"] + ", description: " + json_data["error_description"])
+        elif status_code == 404 or status_code == 500:
+            raise HEREError("Error occured on __is_correct_response: " + json_data["title"] + ", status: " + json_data["status"])
+
     def async_matrix(
         self,
         origins: Union[List[float], str],
@@ -594,8 +607,9 @@ class RoutingApi(HEREApi):
             poll_url = Utils.build_url(json_data["statusUrl"], extra_params={"apiKey": self._api_key})
             print("Polling matrix calculation started!")
             result = polling.poll(
-                lambda: requests.get(poll_url).status_code == 303,
-                step=10,
+                lambda: requests.get(poll_url),
+                check_success=self.__is_correct_response,
+                step=5,
                 poll_forever=True
             )
             print("Polling matrix calculation completed!")
