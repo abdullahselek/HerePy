@@ -501,23 +501,23 @@ class RoutingApi(HEREApi):
     def __is_correct_response(self, response):
         status_code = response.status_code
         json_data = response.json()
-        if status_code == 303:
+        if json_data.get("matrix") is not None:
             return json_data
-        elif status_code == 200:
+        elif json_data.get("status") is not None:
             print(
                 "Matrix {} calculation {}".format(
                     json_data["matrixId"], json_data["status"]
                 )
             )
             return False
-        elif status_code == 401 or status_code == 403:
+        elif json_data.get("error") is not None and json_data.get("error_description"):
             raise HEREError(
                 "Error occured on __is_correct_response: "
                 + json_data["error"]
                 + ", description: "
                 + json_data["error_description"]
             )
-        elif status_code == 404 or status_code == 500:
+        elif json_data.get("title") is not None and json_data.get("status"):
             raise HEREError(
                 "Error occured on __is_correct_response: "
                 + json_data["title"]
@@ -527,6 +527,7 @@ class RoutingApi(HEREApi):
 
     def async_matrix(
         self,
+        token: str,
         origins: Union[List[float], str],
         destinations: Union[List[float], str],
         matrix_type: MatrixRoutingType,
@@ -540,6 +541,11 @@ class RoutingApi(HEREApi):
     ) -> Optional[str]:
         """Sync request a matrix of route summaries between M starts and N destinations.
         Args:
+          token (str):
+            Bearer token required for async calls. This is the only working solution for now.
+            How to create a bearer token:
+            https://developer.here.com/documentation/identity-access-management/dev_guide/topics/sdk.html#step-1-register-your-application
+            https://developer.here.com/documentation/identity-access-management/dev_guide/topics/postman.html
           origins (List):
             List of lists of coordinates [lat,long] of start waypoints.
             or list of string with the location names.
@@ -590,7 +596,7 @@ class RoutingApi(HEREApi):
                 [attribute.__str__() for attribute in matrix_attributes]
             )
 
-        query_params = {"apiKey": self._api_key}
+        query_params = {}
 
         origin_list = []
         for i, origin in enumerate(origins):
@@ -615,7 +621,9 @@ class RoutingApi(HEREApi):
         request_body["destinations"] = destination_list
 
         url = Utils.build_url(self.URL_CALCULATE_MATRIX, extra_params=query_params)
-        headers = {"Content-Type": "application/json"}
+        headers = {"Content-Type": "application/json",
+                   "Authorization": str.format("Bearer {0}", token)
+        }
         json_data = json.dumps(request_body)
         response = requests.post(
             url, json=request_body, headers=headers, timeout=self._timeout
@@ -627,36 +635,29 @@ class RoutingApi(HEREApi):
                     json_data["matrixId"], json_data["status"]
                 )
             )
-            poll_url = Utils.build_url(
-                json_data["statusUrl"], extra_params={"apiKey": self._api_key}
-            )
+            poll_url = json_data["statusUrl"]
+            headers = {"Authorization": str.format("Bearer {0}", token)}
             print("Polling matrix calculation started!")
             result = polling.poll(
-                lambda: requests.get(poll_url),
+                lambda: requests.get(poll_url, headers=headers),
                 check_success=self.__is_correct_response,
                 step=5,
                 poll_forever=True,
             )
             print("Polling matrix calculation completed!")
-            try:
-                poll_data = result.json()
-                print(
-                    "Matrix {} calculation {}".format(
-                        poll_data["matrixId"], poll_data["status"]
-                    )
-                )
-                if poll_data["status"] == "completed":
-                    download_url = Utils.build_url(
-                        poll_data["resultUrl"], extra_params={}
-                    )
-                    return self.__download_file(fileurl=download_url)
-                elif poll_data["error"]:
-                    print("Can not download matrix calculation file")
-                    raise HEREError(poll_data["error"])
-            except Exception as err:
-                raise HEREError(err)
+            poll_data = result.json()
+            return poll_data
         else:
-            raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+            json_data = response.json()
+            if json_data.get("error") is not None and json_data.get("error_description") is not None:
+                raise HEREError(
+                    "Error occured on async_matrix: "
+                    + json_data["error"]
+                    + ", description: "
+                    + json_data["error_description"]
+                )
+            else:
+                raise HEREError("Error occured on async_matrix " + sys._getframe(1).f_code.co_name)
 
     def _get_coordinates_for_location_name(self, location_name: str) -> List[float]:
         """Use the Geocoder API to resolve a location name to a set of coordinates."""

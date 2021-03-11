@@ -839,19 +839,10 @@ class RoutingApiTest(unittest.TestCase):
             responses.GET,
             "https://com.com/status",
             server_response,
-            status=303,
-        )
-        with open(
-            "testdata/files/async_matrix_route.gzip", mode="r", encoding="utf-8"
-        ) as f:
-            server_response = f.read()
-        responses.add(
-            responses.GET,
-            "https://com.com/file/async_matrix_route.gzip",
-            server_response,
             status=200,
         )
         response = self._api.async_matrix(
+            token="token",
             origins=[[9.933231, -84.076831]],
             destinations=[[9.934574, -84.065544]],
             matrix_type=herepy.MatrixRoutingType.circle,
@@ -859,7 +850,7 @@ class RoutingApiTest(unittest.TestCase):
             radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, str)
+        self.assertIsInstance(response, dict)
 
     @responses.activate
     def test_departure_as_datetime(self):

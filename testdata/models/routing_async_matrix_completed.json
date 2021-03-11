@@ -1,5 +1,16 @@
 {
     "matrixId": "matrixId",
-    "status": "completed",
-    "resultUrl": "https://com.com/file/async_matrix_route.gzip"
-}
+    "matrix": {
+        "numOrigins": 1,
+        "numDestinations": 1,
+        "travelTimes": [290]
+    },
+    "regionDefinition": {
+        "type": "circle",
+        "center": {
+            "lat": 9.9333,
+            "lng": -84.066891
+            },
+        "radius": 10000
+        }
+    }
