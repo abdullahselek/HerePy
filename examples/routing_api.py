@@ -81,7 +81,12 @@ response = routing_api.sync_matrix(
 print(response)
 
 # async, fetches a matrix of route summaries between M starts and N destinations
+# please check
+# https://developer.here.com/documentation/identity-access-management/dev_guide/topics/sdk.html#step-1-register-your-application
+# https://developer.here.com/documentation/identity-access-management/dev_guide/topics/postman.html
+# to learn how to create bearer token
 response = routing_api.async_matrix(
+    token="TOKEN",
     origins=[[9.933231, -84.076831]],
     destinations=[[9.934574, -84.065544]],
     matrix_type=MatrixRoutingType.circle,
