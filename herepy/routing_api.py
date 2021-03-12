@@ -621,8 +621,9 @@ class RoutingApi(HEREApi):
         request_body["destinations"] = destination_list
 
         url = Utils.build_url(self.URL_CALCULATE_MATRIX, extra_params=query_params)
-        headers = {"Content-Type": "application/json",
-                   "Authorization": str.format("Bearer {0}", token)
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": str.format("Bearer {0}", token),
         }
         json_data = json.dumps(request_body)
         response = requests.post(
@@ -649,7 +650,10 @@ class RoutingApi(HEREApi):
             return poll_data
         else:
             json_data = response.json()
-            if json_data.get("error") is not None and json_data.get("error_description") is not None:
+            if (
+                json_data.get("error") is not None
+                and json_data.get("error_description") is not None
+            ):
                 raise HEREError(
                     "Error occured on async_matrix: "
                     + json_data["error"]
@@ -657,7 +661,9 @@ class RoutingApi(HEREApi):
                     + json_data["error_description"]
                 )
             else:
-                raise HEREError("Error occured on async_matrix " + sys._getframe(1).f_code.co_name)
+                raise HEREError(
+                    "Error occured on async_matrix " + sys._getframe(1).f_code.co_name
+                )
 
     def _get_coordinates_for_location_name(self, location_name: str) -> List[float]:
         """Use the Geocoder API to resolve a location name to a set of coordinates."""
