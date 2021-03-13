@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from herepy import RoutingApi, RouteMode, MatrixRoutingType
+from herepy import RoutingApi, RouteMode, MatrixRoutingType, MatrixSummaryAttribute
 
 routing_api = RoutingApi(api_key="api_key")
 
@@ -92,5 +92,20 @@ response = routing_api.async_matrix(
     matrix_type=MatrixRoutingType.circle,
     center=[9.933300, -84.066891],
     radius=10000,
+)
+print(response)
+
+# async, fetches a matrix of route summaries between M starts and N destinations
+response = routing_api.async_matrix(
+    token="TOKEN",
+    origins=[[9.933231, -84.076831]],
+    destinations=[[9.934574, -84.065544]],
+    matrix_type=MatrixRoutingType.circle,
+    center=[9.933300, -84.066891],
+    radius=10000,
+    matrix_attributes=[
+        MatrixSummaryAttribute.distances,
+        MatrixSummaryAttribute.travel_times,
+    ],
 )
 print(response)
