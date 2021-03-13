@@ -677,7 +677,7 @@ class RoutingApiTest(unittest.TestCase):
             radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, dict)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
     def test_sync_matrix_multiple_starts(self):
@@ -701,7 +701,7 @@ class RoutingApiTest(unittest.TestCase):
             radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, dict)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
     def test_sync_matrix_multiple_start_names(self):
@@ -733,7 +733,7 @@ class RoutingApiTest(unittest.TestCase):
             radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, dict)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
     def test_sync_matrix_multiple_destinations(self):
@@ -757,7 +757,7 @@ class RoutingApiTest(unittest.TestCase):
             radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, dict)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
     def test_sync_matrix_multiple_destinations(self):
@@ -789,7 +789,7 @@ class RoutingApiTest(unittest.TestCase):
             radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, dict)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
     def test_sync_matrix_bad_request(self):
@@ -850,7 +850,7 @@ class RoutingApiTest(unittest.TestCase):
             radius=10000,
         )
         self.assertTrue(response)
-        self.assertIsInstance(response, dict)
+        self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
     def test_departure_as_datetime(self):

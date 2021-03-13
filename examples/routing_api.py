@@ -78,7 +78,7 @@ response = routing_api.sync_matrix(
     center=[9.933300, -84.066891],
     radius=10000,
 )
-print(response)
+print(response.as_dict())
 
 # async, fetches a matrix of route summaries between M starts and N destinations
 # please check
@@ -93,7 +93,7 @@ response = routing_api.async_matrix(
     center=[9.933300, -84.066891],
     radius=10000,
 )
-print(response)
+print(response.as_dict())
 
 # async, fetches a matrix of route summaries between M starts and N destinations
 response = routing_api.async_matrix(
@@ -108,4 +108,4 @@ response = routing_api.async_matrix(
         MatrixSummaryAttribute.travel_times,
     ],
 )
-print(response)
+print(response.as_dict())

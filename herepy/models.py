@@ -117,7 +117,9 @@ class RoutingMatrixResponse(HEREModel):
     def __init__(self, **kwargs):
         super(RoutingMatrixResponse, self).__init__()
         self.param_defaults = {
-            "response": None,
+            "matrixId": None,
+            "matrix": None,
+            "regionDefinition": None,
         }
 
         for (param, default) in self.param_defaults.items():

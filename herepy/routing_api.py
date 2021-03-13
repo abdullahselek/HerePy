@@ -401,7 +401,7 @@ class RoutingApi(HEREApi):
         routing_mode: Optional[MatrixRoutingMode] = None,
         transport_mode: Optional[MatrixRoutingTransportMode] = None,
         matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
-    ) -> Optional[RoutingResponse]:
+    ) -> Optional[RoutingMatrixResponse]:
         """Sync request a matrix of route summaries between M starts and N destinations.
         Args:
           origins (List):
@@ -424,7 +424,7 @@ class RoutingApi(HEREApi):
           matrix_attributes (List):
             List of MatrixSummaryAttribute enums.
         Returns:
-          Dictionary
+          RoutingMatrixResponse
         Raises:
           HEREError: If an error is received from the server.
         """
@@ -446,9 +446,9 @@ class RoutingApi(HEREApi):
         if transport_mode:
             request_body["transportMode"] = transport_mode.__str__()
         if matrix_attributes:
-            request_body["matrixAttributes"] = ",".join(
-                [attribute.__str__() for attribute in matrix_attributes]
-            )
+            request_body["matrixAttributes"] = [
+                attribute.__str__() for attribute in matrix_attributes
+            ]
 
         query_params = {
             "apiKey": self._api_key,
@@ -484,7 +484,7 @@ class RoutingApi(HEREApi):
         )
         json_data = json.loads(response.content.decode("utf8"))
         if json_data.get("matrix") is not None:
-            return json_data
+            return RoutingMatrixResponse.new_from_jsondict(json_data)
         else:
             raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
 
@@ -538,8 +538,8 @@ class RoutingApi(HEREApi):
         routing_mode: Optional[MatrixRoutingMode] = None,
         transport_mode: Optional[MatrixRoutingTransportMode] = None,
         matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
-    ) -> Optional[str]:
-        """Sync request a matrix of route summaries between M starts and N destinations.
+    ) -> Optional[RoutingMatrixResponse]:
+        """Async request a matrix of route summaries between M starts and N destinations.
         Args:
           token (str):
             Bearer token required for async calls. This is the only working solution for now.
@@ -570,7 +570,7 @@ class RoutingApi(HEREApi):
           matrix_attributes (List):
             List of MatrixSummaryAttribute enums.
         Returns:
-          File name as a string.
+          RoutingMatrixResponse.
         Raises:
           HEREError: If an error is received from the server.
         """
@@ -647,7 +647,7 @@ class RoutingApi(HEREApi):
             )
             print("Polling matrix calculation completed!")
             poll_data = result.json()
-            return poll_data
+            return RoutingMatrixResponse.new_from_jsondict(poll_data)
         else:
             json_data = response.json()
             if (
