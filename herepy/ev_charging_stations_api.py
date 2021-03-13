@@ -14,19 +14,16 @@ from herepy.models import EVChargingStationsResponse
 class EVChargingStationsApi:
     """A python interface into the HERE EV Charging Stations API"""
 
-    def __init__(self, app_id: str = None, app_code: str = None, timeout: int = None):
+    def __init__(self, api_key: str = None, timeout: int = None):
         """Returns a EVChargingStationsApi instance.
         Args:
-          app_id (str):
-            App Id taken from HERE Developer Portal.
-          app_code (str):
-            API Code taken from HERE Developer Portal.
+          api_key (str):
+            API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
         """
 
-        self._app_id = app_id
-        self._app_code = app_code
+        self._api_key = api_key
         if timeout:
             self._timeout = timeout
         else:
@@ -87,15 +84,13 @@ class EVChargingStationsApi:
         if connectortypes:
             connector_types_str = self.__connector_types_str(connectortypes)
             data = {
-                "app_id": self._app_id,
-                "app_code": self._app_code,
+                "apiKey": self._api_key,
                 "prox": str.format("{0},{1},{2}", latitude, longitude, radius),
                 "connectortype": connector_types_str,
             }
         else:
             data = {
-                "app_id": self._app_id,
-                "app_code": self._app_code,
+                "apiKey": self._api_key,
                 "prox": str.format("{0},{1},{2}", latitude, longitude, radius),
             }
         response = self.__get(
@@ -127,8 +122,7 @@ class EVChargingStationsApi:
         if connectortypes:
             connector_types_str = self.__connector_types_str(connectortypes)
             data = {
-                "app_id": self._app_id,
-                "app_code": self._app_code,
+                "apiKey": self._api_key,
                 "bbox": str.format(
                     "{0},{1};{2},{3}",
                     top_left[0],
@@ -140,8 +134,7 @@ class EVChargingStationsApi:
             }
         else:
             data = {
-                "app_id": self._app_id,
-                "app_code": self._app_code,
+                "apiKey": self._api_key,
                 "bbox": str.format(
                     "{0},{1};{2},{3}",
                     top_left[0],
@@ -174,15 +167,13 @@ class EVChargingStationsApi:
         if connectortypes:
             connector_types_str = self.__connector_types_str(connectortypes)
             data = {
-                "app_id": self._app_id,
-                "app_code": self._app_code,
+                "apiKey": self._api_key,
                 "corridor": self.__corridor_str(points),
                 "connectortype": connector_types_str,
             }
         else:
             data = {
-                "app_id": self._app_id,
-                "app_code": self._app_code,
+                "apiKey": self._api_key,
                 "corridor": self.__corridor_str(points),
             }
         response = self.__get(
@@ -204,7 +195,7 @@ class EVChargingStationsApi:
           HEREError
         """
 
-        data = {"app_id": self._app_id, "app_code": self._app_code}
+        data = {"apiKey": self._api_key}
         url = self._base_url + "stations/" + station_id + ".json"
         response = self.__get(url, data, EVChargingStationsResponse)
         return response
@@ -229,5 +220,12 @@ def error_from_ev_charging_service_error(json_data: dict):
 
         if error_type == "Unauthorized":
             return UnauthorizedError(message)
+    elif "error" in json_data and "error_description" in json_data:
+        return HEREError(
+            "Error occured: "
+            + json_data["error"]
+            + ", description: "
+            + json_data["error_description"]
+        )
     # pylint: disable=W0212
     return HEREError("Error occured on " + sys._getframe(1).f_code.co_name)

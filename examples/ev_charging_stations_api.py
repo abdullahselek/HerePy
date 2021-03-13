@@ -2,7 +2,7 @@
 
 from herepy import EVChargingStationsApi, EVStationConnectorTypes
 
-evcharging_stations_api = EVChargingStationsApi("api_key")
+evcharging_stations_api = EVChargingStationsApi(api_key="api_key")
 # search for ev charging stations in a circular area
 response = evcharging_stations_api.get_stations_circular_search(
     latitude=52.516667,
