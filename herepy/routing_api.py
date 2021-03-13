@@ -592,9 +592,9 @@ class RoutingApi(HEREApi):
         if transport_mode:
             request_body["transportMode"] = transport_mode.__str__()
         if matrix_attributes:
-            request_body["matrixAttributes"] = ",".join(
-                [attribute.__str__() for attribute in matrix_attributes]
-            )
+            request_body["matrixAttributes"] = [
+                attribute.__str__() for attribute in matrix_attributes
+            ]
 
         query_params = {}
 
@@ -659,6 +659,16 @@ class RoutingApi(HEREApi):
                     + json_data["error"]
                     + ", description: "
                     + json_data["error_description"]
+                )
+            elif (
+                json_data.get("title") is not None
+                and json_data.get("cause") is not None
+            ):
+                raise HEREError(
+                    "Error occured on async_matrix: "
+                    + json_data["title"]
+                    + ", cause: "
+                    + json_data["cause"]
                 )
             else:
                 raise HEREError(
