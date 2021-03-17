@@ -45,6 +45,8 @@ from .here_enum import (
     MatrixRoutingProfile,
     MatrixRoutingMode,
     MatrixRoutingTransportMode,
+    RoutingMode,
+    RoutingTransportMode,
 )
 
 from .models import (

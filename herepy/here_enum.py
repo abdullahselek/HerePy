@@ -25,6 +25,16 @@ class RouteMode(Enum):
         return "%s" % self._value_
 
 
+class RoutingMode(Enum):
+    """Routing modes which is used in Routing API v8 functions."""
+
+    fast = "fast"
+    short = "short"
+
+    def __str__(self):
+        return "%s" % self._value_    
+
+
 class MatrixSummaryAttribute(Enum):
     """Defines an attribute to be included in the route matrix entries."""
 
@@ -412,3 +422,18 @@ class MapImageFormatType(Enum):
     bmp = 3
     png8 = 4
     svg = 5
+
+
+class RoutingTransportMode(Enum):
+    """Transport modes of Routing API v8"""
+
+    car = "car"
+    truck = "truck"
+    pedestrian = "pedestrian"
+    bicycle = "bicycle"
+    scooter = "scooter"
+    taxi = "taxi"
+    bus = "bus"
+
+    def __str__(self):
+        return "%s" % self._value_

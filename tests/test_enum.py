@@ -31,6 +31,8 @@ from herepy import (
     MatrixRoutingProfile,
     MatrixRoutingMode,
     MatrixRoutingTransportMode,
+    RoutingMode,
+    RoutingTransportMode,
 )
 from enum import Enum
 
@@ -503,3 +505,20 @@ class MatrixSummaryAttributeTest(unittest.TestCase):
     def test_valueofenum(self):
         self.assertEqual(MatrixSummaryAttribute.travel_times.__str__(), "travelTimes")
         self.assertEqual(MatrixSummaryAttribute.distances.__str__(), "distances")
+
+
+class RoutingModeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(RoutingMode.fast.__str__(), "fast")
+        self.assertEqual(RoutingMode.short.__str__(), "short")
+
+
+class RoutingTransportModeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(RoutingTransportMode.car.__str__(), "car")
+        self.assertEqual(RoutingTransportMode.truck.__str__(), "truck")
+        self.assertEqual(RoutingTransportMode.pedestrian.__str__(), "pedestrian")
+        self.assertEqual(RoutingTransportMode.bicycle.__str__(), "bicycle")
+        self.assertEqual(RoutingTransportMode.scooter.__str__(), "scooter")
+        self.assertEqual(RoutingTransportMode.taxi.__str__(), "taxi")
+        self.assertEqual(RoutingTransportMode.bus.__str__(), "bus")
