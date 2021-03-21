@@ -33,6 +33,9 @@ from herepy import (
     MatrixRoutingTransportMode,
     RoutingMode,
     RoutingTransportMode,
+    RoutingMetric,
+    RoutingApiReturnField,
+    RoutingApiSpanField,
 )
 from enum import Enum
 
@@ -522,3 +525,46 @@ class RoutingTransportModeTest(unittest.TestCase):
         self.assertEqual(RoutingTransportMode.scooter.__str__(), "scooter")
         self.assertEqual(RoutingTransportMode.taxi.__str__(), "taxi")
         self.assertEqual(RoutingTransportMode.bus.__str__(), "bus")
+
+
+class RoutingMetricTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(RoutingMetric.metric.__str__(), "metric")
+        self.assertEqual(RoutingMetric.imperial.__str__(), "imperial")
+
+
+class RoutingApiReturnFieldTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(RoutingApiReturnField.polyline.__str__(), "polyline")
+        self.assertEqual(RoutingApiReturnField.actions.__str__(), "actions")
+        self.assertEqual(RoutingApiReturnField.instructions.__str__(), "instructions")
+        self.assertEqual(RoutingApiReturnField.summary.__str__(), "summary")
+        self.assertEqual(RoutingApiReturnField.travelSummary.__str__(), "travelSummary")
+        self.assertEqual(RoutingApiReturnField.turnByTurnActions.__str__(), "turnByTurnActions")
+        self.assertEqual(RoutingApiReturnField.routeHandle.__str__(), "routeHandle")
+        self.assertEqual(RoutingApiReturnField.passthrough.__str__(), "passthrough")
+        self.assertEqual(RoutingApiReturnField.incidents.__str__(), "incidents")
+        self.assertEqual(RoutingApiReturnField.routingZones.__str__(), "routingZones")
+
+
+class RoutingApiSpanFieldTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(RoutingApiSpanField.streetAttributes.__str__(), "streetAttributes")
+        self.assertEqual(RoutingApiSpanField.carAttributes.__str__(), "carAttributes")
+        self.assertEqual(RoutingApiSpanField.truckAttributes.__str__(), "truckAttributes")
+        self.assertEqual(RoutingApiSpanField.scooterAttributes.__str__(), "scooterAttributes")
+        self.assertEqual(RoutingApiSpanField.names.__str__(), "names")
+        self.assertEqual(RoutingApiSpanField.length.__str__(), "length")
+        self.assertEqual(RoutingApiSpanField.duration.__str__(), "duration")
+        self.assertEqual(RoutingApiSpanField.baseDuration.__str__(), "baseDuration")
+        self.assertEqual(RoutingApiSpanField.countryCode.__str__(), "countryCode")
+        self.assertEqual(RoutingApiSpanField.functionalClass.__str__(), "functionalClass")
+        self.assertEqual(RoutingApiSpanField.routeNumbers.__str__(), "routeNumbers")
+        self.assertEqual(RoutingApiSpanField.speedLimit.__str__(), "speedLimit")
+        self.assertEqual(RoutingApiSpanField.maxSpeed.__str__(), "maxSpeed")
+        self.assertEqual(RoutingApiSpanField.dynamicSpeedInfo.__str__(), "dynamicSpeedInfo")
+        self.assertEqual(RoutingApiSpanField.segmentId.__str__(), "segmentId")
+        self.assertEqual(RoutingApiSpanField.segmentRef.__str__(), "segmentRef")
+        self.assertEqual(RoutingApiSpanField.consumption.__str__(), "consumption")
+        self.assertEqual(RoutingApiSpanField.routingZones.__str__(), "routingZones")
+        self.assertEqual(RoutingApiSpanField.notices.__str__(), "notices")

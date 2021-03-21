@@ -32,7 +32,64 @@ class RoutingMode(Enum):
     short = "short"
 
     def __str__(self):
-        return "%s" % self._value_    
+        return "%s" % self._value_
+
+
+class RoutingMetric(Enum):
+    """Units of measurement used in guidance instructions."""
+
+    metric = "metric"
+    imperial = "imperial"
+
+    def __str__(self):
+        return "%s" % self._value_
+
+
+class RoutingApiReturnField(Enum):
+    """Attributes are included in the response as part of data representation of a Route or Section.."""
+
+    polyline = "polyline"
+    actions = "actions"
+    instructions = "instructions"
+    summary = "summary"
+    travelSummary = "travelSummary"
+    mlDuration = "mlDuration"
+    turnByTurnActions = "turnByTurnActions"
+    elevation = "elevation"
+    routeHandle = "routeHandle"
+    passthrough = "passthrough"
+    incidents = "incidents"
+    routingZones = "routingZones"
+
+    def __str__(self):
+        return "%s" % self._value_
+
+
+class RoutingApiSpanField(Enum):
+    """Attributes are included in the response spans."""
+
+    streetAttributes = "streetAttributes"
+    carAttributes = "carAttributes"
+    truckAttributes = "truckAttributes"
+    scooterAttributes = "scooterAttributes"
+    names = "names"
+    length = "length"
+    duration = "duration"
+    baseDuration = "baseDuration"
+    countryCode = "countryCode"
+    functionalClass = "functionalClass"
+    routeNumbers = "routeNumbers"
+    speedLimit = "speedLimit"
+    maxSpeed = "maxSpeed"
+    dynamicSpeedInfo = "dynamicSpeedInfo"
+    segmentId = "segmentId"
+    segmentRef = "segmentRef"
+    consumption = "consumption"
+    routingZones = "routingZones"
+    notices = "notices"
+
+    def __str__(self):
+        return "%s" % self._value_
 
 
 class MatrixSummaryAttribute(Enum):
