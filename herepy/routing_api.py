@@ -11,22 +11,28 @@ from herepy.geocoder_api import GeocoderApi
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 from herepy.error import HEREError
-from herepy.models import RoutingResponse, RoutingMatrixResponse
+from herepy.models import RoutingResponse, RoutingMatrixResponse, RoutingResponseV8
 from herepy.here_enum import (
     RouteMode,
+    RoutingMode,
+    RoutingTransportMode,
+    RoutingMetric,
+    RoutingApiReturnField,
+    RoutingApiSpanField,
     MatrixSummaryAttribute,
     MatrixRoutingType,
     MatrixRoutingMode,
     MatrixRoutingProfile,
     MatrixRoutingTransportMode,
 )
-from typing import List, Union, Optional
+from typing import List, Dict, Union, Optional
 
 
 class RoutingApi(HEREApi):
     """A python interface into the HERE Routing API"""
 
     URL_CALCULATE_ROUTE = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json"
+    URL_CALCULATE_ROUTE_V8 = "https://router.hereapi.com/v8/routes"
     URL_CALCULATE_MATRIX = "https://matrix.router.hereapi.com/v8/matrix"
 
     def __init__(self, api_key: str = None, timeout: int = None):
@@ -40,11 +46,11 @@ class RoutingApi(HEREApi):
 
         super(RoutingApi, self).__init__(api_key, timeout)
 
-    def __get(self, base_url, data, response_cls):
+    def __get(self, base_url, data, key, response_cls):
         url = Utils.build_url(base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode("utf8"))
-        if json_data.get("response") is not None:
+        if json_data.get(key) is not None:
             return response_cls.new_from_jsondict(json_data)
         else:
             raise error_from_routing_service_error(json_data)
@@ -80,7 +86,9 @@ class RoutingApi(HEREApi):
         if arrival is not None:
             arrival = self._convert_datetime_to_isoformat(arrival)
             data["arrival"] = arrival
-        response = self.__get(self.URL_CALCULATE_ROUTE, data, RoutingResponse)
+        response = self.__get(
+            self.URL_CALCULATE_ROUTE, data, "response", RoutingResponse
+        )
         route = response.response["route"]
         maneuver = route[0]["leg"][0]["maneuver"]
 
@@ -340,6 +348,136 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.truck, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
+    def route_v8(
+        self,
+        transport_mode: RoutingTransportMode,
+        origin: Union[List[float], str],
+        destination: Union[List[float], str],
+        via: Optional[List[float]] = None,
+        departure_time: Optional[str] = None,
+        routing_mode: RoutingMode = RoutingMode.fast,
+        alternatives: Optional[int] = None,
+        avoid: Optional[Dict[str, List[str]]] = None,
+        exclude: Optional[Dict[str, List[str]]] = None,
+        units: Optional[RoutingMetric] = None,
+        lang: Optional[str] = None,
+        return_fields: List[RoutingApiReturnField] = [RoutingApiReturnField.polyline],
+        span_fields: Optional[List[RoutingApiSpanField]] = None,
+        truck: Optional[Dict[str, List[str]]] = None,
+        scooter: Optional[Dict[str, str]] = None,
+        headers: Optional[dict] = None,
+    ):
+        """Calculates the route between given origin and destination.
+        Args:
+          transport_mode (RoutingTransportMode):
+            Mode of transport to be used for the calculation of the route.
+          origin (Union[List[float], str]):
+            List contains latitude and longitude in order
+            or string with the location name.
+          destination (Union[List[float], str]):
+            List contains latitude and longitude in order
+            or string with the location name.
+          via (Optional[List[float]]):
+            A location defining a via waypoint.
+            A location between origin and destination.
+          departure_time (Optional[str]):
+            Specifies the time of departure as defined by
+            either date-time or full-date T partial-time in RFC 3339,
+            section 5.6 (for example, 2019-06-24T01:23:45).
+          routing_mode (RoutingMode):
+            Specifies which optimization is applied during route calculation,
+            fast as default value.
+          alternatives (Optional[int]):
+            Number of alternative routes to return aside from the optimal route.
+          avoid (Optional[Dict[str, List[str]]]):
+            Avoid routes that violate certain features of road network or
+            that go through user-specified geographical bounding boxes.
+            Sample use of parameter: {"features": [controlledAccessHighway, tunnel]}
+          exclude (Optional[Dict[str, List[str]]]):
+            Defines properties which will be strictly excluded from route calculation.
+            Sample use of parameter:
+              {"countries": [A comma separated list of three-letter country codes (ISO-3166-1 alpha-3 code)]}
+          units (Optional[RoutingMetric]):
+            Units of measurement used in guidance instructions. The default is metric.
+          lang (Optional[str]):
+            Default: "en-US"
+            Specifies the preferred language of the response.
+            The value should comply with the IETF BCP 47.
+          return_fields (List[RoutingApiReturnField]):
+            Defines which attributes are included in the response as part of data
+            representation of a Route or Section.
+          span_fields (Optional[List[RoutingApiSpanField]]):
+            Defines which attributes are included in the response spans.
+            For example, attributes,length will enable the fields attributes and length in the route response.
+            This parameter also requires that the polyline option is set within the return parameter.
+          truck (Optional[Dict[str, List[str]]]):
+            Comma-separated list of shipped hazardous goods in the vehicle.
+            Sample use of parameter: {"shippedHazardousGoods": [explosive, gas, flammable]}
+          scooter (Optional[Dict[str, str]]):
+            Scooter specific parameters.
+            Sample use of parameter: {"allowHighway": "true"}
+          headers (Optional[dict]):
+            HTTP headers for requests.
+            Sample:
+              X-Request-ID
+              User-provided token that can be used to trace a request or
+              a group of requests sent to the service.
+        Returns:
+          RoutingResponseV8
+        Raises:
+          HEREError"""
+
+        if isinstance(origin, str):
+            origin = self._get_coordinates_for_location_name(origin)
+        if isinstance(destination, str):
+            destination = self._get_coordinates_for_location_name(destination)
+        data = {
+            "transportMode": transport_mode.__str__(),
+            "origin": str.format("{0},{1}", origin[0], origin[1]),
+            "destination": str.format("{0},{1}", destination[0], destination[1]),
+            "apiKey": self._api_key,
+        }
+        if via:
+            data["via"] = str.format("{0},{1}", via[0], via[1])
+        if departure_time:
+            data["departureTime"] = departure_time
+        data["routingMode"] = routing_mode.__str__()
+        if alternatives:
+            data["alternatives"] = alternatives
+        if avoid:
+            key = list(avoid.keys())[0]
+            values = list(avoid.values())[0]
+            data["avoid"] = {
+                key: ",".join(values),
+            }
+        if exclude:
+            key = list(avoid.keys())[0]
+            values = list(avoid.values())[0]
+            data["exclude"] = {
+                key: ",".join(values),
+            }
+        if units:
+            data["units"] = units.__str__()
+        if lang:
+            data["lang"] = lang
+        if return_fields:
+            data["return"] = ",".join([field.__str__() for field in return_fields])
+        if span_fields:
+            data["spans"] = ",".join([field.__str__() for field in span_fields])
+        if truck:
+            key = list(avoid.keys())[0]
+            values = list(avoid.values())[0]
+            data["truck"] = {
+                key: ",".join(values),
+            }
+        if scooter:
+            data["scooter"] = scooter
+
+        response = self.__get(
+            self.URL_CALCULATE_ROUTE_V8, data, "routes", RoutingResponseV8
+        )
+        return response
+
     # def matrix(
     #     self,
     #     start_waypoints: Union[List[float], str],
@@ -372,9 +510,9 @@ class RoutingApi(HEREApi):
     #         "apikey": self._api_key,
     #         "departure": departure,
     #         "mode": self.__prepare_mode_values(modes),
-    #         "summaryAttributes": ",".join(
-    #             [attribute.__str__() for attribute in summary_attributes]
-    #         ),
+    # "summaryAttributes": ",".join(
+    #     [attribute.__str__() for attribute in summary_attributes]
+    # ),
     #     }
     #     for i, start_waypoint in enumerate(start_waypoints):
     #         if isinstance(start_waypoint, str):

@@ -68,6 +68,7 @@ class RoutingApiReturnField(Enum):
 class RoutingApiSpanField(Enum):
     """Attributes are included in the response spans."""
 
+    walkAttributes = "walkAttributes"
     streetAttributes = "streetAttributes"
     carAttributes = "carAttributes"
     truckAttributes = "truckAttributes"
