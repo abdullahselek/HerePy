@@ -1,6 +1,16 @@
 #!/usr/bin/env python
 
-from herepy import RoutingApi, RouteMode, MatrixRoutingType, MatrixSummaryAttribute
+from herepy import (
+    RoutingApi,
+    RouteMode,
+    MatrixRoutingType,
+    MatrixSummaryAttribute,
+    RoutingTransportMode,
+    RoutingMode,
+    RoutingApiReturnField,
+    RoutingMetric,
+    RoutingApiSpanField,
+)
 
 routing_api = RoutingApi(api_key="api_key")
 
@@ -107,5 +117,23 @@ response = routing_api.async_matrix(
         MatrixSummaryAttribute.distances,
         MatrixSummaryAttribute.travel_times,
     ],
+)
+print(response.as_dict())
+
+# fetch a aroute via v8
+response = routing_api.route_v8(
+    transport_mode=RoutingTransportMode.car,
+    origin=[41.9798, -87.8801],
+    destination=[41.9043, -87.9216],
+    via=[41.9339, -87.9021],
+    routing_mode=RoutingMode.fast,
+    avoid={"features": ["controlledAccessHighway", "tunnel"]},
+    exclude={"countries": ["TUR"]},
+    units=RoutingMetric.metric,
+    lang="tr-TR",
+    return_fields=[RoutingApiReturnField.polyline],
+    span_fields=[RoutingApiSpanField.walkAttributes],
+    truck={"shippedHazardousGoods": ["explosive", "gas"]},
+    scooter={"allowHighway": "true"},
 )
 print(response.as_dict())
