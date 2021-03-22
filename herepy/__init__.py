@@ -56,6 +56,7 @@ from .models import (
     GeocoderResponse,
     GeocoderReverseResponse,
     RoutingResponse,
+    RoutingResponseV8,
     RoutingMatrixResponse,
     GeocoderAutoCompleteResponse,
     PlacesResponse,

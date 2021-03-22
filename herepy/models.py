@@ -111,6 +111,17 @@ class RoutingResponse(HEREModel):
             setattr(self, param, kwargs.get(param, default))
 
 
+class RoutingResponseV8(HEREModel):
+    """A class representing the Routing Api v8 response data."""
+
+    def __init__(self, **kwargs):
+        super(RoutingResponseV8, self).__init__()
+        self.param_defaults = {"routes": None}
+
+        for (param, default) in self.param_defaults.items():
+            setattr(self, param, kwargs.get(param, default))
+
+
 class RoutingMatrixResponse(HEREModel):
     """A class representing the Routing Api matrix response data."""
 
