@@ -366,7 +366,7 @@ class RoutingApi(HEREApi):
         truck: Optional[Dict[str, List[str]]] = None,
         scooter: Optional[Dict[str, str]] = None,
         headers: Optional[dict] = None,
-    ):
+    ) -> Optional[RoutingResponseV8]:
         """Calculates the route between given origin and destination.
         Args:
           transport_mode (RoutingTransportMode):
@@ -396,7 +396,7 @@ class RoutingApi(HEREApi):
           exclude (Optional[Dict[str, List[str]]]):
             Defines properties which will be strictly excluded from route calculation.
             Sample use of parameter:
-              {"countries": [A comma separated list of three-letter country codes (ISO-3166-1 alpha-3 code)]}
+            {"countries": [A comma separated list of three-letter country codes (ISO-3166-1 alpha-3 code)]}
           units (Optional[RoutingMetric]):
             Units of measurement used in guidance instructions. The default is metric.
           lang (Optional[str]):
@@ -419,9 +419,9 @@ class RoutingApi(HEREApi):
           headers (Optional[dict]):
             HTTP headers for requests.
             Sample:
-              X-Request-ID
-              User-provided token that can be used to trace a request or
-              a group of requests sent to the service.
+            X-Request-ID
+            User-provided token that can be used to trace a request or
+            a group of requests sent to the service.
         Returns:
           RoutingResponseV8
         Raises:
