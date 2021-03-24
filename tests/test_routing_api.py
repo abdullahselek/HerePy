@@ -868,6 +868,8 @@ class RoutingApiTest(unittest.TestCase):
             2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200))
         )
         response = self._api.truck_route([11.0, 12.0], [22.0, 23.0], departure=date)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_departure_as_string(self):
@@ -883,6 +885,8 @@ class RoutingApiTest(unittest.TestCase):
         )
         date = "2013-07-04T17:00:00+02:00"
         response = self._api.truck_route([11.0, 12.0], [22.0, 23.0], departure=date)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_location_by_name(self):
@@ -907,6 +911,8 @@ class RoutingApiTest(unittest.TestCase):
         response = self._api.truck_route(
             "200 S Mathilda Sunnyvale CA", "200 S Mathilda Sunnyvale CA"
         )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_location_by_name_throws_WaypointNotFoundError(self):
