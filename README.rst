@@ -102,6 +102,7 @@ The library utilizes models to represent various data structures returned by **h
     * herepy.GeocoderResponse
     * herepy.GeocoderReverseResponse
     * herepy.RoutingResponse
+    * herepy.RoutingResponseV8
     * herepy.RoutingMatrixResponse
     * herepy.GeocoderAutoCompleteResponse
     * herepy.PlacesResponse
