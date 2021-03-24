@@ -392,11 +392,11 @@ class RoutingApi(HEREApi):
           avoid (Optional[Dict[str, List[str]]]):
             Avoid routes that violate certain features of road network or
             that go through user-specified geographical bounding boxes.
-            Sample use of parameter: {"features": [controlledAccessHighway, tunnel]}
+            Sample use of parameter: `{"features": [controlledAccessHighway, tunnel]}`
           exclude (Optional[Dict[str, List[str]]]):
             Defines properties which will be strictly excluded from route calculation.
             Sample use of parameter:
-            {"countries": [A comma separated list of three-letter country codes (ISO-3166-1 alpha-3 code)]}
+            `{"countries": [A comma separated list of three-letter country codes (ISO-3166-1 alpha-3 code)]}`
           units (Optional[RoutingMetric]):
             Units of measurement used in guidance instructions. The default is metric.
           lang (Optional[str]):
@@ -412,10 +412,10 @@ class RoutingApi(HEREApi):
             This parameter also requires that the polyline option is set within the return parameter.
           truck (Optional[Dict[str, List[str]]]):
             Comma-separated list of shipped hazardous goods in the vehicle.
-            Sample use of parameter: {"shippedHazardousGoods": [explosive, gas, flammable]}
+            Sample use of parameter: `{"shippedHazardousGoods": [explosive, gas, flammable]}`
           scooter (Optional[Dict[str, str]]):
             Scooter specific parameters.
-            Sample use of parameter: {"allowHighway": "true"}
+            Sample use of parameter: `{"allowHighway": "true"}`
           headers (Optional[dict]):
             HTTP headers for requests.
             Sample:
@@ -425,7 +425,8 @@ class RoutingApi(HEREApi):
         Returns:
           RoutingResponseV8
         Raises:
-          HEREError"""
+          HEREError
+        """
 
         if isinstance(origin, str):
             origin = self._get_coordinates_for_location_name(origin)
@@ -477,55 +478,6 @@ class RoutingApi(HEREApi):
             self.URL_CALCULATE_ROUTE_V8, data, "routes", RoutingResponseV8
         )
         return response
-
-    # def matrix(
-    #     self,
-    #     start_waypoints: Union[List[float], str],
-    #     destination_waypoints: Union[List[float], str],
-    #     departure: str = "now",
-    #     modes: List[RouteMode] = [],
-    #     summary_attributes: List[MatrixSummaryAttribute] = [],
-    # ) -> Optional[RoutingResponse]:
-    #     """Request a matrix of route summaries between M starts and N destinations.
-    #     Args:
-    #       start_waypoints (List):
-    #         List of lists of coordinates [lat,long] of start waypoints.
-    #         or list of string with the location names.
-    #       destination_waypoints (List):
-    #         List of lists of coordinates [lat,long] of destination waypoints.
-    #         or list of string with the location names.
-    #       departure (str):
-    #         time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
-    #       modes (List):
-    #         List of RouteMode enums following [Type, TransportMode, TrafficMode, Feature].
-    #       summary_attributes (List):
-    #         List of MatrixSummaryAttribute enums.
-    #     Returns:
-    #       RoutingMatrixResponse
-    #     Raises:
-    #       HEREError: If an error is received from the server.
-    #     """
-
-    #     data = {
-    #         "apikey": self._api_key,
-    #         "departure": departure,
-    #         "mode": self.__prepare_mode_values(modes),
-    # "summaryAttributes": ",".join(
-    #     [attribute.__str__() for attribute in summary_attributes]
-    # ),
-    #     }
-    #     for i, start_waypoint in enumerate(start_waypoints):
-    #         if isinstance(start_waypoint, str):
-    #             start_waypoint = self._get_coordinates_for_location_name(start_waypoint)
-    #         data["start" + str(i)] = self.__list_to_waypoint(start_waypoint)
-    #     for i, destination_waypoint in enumerate(destination_waypoints):
-    #         if isinstance(destination_waypoint, str):
-    #             destination_waypoint = self._get_coordinates_for_location_name(
-    #                 destination_waypoint
-    #             )
-    #         data["destination" + str(i)] = self.__list_to_waypoint(destination_waypoint)
-    #     response = self.__get(self.URL_CALCULATE_MATRIX, data, RoutingMatrixResponse)
-    #     return response
 
     def sync_matrix(
         self,
