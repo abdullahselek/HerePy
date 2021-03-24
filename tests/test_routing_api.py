@@ -938,3 +938,33 @@ class RoutingApiTest(unittest.TestCase):
             response = self._api.truck_route(
                 "200 S Mathilda Sunnyvale CA", "200 S Mathilda Sunnyvale CA"
             )
+
+    @responses.activate
+    def test_route_v8_success(self):
+        with codecs.open(
+            "testdata/models/routing_v8_response.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://router.hereapi.com/v8/routes",
+            expectedResponse,
+            status=200,
+        )
+        response = self._api.route_v8(
+            transport_mode=herepy.RoutingTransportMode.car,
+            origin=[41.9798, -87.8801],
+            destination=[41.9043, -87.9216],
+            via=[41.9339, -87.9021],
+            routing_mode=herepy.RoutingMode.fast,
+            avoid={"features": ["controlledAccessHighway", "tunnel"]},
+            exclude={"countries": ["TUR"]},
+            units=herepy.RoutingMetric.metric,
+            lang="tr-TR",
+            return_fields=[herepy.RoutingApiReturnField.polyline],
+            span_fields=[herepy.RoutingApiSpanField.walkAttributes],
+            truck={"shippedHazardousGoods": ["explosive", "gas"]},
+            scooter={"allowHighway": "true"},
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponseV8)

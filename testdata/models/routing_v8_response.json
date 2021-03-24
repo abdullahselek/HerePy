@@ -1,0 +1,90 @@
+{
+	"routes": [{
+		"id": "02b1f778-d325-45d3-802c-8e7e9b51c616",
+		"sections": [{
+			"id": "d6ee3f30-f70c-4a42-a6f1-6ad64c69129a",
+			"type": "vehicle",
+			"departure": {
+				"time": "2021-03-24T15:36:18-05:00",
+				"place": {
+					"type": "place",
+					"location": {
+						"lat": 41.98007,
+						"lng": -87.88056
+					},
+					"originalLocation": {
+						"lat": 41.9798,
+						"lng": -87.8801
+					}
+				}
+			},
+			"arrival": {
+				"time": "2021-03-24T15:52:59-05:00",
+				"place": {
+					"type": "place",
+					"location": {
+						"lat": 41.9339054,
+						"lng": -87.9018808
+					},
+					"originalLocation": {
+						"lat": 41.9339,
+						"lng": -87.9021001
+					},
+					"waypoint": 0
+				}
+			},
+			"polyline": "BGsqoiwC_25znFoLsO0PsnBoL4c0F8L8G0PkIkSgPokBkrBwrDkI4SoBkDoBsE4DgKoLwb8B0FkNopBkN0yBkIwlB4DgU8B0K4D8awC4cwC0jBUsiBoBkcUkSAwMUgPoB4mB8B0rCAsJAgPUkcUsiBvHwgBjIkcrOkhB7a84B_dw-B3IkS_JkSnG4IvH0F7L4DzPjDvW_EnLvC_J7B_OjD3cnGjInBvCTrJ7BzU3DvM7BrYzFzFnB7GnB_JvCnLvC3DTrOjD7GnBrY_EvRjD7GT7LT3ITrToBvHU7QoBnLwC3NwCjc0FrJ8B3XgFzPkD3mBsJnkBkIvMwCrYgFnGoBvWsE7QkDrJUnLoB7GUrJU_TU_EUrEArOUzPoB7GU_EA7aoB7VoB7GU7uBwCj6BkD3XoB7GUzUUnBA_JU3IUTvbAvCT7LAjDTzPTnfTrT_E7qDTzKvCn9BT_TA7GAnLTrTAzFArJTrYT3wBT3hBTvbArOA7GT3NArJTrJAjIAjDAvMAnLA7GT_OArETjXAvHA7GAjIT3NA3DT_YT_YA3DA_OAjXnBnfArJnB_dTvRT3cA3NAjmBAzPnQ_EzU7G_T3IzZvMjS_JvR_J7V_OzU_O7ajX3SvRjDvCvRjSnV3XvoCr5CnavgBjX3c_EnGnajhB_EnGvCjD_JvMvCvCrJnLjD3D7G3IjNnQjNzK7LjI_T7V_JrJ7Q3NrO_JnG3DzP_JjIrEzFjDvH3DjIrE7LzF7LzFvCnBvH3DzUnGjNjD_EnBrYvCvgBnB3XAvMA7LAvMU7VoBvvBUnfU_nBU_iBoBrxB8BzZoBnaUzKUrJU3mBoB_doBvqBoB7f8B3NU7LU3IUzFAnawCngDwHr7BkD3IU_EU_JAnGUvHAzKU_EA7GU7zBwCnLUzrCkD7GAjcoBvMU_JAvMU3DAzFArYUjIU7aoBjNU3coBvgBoBjIAnLUjIAvWoBzeoBvlB8BjNUrJUnGAjwB8BrnB8BvHUrTUnGArEA3DA7LU_TUzFArEA3NoB_ToBwC7uBU3SU_TUrJA7GUrJoBrnBU_TA3DAnLU7VA3NU7kBU3SoB7f8BvgBU3rBoBzoBwC7iC8BvqBoB3hBA3IAnQUvRoBzrCUzrCwCrqCoB_2BUrTU7a8B_xB8B31BUjXsJjDssBTytEpG",
+			"spans": [{
+				"offset": 0
+			}, {
+				"offset": 43,
+				"walkAttributes": ["open"]
+			}],
+			"transport": {
+				"mode": "car"
+			}
+		}, {
+			"id": "f1ce7118-4fae-41c1-be96-5e6019f707b1",
+			"type": "vehicle",
+			"departure": {
+				"time": "2021-03-24T15:52:59-05:00",
+				"place": {
+					"type": "place",
+					"location": {
+						"lat": 41.9339054,
+						"lng": -87.9018808
+					},
+					"originalLocation": {
+						"lat": 41.9339,
+						"lng": -87.9021001
+					},
+					"waypoint": 0
+				}
+			},
+			"arrival": {
+				"time": "2021-03-24T16:07:23-05:00",
+				"place": {
+					"type": "place",
+					"location": {
+						"lat": 41.90429,
+						"lng": -87.92165
+					},
+					"originalLocation": {
+						"lat": 41.9043,
+						"lng": -87.9216001
+					}
+				}
+			},
+			"polyline": "BGilu_vCxrj1nFmblB7B7nCnB7sCzkDsE3NUjIA3IAjcUzFA3IAjIA7QA_OUU3IUrJUrOUnGAjIUvHTrdArJArEAvCAvlBAzFAjIU3IAvHA_OUnVU_YAzFwCjkCwCr0CkDr0C8BvyCoBvqBUrOA_JAjNU3IU3IU_TAjIoBnuBA3IUvRU7fUzPUrnBUvRU7QoB31BU7LUzKoBjSUjN8B7aUvbAjNAnpBA3mBwC3iDoB7zBoB_nBgFn4G8BvtCsEz4DU3NU_YUjrBoB7pBT_YA7LnBriBAzKTnQTjI7BjmBA3DTrTnB3c7B3mBT7QnBjXnB3SAjDT_JA_JTzPnB3czUArJA7BA3cArdA7GArTA7LA3DArJTrEArOAvMAnGAjIAvRA3IA7GA3DA3IT_EAnGAnLAjNTrTArJAjNA_EArJArEA_EAvMAzPAnLAjNAvHAvWT7LAjcTzUTrOArTT7VTnGAnVAjNAzPA7VT_JAzPA7QAnLAnfUjIA3DArYTjmBUjNUjNA7QU_YAnGAvqBoBjwBAzZAjcAvqBU3cA_JT3hBT7QTvMrJnGnG7B_E7BjIgUnuB8GzPsT7pBgP3c8L7V8Q7f4XvqBopB_qCsJwWkI0U8BkNAsOjDwW7GkS3I8QvWssB3S8pB7L4cvHoVjIokBrEgKrJkX_nBwhDjNkcjIwRnL4SzK8Q7Q8VvRkX_dgjB_OkS7QoVvMgUzPsYnB8B3I4SrJgUzU84BjI8VnQ0tBnL0evRw0BnGsTrE4N7QkwBvbwtCnQgtBrTopBnQ0jB_TwgB3hB8zBzU8frJwMjDsEzK8L7QsTvRsT7Q8QzPsOrJkI7QsOjcgU",
+			"spans": [{
+				"offset": 0,
+				"walkAttributes": ["open"]
+			}, {
+				"offset": 174
+			}],
+			"transport": {
+				"mode": "car"
+			}
+		}]
+	}]
+}
