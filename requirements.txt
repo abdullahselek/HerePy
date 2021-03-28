@@ -1,2 +1,1 @@
 requests==2.25.1
-polling==0.3.1
