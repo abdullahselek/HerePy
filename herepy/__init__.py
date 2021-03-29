@@ -13,6 +13,7 @@ __description__ = "A library that provides a Python interface to the HERE APIs"
 
 
 import json
+import polling
 
 from .error import HEREError, UnauthorizedError, InvalidRequestError
 
