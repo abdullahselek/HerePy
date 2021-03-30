@@ -5,7 +5,6 @@ import datetime
 import sys
 import json
 import requests
-import polling
 
 from herepy.geocoder_api import GeocoderApi
 from herepy.here_api import HEREApi
@@ -25,6 +24,7 @@ from herepy.here_enum import (
     MatrixRoutingProfile,
     MatrixRoutingTransportMode,
 )
+from herepy import polling
 from typing import List, Dict, Union, Optional
 
 
