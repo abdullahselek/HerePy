@@ -10,7 +10,7 @@ import herepy
 from herepy.here_enum import EVStationConnectorTypes
 
 
-class EVChargingStationsApi(unittest.TestCase):
+class EVChargingStationsApiTest(unittest.TestCase):
     def setUp(self):
         api = herepy.EVChargingStationsApi(api_key="api_key")
         self._api = api
