@@ -46,8 +46,19 @@ class RoutingApi(HEREApi):
 
         super(RoutingApi, self).__init__(api_key, timeout)
 
-    def __get(self, base_url, data, key, response_cls):
+    def __get(
+        self,
+        base_url,
+        data,
+        key,
+        response_cls,
+        manipulation_key: str = None,
+        keys_for_manipulation: List = None,
+    ):
         url = Utils.build_url(base_url, extra_params=data)
+        if manipulation_key and keys_for_manipulation:
+            for k in keys_for_manipulation:
+                url = url.replace(k, manipulation_key)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode("utf8"))
         if json_data.get(key) is not None:
@@ -353,7 +364,7 @@ class RoutingApi(HEREApi):
         transport_mode: RoutingTransportMode,
         origin: Union[List[float], str],
         destination: Union[List[float], str],
-        via: Optional[List[float]] = None,
+        via: Optional[List[List[float]]] = None,
         departure_time: Optional[str] = None,
         routing_mode: RoutingMode = RoutingMode.fast,
         alternatives: Optional[int] = None,
@@ -377,9 +388,9 @@ class RoutingApi(HEREApi):
           destination (Union[List[float], str]):
             List contains latitude and longitude in order
             or string with the location name.
-          via (Optional[List[float]]):
-            A location defining a via waypoint.
-            A location between origin and destination.
+          via (Optional[List[List[float]]]):
+            Locations defining via waypoints.
+            Locations between origin and destination.
           departure_time (Optional[str]):
             Specifies the time of departure as defined by
             either date-time or full-date T partial-time in RFC 3339,
@@ -439,7 +450,11 @@ class RoutingApi(HEREApi):
             "apiKey": self._api_key,
         }
         if via:
-            data["via"] = str.format("{0},{1}", via[0], via[1])
+            via_keys = []
+            for i, v in enumerate(via):
+                key = str.format("{0}{1}", "via", i)
+                via_keys.append(key)
+                data[key] = str.format("{0},{1}", v[0], v[1])
         if departure_time:
             data["departureTime"] = departure_time
         data["routingMode"] = routing_mode.__str__()
@@ -475,7 +490,12 @@ class RoutingApi(HEREApi):
             data["scooter"] = scooter
 
         response = self.__get(
-            self.URL_CALCULATE_ROUTE_V8, data, "routes", RoutingResponseV8
+            self.URL_CALCULATE_ROUTE_V8,
+            data,
+            "routes",
+            RoutingResponseV8,
+            manipulation_key="via",
+            keys_for_manipulation=via_keys,
         )
         return response
 

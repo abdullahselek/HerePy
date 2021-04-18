@@ -2,6 +2,7 @@
 # taken from https://github.com/justiniso/polling/blob/master/polling.py
 
 import time
+
 try:
     from Queue import Queue
 except ImportError:
@@ -10,6 +11,7 @@ except ImportError:
 
 class PollingException(Exception):
     """Base exception that stores all return values of attempted polls"""
+
     def __init__(self, values, last=None):
         self.values = values
         self.last = last
@@ -40,8 +42,21 @@ def is_truthy(val):
     return bool(val)
 
 
-def poll(target, step, args=(), kwargs=None, timeout=None, max_tries=None, check_success=is_truthy,
-         step_function=step_constant, ignore_exceptions=(), poll_forever=False, collect_values=None, *a, **k):
+def poll(
+    target,
+    step,
+    args=(),
+    kwargs=None,
+    timeout=None,
+    max_tries=None,
+    check_success=is_truthy,
+    step_function=step_constant,
+    ignore_exceptions=(),
+    poll_forever=False,
+    collect_values=None,
+    *a,
+    **k
+):
     """Poll by calling a target function until a certain condition is met. You must specify at least a target
     function to be called and the step -- base wait time between each function call.
     :param step: Step defines the amount of time to wait (in seconds)
@@ -79,12 +94,14 @@ def poll(target, step, args=(), kwargs=None, timeout=None, max_tries=None, check
     callback. By default, this will be the first value that is not None, 0, False, '', or an empty collection.
     """
 
-    assert (timeout is not None or max_tries is not None) or poll_forever, \
-        ('You did not specify a maximum number of tries or a timeout. Without either of these set, the polling '
-         'function will poll forever. If this is the behavior you want, pass "poll_forever=True"')
+    assert (timeout is not None or max_tries is not None) or poll_forever, (
+        "You did not specify a maximum number of tries or a timeout. Without either of these set, the polling "
+        'function will poll forever. If this is the behavior you want, pass "poll_forever=True"'
+    )
 
-    assert not ((timeout is not None or max_tries is not None) and poll_forever), \
-        'You cannot specify both the option to poll_forever and max_tries/timeout.'
+    assert not (
+        (timeout is not None or max_tries is not None) and poll_forever
+    ), "You cannot specify both the option to poll_forever and max_tries/timeout."
 
     kwargs = kwargs or dict()
     values = collect_values or Queue()

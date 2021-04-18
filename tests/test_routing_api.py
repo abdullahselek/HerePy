@@ -955,7 +955,7 @@ class RoutingApiTest(unittest.TestCase):
             transport_mode=herepy.RoutingTransportMode.car,
             origin=[41.9798, -87.8801],
             destination=[41.9043, -87.9216],
-            via=[41.9339, -87.9021],
+            via=[[41.9339, -87.9021], [41.9379, -87.9121]],
             routing_mode=herepy.RoutingMode.fast,
             avoid={"features": ["controlledAccessHighway", "tunnel"]},
             exclude={"countries": ["TUR"]},
