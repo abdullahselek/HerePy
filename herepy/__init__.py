@@ -72,6 +72,11 @@ from .models import (
     IsolineRoutingResponse,
 )
 
+from .objects import (
+    AvoidArea,
+    AvoidFeature,
+)
+
 from .destination_weather_api import DestinationWeatherApi
 
 from .routing_api import (
