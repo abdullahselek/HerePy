@@ -36,6 +36,7 @@ from herepy import (
     RoutingMetric,
     RoutingApiReturnField,
     RoutingApiSpanField,
+    AvoidFeature,
 )
 from enum import Enum
 
@@ -581,3 +582,12 @@ class RoutingApiSpanFieldTest(unittest.TestCase):
         self.assertEqual(RoutingApiSpanField.consumption.__str__(), "consumption")
         self.assertEqual(RoutingApiSpanField.routingZones.__str__(), "routingZones")
         self.assertEqual(RoutingApiSpanField.notices.__str__(), "notices")
+
+
+class AvoidFeatureTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(AvoidFeature.toll_road.__str__(), "tollRoad")
+        self.assertEqual(AvoidFeature.controlled_access_highway.__str__(), "controlledAccessHighway")
+        self.assertEqual(AvoidFeature.ferry.__str__(), "ferry")
+        self.assertEqual(AvoidFeature.tunnel.__str__(), "tunnel")
+        self.assertEqual(AvoidFeature.dirt_road.__str__(), "dirtRoad")

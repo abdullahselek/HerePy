@@ -495,3 +495,16 @@ class RoutingTransportMode(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class AvoidFeature(Enum):
+    """Enum for routing features that avoids during route calculation."""
+
+    toll_road = "tollRoad"
+    controlled_access_highway = "controlledAccessHighway"
+    ferry = "ferry"
+    tunnel = "tunnel"
+    dirt_road = "dirtRoad"
+
+    def __str__(self):
+        return "%s" % self._value_

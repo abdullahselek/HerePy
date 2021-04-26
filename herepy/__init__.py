@@ -50,6 +50,7 @@ from .here_enum import (
     RoutingMetric,
     RoutingApiReturnField,
     RoutingApiSpanField,
+    AvoidFeature,
 )
 
 from .models import (
