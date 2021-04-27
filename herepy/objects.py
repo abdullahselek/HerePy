@@ -5,12 +5,19 @@ from herepy import AvoidFeature
 class AvoidArea(object):
     """List of areas to avoid."""
 
-    def __init__(self, avoid_type: str = "boundingBox", north: int, south: int, west: int, east: int):
-        self.avoid_type = avoid_type
+    def __init__(
+        self,
+        north: int,
+        south: int,
+        west: int,
+        east: int,
+        avoid_type: str = "boundingBox",
+    ):
         self.north = north
         self.south = south
         self.west = west
         self.east = east
+        self.avoid_type = avoid_type
 
 
 class Avoid(object):
