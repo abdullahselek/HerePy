@@ -37,6 +37,8 @@ from herepy import (
     RoutingApiReturnField,
     RoutingApiSpanField,
     AvoidFeature,
+    ShippedHazardousGood,
+    TunnelCategory,
 )
 from enum import Enum
 
@@ -591,3 +593,26 @@ class AvoidFeatureTest(unittest.TestCase):
         self.assertEqual(AvoidFeature.ferry.__str__(), "ferry")
         self.assertEqual(AvoidFeature.tunnel.__str__(), "tunnel")
         self.assertEqual(AvoidFeature.dirt_road.__str__(), "dirtRoad")
+
+
+class ShippedHazardousGoodTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(ShippedHazardousGood.explosive.__str__(), "explosive")
+        self.assertEqual(ShippedHazardousGood.gas.__str__(), "gas")
+        self.assertEqual(ShippedHazardousGood.flammable.__str__(), "flammable")
+        self.assertEqual(ShippedHazardousGood.combustible.__str__(), "combustible")
+        self.assertEqual(ShippedHazardousGood.organic.__str__(), "organic")
+        self.assertEqual(ShippedHazardousGood.poison.__str__(), "poison")
+        self.assertEqual(ShippedHazardousGood.radioactive.__str__(), "radioactive")
+        self.assertEqual(ShippedHazardousGood.corrosive.__str__(), "corrosive")
+        self.assertEqual(ShippedHazardousGood.poisonousInhalation.__str__(), "poisonousInhalation")
+        self.assertEqual(ShippedHazardousGood.harmfulToWater.__str__(), "harmfulToWater")
+        self.assertEqual(ShippedHazardousGood.other.__str__(), "other")
+
+
+class TunnelCategoryTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(TunnelCategory.b.__str__(), "B")
+        self.assertEqual(TunnelCategory.c.__str__(), "C")
+        self.assertEqual(TunnelCategory.d.__str__(), "D")
+        self.assertEqual(TunnelCategory.e.__str__(), "E")

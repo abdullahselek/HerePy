@@ -508,3 +508,34 @@ class AvoidFeature(Enum):
 
     def __str__(self):
         return "%s" % self._value_
+
+
+class ShippedHazardousGood(Enum):
+    """Enum of hazardous materials in the vehicle."""
+
+    explosive = "explosive"
+    gas = "gas"
+    flammable = "flammable"
+    combustible = "combustible"
+    organic = "organic"
+    poison = "poison"
+    radioactive = "radioactive"
+    corrosive = "corrosive"
+    poisonousInhalation = "poisonousInhalation"
+    harmfulToWater = "harmfulToWater"
+    other = "other"
+
+    def __str__(self):
+        return self._value_
+
+
+class TunnelCategory(Enum):
+    """Specifies the cargo tunnel restriction code."""
+
+    b = "B"
+    c = "C"
+    d = "D"
+    e = "E"
+
+    def __str__(self):
+        return self._value_

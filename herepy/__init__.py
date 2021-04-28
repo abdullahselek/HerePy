@@ -51,6 +51,8 @@ from .here_enum import (
     RoutingApiReturnField,
     RoutingApiSpanField,
     AvoidFeature,
+    ShippedHazardousGood,
+    TunnelCategory,
 )
 
 from .models import (
