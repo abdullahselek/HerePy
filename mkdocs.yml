@@ -33,6 +33,8 @@ nav:
   - api/map_image_api.md
 - Models:
   - models/models.md
+- Objects:
+  - objects/objects.md
 - Enums:
   - enums/enums.md
 - Utils:
