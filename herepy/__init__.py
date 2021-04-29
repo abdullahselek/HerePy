@@ -78,6 +78,7 @@ from .models import (
 from .objects import (
     AvoidArea,
     AvoidFeature,
+    Avoid,
 )
 
 from .destination_weather_api import DestinationWeatherApi
