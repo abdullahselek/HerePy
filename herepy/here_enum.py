@@ -539,3 +539,13 @@ class TunnelCategory(Enum):
 
     def __str__(self):
         return self._value_
+
+
+class TruckType(Enum):
+    """Specifies the type of truck."""
+
+    straight = "straight"
+    tractor = "tractor"
+
+    def __str__(self):
+        return self._value_

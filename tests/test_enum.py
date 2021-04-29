@@ -39,6 +39,7 @@ from herepy import (
     AvoidFeature,
     ShippedHazardousGood,
     TunnelCategory,
+    TruckType,
 )
 from enum import Enum
 
@@ -616,3 +617,9 @@ class TunnelCategoryTest(unittest.TestCase):
         self.assertEqual(TunnelCategory.c.__str__(), "C")
         self.assertEqual(TunnelCategory.d.__str__(), "D")
         self.assertEqual(TunnelCategory.e.__str__(), "E")
+
+
+class TruckTypeTest(unittest.TestCase):
+    def test_valueofenum(self):
+        self.assertEqual(TruckType.straight.__str__(), "straight")
+        self.assertEqual(TruckType.tractor.__str__(), "tractor")

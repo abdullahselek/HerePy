@@ -53,6 +53,7 @@ from .here_enum import (
     AvoidFeature,
     ShippedHazardousGood,
     TunnelCategory,
+    TruckType,
 )
 
 from .models import (
