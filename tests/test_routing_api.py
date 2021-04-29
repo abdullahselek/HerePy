@@ -8,6 +8,12 @@ import responses
 import codecs
 import herepy
 
+from herepy import (
+    AvoidArea,
+    AvoidFeature,
+    Avoid,
+)
+
 
 class RoutingApiTest(unittest.TestCase):
     def setUp(self):
@@ -669,12 +675,14 @@ class RoutingApiTest(unittest.TestCase):
             server_response,
             status=200,
         )
+        avoid = Avoid(features=[AvoidFeature.toll_road], areas=[AvoidArea(north=30, south=45, west=30, east=45)])
         response = self._api.sync_matrix(
             origins=[[9.933231, -84.076831]],
             destinations=[[9.934574, -84.065544]],
             matrix_type=herepy.MatrixRoutingType.circle,
             center=[9.933300, -84.066891],
             radius=10000,
+            avoid=avoid,
         )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingMatrixResponse)
@@ -841,6 +849,7 @@ class RoutingApiTest(unittest.TestCase):
             server_response,
             status=200,
         )
+        avoid = Avoid(features=[AvoidFeature.toll_road], areas=[AvoidArea(north=30, south=45, west=30, east=45)])
         response = self._api.async_matrix(
             token="token",
             origins=[[9.933231, -84.076831]],
@@ -848,6 +857,7 @@ class RoutingApiTest(unittest.TestCase):
             matrix_type=herepy.MatrixRoutingType.circle,
             center=[9.933300, -84.066891],
             radius=10000,
+            avoid=avoid,
         )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingMatrixResponse)

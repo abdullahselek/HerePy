@@ -24,6 +24,7 @@ from herepy.here_enum import (
     MatrixRoutingProfile,
     MatrixRoutingTransportMode,
 )
+from herepy.objects import Avoid
 from herepy import polling
 from typing import List, Dict, Union, Optional
 
@@ -510,6 +511,7 @@ class RoutingApi(HEREApi):
         departure: str = None,
         routing_mode: Optional[MatrixRoutingMode] = None,
         transport_mode: Optional[MatrixRoutingTransportMode] = None,
+        avoid: Optional[Avoid] = None,
         matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
     ) -> Optional[RoutingMatrixResponse]:
         """Sync request a matrix of route summaries between M starts and N destinations.
@@ -531,6 +533,8 @@ class RoutingApi(HEREApi):
           transport_mode (Optional[MatrixRoutingTransportMode]):
             Depending on the transport mode special constraints, speed attributes and weights
             are taken into account during route calculation.
+          avoid (Avoid):
+            Avoid routes that violate these properties.
           matrix_attributes (List):
             List of MatrixSummaryAttribute enums.
         Returns:
@@ -559,6 +563,8 @@ class RoutingApi(HEREApi):
             request_body["matrixAttributes"] = [
                 attribute.__str__() for attribute in matrix_attributes
             ]
+        if avoid:
+            request_body["avoid"] = {"features": avoid.features, "areas": avoid.areas}
 
         query_params = {
             "apiKey": self._api_key,
@@ -647,6 +653,7 @@ class RoutingApi(HEREApi):
         departure: str = None,
         routing_mode: Optional[MatrixRoutingMode] = None,
         transport_mode: Optional[MatrixRoutingTransportMode] = None,
+        avoid: Optional[Avoid] = None,
         matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
     ) -> Optional[RoutingMatrixResponse]:
         """Async request a matrix of route summaries between M starts and N destinations.
@@ -677,6 +684,8 @@ class RoutingApi(HEREApi):
           transport_mode (Optional[MatrixRoutingTransportMode]):
             Depending on the transport mode special constraints, speed attributes and weights
             are taken into account during route calculation.
+          avoid (Avoid):
+            Avoid routes that violate these properties.
           matrix_attributes (List):
             List of MatrixSummaryAttribute enums.
         Returns:
@@ -705,6 +714,8 @@ class RoutingApi(HEREApi):
             request_body["matrixAttributes"] = [
                 attribute.__str__() for attribute in matrix_attributes
             ]
+        if avoid:
+            request_body["avoid"] = {"features": avoid.features, "areas": avoid.areas}
 
         query_params = {}
 
