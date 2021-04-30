@@ -13,6 +13,10 @@ from herepy import (
     AvoidArea,
     AvoidFeature,
     Avoid,
+    Truck,
+    ShippedHazardousGood,
+    TunnelCategory,
+    TruckType,
 )
 
 routing_api = RoutingApi(api_key="api_key")
@@ -84,7 +88,22 @@ response = routing_api.truck_route(
 print(response.as_dict())
 
 # sync, fetches a matrix of route summaries between M starts and N destinations
-avoid = Avoid(features=[AvoidFeature.toll_road], areas=[AvoidArea(north=30, south=45, west=30, east=45)])
+avoid = Avoid(
+    features=[AvoidFeature.toll_road],
+    areas=[AvoidArea(north=30, south=45, west=30, east=45)],
+)
+truck = Truck(
+    shipped_hazardous_goods=[ShippedHazardousGood.gas],
+    gross_weight=750,
+    weight_per_axle=100,
+    height=2000,
+    width=350,
+    length=10000,
+    tunnel_category=TunnelCategory.c,
+    axle_count=5,
+    truck_type=TruckType.tractor,
+    trailer_count=5,
+)
 response = routing_api.sync_matrix(
     origins=[[9.933231, -84.076831]],
     destinations=[[9.934574, -84.065544]],
@@ -92,6 +111,7 @@ response = routing_api.sync_matrix(
     center=[9.933300, -84.066891],
     radius=10000,
     avoid=avoid,
+    truck=truck,
 )
 print(response.as_dict())
 
@@ -111,7 +131,22 @@ response = routing_api.async_matrix(
 print(response.as_dict())
 
 # async, fetches a matrix of route summaries between M starts and N destinations
-avoid = Avoid(features=[AvoidFeature.toll_road], areas=[AvoidArea(north=30, south=45, west=30, east=45)])
+avoid = Avoid(
+    features=[AvoidFeature.toll_road],
+    areas=[AvoidArea(north=30, south=45, west=30, east=45)],
+)
+truck = Truck(
+    shipped_hazardous_goods=[ShippedHazardousGood.gas, ShippedHazardousGood.flammable],
+    gross_weight=750,
+    weight_per_axle=100,
+    height=2000,
+    width=350,
+    length=10000,
+    tunnel_category=TunnelCategory.c,
+    axle_count=5,
+    truck_type=TruckType.tractor,
+    trailer_count=5,
+)
 response = routing_api.async_matrix(
     token="TOKEN",
     origins=[[9.933231, -84.076831]],
@@ -120,6 +155,7 @@ response = routing_api.async_matrix(
     center=[9.933300, -84.066891],
     radius=10000,
     avoid=avoid,
+    truck=truck,
     matrix_attributes=[
         MatrixSummaryAttribute.distances,
         MatrixSummaryAttribute.travel_times,

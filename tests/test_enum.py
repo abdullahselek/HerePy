@@ -590,7 +590,9 @@ class RoutingApiSpanFieldTest(unittest.TestCase):
 class AvoidFeatureTest(unittest.TestCase):
     def test_valueofenum(self):
         self.assertEqual(AvoidFeature.toll_road.__str__(), "tollRoad")
-        self.assertEqual(AvoidFeature.controlled_access_highway.__str__(), "controlledAccessHighway")
+        self.assertEqual(
+            AvoidFeature.controlled_access_highway.__str__(), "controlledAccessHighway"
+        )
         self.assertEqual(AvoidFeature.ferry.__str__(), "ferry")
         self.assertEqual(AvoidFeature.tunnel.__str__(), "tunnel")
         self.assertEqual(AvoidFeature.dirt_road.__str__(), "dirtRoad")
@@ -606,8 +608,12 @@ class ShippedHazardousGoodTest(unittest.TestCase):
         self.assertEqual(ShippedHazardousGood.poison.__str__(), "poison")
         self.assertEqual(ShippedHazardousGood.radioactive.__str__(), "radioactive")
         self.assertEqual(ShippedHazardousGood.corrosive.__str__(), "corrosive")
-        self.assertEqual(ShippedHazardousGood.poisonousInhalation.__str__(), "poisonousInhalation")
-        self.assertEqual(ShippedHazardousGood.harmfulToWater.__str__(), "harmfulToWater")
+        self.assertEqual(
+            ShippedHazardousGood.poisonousInhalation.__str__(), "poisonousInhalation"
+        )
+        self.assertEqual(
+            ShippedHazardousGood.harmfulToWater.__str__(), "harmfulToWater"
+        )
         self.assertEqual(ShippedHazardousGood.other.__str__(), "other")
 
 

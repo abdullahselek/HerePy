@@ -24,7 +24,7 @@ from herepy.here_enum import (
     MatrixRoutingProfile,
     MatrixRoutingTransportMode,
 )
-from herepy.objects import Avoid
+from herepy.objects import Avoid, Truck
 from herepy import polling
 from typing import List, Dict, Union, Optional
 
@@ -512,6 +512,7 @@ class RoutingApi(HEREApi):
         routing_mode: Optional[MatrixRoutingMode] = None,
         transport_mode: Optional[MatrixRoutingTransportMode] = None,
         avoid: Optional[Avoid] = None,
+        truck: Optional[Truck] = None,
         matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
     ) -> Optional[RoutingMatrixResponse]:
         """Sync request a matrix of route summaries between M starts and N destinations.
@@ -533,8 +534,10 @@ class RoutingApi(HEREApi):
           transport_mode (Optional[MatrixRoutingTransportMode]):
             Depending on the transport mode special constraints, speed attributes and weights
             are taken into account during route calculation.
-          avoid (Avoid):
+          avoid (Optional[Avoid]):
             Avoid routes that violate these properties.
+          truck (Optional[Truck]):
+            Different truck options to use during route calculation when transportMode = truck.
           matrix_attributes (List):
             List of MatrixSummaryAttribute enums.
         Returns:
@@ -565,6 +568,19 @@ class RoutingApi(HEREApi):
             ]
         if avoid:
             request_body["avoid"] = {"features": avoid.features, "areas": avoid.areas}
+        if truck:
+            request_body["truck"] = {
+                "shippedHazardousGoods": truck.shipped_hazardous_goods,
+                "grossWeight": truck.gross_weight,
+                "weightPerAxle": truck.weight_per_axle,
+                "height": truck.height,
+                "width": truck.width,
+                "length": truck.length,
+                "tunnelCategory": truck.tunnel_category,
+                "axleCount": truck.axle_count,
+                "type": truck.truck_type,
+                "trailerCount": truck.trailer_count,
+            }
 
         query_params = {
             "apiKey": self._api_key,
@@ -654,6 +670,7 @@ class RoutingApi(HEREApi):
         routing_mode: Optional[MatrixRoutingMode] = None,
         transport_mode: Optional[MatrixRoutingTransportMode] = None,
         avoid: Optional[Avoid] = None,
+        truck: Optional[Truck] = None,
         matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
     ) -> Optional[RoutingMatrixResponse]:
         """Async request a matrix of route summaries between M starts and N destinations.
@@ -684,8 +701,10 @@ class RoutingApi(HEREApi):
           transport_mode (Optional[MatrixRoutingTransportMode]):
             Depending on the transport mode special constraints, speed attributes and weights
             are taken into account during route calculation.
-          avoid (Avoid):
+          avoid (Optional[Avoid]):
             Avoid routes that violate these properties.
+          truck (Optional[Truck]):
+            Different truck options to use during route calculation when transportMode = truck.
           matrix_attributes (List):
             List of MatrixSummaryAttribute enums.
         Returns:
@@ -716,6 +735,19 @@ class RoutingApi(HEREApi):
             ]
         if avoid:
             request_body["avoid"] = {"features": avoid.features, "areas": avoid.areas}
+        if truck:
+            request_body["truck"] = {
+                "shippedHazardousGoods": truck.shipped_hazardous_goods,
+                "grossWeight": truck.gross_weight,
+                "weightPerAxle": truck.weight_per_axle,
+                "height": truck.height,
+                "width": truck.width,
+                "length": truck.length,
+                "tunnelCategory": truck.tunnel_category,
+                "axleCount": truck.axle_count,
+                "type": truck.truck_type,
+                "trailerCount": truck.trailer_count,
+            }
 
         query_params = {}
 
