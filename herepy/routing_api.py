@@ -504,9 +504,9 @@ class RoutingApi(HEREApi):
         self,
         origins: Union[List[float], str],
         destinations: Union[List[float], str],
-        matrix_type: MatrixRoutingType,
-        center: List[float],
-        radius: int,
+        matrix_type: MatrixRoutingType = MatrixRoutingType.world,
+        center: Optional[List[float]] = None,
+        radius: Optional[int] = None,
         profile: Optional[MatrixRoutingProfile] = None,
         departure: str = None,
         routing_mode: Optional[MatrixRoutingMode] = None,
@@ -525,6 +525,10 @@ class RoutingApi(HEREApi):
             or list of string with the location names.
           matrix_type (MatrixRoutingType):
             Routing type used in definition of a region in which the matrix will be calculated.
+          center (Optional[List]):
+            Center of region definition, latitude and longitude.
+          radius (Optional[int]):
+            Center  of region definition.
           profile (Optional[MatrixRoutingProfile]):
             A profile ID enables the calculation of matrices with routes of arbitrary length.
           departure (str):
@@ -546,12 +550,15 @@ class RoutingApi(HEREApi):
           HEREError: If an error is received from the server.
         """
 
+        region_definition = {
+            "type": matrix_type.__str__(),
+        }
+        if center:
+            region_definition["center"] = {"lat": center[0], "lng": center[1]}
+        if radius:
+            region_definition["radius"] = radius
         request_body = {
-            "regionDefinition": {
-                "type": matrix_type.__str__(),
-                "center": {"lat": center[0], "lng": center[1]},
-                "radius": radius,
-            },
+            "regionDefinition": region_definition
         }
 
         if profile:
