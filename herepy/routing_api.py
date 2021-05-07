@@ -514,7 +514,7 @@ class RoutingApi(HEREApi):
         avoid: Optional[Avoid] = None,
         truck: Optional[Truck] = None,
         matrix_attributes: Optional[List[MatrixSummaryAttribute]] = None,
-    ):
+    ) -> Dict:
         region_definition = {
             "type": matrix_type.__str__(),
         }
