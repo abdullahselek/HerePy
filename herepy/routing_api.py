@@ -522,9 +522,7 @@ class RoutingApi(HEREApi):
             region_definition["center"] = {"lat": center[0], "lng": center[1]}
         if radius:
             region_definition["radius"] = radius
-        request_body = {
-            "regionDefinition": region_definition
-        }
+        request_body = {"regionDefinition": region_definition}
 
         if profile:
             request_body["profile"] = profile.__str__()
@@ -654,10 +652,30 @@ class RoutingApi(HEREApi):
             url, json=request_body, headers=headers, timeout=self._timeout
         )
         json_data = json.loads(response.content.decode("utf8"))
-        if json_data.get("matrix") is not None:
-            return RoutingMatrixResponse.new_from_jsondict(json_data)
+        if response.status_code == requests.codes.OK:
+            if json_data.get("matrix") is not None:
+                return RoutingMatrixResponse.new_from_jsondict(json_data)
+            else:
+                raise HEREError(
+                    "Error occured on routing_api sync_matrix "
+                    + sys._getframe(1).f_code.co_name
+                    + " response status code "
+                    + str(response.status_code)
+                )
         else:
-            raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+            if "title" in json_data and "cause" in json_data:
+                raise HEREError(
+                    str.format(
+                        "routing_api sync_matrix failed! title: {0}, cause: {1}",
+                        json_data["title"],
+                        json_data["cause"],
+                    )
+                )
+            else:
+                raise HEREError(
+                    "Error occured on routing_api sync_matrix "
+                    + sys._getframe(1).f_code.co_name
+                )
 
     def __download_file(self, fileurl: str):
         filename = os.path.basename(fileurl)
