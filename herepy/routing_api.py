@@ -574,7 +574,7 @@ class RoutingApi(HEREApi):
                 destination_waypoint = destination
             lat_long = {"lat": destination_waypoint[0], "lng": destination_waypoint[1]}
             destination_list.append(lat_long)
-        request_body["destinations"] = origin_list
+        request_body["destinations"] = destination_list
 
         return request_body
 
