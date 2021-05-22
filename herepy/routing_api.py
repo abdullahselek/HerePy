@@ -62,10 +62,18 @@ class RoutingApi(HEREApi):
                 url = url.replace(k, manipulation_key)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode("utf8"))
-        if json_data.get(key) is not None:
-            return response_cls.new_from_jsondict(json_data)
+        if response.status_code == requests.codes.OK:
+            if json_data.get(key) is not None:
+                return response_cls.new_from_jsondict(json_data)
+            else:
+                raise error_from_routing_service_error(json_data)
         else:
-            raise error_from_routing_service_error(json_data)
+            raise HEREError(
+                    "Error occured on routing_api __get "
+                    + sys._getframe(1).f_code.co_name
+                    + " response status code "
+                    + str(response.status_code)
+                )
 
     @classmethod
     def __prepare_mode_values(cls, modes):
