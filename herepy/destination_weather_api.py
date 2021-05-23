@@ -94,8 +94,8 @@ class DestinationWeatherApi(HEREApi):
         data = {
             "apiKey": self._api_key,
             "product": product.__str__(),
-            "oneobservation": one_observation,
-            "metric": metric,
+            "oneobservation": "true" if one_observation == True else "false",
+            "metric": "true" if metric == True else "false",
             "name": location_name,
         }
         return self._get(data, product)
@@ -126,8 +126,8 @@ class DestinationWeatherApi(HEREApi):
         data = {
             "apiKey": self._api_key,
             "product": product.__str__(),
-            "oneobservation": one_observation,
-            "metric": metric,
+            "oneobservation": "true" if one_observation == True else "false",
+            "metric": "true" if metric == True else "false",
             "zipcode": zip_code,
         }
         return self._get(data, product)
@@ -161,8 +161,8 @@ class DestinationWeatherApi(HEREApi):
         data = {
             "apiKey": self._api_key,
             "product": product.__str__(),
-            "oneobservation": one_observation,
-            "metric": metric,
+            "oneobservation": "true" if one_observation == True else "false",
+            "metric": "true" if metric == True else "false",
             "latitude": latitude,
             "longitude": longitude,
         }
