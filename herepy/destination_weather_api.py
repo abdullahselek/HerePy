@@ -25,7 +25,7 @@ class DestinationWeatherApi(HEREApi):
         """
 
         super(DestinationWeatherApi, self).__init__(api_key, timeout)
-        self._base_url = "https://weather.ls.hereapi.com/weather/1.0/report.json"
+        self._base_url = "https://weather.cc.api.here.com/weather/1.0/report.json"
 
     def _get(self, data, product):
         url = Utils.build_url(self._base_url, extra_params=data)
