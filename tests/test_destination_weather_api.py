@@ -25,7 +25,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
         self.assertEqual(self._api._api_key, "api_key")
         self.assertEqual(
             self._api._base_url,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
         )
 
     @responses.activate
@@ -36,7 +36,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -53,7 +53,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -68,7 +68,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -84,7 +84,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -101,7 +101,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -117,7 +117,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -133,7 +133,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -151,7 +151,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -169,7 +169,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -187,7 +187,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
@@ -205,7 +205,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://weather.ls.hereapi.com/weather/1.0/report.json",
+            "https://weather.cc.api.here.com/weather/1.0/report.json",
             expectedResponse,
             status=200,
         )
