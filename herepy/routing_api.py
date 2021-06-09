@@ -458,8 +458,9 @@ class RoutingApi(HEREApi):
             "destination": str.format("{0},{1}", destination[0], destination[1]),
             "apiKey": self._api_key,
         }
+
+        via_keys = []
         if via:
-            via_keys = []
             for i, v in enumerate(via):
                 key = str.format("{0}{1}", "via", i)
                 via_keys.append(key)
