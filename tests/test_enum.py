@@ -318,8 +318,8 @@ class IsolineRoutingTransportModeTest(unittest.TestCase):
         self.assertEqual(car.__str__(), "car")
         truck = IsolineRoutingTransportMode.truck
         self.assertEqual(truck.__str__(), "truck")
-        pedastrian = IsolineRoutingTransportMode.pedastrian
-        self.assertEqual(pedastrian.__str__(), "pedastrian")
+        pedestrian = IsolineRoutingTransportMode.pedestrian
+        self.assertEqual(pedestrian.__str__(), "pedestrian")
 
 
 class IsolineRoutingOptimizationModeTest(unittest.TestCase):

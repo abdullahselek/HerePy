@@ -19,7 +19,7 @@ print(response.as_dict())
 
 # Calculates time based isoline routing
 response = isoline_routing_api.time_isoline(
-    transport_mode=IsolineRoutingTransportMode.car,
+    transport_mode=IsolineRoutingTransportMode.pedestrian,
     origin=[52.51578, 13.37749],
     ranges=[300, 400],
 )

@@ -353,7 +353,7 @@ class IsolineRoutingTransportMode(Enum):
 
     car = "car"
     truck = "truck"
-    pedastrian = "pedastrian"
+    pedestrian = "pedestrian"
 
     def __str__(self):
         return "%s" % self._value_
