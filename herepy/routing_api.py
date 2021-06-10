@@ -185,14 +185,14 @@ class RoutingApi(HEREApi):
             modes = [RouteMode.car, RouteMode.fastest]
         return self._route(waypoint_a, waypoint_b, modes, departure)
 
-    def pedastrian_route(
+    def pedestrian_route(
         self,
         waypoint_a: Union[List[float], str],
         waypoint_b: Union[List[float], str],
         modes: List[RouteMode] = None,
         departure: str = "now",
     ) -> Optional[RoutingResponse]:
-        """Request a pedastrian route between two points
+        """Request a pedestrian route between two points
         Args:
           waypoint_a (List):
             List contains latitude and longitude in order

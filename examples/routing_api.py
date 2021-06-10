@@ -35,8 +35,8 @@ response = routing_api.car_route(
 )
 print(response.as_dict())
 
-# fetches a pedastrian route between two points
-response = routing_api.pedastrian_route(
+# fetches a pedestrian route between two points
+response = routing_api.pedestrian_route(
     waypoint_a=[11.0, 12.0],
     waypoint_b=[22.0, 23.0],
     modes=[RouteMode.pedestrian, RouteMode.fastest],

@@ -162,7 +162,7 @@ class RoutingApiTest(unittest.TestCase):
             self._api.car_route([11.0, 12.0], [47.013399, -10.171986])
 
     @responses.activate
-    def test_pedastrianroute_whensucceed(self):
+    def test_pedestrianroute_whensucceed(self):
         with codecs.open(
             "testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8"
         ) as f:
@@ -173,7 +173,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.pedastrian_route(
+        response = self._api.pedestrian_route(
             [11.0, 12.0],
             [22.0, 23.0],
             [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest],
@@ -182,7 +182,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def test_pedastrianroute_withdefaultmodes_whensucceed(self):
+    def test_pedestrianroute_withdefaultmodes_whensucceed(self):
         with codecs.open(
             "testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8"
         ) as f:
@@ -193,12 +193,12 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.pedastrian_route([11.0, 12.0], [22.0, 23.0])
+        response = self._api.pedestrian_route([11.0, 12.0], [22.0, 23.0])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def test_pedastrianroute_when_error_invalid_input_data_occured(self):
+    def test_pedestrianroute_when_error_invalid_input_data_occured(self):
         with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -208,14 +208,14 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.InvalidInputDataError):
-            self._api.pedastrian_route(
+            self._api.pedestrian_route(
                 [11.0, 12.0],
                 [22.0, 23.0],
                 [herepy.RouteMode.car, herepy.RouteMode.fastest],
             )
 
     @responses.activate
-    def test_pedastrianroute_when_error_invalid_credentials_occured(self):
+    def test_pedestrianroute_when_error_invalid_credentials_occured(self):
         with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -226,10 +226,10 @@ class RoutingApiTest(unittest.TestCase):
         )
         api = herepy.RoutingApi("wrong_api_key", "wrong_app_code")
         with self.assertRaises(herepy.InvalidCredentialsError):
-            api.pedastrian_route([11.0, 12.0], [22.0, 23.0])
+            api.pedestrian_route([11.0, 12.0], [22.0, 23.0])
 
     @responses.activate
-    def test_pedastrianroute_when_error_no_route_found_occured(self):
+    def test_pedestrianroute_when_error_no_route_found_occured(self):
         with open("testdata/models/routing_error_no_route_found.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -239,10 +239,10 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.NoRouteFoundError):
-            self._api.pedastrian_route([11.0, 12.0], [47.013399, -10.171986])
+            self._api.pedestrian_route([11.0, 12.0], [47.013399, -10.171986])
 
     @responses.activate
-    def test_pedastrianroute_route_short(self):
+    def test_pedestrianroute_route_short(self):
         with codecs.open(
             "testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8"
         ) as f:
@@ -253,7 +253,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.pedastrian_route(
+        response = self._api.pedestrian_route(
             [11.0, 12.0],
             [22.0, 23.0],
             [herepy.RouteMode.pedestrian, herepy.RouteMode.fastest],
