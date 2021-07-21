@@ -37,7 +37,7 @@ class IsolineRoutingApi(HEREApi):
                 return UnauthorizedError(json_data["error_description"])
         error_type = json_data.get("Type")
         error_message = json_data.get(
-            "Message", "Error occured on " + sys._getframe(1).f_code.co_name
+            "Message", "Error occurred on " + sys._getframe(1).f_code.co_name
         )
         if error_type == "Invalid Request":
             return InvalidRequestError(error_message)

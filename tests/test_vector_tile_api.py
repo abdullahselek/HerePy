@@ -66,6 +66,6 @@ class VectorTileApiTest(unittest.TestCase):
                 layer=VectorMapTileLayer.core,
             )
         self.assertEqual(
-            "These credentials do not authorize access, error occured on get_vectortile",
+            "These credentials do not authorize access, error occurred on get_vectortile",
             str(cm.exception),
         )

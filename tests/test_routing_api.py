@@ -118,7 +118,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def test_carroute_when_error_invalid_input_data_occured(self):
+    def test_carroute_when_error_invalid_input_data_occurred(self):
         with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -135,7 +135,7 @@ class RoutingApiTest(unittest.TestCase):
             )
 
     @responses.activate
-    def test_carroute_when_error_invalid_credentials_occured(self):
+    def test_carroute_when_error_invalid_credentials_occurred(self):
         with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -149,7 +149,7 @@ class RoutingApiTest(unittest.TestCase):
             api.car_route([11.0, 12.0], [22.0, 23.0])
 
     @responses.activate
-    def test_carroute_when_error_no_route_found_occured(self):
+    def test_carroute_when_error_no_route_found_occurred(self):
         with open("testdata/models/routing_error_no_route_found.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -198,7 +198,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def test_pedestrianroute_when_error_invalid_input_data_occured(self):
+    def test_pedestrianroute_when_error_invalid_input_data_occurred(self):
         with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -215,7 +215,7 @@ class RoutingApiTest(unittest.TestCase):
             )
 
     @responses.activate
-    def test_pedestrianroute_when_error_invalid_credentials_occured(self):
+    def test_pedestrianroute_when_error_invalid_credentials_occurred(self):
         with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -229,7 +229,7 @@ class RoutingApiTest(unittest.TestCase):
             api.pedestrian_route([11.0, 12.0], [22.0, 23.0])
 
     @responses.activate
-    def test_pedestrianroute_when_error_no_route_found_occured(self):
+    def test_pedestrianroute_when_error_no_route_found_occurred(self):
         with open("testdata/models/routing_error_no_route_found.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -305,7 +305,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def test_intermediateroute_when_error_invalid_input_data_occured(self):
+    def test_intermediateroute_when_error_invalid_input_data_occurred(self):
         with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -323,7 +323,7 @@ class RoutingApiTest(unittest.TestCase):
             )
 
     @responses.activate
-    def test_intermediateroute_when_error_invalid_credentials_occured(self):
+    def test_intermediateroute_when_error_invalid_credentials_occurred(self):
         with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -337,7 +337,7 @@ class RoutingApiTest(unittest.TestCase):
             api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0])
 
     @responses.activate
-    def test_intermediateroute_when_error_no_route_found_occured(self):
+    def test_intermediateroute_when_error_no_route_found_occurred(self):
         with open("testdata/models/routing_error_no_route_found.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -408,7 +408,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def test_publictransport_when_error_invalid_input_data_occured(self):
+    def test_publictransport_when_error_invalid_input_data_occurred(self):
         with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -426,7 +426,7 @@ class RoutingApiTest(unittest.TestCase):
             )
 
     @responses.activate
-    def test_publictransport_when_error_invalid_credentials_occured(self):
+    def test_publictransport_when_error_invalid_credentials_occurred(self):
         with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -440,7 +440,7 @@ class RoutingApiTest(unittest.TestCase):
             api.public_transport([11.0, 12.0], [15.0, 16.0], True)
 
     @responses.activate
-    def test_publictransport_when_error_no_route_found_occured(self):
+    def test_publictransport_when_error_no_route_found_occurred(self):
         with open("testdata/models/routing_error_no_route_found.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -525,7 +525,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def test_locationnearmotorway_when_error_invalid_input_data_occured(self):
+    def test_locationnearmotorway_when_error_invalid_input_data_occurred(self):
         with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -542,7 +542,7 @@ class RoutingApiTest(unittest.TestCase):
             )
 
     @responses.activate
-    def test_locationnearmotorway_when_error_invalid_credentials_occured(self):
+    def test_locationnearmotorway_when_error_invalid_credentials_occurred(self):
         with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -556,7 +556,7 @@ class RoutingApiTest(unittest.TestCase):
             api.location_near_motorway([11.0, 12.0], [22.0, 23.0])
 
     @responses.activate
-    def test_locationnearmotorway_when_error_no_route_found_occured(self):
+    def test_locationnearmotorway_when_error_no_route_found_occurred(self):
         with open("testdata/models/routing_error_no_route_found.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -624,7 +624,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
-    def test_truckroute_when_error_invalid_input_data_occured(self):
+    def test_truckroute_when_error_invalid_input_data_occurred(self):
         with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -641,7 +641,7 @@ class RoutingApiTest(unittest.TestCase):
             )
 
     @responses.activate
-    def test_truckroute_when_error_invalid_credentials_occured(self):
+    def test_truckroute_when_error_invalid_credentials_occurred(self):
         with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -655,7 +655,7 @@ class RoutingApiTest(unittest.TestCase):
             api.truck_route([11.0, 12.0], [22.0, 23.0])
 
     @responses.activate
-    def test_truckroute_when_error_no_route_found_occured(self):
+    def test_truckroute_when_error_no_route_found_occurred(self):
         with open("testdata/models/routing_error_no_route_found.json", "r") as f:
             expectedResponse = f.read()
         responses.add(

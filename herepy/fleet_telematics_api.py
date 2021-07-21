@@ -239,4 +239,4 @@ def error_from_fleet_telematics_service_error(json_data: dict):
         if error_type == "Unauthorized":
             return UnauthorizedError(message)
     # pylint: disable=W0212
-    return HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+    return HEREError("Error occurred on " + sys._getframe(1).f_code.co_name)

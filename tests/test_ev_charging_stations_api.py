@@ -43,7 +43,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
 
     @responses.activate
-    def test_get_stations_circular_search_whenerroroccured(self):
+    def test_get_stations_circular_search_whenerroroccurred(self):
         with open(
             "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
         ) as f:
@@ -81,7 +81,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
 
     @responses.activate
-    def test_get_stations_bounding_box_whenerroroccured(self):
+    def test_get_stations_bounding_box_whenerroroccurred(self):
         with open(
             "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
         ) as f:
@@ -118,7 +118,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
 
     @responses.activate
-    def test_get_stations_corridor_whenerroroccured(self):
+    def test_get_stations_corridor_whenerroroccurred(self):
         with open(
             "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
         ) as f:
@@ -158,7 +158,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.EVChargingStationsResponse)
 
     @responses.activate
-    def test_get_station_details_whenerroroccured(self):
+    def test_get_station_details_whenerroroccurred(self):
         station_id = "276u33db-b2c840878cfc409fa5a0aef858419037"
         with open(
             "testdata/models/ev_charging_stations_error_unauthorized.json", "r"

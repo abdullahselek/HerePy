@@ -36,7 +36,7 @@ class PlacesApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PlacesResponse)
 
     @responses.activate
-    def test_onebox_search_whenerroroccured(self):
+    def test_onebox_search_whenerroroccurred(self):
         with open("testdata/models/places_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -63,7 +63,7 @@ class PlacesApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PlacesResponse)
 
     @responses.activate
-    def test_search_in_country_whenerroroccured(self):
+    def test_search_in_country_whenerroroccurred(self):
         with open("testdata/models/places_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -90,7 +90,7 @@ class PlacesApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PlacesResponse)
 
     @responses.activate
-    def test_places_in_circle_whenerroroccured(self):
+    def test_places_in_circle_whenerroroccurred(self):
         with open("testdata/models/places_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(

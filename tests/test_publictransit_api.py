@@ -40,7 +40,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_find_stations_by_name_whenerroroccured(self):
+    def test_find_stations_by_name_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -69,7 +69,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_find_stations_nearby_whenerroroccured(self):
+    def test_find_stations_nearby_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -98,7 +98,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_find_stations_by_id_whenerroroccured(self):
+    def test_find_stations_by_id_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -131,7 +131,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_find_transit_coverage_in_cities_whenerroroccured(self):
+    def test_find_transit_coverage_in_cities_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -164,7 +164,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_next_nearby_departures_of_station_whenerroroccured(self):
+    def test_next_nearby_departures_of_station_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -197,7 +197,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_next_departures_from_location_whenerroroccured(self):
+    def test_next_departures_from_location_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -230,7 +230,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_next_departures_for_stations_whenerroroccured(self):
+    def test_next_departures_for_stations_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -337,7 +337,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertEqual(short_route, expected_short_route)
 
     @responses.activate
-    def test_calculate_route_whenerroroccured(self):
+    def test_calculate_route_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -368,7 +368,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_coverage_witin_a_city_whenerroroccured(self):
+    def test_coverage_witin_a_city_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -399,7 +399,7 @@ class PublicTransitApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.PublicTransitResponse)
 
     @responses.activate
-    def test_coverage_nearby_whenerroroccured(self):
+    def test_coverage_nearby_whenerroroccurred(self):
         with open("testdata/models/public_transit_api_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(

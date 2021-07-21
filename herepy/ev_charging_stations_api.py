@@ -222,10 +222,10 @@ def error_from_ev_charging_service_error(json_data: dict):
             return UnauthorizedError(message)
     elif "error" in json_data and "error_description" in json_data:
         return HEREError(
-            "Error occured: "
+            "Error occurred: "
             + json_data["error"]
             + ", description: "
             + json_data["error_description"]
         )
     # pylint: disable=W0212
-    return HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+    return HEREError("Error occurred on " + sys._getframe(1).f_code.co_name)

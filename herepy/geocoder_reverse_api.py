@@ -40,12 +40,12 @@ class GeocoderReverseApi(HEREApi):
                 raise HEREError(
                     json_data.get(
                         "Details",
-                        "Error occured on function " + sys._getframe(1).f_code.co_name,
+                        "Error occurred on function " + sys._getframe(1).f_code.co_name,
                     )
                 )
         except ValueError as err:
             raise HEREError(
-                "Error occured on function "
+                "Error occurred on function "
                 + sys._getframe(1).f_code.co_name
                 + " "
                 + str(err)
