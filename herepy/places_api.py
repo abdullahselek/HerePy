@@ -39,7 +39,7 @@ class PlacesApi(HEREApi):
         else:
             raise HEREError(
                 json_data.get(
-                    "message", "Error occured on " + sys._getframe(1).f_code.co_name
+                    "message", "Error occurred on " + sys._getframe(1).f_code.co_name
                 )
             )
 

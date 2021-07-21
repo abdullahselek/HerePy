@@ -36,7 +36,7 @@ class GeocoderAutoCompleteApi(HEREApi):
             raise HEREError(
                 json_data.get(
                     "error_description",
-                    "Error occured on " + sys._getframe(1).f_code.co_name,
+                    "Error occurred on " + sys._getframe(1).f_code.co_name,
                 )
             )
 

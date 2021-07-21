@@ -51,7 +51,7 @@ class FleetTelematicsApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.WaypointSequenceResponse)
 
     @responses.activate
-    def test_find_sequence_whenerroroccured(self):
+    def test_find_sequence_whenerroroccurred(self):
         with open("testdata/models/fleet_telematics_unauthorized_error.json", "r") as f:
             expected_response = f.read()
         responses.add(
@@ -147,7 +147,7 @@ class FleetTelematicsApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.WaypointSequenceResponse)
 
     @responses.activate
-    def test_find_pickups_whenerroroccured(self):
+    def test_find_pickups_whenerroroccurred(self):
         with open("testdata/models/fleet_telematics_unauthorized_error.json", "r") as f:
             expected_response = f.read()
         responses.add(

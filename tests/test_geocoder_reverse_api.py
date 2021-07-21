@@ -35,7 +35,7 @@ class GeocoderReverseApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.GeocoderReverseResponse)
 
     @responses.activate
-    def test_retrieve_addresses_whenerroroccured(self):
+    def test_retrieve_addresses_whenerroroccurred(self):
         with open("testdata/models/geocoder_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(

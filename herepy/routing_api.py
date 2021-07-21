@@ -69,7 +69,7 @@ class RoutingApi(HEREApi):
                 raise error_from_routing_service_error(json_data)
         else:
             raise HEREError(
-                    "Error occured on routing_api __get "
+                    "Error occurred on routing_api __get "
                     + sys._getframe(1).f_code.co_name
                     + " response status code "
                     + str(response.status_code)
@@ -666,7 +666,7 @@ class RoutingApi(HEREApi):
                 return RoutingMatrixResponse.new_from_jsondict(json_data)
             else:
                 raise HEREError(
-                    "Error occured on routing_api sync_matrix "
+                    "Error occurred on routing_api sync_matrix "
                     + sys._getframe(1).f_code.co_name
                     + " response status code "
                     + str(response.status_code)
@@ -682,7 +682,7 @@ class RoutingApi(HEREApi):
                 )
             else:
                 raise HEREError(
-                    "Error occured on routing_api sync_matrix "
+                    "Error occurred on routing_api sync_matrix "
                     + sys._getframe(1).f_code.co_name
                 )
 
@@ -710,14 +710,14 @@ class RoutingApi(HEREApi):
             return False
         elif json_data.get("error") is not None and json_data.get("error_description"):
             raise HEREError(
-                "Error occured on __is_correct_response: "
+                "Error occurred on __is_correct_response: "
                 + json_data["error"]
                 + ", description: "
                 + json_data["error_description"]
             )
         elif json_data.get("title") is not None and json_data.get("status"):
             raise HEREError(
-                "Error occured on __is_correct_response: "
+                "Error occurred on __is_correct_response: "
                 + json_data["title"]
                 + ", status: "
                 + json_data["status"]
@@ -831,7 +831,7 @@ class RoutingApi(HEREApi):
                 and json_data.get("error_description") is not None
             ):
                 raise HEREError(
-                    "Error occured on async_matrix: "
+                    "Error occurred on async_matrix: "
                     + json_data["error"]
                     + ", description: "
                     + json_data["error_description"]
@@ -841,14 +841,14 @@ class RoutingApi(HEREApi):
                 and json_data.get("cause") is not None
             ):
                 raise HEREError(
-                    "Error occured on async_matrix: "
+                    "Error occurred on async_matrix: "
                     + json_data["title"]
                     + ", cause: "
                     + json_data["cause"]
                 )
             else:
                 raise HEREError(
-                    "Error occured on async_matrix " + sys._getframe(1).f_code.co_name
+                    "Error occurred on async_matrix " + sys._getframe(1).f_code.co_name
                 )
 
     def _get_coordinates_for_location_name(self, location_name: str) -> List[float]:
@@ -1017,4 +1017,4 @@ def error_from_routing_service_error(json_data):
         if subtype == "RouteNotReconstructed":
             return RouteNotReconstructedError(details)
     # pylint: disable=W0212
-    return HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+    return HEREError("Error occurred on " + sys._getframe(1).f_code.co_name)

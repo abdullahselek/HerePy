@@ -38,7 +38,7 @@ class RmeApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RmeResponse)
 
     @responses.activate
-    def test_match_route_whenerroroccured(self):
+    def test_match_route_whenerroroccurred(self):
         with open("testdata/models/geocoder_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(

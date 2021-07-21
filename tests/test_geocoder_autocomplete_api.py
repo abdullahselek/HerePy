@@ -35,7 +35,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.GeocoderAutoCompleteResponse)
 
     @responses.activate
-    def test_addresssuggestion_whenerroroccured(self):
+    def test_addresssuggestion_whenerroroccurred(self):
         with open("testdata/models/geocoder_autocomplete_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(
@@ -62,7 +62,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.GeocoderAutoCompleteResponse)
 
     @responses.activate
-    def test_limitresultsbyaddress_whenerroroccured(self):
+    def test_limitresultsbyaddress_whenerroroccurred(self):
         with open("testdata/models/geocoder_autocomplete_error.json", "r") as f:
             expectedResponse = f.read()
         responses.add(

@@ -40,13 +40,13 @@ class PublicTransitApi(HEREApi):
         elif "text" in json_data.get("Res", {}).get("Message", {}):
             raise HEREError(
                 json_data["Res"]["Message"]["text"],
-                "Error occured on " + sys._getframe(1).f_code.co_name,
+                "Error occurred on " + sys._getframe(1).f_code.co_name,
             )
         elif "error" in json_data:
             if json_data["error"] == "Unauthorized":
                 raise UnauthorizedError(json_data["error_description"])
         else:
-            raise HEREError("Error occured on " + sys._getframe(1).f_code.co_name)
+            raise HEREError("Error occurred on " + sys._getframe(1).f_code.co_name)
 
     def find_stations_by_name(
         self,
