@@ -28,7 +28,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/incidents.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/incidents.json",
             expectedResponse,
             status=200,
         )
@@ -53,7 +53,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/incidents.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/incidents.json",
             expectedResponse,
             status=200,
         )
@@ -74,7 +74,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/incidents.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/incidents.json",
             expectedResponse,
             status=200,
         )
@@ -94,7 +94,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/incidents.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/incidents.json",
             expectedResponse,
             status=200,
         )
@@ -113,7 +113,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/incidents.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/incidents.json",
             expectedResponse,
             status=200,
         )
@@ -138,7 +138,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/incidents.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/incidents.json",
             expectedResponse,
             status=200,
         )
@@ -163,7 +163,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -180,7 +180,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -197,7 +197,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -216,7 +216,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -235,7 +235,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -254,7 +254,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -273,7 +273,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -298,7 +298,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -323,7 +323,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -344,7 +344,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -365,7 +365,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -385,7 +385,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -404,7 +404,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flowavailability.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flowavailability.json",
             expectedResponse,
             status=200,
         )
@@ -421,7 +421,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flowavailability.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flowavailability.json",
             expectedResponse,
             status=200,
         )
@@ -438,7 +438,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )
@@ -458,7 +458,7 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://traffic.ls.hereapi.com/traffic/6.0/flow.json",
+            "https://traffic.ls.hereapi.com/traffic/6.1/flow.json",
             expectedResponse,
             status=200,
         )

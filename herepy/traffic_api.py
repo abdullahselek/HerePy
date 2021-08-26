@@ -35,7 +35,7 @@ class TrafficApi(HEREApi):
         """
 
         super(TrafficApi, self).__init__(api_key, timeout)
-        self._base_url = "https://traffic.ls.hereapi.com/traffic/6.0/"
+        self._base_url = "https://traffic.ls.hereapi.com/traffic/6.1/"
 
     def __get(self, url, data):
         url = Utils.build_url(url, extra_params=data)
