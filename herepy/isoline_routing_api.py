@@ -46,7 +46,12 @@ class IsolineRoutingApi(HEREApi):
 
     def __get_client_error_from_response(self, json_data):
         if "title" in json_data and "cause" in json_data:
-            return HEREError("Error on client: " + json_data["title"] +  " cause: " + json_data["cause"])
+            return HEREError(
+                "Error on client: "
+                + json_data["title"]
+                + " cause: "
+                + json_data["cause"]
+            )
         else:
             return HEREError("herepy got a 400 from isoline router API")
 

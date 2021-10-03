@@ -34,7 +34,9 @@ class MapImageApi(HEREApi):
         error_type = json_data.get("Type")
         error_message = json_data.get(
             "Message",
-            error_description + ", error occurred on " + sys._getframe(1).f_code.co_name,
+            error_description
+            + ", error occurred on "
+            + sys._getframe(1).f_code.co_name,
         )
         if error_type == "Invalid Request":
             return InvalidRequestError(error_message)
