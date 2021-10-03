@@ -12,6 +12,8 @@ response = evcharging_stations_api.get_stations_circular_search(
         EVStationConnectorTypes.small_paddle_inductive,
         EVStationConnectorTypes.large_paddle_inductive,
     ],
+    maxresults=50,
+    offset=0,
 )
 print(response.as_dict())
 
@@ -23,6 +25,8 @@ response = evcharging_stations_api.get_stations_bounding_box(
         EVStationConnectorTypes.small_paddle_inductive,
         EVStationConnectorTypes.large_paddle_inductive,
     ],
+    maxresults=50,
+    offset=0,
 )
 print(response.as_dict())
 
@@ -33,12 +37,16 @@ response = evcharging_stations_api.get_stations_corridor(
         EVStationConnectorTypes.small_paddle_inductive,
         EVStationConnectorTypes.large_paddle_inductive,
     ],
+    maxresults=50,
+    offset=0,
 )
 print(response.as_dict())
 
 # Based on the results of a search for charging stations, this method
 # retrieves the full/updated information about a single charging station only.
 response = evcharging_stations_api.get_station_details(
-    station_id="276u33db-b2c840878cfc409fa5a0aef858419037"
+    station_id="276u33db-b2c840878cfc409fa5a0aef858419037",
+    maxresults=50,
+    offset=0,
 )
 print(response.as_dict())
