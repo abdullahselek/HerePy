@@ -40,14 +40,25 @@ class TrafficApi(HEREApi):
     def __get(self, url, data):
         url = Utils.build_url(url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
-        json_data = json.loads(response.content.decode("utf8"))
-        if json_data.get("TRAFFICITEMS") != None:
+        json_data = json.loads(response._content.decode("utf8"))
+        if json_data.get("TRAFFIC_ITEMS") != None:
             return TrafficIncidentResponse.new_from_jsondict(
-                json_data, param_defaults={"TRAFFICITEMS": None}
+                json_data, param_defaults={
+                    "TIMESTAMP": None,
+                    "VERSION": None,
+                    "TRAFFIC_ITEMS": None,
+                    "EXTENDED_COUNTRY_CODE": None,
+                    "error": None,
+                }
             )
         elif json_data.get("RWS") != None:
             return TrafficFlowResponse.new_from_jsondict(
-                json_data, param_defaults={"RWS": None}
+                json_data, param_defaults={
+                    "RWS": None,
+                    "CREATED_TIMESTAMP": None,
+                    "VERSION": None,
+                    "UNITS": None,
+                }
             )
         elif json_data.get("Response") != None:
             return TrafficFlowAvailabilityResponse.new_from_jsondict(

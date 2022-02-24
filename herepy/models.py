@@ -186,7 +186,13 @@ class TrafficIncidentResponse(HEREModel):
 
     def __init__(self, **kwargs):
         super(TrafficIncidentResponse, self).__init__()
-        self.param_defaults = {"TRAFFICITEMS": None, "error": None}
+        self.param_defaults = {
+            "TIMESTAMP": None,
+            "VERSION": None,
+            "TRAFFIC_ITEMS": None,
+            "EXTENDED_COUNTRY_CODE": None,
+            "error": None
+        }
 
         for (param, default) in self.param_defaults.items():
             setattr(self, param, kwargs.get(param, default))
