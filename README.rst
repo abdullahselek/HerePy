@@ -25,16 +25,6 @@ HerePy
 .. image:: https://anaconda.org/conda-forge/herepy/badges/license.svg
     :target: https://anaconda.org/conda-forge/herepy
 
-.. image:: https://requires.io/github/abdullahselek/HerePy/requirements.svg?branch=master
-    :target: https://requires.io/github/abdullahselek/HerePy/requirements/?branch=master
-
-+-------------------------------------------------------------------------+----------------------------------------------------------------------------------+
-|                                Linux                                    |                                       Windows                                    |
-+=========================================================================+==================================================================================+
-| .. image:: https://travis-ci.org/abdullahselek/HerePy.svg?branch=master | .. image:: https://ci.appveyor.com/api/projects/status/wlxrx5h8e8xyhvq2?svg=true |
-|    :target: https://travis-ci.org/abdullahselek/HerePy                  |    :target: https://ci.appveyor.com/project/abdullahselek/herepy                 |
-+-------------------------------------------------------------------------+----------------------------------------------------------------------------------+
-
 Introduction
 ============
 
