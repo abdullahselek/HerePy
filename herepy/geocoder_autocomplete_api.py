@@ -24,7 +24,7 @@ class GeocoderAutoCompleteApi(HEREApi):
         """
 
         super(GeocoderAutoCompleteApi, self).__init__(api_key, timeout)
-        self._base_url = "https://autosuggest.search.hereapi.com/v1/autosuggest"
+        self._base_url = "https://autocomplete.search.hereapi.com/v1/autocomplete"
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
@@ -60,7 +60,7 @@ class GeocoderAutoCompleteApi(HEREApi):
 
         data = {
             "q": query,
-            "in": str.format("circle:{0},{1};r={2}", prox[0], prox[1], radius),
+            "prox": str.format("{0},{1},{2}", prox[0], prox[1], radius),
             "apikey": self._api_key,
             "lang": lang,
         }

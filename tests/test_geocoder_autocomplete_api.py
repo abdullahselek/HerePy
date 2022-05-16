@@ -17,7 +17,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(self._api, herepy.GeocoderAutoCompleteApi)
         self.assertEqual(self._api._api_key, "api_key")
         self.assertEqual(
-            self._api._base_url, "https://autosuggest.search.hereapi.com/v1/autosuggest"
+            self._api._base_url, "https://autocomplete.search.hereapi.com/v1/autocomplete"
         )
 
     @responses.activate
@@ -26,7 +26,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://autosuggest.search.hereapi.com/v1/autosuggest",
+            "https://autocomplete.search.hereapi.com/v1/autocomplete",
             expectedResponse,
             status=200,
         )
@@ -40,7 +40,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://autosuggest.search.hereapi.com/v1/autosuggest",
+            "https://autocomplete.search.hereapi.com/v1/autocomplete",
             expectedResponse,
             status=200,
         )
@@ -53,7 +53,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://autosuggest.search.hereapi.com/v1/autosuggest",
+            "https://autocomplete.search.hereapi.com/v1/autocomplete",
             expectedResponse,
             status=200,
         )
@@ -67,7 +67,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
             expectedResponse = f.read()
         responses.add(
             responses.GET,
-            "https://autosuggest.search.hereapi.com/v1/autosuggest",
+            "https://autocomplete.search.hereapi.com/v1/autocomplete",
             expectedResponse,
             status=200,
         )
