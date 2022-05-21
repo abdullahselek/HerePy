@@ -204,9 +204,10 @@ class TrafficApi(HEREApi):
         return self.__get(self._base_url + "flow.json", data)
 
     def flow_within_boundingbox(
-        self,
-        top_left: List[float],
-        bottom_right: List[float],
+        self, 
+        top_left: List[float], 
+        bottom_right: List[float], 
+        response_attributes: str = "sh,fc"
     ) -> Optional[TrafficFlowResponse]:
         """Request traffic flow information within specified area.
         Args:
@@ -214,6 +215,8 @@ class TrafficApi(HEREApi):
             List contains latitude and longitude in order.
           bottom_right (List):
             List contains latitude and longitude in order.
+          response_attributes (String):
+            String containing response attributes separated by commas.
         Returns:
           TrafficFlowResponse
         Raises:
@@ -228,6 +231,7 @@ class TrafficApi(HEREApi):
                 bottom_right[1],
             ),
             "apiKey": self._api_key,
+            "responseattributes": response_attributes,
         }
         return self.__get(self._base_url + "flow.json", data)
 
