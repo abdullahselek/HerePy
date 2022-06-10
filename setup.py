@@ -39,6 +39,7 @@ setup(
     url=extract_metaitem('url'),
     download_url=extract_metaitem('download_url'),
     packages=find_packages(exclude=('tests', 'docs')),
+    package_data={"herepy": ["py.typed"]},
     platforms=['Any'],
     python_requires=">=3.5",
     install_requires=requirements,
