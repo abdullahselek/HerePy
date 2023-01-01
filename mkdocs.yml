@@ -47,8 +47,6 @@ plugins:
         python:
           rendering:
             show_source: true
-      watch:
-        - herepy
 markdown_extensions:
 - toc:
     permalink: true

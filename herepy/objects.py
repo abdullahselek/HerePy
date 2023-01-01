@@ -1,5 +1,5 @@
 from typing import List
-from herepy import AvoidFeature, ShippedHazardousGood, TunnelCategory, TruckType
+from herepy.here_enum import AvoidFeature, ShippedHazardousGood, TunnelCategory, TruckType
 
 
 class AvoidArea(object):
