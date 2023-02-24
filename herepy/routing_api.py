@@ -999,10 +999,18 @@ class RouteNotReconstructedError(HEREError):
 def error_from_routing_service_error(json_data):
     """Return the correct subclass for routing errors"""
 
+    # V8 error handling
     if "error" in json_data:
         if json_data["error"] == "Unauthorized":
             return InvalidCredentialsError(json_data["error_description"])
+    elif "status" in json_data:
+        error_msg = f"Cause: {json_data['cause']}; Action: {json_data['action']}"
+        if json_data["status"] == 400:
+            return InvalidRequestError(error_msg)
+        elif json_data["status"] == 403:
+            return AccessDeniedError(error_msg)
 
+    # V7 error handling
     if "subtype" in json_data:
         subtype = json_data["subtype"]
         details = json_data["details"]
