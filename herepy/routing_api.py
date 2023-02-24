@@ -9,7 +9,7 @@ import requests
 from herepy.geocoder_api import GeocoderApi
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
-from herepy.error import HEREError
+from herepy.error import HEREError, InvalidRequestError, AccessDeniedError
 from herepy.models import RoutingResponse, RoutingMatrixResponse, RoutingResponseV8
 from herepy.here_enum import (
     RouteMode,
