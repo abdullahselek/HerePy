@@ -66,14 +66,15 @@ class RoutingApi(HEREApi):
             if json_data.get(key) is not None:
                 return response_cls.new_from_jsondict(json_data)
             else:
-                raise error_from_routing_service_error(json_data)
-        else:
-            raise HEREError(
+                raise HEREError(
                 "Error occurred on routing_api __get "
                 + sys._getframe(1).f_code.co_name
                 + " response status code "
                 + str(response.status_code)
             )
+        else:
+            raise error_from_routing_service_error(json_data)
+
 
     @classmethod
     def __prepare_mode_values(cls, modes):
