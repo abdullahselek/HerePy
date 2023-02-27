@@ -1,16 +1,16 @@
 {
     "_type": "ns2:RoutingServiceErrorType",
     "type": "ApplicationError",
-    "subtype": "InvalidInputData",
-    "details": "Invalid input parameter value",
+    "subtype": "NoRouteFound",
+    "details": "Error is NGEO_ERROR_GRAPH_DISCONNECTED",
     "additionalData": [
         {
-            "key": "mode",
-            "value": "bicycle;traffic:disabled"
+            "key": "error_code",
+            "value": "NGEO_ERROR_GRAPH_DISCONNECTED"
         }
     ],
     "metaInfo": {
-        "timestamp": "2023-02-27T19:17:24Z",
+        "timestamp": "2023-02-24T19:27:31Z",
         "mapVersion": "8.30.139.152",
         "moduleVersion": "7.2.202305-9626331",
         "interfaceVersion": "2.6.77",

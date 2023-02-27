@@ -1,0 +1,8 @@
+{
+    "title": "Not allowed",
+    "status": 403,
+    "code": "E605101",
+    "cause": "Your credentials are not allowed to calculate routes in Japan",
+    "action": "Obtain credentials that allow you to calculate routes in Japan",
+    "correlationId": "4199533b-6290-41db-8d79-edf4f4019a74"
+}

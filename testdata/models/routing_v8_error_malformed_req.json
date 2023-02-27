@@ -1,0 +1,8 @@
+{
+    "title": "Malformed request",
+    "status": 400,
+    "code": "E605001",
+    "cause": "Error while parsing request: Invalid value for parameter 'transportMode' at '%2834.058834%2C+-117.428107%29'\\n  Invalid transport mode at '(34.058834,+-117.428107)'",
+    "action": "",
+    "correlationId": "afdf4224-1a0f-4cd3-992e-97eb58ac613e"
+}
