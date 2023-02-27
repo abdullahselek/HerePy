@@ -14,7 +14,7 @@ __description__ = "A library that provides a Python interface to the HERE APIs"
 
 import json
 
-from .error import HEREError, UnauthorizedError, InvalidRequestError
+from .error import HEREError, UnauthorizedError, InvalidRequestError, AccessDeniedError
 
 from .here_enum import (
     RouteMode,
