@@ -1003,7 +1003,7 @@ def error_from_routing_service_error(json_data):
     if "error" in json_data and json_data["error"] == "Unauthorized":
         return InvalidCredentialsError(json_data["error_description"])
     elif "status" in json_data:
-        error_msg = f"Cause: {json_data['cause']}; Action: {json_data['action']}"
+        error_msg = str.format("Cause: {0}; Action: {1}", json_data['cause'], json_data['action'])
         if json_data["status"] == 400:
             return InvalidRequestError(error_msg)
         elif json_data["status"] == 403:
