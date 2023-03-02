@@ -946,6 +946,61 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
+    def test_arrival_as_string(self):
+        with codecs.open(
+            "testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://route.ls.hereapi.com/routing/7.2/calculateroute.json",
+            expectedResponse,
+            status=200,
+        )
+        date = "2013-07-04T17:00:00+02:00"
+        response = self._api.public_transport_timetable([11.0, 12.0], [15.0, 16.0], True, arrival=date)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
+
+    @responses.activate
+    def test_arrival_as_datetime(self):
+        with codecs.open(
+            "testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://route.ls.hereapi.com/routing/7.2/calculateroute.json",
+            expectedResponse,
+            status=200,
+        )
+        date = datetime.datetime(
+            2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200))
+        )
+        response = self._api.public_transport_timetable([11.0, 12.0], [15.0, 16.0], True, arrival=date)
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponse)
+
+    @responses.activate
+    def test_error_arrival_and_departure_set(self):
+        with codecs.open(
+            "testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://route.ls.hereapi.com/routing/7.2/calculateroute.json",
+            expectedResponse,
+            status=200,
+        )
+        with self.assertRaises(herepy.HEREError):
+            self._api.public_transport_timetable(
+                [11.0, 12.0], [15.0, 16.0], True,
+                departure="2023-01-01T00:00:00",
+                arrival="2023-01-01T00:00:00"
+            )
+
+    @responses.activate
     def test_location_by_name(self):
         with codecs.open(
             "testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8"
