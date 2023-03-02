@@ -1,22 +1,14 @@
 #!/usr/bin/env python
 
-import datetime
-import os
-import sys
-import unittest
-import responses
 import codecs
-import herepy
+import datetime
+import unittest
 
-from herepy import (
-    AvoidArea,
-    AvoidFeature,
-    Avoid,
-    Truck,
-    ShippedHazardousGood,
-    TunnelCategory,
-    TruckType,
-)
+import responses
+
+import herepy
+from herepy import (Avoid, AvoidArea, AvoidFeature, ShippedHazardousGood,
+                    Truck, TruckType, TunnelCategory)
 
 
 class RoutingApiTest(unittest.TestCase):

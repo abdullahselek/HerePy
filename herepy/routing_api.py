@@ -1,32 +1,33 @@
 #!/usr/bin/env python
 
-import os
 import datetime
-import sys
 import json
+import os
+import sys
+from typing import Dict, List, Optional, Union
+
 import requests
 
+from herepy import polling
+from herepy.error import AccessDeniedError, HEREError, InvalidRequestError
 from herepy.geocoder_api import GeocoderApi
 from herepy.here_api import HEREApi
-from herepy.utils import Utils
-from herepy.error import HEREError, InvalidRequestError, AccessDeniedError
-from herepy.models import RoutingResponse, RoutingMatrixResponse, RoutingResponseV8
 from herepy.here_enum import (
-    RouteMode,
-    RoutingMode,
-    RoutingTransportMode,
-    RoutingMetric,
-    RoutingApiReturnField,
-    RoutingApiSpanField,
-    MatrixSummaryAttribute,
-    MatrixRoutingType,
     MatrixRoutingMode,
     MatrixRoutingProfile,
     MatrixRoutingTransportMode,
+    MatrixRoutingType,
+    MatrixSummaryAttribute,
+    RouteMode,
+    RoutingApiReturnField,
+    RoutingApiSpanField,
+    RoutingMetric,
+    RoutingMode,
+    RoutingTransportMode,
 )
+from herepy.models import RoutingMatrixResponse, RoutingResponse, RoutingResponseV8
 from herepy.objects import Avoid, Truck
-from herepy import polling
-from typing import List, Dict, Union, Optional
+from herepy.utils import Utils
 
 
 class RoutingApi(HEREApi):
@@ -67,14 +68,13 @@ class RoutingApi(HEREApi):
                 return response_cls.new_from_jsondict(json_data)
             else:
                 raise HEREError(
-                "Error occurred on routing_api __get "
-                + sys._getframe(1).f_code.co_name
-                + " response status code "
-                + str(response.status_code)
-            )
+                    "Error occurred on routing_api __get "
+                    + sys._getframe(1).f_code.co_name
+                    + " response status code "
+                    + str(response.status_code)
+                )
         else:
             raise error_from_routing_service_error(json_data)
-
 
     @classmethod
     def __prepare_mode_values(cls, modes):
@@ -1003,7 +1003,9 @@ def error_from_routing_service_error(json_data):
     if "error" in json_data and json_data["error"] == "Unauthorized":
         return InvalidCredentialsError(json_data["error_description"])
     elif "status" in json_data:
-        error_msg = str.format("Cause: {0}; Action: {1}", json_data['cause'], json_data['action'])
+        error_msg = str.format(
+            "Cause: {0}; Action: {1}", json_data["cause"], json_data["action"]
+        )
         if json_data["status"] == 400:
             return InvalidRequestError(error_msg)
         elif json_data["status"] == 403:
