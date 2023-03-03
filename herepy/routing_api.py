@@ -1,32 +1,33 @@
 #!/usr/bin/env python
 
-import os
 import datetime
-import sys
 import json
+import os
+import sys
+from typing import Dict, List, Optional, Union
+
 import requests
 
+from herepy import polling
+from herepy.error import AccessDeniedError, HEREError, InvalidRequestError
 from herepy.geocoder_api import GeocoderApi
 from herepy.here_api import HEREApi
-from herepy.utils import Utils
-from herepy.error import HEREError
-from herepy.models import RoutingResponse, RoutingMatrixResponse, RoutingResponseV8
 from herepy.here_enum import (
-    RouteMode,
-    RoutingMode,
-    RoutingTransportMode,
-    RoutingMetric,
-    RoutingApiReturnField,
-    RoutingApiSpanField,
-    MatrixSummaryAttribute,
-    MatrixRoutingType,
     MatrixRoutingMode,
     MatrixRoutingProfile,
     MatrixRoutingTransportMode,
+    MatrixRoutingType,
+    MatrixSummaryAttribute,
+    RouteMode,
+    RoutingApiReturnField,
+    RoutingApiSpanField,
+    RoutingMetric,
+    RoutingMode,
+    RoutingTransportMode,
 )
+from herepy.models import RoutingMatrixResponse, RoutingResponse, RoutingResponseV8
 from herepy.objects import Avoid, Truck
-from herepy import polling
-from typing import List, Dict, Union, Optional
+from herepy.utils import Utils
 
 
 class RoutingApi(HEREApi):
@@ -63,17 +64,9 @@ class RoutingApi(HEREApi):
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode("utf8"))
         if response.status_code == requests.codes.OK:
-            if json_data.get(key) is not None:
-                return response_cls.new_from_jsondict(json_data)
-            else:
-                raise error_from_routing_service_error(json_data)
+            return response_cls.new_from_jsondict(json_data)
         else:
-            raise HEREError(
-                "Error occurred on routing_api __get "
-                + sys._getframe(1).f_code.co_name
-                + " response status code "
-                + str(response.status_code)
-            )
+            raise error_from_routing_service_error(json_data)
 
     @classmethod
     def __prepare_mode_values(cls, modes):
@@ -998,10 +991,19 @@ class RouteNotReconstructedError(HEREError):
 def error_from_routing_service_error(json_data):
     """Return the correct subclass for routing errors"""
 
-    if "error" in json_data:
-        if json_data["error"] == "Unauthorized":
-            return InvalidCredentialsError(json_data["error_description"])
+    # V8 error handling
+    if "error" in json_data and json_data["error"] == "Unauthorized":
+        return InvalidCredentialsError(json_data["error_description"])
+    elif "status" in json_data:
+        error_msg = str.format(
+            "Cause: {0}; Action: {1}", json_data["cause"], json_data["action"]
+        )
+        if json_data["status"] == 400:
+            return InvalidRequestError(error_msg)
+        elif json_data["status"] == 403:
+            return AccessDeniedError(error_msg)
 
+    # V7 error handling
     if "subtype" in json_data:
         subtype = json_data["subtype"]
         details = json_data["details"]
