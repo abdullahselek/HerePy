@@ -1,20 +1,16 @@
 #!/usr/bin/env python
 
+import codecs
+import json
 import os
 import time
 import unittest
-import json
-import responses
-import codecs
 
-from herepy import (
-    IsolineRoutingApi,
-    IsolineRoutingResponse,
-    IsolineRoutingTransportMode,
-    IsolineRoutingMode,
-    UnauthorizedError,
-    HEREError,
-)
+import responses
+
+from herepy import (HEREError, IsolineRoutingApi, IsolineRoutingMode,
+                    IsolineRoutingResponse, IsolineRoutingTransportMode,
+                    UnauthorizedError)
 
 
 class IsolineRoutingApiTest(unittest.TestCase):

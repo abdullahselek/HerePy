@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
-import sys
 import json
+import sys
+from typing import List, Optional
+
 import requests
 
-from herepy.here_api import HEREApi
-from herepy.utils import Utils
 from herepy.error import HEREError
+from herepy.here_api import HEREApi
 from herepy.models import GeocoderAutoCompleteResponse
-from typing import List, Optional
+from herepy.utils import Utils
 
 
 class GeocoderAutoCompleteApi(HEREApi):

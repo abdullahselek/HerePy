@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
-import sys
 import json
+import sys
+from typing import List, Optional
+
 import requests
 
-from typing import List, Optional
-from herepy.here_enum import EVStationConnectorTypes
-from herepy.utils import Utils
 from herepy.error import HEREError
+from herepy.here_enum import EVStationConnectorTypes
 from herepy.models import EVChargingStationsResponse
+from herepy.utils import Utils
 
 
 class EVChargingStationsApi:

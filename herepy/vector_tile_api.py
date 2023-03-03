@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
-import sys
 import json
+import sys
+from typing import Dict, Optional
+
 import requests
 
-from typing import Optional, Dict
+from herepy import MercatorProjection, VectorMapTileLayer
+from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
-from herepy import VectorMapTileLayer, MercatorProjection
-from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 
 
 class VectorTileApi(HEREApi):

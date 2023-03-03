@@ -12,20 +12,13 @@ from herepy import polling
 from herepy.error import AccessDeniedError, HEREError, InvalidRequestError
 from herepy.geocoder_api import GeocoderApi
 from herepy.here_api import HEREApi
-from herepy.here_enum import (
-    MatrixRoutingMode,
-    MatrixRoutingProfile,
-    MatrixRoutingTransportMode,
-    MatrixRoutingType,
-    MatrixSummaryAttribute,
-    RouteMode,
-    RoutingApiReturnField,
-    RoutingApiSpanField,
-    RoutingMetric,
-    RoutingMode,
-    RoutingTransportMode,
-)
-from herepy.models import RoutingMatrixResponse, RoutingResponse, RoutingResponseV8
+from herepy.here_enum import (MatrixRoutingMode, MatrixRoutingProfile,
+                              MatrixRoutingTransportMode, MatrixRoutingType,
+                              MatrixSummaryAttribute, RouteMode,
+                              RoutingApiReturnField, RoutingApiSpanField,
+                              RoutingMetric, RoutingMode, RoutingTransportMode)
+from herepy.models import (RoutingMatrixResponse, RoutingResponse,
+                           RoutingResponseV8)
 from herepy.objects import Avoid, Truck
 from herepy.utils import Utils
 

@@ -18,12 +18,14 @@ class UnauthorizedError(HEREError):
     Indicates authentication failure, invalid credentials were supplied.
     """
 
+
 class AccessDeniedError(HEREError):
 
     """Access Denied Error Type.
 
     Indicates the request is not permitted with the credentials provided.
     """
+
 
 class InvalidRequestError(HEREError):
 

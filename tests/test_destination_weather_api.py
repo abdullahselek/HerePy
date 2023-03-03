@@ -1,18 +1,14 @@
 #!/usr/bin/env python
 
+import json
 import os
 import time
 import unittest
-import json
+
 import responses
 
-from herepy import (
-    DestinationWeatherApi,
-    DestinationWeatherResponse,
-    WeatherProductType,
-    InvalidRequestError,
-    UnauthorizedError,
-)
+from herepy import (DestinationWeatherApi, DestinationWeatherResponse,
+                    InvalidRequestError, UnauthorizedError, WeatherProductType)
 
 
 class DestinationWeatherApiTest(unittest.TestCase):

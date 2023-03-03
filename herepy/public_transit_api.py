@@ -1,19 +1,17 @@
 #!/usr/bin/env python
 
-import sys
 import json
+import sys
+from typing import List, Optional
+
 import requests
 
-from herepy.here_api import HEREApi
-from herepy.utils import Utils
 from herepy.error import HEREError, UnauthorizedError
+from herepy.here_api import HEREApi
+from herepy.here_enum import (PublicTransitModeType, PublicTransitRoutingMode,
+                              PublicTransitSearchMethod)
 from herepy.models import PublicTransitResponse
-from herepy.here_enum import (
-    PublicTransitSearchMethod,
-    PublicTransitRoutingMode,
-    PublicTransitModeType,
-)
-from typing import List, Optional
+from herepy.utils import Utils
 
 
 class PublicTransitApi(HEREApi):

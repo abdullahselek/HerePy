@@ -2,7 +2,7 @@
 
 
 class HEREApi(object):
-    """ Base class from which all wrappers inherit."""
+    """Base class from which all wrappers inherit."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """Returns a Api instance.

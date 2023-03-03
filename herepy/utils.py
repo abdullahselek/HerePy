@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-import zlib
 import base64
-
-from urllib.parse import urlparse, urlunparse, urlencode
+import zlib
+from urllib.parse import urlencode, urlparse, urlunparse
 
 from herepy.error import HEREError
 

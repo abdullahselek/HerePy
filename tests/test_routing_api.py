@@ -658,7 +658,7 @@ class RoutingApiTest(unittest.TestCase):
         )
         with self.assertRaises(herepy.NoRouteFoundError):
             self._api.truck_route([11.0, 12.0], [47.013399, -10.171986])
-    
+
     @responses.activate
     def test_truckroute_when_error_no_route_found_graph_disconnect_occurred(self):
         with open("testdata/models/routing_error_no_route_found_truck.json", "r") as f:
@@ -958,7 +958,9 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
         )
         date = "2013-07-04T17:00:00+02:00"
-        response = self._api.public_transport_timetable([11.0, 12.0], [15.0, 16.0], True, arrival=date)
+        response = self._api.public_transport_timetable(
+            [11.0, 12.0], [15.0, 16.0], True, arrival=date
+        )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -977,7 +979,9 @@ class RoutingApiTest(unittest.TestCase):
         date = datetime.datetime(
             2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200))
         )
-        response = self._api.public_transport_timetable([11.0, 12.0], [15.0, 16.0], True, arrival=date)
+        response = self._api.public_transport_timetable(
+            [11.0, 12.0], [15.0, 16.0], True, arrival=date
+        )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
@@ -995,9 +999,11 @@ class RoutingApiTest(unittest.TestCase):
         )
         with self.assertRaises(herepy.HEREError):
             self._api.public_transport_timetable(
-                [11.0, 12.0], [15.0, 16.0], True,
+                [11.0, 12.0],
+                [15.0, 16.0],
+                True,
                 departure="2023-01-01T00:00:00",
-                arrival="2023-01-01T00:00:00"
+                arrival="2023-01-01T00:00:00",
             )
 
     @responses.activate
@@ -1080,11 +1086,13 @@ class RoutingApiTest(unittest.TestCase):
         )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponseV8)
-    
+
     @responses.activate
     def test_route_v8_error_invalid_credentials(self):
         with open(
-            "testdata/models/routing_error_invalid_credentials.json", mode="r", encoding="utf-8"
+            "testdata/models/routing_error_invalid_credentials.json",
+            mode="r",
+            encoding="utf-8",
         ) as f:
             expectedResponse = f.read()
         responses.add(
@@ -1110,14 +1118,16 @@ class RoutingApiTest(unittest.TestCase):
                 truck={"shippedHazardousGoods": ["explosive", "gas"]},
                 scooter={"allowHighway": "true"},
             )
-    
+
     @responses.activate
     def test_route_v8_error_malformed_request(self):
-        '''
-            Usually this error occurs
-        '''
+        """
+        Usually this error occurs
+        """
         with codecs.open(
-            "testdata/models/routing_v8_error_malformed_req.json", mode="r", encoding="utf-8"
+            "testdata/models/routing_v8_error_malformed_req.json",
+            mode="r",
+            encoding="utf-8",
         ) as f:
             expectedResponse = f.read()
         responses.add(
@@ -1132,15 +1142,19 @@ class RoutingApiTest(unittest.TestCase):
                 # Assume user uses ordering/values of the v7 functions
                 [41.9798, -87.8801],
                 [41.9043, -87.9216],
-                [herepy.RouteMode.truck, 
-                 herepy.RouteMode.balanced, 
-                 herepy.RouteMode.traffic_disabled],
+                [
+                    herepy.RouteMode.truck,
+                    herepy.RouteMode.balanced,
+                    herepy.RouteMode.traffic_disabled,
+                ],
             )
 
     @responses.activate
     def test_route_v8_error_access_denied(self):
         with codecs.open(
-            "testdata/models/routing_v8_error_access_denied.json", mode="r", encoding="utf-8"
+            "testdata/models/routing_v8_error_access_denied.json",
+            mode="r",
+            encoding="utf-8",
         ) as f:
             expectedResponse = f.read()
         responses.add(

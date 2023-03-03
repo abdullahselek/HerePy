@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
+import codecs
 import datetime
 import os
 import sys
 import unittest
+
 import responses
-import codecs
+
 import herepy
 
 

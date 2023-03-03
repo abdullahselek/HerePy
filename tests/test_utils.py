@@ -2,8 +2,8 @@
 
 import os
 import unittest
-import herepy
 
+import herepy
 from herepy.utils import Utils
 
 

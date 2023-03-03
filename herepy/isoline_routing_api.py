@@ -1,19 +1,17 @@
 #!/usr/bin/env python
 
-import sys
 import json
+import sys
+from typing import List, Optional
+
 import requests
 
-from typing import List, Optional
+from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 from herepy.here_api import HEREApi
-from herepy.utils import Utils
+from herepy.here_enum import (IsolineRoutingMode, IsolineRoutingRangeType,
+                              IsolineRoutingTransportMode)
 from herepy.models import IsolineRoutingResponse
-from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
-from herepy.here_enum import (
-    IsolineRoutingTransportMode,
-    IsolineRoutingMode,
-    IsolineRoutingRangeType,
-)
+from herepy.utils import Utils
 
 
 class IsolineRoutingApi(HEREApi):

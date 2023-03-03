@@ -1,22 +1,18 @@
 #!/usr/bin/env python
 
-import sys
 import json
-import requests
-
+import sys
 from random import randrange
 from typing import Dict, Optional
+
+import requests
+
+from herepy import BaseMapTileResourceType, MapTileApiType, MapTileResourceType
+from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
-from herepy import (
-    MercatorProjection,
-    MapTileApiType,
-    MapTileResourceType,
-    BaseMapTileResourceType,
-    AerialMapTileResourceType,
-    TrafficMapTileResourceType,
-)
-from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
+
+from .mercator_projection import MercatorProjection
 
 
 class MapTileApi(HEREApi):

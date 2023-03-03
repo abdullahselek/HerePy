@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
+import json
 import os
 import time
 import unittest
-import json
-import responses
-import herepy
 
+import responses
+
+import herepy
 from herepy.here_enum import EVStationConnectorTypes
 
 

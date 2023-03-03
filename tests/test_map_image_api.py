@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
+import codecs
+import io
+import json
 import os
 import sys
-import io
 import unittest
-import codecs
-import json
-
 from unittest.mock import Mock, patch
+
 from herepy import MapImageApi
 
 

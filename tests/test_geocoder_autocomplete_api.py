@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
+import json
 import os
 import time
 import unittest
-import json
+
 import responses
+
 import herepy
 
 
@@ -17,7 +19,8 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
         self.assertIsInstance(self._api, herepy.GeocoderAutoCompleteApi)
         self.assertEqual(self._api._api_key, "api_key")
         self.assertEqual(
-            self._api._base_url, "https://autocomplete.search.hereapi.com/v1/autocomplete"
+            self._api._base_url,
+            "https://autocomplete.search.hereapi.com/v1/autocomplete",
         )
 
     @responses.activate

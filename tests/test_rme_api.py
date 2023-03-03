@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 
+import io
+import json
 import os
 import time
 import unittest
-import json
+
 import responses
+
 import herepy
-import io
 
 
 class RmeApiTest(unittest.TestCase):

@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
+import json
 import os
 import time
 import unittest
-import json
+
 import responses
+
 import herepy
 
 

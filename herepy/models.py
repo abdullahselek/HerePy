@@ -2,7 +2,7 @@ import json
 
 
 class HEREModel(object):
-    """ Base class from which all here models will inherit."""
+    """Base class from which all here models will inherit."""
 
     def __init__(self, **kwargs):
         self.param_defaults = {}
@@ -191,7 +191,7 @@ class TrafficIncidentResponse(HEREModel):
             "VERSION": None,
             "TRAFFIC_ITEMS": None,
             "EXTENDED_COUNTRY_CODE": None,
-            "error": None
+            "error": None,
         }
 
         for (param, default) in self.param_defaults.items():

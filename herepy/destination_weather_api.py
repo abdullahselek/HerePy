@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 
-import sys
 import json
+import sys
+from typing import Optional
+
 import requests
 
+from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 from herepy.here_api import HEREApi
-from herepy.utils import Utils
-from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
-from herepy.models import DestinationWeatherResponse
 from herepy.here_enum import WeatherProductType
-from typing import Optional
+from herepy.models import DestinationWeatherResponse
+from herepy.utils import Utils
 
 
 class DestinationWeatherApi(HEREApi):

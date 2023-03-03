@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 
-import sys
 import json
-import requests
-
+import sys
 from typing import List, Optional
 
-from herepy.here_api import HEREApi
-from herepy.here_enum import RouteMode, MultiplePickupOfferType
-from herepy.utils import Utils
-from herepy.models import WaypointSequenceResponse
+import requests
+
 from herepy.error import HEREError
+from herepy.here_api import HEREApi
+from herepy.here_enum import MultiplePickupOfferType, RouteMode
+from herepy.models import WaypointSequenceResponse
+from herepy.utils import Utils
 
 
 class FleetTelematicsApi(HEREApi):

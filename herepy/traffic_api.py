@@ -1,25 +1,19 @@
 #!/usr/bin/env python
 
-import sys
 import json
+import sys
+from enum import Enum
+from typing import List, Optional
+
 import requests
 
+from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 from herepy.here_api import HEREApi
+from herepy.here_enum import (FlowProximityAdditionalAttributes,
+                              IncidentsCriticalityInt, IncidentsCriticalityStr)
+from herepy.models import (TrafficFlowAvailabilityResponse,
+                           TrafficFlowResponse, TrafficIncidentResponse)
 from herepy.utils import Utils
-from herepy.error import HEREError, UnauthorizedError, InvalidRequestError
-from herepy.models import (
-    TrafficIncidentResponse,
-    TrafficFlowResponse,
-    TrafficFlowAvailabilityResponse,
-)
-from herepy.here_enum import (
-    IncidentsCriticalityStr,
-    IncidentsCriticalityInt,
-    FlowProximityAdditionalAttributes,
-)
-
-from typing import List, Optional
-from enum import Enum
 
 
 class TrafficApi(HEREApi):
@@ -43,22 +37,24 @@ class TrafficApi(HEREApi):
         json_data = json.loads(response._content.decode("utf8"))
         if json_data.get("TRAFFIC_ITEMS") != None:
             return TrafficIncidentResponse.new_from_jsondict(
-                json_data, param_defaults={
+                json_data,
+                param_defaults={
                     "TIMESTAMP": None,
                     "VERSION": None,
                     "TRAFFIC_ITEMS": None,
                     "EXTENDED_COUNTRY_CODE": None,
                     "error": None,
-                }
+                },
             )
         elif json_data.get("RWS") != None:
             return TrafficFlowResponse.new_from_jsondict(
-                json_data, param_defaults={
+                json_data,
+                param_defaults={
                     "RWS": None,
                     "CREATED_TIMESTAMP": None,
                     "VERSION": None,
                     "UNITS": None,
-                }
+                },
             )
         elif json_data.get("Response") != None:
             return TrafficFlowAvailabilityResponse.new_from_jsondict(
@@ -204,10 +200,10 @@ class TrafficApi(HEREApi):
         return self.__get(self._base_url + "flow.json", data)
 
     def flow_within_boundingbox(
-        self, 
-        top_left: List[float], 
-        bottom_right: List[float], 
-        response_attributes: str = "sh,fc"
+        self,
+        top_left: List[float],
+        bottom_right: List[float],
+        response_attributes: str = "sh,fc",
     ) -> Optional[TrafficFlowResponse]:
         """Request traffic flow information within specified area.
         Args:

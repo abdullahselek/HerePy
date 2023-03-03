@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
-import os
 import unittest
-import herepy
 
 from herepy import MercatorProjection
 
