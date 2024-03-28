@@ -1179,3 +1179,29 @@ class RoutingApiTest(unittest.TestCase):
                 truck={"shippedHazardousGoods": ["explosive", "gas"]},
                 scooter={"allowHighway": "true"},
             )
+
+    @responses.activate
+    def test_route_v8_multiple_via_points(self):
+        with codecs.open(
+            "testdata/models/routing_v8_response.json", mode="r", encoding="utf-8"
+        ) as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://router.hereapi.com/v8/routes",
+            expectedResponse,
+            status=200,
+            match=[
+                responses.matchers.query_param_matcher(
+                    {"via": ["41.9339,-87.9021"] * 11}, strict_match=False
+                )
+            ],
+        )
+        response = self._api.route_v8(
+            transport_mode=herepy.RoutingTransportMode.car,
+            origin=[41.9798, -87.8801],
+            destination=[41.9043, -87.9216],
+            via=[[41.9339, -87.9021]] * 11,
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.RoutingResponseV8)
