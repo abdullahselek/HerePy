@@ -1182,14 +1182,10 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_route_v8_multiple_via_points(self):
-        with codecs.open(
-            "testdata/models/routing_v8_response.json", mode="r", encoding="utf-8"
-        ) as f:
-            expectedResponse = f.read()
         responses.add(
             responses.GET,
             "https://router.hereapi.com/v8/routes",
-            expectedResponse,
+            "{}",
             status=200,
             match=[
                 responses.matchers.query_param_matcher(
