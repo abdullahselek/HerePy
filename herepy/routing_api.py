@@ -448,7 +448,7 @@ class RoutingApi(HEREApi):
         via_keys = []
         if via:
             for i, v in enumerate(via):
-                key = str.format("{0}{1}", "via", i)
+                key = str.format("{0}{1}_", "via", i)
                 via_keys.append(key)
                 data[key] = str.format("{0},{1}", v[0], v[1])
         if departure_time:
