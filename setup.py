@@ -47,7 +47,7 @@ setup(
     packages=find_packages(exclude=("tests", "docs")),
     package_data={"herepy": ["py.typed"]},
     platforms=["Any"],
-    python_requires=">=3.5",
+    python_requires=">=3.8",
     install_requires=requirements,
     keywords="here api, here technologies, here python api clients, rest api clients",
     classifiers=[
