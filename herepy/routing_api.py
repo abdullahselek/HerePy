@@ -448,7 +448,7 @@ class RoutingApi(HEREApi):
         via_keys = []
         if via:
             for i, v in enumerate(via):
-                key = str.format("{0}{1}", "via", i)
+                key = str.format("{0}{1}_", "via", i)
                 via_keys.append(key)
                 data[key] = str.format("{0},{1}", v[0], v[1])
         if departure_time:
@@ -845,7 +845,7 @@ class RoutingApi(HEREApi):
             geocoder_response = geocoder_api.free_form(location_name)
             coordinates = geocoder_response.items[0]["position"]
             return [coordinates["lat"], coordinates["lng"]]
-        except (HEREError) as here_error:
+        except HEREError as here_error:
             raise WaypointNotFoundError(here_error.message)
 
     @staticmethod
