@@ -106,8 +106,8 @@ class GeocoderApi(HEREApi):
 
     def address_with_details(
         self,
-        house_number: int,
-        street: str,
+        house_number: Optional[int] = None,
+        street: Optional[str] = None,
         city: str,
         country: str,
         lang: str = "en-US",
@@ -129,11 +129,16 @@ class GeocoderApi(HEREApi):
         Raises:
           HEREError"""
 
+        qq_query = ""
+        if house_number is not None:
+            qq_query += f"houseNumber={house_number};"
+        if street is not None:
+            qq_query += f"street={street};"
+        qq_query += f"city={city};"
+        qq_query += f"country={country}"
+
         data = {
-            "qq": str.format("houseNumber={0};", house_number)
-            + str.format("street={0};", street)
-            + str.format("city={0};", city)
-            + str.format("country={0}", country),
+            "qq": qq_query,
             "apiKey": self._api_key,
             "lang": lang,
         }
