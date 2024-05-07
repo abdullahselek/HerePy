@@ -106,11 +106,11 @@ class GeocoderApi(HEREApi):
 
     def address_with_details(
         self,
-        house_number: Optional[int] = None,
-        street: Optional[str] = None,
         city: str,
         country: str,
         lang: str = "en-US",
+        house_number: Optional[int] = None,
+        street: Optional[str] = None,
     ) -> Optional[GeocoderResponse]:
         """Geocodes with given address details
         Args:
