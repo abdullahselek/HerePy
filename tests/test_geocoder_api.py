@@ -90,10 +90,53 @@ class GeocoderApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.address_with_details(34, "Barbaros", "Istanbul", "Turkey")
+        response = self._api.address_with_details(
+            street="Barbaros",
+            city="Istanbul",
+            country="Turkey",
+            house_number=34
+        )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.GeocoderResponse)
 
+    @responses.activate
+    def test_address_with_detail_without_street(self):
+        with open("testdata/models/geocoder.json", "r") as f:
+            expected_response = f.read()
+        responses.add(
+            responses.GET,
+            "https://geocode.search.hereapi.com/v1/geocode",
+            expected_response,
+            status=200,
+        )
+        response = self._api.address_with_details(
+            city="Istanbul",
+            country="Turkey",
+            house_number=34,
+            street= None
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.GeocoderResponse)
+
+    @responses.activate
+    def test_address_with_detail_without_house_number(self):
+        with open("testdata/models/geocoder.json", "r") as f:
+            expected_response = f.read()
+        responses.add(
+            responses.GET,
+            "https://geocode.search.hereapi.com/v1/geocode",
+            expected_response,
+            status=200,
+        )
+        response = self._api.address_with_details(
+            street="Barbaros",
+            city="Istanbul",
+            country="Turkey",
+            house_number= None
+        )
+        self.assertTrue(response)
+        self.assertIsInstance(response, herepy.GeocoderResponse)
+        
     @responses.activate
     def test_addresswithdetails_whenerroroccurred(self):
         with open("testdata/models/geocoder_error.json", "r") as f:
