@@ -141,6 +141,20 @@ class RoutingApiTest(unittest.TestCase):
             api.car_route([11.0, 12.0], [22.0, 23.0])
 
     @responses.activate
+    def test_carroute_when_error_forbidden_credentials_occurred(self):
+        with open("testdata/models/routing_error_forbidden_credentials.json", "r") as f:
+            expectedResponse = f.read()
+        responses.add(
+            responses.GET,
+            "https://route.ls.hereapi.com/routing/7.2/calculateroute.json",
+            expectedResponse,
+            status=401,
+        )
+        api = herepy.RoutingApi("forbidden_api_key", "forbidden_app_code")
+        with self.assertRaises(herepy.InvalidCredentialsError):
+            api.car_route([11.0, 12.0], [22.0, 23.0])
+
+    @responses.activate
     def test_carroute_when_error_no_route_found_occurred(self):
         with open("testdata/models/routing_error_no_route_found.json", "r") as f:
             expectedResponse = f.read()
