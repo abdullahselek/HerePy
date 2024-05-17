@@ -982,36 +982,66 @@ class RouteNotReconstructedError(HEREError):
 
 # pylint: disable=R0911
 def error_from_routing_service_error(json_data):
-    """Return the correct subclass for routing errors"""
+    """Return the correct error class for routing errors."""
 
-    # V8 error handling
-    if "error" in json_data and json_data["error"] == "Unauthorized":
-        return InvalidCredentialsError(json_data["error_description"])
-    elif "error" in json_data and json_data["error"] == "Forbidden":
-        return InvalidCredentialsError(json_data["error_description"])
+    if "error" in json_data:
+        return _auth_error(json_data)
     elif "status" in json_data:
-        error_msg = str.format(
-            "Cause: {0}; Action: {1}", json_data["cause"], json_data["action"]
-        )
-        if json_data["status"] == 400:
-            return InvalidRequestError(error_msg)
-        elif json_data["status"] == 403:
-            return AccessDeniedError(error_msg)
+        return _status_error(json_data)
+    elif "subtype" in json_data:
+        return _request_error(json_data)
+    else:
+        return _default_error(json_data)
+      
 
-    # V7 error handling
-    if "subtype" in json_data:
-        subtype = json_data["subtype"]
-        details = json_data["details"]
+def _auth_error(json_data):
+    """ 'error' in response data, return appropriate error."""
 
-        if subtype == "InvalidInputData":
-            return InvalidInputDataError(details)
-        if subtype == "WaypointNotFound":
-            return WaypointNotFoundError(details)
-        if subtype == "NoRouteFound":
-            return NoRouteFoundError(details)
-        if subtype == "LinkIdNotFound":
-            return LinkIdNotFoundError(details)
-        if subtype == "RouteNotReconstructed":
-            return RouteNotReconstructedError(details)
-    # pylint: disable=W0212
-    return HEREError("Error occurred on " + sys._getframe(1).f_code.co_name)
+    error_type = json_data["error"]
+    
+    if error_type in ["Unauthorized", "Forbidden"]:
+        return InvalidCredentialsError(json_data["error_description"])
+    else:
+        return _default_error(json_data)
+
+
+def _status_error(json_data):
+    """ 'status' in response data, return appropriate error."""
+
+    error_msg = f"Cause: {json_data['cause']}; Action: {json_data['action']}"
+    status_code = json_data["status"]
+    if status_code == 400:
+        return InvalidRequestError(error_msg)
+    elif status_code == 403:
+        return AccessDeniedError(error_msg)
+    else:
+        return _default_error(json_data)
+
+
+
+def _request_error(json_data):
+    """ 'subtype' in error response, return appropriate response"""
+
+    subtype = json_data["subtype"]
+    details = json_data["details"]
+
+    if subtype == "InvalidInputData":
+        return InvalidInputDataError(details)
+    elif subtype == "WaypointNotFound":
+        return WaypointNotFoundError(details)
+    elif subtype == "NoRouteFound":
+        return NoRouteFoundError(details)
+    elif subtype == "LinkIdNotFound":
+        return LinkIdNotFoundError(details)
+    elif subtype == "RouteNotReconstructed":
+        return RouteNotReconstructedError(details)
+    else:
+        return _default_error(json_data)
+
+
+def _default_error(json_data):
+  """ default response message when error type is unknown."""
+
+  function_name = sys._getframe(1).f_code.co_name
+  default_error_message = f"Error occurred on {function_name} - API Response: {json_data}" 
+  return HEREError(default_error_message)
