@@ -987,6 +987,8 @@ def error_from_routing_service_error(json_data):
     # V8 error handling
     if "error" in json_data and json_data["error"] == "Unauthorized":
         return InvalidCredentialsError(json_data["error_description"])
+    elif "error" in json_data and json_data["error"] == "Forbidden":
+        return InvalidCredentialsError(json_data["error_description"])
     elif "status" in json_data:
         error_msg = str.format(
             "Cause: {0}; Action: {1}", json_data["cause"], json_data["action"]
