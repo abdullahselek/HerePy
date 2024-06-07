@@ -106,11 +106,12 @@ class GeocoderApi(HEREApi):
 
     def address_with_details(
         self,
-        city: str,
-        country: str,
-        lang: str = "en-US",
         house_number: Optional[int] = None,
         street: Optional[str] = None,
+        city: Optional[str] = None,
+        postal_code: Optional[str] = None,
+        country: Optional[str] = None,
+        lang: str = "en-US",
     ) -> Optional[GeocoderResponse]:
         """Geocodes with given address details
         Args:
@@ -122,6 +123,8 @@ class GeocoderApi(HEREApi):
             city name.
           country (str):
             country name.
+          postal_code (str):
+            postal code.
           lang (str):
             BCP47 compliant Language Code.
         Returns:
@@ -129,16 +132,23 @@ class GeocoderApi(HEREApi):
         Raises:
           HEREError"""
 
-        qq_query = ""
+        qq_params = []
         if house_number is not None:
-            qq_query += f"houseNumber={house_number};"
-        if street is not None:
-            qq_query += f"street={street};"
-        qq_query += f"city={city};"
-        qq_query += f"country={country}"
+            qq_params.append(f"houseNumber={house_number}")
+        if street:
+            qq_params.append(f"street={street}")
+        if city:
+            qq_params.append(f"city={city}")
+        if postal_code:
+            qq_params.append(f"postalCode={postal_code}")
+        if country:
+            qq_params.append(f"country={country}")
+
+        if len(qq_params) == 0:
+            raise HEREError("At least one of the parameters should be provided")
 
         data = {
-            "qq": qq_query,
+            "qq": ";".join(qq_params),
             "apiKey": self._api_key,
             "lang": lang,
         }
