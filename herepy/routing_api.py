@@ -463,8 +463,8 @@ class RoutingApi(HEREApi):
                 key: ",".join(values),
             }
         if exclude:
-            key = list(avoid.keys())[0]
-            values = list(avoid.values())[0]
+            key = list(exclude.keys())[0]
+            values = list(exclude.values())[0]
             data["exclude"] = {
                 key: ",".join(values),
             }
@@ -477,8 +477,8 @@ class RoutingApi(HEREApi):
         if span_fields:
             data["spans"] = ",".join([field.__str__() for field in span_fields])
         if truck:
-            key = list(avoid.keys())[0]
-            values = list(avoid.values())[0]
+            key = list(truck.keys())[0]
+            values = list(truck.values())[0]
             data["truck"] = {
                 key: ",".join(values),
             }
