@@ -18,16 +18,23 @@ class Utils(object):
           parameters (dict):
             dictionary of query parameters to be converted.
         Returns:
-          A URL-encoded string in "key=value&key=value" form
+          A URL-encoded string in "key=value&key=value" form. If the parameter value is
+            a dict, the encoded string is converted to "main_key[sub_key]=sub_value".
         """
         if parameters is None:
             return None
         if not isinstance(parameters, dict):
             raise HEREError("`parameters` must be a dict.")
         else:
-            return urlencode(
-                dict((k, v) for k, v in parameters.items() if v is not None)
-            )
+            parameters = dict((k, v) for k, v in parameters.items() if v is not None)
+            result = dict()
+            for key, value in parameters.items():
+                if isinstance(value, dict):
+                    for sub_key, sub_value in value.items():
+                        result[f"{key}[{sub_key}]"] = sub_value
+                else:
+                    result[key] = value
+            return urlencode(result)
 
     @staticmethod
     def build_url(url, extra_params=None):

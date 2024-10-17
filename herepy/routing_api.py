@@ -457,17 +457,9 @@ class RoutingApi(HEREApi):
         if alternatives:
             data["alternatives"] = alternatives
         if avoid:
-            key = list(avoid.keys())[0]
-            values = list(avoid.values())[0]
-            data["avoid"] = {
-                key: ",".join(values),
-            }
+            data["avoid"] = {key: ",".join(vals) for key, vals in avoid.items()}
         if exclude:
-            key = list(exclude.keys())[0]
-            values = list(exclude.values())[0]
-            data["exclude"] = {
-                key: ",".join(values),
-            }
+            data["exclude"] = {key: ",".join(vals) for key, vals in exclude.items()}
         if units:
             data["units"] = units.__str__()
         if lang:
@@ -477,11 +469,7 @@ class RoutingApi(HEREApi):
         if span_fields:
             data["spans"] = ",".join([field.__str__() for field in span_fields])
         if truck:
-            key = list(truck.keys())[0]
-            values = list(truck.values())[0]
-            data["truck"] = {
-                key: ",".join(values),
-            }
+            data["truck"] = {key: ",".join(vals) for key, vals in truck.items()}
         if scooter:
             data["scooter"] = scooter
 

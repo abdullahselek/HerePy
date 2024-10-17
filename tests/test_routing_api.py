@@ -1215,3 +1215,22 @@ class RoutingApiTest(unittest.TestCase):
         )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponseV8)
+
+    @responses.activate
+    def test_route_v8_url_parameters_multiple(self):
+        responses.add(
+            responses.GET,
+            "https://router.hereapi.com/v8/routes",
+            "{}",
+            status=200,
+            match=[
+                responses.matchers.query_param_matcher(
+                    {"truck[height]": "15000", "truck[width]": "3000"}, strict_match=False
+                )
+            ],
+        )
+        self._api.route_v8(transport_mode=herepy.RoutingTransportMode.truck,
+            origin=[41.9798, -87.8801],
+            destination=[41.9043, -87.9216],
+            truck={"height": ["15000"], "width": ["3000"]}
+        )
