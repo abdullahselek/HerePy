@@ -49,12 +49,13 @@ class RoutingApi(HEREApi):
         response_cls,
         manipulation_key: str = None,
         keys_for_manipulation: List = None,
+        headers: Optional[Dict[str, str]] = None,
     ):
         url = Utils.build_url(base_url, extra_params=data)
         if manipulation_key and keys_for_manipulation:
             for k in keys_for_manipulation:
                 url = url.replace(k, manipulation_key)
-        response = requests.get(url, timeout=self._timeout)
+        response = requests.get(url, timeout=self._timeout, headers=headers)
         json_data = json.loads(response.content.decode("utf8"))
         if response.status_code == requests.codes.OK:
             return response_cls.new_from_jsondict(json_data)
@@ -480,6 +481,7 @@ class RoutingApi(HEREApi):
             RoutingResponseV8,
             manipulation_key="via",
             keys_for_manipulation=via_keys,
+            headers=headers
         )
         return response
 

@@ -1234,3 +1234,20 @@ class RoutingApiTest(unittest.TestCase):
             destination=[41.9043, -87.9216],
             truck={"height": ["15000"], "width": ["3000"]}
         )
+
+    @responses.activate
+    def test_route_v8_headers_in_request(self):
+        resp = responses.add(
+            responses.GET,
+            "https://router.hereapi.com/v8/routes",
+            "{}",
+            status=200,
+        )
+        self._api.route_v8(
+            transport_mode=herepy.RoutingTransportMode.truck,
+            origin=[41.9798, -87.8801],
+            destination=[41.9043, -87.9216],
+            headers={"X-BIP": "BOP"},
+        )
+        original_request = resp.calls[0].request
+        self.assertEqual(original_request.headers.get("X-BIP"), "BOP")
