@@ -5,6 +5,7 @@ import json
 import os
 import sys
 from typing import Dict, List, Optional, Union
+from warnings import warn
 
 import requests
 
@@ -370,6 +371,7 @@ class RoutingApi(HEREApi):
         return_fields: List[RoutingApiReturnField] = [RoutingApiReturnField.polyline],
         span_fields: Optional[List[RoutingApiSpanField]] = None,
         truck: Optional[Dict[str, List[str]]] = None,
+        vehicle: Optional[Dict[str, List[str]]] = None,
         scooter: Optional[Dict[str, str]] = None,
         headers: Optional[dict] = None,
     ) -> Optional[RoutingResponseV8]:
@@ -417,7 +419,9 @@ class RoutingApi(HEREApi):
             For example, attributes,length will enable the fields attributes and length in the route response.
             This parameter also requires that the polyline option is set within the return parameter.
           truck (Optional[Dict[str, List[str]]]):
-            Comma-separated list of shipped hazardous goods in the vehicle.
+            Deprecated. Use `vehicle` parameter.
+          vehicle (Optional[Dict[str, List[str]]]):
+            Comma-separated list of vehicle-specific parameters.
             Sample use of parameter: `{"shippedHazardousGoods": [explosive, gas, flammable]}`
           scooter (Optional[Dict[str, str]]):
             Scooter specific parameters.
@@ -469,7 +473,15 @@ class RoutingApi(HEREApi):
         if span_fields:
             data["spans"] = ",".join([field.__str__() for field in span_fields])
         if truck:
-            data["truck"] = {key: ",".join(vals) for key, vals in truck.items()}
+            warn(
+                "'truck' parameter is deprecated in Routing API. Use 'vehicle' parameter instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            if vehicle is None:
+                vehicle = truck
+        if vehicle:
+            data["vehicle"] = {key: ",".join(vals) for key, vals in vehicle.items()}
         if scooter:
             data["scooter"] = scooter
 
