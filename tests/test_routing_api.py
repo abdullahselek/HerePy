@@ -3,6 +3,7 @@
 import codecs
 import datetime
 import unittest
+import pytest
 
 import responses
 
@@ -1095,7 +1096,7 @@ class RoutingApiTest(unittest.TestCase):
             lang="tr-TR",
             return_fields=[herepy.RoutingApiReturnField.polyline],
             span_fields=[herepy.RoutingApiSpanField.walkAttributes],
-            truck={"shippedHazardousGoods": ["explosive", "gas"]},
+            vehicle={"shippedHazardousGoods": ["explosive", "gas"]},
             scooter={"allowHighway": "true"},
         )
         self.assertTrue(response)
@@ -1129,7 +1130,7 @@ class RoutingApiTest(unittest.TestCase):
                 lang="tr-TR",
                 return_fields=[herepy.RoutingApiReturnField.polyline],
                 span_fields=[herepy.RoutingApiSpanField.walkAttributes],
-                truck={"shippedHazardousGoods": ["explosive", "gas"]},
+                vehicle={"shippedHazardousGoods": ["explosive", "gas"]},
                 scooter={"allowHighway": "true"},
             )
 
@@ -1190,7 +1191,7 @@ class RoutingApiTest(unittest.TestCase):
                 lang="tr-TR",
                 return_fields=[herepy.RoutingApiReturnField.polyline],
                 span_fields=[herepy.RoutingApiSpanField.walkAttributes],
-                truck={"shippedHazardousGoods": ["explosive", "gas"]},
+                vehicle={"shippedHazardousGoods": ["explosive", "gas"]},
                 scooter={"allowHighway": "true"},
             )
 
@@ -1225,12 +1226,34 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
             match=[
                 responses.matchers.query_param_matcher(
-                    {"truck[height]": "15000", "truck[width]": "3000"}, strict_match=False
+                    {"vehicle[height]": "15000", "vehicle[width]": "3000"}, strict_match=False
                 )
             ],
         )
         self._api.route_v8(transport_mode=herepy.RoutingTransportMode.truck,
             origin=[41.9798, -87.8801],
             destination=[41.9043, -87.9216],
-            truck={"height": ["15000"], "width": ["3000"]}
+            vehicle={"height": ["15000"], "width": ["3000"]}
+        )
+
+    @responses.activate
+    @pytest.mark.filterwarnings("ignore:'truck' parameter is deprecated")
+    def test_route_v8_truck_parameter_deprecated(self):
+        responses.add(
+            responses.GET,
+            "https://router.hereapi.com/v8/routes",
+            "{}",
+            status=200,
+            match=[
+                responses.matchers.query_param_matcher(
+                    {"vehicle[height]": "15000", "vehicle[width]": "3000"},
+                    strict_match=False,
+                )
+            ],
+        )
+        self._api.route_v8(
+            transport_mode=herepy.RoutingTransportMode.truck,
+            origin=[41.9798, -87.8801],
+            destination=[41.9043, -87.9216],
+            truck={"height": ["15000"], "width": ["3000"]},
         )
