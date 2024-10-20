@@ -1,5 +1,5 @@
-mkdocs==1.5.3
-mkdocstrings==0.24.3
-mkdocs-material==9.5.17
+mkdocs==1.6.1
+mkdocstrings==0.26.2
+mkdocs-material==9.5.42
 markdown-include==0.8.1
-mkdocstrings-python==1.9.2
+mkdocstrings-python==1.12.2
