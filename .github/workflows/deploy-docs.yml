@@ -5,11 +5,11 @@ on:
     types: [opened, synchronize]
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "3.9"
       - name: Install Module
@@ -22,11 +22,16 @@ jobs:
       - name: Build Docs
         run: mkdocs build
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.0.3
+        uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: './site'
+          publish-dir: './dist'
           production-branch: master
           github-token: ${{ secrets.PERSONAL_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
