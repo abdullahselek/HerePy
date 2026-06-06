@@ -38,6 +38,7 @@ Installing
 You can install herepy using Python Package Index::
 
     $ pip install herepy
+    $ uv pip install herepy
 
 Install with conda from the Anaconda conda-forge channel::
 
@@ -57,28 +58,27 @@ Check out the latest development version anonymously with::
     $ git clone git://github.com/abdullahselek/HerePy.git
     $ cd HerePy
 
-To install dependencies, run either::
+To install dependencies for development, use uv::
 
-    $ pip install -r requirements.testing.txt
-    $ pip install -r requirements.txt
+    $ uv sync
 
 To install the minimal dependencies for production use (i.e., what is installed
 with ``pip install herepy``) run::
 
-    $ pip install -r requirements.txt
+    $ uv sync --no-dev
 
 Running Tests
 =============
 
-The test suite can be run against a single Python version which requires ``pip install pytest`` and optionally ``pip install pytest-cov`` (these are included if you have installed dependencies from ``requirements.testing.txt``)
+The test suite can be run against a single Python version using uv::
 
 To run the unit tests with a single Python version::
 
-    $ py.test -v
+    $ uv run pytest -v
 
 to also run code coverage::
 
-    $ py.test --cov=herepy
+    $ uv run pytest --cov=herepy
 
 To run the unit tests against a set of Python versions::
 
@@ -137,6 +137,14 @@ Using
 
 The library provides a Python wrapper around the HERE APIs with different data models. To get started, check out the examples in the ``examples/`` folder or
 read the documentation at `https://herepy.abdullahselek.com/ <https://herepy.abdullahselek.com/>`_. All API clients need an API key which you can get from `HERE Developer Portal <https://developer.here.com/>`_.
+
+Publishing
+============
+
+Maintainers can publish the package to PyPI using uv::
+
+    $ uv build
+    $ uv publish
 
 License
 -------
