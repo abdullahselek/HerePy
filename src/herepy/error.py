@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
+"""Base error classes for the HERE API."""
+
 
 class HEREError(Exception):
-
-    """Base class for HERE errors"""
+    """Base class for HERE errors."""
 
     @property
     def message(self):
@@ -12,24 +13,24 @@ class HEREError(Exception):
 
 
 class UnauthorizedError(HEREError):
-
-    """Unauthorized Error Type.
+    """
+    Unauthorized Error Type.
 
     Indicates authentication failure, invalid credentials were supplied.
     """
 
 
 class AccessDeniedError(HEREError):
-
-    """Access Denied Error Type.
+    """
+    Access Denied Error Type.
 
     Indicates the request is not permitted with the credentials provided.
     """
 
 
 class InvalidRequestError(HEREError):
-
-    """Invalid Request Error Type.
+    """
+    Invalid Request Error Type.
 
     Indicates an invalid or missing parameter value in the request, for example value given for the product parameter does not exist.
     """

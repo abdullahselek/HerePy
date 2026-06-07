@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 
 import json
-import re
 import unittest
 
 import herepy
 
 
 class ModelsTest(unittest.TestCase):
-
     with open("testdata/models/geocoder.json", "rb") as f:
         GEOCODER_SAMPLE_JSON = json.loads(f.read().decode("utf8"))
 
@@ -43,9 +41,7 @@ class ModelsTest(unittest.TestCase):
         ISOLINE_ROUTING_DISTANCE_JSON = json.loads(f.read().decode("utf8"))
 
     def test_geocoder_response(self):
-        geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(
-            self.GEOCODER_SAMPLE_JSON
-        )
+        geocoderResponse = herepy.GeocoderResponse.new_from_jsondict(self.GEOCODER_SAMPLE_JSON)
         try:
             geocoderResponse.__repr__()
         except Exception as e:
@@ -54,9 +50,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(geocoderResponse.as_dict())
 
     def test_routing_response(self):
-        routingResponse = herepy.RoutingResponse.new_from_jsondict(
-            self.ROUTING_SAMPLE_JSON
-        )
+        routingResponse = herepy.RoutingResponse.new_from_jsondict(self.ROUTING_SAMPLE_JSON)
         try:
             routingResponse.__repr__()
         except Exception as e:
@@ -65,9 +59,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(routingResponse.as_dict())
 
     def test_routingapi_matrix_response(self):
-        routing_matrix_response = herepy.RoutingResponse.new_from_jsondict(
-            self.ROUTING_MATRIX_SAMPLE_JSON
-        )
+        routing_matrix_response = herepy.RoutingResponse.new_from_jsondict(self.ROUTING_MATRIX_SAMPLE_JSON)
         try:
             routing_matrix_response.__repr__()
         except Exception as e:
@@ -76,11 +68,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(routing_matrix_response.as_dict())
 
     def test_geocoder_autocompleteresponse(self):
-        geocoderAutoCompleteResponse = (
-            herepy.GeocoderAutoCompleteResponse.new_from_jsondict(
-                self.GEOCODER_AUTO_COMPLETE_SAMPLE_JSON
-            )
-        )
+        geocoderAutoCompleteResponse = herepy.GeocoderAutoCompleteResponse.new_from_jsondict(self.GEOCODER_AUTO_COMPLETE_SAMPLE_JSON)
         try:
             geocoderAutoCompleteResponse.__repr__()
         except Exception as e:
@@ -89,9 +77,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(geocoderAutoCompleteResponse.as_dict())
 
     def test_placesapi_response(self):
-        placesApiResponse = herepy.PlacesResponse.new_from_jsondict(
-            self.PLACES_API_SAMPLE_JSON
-        )
+        placesApiResponse = herepy.PlacesResponse.new_from_jsondict(self.PLACES_API_SAMPLE_JSON)
         try:
             placesApiResponse.__repr__()
         except Exception as e:
@@ -100,9 +86,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(placesApiResponse.as_dict())
 
     def test_publictransitapi_response(self):
-        publicTransitResponse = herepy.PublicTransitResponse.new_from_jsondict(
-            self.PUBLIC_TRANSIT_API_SAMPLE_JSON
-        )
+        publicTransitResponse = herepy.PublicTransitResponse.new_from_jsondict(self.PUBLIC_TRANSIT_API_SAMPLE_JSON)
         try:
             publicTransitResponse.__repr__()
         except Exception as e:
@@ -111,9 +95,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(publicTransitResponse.as_dict())
 
     def test_traffic_incident_response(self):
-        trafficIncidentResponse = herepy.TrafficIncidentResponse.new_from_jsondict(
-            self.TRAFFIC_INCIDENTS_SAMPLE_JSON
-        )
+        trafficIncidentResponse = herepy.TrafficIncidentResponse.new_from_jsondict(self.TRAFFIC_INCIDENTS_SAMPLE_JSON)
         try:
             trafficIncidentResponse.__repr__()
         except Exception as e:
@@ -122,10 +104,8 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(trafficIncidentResponse.as_dict())
 
     def test_destination_weather_response(self):
-        destinationWeatherResponse = (
-            herepy.DestinationWeatherResponse.new_from_jsondict(
-                self.DESTINATION_WEATHER_SAMPLE_JSON, {"observations": None}
-            )
+        destinationWeatherResponse = herepy.DestinationWeatherResponse.new_from_jsondict(
+            self.DESTINATION_WEATHER_SAMPLE_JSON, {"observations": None}
         )
         try:
             destinationWeatherResponse.__repr__()
@@ -135,9 +115,7 @@ class ModelsTest(unittest.TestCase):
         self.assertTrue(destinationWeatherResponse.as_dict())
 
     def test_traffic_flow_response(self):
-        trafficFlowResponse = herepy.TrafficFlowResponse.new_from_jsondict(
-            self.TRAFFIC_FLOW_SAMPLE_JSON
-        )
+        trafficFlowResponse = herepy.TrafficFlowResponse.new_from_jsondict(self.TRAFFIC_FLOW_SAMPLE_JSON)
         try:
             trafficFlowResponse.__repr__()
         except Exception as e:
@@ -146,27 +124,17 @@ class ModelsTest(unittest.TestCase):
         self.assertIsNotNone(trafficFlowResponse.as_dict())
 
     def test_traffic_flow_availability_response(self):
-        trafficFlowAvailabilityResponse = (
-            herepy.TrafficFlowAvailabilityResponse.new_from_jsondict(
-                self.TRAFFIC_FLOW_AVAILABILITY_JSON
-            )
-        )
+        trafficFlowAvailabilityResponse = herepy.TrafficFlowAvailabilityResponse.new_from_jsondict(self.TRAFFIC_FLOW_AVAILABILITY_JSON)
         try:
             trafficFlowAvailabilityResponse.__repr__()
         except Exception as e:
             self.fail(e)
         self.assertIsNotNone(trafficFlowAvailabilityResponse.as_json_string())
         self.assertIsNotNone(trafficFlowAvailabilityResponse.as_dict())
-        self.assertIsNotNone(
-            trafficFlowAvailabilityResponse.as_dict()["Response"]["Region"]
-        )
+        self.assertIsNotNone(trafficFlowAvailabilityResponse.as_dict()["Response"]["Region"])
 
     def test_isoline_routing_response(self):
-        isolineRoutingDistanceResponse = (
-            herepy.IsolineRoutingResponse.new_from_jsondict(
-                self.ISOLINE_ROUTING_DISTANCE_JSON
-            )
-        )
+        isolineRoutingDistanceResponse = herepy.IsolineRoutingResponse.new_from_jsondict(self.ISOLINE_ROUTING_DISTANCE_JSON)
         try:
             isolineRoutingDistanceResponse.__repr__()
         except Exception as e:

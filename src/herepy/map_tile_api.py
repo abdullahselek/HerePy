@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
+"""Module for the HERE Map Tile API."""
+
 import json
 import sys
 from random import randrange
-from typing import Dict, Optional
 
 import requests
 
@@ -16,18 +17,20 @@ from .mercator_projection import MercatorProjection
 
 
 class MapTileApi(HEREApi):
-    """A python interface into the HERE Map Tile API"""
+    """A python interface into the HERE Map Tile API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a MapTileApi instance.
+        """
+        Initialize a MapTileApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
-        super(MapTileApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = None
 
     def __get_error_from_response(self, json_data):
@@ -35,9 +38,7 @@ class MapTileApi(HEREApi):
             if json_data["error"] == "Unauthorized":
                 return UnauthorizedError(json_data["error_description"])
         error_type = json_data.get("Type")
-        error_message = json_data.get(
-            "Message", "Error occurred on " + sys._getframe(1).f_code.co_name
-        )
+        error_message = json_data.get("Message", "Error occurred on " + sys._getframe(1).f_code.co_name)
         if error_type == "Invalid Request":
             return InvalidRequestError(error_message)
         else:
@@ -54,9 +55,11 @@ class MapTileApi(HEREApi):
         scheme: str = "normal.day",
         size: int = 256,
         tile_format: str = "png8",
-        query_parameters: Optional[Dict] = None,
-    ) -> Optional[bytes]:
-        """Returns optional bytes value of map tile with given parameters.
+        query_parameters: dict | None = None,
+    ) -> bytes | None:
+        """
+        Returns optional bytes value of map tile with given parameters.
+
         Args:
           latitude (float):
             Latitude value to be used to fetch map tile.
@@ -89,18 +92,18 @@ class MapTileApi(HEREApi):
             Please note that JPG is recommended for satellite and hybrid schemes only.
           query_parameters (Optional[Dict]):
             Optional Query Parameters. Refer to the API definition for values.
+
         Returns:
           Map tile as bytes.
+
         Raises:
           HEREError
-        """
 
+        """
         server = randrange(1, 4)
-        column, row = MercatorProjection.get_column_row(
-            latitude=latitude, longitude=longitude, zoom=zoom
-        )
+        column, row = MercatorProjection.get_column_row(latitude=latitude, longitude=longitude, zoom=zoom)
         url = str.format(
-            "https://{}.{}.maps.ls.hereapi.com/maptile/2.1/{}/{}/{}/{}/{}/{}/{}/{}",
+            "https://{}.{}.maps.ls.hereapi.com/maptile/2.1/{}/{}/{}/{}/{}/{}/{}",
             server,
             api_type.__str__(),
             resource_type.__str__(),
@@ -124,6 +127,6 @@ class MapTileApi(HEREApi):
                 if "error" in json_data:
                     error = self.__get_error_from_response(json_data)
                     raise error
-            except UnicodeDecodeError as err:
+            except UnicodeDecodeError:
                 print("Map tile downloaded")
         return response.content

@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
+"""Module for the HERE EV Charging Stations API."""
+
 import json
 import sys
-from typing import List, Optional
 
 import requests
 
@@ -13,17 +14,19 @@ from herepy.utils import Utils
 
 
 class EVChargingStationsApi:
-    """A python interface into the HERE EV Charging Stations API"""
+    """A python interface into the HERE EV Charging Stations API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a EVChargingStationsApi instance.
+        """
+        Initialize a EVChargingStationsApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
+        """
         self._api_key = api_key
         if timeout:
             self._timeout = timeout
@@ -40,14 +43,14 @@ class EVChargingStationsApi:
         else:
             raise error_from_ev_charging_service_error(json_data)
 
-    def __connector_types_str(self, connector_types: List[EVStationConnectorTypes]):
+    def __connector_types_str(self, connector_types: list[EVStationConnectorTypes]):
         connector_types_str = ""
         for connector_type in connector_types:
             connector_types_str += str.format("{0},", connector_type._value_)
         connector_types_str = connector_types_str[:-1]
         return connector_types_str
 
-    def __corridor_str(self, points: List[float]):
+    def __corridor_str(self, points: list[float]):
         if len(points) % 2 != 0:
             points = points[:-1]
         corridor_str = ""
@@ -61,14 +64,17 @@ class EVChargingStationsApi:
         latitude: float,
         longitude: float,
         radius: int,
-        connectortypes: List[EVStationConnectorTypes] = None,
+        connectortypes: list[EVStationConnectorTypes] = None,
         maxresults: int = 50,
         offset: int = 0,
-    ) -> Optional[EVChargingStationsResponse]:
-        """Makes a search request for charging stations.
-           A circular search area defined by the latitude and longitude of its center
-           (compliant with WGS 84) and an integer representing the radius of the area
-           in meters, all separated by commas.
+    ) -> EVChargingStationsResponse | None:
+        """
+        Make a search request for charging stations.
+
+        A circular search area defined by the latitude and longitude of its center
+        (compliant with WGS 84) and an integer representing the radius of the area
+        in meters, all separated by commas.
+
         Args:
           latitude (float):
             latitude.
@@ -82,14 +88,16 @@ class EVChargingStationsApi:
             The maximum number of results a response can contain.
             This parameter can be used with the offset parameter in the query and HasMore in the response for pagination.
           offset (int):
-            A value specifying the index of the first result. The offset together with the "maxresults" value can be used to support a paging mechanism on search results.
+            A value specifying the index of the first result. The offset together with the
+            "maxresults" value can be used to support a paging mechanism on search results.
             This parameter can be used with the maxresults parameter in the query and HasMore in the response for pagination.
+
         Returns:
           EVChargingStationsResponse
         Raises:
           HEREError
-        """
 
+        """
         if connectortypes:
             connector_types_str = self.__connector_types_str(connectortypes)
             data = {
@@ -106,21 +114,21 @@ class EVChargingStationsApi:
                 "maxresults": maxresults,
                 "offset": offset,
             }
-        response = self.__get(
-            self._base_url + "stations.json", data, EVChargingStationsResponse
-        )
+        response = self.__get(self._base_url + "stations.json", data, EVChargingStationsResponse)
         return response
 
     def get_stations_bounding_box(
         self,
-        top_left: List[float],
-        bottom_right: List[float],
-        connectortypes: List[EVStationConnectorTypes] = None,
+        top_left: list[float],
+        bottom_right: list[float],
+        connectortypes: list[EVStationConnectorTypes] = None,
         maxresults: int = 50,
         offset: int = 0,
-    ) -> Optional[EVChargingStationsResponse]:
-        """Makes a search request for charging stations with in given
-           bounding box. The bounding box can have a maximum height / width of 400km.
+    ) -> EVChargingStationsResponse | None:
+        """
+        Make a search request for charging stations with in given
+        bounding box. The bounding box can have a maximum height / width of 400km.
+
         Args:
           top_left (List):
             List contains latitude and longitude in order.
@@ -132,14 +140,16 @@ class EVChargingStationsApi:
             The maximum number of results a response can contain.
             This parameter can be used with the offset parameter in the query and HasMore in the response for pagination.
           offset (int):
-            A value specifying the index of the first result. The offset together with the "maxresults" value can be used to support a paging mechanism on search results.
+            A value specifying the index of the first result. The offset together with the
+            "maxresults" value can be used to support a paging mechanism on search results.
             This parameter can be used with the maxresults parameter in the query and HasMore in the response for pagination.
+
         Returns:
           EVChargingStationsResponse
         Raises:
           HEREError
-        """
 
+        """
         if connectortypes:
             connector_types_str = self.__connector_types_str(connectortypes)
             data = {
@@ -168,20 +178,20 @@ class EVChargingStationsApi:
                 "maxresults": maxresults,
                 "offset": offset,
             }
-        response = self.__get(
-            self._base_url + "stations.json", data, EVChargingStationsResponse
-        )
+        response = self.__get(self._base_url + "stations.json", data, EVChargingStationsResponse)
         return response
 
     def get_stations_corridor(
         self,
-        points: List[float],
-        connectortypes: List[EVStationConnectorTypes] = None,
+        points: list[float],
+        connectortypes: list[EVStationConnectorTypes] = None,
         maxresults: int = 50,
         offset: int = 0,
-    ) -> Optional[EVChargingStationsResponse]:
-        """Makes a search request for charging stations with in given corridor.
-           Maximum corridor area is 5000 km2.
+    ) -> EVChargingStationsResponse | None:
+        """
+        Makes a search request for charging stations with in given corridor.
+        Maximum corridor area is 5000 km2.
+
         Args:
           points (List):
             List contains latitude and longitude pairs in order.
@@ -191,14 +201,16 @@ class EVChargingStationsApi:
             The maximum number of results a response can contain.
             This parameter can be used with the offset parameter in the query and HasMore in the response for pagination.
           offset (int):
-            A value specifying the index of the first result. The offset together with the "maxresults" value can be used to support a paging mechanism on search results.
+            A value specifying the index of the first result. The offset together with the
+            "maxresults" value can be used to support a paging mechanism on search results.
             This parameter can be used with the maxresults parameter in the query and HasMore in the response for pagination.
+
         Returns:
           EVChargingStationsResponse
         Raises:
           HEREError
-        """
 
+        """
         if connectortypes:
             connector_types_str = self.__connector_types_str(connectortypes)
             data = {
@@ -215,16 +227,16 @@ class EVChargingStationsApi:
                 "maxresults": maxresults,
                 "offset": offset,
             }
-        response = self.__get(
-            self._base_url + "stations.json", data, EVChargingStationsResponse
-        )
+        response = self.__get(self._base_url + "stations.json", data, EVChargingStationsResponse)
         return response
 
-    def get_station_details(
-        self, station_id: str, maxresults: int = 50, offset: int = 0
-    ) -> Optional[EVChargingStationsResponse]:
-        """Based on the results of a search for charging stations, this method
+    def get_station_details(self, station_id: str, maxresults: int = 50, offset: int = 0) -> EVChargingStationsResponse | None:
+        """
+        Retrieve the full/updated information about a single charging station only.
+
+        Based on the results of a search for charging stations, this method
         retrieves the full/updated information about a single charging station only.
+
         Args:
           station_id (str):
             station_id is an attribute of the evStation element with a unique value.
@@ -232,14 +244,16 @@ class EVChargingStationsApi:
             The maximum number of results a response can contain.
             This parameter can be used with the offset parameter in the query and HasMore in the response for pagination.
           offset (int):
-            A value specifying the index of the first result. The offset together with the "maxresults" value can be used to support a paging mechanism on search results.
+            A value specifying the index of the first result. The offset together with the
+            "maxresults" value can be used to support a paging mechanism on search results.
             This parameter can be used with the maxresults parameter in the query and HasMore in the response for pagination.
+
         Returns:
           EVChargingStationsResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {"apiKey": self._api_key, "maxresults": maxresults, "offset": offset}
         url = self._base_url + "stations/" + station_id + ".json"
         response = self.__get(url, data, EVChargingStationsResponse)
@@ -247,8 +261,8 @@ class EVChargingStationsApi:
 
 
 class UnauthorizedError(HEREError):
-
-    """Unauthorized Error Type.
+    """
+    Unauthorized Error Type.
 
     This error is returned if the specified token was invalid or no contract
     could be found for this token.
@@ -257,8 +271,7 @@ class UnauthorizedError(HEREError):
 
 # pylint: disable=R0911
 def error_from_ev_charging_service_error(json_data: dict):
-    """Return the correct subclass for ev charging errors"""
-
+    """Return the correct subclass for ev charging errors."""
     if "Type" in json_data:
         error_type = json_data["Type"]
         message = json_data["Message"]
@@ -266,11 +279,6 @@ def error_from_ev_charging_service_error(json_data: dict):
         if error_type == "Unauthorized":
             return UnauthorizedError(message)
     elif "error" in json_data and "error_description" in json_data:
-        return HEREError(
-            "Error occurred: "
-            + json_data["error"]
-            + ", description: "
-            + json_data["error_description"]
-        )
+        return HEREError("Error occurred: " + json_data["error"] + ", description: " + json_data["error_description"])
     # pylint: disable=W0212
     return HEREError("Error occurred on " + sys._getframe(1).f_code.co_name)

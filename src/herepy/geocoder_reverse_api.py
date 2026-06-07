@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
+"""Module for the HERE Geocoder Reverse API."""
+
 import json
 import sys
-from typing import List, Optional
 
 import requests
 
@@ -13,18 +14,20 @@ from herepy.utils import Utils
 
 
 class GeocoderReverseApi(HEREApi):
-    """A python interface into the HERE Geocoder Reverse API"""
+    """A python interface into the HERE Geocoder Reverse API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a GeocoderApi instance.
+        """
+        Initialize a GeocoderReverseApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
-        super(GeocoderReverseApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = "https://revgeocode.search.hereapi.com/v1/revgeocode"
 
     def __get(self, data):
@@ -32,7 +35,7 @@ class GeocoderReverseApi(HEREApi):
         response = requests.get(url, timeout=self._timeout)
         try:
             json_data = json.loads(response.content.decode("utf8"))
-            if json_data.get("items") != None:
+            if json_data.get("items") is not None:
                 return GeocoderReverseResponse.new_from_jsondict(json_data)
             elif "error" in json_data:
                 if json_data["error"] == "Unauthorized":
@@ -45,17 +48,12 @@ class GeocoderReverseApi(HEREApi):
                     )
                 )
         except ValueError as err:
-            raise HEREError(
-                "Error occurred on function "
-                + sys._getframe(1).f_code.co_name
-                + " "
-                + str(err)
-            )
+            raise HEREError("Error occurred on function " + sys._getframe(1).f_code.co_name + " " + str(err))
 
-    def retrieve_addresses(
-        self, prox: List[float], limit: int = 1, lang: str = "en-US"
-    ) -> Optional[GeocoderReverseResponse]:
-        """Gets the address information of a point.
+    def retrieve_addresses(self, prox: list[float], limit: int = 1, lang: str = "en-US") -> GeocoderReverseResponse | None:
+        """
+        Gets the address information of a point.
+
         Args:
           prox (lat/lon):
             latitude longitude of the point
@@ -63,11 +61,13 @@ class GeocoderReverseApi(HEREApi):
             Limits items to return, with default value 1. Max value 100.
           lang (str):
             BCP47 compliant Language Code.
+
         Returns:
           GeocoderReverseResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         data = {
             "at": str.format("{0},{1}", prox[0], prox[1]),
             "limit": limit,

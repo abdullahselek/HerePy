@@ -1,42 +1,46 @@
 #!/usr/bin/env python
 
+"""A python interface into the HERE Fleet Telematics API."""
+
 import json
 import sys
-from typing import List, Optional
 
 import requests
 
 from herepy.error import HEREError
 from herepy.here_api import HEREApi
-from herepy.here_enum import MultiplePickupOfferType, RouteMode
+from herepy.here_enum import RouteMode
 from herepy.models import WaypointSequenceResponse
 from herepy.utils import Utils
 
 
 class FleetTelematicsApi(HEREApi):
-    """A python interface into the HERE Fleet Telematics API"""
+    """A python interface into the HERE Fleet Telematics API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a FleetTelematicsApi instance.
+        """
+        Initialize a FleetTelematicsApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
+
         Returns:
           FleetTelematicsApi instance.
-        """
 
-        super(FleetTelematicsApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = "https://wse.ls.hereapi.com/2/"
 
     def __create_find_sequence_parameters(
         self,
         start: str,
         departure: str,
-        intermediate_destinations: List[str],
+        intermediate_destinations: list[str],
         end: str,
-        modes: List[RouteMode],
+        modes: list[RouteMode],
     ):
         data = {
             "apiKey": self._api_key,
@@ -62,7 +66,7 @@ class FleetTelematicsApi(HEREApi):
 
     def __create_find_pickup_parameters(
         self,
-        modes: List[RouteMode],
+        modes: list[RouteMode],
         start: str,
         departure: str,
         capacity: int,
@@ -71,7 +75,7 @@ class FleetTelematicsApi(HEREApi):
         max_detour: int,
         rest_times: str,
         end: str,
-        intermediate_destinations: List[str],
+        intermediate_destinations: list[str],
     ):
         data = {}
 
@@ -90,9 +94,7 @@ class FleetTelematicsApi(HEREApi):
 
         count = 0
         for destination_pickup_param in intermediate_destinations:
-            data[str.format("destination{0}", count)] = (
-                str.format("waypoint{0};", count + 1) + destination_pickup_param
-            )
+            data[str.format("destination{0}", count)] = str.format("waypoint{0};", count + 1) + destination_pickup_param
             count += 1
 
         data["end"] = str.format("waypoint{0};{1}", count + 1, end)
@@ -111,11 +113,13 @@ class FleetTelematicsApi(HEREApi):
         self,
         start: str,
         departure: str,
-        intermediate_destinations: List[str],
+        intermediate_destinations: list[str],
         end: str,
-        modes: List[RouteMode],
-    ) -> Optional[WaypointSequenceResponse]:
-        """Finds time-optimized waypoint sequence route.
+        modes: list[RouteMode],
+    ) -> WaypointSequenceResponse | None:
+        """
+        Find time-optimized waypoint sequence route.
+
         Args:
           start (str):
             Starting point. `str.format('{0};{1},{2}', text, latitude, longitude)`
@@ -127,12 +131,13 @@ class FleetTelematicsApi(HEREApi):
             End point. `str.format('{0};{1},{2}', text, latitude, longitude)`
           modes (List[RouteMode]):
             Route modes.
+
         Returns:
           WaypointSequenceResponse
         Raises:
           HEREError
-        """
 
+        """
         data = self.__create_find_sequence_parameters(
             start=start,
             departure=departure,
@@ -140,14 +145,12 @@ class FleetTelematicsApi(HEREApi):
             end=end,
             modes=modes,
         )
-        response = self.__get(
-            self._base_url + "findsequence.json", data, WaypointSequenceResponse
-        )
+        response = self.__get(self._base_url + "findsequence.json", data, WaypointSequenceResponse)
         return response
 
     def find_pickups(
         self,
-        modes: List[RouteMode],
+        modes: list[RouteMode],
         start: str,
         departure: str,
         capacity: int,
@@ -155,10 +158,12 @@ class FleetTelematicsApi(HEREApi):
         driver_cost: int,
         max_detour: int,
         rest_times: str,
-        intermediate_destinations: List[str],
+        intermediate_destinations: list[str],
         end: str,
-    ) -> Optional[WaypointSequenceResponse]:
-        """Finds cheaper route by picking up some additional goods along the route.
+    ) -> WaypointSequenceResponse | None:
+        """
+        Find cheaper route by picking up some additional goods along the route.
+
         Args:
           modes (List[RouteMode]):
             Route modes.
@@ -185,7 +190,8 @@ class FleetTelematicsApi(HEREApi):
             `default`
                Use internal default. The default are simplified European rules: After 4.5h driving 45min rest and after 9h driving 11h rest.
             `durations:...` and `serviceTimes:...`
-               You can provide values for driving and rest periods and define if service times at waypoints can be used for resting. You must provide both parameters.
+               You can provide values for driving and rest periods and define if service times at waypoints
+               can be used for resting. You must provide both parameters.
           intermediate_destinations (List[DestinationPickupParam]):
             Intermediate destinations, at least one. If no end parameter is provided, one of these values is
             selected as end of the sequence.
@@ -197,12 +203,13 @@ class FleetTelematicsApi(HEREApi):
                   param_type, item)`
           end (str):
             End of the journey. `str.format('{0};{1},{2}', text, latitude, longitude)`
+
         Returns:
           WaypointSequenceResponse
         Raises:
           HEREError
-        """
 
+        """
         data = self.__create_find_pickup_parameters(
             modes=modes,
             start=start,
@@ -215,23 +222,21 @@ class FleetTelematicsApi(HEREApi):
             intermediate_destinations=intermediate_destinations,
             end=end,
         )
-        response = self.__get(
-            self._base_url + "findpickups.json", data, WaypointSequenceResponse
-        )
+        response = self.__get(self._base_url + "findpickups.json", data, WaypointSequenceResponse)
         return response
 
 
 class UnauthorizedError(HEREError):
+    """
+    Unauthorized Error Type.
 
-    """Unauthorized Error Type.
     This error is returned if the specified token was invalid or no contract
     could be found for this token.
     """
 
 
 def error_from_fleet_telematics_service_error(json_data: dict):
-    """Return the correct subclass for sequence errors"""
-
+    """Return the correct subclass for sequence errors."""
     if "error" in json_data:
         error_type = json_data["error"]
         message = json_data["error_description"]

@@ -1,3 +1,4 @@
+"""Example usage of map_image_api."""
 #!/usr/bin/env python
 
 from herepy import MapImageApi
@@ -20,15 +21,11 @@ map_image = map_image_api.get_mapimage(
 print(map_image)
 
 # Get map image for given coordinates, uncertainty and map scheme
-map_image = map_image_api.get_mapimage(
-    coordinates=[28.371425, 77.387695], uncertainty="5m", map_scheme=3
-)
+map_image = map_image_api.get_mapimage(coordinates=[28.371425, 77.387695], uncertainty="5m", map_scheme=3)
 print(map_image)
 
 # Get a dotless map image for given coordinates and uncertainty
-map_image = map_image_api.get_mapimage(
-    coordinates=[28.371425, 77.387695], uncertainty="5m", nodot=True
-)
+map_image = map_image_api.get_mapimage(coordinates=[28.371425, 77.387695], uncertainty="5m", nodot=True)
 print(map_image)
 
 # Get an image showing position with coordinates, city name, image height
@@ -42,9 +39,7 @@ map_image = map_image_api.get_mapimage(
 print(map_image)
 
 # Get an image showing with coordinates and country name
-map_image = map_image_api.get_mapimage(
-    coordinates=[60.17675, 24.929974], country_name="Finland", zoom=15
-)
+map_image = map_image_api.get_mapimage(coordinates=[60.17675, 24.929974], country_name="Finland", zoom=15)
 print(map_image)
 
 # Get an image showing with coordinates, country name and center

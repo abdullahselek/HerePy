@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-import io
-import json
-import os
-import time
 import unittest
 
 import responses
@@ -19,13 +15,11 @@ class RmeApiTest(unittest.TestCase):
     def test_initiation(self):
         self.assertIsInstance(self._api, herepy.RmeApi)
         self.assertEqual(self._api._api_key, "api_key")
-        self.assertEqual(
-            self._api._base_url, "https://m.fleet.ls.hereapi.com/2/matchroute.json"
-        )
+        self.assertEqual(self._api._base_url, "https://m.fleet.ls.hereapi.com/2/matchroute.json")
 
     @responses.activate
     def test_match_route_whensucceed(self):
-        with io.open("testdata/models/rme_match_route_api.json", "r") as f:
+        with open("testdata/models/rme_match_route_api.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -33,7 +27,7 @@ class RmeApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        with io.open("testdata/routes/sample.gpx", encoding="utf-8") as gpx_file:
+        with open("testdata/routes/sample.gpx", encoding="utf-8") as gpx_file:
             gpx_content = gpx_file.read()
         response = self._api.match_route(gpx_content, ["ADAS_ATTRIB_FCn(SLOPES)"])
         self.assertTrue(response)
@@ -41,7 +35,7 @@ class RmeApiTest(unittest.TestCase):
 
     @responses.activate
     def test_match_route_whenerroroccurred(self):
-        with open("testdata/models/geocoder_error.json", "r") as f:
+        with open("testdata/models/geocoder_error.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,

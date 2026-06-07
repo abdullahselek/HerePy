@@ -21,8 +21,9 @@ class RouteMode(Enum):
     publicTransportTimeTable = "publicTransportTimeTable"
     truck = "truck"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the route mode."""
+        return f"{self._value_}"
 
 
 class RoutingMode(Enum):
@@ -31,8 +32,9 @@ class RoutingMode(Enum):
     fast = "fast"
     short = "short"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the routing mode."""
+        return f"{self._value_}"
 
 
 class RoutingMetric(Enum):
@@ -41,12 +43,13 @@ class RoutingMetric(Enum):
     metric = "metric"
     imperial = "imperial"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the routing metric."""
+        return f"{self._value_}"
 
 
 class RoutingApiReturnField(Enum):
-    """Attributes are included in the response as part of data representation of a Route or Section.."""
+    """Attributes are included in the response as part of data representation of a Route or Section."""
 
     polyline = "polyline"
     actions = "actions"
@@ -61,8 +64,9 @@ class RoutingApiReturnField(Enum):
     incidents = "incidents"
     routingZones = "routingZones"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the return field."""
+        return f"{self._value_}"
 
 
 class RoutingApiSpanField(Enum):
@@ -89,8 +93,9 @@ class RoutingApiSpanField(Enum):
     routingZones = "routingZones"
     notices = "notices"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the span field."""
+        return f"{self._value_}"
 
 
 class MatrixSummaryAttribute(Enum):
@@ -99,8 +104,9 @@ class MatrixSummaryAttribute(Enum):
     travel_times = "travelTimes"
     distances = "distances"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the summary attribute."""
+        return f"{self._value_}"
 
 
 class MatrixRoutingType(Enum):
@@ -112,8 +118,9 @@ class MatrixRoutingType(Enum):
     polygon = "polygon"
     auto_circle = "autoCircle"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the routing type."""
+        return f"{self._value_}"
 
 
 class MatrixRoutingProfile(Enum):
@@ -125,8 +132,9 @@ class MatrixRoutingProfile(Enum):
     pedestrian = "pedestrian"
     bicycle = "bicycle"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the routing profile."""
+        return f"{self._value_}"
 
 
 class MatrixRoutingMode(Enum):
@@ -135,21 +143,25 @@ class MatrixRoutingMode(Enum):
     fast = "fast"
     short = "short"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the routing mode."""
+        return f"{self._value_}"
 
 
 class MatrixRoutingTransportMode(Enum):
-    """Defines transport modes on Matrix Routing API. Depending on the transport mode special constraints,
-    speed attributes and weights are taken into account during route calculation."""
+    """
+    Defines transport modes on Matrix Routing API. Depending on the transport mode special constraints,
+    speed attributes and weights are taken into account during route calculation.
+    """
 
     car = "car"
     truck = "truck"
     pedestrian = "pedestrian"
     bicycle = "bicycle"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the transport mode."""
+        return f"{self._value_}"
 
 
 class PlacesCategory(Enum):
@@ -173,32 +185,35 @@ class PlacesCategory(Enum):
     toilet_rest_area = "toilet-rest-area"
     transport = "transport"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the category."""
+        return f"{self._value_}"
 
 
 class PublicTransitSearchMethod(Enum):
-    """Search methods used in public transit search function"""
+    """Search methods used in public transit search function."""
 
     fuzzy = "fuzzy"
     strict = "strict"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the search method."""
+        return f"{self._value_}"
 
 
 class PublicTransitRoutingMode(Enum):
-    """Routing types used in public transit api"""
+    """Routing types used in public transit api."""
 
     schedule = "schedule"
     realtime = "realtime"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the routing mode."""
+        return f"{self._value_}"
 
 
 class PublicTransitModeType(Enum):
-    """Mode types used in public transit api"""
+    """Mode types used in public transit api."""
 
     high_speed_train = 0
     intercity_train = 1
@@ -217,12 +232,13 @@ class PublicTransitModeType(Enum):
     flight = 14
     walk = 20
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the mode type."""
+        return f"{self._value_}"
 
 
 class WeatherProductType(Enum):
-    """Identifis the type of report to obtain."""
+    """Identifies the type of report to obtain."""
 
     observation = "observation"
     forecast_7days = "forecast_7days"
@@ -232,8 +248,9 @@ class WeatherProductType(Enum):
     alerts = "alerts"
     nws_alerts = "nws_alerts"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the product type."""
+        return f"{self._value_}"
 
 
 class EVStationConnectorTypes(Enum):
@@ -290,8 +307,9 @@ class EVStationConnectorTypes(Enum):
     domestic_plug_socket_type_a = 48
     domestic_plug_socket_type_c = 49
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the connector type."""
+        return f"{self._value_}"
 
 
 class MultiplePickupOfferType(Enum):
@@ -300,8 +318,9 @@ class MultiplePickupOfferType(Enum):
     pickup = "pickup"
     drop = "drop"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the offer type."""
+        return f"{self._value_}"
 
 
 class IncidentsCriticalityStr(Enum):
@@ -312,8 +331,9 @@ class IncidentsCriticalityStr(Enum):
     minor = "minor"
     lowImpact = "lowImpact"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the criticality level."""
+        return f"{self._value_}"
 
 
 class IncidentsCriticalityInt(Enum):
@@ -324,7 +344,8 @@ class IncidentsCriticalityInt(Enum):
     minor = 2
     lowImpact = 3
 
-    def __int__(self):
+    def __int__(self) -> int:
+        """Return the integer value of the criticality level."""
         return self._value_
 
 
@@ -334,8 +355,9 @@ class FlowProximityAdditionalAttributes(Enum):
     functional_class = "fc"
     shape = "sh"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the attribute."""
+        return f"{self._value_}"
 
 
 class IsolineRoutingMode(Enum):
@@ -344,19 +366,21 @@ class IsolineRoutingMode(Enum):
     fast = "fast"
     short = "short"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the routing mode."""
+        return f"{self._value_}"
 
 
 class IsolineRoutingTransportMode(Enum):
-    """Mode of transport to be used for the calculation of the isolines."""
+    """Mode of transport to be used for the calculation of terms isolines."""
 
     car = "car"
     truck = "truck"
     pedestrian = "pedestrian"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the transport mode."""
+        return f"{self._value_}"
 
 
 class IsolineRoutingOptimizationMode(Enum):
@@ -366,8 +390,9 @@ class IsolineRoutingOptimizationMode(Enum):
     performance = "performance"
     balanced = "balanced"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the optimization mode."""
+        return f"{self._value_}"
 
 
 class IsolineRoutingRangeType(Enum):
@@ -377,8 +402,9 @@ class IsolineRoutingRangeType(Enum):
     time = "time"
     consumption = "consumption"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the range type."""
+        return f"{self._value_}"
 
 
 class MapTileApiType(Enum):
@@ -388,13 +414,17 @@ class MapTileApiType(Enum):
     base = "base"
     traffic = "traffic"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the API type."""
+        return f"{self._value_}"
 
 
 class MapTileResourceType(Enum):
-    def __str__(self):
-        return "%s" % self._value_
+    """Base class for map tile resource types."""
+
+    def __str__(self) -> str:
+        """Return the string representation of the resource type."""
+        return f"{self._value_}"
 
 
 class BaseMapTileResourceType(MapTileResourceType):
@@ -443,17 +473,18 @@ class TrafficMapTileResourceType(MapTileResourceType):
 
 
 class VectorMapTileLayer(Enum):
-    """Type of Vector Map Tile Layer"""
+    """Type of Vector Map Tile Layer."""
 
     base = "base"
     core = "core"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the layer."""
+        return f"{self._value_}"
 
 
 class MapImageResourceType(Enum):
-    """Type of Map Image Resources"""
+    """Type of Map Image Resources."""
 
     companylogo = "companylogo"
     heat = "heat"
@@ -467,12 +498,13 @@ class MapImageResourceType(Enum):
     turnpoint = "turnpoint"
     version = "version"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the resource type."""
+        return f"{self._value_}"
 
 
 class MapImageFormatType(Enum):
-    """Type of Map Image Formats"""
+    """Type of Map Image Formats."""
 
     png = 0
     jpeg = 1
@@ -483,7 +515,7 @@ class MapImageFormatType(Enum):
 
 
 class RoutingTransportMode(Enum):
-    """Transport modes of Routing API v8"""
+    """Transport modes of Routing API v8."""
 
     car = "car"
     truck = "truck"
@@ -493,8 +525,9 @@ class RoutingTransportMode(Enum):
     taxi = "taxi"
     bus = "bus"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the transport mode."""
+        return f"{self._value_}"
 
 
 class AvoidFeature(Enum):
@@ -506,8 +539,9 @@ class AvoidFeature(Enum):
     tunnel = "tunnel"
     dirt_road = "dirtRoad"
 
-    def __str__(self):
-        return "%s" % self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the avoid feature."""
+        return f"{self._value_}"
 
 
 class ShippedHazardousGood(Enum):
@@ -525,8 +559,9 @@ class ShippedHazardousGood(Enum):
     harmfulToWater = "harmfulToWater"
     other = "other"
 
-    def __str__(self):
-        return self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the hazardous good."""
+        return f"{self._value_}"
 
 
 class TunnelCategory(Enum):
@@ -537,8 +572,9 @@ class TunnelCategory(Enum):
     d = "D"
     e = "E"
 
-    def __str__(self):
-        return self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the category."""
+        return f"{self._value_}"
 
 
 class TruckType(Enum):
@@ -547,5 +583,6 @@ class TruckType(Enum):
     straight = "straight"
     tractor = "tractor"
 
-    def __str__(self):
-        return self._value_
+    def __str__(self) -> str:
+        """Return the string representation of the truck type."""
+        return f"{self._value_}"

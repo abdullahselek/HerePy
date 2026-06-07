@@ -26,14 +26,18 @@ class MaxCallException(PollingException):
 
 
 def step_constant(step):
-    """Use this function when you want the step to remain fixed in every iteration (typically good for
-    instances when you know approximately how long the function should poll for)"""
+    """
+    Use this function when you want the step to remain fixed in every iteration (typically good for
+    instances when you know approximately how long the function should poll for)
+    """
     return step
 
 
 def step_linear_double(step):
-    """Use this function when you want the step to double each iteration (e.g. like the way ArrayList works in
-    Java). Note that this can result in very long poll times after a few iterations"""
+    """
+    Use this function when you want the step to double each iteration (e.g. like the way ArrayList works in
+    Java). Note that this can result in very long poll times after a few iterations
+    """
     return step * 2
 
 
@@ -55,9 +59,10 @@ def poll(
     poll_forever=False,
     collect_values=None,
     *a,
-    **k
+    **k,
 ):
-    """Poll by calling a target function until a certain condition is met. You must specify at least a target
+    """
+    Poll by calling a target function until a certain condition is met. You must specify at least a target
     function to be called and the step -- base wait time between each function call.
     :param step: Step defines the amount of time to wait (in seconds)
     :param args: Arguments to be passed to the target function
@@ -93,15 +98,14 @@ def poll(
     :return: Polling will return first value from the target function that meets the condions of the check_success
     callback. By default, this will be the first value that is not None, 0, False, '', or an empty collection.
     """
-
     assert (timeout is not None or max_tries is not None) or poll_forever, (
         "You did not specify a maximum number of tries or a timeout. Without either of these set, the polling "
         'function will poll forever. If this is the behavior you want, pass "poll_forever=True"'
     )
 
-    assert not (
-        (timeout is not None or max_tries is not None) and poll_forever
-    ), "You cannot specify both the option to poll_forever and max_tries/timeout."
+    assert not ((timeout is not None or max_tries is not None) and poll_forever), (
+        "You cannot specify both the option to poll_forever and max_tries/timeout."
+    )
 
     kwargs = kwargs or dict()
     values = collect_values or Queue()

@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
+"""Module for the HERE Destination Weather API."""
+
 import json
 import sys
-from typing import Optional
 
 import requests
 
@@ -14,28 +15,28 @@ from herepy.utils import Utils
 
 
 class DestinationWeatherApi(HEREApi):
-    """A python interface into the HERE Destination Weather API"""
+    """A python interface into the HERE Destination Weather API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a DestinationWeatherApi instance.
+        """
+        Initialize a DestinationWeatherApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
-        super(DestinationWeatherApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = "https://weather.cc.api.here.com/weather/1.0/report.json"
 
     def _get(self, data, product):
         url = Utils.build_url(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode("utf8"))
-        if json_data.get(self._product_node(product)) != None:
-            return DestinationWeatherResponse.new_from_jsondict(
-                json_data, param_defaults={self._product_node(product): None}
-            )
+        if json_data.get(self._product_node(product)) is not None:
+            return DestinationWeatherResponse.new_from_jsondict(json_data, param_defaults={self._product_node(product): None})
         else:
             error = self._get_error_from_response(json_data)
             raise error
@@ -45,9 +46,7 @@ class DestinationWeatherApi(HEREApi):
             if json_data["error"] == "Unauthorized":
                 return UnauthorizedError(json_data["error_description"])
         error_type = json_data.get("Type")
-        error_message = json_data.get(
-            "Message", "Error occurred on " + sys._getframe(1).f_code.co_name
-        )
+        error_message = json_data.get("Message", "Error occurred on " + sys._getframe(1).f_code.co_name)
         if error_type == "Invalid Request":
             return InvalidRequestError(error_message)
         else:
@@ -75,8 +74,10 @@ class DestinationWeatherApi(HEREApi):
         product: WeatherProductType,
         one_observation: bool = True,
         metric: bool = True,
-    ) -> Optional[DestinationWeatherResponse]:
-        """Request the product for given location name.
+    ) -> DestinationWeatherResponse | None:
+        """
+        Request the product for given location name.
+
         Args:
           location_name (str):
             Location name.
@@ -86,17 +87,18 @@ class DestinationWeatherApi(HEREApi):
             Limit the result to the best mapped weather station.
           metric (bool):
             Use the metric system.
+
         Returns:
           DestinationWeatherResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "apiKey": self._api_key,
             "product": product.__str__(),
-            "oneobservation": "true" if one_observation == True else "false",
-            "metric": "true" if metric == True else "false",
+            "oneobservation": "true" if one_observation else "false",
+            "metric": "true" if metric else "false",
             "name": location_name,
         }
         return self._get(data, product)
@@ -107,8 +109,10 @@ class DestinationWeatherApi(HEREApi):
         product: WeatherProductType,
         one_observation: bool = True,
         metric: bool = True,
-    ) -> Optional[DestinationWeatherResponse]:
-        """Request the product for given location name.
+    ) -> DestinationWeatherResponse | None:
+        """
+        Request the product for given zip code.
+
         Args:
           zip_code (int):
             U.S. zip code.
@@ -118,17 +122,18 @@ class DestinationWeatherApi(HEREApi):
             Limit the result to the best mapped weather station.
           metric (bool):
             Use the metric system.
+
         Returns:
           DestinationWeatherResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "apiKey": self._api_key,
             "product": product.__str__(),
-            "oneobservation": "true" if one_observation == True else "false",
-            "metric": "true" if metric == True else "false",
+            "oneobservation": "true" if one_observation else "false",
+            "metric": "true" if metric else "false",
             "zipcode": zip_code,
         }
         return self._get(data, product)
@@ -140,8 +145,10 @@ class DestinationWeatherApi(HEREApi):
         product: WeatherProductType,
         one_observation: bool = True,
         metric: bool = True,
-    ) -> Optional[DestinationWeatherResponse]:
-        """Request the product for given location name.
+    ) -> DestinationWeatherResponse | None:
+        """
+        Request the product for given coordinates.
+
         Args:
           latitude (float):
             Latitude.
@@ -153,17 +160,18 @@ class DestinationWeatherApi(HEREApi):
             Limit the result to the best mapped weather station.
           metric (bool):
             Use the metric system.
+
         Returns:
           DestinationWeatherResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "apiKey": self._api_key,
             "product": product.__str__(),
-            "oneobservation": "true" if one_observation == True else "false",
-            "metric": "true" if metric == True else "false",
+            "oneobservation": "true" if one_observation else "false",
+            "metric": "true" if metric else "false",
             "latitude": latitude,
             "longitude": longitude,
         }

@@ -1,30 +1,33 @@
 #!/usr/bin/env python
 
+"""Module for the HERE Map Image API."""
+
 import json
 import sys
-from typing import List, Optional
 
 import requests
 
-from herepy import MapImageFormatType, MapImageResourceType
+from herepy import MapImageFormatType
 from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 from herepy.here_api import HEREApi
 from herepy.utils import Utils
 
 
 class MapImageApi(HEREApi):
-    """A python interface into the HERE Map Image API"""
+    """A python interface into the HERE Map Image API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a MapImageApi instance.
+        """
+        Initialize a MapImageApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
-        super(MapImageApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = "https://image.maps.ls.hereapi.com/mia/1.6/mapview"
 
     def __get_error_from_response(self, json_data):
@@ -35,9 +38,7 @@ class MapImageApi(HEREApi):
         error_type = json_data.get("Type")
         error_message = json_data.get(
             "Message",
-            error_description
-            + ", error occurred on "
-            + sys._getframe(1).f_code.co_name,
+            error_description + ", error occurred on " + sys._getframe(1).f_code.co_name,
         )
         if error_type == "Invalid Request":
             return InvalidRequestError(error_message)
@@ -46,27 +47,29 @@ class MapImageApi(HEREApi):
 
     def get_mapimage(
         self,
-        top_left: List[float] = None,
-        bottom_right: List[float] = None,
-        coordinates: List[float] = None,
-        city_name: Optional[str] = None,
-        country_name: Optional[str] = None,
-        center: List[float] = None,
+        top_left: list[float] = None,
+        bottom_right: list[float] = None,
+        coordinates: list[float] = None,
+        city_name: str | None = None,
+        country_name: str | None = None,
+        center: list[float] = None,
         encoded_geo_coordinate: str = None,
         encoded_geo_center_coordinate: str = None,
         image_format: MapImageFormatType = MapImageFormatType.png,
-        image_height: Optional[int] = None,
+        image_height: int | None = None,
         show_position: bool = False,
         maxhits: int = 1,
         label_language: str = "eng",
-        second_label_language: Optional[str] = None,
-        house_number: Optional[str] = None,
+        second_label_language: str | None = None,
+        house_number: str | None = None,
         zoom: int = 8,
-        map_scheme: Optional[int] = None,
-        uncertainty: Optional[str] = None,
-        nodot: Optional[bool] = None,
+        map_scheme: int | None = None,
+        uncertainty: str | None = None,
+        nodot: bool | None = None,
     ):
-        """Retrieves the map image with given parameters.
+        """
+        Retrieves the map image with given parameters.
+
         Args:
           top_left (List[float]):
             List contains latitude and longitude in order for the bounding box parameter.
@@ -128,12 +131,14 @@ class MapImageApi(HEREApi):
             which is 50000 meters.
           nodot (Optional[bool]):
             If provided map image will be without dots.
+
         Returns:
           Map image as bytes.
+
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "z": zoom,
             "apiKey": self._api_key,
@@ -182,6 +187,6 @@ class MapImageApi(HEREApi):
                 if "error" in json_data:
                     error = self.__get_error_from_response(json_data)
                     raise error
-            except UnicodeDecodeError as err:
+            except UnicodeDecodeError:
                 print("Map image downloaded")
         return response.content

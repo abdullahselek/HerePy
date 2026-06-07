@@ -1,3 +1,4 @@
+"""Example usage of public_transit_api."""
 #!/usr/bin/env python
 
 from herepy import PublicTransitApi, PublicTransitSearchMethod

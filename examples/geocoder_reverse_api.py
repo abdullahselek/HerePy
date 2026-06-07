@@ -1,3 +1,4 @@
+"""Example usage of geocoder_reverse_api."""
 #!/usr/bin/env python
 
 from herepy import GeocoderReverseApi

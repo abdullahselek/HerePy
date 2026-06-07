@@ -22,15 +22,18 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: uv sync --group dev
-    - name: Lint with flake8
+    - name: Check format
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        uv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        uv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        uv run nox -s check_format
+    - name: Check lint
+      run: |
+        uv run nox -s check_lint
+    - name: Check types
+      run: |
+        uv run nox -s check_types
     - name: Test with pytest
       run: |
-        uv run pytest -s -v --cov-report xml --cov=herepy tests/
+        uv run nox -s run_tests
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:

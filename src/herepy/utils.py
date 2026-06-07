@@ -7,19 +7,23 @@ from urllib.parse import urlencode, urlparse, urlunparse
 from herepy.error import HEREError
 
 
-class Utils(object):
+class Utils:
     """Helper class for main api classes"""
 
     @staticmethod
     def encode_parameters(parameters):
-        """Return a string in key=value&key=value form.
+        """
+        Return a string in key=value&key=value form.
         Values of None are not included in the output string.
+
         Args:
           parameters (dict):
             dictionary of query parameters to be converted.
+
         Returns:
           A URL-encoded string in "key=value&key=value" form. If the parameter value is
             a dict, the encoded string is converted to "main_key[sub_key]=sub_value".
+
         """
         if parameters is None:
             return None
@@ -38,16 +42,20 @@ class Utils(object):
 
     @staticmethod
     def build_url(url, extra_params=None):
-        """Builds a url with given parameters which will
+        """
+        Builds a url with given parameters which will
         be used in requests.
+
         Args:
           url (str):
             base url.
           extra_params (dict):
             dictionary of query parameters.
-        Returns:
-          A encoded url ready for the request"""
 
+        Returns:
+          A encoded url ready for the request
+
+        """
         # Break url into constituent parts
         (scheme, netloc, path, params, query, fragment) = urlparse(url)
 

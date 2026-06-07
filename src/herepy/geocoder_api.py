@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
+"""Module for the HERE Geocoder API."""
+
 import json
 import sys
-from typing import List, Optional
 
 import requests
 
@@ -13,18 +14,20 @@ from herepy.utils import Utils
 
 
 class GeocoderApi(HEREApi):
-    """A python interface into the HERE Geocoder API"""
+    """A python interface into the HERE Geocoder API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a GeocoderApi instance.
+        """
+        Initialize a GeocoderApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
-        super(GeocoderApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = "https://geocode.search.hereapi.com/v1/geocode"
 
     def __get(self, data):
@@ -32,7 +35,7 @@ class GeocoderApi(HEREApi):
         response = requests.get(url, timeout=self._timeout)
         try:
             json_data = json.loads(response.content.decode("utf8"))
-            if json_data.get("items") != None:
+            if json_data.get("items") is not None:
                 return GeocoderResponse.new_from_jsondict(json_data)
             elif json_data["error"] == "Unauthorized":
                 raise UnauthorizedError(json_data["error_description"])
@@ -44,38 +47,37 @@ class GeocoderApi(HEREApi):
                     )
                 )
         except ValueError as err:
-            raise HEREError(
-                "Error occurred on function "
-                + sys._getframe(1).f_code.co_name
-                + " "
-                + str(err)
-            )
+            raise HEREError("Error occurred on function " + sys._getframe(1).f_code.co_name + " " + str(err))
 
-    def free_form(
-        self, searchtext: str, lang: str = "en-US"
-    ) -> Optional[GeocoderResponse]:
-        """Geocodes given search text
+    def free_form(self, searchtext: str, lang: str = "en-US") -> GeocoderResponse | None:
+        """
+        Geocodes given search text.
+
         Args:
           searchtext (str):
             possible address text.
           lang (str):
             BCP47 compliant Language Code.
+
         Returns:
           GeocoderResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         data = {"q": searchtext, "apiKey": self._api_key, "lang": lang}
         return self.__get(data)
 
     def address_with_boundingbox(
         self,
         searchtext: str,
-        top_left: List[float],
-        bottom_right: List[float],
+        top_left: list[float],
+        bottom_right: list[float],
         lang: str = "en-US",
-    ) -> Optional[GeocoderResponse]:
-        """Geocodes given search text with in given boundingbox
+    ) -> GeocoderResponse | None:
+        """
+        Geocodes given search text with in given boundingbox.
+
         Args:
           searchtext (str):
             possible address text.
@@ -85,11 +87,13 @@ class GeocoderApi(HEREApi):
             List contains latitude and longitude in order.
           lang (str):
             BCP47 compliant Language Code.
+
         Returns:
           GeocoderResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         data = {
             "q": searchtext,
             "mapView": str.format(
@@ -106,14 +110,16 @@ class GeocoderApi(HEREApi):
 
     def address_with_details(
         self,
-        house_number: Optional[int] = None,
-        street: Optional[str] = None,
-        city: Optional[str] = None,
-        postal_code: Optional[str] = None,
-        country: Optional[str] = None,
+        house_number: int | None = None,
+        street: str | None = None,
+        city: str | None = None,
+        postal_code: str | None = None,
+        country: str | None = None,
         lang: str = "en-US",
-    ) -> Optional[GeocoderResponse]:
-        """Geocodes with given address details
+    ) -> GeocoderResponse | None:
+        """
+        Geocodes with given address details.
+
         Args:
           house_number (int):
             house number.
@@ -127,11 +133,13 @@ class GeocoderApi(HEREApi):
             postal code.
           lang (str):
             BCP47 compliant Language Code.
+
         Returns:
           GeocoderResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         qq_params = []
         if house_number is not None:
             qq_params.append(f"houseNumber={house_number}")
@@ -154,10 +162,10 @@ class GeocoderApi(HEREApi):
         }
         return self.__get(data)
 
-    def street_intersection(
-        self, street: str, city: str, lang: str = "en-US"
-    ) -> Optional[GeocoderResponse]:
-        """Geocodes with given street and city
+    def street_intersection(self, street: str, city: str, lang: str = "en-US") -> GeocoderResponse | None:
+        """
+        Geocodes with given street and city.
+
         Args:
           street (str):
             street name.
@@ -165,11 +173,13 @@ class GeocoderApi(HEREApi):
             city name.
           lang (str):
             BCP47 compliant Language Code.
+
         Returns:
           GeocoderResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         data = {
             "qq": str.format("street={0};", street) + str.format("city={0}", city),
             "apiKey": self._api_key,

@@ -1,14 +1,9 @@
 #!/usr/bin/env python
 
-import codecs
-import io
-import json
-import os
-import sys
 import unittest
 from unittest.mock import Mock, patch
 
-from herepy import MapTileApi, MapTileApiType, UnauthorizedError
+from herepy import MapTileApi, UnauthorizedError
 
 
 class MapTileApiTest(unittest.TestCase):
@@ -26,18 +21,14 @@ class MapTileApiTest(unittest.TestCase):
         with open("testdata/tiles/berlin.png", "rb") as tile:
             mock_get.return_value = Mock(ok=True)
             mock_get.return_value.content = tile.read
-        map_tile = self._api.get_maptile(
-            latitude=52.525439, longitude=13.38727, zoom=12
-        )
+        map_tile = self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)
         self.assertIsNotNone(map_tile)
 
     @patch("herepy.map_tile_api.requests.get")
     def test_get_map_tile_with_parameters_fails(self, mock_get):
         mock_get.return_value = Mock(ok=True)
         mock_get.return_value.content = None
-        map_tile = self._api.get_maptile(
-            latitude=52.525439, longitude=13.38727, zoom=12
-        )
+        map_tile = self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)
         self.assertIsNone(map_tile)
 
     @patch("herepy.map_tile_api.requests.get")
@@ -70,6 +61,4 @@ class MapTileApiTest(unittest.TestCase):
             mock_get.return_value = Mock(ok=True)
             mock_get.return_value.content = f.read()
         with self.assertRaises(UnauthorizedError):
-            map_tile = self._api.get_maptile(
-                latitude=52.525439, longitude=13.38727, zoom=12
-            )
+            map_tile = self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)

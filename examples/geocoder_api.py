@@ -1,3 +1,4 @@
+"""Example usage of geocoder_api."""
 #!/usr/bin/env python
 
 from herepy import GeocoderApi
@@ -17,9 +18,7 @@ response = geocoder_api.address_with_boundingbox(
 print(response.as_dict())
 
 # geocodes with given address details
-response = geocoder_api.address_with_details(
-    house_number=34, street="Barbaros", city="Istanbul", country="Turkey"
-)
+response = geocoder_api.address_with_details(house_number=34, street="Barbaros", city="Istanbul", country="Turkey")
 print(response.as_dict())
 
 # geocodes with given street and city

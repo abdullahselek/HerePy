@@ -1,9 +1,10 @@
+"""Example usage of isoline_routing_api."""
 #!/usr/bin/env python
 
 from herepy import (
     IsolineRoutingApi,
-    IsolineRoutingTransportMode,
     IsolineRoutingMode,
+    IsolineRoutingTransportMode,
 )
 
 isoline_routing_api = IsolineRoutingApi(api_key="api_key")

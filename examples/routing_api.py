@@ -1,30 +1,29 @@
+"""Example usage of routing_api."""
 #!/usr/bin/env python
 
 from herepy import (
-    RoutingApi,
-    RouteMode,
-    MatrixRoutingType,
-    MatrixSummaryAttribute,
-    RoutingTransportMode,
-    RoutingMode,
-    RoutingApiReturnField,
-    RoutingMetric,
-    RoutingApiSpanField,
+    Avoid,
     AvoidArea,
     AvoidFeature,
-    Avoid,
-    Truck,
+    MatrixRoutingType,
+    MatrixSummaryAttribute,
+    RouteMode,
+    RoutingApi,
+    RoutingApiReturnField,
+    RoutingApiSpanField,
+    RoutingMetric,
+    RoutingMode,
+    RoutingTransportMode,
     ShippedHazardousGood,
-    TunnelCategory,
+    Truck,
     TruckType,
+    TunnelCategory,
 )
 
 routing_api = RoutingApi(api_key="api_key")
 
 # fetches a bicycle route between two points
-response = routing_api.bicycle_route(
-    waypoint_a=[41.9798, -87.8801], waypoint_b=[41.9043, -87.9216]
-)
+response = routing_api.bicycle_route(waypoint_a=[41.9798, -87.8801], waypoint_b=[41.9043, -87.9216])
 print(response.as_dict())
 
 # fetches a driving route between two points

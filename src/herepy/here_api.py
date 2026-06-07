@@ -1,18 +1,20 @@
 #!/usr/bin/env python
 
 
-class HEREApi(object):
+class HEREApi:
     """Base class from which all wrappers inherit."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a Api instance.
+        """
+        Returns a Api instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
+        """
         self.__set_credentials(api_key)
         if timeout:
             self._timeout = timeout
@@ -20,9 +22,12 @@ class HEREApi(object):
             self._timeout = 20
 
     def __set_credentials(self, api_key):
-        """Setter for credentials.
+        """
+        Setter for credentials.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
+
         """
         self._api_key = api_key

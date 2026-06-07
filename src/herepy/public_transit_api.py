@@ -2,14 +2,16 @@
 
 import json
 import sys
-from typing import List, Optional
 
 import requests
 
 from herepy.error import HEREError, UnauthorizedError
 from herepy.here_api import HEREApi
-from herepy.here_enum import (PublicTransitModeType, PublicTransitRoutingMode,
-                              PublicTransitSearchMethod)
+from herepy.here_enum import (
+    PublicTransitModeType,
+    PublicTransitRoutingMode,
+    PublicTransitSearchMethod,
+)
 from herepy.models import PublicTransitResponse
 from herepy.utils import Utils
 
@@ -18,15 +20,17 @@ class PublicTransitApi(HEREApi):
     """A python interface into the HERE Public Transit API"""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a PublicTransitApi instance.
+        """
+        Returns a PublicTransitApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
-        super(PublicTransitApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = "https://transit.ls.hereapi.com/v3/"
 
     def __get(self, data, path, json_node):
@@ -48,13 +52,15 @@ class PublicTransitApi(HEREApi):
 
     def find_stations_by_name(
         self,
-        center: List[float],
+        center: list[float],
         name: str,
         max_count: int = 5,
         method: PublicTransitSearchMethod = PublicTransitSearchMethod.fuzzy,
         radius: int = 20000,
-    ) -> Optional[PublicTransitResponse]:
-        """Request a list of public transit stations based on name.
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of public transit stations based on name.
+
         Args:
           center (List):
             List contains latitude and longitude in order.
@@ -66,12 +72,13 @@ class PublicTransitApi(HEREApi):
             Matching method from PublicTransitSearchMethod (Default is fuzzy).
           radius (int):
             specifies radius in kilometers (Default is 20000km).
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "center": str.format("{0},{1}", center[0], center[1]),
             "name": name,
@@ -82,10 +89,10 @@ class PublicTransitApi(HEREApi):
         }
         return self.__get(data, "stations/by_name.json", "Stations")
 
-    def find_stations_nearby(
-        self, center: List[float], radius: int = 500, max_count: int = 5
-    ) -> Optional[PublicTransitResponse]:
-        """Request a list of public transit stations within a given geo-location.
+    def find_stations_nearby(self, center: list[float], radius: int = 500, max_count: int = 5) -> PublicTransitResponse | None:
+        """
+        Request a list of public transit stations within a given geo-location.
+
         Args:
           center (List):
             List contains latitude and longitude in order.
@@ -93,12 +100,13 @@ class PublicTransitApi(HEREApi):
             specifies radius in meters (Default is 500m).
           max_count (int):
             maximum number of stations  (Default is 5).
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "center": str.format("{0},{1}", center[0], center[1]),
             "radius": radius,
@@ -115,21 +123,22 @@ class PublicTransitApi(HEREApi):
         station_ids = station_ids[:-1]
         return station_ids
 
-    def find_stations_by_id(
-        self, ids: List[int], lang: str
-    ) -> Optional[PublicTransitResponse]:
-        """Request details of a specific transit station based on a previous request.
+    def find_stations_by_id(self, ids: list[int], lang: str) -> PublicTransitResponse | None:
+        """
+        Request details of a specific transit station based on a previous request.
+
         Args:
           ids (List):
             List contains station ids.
           lang (str):
             language code for response like `en`.
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "stnIds": self.__prepare_station_ids(ids),
             "lang": lang,
@@ -137,10 +146,10 @@ class PublicTransitApi(HEREApi):
         }
         return self.__get(data, "stations/by_ids.json", "Stations")
 
-    def find_transit_coverage_in_cities(
-        self, center: List[float], political_view: str, radius: int
-    ) -> Optional[PublicTransitResponse]:
-        """Request a list of transit operators available in cities nearby.
+    def find_transit_coverage_in_cities(self, center: list[float], political_view: str, radius: int) -> PublicTransitResponse | None:
+        """
+        Request a list of transit operators available in cities nearby.
+
         Args:
           center (List):
             List contains latitude and longitude in order.
@@ -148,12 +157,13 @@ class PublicTransitApi(HEREApi):
             switch for grouping results like `CHN`.
           radius (int):
             specifies radius in meters.
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "center": str.format("{0},{1}", center[0], center[1]),
             "politicalview": political_view,
@@ -162,10 +172,10 @@ class PublicTransitApi(HEREApi):
         }
         return self.__get(data, "coverage/city.json", "Coverage")
 
-    def next_nearby_departures_of_station(
-        self, station_id: int, time: str, lang: str = "en"
-    ) -> Optional[PublicTransitResponse]:
-        """Request a list of next departure times and destinations of a particular station.
+    def next_nearby_departures_of_station(self, station_id: int, time: str, lang: str = "en") -> PublicTransitResponse | None:
+        """
+        Request a list of next departure times and destinations of a particular station.
+
         Args:
           lang (str):
             language code for response like `en` Default is `en`.
@@ -173,12 +183,13 @@ class PublicTransitApi(HEREApi):
             station id for departures.
           time (str):
             time formattes in yyyy-mm-ddThh:mm:ss.
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "lang": lang,
             "stnId": station_id,
@@ -189,13 +200,15 @@ class PublicTransitApi(HEREApi):
 
     def next_departures_from_location(
         self,
-        center: List[float],
+        center: list[float],
         time: str,
         lang: str = "en",
         max: int = 40,
         max_station: int = 40,
-    ) -> Optional[PublicTransitResponse]:
-        """Request a list of all next departure times and destinations from a given location.
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of all next departure times and destinations from a given location.
+
         Args:
           center (List):
             List contains latitude and longitude in order.
@@ -207,12 +220,13 @@ class PublicTransitApi(HEREApi):
             maximum number of next departures per station. Default is 40.
           max_station (int):
             maximum number of stations for which departures are required. Default is 40.
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "lang": lang,
             "center": str.format("{0},{1}", center[0], center[1]),
@@ -225,13 +239,15 @@ class PublicTransitApi(HEREApi):
 
     def next_departures_for_stations(
         self,
-        station_ids: List[int],
+        station_ids: list[int],
         time: str,
         lang: str = "en",
         max: int = 40,
         max_station: int = 40,
-    ) -> Optional[PublicTransitResponse]:
-        """Request a list of all next departure times and destinations for a give list of stations.
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of all next departure times and destinations for a give list of stations.
+
         Args:
           station_ids (List):
             a list of stop ids.
@@ -243,12 +259,13 @@ class PublicTransitApi(HEREApi):
             maximum number of next departures per station. Default is 40.
           max_station (int):
             maximum number of stations for which departures are required. Default is 40.
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "lang": lang,
             "time": time,
@@ -261,22 +278,24 @@ class PublicTransitApi(HEREApi):
 
     def calculate_route(
         self,
-        departure: List[float],
-        arrival: List[float],
+        departure: list[float],
+        arrival: list[float],
         time: str,
         max_connections: int = 3,
         changes: int = -1,
         lang: str = "en",
-        include_modes: List[PublicTransitModeType] = None,
-        exclude_modes: List[PublicTransitModeType] = None,
+        include_modes: list[PublicTransitModeType] = None,
+        exclude_modes: list[PublicTransitModeType] = None,
         units: str = "metric",
         max_walking_distance: int = 2000,
         walking_speed: int = 100,
         show_arrival_times: bool = True,
         graph: bool = False,
         routing_mode: PublicTransitRoutingMode = PublicTransitRoutingMode.schedule,
-    ) -> Optional[PublicTransitResponse]:
-        """Request a public transit route between any two places.
+    ) -> PublicTransitResponse | None:
+        """
+        Request a public transit route between any two places.
+
         Args:
           departure (List):
             List contains latitude and longitude in order.
@@ -309,12 +328,13 @@ class PublicTransitApi(HEREApi):
             flag to indicate if response should contain coordinate pairs to allow the drawing of a polyline for the route.
           routing_type (PublicTransitRoutingType):
             type of routing. Default is time_tabled.
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "dep": str.format("{0},{1}", departure[0], departure[1]),
             "arr": str.format("{0},{1}", arrival[0], arrival[1]),
@@ -324,9 +344,9 @@ class PublicTransitApi(HEREApi):
             "lang": lang,
             "units": units,
             "walk": ",".join([str(max_walking_distance), str(walking_speed)]),
-            "arrival": 1 if show_arrival_times == True else 0,
+            "arrival": 1 if show_arrival_times else 0,
             "apikey": self._api_key,
-            "graph": 1 if graph == True else 0,
+            "graph": 1 if graph else 0,
             "routingMode": routing_mode.__str__(),
         }
 
@@ -351,8 +371,10 @@ class PublicTransitApi(HEREApi):
         max: int = None,
         details: int = 1,
         lang: str = "en",
-    ) -> Optional[PublicTransitResponse]:
-        """Request a list of transit operator coverage within a specified city.
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of transit operator coverage within a specified city.
+
         Args:
           city_name (str):
             the name or part of the name of the search city.
@@ -365,12 +387,13 @@ class PublicTransitApi(HEREApi):
             Set to 0 just return the matching city names.
           lang (str):
             the language of the response, default `en`.
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
-        """
 
+        """
         data = {
             "name": city_name,
             "apikey": self._api_key,
@@ -383,19 +406,21 @@ class PublicTransitApi(HEREApi):
             del data["max"]
         return self.__get(data, "coverage/search.json", "Coverage")
 
-    def coverage_nearby(
-        self, details: int, center: List[float]
-    ) -> Optional[PublicTransitResponse]:
-        """Request a list of transit operators and station coverage nearby.
+    def coverage_nearby(self, details: int, center: list[float]) -> PublicTransitResponse | None:
+        """
+        Request a list of transit operators and station coverage nearby.
+
         Args:
           details (int):
             0 disables showing line info, 1 enables showing line info.abs
           center (List):
             List contains latitude and longitude in order.
+
         Returns:
           PublicTransitResponse
         Raises:
           HEREError
+
         """
         data = {
             "details": details,
@@ -409,9 +434,7 @@ class PublicTransitApi(HEREApi):
         connections = response.Res["Connections"]["Connection"]
 
         for connection in connections:
-            connection["short_route"] = self._get_route_from_public_transit_connection(
-                connection
-            )
+            connection["short_route"] = self._get_route_from_public_transit_connection(connection)
         return response
 
     def _get_route_from_public_transit_connection(self, public_transit_connection):

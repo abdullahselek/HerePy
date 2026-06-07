@@ -1,10 +1,5 @@
 #!/usr/bin/env python
 
-import codecs
-import io
-import json
-import os
-import sys
 import unittest
 from unittest.mock import Mock, patch
 
@@ -19,9 +14,7 @@ class MapImageApiTest(unittest.TestCase):
     def test_initiation(self):
         self.assertIsInstance(self._api, MapImageApi)
         self.assertEqual(self._api._api_key, "api_key")
-        self.assertEqual(
-            self._api._base_url, "https://image.maps.ls.hereapi.com/mia/1.6/mapview"
-        )
+        self.assertEqual(self._api._base_url, "https://image.maps.ls.hereapi.com/mia/1.6/mapview")
 
     @patch("herepy.map_image_api.requests.get")
     def test_get_mapimage_with_boundingbox(self, mock_get):
@@ -66,9 +59,7 @@ class MapImageApiTest(unittest.TestCase):
             mock_get.return_value = Mock(ok=True)
             byte_im = f.read()
             mock_get.return_value.content = byte_im
-        map_image = self._api.get_mapimage(
-            coordinates=[28.371425, 77.387695], uncertainty="5m", map_scheme=3
-        )
+        map_image = self._api.get_mapimage(coordinates=[28.371425, 77.387695], uncertainty="5m", map_scheme=3)
         self.assertIsNotNone(map_image)
         self.assertTrue(isinstance(map_image, bytes))
 
@@ -78,9 +69,7 @@ class MapImageApiTest(unittest.TestCase):
             mock_get.return_value = Mock(ok=True)
             byte_im = f.read()
             mock_get.return_value.content = byte_im
-        map_image = self._api.get_mapimage(
-            coordinates=[28.371425, 77.387695], uncertainty="5m", nodot=True
-        )
+        map_image = self._api.get_mapimage(coordinates=[28.371425, 77.387695], uncertainty="5m", nodot=True)
         self.assertIsNotNone(map_image)
         self.assertTrue(isinstance(map_image, bytes))
 
@@ -106,9 +95,7 @@ class MapImageApiTest(unittest.TestCase):
             mock_get.return_value = Mock(ok=True)
             byte_im = f.read()
             mock_get.return_value.content = byte_im
-        map_image = self._api.get_mapimage(
-            coordinates=[60.17675, 24.929974], country_name="Finland", zoom=15
-        )
+        map_image = self._api.get_mapimage(coordinates=[60.17675, 24.929974], country_name="Finland", zoom=15)
         self.assertIsNotNone(map_image)
         self.assertTrue(isinstance(map_image, bytes))
 
@@ -133,9 +120,7 @@ class MapImageApiTest(unittest.TestCase):
             mock_get.return_value = Mock(ok=True)
             byte_im = f.read()
             mock_get.return_value.content = byte_im
-        map_image = self._api.get_mapimage(
-            encoded_geo_coordinate="QeL4rkKaxoA", zoom=10
-        )
+        map_image = self._api.get_mapimage(encoded_geo_coordinate="QeL4rkKaxoA", zoom=10)
         self.assertIsNotNone(map_image)
         self.assertTrue(isinstance(map_image, bytes))
 

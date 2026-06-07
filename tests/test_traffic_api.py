@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 
 import codecs
-import datetime
-import os
-import sys
 import unittest
 
 import responses
@@ -49,9 +46,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_incidents_in_bounding_box_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -90,9 +85,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_incidents_in_corridor_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -101,9 +94,7 @@ class TrafficApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.UnauthorizedError):
-            self._api.incidents_in_corridor(
-                points=[[51.5072, -0.1275], [51.50781, -0.13112]], width=1000
-            )
+            self._api.incidents_in_corridor(points=[[51.5072, -0.1275], [51.50781, -0.13112]], width=1000)
 
     @responses.activate
     def test_incidents_via_proximity_success(self):
@@ -134,9 +125,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_incidents_via_proximity_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -176,9 +165,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_flow_using_quadkey_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -203,18 +190,14 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.flow_within_boundingbox(
-            top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035]
-        )
+        response = self._api.flow_within_boundingbox(top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.TrafficFlowResponse)
         self.assertIsNotNone(response.as_dict())
 
     @responses.activate
     def test_flow_within_boundingbox_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -223,9 +206,7 @@ class TrafficApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.UnauthorizedError):
-            self._api.flow_within_boundingbox(
-                top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035]
-            )
+            self._api.flow_within_boundingbox(top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035])
 
     @responses.activate
     def test_flow_using_proximity_success(self):
@@ -241,18 +222,14 @@ class TrafficApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.flow_using_proximity(
-            latitude=51.5072, longitude=-0.1275, distance=100
-        )
+        response = self._api.flow_using_proximity(latitude=51.5072, longitude=-0.1275, distance=100)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.TrafficFlowResponse)
         self.assertIsNotNone(response.as_dict())
 
     @responses.activate
     def test_flow_using_proximity_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -261,9 +238,7 @@ class TrafficApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.UnauthorizedError):
-            self._api.flow_using_proximity(
-                latitude=51.5072, longitude=-0.1275, distance=100
-            )
+            self._api.flow_using_proximity(latitude=51.5072, longitude=-0.1275, distance=100)
 
     @responses.activate
     def test_flow_using_proximity_returning_additional_attributes_success(self):
@@ -294,9 +269,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_flow_using_proximity_returning_additional_attributes_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -340,9 +313,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_flow_with_minimum_jam_factor_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -381,9 +352,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_flow_in_corridor_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -392,9 +361,7 @@ class TrafficApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.UnauthorizedError):
-            self._api.flow_in_corridor(
-                points=[[51.5072, -0.1275], [51.50781, -0.13112]], width=1000
-            )
+            self._api.flow_in_corridor(points=[[51.5072, -0.1275], [51.50781, -0.13112]], width=1000)
 
     @responses.activate
     def test_flow_availability_data_success(self):
@@ -417,9 +384,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_flow_availability_data_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -454,9 +419,7 @@ class TrafficApiTest(unittest.TestCase):
 
     @responses.activate
     def test_additional_attributes_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,

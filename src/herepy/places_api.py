@@ -2,13 +2,11 @@
 
 import json
 import sys
-from typing import List, Optional
 
 import requests
 
 from herepy.error import HEREError, UnauthorizedError
 from herepy.here_api import HEREApi
-from herepy.here_enum import PlacesCategory
 from herepy.models import PlacesResponse
 from herepy.utils import Utils
 
@@ -17,37 +15,35 @@ class PlacesApi(HEREApi):
     """A python interface into the HERE Places (Search) API"""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a PlacesApi instance.
+        """
+        Returns a PlacesApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
-        super(PlacesApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = "https://discover.search.hereapi.com/v1/discover"
 
     def __get(self, data):
         url = Utils.build_url(self._base_url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode("utf8"))
-        if json_data.get("items") != None:
+        if json_data.get("items") is not None:
             return PlacesResponse.new_from_jsondict(json_data)
         elif "error" in json_data:
             if json_data["error"] == "Unauthorized":
                 raise UnauthorizedError(json_data["error_description"])
         else:
-            raise HEREError(
-                json_data.get(
-                    "message", "Error occurred on " + sys._getframe(1).f_code.co_name
-                )
-            )
+            raise HEREError(json_data.get("message", "Error occurred on " + sys._getframe(1).f_code.co_name))
 
-    def onebox_search(
-        self, coordinates: List[float], query: str, limit: int = 20, lang: str = "en-US"
-    ) -> Optional[PlacesResponse]:
-        """Request a list of places based on a query string.
+    def onebox_search(self, coordinates: list[float], query: str, limit: int = 20, lang: str = "en-US") -> PlacesResponse | None:
+        """
+        Request a list of places based on a query string.
+
         Args:
           coordinates (List):
             List contains latitude and longitude in order.
@@ -57,11 +53,13 @@ class PlacesApi(HEREApi):
             Limits items to return, with default value 10. Max value 100.
           lang (str):
             BCP47 compliant Language Code.
+
         Returns:
           PlacesResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         data = {
             "at": str.format("{0},{1}", coordinates[0], coordinates[1]),
             "q": query,
@@ -73,13 +71,15 @@ class PlacesApi(HEREApi):
 
     def search_in_country(
         self,
-        coordinates: List[float],
+        coordinates: list[float],
         query: str,
         country_code: str,
         limit: int = 20,
         lang: str = "en-US",
-    ) -> Optional[PlacesResponse]:
-        """Request a list of places based on a query string.
+    ) -> PlacesResponse | None:
+        """
+        Request a list of places based on a query string.
+
         Args:
           coordinates (List):
             List contains latitude and longitude in order.
@@ -94,8 +94,9 @@ class PlacesApi(HEREApi):
         Returns:
           PlacesResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         data = {
             "at": str.format("{0},{1}", coordinates[0], coordinates[1]),
             "q": query,
@@ -108,13 +109,14 @@ class PlacesApi(HEREApi):
 
     def places_in_circle(
         self,
-        coordinates: List[float],
+        coordinates: list[float],
         radius: int,
         query: str,
         limit: int = 20,
         lang: str = "en-US",
-    ) -> Optional[PlacesResponse]:
-        """Request a list of popular places around a location
+    ) -> PlacesResponse | None:
+        """
+        Request a list of popular places around a location
         Args:
           coordinates (List):
             List contains latitude and longitude in order.
@@ -127,12 +129,10 @@ class PlacesApi(HEREApi):
         Returns:
           PlacesResponse
         Raises:
-          HEREError"""
-
+          HEREError
+        """
         data = {
-            "in": str.format(
-                "circle:{0},{1};r={2}", coordinates[0], coordinates[1], radius
-            ),
+            "in": str.format("circle:{0},{1};r={2}", coordinates[0], coordinates[1], radius),
             "q": query,
             "limit": limit,
             "lang": lang,

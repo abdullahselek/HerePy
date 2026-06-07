@@ -1,32 +1,38 @@
 #!/usr/bin/env python
 
+"""Module for the HERE Isoline Routing API."""
+
 import json
 import sys
-from typing import List, Optional
 
 import requests
 
 from herepy.error import HEREError, InvalidRequestError, UnauthorizedError
 from herepy.here_api import HEREApi
-from herepy.here_enum import (IsolineRoutingMode, IsolineRoutingRangeType,
-                              IsolineRoutingTransportMode)
+from herepy.here_enum import (
+    IsolineRoutingMode,
+    IsolineRoutingRangeType,
+    IsolineRoutingTransportMode,
+)
 from herepy.models import IsolineRoutingResponse
 from herepy.utils import Utils
 
 
 class IsolineRoutingApi(HEREApi):
-    """A python interface into the HERE Isoline Routing API"""
+    """A python interface into the HERE Isoline Routing API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
-        """Returns a IsolineRoutingApi instance.
+        """
+        Initialize a IsolineRoutingApi instance.
+
         Args:
           api_key (str):
             API key taken from HERE Developer Portal.
           timeout (int):
             Timeout limit for requests.
-        """
 
-        super(IsolineRoutingApi, self).__init__(api_key, timeout)
+        """
+        super().__init__(api_key, timeout)
         self._base_url = "https://isoline.router.hereapi.com/v8/isolines"
 
     def __get_error_from_response(self, json_data):
@@ -34,9 +40,7 @@ class IsolineRoutingApi(HEREApi):
             if json_data["error"] == "Unauthorized":
                 return UnauthorizedError(json_data["error_description"])
         error_type = json_data.get("Type")
-        error_message = json_data.get(
-            "Message", "Error occurred on " + sys._getframe(1).f_code.co_name
-        )
+        error_message = json_data.get("Message", "Error occurred on " + sys._getframe(1).f_code.co_name)
         if error_type == "Invalid Request":
             return InvalidRequestError(error_message)
         else:
@@ -44,12 +48,7 @@ class IsolineRoutingApi(HEREApi):
 
     def __get_client_error_from_response(self, json_data):
         if "title" in json_data and "cause" in json_data:
-            return HEREError(
-                "Error on client: "
-                + json_data["title"]
-                + " cause: "
-                + json_data["cause"]
-            )
+            return HEREError("Error on client: " + json_data["title"] + " cause: " + json_data["cause"])
         else:
             return HEREError("herepy got a 400 from isoline router API")
 
@@ -57,10 +56,8 @@ class IsolineRoutingApi(HEREApi):
         url = Utils.build_url(url, extra_params=data)
         response = requests.get(url, timeout=self._timeout)
         json_data = json.loads(response.content.decode("utf8"))
-        if json_data.get(json_key) != None and json_data.get("isolines") != None:
-            return IsolineRoutingResponse.new_from_jsondict(
-                json_data, param_defaults={json_key: None, "isolines": None}
-            )
+        if json_data.get(json_key) is not None and json_data.get("isolines") is not None:
+            return IsolineRoutingResponse.new_from_jsondict(json_data, param_defaults={json_key: None, "isolines": None})
         elif response.status_code == 400:
             error = self.__get_client_error_from_response(json_data=json_data)
             raise error
@@ -71,12 +68,14 @@ class IsolineRoutingApi(HEREApi):
     def distance_based_isoline(
         self,
         transport_mode: IsolineRoutingTransportMode,
-        origin: List[float],
-        ranges: List[int],
+        origin: list[float],
+        ranges: list[int],
         routing_mode: IsolineRoutingMode,
-    ) -> Optional[IsolineRoutingResponse]:
-        """A distance-based isoline, also called an Isodistance,
+    ) -> IsolineRoutingResponse | None:
+        """
+        A distance-based isoline, also called an Isodistance,
         can be requested using range[type]=distance and providing range[values] in meters.
+
         Args:
           transport_mode (IsolineRoutingTransportMode):
             Transport mode of routing.
@@ -86,11 +85,13 @@ class IsolineRoutingApi(HEREApi):
             List of range values for isoline (in meters).
           routing_mode (IsolineRoutingMode):
             Isoline routing mode.
+
         Returns:
           IsolineRoutingResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         string_ranges = [str(int) for int in ranges]
         data = {
             "transportMode": transport_mode.__str__(),
@@ -105,11 +106,13 @@ class IsolineRoutingApi(HEREApi):
     def time_isoline(
         self,
         transport_mode: IsolineRoutingTransportMode,
-        origin: List[float],
-        ranges: List[int],
-    ) -> Optional[IsolineRoutingResponse]:
-        """A time-based isoline, also called an Isochrone,
+        origin: list[float],
+        ranges: list[int],
+    ) -> IsolineRoutingResponse | None:
+        """
+        A time-based isoline, also called an Isochrone,
         can be requested by using range[type]=time and providing range[values] in seconds.
+
         Args:
           transport_mode (IsolineRoutingTransportMode):
             Transport mode of routing.
@@ -117,11 +120,13 @@ class IsolineRoutingApi(HEREApi):
             List including latitude and longitude in order.
           ranges (List):
             List of range values for isoline (in meters).
+
         Returns:
           IsolineRoutingResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         string_ranges = [str(int) for int in ranges]
         data = {
             "transportMode": transport_mode.__str__(),
@@ -134,19 +139,21 @@ class IsolineRoutingApi(HEREApi):
 
     def isoline_based_on_consumption(
         self,
-        origin: List[float],
-        ranges: List[int],
+        origin: list[float],
+        ranges: list[int],
         transport_mode: IsolineRoutingTransportMode,
-        free_flow_speed_table: List[float],
-        traffic_speed_table: List[float],
+        free_flow_speed_table: list[float],
+        traffic_speed_table: list[float],
         ascent: int,
         descent: float,
         auxiliary_consumption: float,
     ):
-        """Electric vehicles have a limited reachable range based on their current battery
+        """
+        Electric vehicles have a limited reachable range based on their current battery
         charge and factors affecting the rate of energy consumed, such as road slope or auxiliary
         power usage. Therefore, it is useful to visualize the appropriate range to avoid running
         out of energy before reaching a charging point.
+
         Args:
           transport_mode (IsolineRoutingTransportMode):
             Transport mode of routing.
@@ -166,11 +173,13 @@ class IsolineRoutingApi(HEREApi):
             Value of descent.
           auxiliary_consumption (float):
             Auxiliary consumption.
+
         Returns:
           IsolineRoutingResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         string_ranges = [str(int) for int in ranges]
 
         free_speed_table = [0]
@@ -198,17 +207,19 @@ class IsolineRoutingApi(HEREApi):
     def isoline_routing_at_specific_time(
         self,
         transport_mode: IsolineRoutingTransportMode,
-        ranges: List[int],
-        origin: Optional[List[float]] = None,
-        departure_time: Optional[str] = None,
-        destination: Optional[List[float]] = None,
-        arrival_time: Optional[str] = None,
+        ranges: list[int],
+        origin: list[float] | None = None,
+        departure_time: str | None = None,
+        destination: list[float] | None = None,
+        arrival_time: str | None = None,
     ):
-        """To calculate an isoline around an origin with a specific time, use departureTime.
+        """
+        To calculate an isoline around an origin with a specific time, use departureTime.
         For a reverse isoline, that is, when using destination, you can use arrivalTime.
         If departureTime or arrivalTime are specified as "any", the isoline calculation will
         not take traffic flow and other time-dependent effects into account. This can be useful
         when it is not certain for what time of the day the isoline needs to be computed.
+
         Args:
           transport_mode (IsolineRoutingTransportMode):
             Transport mode of routing.
@@ -222,11 +233,13 @@ class IsolineRoutingApi(HEREApi):
             List including latitude and longitude in order.
           arrival_time (str):
             Arrival time of the planned routing in format yyyy-MM-ddThh:mm:ss.
+
         Returns:
           IsolineRoutingResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         string_ranges = [str(int) for int in ranges]
         if origin and departure_time:
             data = {
@@ -249,19 +262,19 @@ class IsolineRoutingApi(HEREApi):
             }
             return self.__get(self._base_url, data, "arrival")
         else:
-            raise HEREError(
-                "Please provide either origin & departure_time or destination & arrival_time."
-            )
+            raise HEREError("Please provide either origin & departure_time or destination & arrival_time.")
 
     def multi_range_routing(
         self,
         transport_mode: IsolineRoutingTransportMode,
-        ranges: List[int],
-        origin: Optional[List[float]] = None,
-        destination: Optional[List[float]] = None,
+        ranges: list[int],
+        origin: list[float] | None = None,
+        destination: list[float] | None = None,
     ):
-        """Isoline routing can be requested with multiple ranges which allows for the calculation
+        """
+        Isoline routing can be requested with multiple ranges which allows for the calculation
         of many isolines with the same start or destination.
+
         Args:
           transport_mode (IsolineRoutingTransportMode):
             Transport mode of routing.
@@ -271,11 +284,13 @@ class IsolineRoutingApi(HEREApi):
             List including latitude and longitude in order.
           destination (List):
             List including latitude and longitude in order.
+
         Returns:
           IsolineRoutingResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         string_ranges = [str(int) for int in ranges]
         if origin:
             data = {
@@ -296,19 +311,19 @@ class IsolineRoutingApi(HEREApi):
             }
             return self.__get(self._base_url, data, "arrival")
         else:
-            raise HEREError(
-                "Please provide values for origin or destination parameter."
-            )
+            raise HEREError("Please provide values for origin or destination parameter.")
 
     def reverse_direction_isoline(
         self,
         transport_mode: IsolineRoutingTransportMode,
-        ranges: List[int],
-        origin: Optional[List[float]] = None,
-        destination: Optional[List[float]] = None,
+        ranges: list[int],
+        origin: list[float] | None = None,
+        destination: list[float] | None = None,
     ):
-        """Calculates an isoline in the reverse direction. To trigger calculation in reverse direction,
+        """
+        Calculates an isoline in the reverse direction. To trigger calculation in reverse direction,
         use the destination parameter instead of origin.
+
         Args:
           transport_mode (IsolineRoutingTransportMode):
             Transport mode of routing.
@@ -318,11 +333,13 @@ class IsolineRoutingApi(HEREApi):
             List including latitude and longitude in order.
           destination (List):
             List including latitude and longitude in order.
+
         Returns:
           IsolineRoutingResponse
         Raises:
-          HEREError"""
+          HEREError
 
+        """
         string_ranges = [str(int) for int in ranges]
         if origin:
             data = {
@@ -343,6 +360,4 @@ class IsolineRoutingApi(HEREApi):
             }
             return self.__get(self._base_url, data, "arrival")
         else:
-            raise HEREError(
-                "Please provide values for origin or destination parameter."
-            )
+            raise HEREError("Please provide values for origin or destination parameter.")

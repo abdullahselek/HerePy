@@ -1,25 +1,44 @@
 #!/usr/bin/env python
 
-import sys
 import unittest
-from enum import Enum
 
-from herepy import (AerialMapTileResourceType, AvoidFeature,
-                    BaseMapTileResourceType, EVStationConnectorTypes,
-                    FlowProximityAdditionalAttributes, IncidentsCriticalityInt,
-                    IncidentsCriticalityStr, IsolineRoutingMode,
-                    IsolineRoutingOptimizationMode, IsolineRoutingRangeType,
-                    IsolineRoutingTransportMode, MapImageFormatType,
-                    MapImageResourceType, MapTileApiType, MatrixRoutingMode,
-                    MatrixRoutingProfile, MatrixRoutingTransportMode,
-                    MatrixRoutingType, MatrixSummaryAttribute,
-                    MultiplePickupOfferType, PlacesCategory,
-                    PublicTransitModeType, PublicTransitRoutingMode,
-                    PublicTransitSearchMethod, RouteMode,
-                    RoutingApiReturnField, RoutingApiSpanField, RoutingMetric,
-                    RoutingMode, RoutingTransportMode, ShippedHazardousGood,
-                    TrafficMapTileResourceType, TruckType, TunnelCategory,
-                    VectorMapTileLayer, WeatherProductType)
+from herepy import (
+    AerialMapTileResourceType,
+    AvoidFeature,
+    BaseMapTileResourceType,
+    EVStationConnectorTypes,
+    FlowProximityAdditionalAttributes,
+    IncidentsCriticalityInt,
+    IncidentsCriticalityStr,
+    IsolineRoutingMode,
+    IsolineRoutingOptimizationMode,
+    IsolineRoutingRangeType,
+    IsolineRoutingTransportMode,
+    MapImageFormatType,
+    MapImageResourceType,
+    MapTileApiType,
+    MatrixRoutingMode,
+    MatrixRoutingProfile,
+    MatrixRoutingTransportMode,
+    MatrixRoutingType,
+    MatrixSummaryAttribute,
+    MultiplePickupOfferType,
+    PlacesCategory,
+    PublicTransitModeType,
+    PublicTransitRoutingMode,
+    PublicTransitSearchMethod,
+    RouteMode,
+    RoutingApiReturnField,
+    RoutingApiSpanField,
+    RoutingMetric,
+    RoutingMode,
+    RoutingTransportMode,
+    ShippedHazardousGood,
+    TrafficMapTileResourceType,
+    TruckType,
+    TunnelCategory,
+    VectorMapTileLayer,
+)
 
 
 class RouteModeTest(unittest.TestCase):

@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-import json
-import os
-import time
 import unittest
 
 import responses
@@ -18,13 +15,11 @@ class GeocoderReverseApiTest(unittest.TestCase):
     def test_initiation(self):
         self.assertIsInstance(self._api, herepy.GeocoderReverseApi)
         self.assertEqual(self._api._api_key, "api_key")
-        self.assertEqual(
-            self._api._base_url, "https://revgeocode.search.hereapi.com/v1/revgeocode"
-        )
+        self.assertEqual(self._api._base_url, "https://revgeocode.search.hereapi.com/v1/revgeocode")
 
     @responses.activate
     def test_retrieve_addresses_whensucceed(self):
-        with open("testdata/models/geocoder_reverse.json", "r") as f:
+        with open("testdata/models/geocoder_reverse.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -38,7 +33,7 @@ class GeocoderReverseApiTest(unittest.TestCase):
 
     @responses.activate
     def test_retrieve_addresses_whenerroroccurred(self):
-        with open("testdata/models/geocoder_error.json", "r") as f:
+        with open("testdata/models/geocoder_error.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,

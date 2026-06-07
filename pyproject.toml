@@ -32,10 +32,6 @@ Repository = "https://github.com/abdullahselek/HerePy"
 Download = "https://pypi.org/pypi/herepy"
 Documentation = "https://herepy.abdullahselek.com/"
 
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [dependency-groups]
 dev = [
   "pytest==8.1.1",
@@ -46,6 +42,9 @@ dev = [
   "tox==4.14.2",
   "tox-pyenv==1.1.0",
   "flake8",
+  "nox>=2026.4.10",
+  "ruff>=0.15.16",
+  "mypy>=2.1.0",
 ]
 docs = [
   "mkdocs==1.6.1",
@@ -59,3 +58,37 @@ docs = [
 [tool.setuptools]
 packages = { find = { exclude = ["tests*", "docs*"] } }
 package-data = { herepy = ["py.typed"] }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+src = ["src"]
+target-version = "py310"
+line-length = 140
+
+[tool.ruff.lint]
+select = [
+  "D",  # pydocstyle
+  "E",  # pycodestyle errors
+  "F",  # pyflakes
+  "I",  # isort
+  "UP", # pyupgrade
+  "W",  # pycodestyle warnings
+]
+ignore = [
+    "D203", # 1 blank line required before class docstring (incompatible with D211)
+    "D212", # Multi-line summary should start on the same line as the opening quotes (incompatible with D213)
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore all directories named `tests`.
+"tests/**" = ["D", "E", "F"]
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.10"
