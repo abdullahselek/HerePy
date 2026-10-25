@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Client for the HERE Traffic API."""
 
 import json
 import sys
@@ -22,11 +23,11 @@ from herepy.utils import Utils
 
 
 class TrafficApi(HEREApi):
-    """A python interface into the HERE Traffic API"""
+    """A python interface into the HERE Traffic API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """
-        Returns a TrafficApi instance.
+        Initialize the Traffic API client.
 
         Args:
           api_key (str):

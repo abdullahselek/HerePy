@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Client for the HERE Vector Tile API."""
 
 import json
 import sys
@@ -12,11 +13,11 @@ from herepy.utils import Utils
 
 
 class VectorTileApi(HEREApi):
-    """A python interface into the HERE Vector Tile API"""
+    """A python interface into the HERE Vector Tile API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """
-        Returns a VectorTileApi instance.
+        Initialize the Vector Tile API client.
 
         Args:
           api_key (str):
@@ -55,7 +56,7 @@ class VectorTileApi(HEREApi):
         headers: dict | None = None,
     ) -> bytes | None:
         """
-        Retrieves the protocol buffer encoded binary tile.
+        Retrieve the protocol buffer-encoded binary tile.
 
         Args:
           latitude (float):

@@ -1,3 +1,5 @@
+"""Helper objects for HERE routing requests."""
+
 from herepy.here_enum import (
     AvoidFeature,
     ShippedHazardousGood,
@@ -18,7 +20,7 @@ class AvoidArea:
         avoid_type: str = "boundingBox",
     ):
         """
-        Returns a AvoidArea instance.
+        Initialize an avoid area.
 
         Args:
           north (int):
@@ -45,7 +47,7 @@ class Avoid:
 
     def __init__(self, features: list[AvoidFeature], areas: list[AvoidArea]):
         """
-        Returns a Avoid instance.
+        Initialize route avoidance options.
 
         Args:
           features (List[AvoidFeature]):
@@ -68,7 +70,7 @@ class Avoid:
 
 
 class Truck:
-    """Different truck options to use during route calculation when transportMode = truck"""
+    """Different truck options to use during route calculation when transportMode = truck."""
 
     def __init__(
         self,
@@ -84,7 +86,7 @@ class Truck:
         trailer_count: int,
     ):
         """
-        Returns a Truck instance.
+        Initialize truck options.
 
         Args:
           shipped_hazardous_goods (List[ShippedHazardousGood]):

@@ -1,3 +1,5 @@
+"""Response models for HERE API data."""
+
 import json
 
 
@@ -9,28 +11,33 @@ class HEREModel:
 
     def __str__(self):
         """
-        Returns a string representation of HEREModel. By default
-        this is the same as as_json_string().
+        Serialize the model as a string.
+
+        By default, this is the same as as_json_string().
         """
         return self.as_json_string()
 
     def __eq__(self, other):
+        """Compare this model with another object."""
         return other and self.as_dict() == other.as_dict()
 
     def __ne__(self, other):
+        """Return whether this model differs from another object."""
         return not self.__eq__(other)
 
     def as_json_string(self):
         """
-        Returns the HEREModel as a JSON string based on key/value
-        pairs returned from the as_dict() method.
+        Serialize the model as JSON.
+
+        The JSON is based on the key/value pairs returned from as_dict().
         """
         return json.dumps(self.as_dict(), sort_keys=True)
 
     def as_dict(self):
         """
-        Create a dictionary representation of the object. Please see inline
-        comments on construction when dictionaries contain HEREModels.
+        Create a dictionary representation of the object.
+
+        See the inline comments for construction when dictionaries contain HEREModels.
         """
         data = {}
 
@@ -66,12 +73,15 @@ class HEREModel:
     @classmethod
     def new_from_jsondict(cls, data, **kwargs):
         """
-        Create a new instance based on a JSON dict. Any kwargs should be
-        supplied by the inherited, calling class.
+        Create a model instance from a JSON dictionary.
+
+        Pass any additional values through the inherited calling class.
 
         Args:
             data (dict):
               A JSON dict, as converted from the JSON in the here API.
+            **kwargs:
+              Additional values to pass to the model constructor.
 
         """
         json_data = data.copy()
@@ -217,12 +227,17 @@ class DestinationWeatherResponse(HEREModel):
     @classmethod
     def new_from_jsondict(cls, data, param_defaults, **kwargs):
         """
-        Create a new instance based on a JSON dict. Any kwargs should be
-        supplied by the inherited, calling class.
+        Create a model instance from a JSON dictionary.
+
+        Pass any additional values through the inherited calling class.
 
         Args:
             data (dict):
               A JSON dict, as converted from the JSON in the here API.
+            param_defaults (dict):
+              Default values for the model fields.
+            **kwargs:
+              Additional values to pass to the model constructor.
 
         """
         json_data = data.copy()

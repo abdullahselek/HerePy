@@ -58,7 +58,7 @@ class MapTileApi(HEREApi):
         query_parameters: dict | None = None,
     ) -> bytes | None:
         """
-        Returns optional bytes value of map tile with given parameters.
+        Return the map tile bytes for the given parameters.
 
         Args:
           latitude (float):

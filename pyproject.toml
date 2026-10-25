@@ -80,6 +80,7 @@ select = [
 ignore = [
     "D203", # 1 blank line required before class docstring (incompatible with D211)
     "D212", # Multi-line summary should start on the same line as the opening quotes (incompatible with D213)
+    "D107", # Constructor documentation is covered by the class docstring.
 ]
 
 [tool.ruff.lint.per-file-ignores]

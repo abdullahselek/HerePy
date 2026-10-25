@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Client for the HERE Route Matching API."""
 
 import json
 import sys
@@ -12,11 +13,11 @@ from herepy.utils import Utils
 
 
 class RmeApi(HEREApi):
-    """A python interface into the RME API"""
+    """A python interface into the RME API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """
-        Returns a RmeApi instance.
+        Initialize the Route Matching API client.
 
         Args:
           api_key (str):
@@ -47,17 +48,18 @@ class RmeApi(HEREApi):
 
     def match_route(self, gpx_file_content: str, route_mode: str = "car", pde_layers: list[str] = []) -> RmeResponse | None:
         """
-        Retrieves misc information about the route given in gpx file
+        Retrieve miscellaneous information about the route in a GPX file.
+
         Args:
-          gpxfile content (str):
+          gpx_file_content (str):
             gpx file content as string
-          routemode (str):
+          route_mode (str):
             route mode ('car')
           pde_layers (str list):
             PDE layers to retrieve e.g.:
               ROAD_GEOM_FCn(TUNNEL)
               SPEED_LIMITS_FCn(FROM_REF_SPEED_LIMIT,TO_REF_SPEED_LIMIT)
-              ADAS_ATTRIB_FCn(SLOPES)
+              ADAS_ATTRIB_FCn(SLOPES).
 
               or e.g.,
 

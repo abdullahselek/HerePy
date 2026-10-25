@@ -52,7 +52,7 @@ class GeocoderReverseApi(HEREApi):
 
     def retrieve_addresses(self, prox: list[float], limit: int = 1, lang: str = "en-US") -> GeocoderReverseResponse | None:
         """
-        Gets the address information of a point.
+        Get the address information for a point.
 
         Args:
           prox (lat/lon):

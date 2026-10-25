@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Enumeration values used by HERE API clients."""
 
 from enum import Enum
 
@@ -150,7 +151,9 @@ class MatrixRoutingMode(Enum):
 
 class MatrixRoutingTransportMode(Enum):
     """
-    Defines transport modes on Matrix Routing API. Depending on the transport mode special constraints,
+    Define transport modes for the Matrix Routing API.
+
+    Depending on the transport mode, special constraints,
     speed attributes and weights are taken into account during route calculation.
     """
 
@@ -586,3 +589,6 @@ class TruckType(Enum):
     def __str__(self) -> str:
         """Return the string representation of the truck type."""
         return f"{self._value_}"
+
+
+"""Enumeration values used by HERE API clients."""

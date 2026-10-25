@@ -1,18 +1,21 @@
 #!/usr/bin/env python
+"""Utilities for converting geographic coordinates to map tile indices."""
 
 import math
 
 
 class MercatorProjection:
     """
-    The Map and Vetor Tile API serves map tiles obtained by mapping points on the
-    surface of a sphere (the globe) to points on a plane, using the normalized Mercator projection.
+    Convert geographic positions to map tile coordinates.
 
-    This class helps to create column and row values to be used in requests.
+    The Map and Vector Tile APIs use the normalized Mercator projection to map positions on the
+    globe to a plane.
+
     """
 
     @staticmethod
     def get_column_row(latitude: float, longitude: float, zoom: int):
+        """Return the tile column and row for the given coordinates and zoom."""
         lat_rad = latitude * math.pi / 180
         n = math.pow(2, zoom)
         x_tile = n * ((longitude + 180) / 360)

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Base classes shared by HERE API clients."""
 
 
 class HEREApi:
@@ -6,7 +7,7 @@ class HEREApi:
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """
-        Returns a Api instance.
+        Initialize the API client.
 
         Args:
           api_key (str):

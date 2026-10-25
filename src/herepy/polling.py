@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Utilities for retrying operations until they succeed or time out."""
 # taken from https://github.com/justiniso/polling/blob/master/polling.py
 
 import time
@@ -10,7 +11,7 @@ except ImportError:
 
 
 class PollingException(Exception):
-    """Base exception that stores all return values of attempted polls"""
+    """Base exception that stores all return values of attempted polls."""
 
     def __init__(self, values, last=None):
         self.values = values
@@ -18,31 +19,33 @@ class PollingException(Exception):
 
 
 class TimeoutException(PollingException):
-    """Exception raised if polling function times out"""
+    """Exception raised if polling function times out."""
 
 
 class MaxCallException(PollingException):
-    """Exception raised if maximum number of iterations is exceeded"""
+    """Exception raised if maximum number of iterations is exceeded."""
 
 
 def step_constant(step):
     """
-    Use this function when you want the step to remain fixed in every iteration (typically good for
-    instances when you know approximately how long the function should poll for)
+    Return a fixed polling interval.
+
+    Use it when you know approximately how long the function should poll for.
     """
     return step
 
 
 def step_linear_double(step):
     """
-    Use this function when you want the step to double each iteration (e.g. like the way ArrayList works in
-    Java). Note that this can result in very long poll times after a few iterations
+    Double the polling interval after each iteration.
+
+    This can result in very long poll times after a few iterations.
     """
     return step * 2
 
 
 def is_truthy(val):
-    """Use this function to test if a return value is truthy"""
+    """Test whether a return value is truthy."""
     return bool(val)
 
 
@@ -62,8 +65,9 @@ def poll(
     **k,
 ):
     """
-    Poll by calling a target function until a certain condition is met. You must specify at least a target
-    function to be called and the step -- base wait time between each function call.
+    Poll until a target function returns a successful result.
+
+    Specify the target function and the base wait time between calls.
     :param step: Step defines the amount of time to wait (in seconds)
     :param args: Arguments to be passed to the target function
     :type kwargs: dict

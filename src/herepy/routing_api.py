@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Client for the HERE Routing API."""
 
 import datetime
 import json
@@ -31,7 +32,7 @@ from herepy.utils import Utils
 
 
 class RoutingApi(HEREApi):
-    """A python interface into the HERE Routing API"""
+    """A python interface into the HERE Routing API."""
 
     URL_CALCULATE_ROUTE = "https://route.ls.hereapi.com/routing/7.2/calculateroute.json"
     URL_CALCULATE_ROUTE_V8 = "https://router.hereapi.com/v8/routes"
@@ -39,7 +40,7 @@ class RoutingApi(HEREApi):
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """
-        Returns a RoutingApi instance.
+        Initialize the Routing API client.
 
         Args:
           api_key (str):
@@ -126,7 +127,8 @@ class RoutingApi(HEREApi):
         departure: str = "now",
     ) -> RoutingResponse | None:
         """
-        Request a bicycle route between two points
+        Request a bicycle route between two points.
+
         Args:
           waypoint_a:
             List contains latitude and longitude in order
@@ -157,7 +159,8 @@ class RoutingApi(HEREApi):
         departure: str = "now",
     ) -> RoutingResponse | None:
         """
-        Request a driving route between two points
+        Request a driving route between two points.
+
         Args:
           waypoint_a (List):
             List contains latitude and longitude in order
@@ -188,7 +191,8 @@ class RoutingApi(HEREApi):
         departure: str = "now",
     ) -> RoutingResponse | None:
         """
-        Request a pedestrian route between two points
+        Request a pedestrian route between two points.
+
         Args:
           waypoint_a (List):
             List contains latitude and longitude in order
@@ -220,7 +224,8 @@ class RoutingApi(HEREApi):
         departure: str = "now",
     ) -> RoutingResponse | None:
         """
-        Request a intermediate route from three points
+        Request a route through three points.
+
         Args:
           waypoint_a (List):
             Starting List contains latitude and longitude in order
@@ -255,7 +260,8 @@ class RoutingApi(HEREApi):
         departure="now",
     ) -> RoutingResponse | None:
         """
-        Request a public transport route between two points
+        Request a public transport route between two points.
+
         Args:
           waypoint_a (List):
             Starting List contains latitude and longitude in order
@@ -291,7 +297,8 @@ class RoutingApi(HEREApi):
         arrival: str = None,
     ) -> RoutingResponse | None:
         """
-        Request a public transport route between two points based on timetables
+        Request a public transport route between two points based on timetables.
+
         Args:
           waypoint_a (List):
             Starting List contains latitude and longitude in order
@@ -327,7 +334,8 @@ class RoutingApi(HEREApi):
         departure: str = "now",
     ) -> RoutingResponse | None:
         """
-        Calculates the fastest car route between two location
+        Calculate the fastest car route between two locations.
+
         Args:
           waypoint_a (List):
             List contains latitude and longitude in order
@@ -358,7 +366,8 @@ class RoutingApi(HEREApi):
         departure: str = "now",
     ) -> RoutingResponse | None:
         """
-        Calculates the fastest truck route between two location
+        Calculate the fastest truck route between two locations.
+
         Args:
           waypoint_a (List):
             List contains latitude and longitude in order
@@ -402,7 +411,7 @@ class RoutingApi(HEREApi):
         headers: dict | None = None,
     ) -> RoutingResponseV8 | None:
         """
-        Calculates the route between given origin and destination.
+        Calculate the route between the given origin and destination.
 
         Args:
           transport_mode (RoutingTransportMode):
@@ -707,7 +716,6 @@ class RoutingApi(HEREApi):
         return filename
 
     def __is_correct_response(self, response):
-        status_code = response.status_code
         json_data = response.json()
         if json_data.get("matrix") is not None:
             return json_data
@@ -999,7 +1007,7 @@ def _status_error(json_data):
 
 
 def _request_error(json_data):
-    """'subtype' in error response, return appropriate response"""
+    """'subtype' in error response, return appropriate response."""
     subtype = json_data["subtype"]
     details = json_data["details"]
 

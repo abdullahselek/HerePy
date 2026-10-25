@@ -68,7 +68,7 @@ class MapImageApi(HEREApi):
         nodot: bool | None = None,
     ):
         """
-        Retrieves the map image with given parameters.
+        Retrieve the map image with the given parameters.
 
         Args:
           top_left (List[float]):

@@ -73,8 +73,9 @@ class IsolineRoutingApi(HEREApi):
         routing_mode: IsolineRoutingMode,
     ) -> IsolineRoutingResponse | None:
         """
-        A distance-based isoline, also called an Isodistance,
-        can be requested using range[type]=distance and providing range[values] in meters.
+        Calculate a distance-based isoline (isodistance).
+
+        Request it with range[type]=distance and range[values] in meters.
 
         Args:
           transport_mode (IsolineRoutingTransportMode):
@@ -110,8 +111,9 @@ class IsolineRoutingApi(HEREApi):
         ranges: list[int],
     ) -> IsolineRoutingResponse | None:
         """
-        A time-based isoline, also called an Isochrone,
-        can be requested by using range[type]=time and providing range[values] in seconds.
+        Calculate a time-based isoline (isochrone).
+
+        Request it with range[type]=time and range[values] in seconds.
 
         Args:
           transport_mode (IsolineRoutingTransportMode):
@@ -149,10 +151,10 @@ class IsolineRoutingApi(HEREApi):
         auxiliary_consumption: float,
     ):
         """
-        Electric vehicles have a limited reachable range based on their current battery
-        charge and factors affecting the rate of energy consumed, such as road slope or auxiliary
-        power usage. Therefore, it is useful to visualize the appropriate range to avoid running
-        out of energy before reaching a charging point.
+        Calculate an electric vehicle isoline based on energy consumption.
+
+        Reachable range depends on the battery charge and factors such as road slope or
+        auxiliary power usage.
 
         Args:
           transport_mode (IsolineRoutingTransportMode):
@@ -215,6 +217,7 @@ class IsolineRoutingApi(HEREApi):
     ):
         """
         To calculate an isoline around an origin with a specific time, use departureTime.
+
         For a reverse isoline, that is, when using destination, you can use arrivalTime.
         If departureTime or arrivalTime are specified as "any", the isoline calculation will
         not take traffic flow and other time-dependent effects into account. This can be useful
@@ -272,8 +275,7 @@ class IsolineRoutingApi(HEREApi):
         destination: list[float] | None = None,
     ):
         """
-        Isoline routing can be requested with multiple ranges which allows for the calculation
-        of many isolines with the same start or destination.
+        Calculate multiple isolines from one origin or destination.
 
         Args:
           transport_mode (IsolineRoutingTransportMode):
@@ -321,7 +323,9 @@ class IsolineRoutingApi(HEREApi):
         destination: list[float] | None = None,
     ):
         """
-        Calculates an isoline in the reverse direction. To trigger calculation in reverse direction,
+        Calculate an isoline in the reverse direction.
+
+        To trigger calculation in reverse direction,
         use the destination parameter instead of origin.
 
         Args:

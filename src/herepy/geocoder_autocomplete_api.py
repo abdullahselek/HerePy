@@ -79,7 +79,7 @@ class GeocoderAutoCompleteApi(HEREApi):
         Args:
           query (str):
             Query search string
-          countryCode (str):
+          country_code (str):
             Country code (USA etc.)
           lang (str):
             BCP47 compliant Language Code.

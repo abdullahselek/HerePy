@@ -126,8 +126,9 @@ class EVChargingStationsApi:
         offset: int = 0,
     ) -> EVChargingStationsResponse | None:
         """
-        Make a search request for charging stations with in given
-        bounding box. The bounding box can have a maximum height / width of 400km.
+        Search for charging stations in a bounding box.
+
+        The bounding box can have a maximum height or width of 400 km.
 
         Args:
           top_left (List):
@@ -189,8 +190,9 @@ class EVChargingStationsApi:
         offset: int = 0,
     ) -> EVChargingStationsResponse | None:
         """
-        Makes a search request for charging stations with in given corridor.
-        Maximum corridor area is 5000 km2.
+        Search for charging stations along a corridor.
+
+        The maximum corridor area is 5000 km2.
 
         Args:
           points (List):

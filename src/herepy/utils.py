@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Helper functions for constructing HERE API requests."""
 
 import base64
 import zlib
@@ -8,12 +9,13 @@ from herepy.error import HEREError
 
 
 class Utils:
-    """Helper class for main api classes"""
+    """Helper class for main api classes."""
 
     @staticmethod
     def encode_parameters(parameters):
         """
         Return a string in key=value&key=value form.
+
         Values of None are not included in the output string.
 
         Args:
@@ -43,8 +45,9 @@ class Utils:
     @staticmethod
     def build_url(url, extra_params=None):
         """
-        Builds a url with given parameters which will
-        be used in requests.
+        Build a URL with the given parameters.
+
+        This URL will be used in requests.
 
         Args:
           url (str):
@@ -74,6 +77,7 @@ class Utils:
 
     @staticmethod
     def get_zipped_base64(content):
+        """Compress content and return it as a base64-encoded string."""
         content_bytes = content.encode("utf-8")
         content_zipped = zlib.compress(content_bytes)
         return base64.b64encode(content_zipped).decode("utf-8")

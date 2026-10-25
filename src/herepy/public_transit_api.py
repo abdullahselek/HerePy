@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Client for the HERE Public Transit API."""
 
 import json
 import sys
@@ -17,11 +18,11 @@ from herepy.utils import Utils
 
 
 class PublicTransitApi(HEREApi):
-    """A python interface into the HERE Public Transit API"""
+    """A python interface into the HERE Public Transit API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """
-        Returns a PublicTransitApi instance.
+        Initialize the Public Transit API client.
 
         Args:
           api_key (str):
@@ -326,7 +327,7 @@ class PublicTransitApi(HEREApi):
             flag to indicate if response should show arrival times or departure times.
           graph (boolean):
             flag to indicate if response should contain coordinate pairs to allow the drawing of a polyline for the route.
-          routing_type (PublicTransitRoutingType):
+          routing_mode (PublicTransitRoutingMode):
             type of routing. Default is time_tabled.
 
         Returns:

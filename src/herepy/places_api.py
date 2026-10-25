@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Client for the HERE Places API."""
 
 import json
 import sys
@@ -12,11 +13,11 @@ from herepy.utils import Utils
 
 
 class PlacesApi(HEREApi):
-    """A python interface into the HERE Places (Search) API"""
+    """A python interface into the HERE Places (Search) API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
         """
-        Returns a PlacesApi instance.
+        Initialize the Places API client.
 
         Args:
           api_key (str):
@@ -116,7 +117,8 @@ class PlacesApi(HEREApi):
         lang: str = "en-US",
     ) -> PlacesResponse | None:
         """
-        Request a list of popular places around a location
+        Request a list of popular places around a location.
+
         Args:
           coordinates (List):
             List contains latitude and longitude in order.
@@ -124,12 +126,16 @@ class PlacesApi(HEREApi):
             Circle radius (in meters).
           query (str):
             search term.
+          limit (int):
+            Maximum number of places to return.
           lang (str):
             BCP47 compliant Language Code
+
         Returns:
           PlacesResponse
         Raises:
-          HEREError
+          HEREError.
+
         """
         data = {
             "in": str.format("circle:{0},{1};r={2}", coordinates[0], coordinates[1], radius),
