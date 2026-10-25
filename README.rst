@@ -138,14 +138,6 @@ Using
 The library provides a Python wrapper around the HERE APIs with different data models. To get started, check out the examples in the ``examples/`` folder or
 read the documentation at `https://herepy.abdullahselek.com/ <https://herepy.abdullahselek.com/>`_. All API clients need an API key which you can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
-Publishing
-============
-
-Maintainers can publish the package to PyPI using uv::
-
-    $ uv build
-    $ uv publish
-
 License
 -------
 
