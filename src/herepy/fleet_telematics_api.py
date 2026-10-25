@@ -77,7 +77,7 @@ class FleetTelematicsApi(HEREApi):
         end: str,
         intermediate_destinations: list[str],
     ):
-        data = {}
+        data: dict[str, str | int | float] = {}
 
         modes_str = ""
         for route_mode in modes:

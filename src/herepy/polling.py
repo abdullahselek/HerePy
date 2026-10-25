@@ -3,11 +3,7 @@
 # taken from https://github.com/justiniso/polling/blob/master/polling.py
 
 import time
-
-try:
-    from Queue import Queue
-except ImportError:
-    from queue import Queue
+from queue import Queue
 
 
 class PollingException(Exception):

@@ -395,7 +395,7 @@ class TrafficMapTileResourceTypeTest(unittest.TestCase):
         self.assertEqual(traffictile.__str__(), "traffictile")
 
 
-class VectorMapTileLayerTest(unittest.TestCase):
+class VectorMapTileLayerValuesTest(unittest.TestCase):
     def test_valueofenum(self):
         base = VectorMapTileLayer.base
         self.assertEqual(base.__str__(), "base")

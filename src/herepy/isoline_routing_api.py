@@ -184,11 +184,11 @@ class IsolineRoutingApi(HEREApi):
         """
         string_ranges = [str(int) for int in ranges]
 
-        free_speed_table = [0]
+        free_speed_table: list[int | float] = [0]
         free_speed_table.extend(free_flow_speed_table)
         free_speed_table_str = ",".join([str(n) for n in free_speed_table])
 
-        speed_table = [0]
+        speed_table: list[int | float] = [0]
         speed_table.extend(traffic_speed_table)
         speed_table_str = ",".join([str(n) for n in speed_table])
 

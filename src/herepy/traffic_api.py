@@ -3,6 +3,7 @@
 
 import json
 import sys
+from collections.abc import Iterable
 from enum import Enum
 
 import requests
@@ -81,14 +82,14 @@ class TrafficApi(HEREApi):
         else:
             return HEREError(error_message)
 
-    def __prepare_str_values(self, enums: [Enum]):
+    def __prepare_str_values(self, enums: Iterable[Enum]):
         values = ""
         for enum in enums:
             values += enum.__str__() + ","
         values = values[:-1]
         return values
 
-    def __prepare_criticality_int_values(self, criticality_enums: [IncidentsCriticalityInt]):
+    def __prepare_criticality_int_values(self, criticality_enums: list[IncidentsCriticalityInt]):
         criticality_values = ""
         for criticality in criticality_enums:
             criticality_values += str(criticality.__int__()) + ","
@@ -106,7 +107,7 @@ class TrafficApi(HEREApi):
         self,
         top_left: list[float],
         bottom_right: list[float],
-        criticality: [IncidentsCriticalityStr],
+        criticality: list[IncidentsCriticalityStr],
     ) -> TrafficIncidentResponse | None:
         """
         Request traffic incident information within specified area.
@@ -165,7 +166,7 @@ class TrafficApi(HEREApi):
         latitude: float,
         longitude: float,
         radius: int,
-        criticality: [IncidentsCriticalityInt],
+        criticality: list[IncidentsCriticalityInt],
     ) -> TrafficIncidentResponse | None:
         """
         Request traffic incident information within specified area.
@@ -283,7 +284,7 @@ class TrafficApi(HEREApi):
         latitude: float,
         longitude: float,
         distance: int,
-        attributes: [FlowProximityAdditionalAttributes],
+        attributes: list[FlowProximityAdditionalAttributes],
     ) -> TrafficFlowResponse | None:
         """
         Request traffic flow information using proximity, returning shape and functional class.
@@ -386,7 +387,7 @@ class TrafficApi(HEREApi):
         }
         return self.__get(self._base_url + "flowavailability.json", data)
 
-    def additional_attributes(self, quadkey: str, attributes: [FlowProximityAdditionalAttributes]) -> [TrafficFlowResponse]:
+    def additional_attributes(self, quadkey: str, attributes: list[FlowProximityAdditionalAttributes]) -> list[TrafficFlowResponse]:
         """
         Request traffic flow including shape and functional class information.
 

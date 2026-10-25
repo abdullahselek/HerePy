@@ -5,6 +5,7 @@ import datetime
 import json
 import os
 import sys
+from typing import Any
 from warnings import warn
 
 import requests
@@ -536,8 +537,8 @@ class RoutingApi(HEREApi):
 
     def __prepare_matrix_request_body(
         self,
-        origins: list[float] | str,
-        destinations: list[float] | str,
+        origins: list[list[float] | str],
+        destinations: list[list[float] | str],
         matrix_type: MatrixRoutingType = MatrixRoutingType.world,
         center: list[float] | None = None,
         radius: int | None = None,
@@ -548,15 +549,15 @@ class RoutingApi(HEREApi):
         avoid: Avoid | None = None,
         truck: Truck | None = None,
         matrix_attributes: list[MatrixSummaryAttribute] | None = None,
-    ) -> dict:
-        region_definition = {
+    ) -> dict[str, Any]:
+        region_definition: dict[str, Any] = {
             "type": matrix_type.__str__(),
         }
         if center:
             region_definition["center"] = {"lat": center[0], "lng": center[1]}
         if radius:
             region_definition["radius"] = radius
-        request_body = {"regionDefinition": region_definition}
+        request_body: dict[str, Any] = {"regionDefinition": region_definition}
 
         if profile:
             request_body["profile"] = profile.__str__()
@@ -584,8 +585,8 @@ class RoutingApi(HEREApi):
                 "trailerCount": truck.trailer_count,
             }
 
-        origin_list = []
-        for i, origin in enumerate(origins):
+        origin_list: list[dict[str, float]] = []
+        for origin in origins:
             if isinstance(origin, str):
                 origin_waypoint = self._get_coordinates_for_location_name(origin)
             else:
@@ -594,8 +595,8 @@ class RoutingApi(HEREApi):
             origin_list.append(lat_long)
         request_body["origins"] = origin_list
 
-        destination_list = []
-        for i, destination in enumerate(destinations):
+        destination_list: list[dict[str, float]] = []
+        for destination in destinations:
             if isinstance(destination, str):
                 destination_waypoint = self._get_coordinates_for_location_name(destination)
             else:
@@ -608,8 +609,8 @@ class RoutingApi(HEREApi):
 
     def sync_matrix(
         self,
-        origins: list[float] | str,
-        destinations: list[float] | str,
+        origins: list[list[float] | str],
+        destinations: list[list[float] | str],
         matrix_type: MatrixRoutingType = MatrixRoutingType.world,
         center: list[float] | None = None,
         radius: int | None = None,
@@ -732,8 +733,8 @@ class RoutingApi(HEREApi):
     def async_matrix(
         self,
         token: str,
-        origins: list[float] | str,
-        destinations: list[float] | str,
+        origins: list[list[float] | str],
+        destinations: list[list[float] | str],
         matrix_type: MatrixRoutingType = MatrixRoutingType.world,
         center: list[float] | None = None,
         radius: int | None = None,
@@ -789,7 +790,7 @@ class RoutingApi(HEREApi):
           HEREError: If an error is received from the server.
 
         """
-        query_params = {}
+        query_params: dict[str, str | None] = {}
 
         request_body = self.__prepare_matrix_request_body(
             origins=origins,
@@ -844,10 +845,13 @@ class RoutingApi(HEREApi):
         geocoder_api = GeocoderApi(self._api_key)
         try:
             geocoder_response = geocoder_api.free_form(location_name)
-            coordinates = geocoder_response.items[0]["position"]
-            return [coordinates["lat"], coordinates["lng"]]
         except HEREError as here_error:
             raise WaypointNotFoundError(here_error.message)
+        items = getattr(geocoder_response, "items", None) if geocoder_response is not None else None
+        if not items:
+            raise WaypointNotFoundError(f"No geocoding results found for {location_name!r}.")
+        coordinates = items[0]["position"]
+        return [coordinates["lat"], coordinates["lng"]]
 
     @staticmethod
     def _convert_datetime_to_isoformat(datetime_object):

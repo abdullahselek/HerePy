@@ -3,6 +3,7 @@
 import codecs
 import datetime
 import unittest
+from unittest.mock import patch
 
 import pytest
 import responses
@@ -731,7 +732,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
-    def test_sync_matrix_multiple_destinations(self):
+    def test_sync_matrix_multiple_destinations_with_location_names(self):
         with codecs.open(
             "testdata/models/routing_matrix_multiple_destinations.json",
             mode="r",
@@ -987,6 +988,12 @@ class RoutingApiTest(unittest.TestCase):
         )
         with self.assertRaises(herepy.WaypointNotFoundError):
             response = self._api.truck_route("200 S Mathilda Sunnyvale CA", "200 S Mathilda Sunnyvale CA")
+
+    @patch("herepy.routing_api.GeocoderApi.free_form", side_effect=[None, herepy.GeocoderResponse(items=[])])
+    def test_location_by_name_without_geocoder_results_raises_WaypointNotFoundError(self, _free_form):
+        for location_name in ("Unknown location", "Empty result"):
+            with self.subTest(location_name=location_name), self.assertRaises(herepy.WaypointNotFoundError):
+                self._api._get_coordinates_for_location_name(location_name)
 
     @responses.activate
     def test_route_v8_success(self):
