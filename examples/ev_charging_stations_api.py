@@ -1,3 +1,4 @@
+"""Example usage of ev_charging_stations_api."""
 #!/usr/bin/env python
 
 from herepy import EVChargingStationsApi, EVStationConnectorTypes

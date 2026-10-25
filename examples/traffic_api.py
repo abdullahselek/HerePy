@@ -1,10 +1,11 @@
+"""Example usage of traffic_api."""
 #!/usr/bin/env python
 
 from herepy import (
-    TrafficApi,
-    IncidentsCriticalityStr,
-    IncidentsCriticalityInt,
     FlowProximityAdditionalAttributes,
+    IncidentsCriticalityInt,
+    IncidentsCriticalityStr,
+    TrafficApi,
 )
 
 traffic_api = TrafficApi(api_key="api_key")
@@ -45,15 +46,11 @@ response = traffic_api.flow_using_quadkey(quadkey="0313131311102300")
 print(response.as_dict())
 
 # traffic flow information within specified area
-response = traffic_api.flow_within_boundingbox(
-    top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035]
-)
+response = traffic_api.flow_within_boundingbox(top_left=[52.5311, 13.3644], bottom_right=[52.5114, 13.4035])
 print(response.as_dict())
 
 # traffic flow for a circle around a defined point
-response = traffic_api.flow_using_proximity(
-    latitude=51.5072, longitude=-0.1275, distance=100
-)
+response = traffic_api.flow_using_proximity(latitude=51.5072, longitude=-0.1275, distance=100)
 print(response.as_dict())
 
 # traffic flow information using proximity, returning shape and functional class

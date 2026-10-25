@@ -1,9 +1,10 @@
+"""Example usage of map_tile_api."""
 #!/usr/bin/env python
 
 from herepy import (
+    BaseMapTileResourceType,
     MapTileApi,
     MapTileApiType,
-    BaseMapTileResourceType,
     TrafficMapTileResourceType,
 )
 

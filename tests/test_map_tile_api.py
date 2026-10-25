@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 
-import codecs
-import io
 import json
-import os
-import sys
 import unittest
 from unittest.mock import Mock, patch
 
-from herepy import MapTileApi, MapTileApiType, UnauthorizedError
+from herepy import HEREError, InvalidRequestError, MapTileApi, UnauthorizedError
 
 
 class MapTileApiTest(unittest.TestCase):
@@ -26,18 +22,14 @@ class MapTileApiTest(unittest.TestCase):
         with open("testdata/tiles/berlin.png", "rb") as tile:
             mock_get.return_value = Mock(ok=True)
             mock_get.return_value.content = tile.read
-        map_tile = self._api.get_maptile(
-            latitude=52.525439, longitude=13.38727, zoom=12
-        )
+        map_tile = self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)
         self.assertIsNotNone(map_tile)
 
     @patch("herepy.map_tile_api.requests.get")
     def test_get_map_tile_with_parameters_fails(self, mock_get):
         mock_get.return_value = Mock(ok=True)
         mock_get.return_value.content = None
-        map_tile = self._api.get_maptile(
-            latitude=52.525439, longitude=13.38727, zoom=12
-        )
+        map_tile = self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)
         self.assertIsNone(map_tile)
 
     @patch("herepy.map_tile_api.requests.get")
@@ -70,6 +62,34 @@ class MapTileApiTest(unittest.TestCase):
             mock_get.return_value = Mock(ok=True)
             mock_get.return_value.content = f.read()
         with self.assertRaises(UnauthorizedError):
-            map_tile = self._api.get_maptile(
-                latitude=52.525439, longitude=13.38727, zoom=12
-            )
+            map_tile = self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)
+
+    @patch("herepy.map_tile_api.requests.get")
+    def test_get_map_tile_maps_service_errors(self, mock_get):
+        cases = [
+            ({"error": "BadRequest", "Type": "Invalid Request", "Message": "invalid tile"}, InvalidRequestError),
+            ({"error": "Unavailable", "Type": "ServiceUnavailable", "Message": "service unavailable"}, HEREError),
+        ]
+        for payload, expected_error in cases:
+            with self.subTest(payload=payload):
+                mock_get.return_value.content = json.dumps(payload).encode()
+                with self.assertRaises(expected_error):
+                    self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)
+
+    @patch("herepy.map_tile_api.requests.get")
+    def test_binary_map_tile_is_returned_unchanged(self, mock_get):
+        tile_bytes = b"\xff\x00tile-data"
+        mock_get.return_value.content = tile_bytes
+
+        tile = self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)
+
+        self.assertEqual(tile, tile_bytes)
+
+    @patch("herepy.map_tile_api.requests.get")
+    def test_non_error_json_payload_is_returned_unchanged(self, mock_get):
+        payload = b'{"status": "ok"}'
+        mock_get.return_value.content = payload
+
+        tile = self._api.get_maptile(latitude=52.525439, longitude=13.38727, zoom=12)
+
+        self.assertEqual(tile, payload)

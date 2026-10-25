@@ -3,13 +3,22 @@
 import codecs
 import datetime
 import unittest
-import pytest
+from unittest.mock import patch
 
+import pytest
 import responses
 
 import herepy
-from herepy import (Avoid, AvoidArea, AvoidFeature, ShippedHazardousGood,
-                    Truck, TruckType, TunnelCategory)
+from herepy import (
+    Avoid,
+    AvoidArea,
+    AvoidFeature,
+    ShippedHazardousGood,
+    Truck,
+    TruckType,
+    TunnelCategory,
+)
+from herepy.routing_api import error_from_routing_service_error
 
 
 class RoutingApiTest(unittest.TestCase):
@@ -21,11 +30,35 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(self._api, herepy.RoutingApi)
         self.assertEqual(self._api._api_key, "api_key")
 
+    def test_routing_service_error_categories(self):
+        cases = [
+            ({"status": 403, "cause": "forbidden", "action": "check access"}, herepy.AccessDeniedError),
+            ({"subtype": "LinkIdNotFound", "details": "unknown link"}, herepy.LinkIdNotFoundError),
+            ({"subtype": "RouteNotReconstructed", "details": "route unavailable"}, herepy.RouteNotReconstructedError),
+            ({"subtype": "UnknownSubtype", "details": "unknown"}, herepy.HEREError),
+            ({"error": "Other", "error_description": "server error"}, herepy.HEREError),
+        ]
+        for payload, expected_error in cases:
+            with self.subTest(payload=payload):
+                self.assertIsInstance(error_from_routing_service_error(payload), expected_error)
+
+    @patch("herepy.routing_api.requests.post")
+    def test_async_matrix_maps_service_error_responses(self, mock_post):
+        cases = [
+            ({"error": "Unauthorized", "error_description": "invalid token"}, "invalid token"),
+            ({"title": "Bad request", "cause": "invalid matrix"}, "Bad request"),
+            ({"message": "unexpected"}, "async_matrix"),
+        ]
+        for payload, expected_message in cases:
+            with self.subTest(payload=payload):
+                mock_post.return_value.status_code = 400
+                mock_post.return_value.json.return_value = payload
+                with self.assertRaisesRegex(herepy.HEREError, expected_message):
+                    self._api.async_matrix(token="token", origins=[[1.0, 2.0]], destinations=[[3.0, 4.0]])
+
     @responses.activate
     def test_bicycleroute_withdefaultmodes_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing_bicycle.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_bicycle.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -39,9 +72,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_bicycleroute_route_short(self):
-        with codecs.open(
-            "testdata/models/routing_bicycle.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_bicycle.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -59,9 +90,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_carroute_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -69,17 +98,13 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.car_route(
-            [11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest]
-        )
+        response = self._api.car_route([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_carroute_route_short(self):
-        with codecs.open(
-            "testdata/models/routing_car_route_short.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_car_route_short.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -88,17 +113,12 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
         )
         response = self._api.car_route([38.9, -77.04833], [39.0, -77.1])
-        expected_short_route = (
-            "US-29 - K St NW; US-29 - Whitehurst Fwy; "
-            "I-495 N - Capital Beltway; MD-187 S - Old Georgetown Rd"
-        )
+        expected_short_route = "US-29 - K St NW; US-29 - Whitehurst Fwy; I-495 N - Capital Beltway; MD-187 S - Old Georgetown Rd"
         self.assertEqual(response.route_short, expected_short_route)
 
     @responses.activate
     def test_carroute_withdefaultmodes_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -112,7 +132,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_carroute_when_error_invalid_input_data_occurred(self):
-        with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_input_data.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -129,7 +149,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_carroute_when_error_invalid_credentials_occurred(self):
-        with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_credentials.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -143,7 +163,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_carroute_when_error_forbidden_credentials_occurred(self):
-        with open("testdata/models/routing_error_forbidden_credentials.json", "r") as f:
+        with open("testdata/models/routing_error_forbidden_credentials.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -157,7 +177,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_carroute_when_error_no_route_found_occurred(self):
-        with open("testdata/models/routing_error_no_route_found.json", "r") as f:
+        with open("testdata/models/routing_error_no_route_found.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -170,9 +190,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_pedestrianroute_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -190,9 +208,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_pedestrianroute_withdefaultmodes_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -206,7 +222,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_pedestrianroute_when_error_invalid_input_data_occurred(self):
-        with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_input_data.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -223,7 +239,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_pedestrianroute_when_error_invalid_credentials_occurred(self):
-        with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_credentials.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -237,7 +253,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_pedestrianroute_when_error_no_route_found_occurred(self):
-        with open("testdata/models/routing_error_no_route_found.json", "r") as f:
+        with open("testdata/models/routing_error_no_route_found.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -250,9 +266,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_pedestrianroute_route_short(self):
-        with codecs.open(
-            "testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_pedestrian.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -274,9 +288,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_intermediateroute_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -295,9 +307,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_intermediateroute_withdefaultmodes_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -305,15 +315,13 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.intermediate_route(
-            [11.0, 12.0], [15.0, 16.0], [22.0, 23.0]
-        )
+        response = self._api.intermediate_route([11.0, 12.0], [15.0, 16.0], [22.0, 23.0])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_intermediateroute_when_error_invalid_input_data_occurred(self):
-        with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_input_data.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -331,7 +339,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_intermediateroute_when_error_invalid_credentials_occurred(self):
-        with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_credentials.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -345,7 +353,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_intermediateroute_when_error_no_route_found_occurred(self):
-        with open("testdata/models/routing_error_no_route_found.json", "r") as f:
+        with open("testdata/models/routing_error_no_route_found.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -354,15 +362,11 @@ class RoutingApiTest(unittest.TestCase):
             status=400,
         )
         with self.assertRaises(herepy.NoRouteFoundError):
-            self._api.intermediate_route(
-                [11.0, 12.0], [47.013399, -10.171986], [22.0, 23.0]
-            )
+            self._api.intermediate_route([11.0, 12.0], [47.013399, -10.171986], [22.0, 23.0])
 
     @responses.activate
     def test_publictransport_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing_public.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_public.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -381,9 +385,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_publictransport_route_short(self):
-        with codecs.open(
-            "testdata/models/routing_public.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_public.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -392,17 +394,12 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
         )
         response = self._api.public_transport([11.0, 12.0], [15.0, 16.0], True)
-        expected_short_route = (
-            "332 - Palmer/Schiller; 332 - Cargo Rd./Delta Cargo; "
-            "332 - Palmer/Schiller"
-        )
+        expected_short_route = "332 - Palmer/Schiller; 332 - Cargo Rd./Delta Cargo; 332 - Palmer/Schiller"
         self.assertEqual(response.route_short, expected_short_route)
 
     @responses.activate
     def test_publictransport_withdefaultmodes_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing_public.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_public.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -416,7 +413,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_publictransport_when_error_invalid_input_data_occurred(self):
-        with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_input_data.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -434,7 +431,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_publictransport_when_error_invalid_credentials_occurred(self):
-        with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_credentials.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -448,7 +445,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_publictransport_when_error_no_route_found_occurred(self):
-        with open("testdata/models/routing_error_no_route_found.json", "r") as f:
+        with open("testdata/models/routing_error_no_route_found.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -461,9 +458,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_publictransporttimetable_withdefaultmodes_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -471,17 +466,13 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.public_transport_timetable(
-            [11.0, 12.0], [15.0, 16.0], True
-        )
+        response = self._api.public_transport_timetable([11.0, 12.0], [15.0, 16.0], True)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_publictransporttimetable_route_short(self):
-        with codecs.open(
-            "testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -489,19 +480,13 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.public_transport_timetable(
-            [11.0, 12.0], [15.0, 16.0], True
-        )
-        expected_short_route = (
-            "330 - Archer/Harlem (Terminal); 309 - Elmhurst Metra Station"
-        )
+        response = self._api.public_transport_timetable([11.0, 12.0], [15.0, 16.0], True)
+        expected_short_route = "330 - Archer/Harlem (Terminal); 309 - Elmhurst Metra Station"
         self.assertEqual(response.route_short, expected_short_route)
 
     @responses.activate
     def test_locationnearmotorway_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -509,17 +494,13 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        response = self._api.location_near_motorway(
-            [11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest]
-        )
+        response = self._api.location_near_motorway([11.0, 12.0], [22.0, 23.0], [herepy.RouteMode.car, herepy.RouteMode.fastest])
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_locationnearmotorway_withdefaultmodes_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -533,7 +514,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_locationnearmotorway_when_error_invalid_input_data_occurred(self):
-        with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_input_data.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -550,7 +531,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_locationnearmotorway_when_error_invalid_credentials_occurred(self):
-        with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_credentials.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -564,7 +545,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_locationnearmotorway_when_error_no_route_found_occurred(self):
-        with open("testdata/models/routing_error_no_route_found.json", "r") as f:
+        with open("testdata/models/routing_error_no_route_found.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -577,9 +558,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_truckroute_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -597,9 +576,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_truckroute_route_short(self):
-        with codecs.open(
-            "testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -609,16 +586,13 @@ class RoutingApiTest(unittest.TestCase):
         )
         response = self._api.truck_route([11.0, 12.0], [22.0, 23.0])
         expected_short_route = (
-            "I-190; I-294 S - Tri-State Tollway; I-290 W - Eisenhower Expy W; "
-            "IL-64 W - E North Ave; I-290 E - Eisenhower Expy E; I-290"
+            "I-190; I-294 S - Tri-State Tollway; I-290 W - Eisenhower Expy W; IL-64 W - E North Ave; I-290 E - Eisenhower Expy E; I-290"
         )
         self.assertEqual(response.route_short, expected_short_route)
 
     @responses.activate
     def test_truckroute_withdefaultmodes_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -632,7 +606,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_truckroute_when_error_invalid_input_data_occurred(self):
-        with open("testdata/models/routing_error_invalid_input_data.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_input_data.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -649,7 +623,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_truckroute_when_error_invalid_credentials_occurred(self):
-        with open("testdata/models/routing_error_invalid_credentials.json", "r") as f:
+        with open("testdata/models/routing_error_invalid_credentials.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -663,7 +637,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_truckroute_when_error_no_route_found_no_endpoint_occurred(self):
-        with open("testdata/models/routing_error_no_route_found.json", "r") as f:
+        with open("testdata/models/routing_error_no_route_found.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -676,7 +650,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_truckroute_when_error_no_route_found_graph_disconnect_occurred(self):
-        with open("testdata/models/routing_error_no_route_found_truck.json", "r") as f:
+        with open("testdata/models/routing_error_no_route_found_truck.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -689,9 +663,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_sync_matrix_whensucceed(self):
-        with codecs.open(
-            "testdata/models/routing_matrix.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_matrix.json", mode="r", encoding="utf-8") as f:
             server_response = f.read()
         responses.add(
             responses.POST,
@@ -768,7 +740,7 @@ class RoutingApiTest(unittest.TestCase):
             server_response,
             status=200,
         )
-        with open("testdata/models/geocoder.json", "r") as f:
+        with open("testdata/models/geocoder.json") as f:
             expectedGeocoderResponse = f.read()
         responses.add(
             responses.GET,
@@ -787,7 +759,7 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingMatrixResponse)
 
     @responses.activate
-    def test_sync_matrix_multiple_destinations(self):
+    def test_sync_matrix_multiple_destinations_with_location_names(self):
         with codecs.open(
             "testdata/models/routing_matrix_multiple_destinations.json",
             mode="r",
@@ -824,7 +796,7 @@ class RoutingApiTest(unittest.TestCase):
             server_response,
             status=200,
         )
-        with open("testdata/models/geocoder.json", "r") as f:
+        with open("testdata/models/geocoder.json") as f:
             expectedGeocoderResponse = f.read()
         responses.add(
             responses.GET,
@@ -870,7 +842,6 @@ class RoutingApiTest(unittest.TestCase):
     def test_async_matrix_whensucceed(self):
         with open(
             "testdata/models/routing_async_matrix_calculation.json",
-            mode="r",
             encoding="utf-8",
         ) as f:
             server_response = f.read()
@@ -882,7 +853,6 @@ class RoutingApiTest(unittest.TestCase):
         )
         with open(
             "testdata/models/routing_async_matrix_completed.json",
-            mode="r",
             encoding="utf-8",
         ) as f:
             server_response = f.read()
@@ -926,9 +896,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_departure_as_datetime(self):
-        with codecs.open(
-            "testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -936,18 +904,14 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        date = datetime.datetime(
-            2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200))
-        )
+        date = datetime.datetime(2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200)))
         response = self._api.truck_route([11.0, 12.0], [22.0, 23.0], departure=date)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_departure_as_string(self):
-        with codecs.open(
-            "testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -962,9 +926,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_arrival_as_string(self):
-        with codecs.open(
-            "testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -973,17 +935,13 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
         )
         date = "2013-07-04T17:00:00+02:00"
-        response = self._api.public_transport_timetable(
-            [11.0, 12.0], [15.0, 16.0], True, arrival=date
-        )
+        response = self._api.public_transport_timetable([11.0, 12.0], [15.0, 16.0], True, arrival=date)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_arrival_as_datetime(self):
-        with codecs.open(
-            "testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -991,20 +949,14 @@ class RoutingApiTest(unittest.TestCase):
             expectedResponse,
             status=200,
         )
-        date = datetime.datetime(
-            2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200))
-        )
-        response = self._api.public_transport_timetable(
-            [11.0, 12.0], [15.0, 16.0], True, arrival=date
-        )
+        date = datetime.datetime(2013, 7, 4, 17, 0, tzinfo=datetime.timezone(datetime.timedelta(0, 7200)))
+        response = self._api.public_transport_timetable([11.0, 12.0], [15.0, 16.0], True, arrival=date)
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_error_arrival_and_departure_set(self):
-        with codecs.open(
-            "testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_public_time_table.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -1023,9 +975,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_location_by_name(self):
-        with codecs.open(
-            "testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8") as f:
             expectedRoutingResponse = f.read()
         responses.add(
             responses.GET,
@@ -1033,7 +983,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedRoutingResponse,
             status=200,
         )
-        with open("testdata/models/geocoder.json", "r") as f:
+        with open("testdata/models/geocoder.json") as f:
             expectedGeocoderResponse = f.read()
         responses.add(
             responses.GET,
@@ -1041,17 +991,13 @@ class RoutingApiTest(unittest.TestCase):
             expectedGeocoderResponse,
             status=200,
         )
-        response = self._api.truck_route(
-            "200 S Mathilda Sunnyvale CA", "200 S Mathilda Sunnyvale CA"
-        )
+        response = self._api.truck_route("200 S Mathilda Sunnyvale CA", "200 S Mathilda Sunnyvale CA")
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponse)
 
     @responses.activate
     def test_location_by_name_throws_WaypointNotFoundError(self):
-        with codecs.open(
-            "testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_truck_route_short.json", mode="r", encoding="utf-8") as f:
             expectedRoutingResponse = f.read()
         responses.add(
             responses.GET,
@@ -1059,7 +1005,7 @@ class RoutingApiTest(unittest.TestCase):
             expectedRoutingResponse,
             status=200,
         )
-        with open("testdata/models/geocoder_error.json", "r") as f:
+        with open("testdata/models/geocoder_error.json") as f:
             expectedGeocoderResponse = f.read()
         responses.add(
             responses.GET,
@@ -1068,15 +1014,17 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.WaypointNotFoundError):
-            response = self._api.truck_route(
-                "200 S Mathilda Sunnyvale CA", "200 S Mathilda Sunnyvale CA"
-            )
+            response = self._api.truck_route("200 S Mathilda Sunnyvale CA", "200 S Mathilda Sunnyvale CA")
+
+    @patch("herepy.routing_api.GeocoderApi.free_form", side_effect=[None, herepy.GeocoderResponse(items=[])])
+    def test_location_by_name_without_geocoder_results_raises_WaypointNotFoundError(self, _free_form):
+        for location_name in ("Unknown location", "Empty result"):
+            with self.subTest(location_name=location_name), self.assertRaises(herepy.WaypointNotFoundError):
+                self._api._get_coordinates_for_location_name(location_name)
 
     @responses.activate
     def test_route_v8_success(self):
-        with codecs.open(
-            "testdata/models/routing_v8_response.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/routing_v8_response.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -1103,10 +1051,26 @@ class RoutingApiTest(unittest.TestCase):
         self.assertIsInstance(response, herepy.RoutingResponseV8)
 
     @responses.activate
+    def test_route_v8_geocodes_named_endpoints(self):
+        with open("testdata/models/geocoder.json", encoding="utf-8") as f:
+            geocoder_response = f.read()
+        for _ in range(2):
+            responses.get("https://geocode.search.hereapi.com/v1/geocode", geocoder_response)
+        responses.get("https://router.hereapi.com/v8/routes", json={"routes": []})
+
+        response = self._api.route_v8(
+            transport_mode=herepy.RoutingTransportMode.car,
+            origin="Berlin",
+            destination="Potsdam",
+        )
+
+        self.assertIsInstance(response, herepy.RoutingResponseV8)
+        self.assertEqual(len(responses.calls), 3)
+
+    @responses.activate
     def test_route_v8_error_invalid_credentials(self):
         with open(
             "testdata/models/routing_error_invalid_credentials.json",
-            mode="r",
             encoding="utf-8",
         ) as f:
             expectedResponse = f.read()
@@ -1136,9 +1100,7 @@ class RoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_route_v8_error_malformed_request(self):
-        """
-        Usually this error occurs
-        """
+        """Usually this error occurs"""
         with codecs.open(
             "testdata/models/routing_v8_error_malformed_req.json",
             mode="r",
@@ -1202,11 +1164,7 @@ class RoutingApiTest(unittest.TestCase):
             "https://router.hereapi.com/v8/routes",
             "{}",
             status=200,
-            match=[
-                responses.matchers.query_param_matcher(
-                    {"via": ["41.9339,-87.9021"] * 11}, strict_match=False
-                )
-            ],
+            match=[responses.matchers.query_param_matcher({"via": ["41.9339,-87.9021"] * 11}, strict_match=False)],
         )
         response = self._api.route_v8(
             transport_mode=herepy.RoutingTransportMode.car,
@@ -1226,14 +1184,16 @@ class RoutingApiTest(unittest.TestCase):
             status=200,
             match=[
                 responses.matchers.query_param_matcher(
-                    {"vehicle[height]": "15000", "vehicle[width]": "3000"}, strict_match=False
+                    {"vehicle[height]": "15000", "vehicle[width]": "3000"},
+                    strict_match=False,
                 )
             ],
         )
-        self._api.route_v8(transport_mode=herepy.RoutingTransportMode.truck,
+        self._api.route_v8(
+            transport_mode=herepy.RoutingTransportMode.truck,
             origin=[41.9798, -87.8801],
             destination=[41.9043, -87.9216],
-            vehicle={"height": ["15000"], "width": ["3000"]}
+            vehicle={"height": ["15000"], "width": ["3000"]},
         )
 
     @responses.activate

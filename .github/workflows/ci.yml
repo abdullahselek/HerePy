@@ -9,30 +9,31 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-        operating-system: [ubuntu-20.04, windows-latest, macos-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        operating-system: [ubuntu-24.04, windows-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
+      run: uv sync --group dev
+    - name: Check format
       run: |
-        python -m pip install --upgrade pip
-        pip install -e .
-        pip install -r requirements.testing.txt
-    - name: Lint with flake8
+        uv run nox -s check_format
+    - name: Check lint
       run: |
-        pip install flake8
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        uv run nox -s check_lint
+    - name: Check types
+      run: |
+        uv run nox -s check_types
     - name: Test with pytest
       run: |
-        py.test -s -v --cov-report xml --cov=herepy tests/
+        uv run nox -s run_tests
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:

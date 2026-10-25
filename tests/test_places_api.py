@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-import codecs
-import io
-import os
-import sys
 import unittest
 
 import responses
@@ -19,13 +15,11 @@ class PlacesApiTest(unittest.TestCase):
     def test_initiation(self):
         self.assertIsInstance(self._api, herepy.PlacesApi)
         self.assertEqual(self._api._api_key, "api_key")
-        self.assertEqual(
-            self._api._base_url, "https://discover.search.hereapi.com/v1/discover"
-        )
+        self.assertEqual(self._api._base_url, "https://discover.search.hereapi.com/v1/discover")
 
     @responses.activate
     def test_onebox_search_whensucceed(self):
-        with open("testdata/models/places_api.json", "r") as f:
+        with open("testdata/models/places_api.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -39,7 +33,7 @@ class PlacesApiTest(unittest.TestCase):
 
     @responses.activate
     def test_onebox_search_whenerroroccurred(self):
-        with open("testdata/models/places_api_error.json", "r") as f:
+        with open("testdata/models/places_api_error.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -52,7 +46,7 @@ class PlacesApiTest(unittest.TestCase):
 
     @responses.activate
     def test_search_in_country_whensucceed(self):
-        with open("testdata/models/places_api.json", "r") as f:
+        with open("testdata/models/places_api.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -66,7 +60,7 @@ class PlacesApiTest(unittest.TestCase):
 
     @responses.activate
     def test_search_in_country_whenerroroccurred(self):
-        with open("testdata/models/places_api_error.json", "r") as f:
+        with open("testdata/models/places_api_error.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -79,7 +73,7 @@ class PlacesApiTest(unittest.TestCase):
 
     @responses.activate
     def test_places_in_circle_whensucceed(self):
-        with open("testdata/models/places_api.json", "r") as f:
+        with open("testdata/models/places_api.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -93,7 +87,7 @@ class PlacesApiTest(unittest.TestCase):
 
     @responses.activate
     def test_places_in_circle_whenerroroccurred(self):
-        with open("testdata/models/places_api_error.json", "r") as f:
+        with open("testdata/models/places_api_error.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,

@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
-import json
-import os
-import time
 import unittest
+from unittest.mock import patch
 
 import responses
 
-from herepy import (DestinationWeatherApi, DestinationWeatherResponse,
-                    InvalidRequestError, UnauthorizedError, WeatherProductType)
+from herepy import (
+    DestinationWeatherApi,
+    DestinationWeatherResponse,
+    HEREError,
+    InvalidRequestError,
+    UnauthorizedError,
+    WeatherProductType,
+)
 
 
 class DestinationWeatherApiTest(unittest.TestCase):
@@ -26,9 +30,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_invalid_request_is_thrown(self):
-        with open(
-            "testdata/models/destination_weather_error_invalid_request.json", "r"
-        ) as f:
+        with open("testdata/models/destination_weather_error_invalid_request.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -43,9 +45,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_unauthorized_is_thrown(self):
-        with open(
-            "testdata/models/destination_weather_error_unauthorized.json", "r"
-        ) as f:
+        with open("testdata/models/destination_weather_error_unauthorized.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -60,7 +60,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_weather_for_location_name(self):
-        with open("testdata/models/destination_weather_forecasts.json", "r") as f:
+        with open("testdata/models/destination_weather_forecasts.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -76,7 +76,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_weather_for_coordinates(self):
-        with open("testdata/models/destination_weather_forecasts.json", "r") as f:
+        with open("testdata/models/destination_weather_forecasts.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -91,9 +91,16 @@ class DestinationWeatherApiTest(unittest.TestCase):
         self.assertTrue(response)
         self.assertIsInstance(response, DestinationWeatherResponse)
 
+    @patch("herepy.destination_weather_api.requests.get")
+    def test_unknown_service_error_raises_base_error(self, mock_get):
+        mock_get.return_value.content = b'{"Type": "ServiceUnavailable", "Message": "try again later"}'
+
+        with self.assertRaisesRegex(HEREError, "try again later"):
+            self._api.weather_for_location_name("Berlin", WeatherProductType.forecast_7days)
+
     @responses.activate
     def test_weather_for_zip_code(self):
-        with open("testdata/models/destination_weather_forecasts.json", "r") as f:
+        with open("testdata/models/destination_weather_forecasts.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -109,7 +116,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_weather_product_type_alerts(self):
-        with open("testdata/models/destination_weather_alerts.json", "r") as f:
+        with open("testdata/models/destination_weather_alerts.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -125,7 +132,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_weather_product_type_forecast_7days(self):
-        with open("testdata/models/destination_weather_forecasts.json", "r") as f:
+        with open("testdata/models/destination_weather_forecasts.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -141,9 +148,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_weather_product_type_forecast_7days_simple(self):
-        with open(
-            "testdata/models/destination_weather_forecasts_simple.json", "r"
-        ) as f:
+        with open("testdata/models/destination_weather_forecasts_simple.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -159,9 +164,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_weather_product_type_forecast_astronomy(self):
-        with open(
-            "testdata/models/destination_weather_forecasts_astronomy.json", "r"
-        ) as f:
+        with open("testdata/models/destination_weather_forecasts_astronomy.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -177,9 +180,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_weather_product_type_forecast_hourly(self):
-        with open(
-            "testdata/models/destination_weather_forecasts_hourly.json", "r"
-        ) as f:
+        with open("testdata/models/destination_weather_forecasts_hourly.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -195,9 +196,7 @@ class DestinationWeatherApiTest(unittest.TestCase):
 
     @responses.activate
     def test_weather_product_type_nws_alerts(self):
-        with open(
-            "testdata/models/destination_weather_forecasts_nsw_alerts.json", "r"
-        ) as f:
+        with open("testdata/models/destination_weather_forecasts_nsw_alerts.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,

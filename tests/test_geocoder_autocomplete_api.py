@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-import json
-import os
-import time
 import unittest
 
 import responses
@@ -25,7 +22,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
 
     @responses.activate
     def test_addresssuggestion_whensucceed(self):
-        with open("testdata/models/geocoder_autocomplete.json", "r") as f:
+        with open("testdata/models/geocoder_autocomplete.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -39,7 +36,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
 
     @responses.activate
     def test_addresssuggestion_whenerroroccurred(self):
-        with open("testdata/models/geocoder_autocomplete_error.json", "r") as f:
+        with open("testdata/models/geocoder_autocomplete_error.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -52,7 +49,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
 
     @responses.activate
     def test_limitresultsbyaddress_whensucceed(self):
-        with open("testdata/models/geocoder_autocomplete.json", "r") as f:
+        with open("testdata/models/geocoder_autocomplete.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -66,7 +63,7 @@ class GeocoderAutoCompleteApiTest(unittest.TestCase):
 
     @responses.activate
     def test_limitresultsbyaddress_whenerroroccurred(self):
-        with open("testdata/models/geocoder_autocomplete_error.json", "r") as f:
+        with open("testdata/models/geocoder_autocomplete_error.json") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,

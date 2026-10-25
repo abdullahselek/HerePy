@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-import json
-import os
-import time
 import unittest
 
 import responses
@@ -23,7 +20,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
 
     @responses.activate
     def test_get_stations_circular_search_whensucceed(self):
-        with open("testdata/models/ev_charging_stations_circular.json", "r") as f:
+        with open("testdata/models/ev_charging_stations_circular.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -45,9 +42,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
 
     @responses.activate
     def test_get_stations_circular_search_whenerroroccurred(self):
-        with open(
-            "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
-        ) as f:
+        with open("testdata/models/ev_charging_stations_error_unauthorized.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -56,13 +51,11 @@ class EVChargingStationsApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.HEREError):
-            self._api.get_stations_circular_search(
-                latitude=52.516667, longitude=13.383333, radius=5000
-            )
+            self._api.get_stations_circular_search(latitude=52.516667, longitude=13.383333, radius=5000)
 
     @responses.activate
     def test_get_stations_bounding_box_whensucceed(self):
-        with open("testdata/models/ev_charging_stations_circular.json", "r") as f:
+        with open("testdata/models/ev_charging_stations_circular.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -83,9 +76,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
 
     @responses.activate
     def test_get_stations_bounding_box_whenerroroccurred(self):
-        with open(
-            "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
-        ) as f:
+        with open("testdata/models/ev_charging_stations_error_unauthorized.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -94,13 +85,11 @@ class EVChargingStationsApiTest(unittest.TestCase):
             status=200,
         )
         with self.assertRaises(herepy.HEREError):
-            self._api.get_stations_bounding_box(
-                top_left=[52.8, 11.37309], bottom_right=[52.31, 13.2]
-            )
+            self._api.get_stations_bounding_box(top_left=[52.8, 11.37309], bottom_right=[52.31, 13.2])
 
     @responses.activate
     def test_get_stations_corridor_whensucceed(self):
-        with open("testdata/models/ev_charging_stations_circular.json", "r") as f:
+        with open("testdata/models/ev_charging_stations_circular.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -120,9 +109,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
 
     @responses.activate
     def test_get_stations_corridor_whenerroroccurred(self):
-        with open(
-            "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
-        ) as f:
+        with open("testdata/models/ev_charging_stations_error_unauthorized.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -146,7 +133,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
     @responses.activate
     def test_get_station_details_whensucceed(self):
         station_id = "276u33db-b2c840878cfc409fa5a0aef858419037"
-        with open("testdata/models/ev_charging_station_details.json", "r") as f:
+        with open("testdata/models/ev_charging_station_details.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -161,9 +148,7 @@ class EVChargingStationsApiTest(unittest.TestCase):
     @responses.activate
     def test_get_station_details_whenerroroccurred(self):
         station_id = "276u33db-b2c840878cfc409fa5a0aef858419037"
-        with open(
-            "testdata/models/ev_charging_stations_error_unauthorized.json", "r"
-        ) as f:
+        with open("testdata/models/ev_charging_stations_error_unauthorized.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -173,3 +158,13 @@ class EVChargingStationsApiTest(unittest.TestCase):
         )
         with self.assertRaises(herepy.HEREError):
             self._api.get_station_details(station_id=station_id)
+
+    @responses.activate
+    def test_unknown_service_error_uses_base_error(self):
+        responses.get(
+            "https://ev-v2.cit.cc.api.here.com/ev/stations.json",
+            json={"Type": "ServiceUnavailable", "Message": "try again later"},
+        )
+
+        with self.assertRaisesRegex(herepy.HEREError, "Error occurred on"):
+            self._api.get_stations_circular_search(latitude=52.516667, longitude=13.383333, radius=5000)

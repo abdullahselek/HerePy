@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-import json
-import os
-import time
 import unittest
 
 import responses
@@ -22,7 +19,7 @@ class FleetTelematicsApiTest(unittest.TestCase):
 
     @responses.activate
     def test_find_sequence_whensucceed(self):
-        with open("testdata/models/fleet_telematics_find_sequence.json", "r") as f:
+        with open("testdata/models/fleet_telematics_find_sequence.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -54,7 +51,7 @@ class FleetTelematicsApiTest(unittest.TestCase):
 
     @responses.activate
     def test_find_sequence_whenerroroccurred(self):
-        with open("testdata/models/fleet_telematics_unauthorized_error.json", "r") as f:
+        with open("testdata/models/fleet_telematics_unauthorized_error.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -87,7 +84,7 @@ class FleetTelematicsApiTest(unittest.TestCase):
 
     @responses.activate
     def test_find_pickups_whensucceed(self):
-        with open("testdata/models/fleet_telematics_find_pickups.json", "r") as f:
+        with open("testdata/models/fleet_telematics_find_pickups.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,
@@ -150,7 +147,7 @@ class FleetTelematicsApiTest(unittest.TestCase):
 
     @responses.activate
     def test_find_pickups_whenerroroccurred(self):
-        with open("testdata/models/fleet_telematics_unauthorized_error.json", "r") as f:
+        with open("testdata/models/fleet_telematics_unauthorized_error.json") as f:
             expected_response = f.read()
         responses.add(
             responses.GET,

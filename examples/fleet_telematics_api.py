@@ -1,6 +1,7 @@
+"""Example usage of fleet_telematics_api."""
 #!/usr/bin/env python
 
-from herepy import FleetTelematicsApi, RouteMode, MultiplePickupOfferType
+from herepy import FleetTelematicsApi, MultiplePickupOfferType, RouteMode
 
 fleet_telematics_api = FleetTelematicsApi(api_key="api_key")
 

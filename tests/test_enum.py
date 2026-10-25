@@ -1,25 +1,44 @@
 #!/usr/bin/env python
 
-import sys
 import unittest
-from enum import Enum
 
-from herepy import (AerialMapTileResourceType, AvoidFeature,
-                    BaseMapTileResourceType, EVStationConnectorTypes,
-                    FlowProximityAdditionalAttributes, IncidentsCriticalityInt,
-                    IncidentsCriticalityStr, IsolineRoutingMode,
-                    IsolineRoutingOptimizationMode, IsolineRoutingRangeType,
-                    IsolineRoutingTransportMode, MapImageFormatType,
-                    MapImageResourceType, MapTileApiType, MatrixRoutingMode,
-                    MatrixRoutingProfile, MatrixRoutingTransportMode,
-                    MatrixRoutingType, MatrixSummaryAttribute,
-                    MultiplePickupOfferType, PlacesCategory,
-                    PublicTransitModeType, PublicTransitRoutingMode,
-                    PublicTransitSearchMethod, RouteMode,
-                    RoutingApiReturnField, RoutingApiSpanField, RoutingMetric,
-                    RoutingMode, RoutingTransportMode, ShippedHazardousGood,
-                    TrafficMapTileResourceType, TruckType, TunnelCategory,
-                    VectorMapTileLayer, WeatherProductType)
+from herepy import (
+    AerialMapTileResourceType,
+    AvoidFeature,
+    BaseMapTileResourceType,
+    EVStationConnectorTypes,
+    FlowProximityAdditionalAttributes,
+    IncidentsCriticalityInt,
+    IncidentsCriticalityStr,
+    IsolineRoutingMode,
+    IsolineRoutingOptimizationMode,
+    IsolineRoutingRangeType,
+    IsolineRoutingTransportMode,
+    MapImageFormatType,
+    MapImageResourceType,
+    MapTileApiType,
+    MatrixRoutingMode,
+    MatrixRoutingProfile,
+    MatrixRoutingTransportMode,
+    MatrixRoutingType,
+    MatrixSummaryAttribute,
+    MultiplePickupOfferType,
+    PlacesCategory,
+    PublicTransitModeType,
+    PublicTransitRoutingMode,
+    PublicTransitSearchMethod,
+    RouteMode,
+    RoutingApiReturnField,
+    RoutingApiSpanField,
+    RoutingMetric,
+    RoutingMode,
+    RoutingTransportMode,
+    ShippedHazardousGood,
+    TrafficMapTileResourceType,
+    TruckType,
+    TunnelCategory,
+    VectorMapTileLayer,
+)
 
 
 class RouteModeTest(unittest.TestCase):
@@ -164,26 +183,18 @@ class EVStationConnectorTypesTest(unittest.TestCase):
         self.assertEqual(iec_60906_1_3_pin.__str__(), "24")
         avcon_connector = EVStationConnectorTypes.avcon_connector
         self.assertEqual(avcon_connector.__str__(), "25")
-        tesla_connector_high_power_wall = (
-            EVStationConnectorTypes.tesla_connector_high_power_wall
-        )
+        tesla_connector_high_power_wall = EVStationConnectorTypes.tesla_connector_high_power_wall
         self.assertEqual(tesla_connector_high_power_wall.__str__(), "26")
-        tesla_connector_universal_mobile = (
-            EVStationConnectorTypes.tesla_connector_universal_mobile
-        )
+        tesla_connector_universal_mobile = EVStationConnectorTypes.tesla_connector_universal_mobile
         self.assertEqual(tesla_connector_universal_mobile.__str__(), "27")
-        tesla_connector_spare_mobile = (
-            EVStationConnectorTypes.tesla_connector_spare_mobile
-        )
+        tesla_connector_spare_mobile = EVStationConnectorTypes.tesla_connector_spare_mobile
         self.assertEqual(tesla_connector_spare_mobile.__str__(), "28")
         jevs_g_105 = EVStationConnectorTypes.jevs_g_105
         self.assertEqual(jevs_g_105.__str__(), "29")
         iec_62196_2_type_1 = EVStationConnectorTypes.iec_62196_2_type_1
         self.assertEqual(iec_62196_2_type_1.__str__(), "30")
 
-        iec_62196_2_type_2_mennekes = (
-            EVStationConnectorTypes.iec_62196_2_type_2_mennekes
-        )
+        iec_62196_2_type_2_mennekes = EVStationConnectorTypes.iec_62196_2_type_2_mennekes
         self.assertEqual(iec_62196_2_type_2_mennekes.__str__(), "31")
         iec_62196_2_type_3c = EVStationConnectorTypes.iec_62196_2_type_3c
         self.assertEqual(iec_62196_2_type_3c.__str__(), "32")
@@ -193,52 +204,34 @@ class EVStationConnectorTypesTest(unittest.TestCase):
         self.assertEqual(iec_62196_3_type_2_combo.__str__(), "34")
         iec_60309_industrial_p_n_e = EVStationConnectorTypes.iec_60309_industrial_p_n_e
         self.assertEqual(iec_60309_industrial_p_n_e.__str__(), "35")
-        iec_60309_industrial_3p_e_n = (
-            EVStationConnectorTypes.iec_60309_industrial_3p_e_n
-        )
+        iec_60309_industrial_3p_e_n = EVStationConnectorTypes.iec_60309_industrial_3p_e_n
         self.assertEqual(iec_60309_industrial_3p_e_n.__str__(), "36")
-        iec_60309_industrial_2p_e_ac = (
-            EVStationConnectorTypes.iec_60309_industrial_2p_e_ac
-        )
+        iec_60309_industrial_2p_e_ac = EVStationConnectorTypes.iec_60309_industrial_2p_e_ac
         self.assertEqual(iec_60309_industrial_2p_e_ac.__str__(), "37")
-        iec_60309_industrial_p_n_e_ceeplus = (
-            EVStationConnectorTypes.iec_60309_industrial_p_n_e_ceeplus
-        )
+        iec_60309_industrial_p_n_e_ceeplus = EVStationConnectorTypes.iec_60309_industrial_p_n_e_ceeplus
         self.assertEqual(iec_60309_industrial_p_n_e_ceeplus.__str__(), "38")
-        iec_60309_industrial_3p_n_e = (
-            EVStationConnectorTypes.iec_60309_industrial_3p_n_e
-        )
+        iec_60309_industrial_3p_n_e = EVStationConnectorTypes.iec_60309_industrial_3p_n_e
         self.assertEqual(iec_60309_industrial_3p_n_e.__str__(), "39")
         better_place_plug = EVStationConnectorTypes.better_place_plug
         self.assertEqual(better_place_plug.__str__(), "40")
 
         marechal_plug = EVStationConnectorTypes.marechal_plug
         self.assertEqual(marechal_plug.__str__(), "41")
-        domestic_plug_socket_type_j = (
-            EVStationConnectorTypes.domestic_plug_socket_type_j
-        )
+        domestic_plug_socket_type_j = EVStationConnectorTypes.domestic_plug_socket_type_j
         self.assertEqual(domestic_plug_socket_type_j.__str__(), "42")
         tesla_connector = EVStationConnectorTypes.tesla_connector
         self.assertEqual(tesla_connector.__str__(), "43")
         iec_61851_1 = EVStationConnectorTypes.iec_61851_1
         self.assertEqual(iec_61851_1.__str__(), "44")
-        iec_62196_2_type_2_sae_j1772 = (
-            EVStationConnectorTypes.iec_62196_2_type_2_sae_j1772
-        )
+        iec_62196_2_type_2_sae_j1772 = EVStationConnectorTypes.iec_62196_2_type_2_sae_j1772
         self.assertEqual(iec_62196_2_type_2_sae_j1772.__str__(), "45")
-        iec_60309_industrial_2p_e_dc = (
-            EVStationConnectorTypes.iec_60309_industrial_2p_e_dc
-        )
+        iec_60309_industrial_2p_e_dc = EVStationConnectorTypes.iec_60309_industrial_2p_e_dc
         self.assertEqual(iec_60309_industrial_2p_e_dc.__str__(), "46")
         i_type_as__nz_3112 = EVStationConnectorTypes.i_type_as__nz_3112
         self.assertEqual(i_type_as__nz_3112.__str__(), "47")
-        domestic_plug_socket_type_a = (
-            EVStationConnectorTypes.domestic_plug_socket_type_a
-        )
+        domestic_plug_socket_type_a = EVStationConnectorTypes.domestic_plug_socket_type_a
         self.assertEqual(domestic_plug_socket_type_a.__str__(), "48")
-        domestic_plug_socket_type_c = (
-            EVStationConnectorTypes.domestic_plug_socket_type_c
-        )
+        domestic_plug_socket_type_c = EVStationConnectorTypes.domestic_plug_socket_type_c
         self.assertEqual(domestic_plug_socket_type_c.__str__(), "49")
 
 
@@ -402,7 +395,7 @@ class TrafficMapTileResourceTypeTest(unittest.TestCase):
         self.assertEqual(traffictile.__str__(), "traffictile")
 
 
-class VectorMapTileLayerTest(unittest.TestCase):
+class VectorMapTileLayerValuesTest(unittest.TestCase):
     def test_valueofenum(self):
         base = VectorMapTileLayer.base
         self.assertEqual(base.__str__(), "base")
@@ -522,9 +515,7 @@ class RoutingApiReturnFieldTest(unittest.TestCase):
         self.assertEqual(RoutingApiReturnField.instructions.__str__(), "instructions")
         self.assertEqual(RoutingApiReturnField.summary.__str__(), "summary")
         self.assertEqual(RoutingApiReturnField.travelSummary.__str__(), "travelSummary")
-        self.assertEqual(
-            RoutingApiReturnField.turnByTurnActions.__str__(), "turnByTurnActions"
-        )
+        self.assertEqual(RoutingApiReturnField.turnByTurnActions.__str__(), "turnByTurnActions")
         self.assertEqual(RoutingApiReturnField.routeHandle.__str__(), "routeHandle")
         self.assertEqual(RoutingApiReturnField.passthrough.__str__(), "passthrough")
         self.assertEqual(RoutingApiReturnField.incidents.__str__(), "incidents")
@@ -534,30 +525,20 @@ class RoutingApiReturnFieldTest(unittest.TestCase):
 class RoutingApiSpanFieldTest(unittest.TestCase):
     def test_valueofenum(self):
         self.assertEqual(RoutingApiSpanField.walkAttributes.__str__(), "walkAttributes")
-        self.assertEqual(
-            RoutingApiSpanField.streetAttributes.__str__(), "streetAttributes"
-        )
+        self.assertEqual(RoutingApiSpanField.streetAttributes.__str__(), "streetAttributes")
         self.assertEqual(RoutingApiSpanField.carAttributes.__str__(), "carAttributes")
-        self.assertEqual(
-            RoutingApiSpanField.truckAttributes.__str__(), "truckAttributes"
-        )
-        self.assertEqual(
-            RoutingApiSpanField.scooterAttributes.__str__(), "scooterAttributes"
-        )
+        self.assertEqual(RoutingApiSpanField.truckAttributes.__str__(), "truckAttributes")
+        self.assertEqual(RoutingApiSpanField.scooterAttributes.__str__(), "scooterAttributes")
         self.assertEqual(RoutingApiSpanField.names.__str__(), "names")
         self.assertEqual(RoutingApiSpanField.length.__str__(), "length")
         self.assertEqual(RoutingApiSpanField.duration.__str__(), "duration")
         self.assertEqual(RoutingApiSpanField.baseDuration.__str__(), "baseDuration")
         self.assertEqual(RoutingApiSpanField.countryCode.__str__(), "countryCode")
-        self.assertEqual(
-            RoutingApiSpanField.functionalClass.__str__(), "functionalClass"
-        )
+        self.assertEqual(RoutingApiSpanField.functionalClass.__str__(), "functionalClass")
         self.assertEqual(RoutingApiSpanField.routeNumbers.__str__(), "routeNumbers")
         self.assertEqual(RoutingApiSpanField.speedLimit.__str__(), "speedLimit")
         self.assertEqual(RoutingApiSpanField.maxSpeed.__str__(), "maxSpeed")
-        self.assertEqual(
-            RoutingApiSpanField.dynamicSpeedInfo.__str__(), "dynamicSpeedInfo"
-        )
+        self.assertEqual(RoutingApiSpanField.dynamicSpeedInfo.__str__(), "dynamicSpeedInfo")
         self.assertEqual(RoutingApiSpanField.segmentId.__str__(), "segmentId")
         self.assertEqual(RoutingApiSpanField.segmentRef.__str__(), "segmentRef")
         self.assertEqual(RoutingApiSpanField.consumption.__str__(), "consumption")
@@ -568,9 +549,7 @@ class RoutingApiSpanFieldTest(unittest.TestCase):
 class AvoidFeatureTest(unittest.TestCase):
     def test_valueofenum(self):
         self.assertEqual(AvoidFeature.toll_road.__str__(), "tollRoad")
-        self.assertEqual(
-            AvoidFeature.controlled_access_highway.__str__(), "controlledAccessHighway"
-        )
+        self.assertEqual(AvoidFeature.controlled_access_highway.__str__(), "controlledAccessHighway")
         self.assertEqual(AvoidFeature.ferry.__str__(), "ferry")
         self.assertEqual(AvoidFeature.tunnel.__str__(), "tunnel")
         self.assertEqual(AvoidFeature.dirt_road.__str__(), "dirtRoad")
@@ -586,12 +565,8 @@ class ShippedHazardousGoodTest(unittest.TestCase):
         self.assertEqual(ShippedHazardousGood.poison.__str__(), "poison")
         self.assertEqual(ShippedHazardousGood.radioactive.__str__(), "radioactive")
         self.assertEqual(ShippedHazardousGood.corrosive.__str__(), "corrosive")
-        self.assertEqual(
-            ShippedHazardousGood.poisonousInhalation.__str__(), "poisonousInhalation"
-        )
-        self.assertEqual(
-            ShippedHazardousGood.harmfulToWater.__str__(), "harmfulToWater"
-        )
+        self.assertEqual(ShippedHazardousGood.poisonousInhalation.__str__(), "poisonousInhalation")
+        self.assertEqual(ShippedHazardousGood.harmfulToWater.__str__(), "harmfulToWater")
         self.assertEqual(ShippedHazardousGood.other.__str__(), "other")
 
 

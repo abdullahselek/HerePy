@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 
 import codecs
-import json
-import os
-import time
 import unittest
 
 import responses
 
-from herepy import (HEREError, IsolineRoutingApi, IsolineRoutingMode,
-                    IsolineRoutingResponse, IsolineRoutingTransportMode,
-                    UnauthorizedError)
+from herepy import (
+    HEREError,
+    IsolineRoutingApi,
+    IsolineRoutingMode,
+    IsolineRoutingResponse,
+    IsolineRoutingTransportMode,
+    UnauthorizedError,
+)
 
 
 class IsolineRoutingApiTest(unittest.TestCase):
@@ -21,9 +23,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
     def test_initiation(self):
         self.assertIsInstance(self._api, IsolineRoutingApi)
         self.assertEqual(self._api._api_key, "api_key")
-        self.assertEqual(
-            self._api._base_url, "https://isoline.router.hereapi.com/v8/isolines"
-        )
+        self.assertEqual(self._api._base_url, "https://isoline.router.hereapi.com/v8/isolines")
 
     @responses.activate
     def test_distance_based_isoline_success(self):
@@ -51,9 +51,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_distance_based_isoline_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -94,9 +92,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_time_isoline_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -185,9 +181,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_isoline_based_on_consumption_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,
@@ -301,9 +295,7 @@ class IsolineRoutingApiTest(unittest.TestCase):
 
     @responses.activate
     def test_isoline_routing_at_specific_time_fails(self):
-        with codecs.open(
-            "testdata/models/unauthorized_error.json", mode="r", encoding="utf-8"
-        ) as f:
+        with codecs.open("testdata/models/unauthorized_error.json", mode="r", encoding="utf-8") as f:
             expectedResponse = f.read()
         responses.add(
             responses.GET,

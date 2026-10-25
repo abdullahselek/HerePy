@@ -1,3 +1,4 @@
+"""Example usage of destination_weather_api."""
 #!/usr/bin/env python
 
 from herepy import DestinationWeatherApi, WeatherProductType
@@ -5,9 +6,7 @@ from herepy import DestinationWeatherApi, WeatherProductType
 destination_weather_api = DestinationWeatherApi("api_key")
 
 # weather conditions with given location name
-response = destination_weather_api.weather_for_location_name(
-    location_name="Berlin", product=WeatherProductType.forecast_7days
-)
+response = destination_weather_api.weather_for_location_name(location_name="Berlin", product=WeatherProductType.forecast_7days)
 print(response.as_dict())
 
 # weather conditions within given coordinates
@@ -19,7 +18,5 @@ response = destination_weather_api.weather_for_coordinates(
 print(response.as_dict())
 
 # weather conditions within given zipcode
-response = destination_weather_api.weather_for_zip_code(
-    zip_code="10025", product=WeatherProductType.forecast_7days
-)
+response = destination_weather_api.weather_for_zip_code(zip_code="10025", product=WeatherProductType.forecast_7days)
 print(response.as_dict())
