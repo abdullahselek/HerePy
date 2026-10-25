@@ -158,3 +158,13 @@ class EVChargingStationsApiTest(unittest.TestCase):
         )
         with self.assertRaises(herepy.HEREError):
             self._api.get_station_details(station_id=station_id)
+
+    @responses.activate
+    def test_unknown_service_error_uses_base_error(self):
+        responses.get(
+            "https://ev-v2.cit.cc.api.here.com/ev/stations.json",
+            json={"Type": "ServiceUnavailable", "Message": "try again later"},
+        )
+
+        with self.assertRaisesRegex(herepy.HEREError, "Error occurred on"):
+            self._api.get_stations_circular_search(latitude=52.516667, longitude=13.383333, radius=5000)

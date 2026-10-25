@@ -51,6 +51,16 @@ class PublicTransitApiTest(unittest.TestCase):
             self._api.find_stations_by_name([40.7505, -73.9910], "")
 
     @responses.activate
+    def test_unauthorized_response_raises_authorization_error(self):
+        responses.get(
+            "https://transit.ls.hereapi.com/v3/stations/by_name.json",
+            json={"error": "Unauthorized", "error_description": "invalid key"},
+        )
+
+        with self.assertRaisesRegex(herepy.UnauthorizedError, "invalid key"):
+            self._api.find_stations_by_name([40.7505, -73.9910], "union")
+
+    @responses.activate
     def test_find_stations_nearby_whensucceed(self):
         with open("testdata/models/public_transit_api_nearby.json", encoding="utf-8") as f:
             expectedResponse = f.read()

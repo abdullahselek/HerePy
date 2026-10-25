@@ -62,6 +62,20 @@ class TrafficApiTest(unittest.TestCase):
             )
 
     @responses.activate
+    def test_incidents_in_bounding_box_maps_invalid_request_error(self):
+        responses.get(
+            "https://traffic.ls.hereapi.com/traffic/6.1/incidents.json",
+            json={"Type": "Invalid Request", "Message": "invalid bounding box"},
+        )
+
+        with self.assertRaisesRegex(herepy.InvalidRequestError, "invalid bounding box"):
+            self._api.incidents_in_bounding_box(
+                top_left=[52.5311, 13.3644],
+                bottom_right=[52.5114, 13.4035],
+                criticality=[herepy.IncidentsCriticalityStr.minor],
+            )
+
+    @responses.activate
     def test_incidents_in_corridor_success(self):
         with codecs.open(
             "testdata/models/traffic_incidents_corridor.json",

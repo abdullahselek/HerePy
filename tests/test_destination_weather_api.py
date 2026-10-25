@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 
 import unittest
+from unittest.mock import patch
 
 import responses
 
 from herepy import (
     DestinationWeatherApi,
     DestinationWeatherResponse,
+    HEREError,
     InvalidRequestError,
     UnauthorizedError,
     WeatherProductType,
@@ -88,6 +90,13 @@ class DestinationWeatherApiTest(unittest.TestCase):
         response = self._api.weather_for_coordinates(latitude, longitude, product)
         self.assertTrue(response)
         self.assertIsInstance(response, DestinationWeatherResponse)
+
+    @patch("herepy.destination_weather_api.requests.get")
+    def test_unknown_service_error_raises_base_error(self, mock_get):
+        mock_get.return_value.content = b'{"Type": "ServiceUnavailable", "Message": "try again later"}'
+
+        with self.assertRaisesRegex(HEREError, "try again later"):
+            self._api.weather_for_location_name("Berlin", WeatherProductType.forecast_7days)
 
     @responses.activate
     def test_weather_for_zip_code(self):

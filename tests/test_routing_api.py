@@ -18,6 +18,7 @@ from herepy import (
     TruckType,
     TunnelCategory,
 )
+from herepy.routing_api import error_from_routing_service_error
 
 
 class RoutingApiTest(unittest.TestCase):
@@ -28,6 +29,32 @@ class RoutingApiTest(unittest.TestCase):
     def test_initiation(self):
         self.assertIsInstance(self._api, herepy.RoutingApi)
         self.assertEqual(self._api._api_key, "api_key")
+
+    def test_routing_service_error_categories(self):
+        cases = [
+            ({"status": 403, "cause": "forbidden", "action": "check access"}, herepy.AccessDeniedError),
+            ({"subtype": "LinkIdNotFound", "details": "unknown link"}, herepy.LinkIdNotFoundError),
+            ({"subtype": "RouteNotReconstructed", "details": "route unavailable"}, herepy.RouteNotReconstructedError),
+            ({"subtype": "UnknownSubtype", "details": "unknown"}, herepy.HEREError),
+            ({"error": "Other", "error_description": "server error"}, herepy.HEREError),
+        ]
+        for payload, expected_error in cases:
+            with self.subTest(payload=payload):
+                self.assertIsInstance(error_from_routing_service_error(payload), expected_error)
+
+    @patch("herepy.routing_api.requests.post")
+    def test_async_matrix_maps_service_error_responses(self, mock_post):
+        cases = [
+            ({"error": "Unauthorized", "error_description": "invalid token"}, "invalid token"),
+            ({"title": "Bad request", "cause": "invalid matrix"}, "Bad request"),
+            ({"message": "unexpected"}, "async_matrix"),
+        ]
+        for payload, expected_message in cases:
+            with self.subTest(payload=payload):
+                mock_post.return_value.status_code = 400
+                mock_post.return_value.json.return_value = payload
+                with self.assertRaisesRegex(herepy.HEREError, expected_message):
+                    self._api.async_matrix(token="token", origins=[[1.0, 2.0]], destinations=[[3.0, 4.0]])
 
     @responses.activate
     def test_bicycleroute_withdefaultmodes_whensucceed(self):
@@ -1022,6 +1049,23 @@ class RoutingApiTest(unittest.TestCase):
         )
         self.assertTrue(response)
         self.assertIsInstance(response, herepy.RoutingResponseV8)
+
+    @responses.activate
+    def test_route_v8_geocodes_named_endpoints(self):
+        with open("testdata/models/geocoder.json", encoding="utf-8") as f:
+            geocoder_response = f.read()
+        for _ in range(2):
+            responses.get("https://geocode.search.hereapi.com/v1/geocode", geocoder_response)
+        responses.get("https://router.hereapi.com/v8/routes", json={"routes": []})
+
+        response = self._api.route_v8(
+            transport_mode=herepy.RoutingTransportMode.car,
+            origin="Berlin",
+            destination="Potsdam",
+        )
+
+        self.assertIsInstance(response, herepy.RoutingResponseV8)
+        self.assertEqual(len(responses.calls), 3)
 
     @responses.activate
     def test_route_v8_error_invalid_credentials(self):

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
+import json
 import unittest
 from unittest.mock import Mock, patch
 
-from herepy import MapImageApi
+from herepy import HEREError, InvalidRequestError, MapImageApi, UnauthorizedError
 
 
 class MapImageApiTest(unittest.TestCase):
@@ -137,3 +138,33 @@ class MapImageApiTest(unittest.TestCase):
         )
         self.assertIsNotNone(map_image)
         self.assertTrue(isinstance(map_image, bytes))
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_encoded_center_and_house_number(self, mock_get):
+        mock_get.return_value.content = b"{}"
+
+        image = self._api.get_mapimage(
+            encoded_geo_center_coordinate="center-code",
+            house_number="42",
+        )
+
+        self.assertEqual(image, b"{}")
+        request_url = mock_get.call_args.args[0]
+        self.assertIn("ectr=center-code", request_url)
+        self.assertIn("n=42", request_url)
+
+    @patch("herepy.map_image_api.requests.get")
+    def test_get_mapimage_maps_service_errors(self, mock_get):
+        cases = [
+            ({"error": "Unauthorized", "error_description": "invalid key"}, UnauthorizedError),
+            (
+                {"error": "BadRequest", "error_description": "bad input", "Type": "Invalid Request", "Message": "bad input"},
+                InvalidRequestError,
+            ),
+            ({"error": "Unavailable", "error_description": "service unavailable"}, HEREError),
+        ]
+        for payload, expected_error in cases:
+            with self.subTest(payload=payload):
+                mock_get.return_value.content = json.dumps(payload).encode()
+                with self.assertRaises(expected_error):
+                    self._api.get_mapimage(coordinates=[52.5, 13.4])
