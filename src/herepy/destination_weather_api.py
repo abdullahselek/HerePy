@@ -176,3 +176,122 @@ class DestinationWeatherApi(HEREApi):
             "longitude": longitude,
         }
         return self._get(data, product)
+
+    async def _get_async(self, data, product):
+        url = Utils.build_url(self._base_url, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get(self._product_node(product)) is not None:
+            return DestinationWeatherResponse.new_from_jsondict(json_data, param_defaults={self._product_node(product): None})
+        else:
+            error = self._get_error_from_response(json_data)
+            raise error
+
+    async def async_weather_for_location_name(
+        self,
+        location_name: str,
+        product: WeatherProductType,
+        one_observation: bool = True,
+        metric: bool = True,
+    ) -> DestinationWeatherResponse | None:
+        """
+        Request the product for given location name.
+
+        Args:
+          location_name (str):
+            Location name.
+          product (WeatherProductType):
+            A WeatherProductType identifying the type of report to obtain.
+          one_observation (bool):
+            Limit the result to the best mapped weather station.
+          metric (bool):
+            Use the metric system.
+
+        Returns:
+          DestinationWeatherResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "apiKey": self._api_key,
+            "product": product.__str__(),
+            "oneobservation": "true" if one_observation else "false",
+            "metric": "true" if metric else "false",
+            "name": location_name,
+        }
+        return await self._get_async(data, product)
+
+    async def async_weather_for_zip_code(
+        self,
+        zip_code: int,
+        product: WeatherProductType,
+        one_observation: bool = True,
+        metric: bool = True,
+    ) -> DestinationWeatherResponse | None:
+        """
+        Request the product for given zip code.
+
+        Args:
+          zip_code (int):
+            U.S. zip code.
+          product (WeatherProductType):
+            A WeatherProductType identifying the type of report to obtain.
+          one_observation (bool):
+            Limit the result to the best mapped weather station.
+          metric (bool):
+            Use the metric system.
+
+        Returns:
+          DestinationWeatherResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "apiKey": self._api_key,
+            "product": product.__str__(),
+            "oneobservation": "true" if one_observation else "false",
+            "metric": "true" if metric else "false",
+            "zipcode": zip_code,
+        }
+        return await self._get_async(data, product)
+
+    async def async_weather_for_coordinates(
+        self,
+        latitude: float,
+        longitude: float,
+        product: WeatherProductType,
+        one_observation: bool = True,
+        metric: bool = True,
+    ) -> DestinationWeatherResponse | None:
+        """
+        Request the product for given coordinates.
+
+        Args:
+          latitude (float):
+            Latitude.
+          longitude (float):
+            Longitude.
+          product (WeatherProductType):
+            A WeatherProductType identifying the type of report to obtain.
+          one_observation (bool):
+            Limit the result to the best mapped weather station.
+          metric (bool):
+            Use the metric system.
+
+        Returns:
+          DestinationWeatherResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "apiKey": self._api_key,
+            "product": product.__str__(),
+            "oneobservation": "true" if one_observation else "false",
+            "metric": "true" if metric else "false",
+            "latitude": latitude,
+            "longitude": longitude,
+        }
+        return await self._get_async(data, product)

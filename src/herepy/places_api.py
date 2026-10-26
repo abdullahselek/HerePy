@@ -145,3 +145,122 @@ class PlacesApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(data)
+
+    async def __get_async(self, data):
+        url = Utils.build_url(self._base_url, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("items") is not None:
+            return PlacesResponse.new_from_jsondict(json_data)
+        elif "error" in json_data:
+            if json_data["error"] == "Unauthorized":
+                raise UnauthorizedError(json_data["error_description"])
+        else:
+            raise HEREError(json_data.get("message", "Error occurred on " + sys._getframe(1).f_code.co_name))
+
+    async def async_onebox_search(
+        self, coordinates: list[float], query: str, limit: int = 20, lang: str = "en-US"
+    ) -> PlacesResponse | None:
+        """
+        Request a list of places based on a query string.
+
+        Args:
+          coordinates (List):
+            List contains latitude and longitude in order.
+          query (str):
+            search term.
+          limit (int):
+            Limits items to return, with default value 10. Max value 100.
+          lang (str):
+            BCP47 compliant Language Code.
+
+        Returns:
+          PlacesResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "at": str.format("{0},{1}", coordinates[0], coordinates[1]),
+            "q": query,
+            "limit": limit,
+            "lang": lang,
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(data)
+
+    async def async_search_in_country(
+        self,
+        coordinates: list[float],
+        query: str,
+        country_code: str,
+        limit: int = 20,
+        lang: str = "en-US",
+    ) -> PlacesResponse | None:
+        """
+        Request a list of places based on a query string.
+
+        Args:
+          coordinates (List):
+            List contains latitude and longitude in order.
+          query (str):
+            search term.
+          country_code (str):
+            ISO 3166-1 alpha-3 country code.
+          limit (int):
+            Limits items to return. Max value 100.
+          lang (str):
+            BCP47 compliant Language Code
+        Returns:
+          PlacesResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "at": str.format("{0},{1}", coordinates[0], coordinates[1]),
+            "q": query,
+            "limit": limit,
+            "in": "countryCode:" + country_code,
+            "lang": lang,
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(data)
+
+    async def async_places_in_circle(
+        self,
+        coordinates: list[float],
+        radius: int,
+        query: str,
+        limit: int = 20,
+        lang: str = "en-US",
+    ) -> PlacesResponse | None:
+        """
+        Request a list of popular places around a location.
+
+        Args:
+          coordinates (List):
+            List contains latitude and longitude in order.
+          radius (int):
+            Circle radius (in meters).
+          query (str):
+            search term.
+          limit (int):
+            Maximum number of places to return.
+          lang (str):
+            BCP47 compliant Language Code
+
+        Returns:
+          PlacesResponse
+        Raises:
+          HEREError.
+
+        """
+        data = {
+            "in": str.format("circle:{0},{1};r={2}", coordinates[0], coordinates[1], radius),
+            "q": query,
+            "limit": limit,
+            "lang": lang,
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(data)

@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 
 import responses
+from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
 from herepy import (
     DestinationWeatherApi,
@@ -13,6 +14,34 @@ from herepy import (
     UnauthorizedError,
     WeatherProductType,
 )
+
+
+class AsyncDestinationWeatherApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_weather_methods(self):
+        api = DestinationWeatherApi("api_key")
+        product = WeatherProductType.forecast_7days
+        cases = [
+            ("async_weather_for_location_name", ("Berlin", product)),
+            ("async_weather_for_zip_code", (10025, product)),
+            ("async_weather_for_coordinates", (52.51784, 13.38736, product)),
+        ]
+        await assert_async_get_cases(
+            self,
+            api,
+            cases,
+            DestinationWeatherResponse,
+            fixture="destination_weather_forecasts.json",
+        )
+
+    async def test_async_weather_maps_service_errors(self):
+        await assert_async_get_error_case(
+            self,
+            DestinationWeatherApi("api_key"),
+            "async_weather_for_location_name",
+            ("Berlin", WeatherProductType.forecast_7days),
+            "destination_weather_error_unauthorized.json",
+            UnauthorizedError,
+        )
 
 
 class DestinationWeatherApiTest(unittest.TestCase):

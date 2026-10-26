@@ -186,3 +186,160 @@ class GeocoderApi(HEREApi):
             "lang": lang,
         }
         return self.__get(data)
+
+    async def __get_async(self, data):
+        url = Utils.build_url(self._base_url, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        try:
+            json_data = json.loads(response.content.decode("utf8"))
+            if json_data.get("items") is not None:
+                return GeocoderResponse.new_from_jsondict(json_data)
+            elif json_data["error"] == "Unauthorized":
+                raise UnauthorizedError(json_data["error_description"])
+            else:
+                raise HEREError(
+                    json_data.get(
+                        "Details",
+                        "Error occurred on function " + sys._getframe(1).f_code.co_name,
+                    )
+                )
+        except ValueError as err:
+            raise HEREError("Error occurred on function " + sys._getframe(1).f_code.co_name + " " + str(err))
+
+    async def async_free_form(self, searchtext: str, lang: str = "en-US") -> GeocoderResponse | None:
+        """
+        Geocodes given search text.
+
+        Args:
+          searchtext (str):
+            possible address text.
+          lang (str):
+            BCP47 compliant Language Code.
+
+        Returns:
+          GeocoderResponse
+        Raises:
+          HEREError
+
+        """
+        data = {"q": searchtext, "apiKey": self._api_key, "lang": lang}
+        return await self.__get_async(data)
+
+    async def async_address_with_boundingbox(
+        self,
+        searchtext: str,
+        top_left: list[float],
+        bottom_right: list[float],
+        lang: str = "en-US",
+    ) -> GeocoderResponse | None:
+        """
+        Geocodes given search text with in given boundingbox.
+
+        Args:
+          searchtext (str):
+            possible address text.
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
+          lang (str):
+            BCP47 compliant Language Code.
+
+        Returns:
+          GeocoderResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "q": searchtext,
+            "mapView": str.format(
+                "{0},{1};{2},{3}",
+                top_left[0],
+                top_left[1],
+                bottom_right[0],
+                bottom_right[1],
+            ),
+            "apiKey": self._api_key,
+            "lang": lang,
+        }
+        return await self.__get_async(data)
+
+    async def async_address_with_details(
+        self,
+        house_number: int | None = None,
+        street: str | None = None,
+        city: str | None = None,
+        postal_code: str | None = None,
+        country: str | None = None,
+        lang: str = "en-US",
+    ) -> GeocoderResponse | None:
+        """
+        Geocodes with given address details.
+
+        Args:
+          house_number (int):
+            house number.
+          street (str):
+            street name.
+          city (str):
+            city name.
+          country (str):
+            country name.
+          postal_code (str):
+            postal code.
+          lang (str):
+            BCP47 compliant Language Code.
+
+        Returns:
+          GeocoderResponse
+        Raises:
+          HEREError
+
+        """
+        qq_params = []
+        if house_number is not None:
+            qq_params.append(f"houseNumber={house_number}")
+        if street:
+            qq_params.append(f"street={street}")
+        if city:
+            qq_params.append(f"city={city}")
+        if postal_code:
+            qq_params.append(f"postalCode={postal_code}")
+        if country:
+            qq_params.append(f"country={country}")
+
+        if len(qq_params) == 0:
+            raise HEREError("At least one of the parameters should be provided")
+
+        data = {
+            "qq": ";".join(qq_params),
+            "apiKey": self._api_key,
+            "lang": lang,
+        }
+        return await self.__get_async(data)
+
+    async def async_street_intersection(self, street: str, city: str, lang: str = "en-US") -> GeocoderResponse | None:
+        """
+        Geocodes with given street and city.
+
+        Args:
+          street (str):
+            street name.
+          city (str):
+            city name.
+          lang (str):
+            BCP47 compliant Language Code.
+
+        Returns:
+          GeocoderResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "qq": str.format("street={0};", street) + str.format("city={0}", city),
+            "apiKey": self._api_key,
+            "lang": lang,
+        }
+        return await self.__get_async(data)

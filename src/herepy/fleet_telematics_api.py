@@ -225,6 +225,131 @@ class FleetTelematicsApi(HEREApi):
         response = self.__get(self._base_url + "findpickups.json", data, WaypointSequenceResponse)
         return response
 
+    async def __get_async(self, base_url, data, response_cls):
+        url = Utils.build_url(base_url, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("results") is not None:
+            return response_cls.new_from_jsondict(json_data)
+        else:
+            raise error_from_fleet_telematics_service_error(json_data)
+
+    async def async_find_sequence(
+        self,
+        start: str,
+        departure: str,
+        intermediate_destinations: list[str],
+        end: str,
+        modes: list[RouteMode],
+    ) -> WaypointSequenceResponse | None:
+        """
+        Find time-optimized waypoint sequence route.
+
+        Args:
+          start (str):
+            Starting point. `str.format('{0};{1},{2}', text, latitude, longitude)`
+          departure (str):
+            Time when travel is expected to start. The format is as xsd type xs:datetime `[-]CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]`
+          intermediate_destinations (List[str]):
+            Intermediate points between start and end points. List of `str.format('{0};{1},{2}', text, latitude, longitude)`.
+          end (str):
+            End point. `str.format('{0};{1},{2}', text, latitude, longitude)`
+          modes (List[RouteMode]):
+            Route modes.
+
+        Returns:
+          WaypointSequenceResponse
+        Raises:
+          HEREError
+
+        """
+        data = self.__create_find_sequence_parameters(
+            start=start,
+            departure=departure,
+            intermediate_destinations=intermediate_destinations,
+            end=end,
+            modes=modes,
+        )
+        response = await self.__get_async(self._base_url + "findsequence.json", data, WaypointSequenceResponse)
+        return response
+
+    async def async_find_pickups(
+        self,
+        modes: list[RouteMode],
+        start: str,
+        departure: str,
+        capacity: int,
+        vehicle_cost: float,
+        driver_cost: int,
+        max_detour: int,
+        rest_times: str,
+        intermediate_destinations: list[str],
+        end: str,
+    ) -> WaypointSequenceResponse | None:
+        """
+        Find cheaper route by picking up some additional goods along the route.
+
+        Args:
+          modes (List[RouteMode]):
+            Route modes.
+          start (str):
+            Starting point. `str.format('{0};{1},{2}', text, latitude, longitude)`
+          departure (str):
+            Time when travel is expected to start. The format is as xsd type xs:datetime `[-]CCYY-MM-DDThh:mm:ss[Z|(+|-)hh:mm]`
+          capacity (int):
+            Amount of payload the vehicle including trailers can carry, volume and/or weight.
+            No unit is specified, but the value must be in the same unit as the waypoint pickup load values.
+          vehicle_cost (float):
+            Cost per kilometer. No currency is specified, but the value must be in the same currency as the driverCost and
+            the waypoint drop-off values.
+          driver_cost (int):
+            Cost per hour. No currency is specified, but the value must be in the same currency as the vehicleCost and
+            the waypoint drop-off values.
+          max_detour (int):
+            Overall maximum additional seconds spent to pickup and drop-off items along the route, compared to the time
+            without picking up anything.
+          rest_times (str):
+            The parameter restTimes can be set to
+            `disabled`
+               rest times are not considered. This is equivalent to omitting the parameter restTimes
+            `default`
+               Use internal default. The default are simplified European rules: After 4.5h driving 45min rest and after 9h driving 11h rest.
+            `durations:...` and `serviceTimes:...`
+               You can provide values for driving and rest periods and define if service times at waypoints
+               can be used for resting. You must provide both parameters.
+          intermediate_destinations (List[DestinationPickupParam]):
+            Intermediate destinations, at least one. If no end parameter is provided, one of these values is
+            selected as end of the sequence.
+            `str.format('{0},{1};{2}:{3},value:{4}', latitude,
+                  longitude, param_type,
+                  item, value)`
+            or
+            `str.format('{0},{1};{2}:{3}', latitude, longitude,
+                  param_type, item)`
+          end (str):
+            End of the journey. `str.format('{0};{1},{2}', text, latitude, longitude)`
+
+        Returns:
+          WaypointSequenceResponse
+        Raises:
+          HEREError
+
+        """
+        data = self.__create_find_pickup_parameters(
+            modes=modes,
+            start=start,
+            departure=departure,
+            capacity=capacity,
+            vehicle_cost=vehicle_cost,
+            driver_cost=driver_cost,
+            max_detour=max_detour,
+            rest_times=rest_times,
+            intermediate_destinations=intermediate_destinations,
+            end=end,
+        )
+        response = await self.__get_async(self._base_url + "findpickups.json", data, WaypointSequenceResponse)
+        return response
+
 
 class UnauthorizedError(HEREError):
     """

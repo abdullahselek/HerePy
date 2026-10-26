@@ -4,8 +4,68 @@ import codecs
 import unittest
 
 import responses
+from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
 import herepy
+
+
+class AsyncTrafficApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_traffic_methods(self):
+        api = herepy.TrafficApi("api_key")
+        point_a = [52.5311, 13.3644]
+        point_b = [52.5114, 13.4035]
+        criticality = [herepy.IncidentsCriticalityStr.minor, herepy.IncidentsCriticalityStr.major]
+        corridor_points = [[51.5072, -0.1275], [51.50781, -0.13112], [51.51006, -0.1346]]
+        flow_response = herepy.TrafficFlowResponse
+        incident_response = herepy.TrafficIncidentResponse
+        cases = [
+            ("async_incidents_in_bounding_box", (point_a, point_b, criticality), incident_response, "traffic_incidents_bounding_box.json"),
+            ("async_incidents_in_corridor", (corridor_points, 1000), incident_response, "traffic_incidents_corridor.json"),
+            (
+                "async_incidents_via_proximity",
+                (52.5311, 13.3644, 1000, [herepy.IncidentsCriticalityInt.minor]),
+                incident_response,
+                "traffic_incidents_proximity.json",
+            ),
+            ("async_flow_using_quadkey", ("1202033012",), flow_response, "traffic_api_flow.json"),
+            ("async_flow_within_boundingbox", (point_a, point_b), flow_response, "traffic_api_flow.json"),
+            ("async_flow_using_proximity", (52.5311, 13.3644, 1000), flow_response, "traffic_api_flow.json"),
+            (
+                "async_flow_using_proximity_returning_additional_attributes",
+                (52.5311, 13.3644, 1000, [herepy.FlowProximityAdditionalAttributes.shape]),
+                flow_response,
+                "traffic_api_flow_proximity_attributes.json",
+            ),
+            ("async_flow_with_minimum_jam_factor", (point_a, point_b), flow_response, "traffic_api_flow_minjamfactor.json"),
+            ("async_flow_in_corridor", (corridor_points, 1000), flow_response, "traffic_api_flow_corridor.json"),
+            (
+                "async_flow_availability_data",
+                (),
+                herepy.TrafficFlowAvailabilityResponse,
+                "traffic_api_flow_availability.json",
+            ),
+            (
+                "async_additional_attributes",
+                ("1202033012", [herepy.FlowProximityAdditionalAttributes.shape]),
+                flow_response,
+                "traffic_api_flow.json",
+            ),
+        ]
+        await assert_async_get_cases(self, api, cases, incident_response)
+
+    async def test_async_incidents_maps_unauthorized_errors(self):
+        await assert_async_get_error_case(
+            self,
+            herepy.TrafficApi("api_key"),
+            "async_incidents_in_bounding_box",
+            (
+                [52.5311, 13.3644],
+                [52.5114, 13.4035],
+                [herepy.IncidentsCriticalityStr.minor],
+            ),
+            "unauthorized_error.json",
+            herepy.UnauthorizedError,
+        )
 
 
 class TrafficApiTest(unittest.TestCase):

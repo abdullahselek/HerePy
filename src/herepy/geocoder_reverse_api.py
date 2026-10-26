@@ -75,3 +75,49 @@ class GeocoderReverseApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(data)
+
+    async def __get_async(self, data):
+        url = Utils.build_url(self._base_url, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        try:
+            json_data = json.loads(response.content.decode("utf8"))
+            if json_data.get("items") is not None:
+                return GeocoderReverseResponse.new_from_jsondict(json_data)
+            elif "error" in json_data:
+                if json_data["error"] == "Unauthorized":
+                    raise UnauthorizedError(json_data["error_description"])
+            else:
+                raise HEREError(
+                    json_data.get(
+                        "Details",
+                        "Error occurred on function " + sys._getframe(1).f_code.co_name,
+                    )
+                )
+        except ValueError as err:
+            raise HEREError("Error occurred on function " + sys._getframe(1).f_code.co_name + " " + str(err))
+
+    async def async_retrieve_addresses(self, prox: list[float], limit: int = 1, lang: str = "en-US") -> GeocoderReverseResponse | None:
+        """
+        Get the address information for a point.
+
+        Args:
+          prox (lat/lon):
+            latitude longitude of the point
+          limit (int):
+            Limits items to return, with default value 1. Max value 100.
+          lang (str):
+            BCP47 compliant Language Code.
+
+        Returns:
+          GeocoderReverseResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "at": str.format("{0},{1}", prox[0], prox[1]),
+            "limit": limit,
+            "lang": lang,
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(data)

@@ -2,8 +2,11 @@
 
 import codecs
 import unittest
+from unittest.mock import AsyncMock, patch
 
+import httpx2
 import responses
+from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
 from herepy import (
     HEREError,
@@ -13,6 +16,65 @@ from herepy import (
     IsolineRoutingTransportMode,
     UnauthorizedError,
 )
+
+
+class AsyncIsolineRoutingApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_isoline_methods(self):
+        api = IsolineRoutingApi("api_key")
+        origin = [52.51578, 13.37749]
+        transport_mode = IsolineRoutingTransportMode.car
+        cases = [
+            ("async_distance_based_isoline", (transport_mode, origin, [3000, 4000], IsolineRoutingMode.short)),
+            ("async_time_isoline", (transport_mode, origin, [300, 400])),
+            (
+                "async_isoline_based_on_consumption",
+                (origin, [20000, 30000], transport_mode, [0.239, 27], [0.239, 45], 100, 0.2, 1.5),
+            ),
+            (
+                "async_isoline_routing_at_specific_time",
+                (transport_mode, [300, 400], origin, "2024-01-01T12:00:00"),
+            ),
+            ("async_multi_range_routing", (transport_mode, [3000, 4000], origin)),
+            ("async_reverse_direction_isoline", (transport_mode, [300, 400], origin)),
+        ]
+        await assert_async_get_cases(
+            self,
+            api,
+            cases,
+            IsolineRoutingResponse,
+            fixture="isoline_routing_distance_response.json",
+        )
+        await assert_async_get_cases(
+            self,
+            api,
+            [
+                ("async_isoline_routing_at_specific_time", (transport_mode, [300, 400], None, None, origin, "2024-01-01T12:00:00")),
+                ("async_multi_range_routing", (transport_mode, [3000, 4000], None, origin)),
+                ("async_reverse_direction_isoline", (transport_mode, [300, 400], None, origin)),
+            ],
+            IsolineRoutingResponse,
+            payload={"arrival": {}, "isolines": []},
+        )
+
+    async def test_async_isoline_errors_and_invalid_parameters(self):
+        await assert_async_get_error_case(
+            self,
+            IsolineRoutingApi("api_key"),
+            "async_distance_based_isoline",
+            (IsolineRoutingTransportMode.car, [52.51578, 13.37749], [3000], IsolineRoutingMode.short),
+            "unauthorized_error.json",
+            UnauthorizedError,
+        )
+        api = IsolineRoutingApi("api_key")
+        async with api:
+            invalid_calls = [
+                api.async_isoline_routing_at_specific_time(IsolineRoutingTransportMode.car, [300]),
+                api.async_multi_range_routing(IsolineRoutingTransportMode.car, [300]),
+                api.async_reverse_direction_isoline(IsolineRoutingTransportMode.car, [300]),
+            ]
+            for call in invalid_calls:
+                with self.assertRaises(HEREError):
+                    await call
 
 
 class IsolineRoutingApiTest(unittest.TestCase):

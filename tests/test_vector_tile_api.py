@@ -1,9 +1,34 @@
 #!/usr/bin/env python
 
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import AsyncMock, Mock, patch
+
+import httpx2
 
 from herepy import HEREError, UnauthorizedError, VectorMapTileLayer, VectorTileApi
+
+
+class AsyncVectorTileApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_get_vectortile_returns_binary_content(self):
+        tile_bytes = b"\xff\x00vector-tile"
+        api = VectorTileApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=tile_bytes))) as get:
+                result = await api.async_get_vectortile(52.525439, 13.38727, 12)
+
+        self.assertEqual(result, tile_bytes)
+        get.assert_awaited_once()
+
+    async def test_async_get_vectortile_raises_unauthorized_error(self):
+        with open("testdata/models/unauthorized_error.json", "rb") as file:
+            error_content = file.read()
+        api = VectorTileApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=error_content))):
+                with self.assertRaises(UnauthorizedError):
+                    await api.async_get_vectortile(52.525439, 13.38727, 12)
 
 
 class VectorTileApiTest(unittest.TestCase):

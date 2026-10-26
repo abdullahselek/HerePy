@@ -3,9 +3,40 @@
 import unittest
 
 import responses
+from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
 import herepy
 from herepy.here_enum import EVStationConnectorTypes
+
+
+class AsyncEVChargingStationsApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_station_methods(self):
+        api = herepy.EVChargingStationsApi("api_key")
+        station_id = "276u33db-b2c840878cfc409fa5a0aef858419037"
+        connector_types = [EVStationConnectorTypes.small_paddle_inductive]
+        cases = [
+            ("async_get_stations_circular_search", (52.516667, 13.383333, 5000, connector_types)),
+            ("async_get_stations_bounding_box", ([52.8, 11.37309], [52.31, 13.2], connector_types)),
+            ("async_get_stations_corridor", ([52.51666, 13.38333, 52.13333, 11.61666], connector_types)),
+            ("async_get_station_details", (station_id,)),
+        ]
+        await assert_async_get_cases(
+            self,
+            api,
+            cases,
+            herepy.EVChargingStationsResponse,
+            fixture="ev_charging_stations_circular.json",
+        )
+
+    async def test_async_station_search_maps_service_errors(self):
+        await assert_async_get_error_case(
+            self,
+            herepy.EVChargingStationsApi("api_key"),
+            "async_get_stations_circular_search",
+            (52.516667, 13.383333, 5000),
+            "ev_charging_stations_error_unauthorized.json",
+            herepy.HEREError,
+        )
 
 
 class EVChargingStationsApiTest(unittest.TestCase):

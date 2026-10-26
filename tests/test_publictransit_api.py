@@ -3,8 +3,48 @@
 import unittest
 
 import responses
+from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
 import herepy
+
+
+class AsyncPublicTransitApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_transit_methods(self):
+        api = herepy.PublicTransitApi("api_key")
+        center = [40.7505, -73.9910]
+        when = "2024-01-01T12:00:00"
+        cases = [
+            ("async_find_stations_by_name", (center, "union")),
+            ("async_find_stations_nearby", (center,)),
+            ("async_find_stations_by_id", ([720390022, 720390000], "en")),
+            ("async_find_transit_coverage_in_cities", (center, "USA", 50000)),
+            ("async_next_nearby_departures_of_station", (720390022, when)),
+            ("async_next_departures_from_location", (center, when)),
+            ("async_next_departures_for_stations", ([720390022, 720390000], when)),
+            ("async_calculate_route", (center, [40.7510, -73.9900], when)),
+            ("async_coverage_witin_a_city", ("New York", 1, 5)),
+            ("async_coverage_nearby", (1, center)),
+        ]
+        await assert_async_get_cases(self, api, cases, herepy.PublicTransitResponse)
+
+    async def test_async_transit_maps_service_errors_and_validates_modes(self):
+        await assert_async_get_error_case(
+            self,
+            herepy.PublicTransitApi("api_key"),
+            "async_find_stations_by_name",
+            ([40.7505, -73.9910], ""),
+            "public_transit_api_error.json",
+            herepy.HEREError,
+        )
+        async with herepy.PublicTransitApi("api_key") as api:
+            with self.assertRaises(herepy.HEREError):
+                await api.async_calculate_route(
+                    [40.7505, -73.9910],
+                    [40.7510, -73.9900],
+                    "2024-01-01T12:00:00",
+                    include_modes=[herepy.PublicTransitModeType.bus],
+                    exclude_modes=[herepy.PublicTransitModeType.subway],
+                )
 
 
 class PublicTransitApiTest(unittest.TestCase):

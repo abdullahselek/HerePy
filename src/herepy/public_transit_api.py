@@ -447,3 +447,393 @@ class PublicTransitApi(HEREApi):
                 lines.append(transport["name"] + " - " + transport["dir"])
         route = "; ".join(list(map(str, lines)))
         return route
+
+    async def __get_async(self, data, path, json_node):
+        url = Utils.build_url(self._base_url + path, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_node in json_data.get("Res", {}):
+            return PublicTransitResponse.new_from_jsondict(json_data)
+        elif "text" in json_data.get("Res", {}).get("Message", {}):
+            raise HEREError(
+                json_data["Res"]["Message"]["text"],
+                "Error occurred on " + sys._getframe(1).f_code.co_name,
+            )
+        elif "error" in json_data:
+            if json_data["error"] == "Unauthorized":
+                raise UnauthorizedError(json_data["error_description"])
+        else:
+            raise HEREError("Error occurred on " + sys._getframe(1).f_code.co_name)
+
+    async def async_find_stations_by_name(
+        self,
+        center: list[float],
+        name: str,
+        max_count: int = 5,
+        method: PublicTransitSearchMethod = PublicTransitSearchMethod.fuzzy,
+        radius: int = 20000,
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of public transit stations based on name.
+
+        Args:
+          center (List):
+            List contains latitude and longitude in order.
+          name (str):
+            station name.
+          max_count (int):
+            maximum number of stations  (Default is 5).
+          method (enum):
+            Matching method from PublicTransitSearchMethod (Default is fuzzy).
+          radius (int):
+            specifies radius in kilometers (Default is 20000km).
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "center": str.format("{0},{1}", center[0], center[1]),
+            "name": name,
+            "apikey": self._api_key,
+            "max": max_count,
+            "method": method.__str__(),
+            "radius": radius,
+        }
+        return await self.__get_async(data, "stations/by_name.json", "Stations")
+
+    async def async_find_stations_nearby(self, center: list[float], radius: int = 500, max_count: int = 5) -> PublicTransitResponse | None:
+        """
+        Request a list of public transit stations within a given geo-location.
+
+        Args:
+          center (List):
+            List contains latitude and longitude in order.
+          radius (int):
+            specifies radius in meters (Default is 500m).
+          max_count (int):
+            maximum number of stations  (Default is 5).
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "center": str.format("{0},{1}", center[0], center[1]),
+            "radius": radius,
+            "apikey": self._api_key,
+            "max": max_count,
+        }
+        return await self.__get_async(data, "stations/by_geocoord.json", "Stations")
+
+    async def async_find_stations_by_id(self, ids: list[int], lang: str) -> PublicTransitResponse | None:
+        """
+        Request details of a specific transit station based on a previous request.
+
+        Args:
+          ids (List):
+            List contains station ids.
+          lang (str):
+            language code for response like `en`.
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "stnIds": self.__prepare_station_ids(ids),
+            "lang": lang,
+            "apikey": self._api_key,
+        }
+        return await self.__get_async(data, "stations/by_ids.json", "Stations")
+
+    async def async_find_transit_coverage_in_cities(
+        self, center: list[float], political_view: str, radius: int
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of transit operators available in cities nearby.
+
+        Args:
+          center (List):
+            List contains latitude and longitude in order.
+          political_view (str):
+            switch for grouping results like `CHN`.
+          radius (int):
+            specifies radius in meters.
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "center": str.format("{0},{1}", center[0], center[1]),
+            "politicalview": political_view,
+            "radius": radius,
+            "apikey": self._api_key,
+        }
+        return await self.__get_async(data, "coverage/city.json", "Coverage")
+
+    async def async_next_nearby_departures_of_station(self, station_id: int, time: str, lang: str = "en") -> PublicTransitResponse | None:
+        """
+        Request a list of next departure times and destinations of a particular station.
+
+        Args:
+          lang (str):
+            language code for response like `en` Default is `en`.
+          station_id (int):
+            station id for departures.
+          time (str):
+            time formattes in yyyy-mm-ddThh:mm:ss.
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "lang": lang,
+            "stnId": station_id,
+            "time": time,
+            "apikey": self._api_key,
+        }
+        return await self.__get_async(data, "board.json", "NextDepartures")
+
+    async def async_next_departures_from_location(
+        self,
+        center: list[float],
+        time: str,
+        lang: str = "en",
+        max: int = 40,
+        max_station: int = 40,
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of all next departure times and destinations from a given location.
+
+        Args:
+          center (List):
+            List contains latitude and longitude in order.
+          time (str):
+            time formattes in yyyy-mm-ddThh:mm:ss.
+          lang (str):
+            language code for response like `en`. Default is `en`.
+          max (int):
+            maximum number of next departures per station. Default is 40.
+          max_station (int):
+            maximum number of stations for which departures are required. Default is 40.
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "lang": lang,
+            "center": str.format("{0},{1}", center[0], center[1]),
+            "time": time,
+            "apikey": self._api_key,
+            "max": max,
+            "maxStn": max_station,
+        }
+        return await self.__get_async(data, "multiboard/by_geocoord.json", "MultiNextDepartures")
+
+    async def async_next_departures_for_stations(
+        self,
+        station_ids: list[int],
+        time: str,
+        lang: str = "en",
+        max: int = 40,
+        max_station: int = 40,
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of all next departure times and destinations for a give list of stations.
+
+        Args:
+          station_ids (List):
+            a list of stop ids.
+          time (str):
+            time formattes in yyyy-mm-ddThh:mm:ss.
+          lang (str):
+            language code for response like `en`. Default is `en`.
+          max (int):
+            maximum number of next departures per station. Default is 40.
+          max_station (int):
+            maximum number of stations for which departures are required. Default is 40.
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "lang": lang,
+            "time": time,
+            "apikey": self._api_key,
+            "max": max,
+            "maxStn": max_station,
+            "stnIds": self.__prepare_station_ids(station_ids),
+        }
+        return await self.__get_async(data, "multiboard/by_stn_ids.json", "MultiNextDepartures")
+
+    async def async_calculate_route(
+        self,
+        departure: list[float],
+        arrival: list[float],
+        time: str,
+        max_connections: int = 3,
+        changes: int = -1,
+        lang: str = "en",
+        include_modes: list[PublicTransitModeType] = None,
+        exclude_modes: list[PublicTransitModeType] = None,
+        units: str = "metric",
+        max_walking_distance: int = 2000,
+        walking_speed: int = 100,
+        show_arrival_times: bool = True,
+        graph: bool = False,
+        routing_mode: PublicTransitRoutingMode = PublicTransitRoutingMode.schedule,
+    ) -> PublicTransitResponse | None:
+        """
+        Request a public transit route between any two places.
+
+        Args:
+          departure (List):
+            List contains latitude and longitude in order.
+          arrival (List):
+            List contains latitude and longitude in order.
+          time (str):
+            time formatted in yyyy-mm-ddThh:mm:ss.
+          max_connections (int):
+            Specifies the number of following departure/arrivals the response should include.
+            The possible values are: 1-6.
+          changes (int):
+            Specifies the maximum number of changes or transfers allowed in a route.
+            0-6 or -1.
+            The default is -1 (which disables the filter, or unlimited no of changes permitted).
+          lang (str):
+            Specifies the language of the response.
+          include_modes (List[PublicTransitModeType]):
+            Specifies the transit type filter used to determine which types of transit to include in the response.
+          exclude_modes (List[PublicTransitModeType]):
+            Specifies the transit type filter used to determine which types of transit to exclude in the response.
+          units (str):
+            Units of measurement used. metric oder imperial.
+          max_walking_distance (int):
+            Specifies a maximum walking distance in meters. Allowed values are 0-6000.
+          walking_speed (int):
+            Specifies the walking speed in percent of normal walking speed. Allowed values are 50-200.
+          show_arrival_times (boolean):
+            flag to indicate if response should show arrival times or departure times.
+          graph (boolean):
+            flag to indicate if response should contain coordinate pairs to allow the drawing of a polyline for the route.
+          routing_mode (PublicTransitRoutingMode):
+            type of routing. Default is time_tabled.
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "dep": str.format("{0},{1}", departure[0], departure[1]),
+            "arr": str.format("{0},{1}", arrival[0], arrival[1]),
+            "max": max_connections,
+            "time": time,
+            "changes": changes,
+            "lang": lang,
+            "units": units,
+            "walk": ",".join([str(max_walking_distance), str(walking_speed)]),
+            "arrival": 1 if show_arrival_times else 0,
+            "apikey": self._api_key,
+            "graph": 1 if graph else 0,
+            "routingMode": routing_mode.__str__(),
+        }
+
+        modes = None
+        if include_modes is not None and exclude_modes is not None:
+            raise HEREError("Specify either include_modes or exclude_modes, not both.")
+        if include_modes is not None:
+            modes = ",".join(mode.__str__() for mode in include_modes)
+        if exclude_modes is not None:
+            modes = ",".join("-" + mode.__str__() for mode in exclude_modes)
+        if modes is not None:
+            data["modes"] = modes
+
+        response = await self.__get_async(data, "route.json", "Connections")
+        response_with_short_route = self._get_response_with_short_route(response)
+        return response_with_short_route
+
+    async def async_coverage_witin_a_city(
+        self,
+        city_name: str,
+        political_view: int,
+        max: int = None,
+        details: int = 1,
+        lang: str = "en",
+    ) -> PublicTransitResponse | None:
+        """
+        Request a list of transit operator coverage within a specified city.
+
+        Args:
+          city_name (str):
+            the name or part of the name of the search city.
+          political_view (int):
+            1 enables, 0 disables grouping results.
+          max (int):
+            maximum number of results.
+          details (int):
+            with 1 supported list of operators and population added to response.
+            Set to 0 just return the matching city names.
+          lang (str):
+            the language of the response, default `en`.
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "name": city_name,
+            "apikey": self._api_key,
+            "max": max,
+            "details": details,
+            "politicalview": political_view,
+            "lang": lang,
+        }
+        if max is None:
+            del data["max"]
+        return await self.__get_async(data, "coverage/search.json", "Coverage")
+
+    async def async_coverage_nearby(self, details: int, center: list[float]) -> PublicTransitResponse | None:
+        """
+        Request a list of transit operators and station coverage nearby.
+
+        Args:
+          details (int):
+            0 disables showing line info, 1 enables showing line info.abs
+          center (List):
+            List contains latitude and longitude in order.
+
+        Returns:
+          PublicTransitResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "details": details,
+            "center": str.format("{0},{1}", center[0], center[1]),
+            "apikey": self._api_key,
+        }
+        return await self.__get_async(data, "coverage/nearby.json", "LocalCoverage")
