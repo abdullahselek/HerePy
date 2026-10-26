@@ -70,7 +70,7 @@ with ``pip install herepy``) run::
 Running Tests
 =============
 
-The test suite can be run against a single Python version using uv::
+The test suite can be run against a single Python version using uv.
 
 To run the unit tests with a single Python version::
 
