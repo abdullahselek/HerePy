@@ -31,6 +31,23 @@ class AsyncMapTileApiTest(unittest.IsolatedAsyncioTestCase):
                 with self.assertRaises(UnauthorizedError):
                     await api.async_get_maptile(52.525439, 13.38727, 12)
 
+    async def test_async_get_maptile_returns_non_error_json_bytes(self):
+        payload = b'{"status": "ok"}'
+        api = MapTileApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=payload))) as get:
+                result = await api.async_get_maptile(
+                    52.525439,
+                    13.38727,
+                    12,
+                    query_parameters={"output": "base64"},
+                )
+
+        self.assertEqual(result, payload)
+        get.assert_awaited_once()
+        self.assertIn("output=base64", get.await_args.args[0])
+
 
 class MapTileApiTest(unittest.TestCase):
     def setUp(self):

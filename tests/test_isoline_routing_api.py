@@ -24,36 +24,63 @@ class AsyncIsolineRoutingApiTest(unittest.IsolatedAsyncioTestCase):
         origin = [52.51578, 13.37749]
         transport_mode = IsolineRoutingTransportMode.car
         cases = [
-            ("async_distance_based_isoline", (transport_mode, origin, [3000, 4000], IsolineRoutingMode.short)),
-            ("async_time_isoline", (transport_mode, origin, [300, 400])),
+            (
+                "async_distance_based_isoline",
+                (transport_mode, origin, [3000, 4000], IsolineRoutingMode.short),
+                IsolineRoutingResponse,
+                "isoline_routing_distance_response.json",
+            ),
+            ("async_time_isoline", (transport_mode, origin, [300, 400]), IsolineRoutingResponse, "isoline_routing_distance_response.json"),
             (
                 "async_isoline_based_on_consumption",
                 (origin, [20000, 30000], transport_mode, [0.239, 27], [0.239, 45], 100, 0.2, 1.5),
+                IsolineRoutingResponse,
+                "isoline_based_on_consumption.json",
             ),
             (
                 "async_isoline_routing_at_specific_time",
                 (transport_mode, [300, 400], origin, "2024-01-01T12:00:00"),
+                IsolineRoutingResponse,
+                "isoline_routing_api_specific_time_departure.json",
             ),
-            ("async_multi_range_routing", (transport_mode, [3000, 4000], origin)),
-            ("async_reverse_direction_isoline", (transport_mode, [300, 400], origin)),
+            (
+                "async_multi_range_routing",
+                (transport_mode, [3000, 4000], origin),
+                IsolineRoutingResponse,
+                "isoline_routing_api_multi_range_departure.json",
+            ),
+            (
+                "async_reverse_direction_isoline",
+                (transport_mode, [300, 400], origin),
+                IsolineRoutingResponse,
+                "isoline_routing_pi_reverse_direction_departure.json",
+            ),
         ]
-        await assert_async_get_cases(
-            self,
-            api,
-            cases,
-            IsolineRoutingResponse,
-            fixture="isoline_routing_distance_response.json",
-        )
+        await assert_async_get_cases(self, api, cases, IsolineRoutingResponse)
         await assert_async_get_cases(
             self,
             api,
             [
-                ("async_isoline_routing_at_specific_time", (transport_mode, [300, 400], None, None, origin, "2024-01-01T12:00:00")),
-                ("async_multi_range_routing", (transport_mode, [3000, 4000], None, origin)),
-                ("async_reverse_direction_isoline", (transport_mode, [300, 400], None, origin)),
+                (
+                    "async_isoline_routing_at_specific_time",
+                    (transport_mode, [300, 400], None, None, origin, "2024-01-01T12:00:00"),
+                    IsolineRoutingResponse,
+                    "isoline_routing_api_specific_time_arrival.json",
+                ),
+                (
+                    "async_multi_range_routing",
+                    (transport_mode, [3000, 4000], None, origin),
+                    IsolineRoutingResponse,
+                    "isoline_routing_api_multi_range_arrival.json",
+                ),
+                (
+                    "async_reverse_direction_isoline",
+                    (transport_mode, [300, 400], None, origin),
+                    IsolineRoutingResponse,
+                    "isoline_routing_pi_reverse_direction_arrival.json",
+                ),
             ],
             IsolineRoutingResponse,
-            payload={"arrival": {}, "isolines": []},
         )
 
     async def test_async_isoline_errors_and_invalid_parameters(self):
@@ -75,6 +102,23 @@ class AsyncIsolineRoutingApiTest(unittest.IsolatedAsyncioTestCase):
             for call in invalid_calls:
                 with self.assertRaises(HEREError):
                     await call
+
+    async def test_async_isoline_maps_client_errors(self):
+        api = IsolineRoutingApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            for payload, message in [
+                ({"title": "Bad request", "cause": "invalid range"}, "invalid range"),
+                ({}, "got a 400"),
+            ]:
+                with self.subTest(payload=payload):
+                    with patch.object(
+                        client,
+                        "get",
+                        new=AsyncMock(return_value=httpx2.Response(400, json=payload)),
+                    ):
+                        with self.assertRaisesRegex(HEREError, message):
+                            await api.async_time_isoline(IsolineRoutingTransportMode.car, [52.51578, 13.37749], [300])
 
 
 class IsolineRoutingApiTest(unittest.TestCase):

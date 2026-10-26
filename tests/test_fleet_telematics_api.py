@@ -37,6 +37,8 @@ class AsyncFleetTelematicsApiTest(unittest.IsolatedAsyncioTestCase):
                     ["50.118578,8.636551;drop:APPLES,value:30"],
                     "50.132540,8.649280",
                 ),
+                herepy.WaypointSequenceResponse,
+                "fleet_telematics_find_pickups.json",
             ),
         ]
         await assert_async_get_cases(

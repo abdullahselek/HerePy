@@ -6,11 +6,12 @@ import json
 import unittest
 from contextlib import asynccontextmanager
 from types import SimpleNamespace
-from unittest.mock import AsyncMock, Mock, mock_open, patch, sentinel
+from unittest.mock import AsyncMock, Mock, mock_open, patch
 
 import httpx2
 import pytest
 import responses
+from async_test_helpers import assert_async_get_cases
 
 import herepy
 from herepy import (
@@ -30,22 +31,21 @@ class AsyncRoutingApiTest(unittest.IsolatedAsyncioTestCase):
         api = herepy.RoutingApi("api_key")
         point_a, point_b, point_c = [41.9798, -87.8801], [41.9043, -87.9216], [41.88, -87.90]
         cases = [
-            ("async_bicycle_route", (point_a, point_b)),
-            ("async_car_route", (point_a, point_b)),
-            ("async_pedestrian_route", (point_a, point_b)),
-            ("async_intermediate_route", (point_a, point_b, point_c)),
-            ("async_public_transport", (point_a, point_b, True)),
-            ("async_public_transport_timetable", (point_a, point_b, True)),
-            ("async_location_near_motorway", (point_a, point_b)),
-            ("async_truck_route", (point_a, point_b)),
+            ("async_bicycle_route", (point_a, point_b), herepy.RoutingResponse, "routing_bicycle.json"),
+            ("async_car_route", (point_a, point_b), herepy.RoutingResponse, "routing_car_route_short.json"),
+            ("async_pedestrian_route", (point_a, point_b), herepy.RoutingResponse, "routing_pedestrian.json"),
+            ("async_intermediate_route", (point_a, point_b, point_c), herepy.RoutingResponse, "routing.json"),
+            ("async_public_transport", (point_a, point_b, True), herepy.RoutingResponse, "routing_public.json"),
+            (
+                "async_public_transport_timetable",
+                (point_a, point_b, True),
+                herepy.RoutingResponse,
+                "routing_public_time_table.json",
+            ),
+            ("async_location_near_motorway", (point_a, point_b), herepy.RoutingResponse, "routing.json"),
+            ("async_truck_route", (point_a, point_b), herepy.RoutingResponse, "routing_truck_route_short.json"),
         ]
-        async with api:
-            with patch.object(api, "_route_async", new=AsyncMock(return_value=sentinel.response)) as route:
-                for method_name, arguments in cases:
-                    with self.subTest(method=method_name):
-                        self.assertIs(await getattr(api, method_name)(*arguments), sentinel.response)
-                        route.assert_awaited()
-                        route.reset_mock()
+        await assert_async_get_cases(self, api, cases, herepy.RoutingResponse)
 
     async def test_async_route_v8(self):
         with open("testdata/models/routing_v8_response.json", encoding="utf-8") as file:
@@ -53,10 +53,7 @@ class AsyncRoutingApiTest(unittest.IsolatedAsyncioTestCase):
         api = herepy.RoutingApi("api_key")
         async with api:
             client = api._get_async_client()
-            with (
-                patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, json=payload))) as get,
-                patch.object(herepy.RoutingResponseV8, "new_from_jsondict", return_value=sentinel.response),
-            ):
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, json=payload))) as get:
                 result = await api.async_route_v8(
                     herepy.RoutingTransportMode.car,
                     [52.5, 13.4],
@@ -75,7 +72,7 @@ class AsyncRoutingApiTest(unittest.IsolatedAsyncioTestCase):
                     headers={"X-Test": "value"},
                 )
 
-        self.assertIs(result, sentinel.response)
+        self.assertIsInstance(result, herepy.RoutingResponseV8)
         get.assert_awaited_once()
 
     async def test_async_matrix_sync_method(self):
@@ -84,10 +81,7 @@ class AsyncRoutingApiTest(unittest.IsolatedAsyncioTestCase):
         api = herepy.RoutingApi("api_key")
         async with api:
             client = api._get_async_client()
-            with (
-                patch.object(client, "post", new=AsyncMock(return_value=httpx2.Response(200, json=payload))) as post,
-                patch.object(herepy.RoutingMatrixResponse, "new_from_jsondict", return_value=sentinel.response),
-            ):
+            with patch.object(client, "post", new=AsyncMock(return_value=httpx2.Response(200, json=payload))) as post:
                 avoid = Avoid(features=[AvoidFeature.toll_road], areas=[AvoidArea(north=30, south=45, west=30, east=45)])
                 truck = Truck(
                     shipped_hazardous_goods=[ShippedHazardousGood.flammable],
@@ -116,7 +110,7 @@ class AsyncRoutingApiTest(unittest.IsolatedAsyncioTestCase):
                     matrix_attributes=[herepy.MatrixSummaryAttribute.travel_times],
                 )
 
-        self.assertIs(result, sentinel.response)
+        self.assertIsInstance(result, herepy.RoutingMatrixResponse)
         post.assert_awaited_once()
 
     async def test_async_matrix_async_polls_until_complete(self):
@@ -140,38 +134,65 @@ class AsyncRoutingApiTest(unittest.IsolatedAsyncioTestCase):
                     ),
                 ) as get,
                 patch("herepy.routing_api.asyncio.sleep", new=AsyncMock()) as sleep,
-                patch.object(herepy.RoutingMatrixResponse, "new_from_jsondict", return_value=sentinel.response),
             ):
                 result = await api.async_matrix_async("token", [[1.0, 2.0]], [[3.0, 4.0]])
 
-        self.assertIs(result, sentinel.response)
+        self.assertIsInstance(result, herepy.RoutingMatrixResponse)
         post.assert_awaited_once()
         self.assertEqual(get.await_count, 2)
         sleep.assert_awaited_once_with(5)
 
+    async def test_async_matrix_async_maps_submission_errors(self):
+        api = herepy.RoutingApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            cases = [
+                ({"error": "BadRequest", "error_description": "invalid matrix"}, "invalid matrix"),
+                ({"title": "Bad request", "cause": "invalid locations"}, "invalid locations"),
+                ({"message": "unexpected"}, "async_matrix"),
+            ]
+            for payload, message in cases:
+                with self.subTest(payload=payload):
+                    with patch.object(client, "post", new=AsyncMock(return_value=httpx2.Response(400, json=payload))):
+                        with self.assertRaisesRegex(herepy.HEREError, message):
+                            await api.async_matrix_async("token", [[1.0, 2.0]], [[3.0, 4.0]])
+
+    async def test_async_sync_matrix_maps_malformed_and_error_responses(self):
+        api = herepy.RoutingApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            cases = [
+                (httpx2.Response(200, json={}), "response status code 200"),
+                (httpx2.Response(400, json={"title": "Bad request", "cause": "invalid matrix"}), "invalid matrix"),
+                (httpx2.Response(500, json={}), "sync_matrix"),
+            ]
+            for response, message in cases:
+                with self.subTest(response=response.status_code, message=message):
+                    with patch.object(client, "post", new=AsyncMock(return_value=response)):
+                        with self.assertRaisesRegex(herepy.HEREError, message):
+                            await api.async_sync_matrix([[1.0, 2.0]], [[3.0, 4.0]])
+
     async def test_async_route_geocodes_named_waypoints(self):
         with open("testdata/models/routing_car_route_short.json", encoding="utf-8") as file:
             route_payload = json.load(file)
+        with open("testdata/models/geocoder.json", encoding="utf-8") as file:
+            geocode_payload = json.load(file)
         api = herepy.RoutingApi("api_key")
-        geocode = SimpleNamespace(
-            items=[
-                {"position": {"lat": 1.0, "lng": 2.0}},
-                {"position": {"lat": 3.0, "lng": 4.0}},
-            ]
-        )
         async with api:
-            with (
-                patch.object(
-                    api._get_async_client(),
-                    "get",
-                    new=AsyncMock(return_value=httpx2.Response(200, json=route_payload)),
+            with patch(
+                "httpx2.AsyncClient.get",
+                new=AsyncMock(
+                    side_effect=[
+                        httpx2.Response(200, json=geocode_payload),
+                        httpx2.Response(200, json=geocode_payload),
+                        httpx2.Response(200, json=route_payload),
+                    ]
                 ),
-                patch("herepy.routing_api.GeocoderApi.async_free_form", new=AsyncMock(return_value=geocode)) as geocoder,
-            ):
+            ) as get:
                 result = await api.async_car_route("Berlin", "Paris")
 
         self.assertIsInstance(result, herepy.RoutingResponse)
-        self.assertEqual(geocoder.await_count, 2)
+        self.assertEqual(get.await_count, 3)
 
     async def test_async_matrix_file_download(self):
         api = herepy.RoutingApi("api_key")

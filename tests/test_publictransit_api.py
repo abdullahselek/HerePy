@@ -14,16 +14,51 @@ class AsyncPublicTransitApiTest(unittest.IsolatedAsyncioTestCase):
         center = [40.7505, -73.9910]
         when = "2024-01-01T12:00:00"
         cases = [
-            ("async_find_stations_by_name", (center, "union")),
-            ("async_find_stations_nearby", (center,)),
-            ("async_find_stations_by_id", ([720390022, 720390000], "en")),
-            ("async_find_transit_coverage_in_cities", (center, "USA", 50000)),
-            ("async_next_nearby_departures_of_station", (720390022, when)),
-            ("async_next_departures_from_location", (center, when)),
-            ("async_next_departures_for_stations", ([720390022, 720390000], when)),
-            ("async_calculate_route", (center, [40.7510, -73.9900], when)),
-            ("async_coverage_witin_a_city", ("New York", 1, 5)),
-            ("async_coverage_nearby", (1, center)),
+            ("async_find_stations_by_name", (center, "union"), herepy.PublicTransitResponse, "public_transit_api.json"),
+            ("async_find_stations_nearby", (center,), herepy.PublicTransitResponse, "public_transit_api_nearby.json"),
+            ("async_find_stations_by_id", ([720390022, 720390000], "en"), herepy.PublicTransitResponse, "public_transit_api_by_id.json"),
+            (
+                "async_find_transit_coverage_in_cities",
+                (center, "USA", 50000),
+                herepy.PublicTransitResponse,
+                "public_transit_api_coverage_cities.json",
+            ),
+            (
+                "async_next_nearby_departures_of_station",
+                (720390022, when),
+                herepy.PublicTransitResponse,
+                "public_transit_api_next_nearby_departures.json",
+            ),
+            (
+                "async_next_departures_from_location",
+                (center, when),
+                herepy.PublicTransitResponse,
+                "public_transit_api_next_departures_location.json",
+            ),
+            (
+                "async_next_departures_for_stations",
+                ([720390022, 720390000], when),
+                herepy.PublicTransitResponse,
+                "public_transit_api_next_departures_for_stations.json",
+            ),
+            (
+                "async_calculate_route",
+                (center, [40.7510, -73.9900], when),
+                herepy.PublicTransitResponse,
+                "public_transit_calculate_route.json",
+            ),
+            (
+                "async_coverage_witin_a_city",
+                ("New York", 1, 5),
+                herepy.PublicTransitResponse,
+                "public_transit_city_coverage.json",
+            ),
+            (
+                "async_coverage_nearby",
+                (1, center),
+                herepy.PublicTransitResponse,
+                "public_transit_api_nearby_coverage.json",
+            ),
         ]
         await assert_async_get_cases(self, api, cases, herepy.PublicTransitResponse)
 

@@ -1,59 +1,21 @@
 import json
 from pathlib import Path
-from unittest.mock import AsyncMock, patch, sentinel
+from unittest.mock import AsyncMock, patch
 
 import httpx2
 
-ASYNC_SUCCESS = {
-    "items": [],
-    "evStations": [],
-    "results": [],
-    "Res": {
-        "Stations": {},
-        "Coverage": {},
-        "NextDepartures": {},
-        "MultiNextDepartures": {},
-        "Connections": {"Connection": []},
-        "LocalCoverage": {},
-    },
-    "TracePoints": [],
-    "observations": {},
-    "forecasts": {},
-    "dailyForecasts": {},
-    "hourlyForecasts": {},
-    "astronomy": {},
-    "alerts": {},
-    "nwsAlerts": {},
-    "departure": {},
-    "arrival": {},
-    "isolines": {},
-    "TRAFFIC_ITEMS": [],
-    "RWS": [],
-    "Response": {},
-    "routes": [],
-    "matrix": {"numOrigins": 1, "numDestinations": 1, "travelTimes": [1]},
-    "matrixId": "matrix",
-    "status": "accepted",
-    "statusUrl": "https://example.com/status",
-}
 
-
-async def assert_async_get_cases(test_case, api, cases, response_type, fixture=None, payload=None):
-    if fixture is not None:
-        with Path(f"testdata/models/{fixture}").open(encoding="utf-8") as file:
-            payload = json.load(file)
-    if payload is None:
-        payload = ASYNC_SUCCESS
-
+async def assert_async_get_cases(test_case, api, cases, response_type, fixture=None):
     async with api:
         client = api._get_async_client()
         for case in cases:
             method_name, arguments = case[:2]
             case_response_type = case[2] if len(case) > 2 else response_type
-            case_payload = payload
-            if len(case) > 3:
-                with Path(f"testdata/models/{case[3]}").open(encoding="utf-8") as file:
-                    case_payload = json.load(file)
+            case_fixture = case[3] if len(case) > 3 else fixture
+            if case_fixture is None:
+                raise ValueError(f"No response fixture specified for {method_name}.")
+            with Path(f"testdata/models/{case_fixture}").open(encoding="utf-8") as file:
+                case_payload = json.load(file)
             with (
                 test_case.subTest(method=method_name),
                 patch.object(
@@ -62,14 +24,13 @@ async def assert_async_get_cases(test_case, api, cases, response_type, fixture=N
                     new=AsyncMock(return_value=httpx2.Response(200, json=case_payload)),
                 ) as get,
             ):
-                with patch.object(case_response_type, "new_from_jsondict", return_value=sentinel.response):
-                    if method_name == "async_calculate_route" and hasattr(api, "_get_response_with_short_route"):
-                        with patch.object(api, "_get_response_with_short_route", return_value=sentinel.response):
-                            result = await getattr(api, method_name)(*arguments)
-                    else:
-                        result = await getattr(api, method_name)(*arguments)
-                test_case.assertIs(result, sentinel.response)
+                result = await getattr(api, method_name)(*arguments)
+                test_case.assertIsInstance(result, case_response_type)
+                test_case.assertTrue(result)
                 get.assert_awaited_once()
+                test_case.assertTrue(get.await_args.args[0].startswith("https://"))
+                test_case.assertEqual(get.await_args.kwargs["timeout"], api._timeout)
+                test_case.assertTrue(result.as_dict())
 
 
 async def assert_async_get_error_case(test_case, api, method_name, arguments, payload, error_type):

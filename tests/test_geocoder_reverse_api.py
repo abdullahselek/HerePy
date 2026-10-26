@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import unittest
+from unittest.mock import AsyncMock, patch
 
+import httpx2
 import responses
 from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
@@ -27,6 +29,35 @@ class AsyncGeocoderReverseApiTest(unittest.IsolatedAsyncioTestCase):
             "geocoder_error.json",
             herepy.HEREError,
         )
+
+    async def test_async_retrieve_addresses_handles_unauthorized_and_other_error_payloads(self):
+        api = herepy.GeocoderReverseApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(
+                client,
+                "get",
+                new=AsyncMock(
+                    side_effect=[
+                        httpx2.Response(200, json={"error": "Unauthorized", "error_description": "invalid key"}),
+                        httpx2.Response(200, json={"error": "BadRequest"}),
+                    ]
+                ),
+            ):
+                with self.assertRaisesRegex(herepy.UnauthorizedError, "invalid key"):
+                    await api.async_retrieve_addresses([41.8842, -87.6388])
+                self.assertIsNone(await api.async_retrieve_addresses([41.8842, -87.6388]))
+
+    async def test_async_retrieve_addresses_wraps_invalid_json(self):
+        api = herepy.GeocoderReverseApi("api_key")
+        async with api:
+            with patch.object(
+                api._get_async_client(),
+                "get",
+                new=AsyncMock(return_value=httpx2.Response(200, content=b"not-json")),
+            ):
+                with self.assertRaisesRegex(herepy.HEREError, "Error occurred"):
+                    await api.async_retrieve_addresses([41.8842, -87.6388])
 
 
 class GeocoderReverseApiTest(unittest.TestCase):

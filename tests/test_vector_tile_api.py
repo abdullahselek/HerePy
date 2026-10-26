@@ -30,6 +30,26 @@ class AsyncVectorTileApiTest(unittest.IsolatedAsyncioTestCase):
                 with self.assertRaises(UnauthorizedError):
                     await api.async_get_vectortile(52.525439, 13.38727, 12)
 
+    async def test_async_get_vectortile_preserves_non_error_json_and_request_options(self):
+        payload = b'{"status": "ok"}'
+        api = VectorTileApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=payload))) as get:
+                result = await api.async_get_vectortile(
+                    52.525439,
+                    13.38727,
+                    12,
+                    layer=VectorMapTileLayer.core,
+                    query_parameters={"mode": "test"},
+                    headers={"X-Test": "value"},
+                )
+
+        self.assertEqual(result, payload)
+        get.assert_awaited_once()
+        self.assertIn("mode=test", get.await_args.args[0])
+        self.assertEqual(get.await_args.kwargs["headers"], {"X-Test": "value"})
+
 
 class VectorTileApiTest(unittest.TestCase):
     def setUp(self):

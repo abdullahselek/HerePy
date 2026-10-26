@@ -18,7 +18,7 @@ class AsyncEVChargingStationsApiTest(unittest.IsolatedAsyncioTestCase):
             ("async_get_stations_circular_search", (52.516667, 13.383333, 5000, connector_types)),
             ("async_get_stations_bounding_box", ([52.8, 11.37309], [52.31, 13.2], connector_types)),
             ("async_get_stations_corridor", ([52.51666, 13.38333, 52.13333, 11.61666], connector_types)),
-            ("async_get_station_details", (station_id,)),
+            ("async_get_station_details", (station_id,), herepy.EVChargingStationsResponse, "ev_charging_station_details.json"),
         ]
         await assert_async_get_cases(
             self,

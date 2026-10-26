@@ -9,6 +9,18 @@ import herepy
 
 
 class AsyncGeocoderApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_client_lifecycle_guards(self):
+        api = herepy.GeocoderApi("api_key")
+        await api.aclose()
+        with self.assertRaisesRegex(RuntimeError, "async with"):
+            api._get_async_client()
+
+        await api.__aenter__()
+        with self.assertRaisesRegex(RuntimeError, "already open"):
+            await api.__aenter__()
+        await api.aclose()
+        self.assertIsNone(api._async_client)
+
     async def test_async_geocoding_methods(self):
         api = herepy.GeocoderApi("api_key")
         cases = [
