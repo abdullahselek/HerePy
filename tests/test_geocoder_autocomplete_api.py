@@ -3,8 +3,35 @@
 import unittest
 
 import responses
+from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
 import herepy
+
+
+class AsyncGeocoderAutoCompleteApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_autocomplete_methods(self):
+        api = herepy.GeocoderAutoCompleteApi("api_key")
+        cases = [
+            ("async_address_suggestion", ("High", [51.5035, -0.1616], 100)),
+            ("async_limit_results_byaddress", ("Nis", "USA")),
+        ]
+        await assert_async_get_cases(
+            self,
+            api,
+            cases,
+            herepy.GeocoderAutoCompleteResponse,
+            fixture="geocoder_autocomplete.json",
+        )
+
+    async def test_async_suggestion_maps_service_errors(self):
+        await assert_async_get_error_case(
+            self,
+            herepy.GeocoderAutoCompleteApi("api_key"),
+            "async_address_suggestion",
+            ("", [51.5035, -0.1616], 100),
+            "geocoder_autocomplete_error.json",
+            herepy.HEREError,
+        )
 
 
 class GeocoderAutoCompleteApiTest(unittest.TestCase):

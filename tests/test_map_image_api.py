@@ -2,9 +2,67 @@
 
 import json
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import AsyncMock, Mock, patch
+
+import httpx2
 
 from herepy import HEREError, InvalidRequestError, MapImageApi, UnauthorizedError
+
+
+class AsyncMapImageApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_get_mapimage_returns_binary_content(self):
+        image = b"\xff\x00image-data"
+        api = MapImageApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=image))) as get:
+                result = await api.async_get_mapimage(coordinates=[28.371425, 77.387695], uncertainty="5m")
+
+        self.assertEqual(result, image)
+        get.assert_awaited_once()
+
+    async def test_async_get_mapimage_builds_optional_parameters(self):
+        image = b"\xff\x00image-data"
+        api = MapImageApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=image))) as get:
+                result = await api.async_get_mapimage(
+                    top_left=[52.8, 11.37309],
+                    bottom_right=[52.31, 13.2],
+                    coordinates=[28.371425, 77.387695],
+                    city_name="Helsinki",
+                    country_name="Finland",
+                    center=[60.17, 24.90],
+                    encoded_geo_coordinate="QeL4rkKaxoA",
+                    encoded_geo_center_coordinate="QeL4rkKaxoB",
+                    image_height=400,
+                    show_position=True,
+                    map_scheme=3,
+                    uncertainty="5m",
+                    nodot=True,
+                    house_number="42",
+                    second_label_language="deu",
+                )
+
+        self.assertEqual(result, image)
+        get.assert_awaited_once()
+
+    async def test_async_get_mapimage_raises_service_errors(self):
+        api = MapImageApi("api_key")
+        error_payload = json.dumps(
+            {
+                "error": "BadRequest",
+                "error_description": "invalid map request",
+                "Type": "Invalid Request",
+                "Message": "invalid map request",
+            }
+        )
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=error_payload))):
+                with self.assertRaises(InvalidRequestError):
+                    await api.async_get_mapimage(coordinates=[28.371425, 77.387695])
 
 
 class MapImageApiTest(unittest.TestCase):

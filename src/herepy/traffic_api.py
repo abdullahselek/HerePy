@@ -409,3 +409,343 @@ class TrafficApi(HEREApi):
             "apiKey": self._api_key,
         }
         return self.__get(self._base_url + "flow.json", data)
+
+    async def __get_async(self, url, data):
+        url = Utils.build_url(url, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("TRAFFIC_ITEMS") is not None:
+            return TrafficIncidentResponse.new_from_jsondict(
+                json_data,
+                param_defaults={
+                    "TIMESTAMP": None,
+                    "VERSION": None,
+                    "TRAFFIC_ITEMS": None,
+                    "EXTENDED_COUNTRY_CODE": None,
+                    "error": None,
+                },
+            )
+        elif json_data.get("RWS") is not None:
+            return TrafficFlowResponse.new_from_jsondict(
+                json_data,
+                param_defaults={
+                    "RWS": None,
+                    "CREATED_TIMESTAMP": None,
+                    "VERSION": None,
+                    "UNITS": None,
+                },
+            )
+        elif json_data.get("Response") is not None:
+            return TrafficFlowAvailabilityResponse.new_from_jsondict(json_data, param_defaults={"Response": None})
+        else:
+            error = self.__get_error_from_response(json_data)
+            raise error
+
+    async def async_incidents_in_bounding_box(
+        self,
+        top_left: list[float],
+        bottom_right: list[float],
+        criticality: list[IncidentsCriticalityStr],
+    ) -> TrafficIncidentResponse | None:
+        """
+        Request traffic incident information within specified area.
+
+        Args:
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
+          criticality (List):
+            List of IncidentsCriticalityStr.
+
+        Returns:
+          TrafficIncidentResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "bbox": str.format(
+                "{0},{1};{2},{3}",
+                top_left[0],
+                top_left[1],
+                bottom_right[0],
+                bottom_right[1],
+            ),
+            "apiKey": self._api_key,
+            "criticality": self.__prepare_str_values(enums=criticality),
+        }
+        return await self.__get_async(self._base_url + "incidents.json", data)
+
+    async def async_incidents_in_corridor(self, points: list[list[float]], width: int) -> TrafficIncidentResponse | None:
+        """
+        Request traffic incidents for a defined route.
+
+        Args:
+          points (List):
+            List contains lists of latitude and longitude pairs in order.
+          width (int):
+            Width of corridor.
+
+        Returns:
+          TrafficIncidentResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "corridor": self.__prepare_corridor_value(points=points, width=width),
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "incidents.json", data)
+
+    async def async_incidents_via_proximity(
+        self,
+        latitude: float,
+        longitude: float,
+        radius: int,
+        criticality: list[IncidentsCriticalityInt],
+    ) -> TrafficIncidentResponse | None:
+        """
+        Request traffic incident information within specified area.
+
+        Args:
+          latitude (float):
+            Latitude of specified area.
+          longitude (float):
+            Longitude of specified area.
+          radius (int):
+            Radius of area in meters.
+          criticality (List):
+            List of IncidentsCriticalityInt.
+
+        Returns:
+          TrafficIncidentResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "prox": str.format("{0},{1},{2}", latitude, longitude, radius),
+            "criticality": self.__prepare_criticality_int_values(criticality_enums=criticality),
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "incidents.json", data)
+
+    async def async_flow_using_quadkey(self, quadkey: str) -> TrafficFlowResponse | None:
+        """
+        Request traffic flow information using a quadkey.
+
+        Args:
+          quadkey (str):
+            The quadkey unique defines a region of the globe using a standard addressing algortihm.
+
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "quadkey": quadkey,
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "flow.json", data)
+
+    async def async_flow_within_boundingbox(
+        self,
+        top_left: list[float],
+        bottom_right: list[float],
+        response_attributes: str = "sh,fc",
+    ) -> TrafficFlowResponse | None:
+        """
+        Request traffic flow information within specified area.
+
+        Args:
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
+          response_attributes (String):
+            String containing response attributes separated by commas.
+
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "bbox": str.format(
+                "{0},{1};{2},{3}",
+                top_left[0],
+                top_left[1],
+                bottom_right[0],
+                bottom_right[1],
+            ),
+            "apiKey": self._api_key,
+            "responseattributes": response_attributes,
+        }
+        return await self.__get_async(self._base_url + "flow.json", data)
+
+    async def async_flow_using_proximity(self, latitude: float, longitude: float, distance: int) -> TrafficFlowResponse | None:
+        """
+        Request traffic flow for a circle around a defined point.
+
+        Args:
+          latitude (float):
+            List contains latitude and longitude in order.
+          longitude (float):
+            List contains latitude and longitude in order.
+          distance (int):
+            Extending a distance of metres in all directions.
+
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "prox": str.format(
+                "{0},{1},{2}",
+                latitude,
+                longitude,
+                distance,
+            ),
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "flow.json", data)
+
+    async def async_flow_using_proximity_returning_additional_attributes(
+        self,
+        latitude: float,
+        longitude: float,
+        distance: int,
+        attributes: list[FlowProximityAdditionalAttributes],
+    ) -> TrafficFlowResponse | None:
+        """
+        Request traffic flow information using proximity, returning shape and functional class.
+
+        Args:
+          latitude (float):
+            List contains latitude and longitude in order.
+          longitude (float):
+            List contains latitude and longitude in order.
+          distance (int):
+            Extending a distance of metres in all directions.
+          attributes (List):
+            List that contains FlowProximityAdditionalAttributes.
+
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "prox": str.format(
+                "{0},{1},{2}",
+                latitude,
+                longitude,
+                distance,
+            ),
+            "responseattibutes": self.__prepare_str_values(enums=attributes),
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "flow.json", data)
+
+    async def async_flow_with_minimum_jam_factor(
+        self, top_left: list[float], bottom_right: list[float], min_jam_factor: int = 7
+    ) -> TrafficFlowResponse | None:
+        """
+        Request traffic flow information in specified area with a jam factor.
+
+        Args:
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
+          min_jam_factor (int):
+            Severe congestion with a jam factor greater than 7.
+
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "bbox": str.format(
+                "{0},{1};{2},{3}",
+                top_left[0],
+                top_left[1],
+                bottom_right[0],
+                bottom_right[1],
+            ),
+            "minjamfactor": str.format("{0}", min_jam_factor),
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "flow.json", data)
+
+    async def async_flow_in_corridor(self, points: list[list[float]], width: int) -> TrafficFlowResponse | None:
+        """
+        Request traffic flow for a defined route.
+
+        Args:
+          points (List):
+            List contains lists of latitude and longitude pairs in order.
+          width (int):
+            Width of corridor (in meters).
+
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "corridor": self.__prepare_corridor_value(points=points, width=width),
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "flow.json", data)
+
+    async def async_flow_availability_data(self) -> TrafficFlowAvailabilityResponse | None:
+        """
+        Flow availability requests allow you to see what traffic flow coverage exists in the current Traffic API.
+
+        Returns:
+          TrafficFlowAvailabilityResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "flowavailability.json", data)
+
+    async def async_additional_attributes(
+        self, quadkey: str, attributes: list[FlowProximityAdditionalAttributes]
+    ) -> list[TrafficFlowResponse]:
+        """
+        Request traffic flow including shape and functional class information.
+
+        Args:
+          quadkey (str):
+            The quadkey unique defines a region of the globe using a standard addressing algortihm.
+          attributes (List):
+            List that contains FlowProximityAdditionalAttributes.
+
+        Returns:
+          TrafficFlowResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "quadkey": quadkey,
+            "responseattibutes": self.__prepare_str_values(enums=attributes),
+            "apiKey": self._api_key,
+        }
+        return await self.__get_async(self._base_url + "flow.json", data)

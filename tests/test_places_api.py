@@ -3,8 +3,30 @@
 import unittest
 
 import responses
+from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
 import herepy
+
+
+class AsyncPlacesApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_place_search_methods(self):
+        api = herepy.PlacesApi("api_key")
+        cases = [
+            ("async_onebox_search", ([37.7905, -122.4107], "restaurant")),
+            ("async_search_in_country", ([37.7905, -122.4107], "cafe", "USA")),
+            ("async_places_in_circle", ([37.7905, -122.4107], 1000, "cafe")),
+        ]
+        await assert_async_get_cases(self, api, cases, herepy.PlacesResponse, fixture="places_api.json")
+
+    async def test_async_search_maps_service_errors(self):
+        await assert_async_get_error_case(
+            self,
+            herepy.PlacesApi("api_key"),
+            "async_onebox_search",
+            ([37.7905, -122.4107], ""),
+            "places_api_error.json",
+            herepy.HEREError,
+        )
 
 
 class PlacesApiTest(unittest.TestCase):

@@ -79,3 +79,54 @@ class RmeApi(HEREApi):
             "apikey": self._api_key,
         }
         return self.__get(data)
+
+    async def __get_async(self, data):
+        url = Utils.build_url(self._base_url, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        try:
+            json_data = json.loads(response.content.decode("utf8"))
+            if json_data.get("TracePoints") is not None:
+                return RmeResponse.new_from_jsondict(json_data)
+            else:
+                raise HEREError(
+                    json_data.get(
+                        "Details",
+                        "Error occurred on function " + sys._getframe(1).f_code.co_name,
+                    )
+                )
+        except ValueError as err:
+            raise HEREError("Error occurred on function " + sys._getframe(1).f_code.co_name + " " + str(err))
+
+    async def async_match_route(self, gpx_file_content: str, route_mode: str = "car", pde_layers: list[str] = []) -> RmeResponse | None:
+        """
+        Retrieve miscellaneous information about the route in a GPX file.
+
+        Args:
+          gpx_file_content (str):
+            gpx file content as string
+          route_mode (str):
+            route mode ('car')
+          pde_layers (str list):
+            PDE layers to retrieve e.g.:
+              ROAD_GEOM_FCn(TUNNEL)
+              SPEED_LIMITS_FCn(FROM_REF_SPEED_LIMIT,TO_REF_SPEED_LIMIT)
+              ADAS_ATTRIB_FCn(SLOPES).
+
+              or e.g.,
+
+              ROAD_GEOM_FCn(*)
+              SPEED_LIMITS_FCn(*)
+
+        Returns:
+          RmeResponse
+        Raises:
+          HEREError
+
+        """
+        data = {
+            "file": Utils.get_zipped_base64(gpx_file_content),
+            "routemode": route_mode,
+            "attributes": ",".join(pde_layers),
+            "apikey": self._api_key,
+        }
+        return await self.__get_async(data)

@@ -8,12 +8,13 @@ import sys
 import requests
 
 from herepy.error import HEREError
+from herepy.here_api import HEREApi
 from herepy.here_enum import EVStationConnectorTypes
 from herepy.models import EVChargingStationsResponse
 from herepy.utils import Utils
 
 
-class EVChargingStationsApi:
+class EVChargingStationsApi(HEREApi):
     """A python interface into the HERE EV Charging Stations API."""
 
     def __init__(self, api_key: str = None, timeout: int = None):
@@ -27,11 +28,7 @@ class EVChargingStationsApi:
             Timeout limit for requests.
 
         """
-        self._api_key = api_key
-        if timeout:
-            self._timeout = timeout
-        else:
-            self._timeout = 20
+        super().__init__(api_key, timeout)
         self._base_url = "https://ev-v2.cit.cc.api.here.com/ev/"
 
     def __get(self, base_url, data, response_cls):
@@ -259,6 +256,217 @@ class EVChargingStationsApi:
         data = {"apiKey": self._api_key, "maxresults": maxresults, "offset": offset}
         url = self._base_url + "stations/" + station_id + ".json"
         response = self.__get(url, data, EVChargingStationsResponse)
+        return response
+
+    async def __get_async(self, base_url, data, response_cls):
+        url = Utils.build_url(base_url, extra_params=data)
+        response = await self._get_async_client().get(url, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if json_data.get("evStations") is not None:
+            return response_cls.new_from_jsondict(json_data)
+        else:
+            raise error_from_ev_charging_service_error(json_data)
+
+    async def async_get_stations_circular_search(
+        self,
+        latitude: float,
+        longitude: float,
+        radius: int,
+        connectortypes: list[EVStationConnectorTypes] = None,
+        maxresults: int = 50,
+        offset: int = 0,
+    ) -> EVChargingStationsResponse | None:
+        """
+        Make a search request for charging stations.
+
+        A circular search area defined by the latitude and longitude of its center
+        (compliant with WGS 84) and an integer representing the radius of the area
+        in meters, all separated by commas.
+
+        Args:
+          latitude (float):
+            latitude.
+          longitude (float):
+            longitude.
+          radius (int):
+            Radius of circular area in meter. Radius can be a maximum of 200 km (200000).
+          connectortypes (List[EVStationConnectorTypes]):
+            Optional, to identify the connector types.
+          maxresults (int):
+            The maximum number of results a response can contain.
+            This parameter can be used with the offset parameter in the query and HasMore in the response for pagination.
+          offset (int):
+            A value specifying the index of the first result. The offset together with the
+            "maxresults" value can be used to support a paging mechanism on search results.
+            This parameter can be used with the maxresults parameter in the query and HasMore in the response for pagination.
+
+        Returns:
+          EVChargingStationsResponse
+        Raises:
+          HEREError
+
+        """
+        if connectortypes:
+            connector_types_str = self.__connector_types_str(connectortypes)
+            data = {
+                "apiKey": self._api_key,
+                "prox": str.format("{0},{1},{2}", latitude, longitude, radius),
+                "connectortype": connector_types_str,
+                "maxresults": maxresults,
+                "offset": offset,
+            }
+        else:
+            data = {
+                "apiKey": self._api_key,
+                "prox": str.format("{0},{1},{2}", latitude, longitude, radius),
+                "maxresults": maxresults,
+                "offset": offset,
+            }
+        response = await self.__get_async(self._base_url + "stations.json", data, EVChargingStationsResponse)
+        return response
+
+    async def async_get_stations_bounding_box(
+        self,
+        top_left: list[float],
+        bottom_right: list[float],
+        connectortypes: list[EVStationConnectorTypes] = None,
+        maxresults: int = 50,
+        offset: int = 0,
+    ) -> EVChargingStationsResponse | None:
+        """
+        Search for charging stations in a bounding box.
+
+        The bounding box can have a maximum height or width of 400 km.
+
+        Args:
+          top_left (List):
+            List contains latitude and longitude in order.
+          bottom_right (List):
+            List contains latitude and longitude in order.
+          connectortypes (List[EVStationConnectorTypes]):
+            Optional, to identify the connector types.
+          maxresults (int):
+            The maximum number of results a response can contain.
+            This parameter can be used with the offset parameter in the query and HasMore in the response for pagination.
+          offset (int):
+            A value specifying the index of the first result. The offset together with the
+            "maxresults" value can be used to support a paging mechanism on search results.
+            This parameter can be used with the maxresults parameter in the query and HasMore in the response for pagination.
+
+        Returns:
+          EVChargingStationsResponse
+        Raises:
+          HEREError
+
+        """
+        if connectortypes:
+            connector_types_str = self.__connector_types_str(connectortypes)
+            data = {
+                "apiKey": self._api_key,
+                "bbox": str.format(
+                    "{0},{1};{2},{3}",
+                    top_left[0],
+                    top_left[1],
+                    bottom_right[0],
+                    bottom_right[1],
+                ),
+                "connectortype": connector_types_str,
+                "maxresults": maxresults,
+                "offset": offset,
+            }
+        else:
+            data = {
+                "apiKey": self._api_key,
+                "bbox": str.format(
+                    "{0},{1};{2},{3}",
+                    top_left[0],
+                    top_left[1],
+                    bottom_right[0],
+                    bottom_right[1],
+                ),
+                "maxresults": maxresults,
+                "offset": offset,
+            }
+        response = await self.__get_async(self._base_url + "stations.json", data, EVChargingStationsResponse)
+        return response
+
+    async def async_get_stations_corridor(
+        self,
+        points: list[float],
+        connectortypes: list[EVStationConnectorTypes] = None,
+        maxresults: int = 50,
+        offset: int = 0,
+    ) -> EVChargingStationsResponse | None:
+        """
+        Search for charging stations along a corridor.
+
+        The maximum corridor area is 5000 km2.
+
+        Args:
+          points (List):
+            List contains latitude and longitude pairs in order.
+          connectortypes (List[EVStationConnectorTypes]):
+            Optional, to identify the connector types.
+          maxresults (int):
+            The maximum number of results a response can contain.
+            This parameter can be used with the offset parameter in the query and HasMore in the response for pagination.
+          offset (int):
+            A value specifying the index of the first result. The offset together with the
+            "maxresults" value can be used to support a paging mechanism on search results.
+            This parameter can be used with the maxresults parameter in the query and HasMore in the response for pagination.
+
+        Returns:
+          EVChargingStationsResponse
+        Raises:
+          HEREError
+
+        """
+        if connectortypes:
+            connector_types_str = self.__connector_types_str(connectortypes)
+            data = {
+                "apiKey": self._api_key,
+                "corridor": self.__corridor_str(points),
+                "connectortype": connector_types_str,
+                "maxresults": maxresults,
+                "offset": offset,
+            }
+        else:
+            data = {
+                "apiKey": self._api_key,
+                "corridor": self.__corridor_str(points),
+                "maxresults": maxresults,
+                "offset": offset,
+            }
+        response = await self.__get_async(self._base_url + "stations.json", data, EVChargingStationsResponse)
+        return response
+
+    async def async_get_station_details(self, station_id: str, maxresults: int = 50, offset: int = 0) -> EVChargingStationsResponse | None:
+        """
+        Retrieve the full/updated information about a single charging station only.
+
+        Based on the results of a search for charging stations, this method
+        retrieves the full/updated information about a single charging station only.
+
+        Args:
+          station_id (str):
+            station_id is an attribute of the evStation element with a unique value.
+          maxresults (int):
+            The maximum number of results a response can contain.
+            This parameter can be used with the offset parameter in the query and HasMore in the response for pagination.
+          offset (int):
+            A value specifying the index of the first result. The offset together with the
+            "maxresults" value can be used to support a paging mechanism on search results.
+            This parameter can be used with the maxresults parameter in the query and HasMore in the response for pagination.
+
+        Returns:
+          EVChargingStationsResponse
+        Raises:
+          HEREError
+
+        """
+        data = {"apiKey": self._api_key, "maxresults": maxresults, "offset": offset}
+        url = self._base_url + "stations/" + station_id + ".json"
+        response = await self.__get_async(url, data, EVChargingStationsResponse)
         return response
 
 

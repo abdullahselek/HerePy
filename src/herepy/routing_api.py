@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """Client for the HERE Routing API."""
 
+import asyncio
 import datetime
 import json
 import os
@@ -916,6 +917,733 @@ class RoutingApi(HEREApi):
 
         route = "; ".join(list(map(str, road_names)))
         return route
+
+    async def __get_async(
+        self,
+        base_url,
+        data,
+        key,
+        response_cls,
+        manipulation_key: str = None,
+        keys_for_manipulation: list = None,
+        headers: dict[str, str] | None = None,
+    ):
+        url = Utils.build_url(base_url, extra_params=data)
+        if manipulation_key and keys_for_manipulation:
+            for k in keys_for_manipulation:
+                url = url.replace(k, manipulation_key)
+        response = await self._get_async_client().get(url, timeout=self._timeout, headers=headers)
+        json_data = json.loads(response.content.decode("utf8"))
+        if response.status_code == 200:
+            return response_cls.new_from_jsondict(json_data)
+        else:
+            raise error_from_routing_service_error(json_data)
+
+    async def _route_async(self, waypoint_a, waypoint_b, modes=None, departure=None, arrival=None):
+        if isinstance(waypoint_a, str):
+            waypoint_a = await self._get_coordinates_for_location_name_async(waypoint_a)
+        if isinstance(waypoint_b, str):
+            waypoint_b = await self._get_coordinates_for_location_name_async(waypoint_b)
+        data = {
+            "waypoint0": self.__list_to_waypoint(waypoint_a),
+            "waypoint1": self.__list_to_waypoint(waypoint_b),
+            "mode": self.__prepare_mode_values(modes),
+            "apikey": self._api_key,
+        }
+        if departure is not None and arrival is not None:
+            raise HEREError("Specify either departure or arrival, not both.")
+        if departure is not None:
+            departure = self._convert_datetime_to_isoformat(departure)
+            data["departure"] = departure
+        if arrival is not None:
+            arrival = self._convert_datetime_to_isoformat(arrival)
+            data["arrival"] = arrival
+        response = await self.__get_async(self.URL_CALCULATE_ROUTE, data, "response", RoutingResponse)
+        route = response.response["route"]
+        maneuver = route[0]["leg"][0]["maneuver"]
+
+        if any(mode in modes for mode in [RouteMode.car, RouteMode.truck]):
+            # Get Route for Car and Truck
+            response.route_short = self._get_route_from_vehicle_maneuver(maneuver)
+        elif any(mode in modes for mode in [RouteMode.publicTransport, RouteMode.publicTransportTimeTable]):
+            # Get Route for Public Transport
+            public_transport_line = route[0]["publicTransportLine"]
+            response.route_short = self._get_route_from_public_transport_line(public_transport_line)
+        elif any(mode in modes for mode in [RouteMode.pedestrian, RouteMode.bicycle]):
+            # Get Route for Pedestrian and Biyclce
+            response.route_short = self._get_route_from_non_vehicle_maneuver(maneuver)
+        return response
+
+    async def async_bicycle_route(
+        self,
+        waypoint_a: list[float] | str,
+        waypoint_b: list[float] | str,
+        modes: list[RouteMode] = None,
+        departure: str = "now",
+    ) -> RoutingResponse | None:
+        """
+        Request a bicycle route between two points.
+
+        Args:
+          waypoint_a:
+            List contains latitude and longitude in order
+            or string with the location name
+          waypoint_b:
+            List contains latitude and longitude in order
+            or string with the location name.
+          modes (List):
+            List contains RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
+
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError
+
+        """
+        if modes is None:
+            modes = [RouteMode.bicycle, RouteMode.fastest]
+        return await self._route_async(waypoint_a, waypoint_b, modes, departure)
+
+    async def async_car_route(
+        self,
+        waypoint_a: list[float] | str,
+        waypoint_b: list[float] | str,
+        modes: list[RouteMode] = None,
+        departure: str = "now",
+    ) -> RoutingResponse | None:
+        """
+        Request a driving route between two points.
+
+        Args:
+          waypoint_a (List):
+            List contains latitude and longitude in order
+            or string with the location name.
+          waypoint_b (List):
+            List contains latitude and longitude in order
+            or string with the location name.
+          modes (List):
+            List contains RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
+
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError
+
+        """
+        if modes is None:
+            modes = [RouteMode.car, RouteMode.fastest]
+        return await self._route_async(waypoint_a, waypoint_b, modes, departure)
+
+    async def async_pedestrian_route(
+        self,
+        waypoint_a: list[float] | str,
+        waypoint_b: list[float] | str,
+        modes: list[RouteMode] = None,
+        departure: str = "now",
+    ) -> RoutingResponse | None:
+        """
+        Request a pedestrian route between two points.
+
+        Args:
+          waypoint_a (List):
+            List contains latitude and longitude in order
+            or string with the location name.
+          waypoint_b (List):
+            List contains latitude and longitude in order
+            or string with the location name.
+          modes (List):
+            List contains RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
+
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError
+
+        """
+        if modes is None:
+            modes = [RouteMode.pedestrian, RouteMode.fastest]
+        return await self._route_async(waypoint_a, waypoint_b, modes, departure)
+
+    async def async_intermediate_route(
+        self,
+        waypoint_a: list[float] | str,
+        waypoint_b: list[float] | str,
+        waypoint_c: list[float] | str,
+        modes: list[RouteMode] = None,
+        departure: str = "now",
+    ) -> RoutingResponse | None:
+        """
+        Request a route through three points.
+
+        Args:
+          waypoint_a (List):
+            Starting List contains latitude and longitude in order
+            or string with the location name.
+          waypoint_b (List):
+            Intermediate List contains latitude and longitude in order
+            or string with the location name.
+          waypoint_c (List):
+            Last List contains latitude and longitude in order
+            or string with the location name.
+          modes (List):
+            List contains RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
+
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError
+
+        """
+        if modes is None:
+            modes = [RouteMode.car, RouteMode.fastest]
+        return await self._route_async(waypoint_a, waypoint_b, modes, departure)
+
+    async def async_public_transport(
+        self,
+        waypoint_a: list[float] | str,
+        waypoint_b: list[float] | str,
+        combine_change: bool,
+        modes: list[RouteMode] = None,
+        departure="now",
+    ) -> RoutingResponse | None:
+        """
+        Request a public transport route between two points.
+
+        Args:
+          waypoint_a (List):
+            Starting List contains latitude and longitude in order
+            or string with the location name.
+          waypoint_b (List):
+            Intermediate List contains latitude and longitude in order
+            or string with the location name.
+          combine_change (bool):
+            Enables the change manuever in the route response, which
+            indicates a public transit line change.
+          modes (List):
+            List contains RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
+
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError
+
+        """
+        if modes is None:
+            modes = [RouteMode.publicTransport, RouteMode.fastest]
+        return await self._route_async(waypoint_a, waypoint_b, modes, departure)
+
+    async def async_public_transport_timetable(
+        self,
+        waypoint_a: list[float] | str,
+        waypoint_b: list[float] | str,
+        combine_change: bool,
+        modes: list[RouteMode] = None,
+        departure: str = None,
+        arrival: str = None,
+    ) -> RoutingResponse | None:
+        """
+        Request a public transport route between two points based on timetables.
+
+        Args:
+          waypoint_a (List):
+            Starting List contains latitude and longitude in order
+            or string with the location name.
+          waypoint_b (List):
+            Intermediate List contains latitude and longitude in order
+            or string with the location name.
+          combine_change (bool):
+            Enables the change manuever in the route response, which
+            indicates a public transit line change.
+          modes (List):
+            List contains RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `None`.
+          arrival (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `None`.
+
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError
+
+        """
+        if modes is None:
+            modes = [RouteMode.publicTransportTimeTable, RouteMode.fastest]
+        return await self._route_async(waypoint_a, waypoint_b, modes, departure, arrival)
+
+    async def async_location_near_motorway(
+        self,
+        waypoint_a: list[float] | str,
+        waypoint_b: list[float] | str,
+        modes: list[RouteMode] = None,
+        departure: str = "now",
+    ) -> RoutingResponse | None:
+        """
+        Calculate the fastest car route between two locations.
+
+        Args:
+          waypoint_a (List):
+            List contains latitude and longitude in order
+            or string with the location name.
+          waypoint_b (List):
+            List contains latitude and longitude in order
+            or string with the location name.
+          modes (List):
+            List contains RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
+
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError
+
+        """
+        if modes is None:
+            modes = [RouteMode.car, RouteMode.fastest]
+        return await self._route_async(waypoint_a, waypoint_b, modes, departure)
+
+    async def async_truck_route(
+        self,
+        waypoint_a: list[float] | str,
+        waypoint_b: list[float] | str,
+        modes: list[RouteMode] = None,
+        departure: str = "now",
+    ) -> RoutingResponse | None:
+        """
+        Calculate the fastest truck route between two locations.
+
+        Args:
+          waypoint_a (List):
+            List contains latitude and longitude in order
+            or string with the location name.
+          waypoint_b (List):
+            List contains latitude and longitude in order
+            or string with the location name.
+          modes (List):
+            List contains RouteMode enums.
+          departure (str):
+            Date time str in format `yyyy-mm-ddThh:mm:ss`. Default `now`.
+
+        Returns:
+          RoutingResponse
+        Raises:
+          HEREError
+
+        """
+        if modes is None:
+            modes = [RouteMode.truck, RouteMode.fastest]
+        return await self._route_async(waypoint_a, waypoint_b, modes, departure)
+
+    async def async_route_v8(
+        self,
+        transport_mode: RoutingTransportMode,
+        origin: list[float] | str,
+        destination: list[float] | str,
+        via: list[list[float]] | None = None,
+        departure_time: str | None = None,
+        routing_mode: RoutingMode = RoutingMode.fast,
+        alternatives: int | None = None,
+        avoid: dict[str, list[str]] | None = None,
+        exclude: dict[str, list[str]] | None = None,
+        units: RoutingMetric | None = None,
+        lang: str | None = None,
+        return_fields: list[RoutingApiReturnField] = [RoutingApiReturnField.polyline],
+        span_fields: list[RoutingApiSpanField] | None = None,
+        truck: dict[str, list[str]] | None = None,
+        vehicle: dict[str, list[str]] | None = None,
+        scooter: dict[str, str] | None = None,
+        headers: dict | None = None,
+    ) -> RoutingResponseV8 | None:
+        """
+        Calculate the route between the given origin and destination.
+
+        Args:
+          transport_mode (RoutingTransportMode):
+            Mode of transport to be used for the calculation of the route.
+          origin (Union[List[float], str]):
+            List contains latitude and longitude in order
+            or string with the location name.
+          destination (Union[List[float], str]):
+            List contains latitude and longitude in order
+            or string with the location name.
+          via (Optional[List[List[float]]]):
+            Locations defining via waypoints.
+            Locations between origin and destination.
+          departure_time (Optional[str]):
+            Specifies the time of departure as defined by
+            either date-time or full-date T partial-time in RFC 3339,
+            section 5.6 (for example, 2019-06-24T01:23:45).
+          routing_mode (RoutingMode):
+            Specifies which optimization is applied during route calculation,
+            fast as default value.
+          alternatives (Optional[int]):
+            Number of alternative routes to return aside from the optimal route.
+          avoid (Optional[Dict[str, List[str]]]):
+            Avoid routes that violate certain features of road network or
+            that go through user-specified geographical bounding boxes.
+            Sample use of parameter: `{"features": [controlledAccessHighway, tunnel]}`
+          exclude (Optional[Dict[str, List[str]]]):
+            Defines properties which will be strictly excluded from route calculation.
+            Sample use of parameter:
+            `{"countries": [A comma separated list of three-letter country codes (ISO-3166-1 alpha-3 code)]}`
+          units (Optional[RoutingMetric]):
+            Units of measurement used in guidance instructions. The default is metric.
+          lang (Optional[str]):
+            Default: "en-US"
+            Specifies the preferred language of the response.
+            The value should comply with the IETF BCP 47.
+          return_fields (List[RoutingApiReturnField]):
+            Defines which attributes are included in the response as part of data
+            representation of a Route or Section.
+          span_fields (Optional[List[RoutingApiSpanField]]):
+            Defines which attributes are included in the response spans.
+            For example, attributes,length will enable the fields attributes and length in the route response.
+            This parameter also requires that the polyline option is set within the return parameter.
+          truck (Optional[Dict[str, List[str]]]):
+            Deprecated. Use `vehicle` parameter.
+          vehicle (Optional[Dict[str, List[str]]]):
+            Comma-separated list of vehicle-specific parameters.
+            Sample use of parameter: `{"shippedHazardousGoods": [explosive, gas, flammable]}`
+          scooter (Optional[Dict[str, str]]):
+            Scooter specific parameters.
+            Sample use of parameter: `{"allowHighway": "true"}`
+          headers (Optional[dict]):
+            HTTP headers for requests.
+            Sample:
+            X-Request-ID
+            User-provided token that can be used to trace a request or
+            a group of requests sent to the service.
+
+        Returns:
+          RoutingResponseV8
+        Raises:
+          HEREError
+
+        """
+        if isinstance(origin, str):
+            origin = await self._get_coordinates_for_location_name_async(origin)
+        if isinstance(destination, str):
+            destination = await self._get_coordinates_for_location_name_async(destination)
+        data = {
+            "transportMode": transport_mode.__str__(),
+            "origin": str.format("{0},{1}", origin[0], origin[1]),
+            "destination": str.format("{0},{1}", destination[0], destination[1]),
+            "apiKey": self._api_key,
+        }
+
+        via_keys = []
+        if via:
+            for i, v in enumerate(via):
+                key = str.format("{0}{1}_", "via", i)
+                via_keys.append(key)
+                data[key] = str.format("{0},{1}", v[0], v[1])
+        if departure_time:
+            data["departureTime"] = departure_time
+        data["routingMode"] = routing_mode.__str__()
+        if alternatives:
+            data["alternatives"] = alternatives
+        if avoid:
+            data["avoid"] = {key: ",".join(vals) for key, vals in avoid.items()}
+        if exclude:
+            data["exclude"] = {key: ",".join(vals) for key, vals in exclude.items()}
+        if units:
+            data["units"] = units.__str__()
+        if lang:
+            data["lang"] = lang
+        if return_fields:
+            data["return"] = ",".join([field.__str__() for field in return_fields])
+        if span_fields:
+            data["spans"] = ",".join([field.__str__() for field in span_fields])
+        if truck:
+            warn(
+                "'truck' parameter is deprecated in Routing API. Use 'vehicle' parameter instead.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            if vehicle is None:
+                vehicle = truck
+        if vehicle:
+            data["vehicle"] = {key: ",".join(vals) for key, vals in vehicle.items()}
+        if scooter:
+            data["scooter"] = scooter
+
+        response = await self.__get_async(
+            self.URL_CALCULATE_ROUTE_V8,
+            data,
+            "routes",
+            RoutingResponseV8,
+            manipulation_key="via",
+            keys_for_manipulation=via_keys,
+            headers=headers,
+        )
+        return response
+
+    async def __prepare_matrix_request_body_async(
+        self,
+        origins: list[list[float] | str],
+        destinations: list[list[float] | str],
+        matrix_type: MatrixRoutingType = MatrixRoutingType.world,
+        center: list[float] | None = None,
+        radius: int | None = None,
+        profile: MatrixRoutingProfile | None = None,
+        departure: str = None,
+        routing_mode: MatrixRoutingMode | None = None,
+        transport_mode: MatrixRoutingTransportMode | None = None,
+        avoid: Avoid | None = None,
+        truck: Truck | None = None,
+        matrix_attributes: list[MatrixSummaryAttribute] | None = None,
+    ) -> dict[str, Any]:
+        region_definition: dict[str, Any] = {
+            "type": matrix_type.__str__(),
+        }
+        if center:
+            region_definition["center"] = {"lat": center[0], "lng": center[1]}
+        if radius:
+            region_definition["radius"] = radius
+        request_body: dict[str, Any] = {"regionDefinition": region_definition}
+
+        if profile:
+            request_body["profile"] = profile.__str__()
+        if departure:
+            request_body["departureTime"] = departure
+        if routing_mode:
+            request_body["routingMode"] = routing_mode.__str__()
+        if transport_mode:
+            request_body["transportMode"] = transport_mode.__str__()
+        if matrix_attributes:
+            request_body["matrixAttributes"] = [attribute.__str__() for attribute in matrix_attributes]
+        if avoid:
+            request_body["avoid"] = {"features": avoid.features, "areas": avoid.areas}
+        if truck:
+            request_body["truck"] = {
+                "shippedHazardousGoods": truck.shipped_hazardous_goods,
+                "grossWeight": truck.gross_weight,
+                "weightPerAxle": truck.weight_per_axle,
+                "height": truck.height,
+                "width": truck.width,
+                "length": truck.length,
+                "tunnelCategory": truck.tunnel_category,
+                "axleCount": truck.axle_count,
+                "type": truck.truck_type,
+                "trailerCount": truck.trailer_count,
+            }
+
+        origin_list: list[dict[str, float]] = []
+        for origin in origins:
+            if isinstance(origin, str):
+                origin_waypoint = await self._get_coordinates_for_location_name_async(origin)
+            else:
+                origin_waypoint = origin
+            lat_long = {"lat": origin_waypoint[0], "lng": origin_waypoint[1]}
+            origin_list.append(lat_long)
+        request_body["origins"] = origin_list
+
+        destination_list: list[dict[str, float]] = []
+        for destination in destinations:
+            if isinstance(destination, str):
+                destination_waypoint = await self._get_coordinates_for_location_name_async(destination)
+            else:
+                destination_waypoint = destination
+            lat_long = {"lat": destination_waypoint[0], "lng": destination_waypoint[1]}
+            destination_list.append(lat_long)
+        request_body["destinations"] = destination_list
+
+        return request_body
+
+    async def async_sync_matrix(
+        self,
+        origins: list[list[float] | str],
+        destinations: list[list[float] | str],
+        matrix_type: MatrixRoutingType = MatrixRoutingType.world,
+        center: list[float] | None = None,
+        radius: int | None = None,
+        profile: MatrixRoutingProfile | None = None,
+        departure: str = None,
+        routing_mode: MatrixRoutingMode | None = None,
+        transport_mode: MatrixRoutingTransportMode | None = None,
+        avoid: Avoid | None = None,
+        truck: Truck | None = None,
+        matrix_attributes: list[MatrixSummaryAttribute] | None = None,
+    ) -> RoutingMatrixResponse | None:
+        """
+        Asynchronously request a matrix of route summaries between M starts and N destinations.
+
+        Args:
+          origins (List):
+            List of lists of coordinates [lat,long] of start waypoints.
+            or list of string with the location names.
+          destinations (List):
+            List of lists of coordinates [lat,long] of destination waypoints.
+            or list of string with the location names.
+          matrix_type (MatrixRoutingType):
+            Routing type used in definition of a region in which the matrix will be calculated.
+          center (Optional[List]):
+            Center of region definition, latitude and longitude.
+          radius (Optional[int]):
+            Center  of region definition.
+          profile (Optional[MatrixRoutingProfile]):
+            A profile ID enables the calculation of matrices with routes of arbitrary length.
+          departure (str):
+            time when travel is expected to start, e.g.: '2013-07-04T17:00:00+02'
+          routing_mode (Optional[MatrixRoutingMode]):
+            Route mode used in optimization of route calculation.
+          transport_mode (Optional[MatrixRoutingTransportMode]):
+            Depending on the transport mode special constraints, speed attributes and weights
+            are taken into account during route calculation.
+          avoid (Optional[Avoid]):
+            Avoid routes that violate these properties.
+          truck (Optional[Truck]):
+            Different truck options to use during route calculation when transportMode = truck.
+          matrix_attributes (List):
+            List of MatrixSummaryAttribute enums.
+
+        Returns:
+          RoutingMatrixResponse
+        Raises:
+          HEREError: If an error is received from the server.
+
+        """
+        query_params = {
+            "apiKey": self._api_key,
+            "async": "false",
+        }
+
+        request_body = await self.__prepare_matrix_request_body_async(
+            origins=origins,
+            destinations=destinations,
+            matrix_type=matrix_type,
+            center=center,
+            radius=radius,
+            profile=profile,
+            departure=departure,
+            routing_mode=routing_mode,
+            transport_mode=transport_mode,
+            avoid=avoid,
+            truck=truck,
+            matrix_attributes=matrix_attributes,
+        )
+
+        url = Utils.build_url(self.URL_CALCULATE_MATRIX, extra_params=query_params)
+        headers = {"Content-Type": "application/json"}
+        response = await self._get_async_client().post(url, json=request_body, headers=headers, timeout=self._timeout)
+        json_data = json.loads(response.content.decode("utf8"))
+        if response.status_code == 200:
+            if json_data.get("matrix") is not None:
+                return RoutingMatrixResponse.new_from_jsondict(json_data)
+            else:
+                raise HEREError(
+                    "Error occurred on routing_api sync_matrix "
+                    + sys._getframe(1).f_code.co_name
+                    + " response status code "
+                    + str(response.status_code)
+                )
+        else:
+            if "title" in json_data and "cause" in json_data:
+                raise HEREError(
+                    str.format(
+                        "routing_api sync_matrix failed! title: {0}, cause: {1}",
+                        json_data["title"],
+                        json_data["cause"],
+                    )
+                )
+            else:
+                raise HEREError("Error occurred on routing_api sync_matrix " + sys._getframe(1).f_code.co_name)
+
+    async def _get_coordinates_for_location_name_async(self, location_name: str) -> list[float]:
+        """Use the Geocoder API to resolve a location name to a set of coordinates."""
+        geocoder_api = GeocoderApi(self._api_key, self._timeout)
+        try:
+            async with geocoder_api:
+                geocoder_response = await geocoder_api.async_free_form(location_name)
+        except HEREError as here_error:
+            raise WaypointNotFoundError(here_error.message)
+        items = getattr(geocoder_response, "items", None) if geocoder_response is not None else None
+        if not items:
+            raise WaypointNotFoundError(f"No geocoding results found for {location_name!r}.")
+        coordinates = items[0]["position"]
+        return [coordinates["lat"], coordinates["lng"]]
+
+    async def __download_file_async(self, fileurl: str):
+        filename = os.path.basename(fileurl)
+        async with self._get_async_client().stream("GET", fileurl, timeout=self._timeout) as response:
+            response.raise_for_status()
+            with open(filename, "wb") as file:
+                async for chunk in response.aiter_bytes(chunk_size=8192):
+                    file.write(chunk)
+        print(f"{filename} file saved!")
+        return filename
+
+    async def async_matrix_async(
+        self,
+        token: str,
+        origins: list[list[float] | str],
+        destinations: list[list[float] | str],
+        matrix_type: MatrixRoutingType = MatrixRoutingType.world,
+        center: list[float] | None = None,
+        radius: int | None = None,
+        profile: MatrixRoutingProfile | None = None,
+        departure: str = None,
+        routing_mode: MatrixRoutingMode | None = None,
+        transport_mode: MatrixRoutingTransportMode | None = None,
+        avoid: Avoid | None = None,
+        truck: Truck | None = None,
+        matrix_attributes: list[MatrixSummaryAttribute] | None = None,
+    ) -> RoutingMatrixResponse | None:
+        """Asynchronously request a matrix and poll until its calculation completes."""
+        request_body = await self.__prepare_matrix_request_body_async(
+            origins=origins,
+            destinations=destinations,
+            matrix_type=matrix_type,
+            center=center,
+            radius=radius,
+            profile=profile,
+            departure=departure,
+            routing_mode=routing_mode,
+            transport_mode=transport_mode,
+            avoid=avoid,
+            truck=truck,
+            matrix_attributes=matrix_attributes,
+        )
+        url = Utils.build_url(self.URL_CALCULATE_MATRIX, extra_params={})
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": str.format("******", token),
+        }
+        response = await self._get_async_client().post(url, json=request_body, headers=headers, timeout=self._timeout)
+        if response.status_code != 202:
+            json_data = response.json()
+            if json_data.get("error") is not None and json_data.get("error_description") is not None:
+                raise HEREError(
+                    "Error occurred on async_matrix: " + json_data["error"] + ", description: " + json_data["error_description"]
+                )
+            if json_data.get("title") is not None and json_data.get("cause") is not None:
+                raise HEREError("Error occurred on async_matrix: " + json_data["title"] + ", cause: " + json_data["cause"])
+            raise HEREError("Error occurred on async_matrix " + sys._getframe(1).f_code.co_name)
+
+        json_data = response.json()
+        print("Matrix {} calculation {}".format(json_data["matrixId"], json_data["status"]))
+        poll_url = json_data["statusUrl"]
+        headers = {"Authorization": str.format("******", token)}
+        print("Polling matrix calculation started!")
+        while True:
+            poll_response = await self._get_async_client().get(poll_url, headers=headers, timeout=self._timeout)
+            poll_data = self.__is_correct_response(poll_response)
+            if poll_data:
+                break
+            await asyncio.sleep(5)
+        print("Polling matrix calculation completed!")
+        return RoutingMatrixResponse.new_from_jsondict(poll_data)
 
 
 class InvalidCredentialsError(HEREError):

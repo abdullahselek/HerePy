@@ -3,8 +3,61 @@
 import unittest
 
 import responses
+from async_test_helpers import assert_async_get_cases, assert_async_get_error_case
 
 import herepy
+
+
+class AsyncFleetTelematicsApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_sequence_and_pickup_methods(self):
+        api = herepy.FleetTelematicsApi("api_key")
+        modes = [herepy.RouteMode.fastest, herepy.RouteMode.car, herepy.RouteMode.traffic_enabled]
+        cases = [
+            (
+                "async_find_sequence",
+                (
+                    "WiesbadenCentralStation;50.0715,8.2434",
+                    "2014-12-09T09:30:00+01:00",
+                    ["FrankfurtCentralStation;50.1073,8.6647"],
+                    "MainzCentralStation;50.0021,8.259",
+                    modes,
+                ),
+            ),
+            (
+                "async_find_pickups",
+                (
+                    modes,
+                    "50.115620,8.631210;pickup:GRAPEFRUITS,value:1000",
+                    "2016-10-14T07:30:00+02:00",
+                    10000,
+                    0.29,
+                    20,
+                    60,
+                    "disabled",
+                    ["50.118578,8.636551;drop:APPLES,value:30"],
+                    "50.132540,8.649280",
+                ),
+                herepy.WaypointSequenceResponse,
+                "fleet_telematics_find_pickups.json",
+            ),
+        ]
+        await assert_async_get_cases(
+            self,
+            api,
+            cases,
+            herepy.WaypointSequenceResponse,
+            fixture="fleet_telematics_find_sequence.json",
+        )
+
+    async def test_async_sequence_maps_service_errors(self):
+        await assert_async_get_error_case(
+            self,
+            herepy.FleetTelematicsApi("api_key"),
+            "async_find_sequence",
+            ("start", "2024-01-01T12:00:00", ["intermediate"], "end", [herepy.RouteMode.car]),
+            "fleet_telematics_unauthorized_error.json",
+            herepy.HEREError,
+        )
 
 
 class FleetTelematicsApiTest(unittest.TestCase):

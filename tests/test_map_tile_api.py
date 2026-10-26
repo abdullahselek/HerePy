@@ -2,9 +2,51 @@
 
 import json
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import AsyncMock, Mock, patch
+
+import httpx2
 
 from herepy import HEREError, InvalidRequestError, MapTileApi, UnauthorizedError
+
+
+class AsyncMapTileApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_get_maptile_returns_binary_content(self):
+        tile_bytes = b"\xff\x00tile-data"
+        api = MapTileApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=tile_bytes))) as get:
+                result = await api.async_get_maptile(52.525439, 13.38727, 12)
+
+        self.assertEqual(result, tile_bytes)
+        get.assert_awaited_once()
+
+    async def test_async_get_maptile_raises_unauthorized_error(self):
+        with open("testdata/models/unauthorized_error.json", "rb") as file:
+            error_content = file.read()
+        api = MapTileApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=error_content))):
+                with self.assertRaises(UnauthorizedError):
+                    await api.async_get_maptile(52.525439, 13.38727, 12)
+
+    async def test_async_get_maptile_returns_non_error_json_bytes(self):
+        payload = b'{"status": "ok"}'
+        api = MapTileApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, content=payload))) as get:
+                result = await api.async_get_maptile(
+                    52.525439,
+                    13.38727,
+                    12,
+                    query_parameters={"output": "base64"},
+                )
+
+        self.assertEqual(result, payload)
+        get.assert_awaited_once()
+        self.assertIn("output=base64", get.await_args.args[0])
 
 
 class MapTileApiTest(unittest.TestCase):

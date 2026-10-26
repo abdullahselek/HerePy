@@ -138,6 +138,16 @@ Using
 The library provides a Python wrapper around the HERE APIs with different data models. To get started, check out the examples in the ``examples/`` folder or
 read the documentation at `https://herepy.abdullahselek.com/ <https://herepy.abdullahselek.com/>`_. All API clients need an API key which you can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
+Async API calls
+---------------
+
+All API clients provide asynchronous counterparts for their HTTP methods. Use the ``async_`` prefix and manage the client with ``async with``::
+
+    async with herepy.GeocoderApi(api_key="YOUR_API_KEY") as geocoder:
+        response = await geocoder.async_free_form("Berlin")
+
+Existing synchronous methods remain available.
+
 Publishing
 ============
 

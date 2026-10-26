@@ -109,3 +109,69 @@ class VectorTileApi(HEREApi):
             except UnicodeDecodeError:
                 print("Vector tile downloaded")
         return response.content
+
+    async def async_get_vectortile(
+        self,
+        latitude: float,
+        longitude: float,
+        zoom: int,
+        layer: VectorMapTileLayer = VectorMapTileLayer.base,
+        projection: str = "mc",
+        tile_format: str = "omv",
+        query_parameters: dict | None = None,
+        headers: dict | None = None,
+    ) -> bytes | None:
+        """
+        Retrieve the protocol buffer-encoded binary tile.
+
+        Args:
+          latitude (float):
+            Latitude value to be used to fetch map tile.
+          longitude (float):
+            Longitude value to be used to fetch map tile.
+          zoom (int):
+            Specifies the tile Zoom level. Accepted values range from 0-17. minimum - 0, maximum - 17.
+          layer (VectorMapTileLayer):
+            Specifies the layers available in the tile. The access to each layer is determined by the contract of the user.
+          projection (str):
+            Specifies the tile projection. mc - Mercator Projection.
+          tile_format (str):
+            Specifies the tile format.
+            omv - Optimized Map for Visualization (follows Map Vector Tile open specification).
+          query_parameters (Optional[Dict]):
+            Optional Query Parameters. Refer to the API definition for values.
+          headers (Optional[Dict]):
+            Optional headers. Refer to the API definition for values.
+
+        Returns:
+          Vector tile as bytes.
+
+        Raises:
+          HEREError
+
+        """
+        column, row = MercatorProjection.get_column_row(latitude=latitude, longitude=longitude, zoom=zoom)
+        url = str.format(
+            self._base_url + "{}/{}/{}/{}/{}/{}",
+            layer.__str__(),
+            projection,
+            zoom,
+            column,
+            row,
+            tile_format,
+        )
+        if query_parameters:
+            query_parameters.update({"apiKey": self._api_key})
+        else:
+            query_parameters = {"apiKey": self._api_key}
+        url = Utils.build_url(url, extra_params=query_parameters)
+        response = await self._get_async_client().get(url, headers=headers, timeout=self._timeout)
+        if isinstance(response.content, bytes):
+            try:
+                json_data = json.loads(response.content.decode("utf8"))
+                if "error" in json_data:
+                    error = self.__get_error_from_response(json_data)
+                    raise error
+            except UnicodeDecodeError:
+                print("Vector tile downloaded")
+        return response.content

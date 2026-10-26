@@ -1,10 +1,34 @@
 #!/usr/bin/env python
 
 import unittest
+from unittest.mock import AsyncMock, patch
 
+import httpx2
 import responses
+from async_test_helpers import assert_async_get_cases
 
 import herepy
+
+
+class AsyncRmeApiTest(unittest.IsolatedAsyncioTestCase):
+    async def test_async_match_route(self):
+        with open("testdata/routes/sample.gpx", encoding="utf-8") as gpx_file:
+            gpx_content = gpx_file.read()
+        await assert_async_get_cases(
+            self,
+            herepy.RmeApi("api_key"),
+            [("async_match_route", (gpx_content, "car", ["ADAS_ATTRIB_FCn(SLOPES)"]))],
+            herepy.RmeResponse,
+            fixture="rme_match_route_api.json",
+        )
+
+    async def test_async_match_route_maps_service_errors(self):
+        api = herepy.RmeApi("api_key")
+        async with api:
+            client = api._get_async_client()
+            with patch.object(client, "get", new=AsyncMock(return_value=httpx2.Response(200, json={"Details": "invalid route"}))):
+                with self.assertRaisesRegex(herepy.HEREError, "invalid route"):
+                    await api.async_match_route("")
 
 
 class RmeApiTest(unittest.TestCase):
