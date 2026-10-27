@@ -548,7 +548,7 @@ wheels = [
 
 [[package]]
 name = "herepy"
-version = "3.6.6"
+version = "3.7.0"
 source = { editable = "." }
 dependencies = [
     { name = "httpx2", version = "2.14.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
