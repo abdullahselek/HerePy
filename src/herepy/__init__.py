@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""A library that provides a Python interface to the HERE APIs."""
+"""A Python interface to HERE location APIs with sync and async HTTP calls."""
 
 __author__ = "Abdullah Selek"
 __email__ = "abdullahselek.os@gmail.com"
@@ -9,7 +9,7 @@ __license__ = "MIT License"
 __version__ = "3.6.5"
 __url__ = "https://github.com/abdullahselek/HerePy"
 __download_url__ = "https://pypi.org/pypi/herepy"
-__description__ = "A library that provides a Python interface to the HERE APIs"
+__description__ = "A Python interface to HERE location APIs with support for synchronous and asynchronous HTTP calls."
 
 from .destination_weather_api import DestinationWeatherApi
 from .error import AccessDeniedError, HEREError, InvalidRequestError, UnauthorizedError

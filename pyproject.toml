@@ -1,7 +1,7 @@
 [project]
 name = "herepy"
 version = "3.7.0"
-description = "A library that provides a Python interface to the HERE APIs"
+description = "A Python interface to HERE location APIs with support for synchronous and asynchronous HTTP calls."
 readme = "README.rst"
 requires-python = ">=3.10"
 license = { text = "MIT License" }
