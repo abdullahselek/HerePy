@@ -130,13 +130,13 @@ Available API clients in **herepy**::
 Documentation
 =============
 
-View the latest herepy documentation at `https://herepy.abdullahselek.com/ <https://herepy.abdullahselek.com/>`_. You can view HERE's API documentation at: `https://developer.here.com/documentation <https://developer.here.com/documentation>`_.
+View the latest herepy documentation at `https://abdullahselek.github.io/HerePy/ <https://abdullahselek.github.io/HerePy/>`_. You can view HERE's API documentation at: `https://developer.here.com/documentation <https://developer.here.com/documentation>`_.
 
 Using
 =====
 
 The library provides a Python wrapper around the HERE APIs with different data models. To get started, check out the examples in the ``examples/`` folder or
-read the documentation at `https://herepy.abdullahselek.com/ <https://herepy.abdullahselek.com/>`_. All API clients need an API key which you can get from `HERE Developer Portal <https://developer.here.com/>`_.
+read the documentation at `https://abdullahselek.github.io/HerePy/ <https://abdullahselek.github.io/HerePy/>`_. All API clients need an API key which you can get from `HERE Developer Portal <https://developer.here.com/>`_.
 
 Async API calls
 ---------------
@@ -147,14 +147,6 @@ All API clients provide asynchronous counterparts for their HTTP methods. Use th
         response = await geocoder.async_free_form("Berlin")
 
 Existing synchronous methods remain available.
-
-Publishing
-============
-
-Maintainers can publish the package to PyPI using uv::
-
-    $ uv build
-    $ uv publish
 
 License
 -------
